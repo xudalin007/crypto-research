@@ -1,0 +1,13 @@
+# 排除通俗版报告
+btc_for_everyone.md
+btc_for_everyone.html
+btc_for_everyone.pdf
+
+# 排除本地个人设置
+.claude/settings.local.json
+
+# 排除临时文件
+generate_html.py
+*.pyc
+__pycache__/
+.DS_Store
