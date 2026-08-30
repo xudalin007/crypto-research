@@ -1,7 +1,5 @@
-# 排除通俗版报告
-btc_for_everyone.md
-btc_for_everyone.html
-btc_for_everyone.pdf
+# 排除通俗版报告（整个目录）
+general/
 
 # 排除本地个人设置
 .claude/settings.local.json

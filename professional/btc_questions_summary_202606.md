@@ -1,6 +1,6 @@
 # BTC / Bitcoin 调研分析 — 核心问题与简明总结
 
-> 配套 `btc_research_report.md` 使用。Date: 2026-06-03（数据更新版）
+> 配套 `btc_research_report_202606.md` 使用。Date: 2026-06-03（数据更新版）
 > 本次更新：新增 AI 影响、上市公司储备两块；修正宏观（Warsh 鹰派/零降息）；数据更新至 6 月初。
 
 ---
@@ -163,4 +163,4 @@
 
 ---
 
-> 详细分析、数据来源和完整论证请阅读 `btc_research_report.md`。
+> 详细分析、数据来源和完整论证请阅读 `btc_research_report_202606.md`。
