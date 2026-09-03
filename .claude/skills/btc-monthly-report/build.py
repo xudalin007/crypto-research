@@ -21,6 +21,14 @@ except ImportError:
 
 EXT = ['tables', 'fenced_code', 'codehilite', 'toc', 'nl2br']
 
+# 资产档案：SOL 首次接入时暴露出共 5 处硬编码（标题/顶栏/侧栏/hero/徽章），集中在此
+PROFILES = {
+    'btc': dict(symbol='₿', name='BTC / Bitcoin', short='BTC',
+                accent='#f7931a', badge='₿ Bitcoin'),
+    'sol': dict(symbol='◎', name='SOL / Solana', short='SOL',
+                accent='#14f195', badge='◎ Solana'),
+}
+
 
 def build_nav(md_html):
     """从生成的 HTML 里自动抽取 h2 的 id 和文本，构造导航项。"""
@@ -103,6 +111,10 @@ def main():
     if '--asset' in sys.argv:
         asset = sys.argv[sys.argv.index('--asset') + 1].lower()
 
+    prof = PROFILES.get(asset)
+    if prof is None:
+        sys.exit(f"未知资产 '{asset}'，请先在 build.py 的 PROFILES 里登记")
+
     base = os.path.join(asset, 'professional')
     rp_md = os.path.join(base, f'{asset}_research_report_{ym}.md')
     sm_md = os.path.join(base, f'{asset}_questions_summary_{ym}.md')
@@ -127,20 +139,20 @@ def main():
 
     doc = f'''<!DOCTYPE html><html lang="zh-CN"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>BTC / Bitcoin 完整调研与分析报告 — {year}年{month}月</title>
-<style>{CSS}</style></head><body>
-<div class="topbar"><span class="brand">₿ BTC 调研报告 ({year}.{month})</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<title>{prof['name']} 完整调研与分析报告 — {year}年{month}月</title>
+<style>{CSS.replace('#f7931a', prof['accent'])}</style></head><body>
+<div class="topbar"><span class="brand">{prof['symbol']} {prof['short']} 调研报告 ({year}.{month})</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
 <div class="overlay" id="overlay"></div>
-<nav class="sidebar" id="sidebar"><h2>₿ BTC 调研报告 {year}.{month}</h2>
+<nav class="sidebar" id="sidebar"><h2>{prof['symbol']} {prof['short']} 调研报告 {year}.{month}</h2>
 <div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
 {nav_html(rnav)}
 <hr class="divider"><div class="nav-section">简明总结</div>
 {nav_html(snav)}
 <hr class="divider"><div class="sidebar-footer">数据截止：{year} 年 {month} 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
 <main class="main">
-<div class="hero" id="hero"><h1>₿ BTC / Bitcoin<br>完整调研与分析报告</h1>
+<div class="hero" id="hero"><h1>{prof['symbol']} {prof['name']}<br>完整调研与分析报告</h1>
 <div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
-<div class="badges"><span class="badge badge-btc">₿ Bitcoin</span><span class="badge badge-date">{year} 年 {month} 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="badges"><span class="badge badge-btc">{prof['badge']}</span><span class="badge badge-date">{year} 年 {month} 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
 <div class="content"><div id="full-report">{rp}</div>
 <hr class="section-divider">
 <div id="summary"><div class="hero"><h1>\U0001F4CB 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div>{sm}</div>

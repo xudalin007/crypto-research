@@ -22,7 +22,8 @@ btc/                            比特币
     thesis_scorecard.md                跨期论点记分卡（不带月份，持续追加）
   general/                      通俗版（面向普通人，不进仓库）
 
-sol/                            Solana（规划中）
+sol/                            Solana
+  professional/                 结构同 btc/，但章节框架有约四成差异
 
 .claude/skills/                 报告生成技能（随仓库版本化，不放全局）
 ```
@@ -41,7 +42,11 @@ sol/                            Solana（规划中）
 
 ### SOL
 
-规划中。框架相对 BTC 需改动约四成——减半周期、算力/矿工不适用，替换为通胀销毁机制、质押率、验证者集中度；新增网络宕机史、生态数据（TVL / DEX 交易量）、L1 竞争格局。
+| 版本 | 专业版 | 通俗版 | 当期核心判断 |
+|------|:---:|:---:|------|
+| 2026-08 | ✅ | — | 首期。核心矛盾是**收入崩塌 87% 但用量创新高**（8 月 52 亿笔交易）；「Solana 老宕机」论据已过时（30 个月零中断）；首次全网治理投票 SIMD-0550 以 67% 惊险通过、SIMD-0553 被否 |
+
+**框架差异**：相对 BTC 版改动约四成。减半周期、算力/矿工不适用，替换为通胀销毁机制、质押与验证者经济；新增网络稳定性、生态数据、治理投票、L1 竞争。**最根本的是估值锚不同**——BTC 靠稀缺性，SOL 是生产性资产、应看网络收入。
 
 ## 两个版本的区别
 
@@ -55,7 +60,7 @@ sol/                            Solana（规划中）
 
 ## 论点记分卡
 
-`btc/professional/thesis_scorecard.md` 记录历次判断的对错。**截至 2026-08，已检验的 8 个论点里只说对 1 个（13%）**，
+每个资产各有一份记分卡（`btc/professional/thesis_scorecard.md`、`sol/professional/thesis_scorecard.md`），记录历次判断的对错。**截至 2026-08，已检验的 8 个论点里只说对 1 个（13%）**，
 主要失误模式是把「结构性脆弱」误判为「即将断裂」。
 
 这个数字公开挂着是有意的——一份不检查自己历史准确率的研究报告，价值要打很大折扣。
@@ -70,7 +75,8 @@ sol/                            Solana（规划中）
 只做 HTML/PDF 重建（Markdown 已改好时）：
 
 ```bash
-python3 .claude/skills/btc-monthly-report/build.py 202609
+python3 .claude/skills/btc-monthly-report/build.py 202609              # BTC
+python3 .claude/skills/btc-monthly-report/build.py 202609 --asset sol  # SOL
 # 脚本会打印 PDF 生成命令，复制执行即可
 ```
 

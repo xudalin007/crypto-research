@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 272" width="100%" role="img" aria-label="三种情景：2029 年价格参考区间与主观概率">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917}
+ .vs{font:600 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#fff} .ax{stroke:#e7e5e4;stroke-width:1}
+</style><rect width="620" height="272" fill="none"/>
+<text x="0" y="16" class="t">三种情景：2029 年价格参考区间与主观概率</text><text x="0" y="34" class="s">单位：美元 · 由「假设年化收入 × 假设收入倍数」推出，非模型输出（弱点见报告 9.4 节）</text>
+<line x1="104" y1="62" x2="104" y2="220" class="ax"/>
+<text x="104" y="237" class="l" text-anchor="middle">$0</text>
+<line x1="173" y1="62" x2="173" y2="220" class="ax"/>
+<text x="173" y="237" class="l" text-anchor="middle">$50</text>
+<line x1="242" y1="62" x2="242" y2="220" class="ax"/>
+<text x="242" y="237" class="l" text-anchor="middle">$100</text>
+<line x1="311" y1="62" x2="311" y2="220" class="ax"/>
+<text x="311" y="237" class="l" text-anchor="middle">$150</text>
+<line x1="380" y1="62" x2="380" y2="220" class="ax"/>
+<text x="380" y="237" class="l" text-anchor="middle">$200</text>
+<line x1="449" y1="62" x2="449" y2="220" class="ax"/>
+<text x="449" y="237" class="l" text-anchor="middle">$250</text>
+<line x1="243" y1="62" x2="243" y2="220" stroke="#57534e" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="248" y="58" class="l">现价 $100.59</text>
+<text x="90" y="91" class="v" text-anchor="end">乐观</text>
+<text x="90" y="105" class="l" text-anchor="end">概率 20%</text>
+<rect x="270" y="76" width="207" height="24" rx="4" fill="#1baf7a"/>
+<text x="373" y="92" class="vs" text-anchor="middle">$120 – $270</text>
+<text x="90" y="141" class="v" text-anchor="end">中性</text>
+<text x="90" y="155" class="l" text-anchor="end">概率 50%</text>
+<rect x="184" y="126" width="123" height="24" rx="4" fill="#2a78d6"/>
+<text x="245" y="142" class="vs" text-anchor="middle">$58 – $147</text>
+<text x="90" y="191" class="v" text-anchor="end">悲观</text>
+<text x="90" y="205" class="l" text-anchor="end">概率 30%</text>
+<rect x="118" y="176" width="34" height="24" rx="4" fill="#e34948"/>
+<text x="161" y="192" class="v">$10 – $35</text>
+<text x="0" y="264" class="s">当前市值约为年化收入的 209 倍。三档区间的核心变量是「收入能否重建」，而非估值倍数本身。</text>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 300" width="100%" role="img" aria-label="SOL vs ETH：交易份额与市值份额的背离">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917}
+ .ax{stroke:#e7e5e4;stroke-width:1}
+</style><rect width="620" height="300" fill="none"/>
+<text x="0" y="16" class="t">SOL vs ETH：交易份额与市值份额的背离</text><text x="0" y="34" class="s">单位：% · 蓝＝Solana，橙＝Ethereum · 数据源：coinlaw / MEXC 研究（H1 2026）</text>
+<line x1="176" y1="68" x2="176" y2="244" class="ax"/>
+<text x="176" y="262" class="l" text-anchor="middle">0%</text>
+<line x1="242" y1="68" x2="242" y2="244" class="ax"/>
+<text x="242" y="262" class="l" text-anchor="middle">10%</text>
+<line x1="308" y1="68" x2="308" y2="244" class="ax"/>
+<text x="308" y="262" class="l" text-anchor="middle">20%</text>
+<line x1="374" y1="68" x2="374" y2="244" class="ax"/>
+<text x="374" y="262" class="l" text-anchor="middle">30%</text>
+<line x1="440" y1="68" x2="440" y2="244" class="ax"/>
+<text x="440" y="262" class="l" text-anchor="middle">40%</text>
+<line x1="506" y1="68" x2="506" y2="244" class="ax"/>
+<text x="506" y="262" class="l" text-anchor="middle">50%</text>
+<text x="164" y="98" class="v" text-anchor="end">现货 DEX 交易份额</text>
+<rect x="176" y="76" width="238" height="22" rx="4" fill="#2a78d6"/>
+<text x="422" y="92" class="v">SOL 36.0%</text>
+<rect x="176" y="104" width="155" height="22" rx="4" fill="#eb6834"/>
+<text x="339" y="120" class="v">ETH 23.5%</text>
+<text x="164" y="182" class="v" text-anchor="end">智能合约市值份额</text>
+<rect x="176" y="160" width="63" height="22" rx="4" fill="#2a78d6"/>
+<text x="247" y="176" class="v">SOL 9.5%</text>
+<rect x="176" y="188" width="276" height="22" rx="4" fill="#eb6834"/>
+<text x="460" y="204" class="v">ETH 41.8%</text>
+<text x="0" y="292" class="s">SOL 拿下 36% 的交易份额却只占 9.5% 市值；ETH 反之。多头读作估值待修复，空头读作低价值流量。</text>
+</svg>

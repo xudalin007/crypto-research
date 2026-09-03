@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 310" width="100%" role="img" aria-label="收入崩塌的原因：meme 币退潮">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917}
+ .ax{stroke:#e7e5e4;stroke-width:1}
+</style><rect width="620" height="310" fill="none"/>
+<text x="0" y="16" class="t">收入崩塌的原因：meme 币退潮</text><text x="0" y="34" class="s">两组数据均出自 21Shares 的 H1 2026 分析 · 左：H1 网络收入（亿美元）· 右：meme 币占现货交易量（%）</text>
+<text x="10" y="68" class="l">H1 网络收入（亿美元）</text>
+<path d="M40,226 L40,93.75 Q40,89.75 44,89.75 L112,89.75 Q116,89.75 116,93.75 L116,226 Z" fill="#e34948"/>
+<text x="78" y="83" class="v" text-anchor="middle">10.9</text>
+<text x="78" y="243" class="l" text-anchor="middle">H1 2025</text>
+<path d="M155,226 L155,212.375 Q155,208.375 159,208.375 L227,208.375 Q231,208.375 231,212.375 L231,226 Z" fill="#e34948"/>
+<text x="193" y="201" class="v" text-anchor="middle">1.41</text>
+<text x="193" y="243" class="l" text-anchor="middle">H1 2026</text>
+<line x1="10" y1="226" x2="260" y2="226" stroke="#57534e" stroke-width="1.5"/>
+<text x="135" y="266" class="v" text-anchor="middle" fill="#e34948">−87.1%</text>
+<text x="330" y="68" class="l">meme 币占现货交易量（%）</text>
+<path d="M360,226 L360,96.66666666666669 Q360,92.66666666666669 364,92.66666666666669 L432,92.66666666666669 Q436,92.66666666666669 436,96.66666666666669 L436,226 Z" fill="#eb6834"/>
+<text x="398" y="86" class="v" text-anchor="middle">40</text>
+<text x="398" y="243" class="l" text-anchor="middle">H1 2025</text>
+<path d="M475,226 L475,176.66666666666666 Q475,172.66666666666666 479,172.66666666666666 L547,172.66666666666666 Q551,172.66666666666666 551,176.66666666666666 L551,226 Z" fill="#eb6834"/>
+<text x="513" y="166" class="v" text-anchor="middle">16</text>
+<text x="513" y="243" class="l" text-anchor="middle">H1 2026</text>
+<line x1="330" y1="226" x2="580" y2="226" stroke="#57534e" stroke-width="1.5"/>
+<text x="455" y="266" class="v" text-anchor="middle" fill="#eb6834">−60%</text>
+<text x="0" y="284" class="s">2025 上半年收入的 95% 来自 meme 币推高的优先费与 Jito 小费——meme 币退潮，收入随之塌陷。</text>
+<text x="0" y="302" class="s">同期链上交易笔数反而创下历史新高（2026 年 8 月 52 亿笔）：用量在涨，变现在跌。</text>
+</svg>
