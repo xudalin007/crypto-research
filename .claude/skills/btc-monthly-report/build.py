@@ -3,11 +3,12 @@
 BTC 月度报告构建器 —— Markdown → HTML（→ PDF 由调用方用 Chrome 渲染）
 
 用法:
-    python3 .claude/skills/btc-monthly-report/build.py 202608
+    python3 .claude/skills/btc-monthly-report/build.py 202608          # 默认 btc
+    python3 .claude/skills/btc-monthly-report/build.py 202608 --asset btc
 
-会读取 professional/btc_research_report_<YYYYMM>.md
-       professional/btc_questions_summary_<YYYYMM>.md
-输出   professional/btc_research_report_<YYYYMM>.html
+会读取 <asset>/professional/<asset>_research_report_<YYYYMM>.md
+       <asset>/professional/<asset>_questions_summary_<YYYYMM>.md
+输出   <asset>/professional/<asset>_research_report_<YYYYMM>.html
 
 导航 ID 全自动探测，无需手工映射（消除拼音 slug 坑）。
 """
@@ -94,14 +95,18 @@ window.addEventListener('scroll',function(){var h=document.documentElement.scrol
 
 def main():
     if len(sys.argv) < 2 or not re.fullmatch(r'\d{6}', sys.argv[1]):
-        sys.exit("用法: python3 build.py <YYYYMM>   例: python3 build.py 202608")
+        sys.exit("用法: python3 build.py <YYYYMM> [--asset btc]   例: python3 build.py 202608")
     ym = sys.argv[1]
     year, month = ym[:4], ym[4:].lstrip('0')
 
-    base = 'professional'
-    rp_md = os.path.join(base, f'btc_research_report_{ym}.md')
-    sm_md = os.path.join(base, f'btc_questions_summary_{ym}.md')
-    out = os.path.join(base, f'btc_research_report_{ym}.html')
+    asset = 'btc'
+    if '--asset' in sys.argv:
+        asset = sys.argv[sys.argv.index('--asset') + 1].lower()
+
+    base = os.path.join(asset, 'professional')
+    rp_md = os.path.join(base, f'{asset}_research_report_{ym}.md')
+    sm_md = os.path.join(base, f'{asset}_questions_summary_{ym}.md')
+    out = os.path.join(base, f'{asset}_research_report_{ym}.html')
 
     for p in (rp_md, sm_md):
         if not os.path.exists(p):
@@ -164,7 +169,7 @@ def main():
     print(f"\n下一步生成 PDF：")
     print(f'   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu \\')
     print(f'     --no-pdf-header-footer --print-to-pdf-no-header \\')
-    print(f'     --print-to-pdf="{base}/btc_research_report_{ym}.pdf" \\')
+    print(f'     --print-to-pdf="{base}/{asset}_research_report_{ym}.pdf" \\')
     print(f'     "file://$(pwd)/{out}"')
 
 

@@ -1,5 +1,5 @@
-# 排除通俗版报告（整个目录）
-general/
+# 排除通俗版报告（各资产目录下）
+*/general/
 
 # 排除本地个人设置
 .claude/settings.local.json

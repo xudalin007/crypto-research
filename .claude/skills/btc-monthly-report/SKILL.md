@@ -5,7 +5,7 @@ description: 生成或更新 BTC 月度专业调研报告（Markdown + HTML + PD
 
 # BTC 月度专业调研报告
 
-产出一套四件产物，放在 `professional/`：
+产出一套四件产物，放在 `btc/professional/`：
 
 | 文件 | 说明 |
 |------|------|
@@ -16,7 +16,7 @@ description: 生成或更新 BTC 月度专业调研报告（Markdown + HTML + PD
 | `charts/*-<YYYYMM>.svg` | 三张图表 |
 | `thesis_scorecard.md` | **跨期滚动**，不带月份后缀，每期追加 |
 
-通俗版是**另一条线**，放 `general/`，不在本技能范围（且被 gitignore 排除）。
+通俗版是**另一条线**，放 `btc/general/`，不在本技能范围（且被 gitignore 排除）。
 
 ---
 
@@ -67,7 +67,7 @@ description: 生成或更新 BTC 月度专业调研报告（Markdown + HTML + PD
 
 ## 第 2.5 步：出图表
 
-每期至少三张，放 `professional/charts/`，命名 `<主题>-<YYYYMM>.svg`，在 Markdown 里用相对路径引用：
+每期至少三张，放 `btc/professional/charts/`，命名 `<主题>-<YYYYMM>.svg`，在 Markdown 里用相对路径引用：
 
 ```markdown
 ![2026 年 5–8 月 ETF 月度净流量](charts/etf-flows-202608.svg)
@@ -101,10 +101,10 @@ node $D/scripts/validate_palette.js "#2a78d6,#e34948" --mode light
 **画完必须实际渲染检查**（dataviz 规范第 7 步）——校验器只管颜色，不管排版：
 
 ```bash
-# 建一个临时预览页放在 professional/ 下（相对路径才解析得到 charts/）
+# 建一个临时预览页放在 btc/professional/ 下（相对路径才解析得到 charts/）
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu \
   --screenshot=/tmp/charts.png --window-size=720,1030 --hide-scrollbars \
-  "file://$(pwd)/professional/_preview.html"
+  "file://$(pwd)/btc/professional/_preview.html"
 ```
 
 然后用 Read 工具看图。**上次就是靠这一步抓到两个问题**：坐标轴标签与脚注重叠、窄条上的标签被裁切。检查完删掉临时预览页。
@@ -129,7 +129,7 @@ python3 .claude/skills/btc-monthly-report/build.py <YYYYMM>
 
 ## 第 4.5 步：更新论点记分卡
 
-`professional/thesis_scorecard.md` 是**跨期滚动**的，每期必做两件事：
+`btc/professional/thesis_scorecard.md` 是**跨期滚动**的，每期必做两件事：
 
 1. **核对上期登记的论点**，填入结果与判定（✅ 正确 / ⚠️ 部分 / ❌ 错误）
 2. **登记本期新论点**，每条必须写明**可证伪的检验条件**——不可证伪的论断不予登记
@@ -142,7 +142,7 @@ python3 .claude/skills/btc-monthly-report/build.py <YYYYMM>
 ## 第 5 步：提交
 
 ```bash
-git add professional/ && git commit && git push
+git add btc/ && git commit && git push
 ```
 
 ---

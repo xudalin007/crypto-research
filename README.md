@@ -1,37 +1,47 @@
-# longBTC
+# crypto-research
 
-BTC / Bitcoin 调研报告库。按月出具，分**专业版**和**通俗版**两条线。
+加密资产研究报告库。按月出具，每个资产分**专业版**和**通俗版**两条线。
 
 > ⚠️ 本仓库所有内容仅供研究参考，**不构成任何投资建议**。
+
+> 📌 本仓库原名 `longBTC`，2026-09 起扩展为多资产研究，改名为 `crypto-research`。
+> 旧链接由 GitHub 自动重定向（实测返回 301），无需修改。
 
 ---
 
 ## 目录结构
 
 ```
-professional/                  专业版（面向分析师 / 从业者）
-  btc_research_report_YYYYMM.md      完整报告，11 章
-  btc_research_report_YYYYMM.html    网页版（侧边导航 + 移动适配）
-  btc_research_report_YYYYMM.pdf     PDF
-  btc_questions_summary_YYYYMM.md    简明速查
-  charts/*-YYYYMM.svg                图表
-  thesis_scorecard.md                跨期论点记分卡（不带月份，持续追加）
+btc/                            比特币
+  professional/                 专业版（面向分析师 / 从业者）
+    btc_research_report_YYYYMM.md      完整报告，11 章
+    btc_research_report_YYYYMM.html    网页版（侧边导航 + 移动适配）
+    btc_research_report_YYYYMM.pdf     PDF
+    btc_questions_summary_YYYYMM.md    简明速查
+    charts/*-YYYYMM.svg                图表
+    thesis_scorecard.md                跨期论点记分卡（不带月份，持续追加）
+  general/                      通俗版（面向普通人，不进仓库）
 
-general/                       通俗版（面向普通人，本仓库不收录）
-  btc_for_everyone_YYYYMM.*
+sol/                            Solana（规划中）
 
-.claude/skills/btc-monthly-report/   月度报告生成技能
+.claude/skills/                 报告生成技能（随仓库版本化，不放全局）
 ```
 
-文件一律带 `YYYYMM` 后缀。通俗版目录被 `.gitignore` 排除，仅存本地。
+文件一律带 `YYYYMM` 后缀。各资产的 `general/` 目录被 `.gitignore` 排除，仅存本地。
 
 ## 已有版本
+
+### BTC
 
 | 版本 | 专业版 | 通俗版 | 当期核心判断 |
 |------|:---:|:---:|------|
 | 2026-06 | ✅ | ✅ | Warsh 就任、市场定价零降息；首次纳入上市公司储备与 AI 两章 |
 | 2026-07 | ✅ | — | ETF 创史上最大单月流出 $45 亿；Strategy 单日抛售 $2.16 亿，最大买方转为卖方 |
 | 2026-08 | ✅ | — | BTC +25.1% 收 $78,548；ETF 单月流入 $35.2 亿创年内最佳；7 月偏空判断被证伪。新增图表、情景推导方法、机构空方观点、滚动记分卡 |
+
+### SOL
+
+规划中。框架相对 BTC 需改动约四成——减半周期、算力/矿工不适用，替换为通胀销毁机制、质押率、验证者集中度；新增网络宕机史、生态数据（TVL / DEX 交易量）、L1 竞争格局。
 
 ## 两个版本的区别
 
@@ -45,7 +55,7 @@ general/                       通俗版（面向普通人，本仓库不收录�
 
 ## 论点记分卡
 
-`professional/thesis_scorecard.md` 记录历次判断的对错。**截至 2026-08，已检验的 8 个论点里只说对 1 个（13%）**，
+`btc/professional/thesis_scorecard.md` 记录历次判断的对错。**截至 2026-08，已检验的 8 个论点里只说对 1 个（13%）**，
 主要失误模式是把「结构性脆弱」误判为「即将断裂」。
 
 这个数字公开挂着是有意的——一份不检查自己历史准确率的研究报告，价值要打很大折扣。
@@ -53,14 +63,14 @@ general/                       通俗版（面向普通人，本仓库不收录�
 ## 生成新一期
 
 ```bash
-# 交给 Claude Code，它会按 .claude/skills/btc-monthly-report/ 的流程走
-生成 2026 年 8 月版报告
+# 交给 Claude Code，它会按 .claude/skills/ 里的流程走
+生成 2026 年 9 月版 BTC 报告
 ```
 
 只做 HTML/PDF 重建（Markdown 已改好时）：
 
 ```bash
-python3 .claude/skills/btc-monthly-report/build.py 202608
+python3 .claude/skills/btc-monthly-report/build.py 202609
 # 脚本会打印 PDF 生成命令，复制执行即可
 ```
 
