@@ -13,6 +13,8 @@ description: 生成或更新 BTC 月度专业调研报告（Markdown + HTML + PD
 | `btc_questions_summary_<YYYYMM>.md` | 简明速查，10-11 节 |
 | `btc_research_report_<YYYYMM>.html` | 网页版（脚本生成，勿手写） |
 | `btc_research_report_<YYYYMM>.pdf` | PDF（Chrome 无头渲染） |
+| `charts/*-<YYYYMM>.svg` | 三张图表 |
+| `thesis_scorecard.md` | **跨期滚动**，不带月份后缀，每期追加 |
 
 通俗版是**另一条线**，放 `general/`，不在本技能范围（且被 gitignore 排除）。
 
@@ -58,7 +60,54 @@ description: 生成或更新 BTC 月度专业调研报告（Markdown + HTML + PD
 - **重点不是预测价格**，是理解历史、现状、逻辑、可能性
 - 表格优先于长段落
 - 报告开头的引用块里写明「本版更新要点」——列出相比上一版变了什么
+- **给出价格区间必须同时给出推导方式**（见 202608 版 9.4 节的写法）。精确的数字如果没有方法论，就是给主观判断打包装
+- **必须纳入非加密原生来源**。Cointelegraph / CoinDesk / KuCoin 这类媒体结构上偏多；固定引一节传统机构观点（Deutsche Bank、Citi、JPMorgan 等）配平
+- 附录的来源表要标注**核实状态**：哪些是一手抓取，哪些只是搜索摘要，哪些没核实成
 - 情景概率变动要说明原因（如"悲观概率上调，因 Strategy 开始抛售"）
+
+## 第 2.5 步：出图表
+
+每期至少三张，放 `professional/charts/`，命名 `<主题>-<YYYYMM>.svg`，在 Markdown 里用相对路径引用：
+
+```markdown
+![2026 年 5–8 月 ETF 月度净流量](charts/etf-flows-202608.svg)
+```
+
+**为什么用独立 SVG 文件而不是内联**：GitHub 的 Markdown 渲染器会剥掉内联 `<svg>`，但能正常显示 `![](x.svg)` 引用的图片。独立文件同时满足 GitHub 预览、HTML 构建、PDF 渲染三处。
+
+固定的三张：
+
+| 图 | 内容 | 形式 |
+|---|------|------|
+| ETF 月度净流量 | 近 4 个月净流入/出 | 柱状图，零轴上下分色 |
+| 持有者成本基准 vs 现价 | STH / LTH 成本、已实现价格 | 横向条形 |
+| 三情景价格区间 | 概率 + 区间 | 横向区间条 |
+
+**配色必须先跑校验器**，不要凭感觉：
+
+```bash
+D=/private/tmp/claude-501/bundled-skills/*/dataviz   # 路径每次可能不同，用 Skill 工具载入 dataviz 获取
+node $D/scripts/validate_palette.js "#2a78d6,#e34948" --mode light
+```
+
+已验证可用的组合（浅色底）：
+
+- **双极（流入/流出）**：`#2a78d6` 蓝 / `#e34948` 红 — CVD ΔE 21.6，全部 PASS
+- **三分类（三情景）**：`#2a78d6` / `#eb6834` / `#1baf7a` — all-pairs 全 PASS
+- 文字 `#1c1917`（主）/ `#57534e`（次），网格 `#e7e5e4`
+
+> ⚠️ 红配青（`#e34948` + `#1baf7a`）在 deutan 色盲下 ΔE 仅 6.9，落在警戒带，**不要用**。
+
+**画完必须实际渲染检查**（dataviz 规范第 7 步）——校验器只管颜色，不管排版：
+
+```bash
+# 建一个临时预览页放在 professional/ 下（相对路径才解析得到 charts/）
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu \
+  --screenshot=/tmp/charts.png --window-size=720,1030 --hide-scrollbars \
+  "file://$(pwd)/professional/_preview.html"
+```
+
+然后用 Read 工具看图。**上次就是靠这一步抓到两个问题**：坐标轴标签与脚注重叠、窄条上的标签被裁切。检查完删掉临时预览页。
 
 ## 第 3 步：写简明总结
 
@@ -77,6 +126,18 @@ python3 .claude/skills/btc-monthly-report/build.py <YYYYMM>
 脚本会自检并打印导航条数、锚点是否全部命中、表格容器数、有无重复锚点。**校验不过会退出非零**。
 
 然后按脚本末尾打印的命令生成 PDF（Chrome 无头模式，会自动套用 `@media print` 样式隐藏侧边栏）。
+
+## 第 4.5 步：更新论点记分卡
+
+`professional/thesis_scorecard.md` 是**跨期滚动**的，每期必做两件事：
+
+1. **核对上期登记的论点**，填入结果与判定（✅ 正确 / ⚠️ 部分 / ❌ 错误）
+2. **登记本期新论点**，每条必须写明**可证伪的检验条件**——不可证伪的论断不予登记
+
+然后更新"累计战绩"表，并检查"反复出现的错误模式"一节是否需要新增条目。
+
+> 这一步不能省。报告每月重写一遍很容易，但**不检查上月说对了没有，就只是每月一次的情绪复读**。
+> 截至 2026-08，已检验的 8 个论点里只说对了 1 个——这个数字必须公开挂着。
 
 ## 第 5 步：提交
 

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 300" width="100%" role="img" aria-label="持有者成本基准 vs 8 月收盘价">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917}
+ .vs{font:600 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#fff} .ax{stroke:#e7e5e4;stroke-width:1}
+</style>
+<rect width="620" height="300" fill="none"/>
+<text x="0" y="16" class="t">持有者成本基准 vs 8 月收盘价</text><text x="0" y="34" class="s">单位：美元 · 由 MVRV 比值反推，非直接观测 · 数据源：VanEck ChainCheck / Newhedge</text>
+<line x1="200" y1="58" x2="200" y2="248" class="ax"/>
+<text x="200" y="265" class="l" text-anchor="middle">$0K</text>
+<line x1="310" y1="58" x2="310" y2="248" class="ax"/>
+<text x="310" y="265" class="l" text-anchor="middle">$30K</text>
+<line x1="420" y1="58" x2="420" y2="248" class="ax"/>
+<text x="420" y="265" class="l" text-anchor="middle">$60K</text>
+<line x1="530" y1="58" x2="530" y2="248" class="ax"/>
+<text x="530" y="265" class="l" text-anchor="middle">$90K</text>
+<text x="188" y="85" class="l" text-anchor="end">短期持有者成本基准</text>
+<text x="188" y="99" class="l" text-anchor="end" opacity=".7">STH-MVRV 0.96 → 仍浮亏</text>
+<path d="M200,72 L496,72 Q500,72 500,76 L500,88 Q500,92 496,92 L200,92 Z" fill="#e34948"/>
+<text x="508" y="87" class="v">$81,821</text>
+<text x="188" y="131" class="l" text-anchor="end">8 月收盘价</text>
+<text x="188" y="145" class="l" text-anchor="end" opacity=".7">实际成交价</text>
+<path d="M200,118 L484,118 Q488,118 488,122 L488,134 Q488,138 484,138 L200,138 Z" fill="#eb6834"/>
+<text x="496" y="133" class="v">$78,549</text>
+<text x="188" y="177" class="l" text-anchor="end">长期持有者成本基准</text>
+<text x="188" y="191" class="l" text-anchor="end" opacity=".7">LTH-MVRV 1.32 → 盈利</text>
+<path d="M200,164 L414,164 Q418,164 418,168 L418,180 Q418,184 414,184 L200,184 Z" fill="#2a78d6"/>
+<text x="426" y="179" class="v">$59,506</text>
+<text x="188" y="223" class="l" text-anchor="end">全市场已实现价格</text>
+<text x="188" y="237" class="l" text-anchor="end" opacity=".7">8/8 读数 · 历史强支撑</text>
+<path d="M200,210 L388,210 Q392,210 392,214 L392,226 Q392,230 388,230 L200,230 Z" fill="#1baf7a"/>
+<text x="400" y="225" class="v">$52,330</text>
+<text x="0" y="290" class="s">短期持有者整体仍在水下，长期持有者已回到盈利——但 8 月的上涨中 LTH 30 日减持 356k BTC。</text>
+</svg>
