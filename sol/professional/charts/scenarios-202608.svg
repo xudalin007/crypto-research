@@ -4,7 +4,7 @@
  .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917}
  .vs{font:600 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#fff} .ax{stroke:#e7e5e4;stroke-width:1}
 </style><rect width="620" height="272" fill="none"/>
-<text x="0" y="16" class="t">三种情景：2029 年价格参考区间与主观概率</text><text x="0" y="34" class="s">单位：美元 · 由「假设年化收入 × 假设收入倍数」推出，非模型输出（弱点见报告 9.4 节）</text>
+<text x="0" y="16" class="t">三种情景：2029 年价格参考区间与主观概率</text><text x="0" y="34" class="s">单位：美元 · 按销毁/增发比与生态规模两维度推演，非模型输出（弱点见报告 9.4 节）</text>
 <line x1="104" y1="62" x2="104" y2="220" class="ax"/>
 <text x="104" y="237" class="l" text-anchor="middle">$0</text>
 <line x1="173" y1="62" x2="173" y2="220" class="ax"/>
@@ -31,5 +31,5 @@
 <text x="90" y="205" class="l" text-anchor="end">概率 30%</text>
 <rect x="118" y="176" width="34" height="24" rx="4" fill="#e34948"/>
 <text x="161" y="192" class="v">$10 – $35</text>
-<text x="0" y="264" class="s">当前市值约为年化收入的 209 倍。三档区间的核心变量是「收入能否重建」，而非估值倍数本身。</text>
+<text x="0" y="264" class="s">当前年销毁量仅为年增发量的 1.06%——对纯持币人是净通胀资产。三档的核心变量是销毁/增发比能否改善。</text>
 </svg>

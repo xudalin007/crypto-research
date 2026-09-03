@@ -58,7 +58,7 @@ figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:
 <a href="#s-sol">一、SOL 是什么</a>
 <a href="#s-_1">二、发展阶段速览</a>
 <a href="#s-_2">三、本期最核心的一个矛盾</a>
-<a href="#s-_3">四、一个已经过时的空方论据</a>
+<a href="#s-_3">四、稳定性</a>
 <a href="#s-2026-8">五、2026 年 8 月的首次全网治理投票</a>
 <a href="#s-_4">六、多空逻辑</a>
 <a href="#s-sol-vs-eth">七、SOL vs ETH</a>
@@ -84,6 +84,11 @@ figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:
 ④ <strong>稳定性叙事已翻转</strong>——连续 30 个月无全网中断，自 2024 年 2 月 6 日以来零全网事故；<br />
 ⑤ <strong>治理首次实战</strong>：SIMD-0550（加倍减发）以 67% 惊险通过，SIMD-0553（费用改革）被否决；<br />
 ⑥ 上市公司持有 <strong>1,791 万 SOL（供应量 3.06%）</strong>，但头部公司 Upexi 股价较高点跌去 96%。</p>
+<p><strong>⚠️ 发布前审查更正记录</strong>：本报告在发布前经过领域审查，发现并更正了三处实质性错误：<br />
+① <strong>手续费销毁机制写错了</strong>——只有基础费的 50% 销毁，优先费 100% 归验证者不销毁（SIMD-0096）；<br />
+② <strong>第 9 章估值前提被推翻并重建</strong>——网络毛收入是验证者的收入，不是持币人的现金流，不能用收入倍数给 SOL 定价；<br />
+③ <strong>漏了 2026 年 8 月 12 日的重大险情</strong>——路由故障致 28.83% 质押掉线，距最终性失效门槛仅差约 2,000 万 SOL。<br />
+三处均已核实一手来源后修正。<strong>这三个错误若未被发现，会实质性误导读者。</strong></p>
 <p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
 </blockquote>
 <hr />
@@ -189,7 +194,7 @@ figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:
 <h3 id="13-sol">1.3 SOL 代币的三重角色</h3>
 <p>与 BTC 的单一角色（价值储存）不同，SOL 同时承担：</p>
 <ol>
-<li><strong>手续费媒介</strong>——每笔交易都要消耗 SOL，其中 <strong>50% 被永久销毁</strong></li>
+<li><strong>手续费媒介</strong>——每笔交易消耗 SOL，但<strong>只有基础费（base fee）的 50% 被销毁</strong>；优先费（priority fee）按 SIMD-0096 规定 <strong>100% 归出块验证者，不销毁</strong></li>
 <li><strong>质押资产</strong>——64% 的流通量被质押用于网络安全，换取约 5.73% 的年化收益</li>
 <li><strong>投机/储备标的</strong>——ETF 与上市公司持仓</li>
 </ol>
@@ -422,7 +427,7 @@ figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:
 <tr>
 <td><strong>8 月非投票交易笔数</strong></td>
 <td><strong>52 亿笔（历史新高）</strong></td>
-<td>强</td>
+<td>强（<strong>但口径需警惕，见下方注</strong>）</td>
 </tr>
 <tr>
 <td><strong>H1 网络收入</strong></td>
@@ -436,6 +441,13 @@ figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:
 </tr>
 </tbody>
 </table></div>
+<blockquote>
+<p>⚠️ <strong>关于"交易笔数"和"活跃地址"这两个指标的口径警告</strong>：<br />
+非投票交易<strong>包含失败交易、套利机器人、预言机更新和重复重试</strong>。有研究显示 2026 年 Q1 约 <strong>25.6%</strong> 的非投票交易发生回滚，机器人的失败率可高达 <strong>58.43%</strong>。<br />
+"活跃地址"通常统计的是<strong>独立付费地址</strong>，不等于独立用户——一个套利机器人可以持续生成新地址。<br />
+<strong>低手续费链最容易制造出好看但无经济意义的交易数和地址数。</strong> 因此"用量创新高"这个论据的强度，弱于表面数字给人的印象。<br />
+更可信的替代指标：成功交易数（剔除已识别机器人）、实体聚类后的留存用户、每实体手续费、交易中位金额、稳定币净结算额、应用层收入。</p>
+</blockquote>
 <p><strong>收入为什么塌了</strong>（数据来自 21Shares 的 H1 2026 分析）：</p>
 <ul>
 <li>2025 上半年的收入里，<strong>优先费 + Jito 小费合计占 95%</strong>（分别 40% 和 55%）</li>
@@ -527,8 +539,51 @@ figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:
 </tbody>
 </table></div>
 <p><strong>为什么 Firedancer 重要</strong>：2023 年 2 月那次中断的根因是"所有节点跑同一份客户端实现，一个 bug 就能让全网瘫痪"。Firedancer 提供了<strong>客户端多样性</strong>——一套实现出问题时，另一套还能继续出块，事故从"全网停摆"降级为"局部颠簸"。</p>
-<p><strong>这意味着什么</strong>：「Solana 老宕机」是流传最广的空方论据之一，<strong>它在事实层面已经过时了</strong>。任何仍以此为主要理由看空 SOL 的分析，都需要更新。</p>
-<p>但要说清楚两点：① 30 个月不等于永久解决，Firedancer 全面铺开的程度仍需跟踪；② 稳定性从"缺陷"变成"及格"，只是消除了一个负面，并不构成上涨理由。</p>
+<h4 id="2026-8-12">⚠️ 但"零中断"是一个会骗人的指标——2026 年 8 月 12 日的险情</h4>
+<p><strong>2026 年 8 月 12 日</strong>，数据中心服务商 Teraswitch 迈阿密机房的一次路由配置错误，导致：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>事实</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>掉线的质押量</td>
+<td><strong>28.83%</strong>（约 90 个验证者转为 delinquent）</td>
+</tr>
+<tr>
+<td>距最终性失效门槛</td>
+<td><strong>33.34%</strong>，仅差约 <strong>2,000 万 SOL</strong></td>
+</tr>
+<tr>
+<td>单一 ASN（AS20326）占质押量</td>
+<td><strong>27.34%</strong> —— <strong>超过 Solana 自身规定的 25% 上限</strong></td>
+</tr>
+<tr>
+<td>该 ASN 中掉线比例</td>
+<td>约 94%</td>
+</tr>
+<tr>
+<td>恢复耗时</td>
+<td>约 33 分钟</td>
+</tr>
+<tr>
+<td>期间链是否停止</td>
+<td><strong>否</strong>，699 个质押验证者中 597 个持续投票</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>这件事改变了本节的结论。</strong> "连续 30 个月零全网中断"在字面上完全属实，但它是一个<strong>二元指标</strong>——只统计"是否完全停摆"，因而掩盖了一次差 4.5 个百分点就无法达成最终性的事故。而根因不是软件 bug，是<strong>基础设施集中度</strong>：一家数据中心服务商的一次路由配置变更，就动摇了近三成的网络质押。</p>
+<p><strong>修正后的判断</strong>：<br />
+- ✅ 「Solana 因软件 bug 反复全网停摆」这个<strong>旧论据确实过时了</strong>——Firedancer 带来的客户端多样性解决了同质化实现的问题<br />
+- ❌ 但「Solana 的稳定性问题已解决」这个说法<strong>不成立</strong>。风险从"软件同质化"转移到了"基础设施集中"，而后者目前<strong>尚未解决，且已超出 Solana 自己设定的阈值</strong><br />
+- ⚠️ 需要补充说明：当前生产环境主流仍是 <strong>Frankendancer</strong>（Firedancer 与原客户端的混合体），完整 Firedancer 官方文档标注为 1.x 版本目标，尚未全面铺开</p>
+<p><strong>应当监控的指标不是"连续无中断天数"</strong>，而是：最终性延迟（finalized latency）、各客户端的质押占比、最大 ASN / 云服务商的质押暴露度、以及"部分失联"类事件的频率。</p>
+<blockquote>
+<p>本节的修正来自发布前的领域审查。原稿把"零全网停摆"直接读成"韧性问题已解决"，是<strong>用一个宽松的二元指标注销了这条链最核心的尾部风险</strong>。</p>
+</blockquote>
 <h3 id="35">3.5 宏观环境</h3>
 <p>SOL 与 BTC 共享同一套宏观驱动，且作为<strong>更高 beta 的风险资产</strong>，对流动性变化的反应更剧烈。</p>
 <div class="tbl"><table>
@@ -600,7 +655,7 @@ figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:
 </tr>
 <tr>
 <td>销毁机制</td>
-<td><strong>每笔交易手续费的 50% 被永久销毁</strong></td>
+<td><strong>仅基础费的 50% 销毁</strong>；优先费 100% 归验证者（SIMD-0096），不销毁</td>
 </tr>
 <tr>
 <td>当前日销毁量</td>
@@ -1091,10 +1146,47 @@ figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:
 <hr />
 <h2 id="9-sol">9. SOL 未来的三种情景推演</h2>
 <blockquote>
-<p><strong>推导方法</strong>（参照 BTC 版 9.4 节的做法，避免用精确数字给主观判断打包装）：<br />
-SOL 是生产性资产，理应用<strong>收入倍数</strong>估值。当前年化收入约 $2.82 亿（H1 $1.41 亿 × 2），市值 $588.7 亿，即约 <strong>209 倍</strong>收入。<br />
-下面三种情景的做法是：先假设 2029 年的年化网络收入，再乘以一个情景对应的收入倍数。<br />
-<strong>两个假设都是判断性的，不是模型输出。</strong></p>
+<h3 id="_2">⚠️ 关于估值方法的重要更正</h3>
+<p><strong>本节初稿用「网络毛收入 × 收入倍数」估值，这个前提是错的</strong>，经发布前领域审查指出并核实后更正如下。</p>
+<p><strong>错在哪</strong>：所谓"网络收入 $1.41 亿"是<strong>验证者的收入，不是 SOL 持有人的现金流</strong>。按 Solana 官方文档：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>费用类型</th>
+<th>去向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基础费（base fee）</td>
+<td>50% 销毁 / 50% 给出块验证者</td>
+</tr>
+<tr>
+<td><strong>优先费（priority fee）</strong></td>
+<td><strong>100% 给验证者，不销毁</strong>（SIMD-0096）</td>
+</tr>
+<tr>
+<td><strong>Jito 小费（MEV）</strong></td>
+<td><strong>先归验证者 / 质押者</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>而 H1 2025 收入的 <strong>95%</strong> 恰恰是优先费与 Jito 小费——<strong>这部分完全不通过销毁回馈普通持币人</strong>。<br />
+用毛收入倍数给 SOL 定价，等于把验证者的营收当成了代币持有人的权益。</p>
+<p><strong>另一重错误</strong>：初稿说"未纳入质押收益，因此偏保守"。但质押收益的大头是<strong>增发</strong>（当前通胀 3.8%），<br />
+不是经营利润——把它算作价值贡献，等于把稀释当成收益，会造成<strong>重复计算</strong>。</p>
+<h3 id="_3">修正后的推导方法</h3>
+<p>改用<strong>代币持有人价值桥</strong>：</p>
+<p><code>归属持币人的价值 ≈ 销毁量 − 净增发 + 实际传递给委托人的手续费/MEV − 验证者佣金</code></p>
+<p>按当前状况粗算：日销毁约 648 SOL ≈ 年 23.7 万 SOL；而年通胀 3.8% × 5.85 亿 ≈ <strong>2,220 万 SOL 增发</strong>。<br />
+<strong>销毁量不足增发量的 1.1%。</strong> 也就是说，<strong>当前 SOL 对纯持币人（不质押）是显著净通胀的资产</strong>。</p>
+<p>这意味着三情景的关键变量不是"收入涨多少倍"，而是下面两条：</p>
+<ol>
+<li><strong>净增发能否转正</strong>——SIMD-0550 已把 1.5% 地板提前至 2029 年，这是确定性的改善；被否的 SIMD-0553（销毁提升 14 倍）才是能真正扭转销毁/增发比的方案</li>
+<li><strong>质押者与非质押者必须分开看</strong>——质押者获得增发补偿（5.73%），大致抵消稀释；不质押的持币人则<strong>持续被稀释</strong></li>
+</ol>
+<p>下面的价格区间因此<strong>改用"2029 年净增发状况 + 生态规模"两个维度做情景</strong>，而非收入倍数。<br />
+<strong>仍是判断性推演，不是模型输出。</strong></p>
 </blockquote>
 <h3 id="91">9.1 乐观情景：转型成功，收入重建</h3>
 <p><strong>触发</strong>：稳定币与 RWA 结算规模持续扩大并成功变现；SIMD-0553 修订版通过，价值捕获增强；宏观转向宽松；ETF 资金持续流入。</p>
@@ -1107,16 +1199,16 @@ SOL 是生产性资产，理应用<strong>收入倍数</strong>估值。当前�
 </thead>
 <tbody>
 <tr>
-<td>2029 年化收入</td>
-<td><strong>$12–18 亿</strong>（回到 2025 年 meme 币峰值水平，但由支付/RWA 而非投机驱动）</td>
+<td>2029 年通胀</td>
+<td>已降至 <strong>1.5% 地板</strong>（SIMD-0550 已通过，此项确定性较高）</td>
 </tr>
 <tr>
-<td>收入倍数</td>
-<td><strong>60–90×</strong>（成熟高增长网络）</td>
+<td>销毁 / 增发比</td>
+<td>SIMD-0553 修订版通过，销毁量提升至可<strong>部分抵消增发</strong></td>
 </tr>
 <tr>
-<td><strong>推出市值</strong></td>
-<td><strong>$720–1,620 亿</strong></td>
+<td>生态规模</td>
+<td>稳定币结算与 RWA 规模翻倍以上，应用层收入形成</td>
 </tr>
 <tr>
 <td><strong>对应价格</strong></td>
@@ -1136,16 +1228,16 @@ SOL 是生产性资产，理应用<strong>收入倍数</strong>估值。当前�
 </thead>
 <tbody>
 <tr>
-<td>2029 年化收入</td>
-<td><strong>$5–8 亿</strong></td>
+<td>2029 年通胀</td>
+<td>降至 1.5%，但销毁仍远低于增发</td>
 </tr>
 <tr>
-<td>收入倍数</td>
-<td><strong>70–110×</strong></td>
+<td>销毁 / 增发比</td>
+<td>无实质改善，纯持币人继续被稀释</td>
 </tr>
 <tr>
-<td><strong>推出市值</strong></td>
-<td><strong>$350–880 亿</strong></td>
+<td>生态规模</td>
+<td>温和增长，未出现规模化的应用层收入</td>
 </tr>
 <tr>
 <td><strong>对应价格</strong></td>
@@ -1165,16 +1257,16 @@ SOL 是生产性资产，理应用<strong>收入倍数</strong>估值。当前�
 </thead>
 <tbody>
 <tr>
-<td>2029 年化收入</td>
-<td><strong>$1.5–3 亿</strong>（与当前持平或略降）</td>
+<td>2029 年通胀</td>
+<td>即使降至 1.5%，销毁仍可忽略</td>
 </tr>
 <tr>
-<td>收入倍数</td>
-<td><strong>40–70×</strong>（叙事受损后的折价）</td>
+<td>基础设施风险</td>
+<td>8.12 类事件再次发生且更严重，机构信心受损</td>
 </tr>
 <tr>
-<td><strong>推出市值</strong></td>
-<td><strong>$60–210 亿</strong></td>
+<td>生态规模</td>
+<td>份额被 ETH L2 或新 L1 侵蚀</td>
 </tr>
 <tr>
 <td><strong>对应价格</strong></td>
@@ -1183,7 +1275,7 @@ SOL 是生产性资产，理应用<strong>收入倍数</strong>估值。当前�
 </tbody>
 </table></div>
 <p><strong>概率：30%</strong></p>
-<h3 id="_2">情景对比</h3>
+<h3 id="_4">情景对比</h3>
 <div class="tbl"><table>
 <thead>
 <tr>
@@ -1195,16 +1287,16 @@ SOL 是生产性资产，理应用<strong>收入倍数</strong>估值。当前�
 </thead>
 <tbody>
 <tr>
-<td>2029 年化收入</td>
-<td>$12–18 亿</td>
-<td>$5–8 亿</td>
-<td>$1.5–3 亿</td>
+<td>销毁 / 增发比</td>
+<td>部分抵消</td>
+<td>无改善</td>
+<td>可忽略</td>
 </tr>
 <tr>
-<td>收入倍数</td>
-<td>60–90×</td>
-<td>70–110×</td>
-<td>40–70×</td>
+<td>基础设施集中风险</td>
+<td>缓解</td>
+<td>维持</td>
+<td>恶化</td>
 </tr>
 <tr>
 <td><strong>对应价格</strong></td>
@@ -1235,10 +1327,11 @@ SOL 是生产性资产，理应用<strong>收入倍数</strong>估值。当前�
 <p><img alt="三种情景：2029 年价格参考区间与主观概率" src="charts/scenarios-202608.svg" /></p>
 <h3 id="94">9.4 这个推导方法的四个弱点</h3>
 <ol>
-<li><strong>收入倍数的历史参照几乎不存在。</strong> 加密网络作为"生产性资产"被估值的历史只有几年，60× 还是 110× 没有可靠依据，我是参照成长期科技股的区间拍的。</li>
-<li><strong>收入本身波动极大。</strong> 用 H1 数据年化，等于假设下半年与上半年相同——而 2025→2026 的实际变化是 –87%。这个假设很脆弱。</li>
-<li><strong>完全没有纳入质押收益的估值贡献。</strong> 5.73% 的质押收益理论上应计入，但会引入更多假设，本次省略——这使得上述估算<strong>偏保守</strong>。</li>
+<li><strong>价格区间与推导过程的联系是松的。</strong> 上面三档的"对应价格"沿用了初稿用收入倍数算出的数字，而推导框架已改为净增发/生态维度——<strong>两者并非严格对应</strong>。保留这些数字是为了给出量级参照，但它们现在更接近"判断"而非"计算结果"，可信度低于初稿看起来的样子。</li>
+<li><strong>净增发的测算依赖当前销毁率。</strong> 日销毁 648 SOL 是在当前交易量与费率下的数字，若 SIMD-0553 修订版通过或交易结构改变，测算即失效。</li>
+<li><strong>质押者与非质押者的价值捕获不同，本报告未分开建模。</strong> 质押者获 5.73% 增发补偿，纯持币人被稀释——同一个价格区间对两类持有人的实际意义并不相同。</li>
 <li><strong>不考虑外生冲击</strong>：监管、更快的竞争链、重大安全事故，任一发生都会让框架失效。</li>
+<li><strong>这是首期报告，方法本身未经过一轮验证。</strong> BTC 版的 MVRV 方法已用过三期；SOL 这套是第一次用，且已在发布前被推翻重建一次。</li>
 </ol>
 <p><strong>结论</strong>：这些区间应被读作"在一组明确假设下的算术结果"，不是预测。若只记一点：<strong>中性情景的 $58–147 本质上是在说"收入回到 $5–8 亿、市场愿意给 70–110 倍"，仅此而已。</strong></p>
 <hr />
@@ -1614,15 +1707,37 @@ SOL 是生产性资产，理应用<strong>收入倍数</strong>估值。当前�
 - 悲观——Solana 证明了能承载海量交易，但<strong>没证明能从中赚钱</strong></p>
 <p><strong>目前两种都无法证伪。</strong> 未来 2–3 个季度的收入数据会给出答案。</p>
 <hr />
-<h2 id="s-_3">四、一个已经过时的空方论据</h2>
-<p><strong>「Solana 老宕机」——这个说法在事实层面已经不成立了。</strong></p>
-<ul>
-<li>连续 <strong>30 个月</strong>无全网中断（截至 2026 年 8 月）</li>
-<li>最后一次全网事故：<strong>2024 年 2 月 6 日</strong></li>
-<li>2026 年 6/7/8 月官方状态页 100% 正常</li>
-<li>主因：<strong>Firedancer</strong>（第二套独立验证者客户端）带来客户端多样性</li>
-</ul>
-<p>但要注意：<strong>旧论据消失了，新问题（价值捕获）浮现了。空方的理由是换了，不是消失了。</strong></p>
+<h2 id="s-_3">四、稳定性：一半过时，一半没解决</h2>
+<p><strong>过时的那一半</strong>：「Solana 因软件 bug 反复全网停摆」确实不成立了——连续 30 个月无全网中断，最后一次是 2024 年 2 月 6 日。Firedancer 的客户端多样性解决了同质化实现问题。</p>
+<p><strong>没解决的那一半</strong>：<strong>2026 年 8 月 12 日</strong>，Teraswitch 数据中心一次路由配置错误导致——</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>事实</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>掉线质押量</td>
+<td><strong>28.83%</strong>（约 90 个验证者）</td>
+</tr>
+<tr>
+<td>距最终性失效门槛 33.34%</td>
+<td>仅差约 <strong>2,000 万 SOL</strong></td>
+</tr>
+<tr>
+<td>单一 ASN（AS20326）质押占比</td>
+<td><strong>27.34%</strong>，<strong>超过 Solana 自己 25% 的上限</strong></td>
+</tr>
+<tr>
+<td>恢复耗时</td>
+<td>33 分钟（链未停止）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>「连续 30 个月零中断」是个会骗人的二元指标</strong>——只统计「是否完全停摆」，掩盖了这次差 4.5 个百分点的险情。风险从「软件同质化」转移到了<strong>基础设施集中</strong>，后者尚未解决。</p>
+<p>另外：当前生产环境主流仍是 <strong>Frankendancer</strong>（混合体），完整 Firedancer 尚未全面铺开。</p>
 <hr />
 <h2 id="s-2026-8">五、2026 年 8 月的首次全网治理投票</h2>
 <div class="tbl"><table>
@@ -1728,8 +1843,33 @@ SOL 是生产性资产，理应用<strong>收入倍数</strong>估值。当前�
 </table></div>
 <p>对比 BTC（上市公司持约 6% 供应量），<strong>SOL 的储备渗透率约为一半，集中度更高</strong>。</p>
 <hr />
-<h2 id="s-_8">九、三种情景（用收入倍数推导，非模型输出）</h2>
-<p>当前年化收入约 $2.82 亿，市值 $588.7 亿 ≈ <strong>209 倍收入</strong>。</p>
+<h2 id="s-_8">九、三种情景（估值方法在发布前被推翻重建）</h2>
+<p><strong>初稿用「网络收入 × 收入倍数」估值，这个前提是错的。</strong></p>
+<p>按 Solana 官方文档：基础费 50% 销毁 / 50% 给验证者；<strong>优先费 100% 给验证者不销毁</strong>（SIMD-0096）；Jito 小费先归验证者。而 H1 收入的 <strong>95%</strong> 正是优先费和 Jito 小费——<strong>完全不通过销毁回馈普通持币人</strong>。用毛收入倍数定价，等于把验证者的营收当成持币人的权益。</p>
+<p><strong>改用代币持有人价值桥</strong>后的关键数字：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年销毁量</td>
+<td>约 <strong>23.7 万 SOL</strong>（日均 648）</td>
+</tr>
+<tr>
+<td>年增发量</td>
+<td>约 <strong>2,224 万 SOL</strong>（通胀 3.8%）</td>
+</tr>
+<tr>
+<td><strong>销毁 / 增发</strong></td>
+<td><strong>1.06%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>结论：当前 SOL 对纯持币人（不质押）是显著净通胀的资产。</strong> 质押者靠 5.73% 增发补偿大致抵消稀释，不质押的持续被稀释。</p>
 <div class="tbl"><table>
 <thead>
 <tr>
@@ -1741,16 +1881,16 @@ SOL 是生产性资产，理应用<strong>收入倍数</strong>估值。当前�
 </thead>
 <tbody>
 <tr>
-<td>2029 年化收入假设</td>
-<td>$12–18 亿</td>
-<td>$5–8 亿</td>
-<td>$1.5–3 亿</td>
+<td>销毁/增发比</td>
+<td>部分抵消</td>
+<td>无改善</td>
+<td>可忽略</td>
 </tr>
 <tr>
-<td>收入倍数假设</td>
-<td>60–90×</td>
-<td>70–110×</td>
-<td>40–70×</td>
+<td>基础设施集中风险</td>
+<td>缓解</td>
+<td>维持</td>
+<td>恶化</td>
 </tr>
 <tr>
 <td><strong>对应价格</strong></td>
@@ -1766,7 +1906,9 @@ SOL 是生产性资产，理应用<strong>收入倍数</strong>估值。当前�
 </tr>
 </tbody>
 </table></div>
-<p><strong>方法的最大弱点</strong>：加密网络作为生产性资产被估值的历史只有几年，60× 还是 110× 没有可靠依据，是参照成长期科技股拍的。详见报告 9.4 节列出的四个弱点。</p>
+<blockquote>
+<p>⚠️ 上面的价格数字沿用自初稿的收入倍数算法，而推导框架已改——<strong>两者并非严格对应</strong>，现在更接近判断而非计算结果。</p>
+</blockquote>
 <hr />
 <h2 id="s-_9">十、投资建议</h2>
 <div class="tbl"><table>
@@ -1795,13 +1937,13 @@ SOL 是生产性资产，理应用<strong>收入倍数</strong>估值。当前�
 <h2 id="s-3-5">十一、如果你只有 3 分钟，记住这 5 句话</h2>
 <ol>
 <li>
-<p><strong>SOL 不是"另一个比特币"，它是一门生意。</strong> BTC 靠稀缺性就能立住，SOL 必须证明能赚钱——当前年化收入/市值只有 <strong>0.48%</strong>。</p>
+<p><strong>SOL 不是「另一个比特币」，但也不能简单当成「一门生意」估值。</strong> 网络收入的绝大部分归验证者，不归持币人。对纯持币人而言，<strong>当前销毁量只有增发量的 1.06%——它是净通胀资产</strong>。</p>
 </li>
 <li>
 <p><strong>本期最大的矛盾：交易笔数创历史新高（52 亿笔），网络收入却同比跌了 87%。</strong> 原因是收入 95% 曾靠 meme 币投机，而 meme 币退潮了。转型能否成功，两个季度内见分晓。</p>
 </li>
 <li>
-<p><strong>「Solana 老宕机」已经是过时的论据</strong>——连续 30 个月零中断。但新问题（价值捕获）取代了它，空方理由是换了不是没了。</p>
+<p><strong>「Solana 老宕机」只过时了一半。</strong> 软件 bug 导致的全网停摆确实没了（30 个月），但 8 月 12 日一次数据中心路由故障让 <strong>28.83% 的质押掉线</strong>，距最终性失效只差 4.5 个百分点。风险从软件转移到了<strong>基础设施集中度</strong>。</p>
 </li>
 <li>
 <p><strong>8 月首次全网治理投票暴露了一个真问题</strong>：减发提案以 67% 惊险通过，而若 Kraken 一家不改票就会以 63.9% 失败。<strong>改变货币政策只需说服两三家大质押方。</strong></p>
