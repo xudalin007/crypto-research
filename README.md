@@ -25,6 +25,8 @@ btc/                            比特币
 sol/                            Solana
   professional/                 结构同 btc/，但章节框架有约四成差异
 
+ada/                            Cardano（下一个待做，仅完成目录/资产档案，未开始研究）
+
 .claude/skills/                 报告生成技能（随仓库版本化，不放全局）
 ```
 
@@ -77,6 +79,7 @@ sol/                            Solana
 ```bash
 python3 .claude/skills/btc-monthly-report/build.py 202609              # BTC
 python3 .claude/skills/btc-monthly-report/build.py 202609 --asset sol  # SOL
+python3 .claude/skills/btc-monthly-report/build.py 202609 --asset ada  # ADA
 # 脚本会打印 PDF 生成命令，复制执行即可
 ```
 
