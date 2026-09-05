@@ -1,0 +1,3087 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BNB / BNB Chain 完整调研与分析报告 — 2026年8月</title>
+<style>
+:root{--accent:#F0B90B;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">◆ BNB 调研报告 (2026.8)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>◆ BNB 调研报告 2026.8</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-bnb">1. BNB 的起源与设计取舍</a>
+<a href="#2-bnb">2. BNB 的发展阶段划分</a>
+<a href="#3-bnb">3. BNB 当前现状分析</a>
+<a href="#4">4. 销毁机制与「准回购」</a>
+<a href="#5-binance-bnb">5. 对 Binance 的依赖</a>
+<a href="#6">6. 机构通道与持有者结构</a>
+<a href="#7-bnb">7. BNB 的核心价值逻辑</a>
+<a href="#8-bnb">8. BNB 与其他四个资产的比较</a>
+<a href="#9">9. 关键变量与三种情景推演</a>
+<a href="#10">10. 投资与风险启示</a>
+<a href="#11_1">11. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-1-bnb">1. BNB 是什么</a>
+<a href="#s-2">2. 当前位置</a>
+<a href="#s-3">3. 三个「五个资产里唯一」</a>
+<a href="#s-4">4. 估值倍数也是五个里最低的</a>
+<a href="#s-5">5. 但所有这些数据的分母只有一个</a>
+<a href="#s-6">6. 三个需要打折的地方</a>
+<a href="#s-7">7. 结论</a>
+<a href="#s-8">8. 该盯什么</a>
+<a href="#s-9-3-5">9. 如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 8 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>◆ BNB / BNB Chain<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">◆ BNB</span><span class="badge badge-date">2026 年 8 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="bnb-bnb-chain">BNB / BNB Chain 完整调研与分析报告</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 9 月 5 日<br />
+<strong>数据截止</strong>：2026 年 9 月 5 日（8 月完整月度数据已闭合）<br />
+<strong>研究方法</strong>：沿用 BTC / SOL / ADA / ETH 月报的分析框架。<strong>但本期的框架改动是五期以来最大的一次</strong>——<br />
+BNB 是本系列覆盖的第一个<strong>非纯 L1 资产</strong>：它首先是交易所平台币，其次才是公链代币。<br />
+因此新增「销毁机制与准回购」「对 Binance 的依赖」两个特有章节，<strong>估值方法也换成了第五种：准股权框架</strong>。<br />
+<strong>本期为 BNB 首期报告</strong>，无上期论点可校验；本期登记的论点将在 10 月版核对。</p>
+<p><strong>本期核心发现</strong>：<br />
+① BNB 现价 <strong>$769.10</strong>，市值 <strong>$1,024.1 亿（全球第 4）</strong>。距 ATH $1,369.99（2025-10-13）<strong>–43.86%</strong>，年初至今 <strong>–10.85%</strong>；<br />
+② <strong>它是五个资产里最抗跌的</strong>：近 1 年 <strong>–11.1%</strong>，而 BTC –29.7%、ETH –45.1%、SOL –50.9%、ADA –74.5%；<br />
+③ <strong>BSC 是五个资产里唯一 L1 费用同比增长的</strong>：2026-08 <strong>$1,836 万</strong> vs 2025-08 $1,129 万，<strong>真年同比 +62.6%</strong>。<strong>同期它已是 ETH（$1,038 万）的 1.77 倍</strong>；<br />
+④ <strong>BNB 是唯一实现真实通缩的</strong>：2026 年前三季度三次季度销毁合计 <strong>4,556,939 BNB</strong>，执行时价值约 <strong>$32.3 亿</strong>，且<strong>没有任何对应的增发</strong>。累计已销毁 <strong>6,684 万枚（供应上限的 33.4%）</strong>；<br />
+⑤ <strong>换算成「回购收益率」是 4.20%–4.56%</strong>——这是五个资产里<strong>唯一由供应实际减少（而非增发转移）产生</strong>的持有人回报。⚠️ <strong>但它只能通过价格实现，不是可单独收到的票息，与债券收益率并非同质</strong>（见 9.7）；<br />
+⑥ <strong>机构通道已打开</strong>：VanEck 的 <strong>VBNB</strong> 于 2026-05-29 在 Nasdaq 上市，是首个美国现货 BNB ETF，赞助费 0.39%；<br />
+⑦ <strong>估值倍数是五个里最低的</strong>：市值 / L1 年化费用 <strong>465–699 倍</strong>（区间取决于年化口径，见 8.1 注），ETH 与 ADA 高出一到两个数量级。</p>
+<p><strong>本期最重要的判断</strong>：<strong>在 8 月这个窗口内，BNB 是五个资产里基本面指标改善最多的</strong>——费用同比增长、TVL 与价格同向、真实通缩、ETF 落地。<br />
+⚠️ <strong>但「同时改善」只在短窗口成立</strong>：<strong>BSC 的 TVL 同比仍是 –25.3%，距 2021 年高点 –73.4%</strong>（见 3.4）。<br />
+<strong>而它也是唯一一个价值高度依赖单一中心化实体的。</strong> 这三句话必须一起读，第 5 章解释为什么。</p>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BNB 是什么</strong></td>
+<td><strong>本系列覆盖的第一个非纯 L1 资产。</strong> 它有三重身份：① Binance 交易所的<strong>平台币</strong>（手续费折扣、生态权益）；② BNB Chain（BSC）的 <strong>gas 代币</strong>；③ 一个<strong>持续回购销毁</strong>的准股权凭证。<strong>理解它必须从第一重身份开始，而不是把它当成又一条公链</strong></td>
+</tr>
+<tr>
+<td><strong>当前价格位置</strong></td>
+<td>$769.10，市值 $1,024.1 亿（全球第 4）。距 ATH $1,369.99（2025-10-13）–43.86%，YTD –10.85%</td>
+</tr>
+<tr>
+<td><strong>本期最突出的对照</strong></td>
+<td><strong>五个资产里最抗跌</strong>：近 1 年 –11.1%，而 BTC –29.7%、ETH –45.1%、SOL –50.9%、ADA –74.5%。<strong>8 月月度 +16.71%，在五个里排第四</strong>（统一 8/1→8/31 口径）</td>
+</tr>
+<tr>
+<td><strong>最重要的发现（一）</strong></td>
+<td><strong>BSC 是五个里唯一 L1 费用同比增长的链</strong>：真年同比 <strong>+62.6%</strong>，且 2026-08 的 $1,836 万<strong>已是 ETH 的 1.77 倍</strong>。作为对照，同期 ETH 是 –73.8%</td>
+</tr>
+<tr>
+<td><strong>最重要的发现（二）</strong></td>
+<td><strong>BNB 是唯一实现真实通缩的资产。</strong> 2026 前三季度销毁 4,556,939 BNB（约 $32.3 亿），<strong>无任何对应增发</strong>。而 ETH 同期净通胀 +0.863%、SOL 约 3.8%、ADA 1.47%</td>
+</tr>
+<tr>
+<td><strong>估值锚（第五种）</strong></td>
+<td><strong>准股权框架</strong>。BNB 的销毁在经济实质上<strong>接近</strong>股票回购（三处差异见 4.3），可算「回购收益率」：<strong>年化 4.20%–4.56%</strong>。<strong>这是五个资产里唯一由供应实际减少产生的回报</strong>。⚠️ <strong>但它只能通过价格实现，与债券票息不同质；且本报告持有期是 3 年，严格对应的基准是 3 年期美债而非 10 年期</strong>（见 9.7）</td>
+</tr>
+<tr>
+<td><strong>估值倍数</strong></td>
+<td>市值 / L1 年化费用 <strong>465–699 倍</strong>（区间取决于年化口径），<strong>五个资产里最低</strong>，ETH 与 ADA 高出一到两个数量级。⚠️ <strong>初稿只用 8 月单月年化得出 486 倍，而 8 月是 BSC 全年第二高的月份</strong></td>
+</tr>
+<tr>
+<td><strong>核心多头逻辑</strong></td>
+<td>费用同比 +62.6% 且已超 ETH；真实通缩且回购收益率对标美债；8 月 TVL +12.4% 与价格 <strong>同向</strong>（ADA 是背离）；VanEck VBNB 现货 ETF 已上市；Binance 在衍生品与现货均占约 35% 份额，护城河极深</td>
+</tr>
+<tr>
+<td><strong>核心空头逻辑</strong></td>
+<td><strong>单一实体依赖</strong>——销毁公式、验证者集合、生态资金、ETF 底层资产全部绕不开 Binance；<strong>生态活跃度 43% 来自 meme 币相关协议</strong>（Flap sh + GMGN）；TVL 距 2021 年 ATH <strong>–73.4%</strong>、同比 <strong>–25.3%</strong>；监管未了结（$43 亿 DOJ 和解、欧洲牌照申请受阻）</td>
+</tr>
+<tr>
+<td><strong>与另外四个的关系</strong></td>
+<td>BTC 靠稀缺性、ETH 是混合型（现金流锚已失效）、SOL 靠网络收入、ADA 是期权型（无锚）；<strong>BNB 是准股权型——它的价值与一家公司的经营状况挂钩，这在本系列里是第一次</strong></td>
+</tr>
+<tr>
+<td><strong>风险等级</strong></td>
+<td><strong>风险结构与另外四个不同</strong>，不是简单的高低之分。它的市场风险较低（最抗跌），但<strong>承担了另外四个都没有的单一实体风险与监管风险</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-bnb">1. BNB 的起源与设计取舍</h2>
+<h3 id="11">1.1 它先是一张折扣券，后来才是一条链</h3>
+<p>BNB 的起点与本系列另外四个资产<strong>完全不同</strong>：它不是为了实现某种技术理想而发行的，<strong>它是 Binance 交易所 2017 年 ICO 的产物</strong>，最初的用途只有一个——<strong>在 Binance 上交易可以用 BNB 抵扣手续费，享受折扣</strong>。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>BNB 是什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017</td>
+<td>以太坊上的一枚 <strong>ERC-20 代币</strong>，用途是交易手续费折扣</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>迁移到 Binance Chain（自有链），成为链上 gas</td>
+</tr>
+<tr>
+<td>2020</td>
+<td><strong>Binance Smart Chain（BSC）</strong>上线，兼容 EVM，BNB 成为智能合约平台的 gas</td>
+</tr>
+<tr>
+<td>2022 至今</td>
+<td>更名 <strong>BNB Chain</strong>，BNB 定位为「Build aNd Build」的生态代币</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>这段历史决定了本报告的分析方法</strong>：<br />
+另外四个资产的价值论证都从「这条链有什么用」开始，<strong>BNB 必须从「Binance 这家公司做得怎么样」开始。</strong><br />
+把它当成第五条公链来分析，会漏掉它价值的主要来源。</p>
+</blockquote>
+<h3 id="12">1.2 三个与主流不同的设计选择</h3>
+<p><strong>① 明确的中心化取舍</strong></p>
+<p>BSC 采用 <strong>PoSA（Proof of Staked Authority，权益授权证明）</strong>——验证者数量被刻意限制在几十个量级，由质押量选出。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>以太坊</th>
+<th><strong>BSC</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>验证者数量</td>
+<td>795,000–903,000</td>
+<td><strong>数十个量级</strong></td>
+</tr>
+<tr>
+<td>出块时间</td>
+<td>12 秒</td>
+<td><strong>约 0.75–1.5 秒</strong>（经多次升级后）</td>
+</tr>
+<tr>
+<td>交易成本</td>
+<td>视拥堵而定</td>
+<td><strong>极低，长期稳定</strong></td>
+</tr>
+<tr>
+<td>抗审查性</td>
+<td>高</td>
+<td><strong>低</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>这是一个坦率的取舍，不是缺陷伪装。</strong> BSC 从未声称自己比以太坊更去中心化——<br />
+它用去中心化程度换取了速度与成本。<strong>本报告的立场是：这个取舍在商业上成功了</strong>（见第 3 章的费用数据），<br />
+<strong>但它同时是第 5 章要讲的全部风险的来源。</strong></p>
+</blockquote>
+<p><strong>② 供应只减不增</strong></p>
+<p>BNB <strong>没有任何增发机制</strong>。初始 2 亿枚，此后只有销毁，<strong>目标降至 1 亿枚</strong>。<br />
+截至本报告数据截止，已销毁 <strong>6,684 万枚</strong>，占初始供应的 <strong>33.4%</strong>。</p>
+<p><strong>③ 销毁与网络活动挂钩，而非与利润直接挂钩</strong></p>
+<p>Auto-Burn 的公式<strong>基于 BNB 价格与当季 BSC 出块数</strong>，官方称其为「可独立审计的客观流程」。<br />
+2026 年因 Lorentz、Maxwell、Fermi 三次升级提升了出块频率，<strong>公式参数已相应调整</strong>。</p>
+<blockquote>
+<p><strong>一个必须点明的细节</strong>：销毁现在<strong>直接在 BSC 链上通过黑洞地址执行</strong><br />
+（<code>0x000000000000000000000000000000000000dEaD</code>），<strong>独立于 Binance 的中心化交易所</strong>。<br />
+这提高了可验证性——<strong>但被销毁的 BNB 来自预留供应，这个预留由谁控制，仍是第 5 章的问题。</strong></p>
+</blockquote>
+<h3 id="13-bnb">1.3 BNB 代币的四重角色</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>角色</th>
+<th>说明</th>
+<th>本期状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>交易所权益</strong></td>
+<td>手续费折扣、Launchpad 参与权、生态活动</td>
+<td>✅ Binance 在衍生品与现货均占约 35% 份额</td>
+</tr>
+<tr>
+<td><strong>链上 gas</strong></td>
+<td>支付 BSC 交易</td>
+<td>✅ <strong>L1 费用真年同比 +62.6%，五个资产里唯一增长</strong></td>
+</tr>
+<tr>
+<td><strong>质押品</strong></td>
+<td>BSC 的 PoSA 质押</td>
+<td>⚠️ 验证者集合小，质押的去中心化意义有限</td>
+</tr>
+<tr>
+<td><strong>准股权凭证</strong></td>
+<td>通过季度销毁获得「回购收益」</td>
+<td>✅ <strong>年化 4.20%–4.56%，本报告第 9 章的估值核心</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-bnb">2. BNB 的发展阶段划分</h2>
+<h3 id="20172019">阶段一：交易所折扣券（2017–2019）</h3>
+<ul>
+<li>2017 年 7 月 ICO，作为 ERC-20 代币发行，初始供应 2 亿枚</li>
+<li>唯一用途是 Binance 手续费折扣</li>
+<li><strong>首次季度销毁启动</strong>，机制沿用至今</li>
+</ul>
+<h3 id="defi-20192021">阶段二：自有链与 DeFi 爆发（2019–2021）</h3>
+<ul>
+<li>2019 年迁移至 Binance Chain</li>
+<li><strong>2020 年 9 月 BSC 上线</strong>，兼容 EVM，开发者可直接移植以太坊应用</li>
+<li>借助以太坊高 gas 的痛点，BSC 承接大量外溢需求</li>
+<li><strong>2021-05-05 BSC 的 TVL 触及历史最高 $217.8 亿</strong>——这个纪录至今未被打破</li>
+</ul>
+<h3 id="20222024">阶段三：监管风暴（2022–2024）</h3>
+<ul>
+<li>2023 年美国 SEC、CFTC 相继对 Binance 提起诉讼</li>
+<li><strong>2023 年 11 月与美国司法部达成 $43 亿和解，创始人 CZ 认罪并卸任 CEO</strong></li>
+<li>BNB 价格与 BSC 生态在此期间承压</li>
+<li><strong>这段历史是理解 BNB 风险溢价的关键</strong></li>
+</ul>
+<h3 id="20242025">阶段四：合规重建与生态复苏（2024–2025）</h3>
+<ul>
+<li>新 CEO 就任，实施季度储备证明（Proof of Reserves）</li>
+<li>在迪拜（VARA）、法国（PSAN）、意大利（OAM）、西班牙、波兰、萨尔瓦多等地取得牌照</li>
+<li><strong>2025-12-08 取得 ADGM 框架下首个加密交易所全球牌照</strong>，覆盖交易所、清算、经纪三类实体</li>
+<li><strong>2025-10-13 BNB 触及历史最高价 $1,369.99</strong></li>
+</ul>
+<h3 id="2026">阶段五：机构化与链上放量（2026 至今）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-01-15</td>
+<td>年内最高价 <strong>$947.70</strong>（市值 $1,305 亿）</td>
+</tr>
+<tr>
+<td><strong>2026-05-29</strong></td>
+<td><strong>VanEck 的 VBNB 在 Nasdaq 上市</strong>，首个美国现货 BNB ETF，赞助费 0.39%，Anchorage Digital Bank 冷存储托管</td>
+</tr>
+<tr>
+<td>2026-06-16</td>
+<td>欧洲监管申请受阻的报道出现，Binance 回应称其申请「完全合规」</td>
+</tr>
+<tr>
+<td><strong>2026-07-01</strong></td>
+<td>年内最低价 <strong>$545.86</strong>（市值 $736 亿）</td>
+</tr>
+<tr>
+<td><strong>2026-07-15</strong></td>
+<td><strong>第 36 次季度销毁</strong>：1,615,827.795 BNB，约 $9.32 亿</td>
+</tr>
+<tr>
+<td>2026-08-14</td>
+<td>新安全框架上线，代币化股票市值接近 $9 亿</td>
+</tr>
+<tr>
+<td><strong>2026-08-25</strong></td>
+<td><strong>Pasteur 硬分叉</strong>：BEP-682（桥验证增强）、BEP-695（验证者密钥安全退役）、BEP-675（更满的区块）。测试网吞吐从 1,237 提升至 2,324 TPS</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td>月度 <strong>+16.71%</strong>；<strong>BSC 月度 L1 费用 $1,836 万，真年同比 +62.6%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>阶段五的定性</strong>：<strong>这是 BNB 从「交易所附属品」向「独立可投资产」转变的阶段。</strong><br />
+ETF 上市意味着不通过 Binance 账户也能持有 BNB 敞口；链上费用增长意味着它不再只靠交易所权益支撑。<br />
+<strong>但第 5 章会说明，这个转变远未完成。</strong></p>
+</blockquote>
+<hr />
+<h2 id="3-bnb">3. BNB 当前现状分析</h2>
+<h3 id="31">3.1 价格与市场</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>现价</strong></td>
+<td><strong>$769.10</strong></td>
+<td>CoinGecko API，2026-09-05 14:55 UTC</td>
+</tr>
+<tr>
+<td>市值</td>
+<td><strong>$1,024.1 亿</strong>（全球第 <strong>4</strong>）</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>完全稀释估值（FDV）</td>
+<td><strong>≈ 市值</strong>（无锁仓，全流通）</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>24 小时成交额</td>
+<td>$18.0 亿</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>流通量 / 初始上限</td>
+<td><strong>1.3316 亿 / 2 亿</strong>（已销毁 33.4%）</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>历史最高价</strong></td>
+<td><strong>$1,369.99（2025-10-13）</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>距 ATH</strong></td>
+<td><strong>–43.86%</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>近 30 日</td>
+<td><strong>+29.64%</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>近 200 日</td>
+<td>+23.20%</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>近 1 年</strong></td>
+<td><strong>–11.1%</strong></td>
+<td>同上</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>2026 年内轨迹</strong>（CoinGecko 日线，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th>价格</th>
+<th>市值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1/1</td>
+<td>$862.69</td>
+<td>$1,188 亿</td>
+</tr>
+<tr>
+<td><strong>1/15（年内最高）</strong></td>
+<td><strong>$947.70</strong></td>
+<td><strong>$1,305 亿</strong></td>
+</tr>
+<tr>
+<td>3/1</td>
+<td>$617.71</td>
+<td>$842 亿</td>
+</tr>
+<tr>
+<td>6/1</td>
+<td>$709.75</td>
+<td>$957 亿</td>
+</tr>
+<tr>
+<td><strong>7/1（年内最低）</strong></td>
+<td><strong>$545.86</strong></td>
+<td><strong>$736 亿</strong></td>
+</tr>
+<tr>
+<td>8/1</td>
+<td>$586.46</td>
+<td>$781 亿</td>
+</tr>
+<tr>
+<td><strong>8/31</strong></td>
+<td><strong>$684.48</strong></td>
+<td>$911 亿</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>年初至今（YTD）</strong></td>
+<td><strong>–10.85%</strong></td>
+</tr>
+<tr>
+<td>从 7/1 年内低点反弹</td>
+<td><strong>+40.9%</strong></td>
+</tr>
+<tr>
+<td>距 1/15 年内高点</td>
+<td>–18.8%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>2026 年 8 月月度表现</strong>：<strong>$586.46 → $684.48，+16.71%</strong></p>
+<h3 id="32">3.2 五个资产的横向对照</h3>
+<blockquote>
+<p>⚠️ <strong>口径声明</strong>：下表<strong>全部统一为 8/1→8/31 的月度涨幅</strong>（CoinGecko 一手）。<br />
+<strong>本系列在 ETH 期出过一次口径混用的错误</strong>（把月度涨幅与「近 30 天」涨幅混比，得出了错误的排名），<br />
+<strong>本表已避免该问题。</strong> 当前快照统一取自 2026-09-05 14:55 UTC 的同一次调用。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th style="text-align: right;"><strong>8 月月度</strong></th>
+<th>市值</th>
+<th style="text-align: center;">排名</th>
+<th style="text-align: right;">距 ATH</th>
+<th style="text-align: right;"><strong>近 1 年</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SOL</td>
+<td style="text-align: right;"><strong>+39.68%</strong></td>
+<td>$602.2 亿</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: right;">–64.93%</td>
+<td style="text-align: right;">–50.9%</td>
+</tr>
+<tr>
+<td>ETH</td>
+<td style="text-align: right;"><strong>+29.86%</strong></td>
+<td>$2,997.8 亿</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: right;">–50.33%</td>
+<td style="text-align: right;">–45.1%</td>
+</tr>
+<tr>
+<td>BTC</td>
+<td style="text-align: right;"><strong>+23.62%</strong></td>
+<td>$1.601 万亿</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: right;">–36.76%</td>
+<td style="text-align: right;">–29.7%</td>
+</tr>
+<tr>
+<td><strong>BNB</strong></td>
+<td style="text-align: right;"><strong>+16.71%</strong></td>
+<td><strong>$1,024.1 亿</strong></td>
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: right;"><strong>–43.86%</strong></td>
+<td style="text-align: right;"><strong>–11.1%</strong></td>
+</tr>
+<tr>
+<td>ADA</td>
+<td style="text-align: right;"><strong>+14.65%</strong></td>
+<td>$81.6 亿</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: right;">–92.95%</td>
+<td style="text-align: right;">–74.5%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>这张表里最值得注意的不是 8 月，是最后一列</strong>：</p>
+<blockquote>
+<p><strong>BNB 近 1 年只跌 11.1%，是五个资产里跌幅最小的</strong>，第二名 BTC 是 –29.7%，差距近 19 个百分点。<br />
+<strong>8 月它排第四（低于 ADA 之外的所有资产），一年下来它跌得最少。</strong></p>
+</blockquote>
+<p><strong>但「跌幅小」不等于「波动率低」，这是两个统计量。</strong><br />
+初稿在此处直接把前者当作后者，<strong>审查指出后，本报告实际计算了风险指标</strong>：</p>
+<p><strong>五资产风险指标</strong>（CoinGecko 近一年日线 365 个观测，<strong>本报告自行计算</strong>）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th style="text-align: right;">日收益率标准差</th>
+<th style="text-align: right;"><strong>年化波动率</strong></th>
+<th style="text-align: right;">最大回撤</th>
+<th style="text-align: right;"><strong>Beta（相对 BTC）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BTC</td>
+<td style="text-align: right;">2.312%</td>
+<td style="text-align: right;"><strong>44.2%</strong></td>
+<td style="text-align: right;">–53.0%</td>
+<td style="text-align: right;">1.000</td>
+</tr>
+<tr>
+<td><strong>BNB</strong></td>
+<td style="text-align: right;"><strong>2.754%</strong></td>
+<td style="text-align: right;"><strong>52.6%</strong></td>
+<td style="text-align: right;"><strong>–58.3%</strong></td>
+<td style="text-align: right;"><strong>0.921</strong></td>
+</tr>
+<tr>
+<td>ETH</td>
+<td style="text-align: right;">3.348%</td>
+<td style="text-align: right;">64.0%</td>
+<td style="text-align: right;">–66.7%</td>
+<td style="text-align: right;">1.301</td>
+</tr>
+<tr>
+<td>SOL</td>
+<td style="text-align: right;">3.562%</td>
+<td style="text-align: right;">68.0%</td>
+<td style="text-align: right;">–74.9%</td>
+<td style="text-align: right;">1.321</td>
+</tr>
+<tr>
+<td>ADA</td>
+<td style="text-align: right;">4.237%</td>
+<td style="text-align: right;">81.0%</td>
+<td style="text-align: right;">–84.6%</td>
+<td style="text-align: right;">1.374</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>计算结果部分推翻了初稿的说法，必须明确记录</strong>：<br />
+<strong>初稿写「BNB 的波动性是五个资产里最低的」——这是错的。BTC 的年化波动率 44.2% 才是最低的，BNB 的 52.6% 排第二。</strong><br />
+最大回撤同样是 BTC（–53.0%）优于 BNB（–58.3%）。</p>
+<p><strong>但「低 beta」这个论断在正确的统计量上成立</strong>：<strong>BNB 相对 BTC 的 beta 为 0.921，是五个资产里唯一低于 1 的</strong><br />
+（ETH 1.301、SOL 1.321、ADA 1.374）。<strong>它确实随大盘波动更小，但它的绝对波动率高于 BTC。</strong></p>
+<p><strong>两个说法的差别是实质性的</strong>：「波动率最低」意味着它可以替代 BTC 作为低风险配置；<br />
+<strong>「beta 低于 1 但绝对波动率高于 BTC」意味着它只在加密资产内部提供相对分散，不能与 BTC 比稳健。</strong></p>
+</blockquote>
+<p><img alt="五个资产的 8 月涨幅与近一年跌幅对照" src="charts/five-asset-compare-202608.svg" /></p>
+<h3 id="33">3.3 链上活动与费用：五个资产里唯一增长的</h3>
+<p><strong>BSC 的 L1 费用月度序列</strong>（DefiLlama API 日度数据按月聚合，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th>L1 费用</th>
+<th>月份</th>
+<th>L1 费用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-07</td>
+<td>$10,875,150</td>
+<td>2026-02</td>
+<td>$8,331,844</td>
+</tr>
+<tr>
+<td><strong>2025-08</strong></td>
+<td><strong>$11,292,440</strong></td>
+<td>2026-03</td>
+<td>$10,588,119</td>
+</tr>
+<tr>
+<td>2025-09</td>
+<td>$21,901,137</td>
+<td>2026-04</td>
+<td>$10,149,492</td>
+</tr>
+<tr>
+<td>2025-10</td>
+<td>$70,688,146</td>
+<td>2026-05</td>
+<td>$10,171,792</td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td>$14,609,281</td>
+<td>2026-06</td>
+<td>$10,851,381</td>
+</tr>
+<tr>
+<td>2025-12</td>
+<td>$14,665,705</td>
+<td>2026-07</td>
+<td>$9,027,849</td>
+</tr>
+<tr>
+<td>2026-01</td>
+<td>$20,242,227</td>
+<td><strong>2026-08</strong></td>
+<td><strong>$18,360,725</strong></td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>比较</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>真年同比（2026-08 vs 2025-08）</strong></td>
+<td><strong>$18,360,725 vs $11,292,440 = +62.6%</strong></td>
+</tr>
+<tr>
+<td><strong>同期对照：ETH</strong></td>
+<td><strong>–73.8%</strong></td>
+</tr>
+<tr>
+<td><strong>2026-08 的 BSC 费用相对 ETH（$10,382,162）</strong></td>
+<td><strong>1.77 倍</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>这是本报告最有力的一组数字，且完全一手可复现。</strong><br />
+<strong>在五个资产里，BSC 是唯一 L1 费用同比增长的链</strong>——而且增长了六成。<br />
+<strong>更值得注意的是绝对值</strong>：BSC 8 月的 L1 费用已经是以太坊的 1.77 倍。</p>
+<p>⚠️ <strong>但必须指出一处异常，不能忽略</strong>：<strong>2025-10 的 $7,069 万是一个孤立的极值</strong>，<br />
+是相邻月份的 3–5 倍。<strong>本报告未能查明该异常的成因</strong>，因此：<br />
+① 同比基准刻意选用 2025-08（正常月份）而非 2025-10；<br />
+② <strong>不使用任何包含 2025-10 的滚动均值</strong>。这处异常的存在，说明 BSC 的费用序列波动性高于表面。</p>
+</blockquote>
+<p><strong>生态合计费用</strong>（DefiLlama API，一手）：<strong>30 天 $67,428,659</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>协议</th>
+<th>30 天费用</th>
+<th>类别</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BSC 链本身</strong></td>
+<td><strong>$17,335,973</strong></td>
+<td>Chain</td>
+</tr>
+<tr>
+<td><strong>Flap sh</strong></td>
+<td><strong>$17,134,946</strong></td>
+<td>Launchpad</td>
+</tr>
+<tr>
+<td><strong>GMGN</strong></td>
+<td><strong>$11,891,720</strong></td>
+<td>Telegram Bot</td>
+</tr>
+<tr>
+<td>PancakeSwap AMM V3</td>
+<td>$10,386,643</td>
+<td>DEX</td>
+</tr>
+<tr>
+<td>PancakeSwap AMM</td>
+<td>$5,237,448</td>
+<td>DEX</td>
+</tr>
+<tr>
+<td>Uniswap V4</td>
+<td>$4,753,002</td>
+<td>DEX</td>
+</tr>
+<tr>
+<td>Predict Fun</td>
+<td>$3,785,084</td>
+<td>预测市场</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>口径纪律</strong>（沿用 ADA / ETH 期的教训）：<strong>L1 费衡量 BNB 代币的价值捕获，生态合计衡量生态活跃度。</strong></p>
+<p>⚠️ <strong>但这里有一个必须点明的质量问题</strong>：<strong>Flap sh（Launchpad）与 GMGN（Telegram 交易机器人）合计 $2,903 万，占生态费用的 43.0%。</strong><br />
+这两类协议的收入<strong>高度依赖 meme 币投机</strong>。<br />
+<strong>这意味着 BSC 的活跃度中，有相当大一部分是投机性的，而非应用型的。</strong><br />
+<strong>本报告不认为这使费用数字失效</strong>（投机也是真实需求、真实付费），<br />
+<strong>但它使「+62.6% 的增长能否持续」成为一个开放问题</strong>——meme 币热度是本系列见过的最不稳定的需求来源（参见 SOL 8 月版：网络收入同比 –87%，主因正是 meme 币退潮）。</p>
+</blockquote>
+<h3 id="34-tvl">3.4 生态数据：TVL 与稳定币</h3>
+<p><strong>DeFi TVL</strong>（DefiLlama API，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th>TVL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>历史最高</strong></td>
+<td><strong>$217.8 亿（2021-05-05）</strong></td>
+</tr>
+<tr>
+<td>2025-08-31</td>
+<td>$72.8 亿</td>
+</tr>
+<tr>
+<td>2026-08-01</td>
+<td>$48.4 亿</td>
+</tr>
+<tr>
+<td><strong>2026-08-31</strong></td>
+<td><strong>$54.4 亿</strong></td>
+</tr>
+<tr>
+<td>2026-09-05（最新）</td>
+<td>$58.0 亿</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>8 月 TVL 变动</strong></td>
+<td><strong>+12.4%</strong></td>
+</tr>
+<tr>
+<td><strong>同比（2026-08-31 vs 2025-08-31）</strong></td>
+<td><strong>–25.3%</strong></td>
+</tr>
+<tr>
+<td><strong>距 2021 年历史高点</strong></td>
+<td><strong>–73.4%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>8 月的一个正面信号，值得与 ADA 对照</strong>：<br />
+<strong>BNB 价格 +16.71%，TVL +12.4%——两者同向。</strong><br />
+而 ADA 8 月版记录的是价格 +14.65%、TVL <strong>–11.2%</strong>（背离）。<br />
+<strong>同向意味着这次上涨有链上资金跟随，不是纯交易所层面的情绪。</strong></p>
+<p><strong>但长周期看仍是收缩的</strong>：TVL 同比 –25.3%，距 2021 年高点 –73.4%。<strong>8 月的改善是短周期的。</strong></p>
+</blockquote>
+<p><strong>链上稳定币</strong>（DefiLlama API，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>链</th>
+<th>稳定币规模</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ethereum</td>
+<td>$1,472.6 亿</td>
+</tr>
+<tr>
+<td>Tron</td>
+<td>$937.8 亿</td>
+</tr>
+<tr>
+<td>Solana</td>
+<td>$162.8 亿</td>
+</tr>
+<tr>
+<td><strong>BSC</strong></td>
+<td><strong>$133.1 亿</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>BSC 的稳定币规模在主要链中排第四，<strong>是 ADA（$6,411 万）的约 208 倍</strong>。</p>
+<h3 id="35">3.5 宏观环境</h3>
+<p>BNB 与另外四个资产共享同一套宏观驱动，<strong>但它对宏观的敏感度是五个里最低的</strong>（见 3.2 的近 1 年数据）。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>因素</th>
+<th>状态（9 月初）</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>联邦基金利率</td>
+<td>3.50–3.75%</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>9 月加息概率</strong></td>
+<td><strong>65.9%</strong>（CME FedWatch，8/31）</td>
+<td>利空</td>
+</tr>
+<tr>
+<td>PCE 通胀</td>
+<td>3.7%（12 个月）/ 4.1%（6 个月）</td>
+<td>支持加息</td>
+</tr>
+<tr>
+<td><strong>10 年期美债</strong></td>
+<td><strong>4.79%</strong></td>
+<td><strong>本报告第 9 章的关键对照基准</strong>——BNB 的回购收益率 4.20%–4.56% 与之直接可比</td>
+</tr>
+<tr>
+<td>8 月流动性事件</td>
+<td>财政部加倍长端国债回购</td>
+<td>8 月普涨的共同触发因素</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="4">4. 销毁机制与「准回购」（本期核心章之一）</h2>
+<blockquote>
+<p>本章替代 BTC 版的「减半周期」与 ETH 版的「发行与销毁」。<br />
+<strong>BNB 的情况比两者都简单，也比两者都干净：它只有销毁，没有发行。</strong></p>
+</blockquote>
+<h3 id="41">4.1 两套并行的销毁机制</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>机制</th>
+<th>频率</th>
+<th>来源</th>
+<th>规模</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Auto-Burn（季度销毁）</strong></td>
+<td>每季度一次</td>
+<td>预留供应，销毁量由公式决定</td>
+<td><strong>主体，2026 前三季度合计 455.7 万枚</strong></td>
+</tr>
+<tr>
+<td><strong>BEP-95（实时销毁）</strong></td>
+<td>每个区块</td>
+<td>部分 gas 费</td>
+<td>量级很小</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Auto-Burn 的公式</strong>依据两个变量：<strong>BNB 价格</strong>与<strong>当季 BSC 出块数</strong>。官方称其为「可独立审计的客观流程」。<br />
+2026 年因 Lorentz、Maxwell、Fermi 三次升级提升出块频率，<strong>公式参数已相应调整</strong>以保持机制原意。</p>
+<p><strong>销毁现在直接在 BSC 链上通过黑洞地址执行</strong>（<code>0x000000000000000000000000000000000000dEaD</code>），<strong>独立于 Binance 的中心化交易所</strong>——这提高了可验证性。</p>
+<h3 id="42-2026">4.2 2026 年的三次销毁（一手核实）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>次序</th>
+<th><strong>执行日期</strong></th>
+<th style="text-align: right;">销毁量</th>
+<th style="text-align: right;">执行时价值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 34 次</td>
+<td>2026 年 1 月</td>
+<td style="text-align: right;"><strong>1,371,803.77 BNB</strong></td>
+<td style="text-align: right;">约 <strong>$12.77 亿</strong></td>
+</tr>
+<tr>
+<td>第 35 次</td>
+<td><strong>2026-04-15</strong></td>
+<td style="text-align: right;"><strong>1,569,307.34 BNB</strong></td>
+<td style="text-align: right;">约 <strong>$10.20 亿</strong></td>
+</tr>
+<tr>
+<td><strong>第 36 次</strong></td>
+<td><strong>2026-07-15</strong></td>
+<td style="text-align: right;"><strong>1,615,827.795 BNB</strong></td>
+<td style="text-align: right;">约 <strong>$9.32 亿</strong></td>
+</tr>
+<tr>
+<td><strong>合计（2026 年已执行三次）</strong></td>
+<td>—</td>
+<td style="text-align: right;"><strong>4,556,938.9 BNB</strong></td>
+<td style="text-align: right;"><strong>约 $32.29 亿</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>初稿把三次销毁标注为「Q1 / Q2 / Q3」，审查指出这个标注不准确，已改为执行日期。</strong><br />
+BNB 的季度销毁在每季度中月执行（1 月、4 月、7 月、10 月），<strong>而 Auto-Burn 公式统计的是上一个季度的出块数</strong>——<br />
+因此「执行于 Q3」与「对应 Q3」是两件事。<strong>本报告改为只标执行日期，避免这个混淆。</strong><br />
+<strong>2026 年计划四次销毁，已执行三次，第 37 次预计在 10 月</strong>——这也是 4.3 用「× 4/3」年化的依据。</p>
+</blockquote>
+<p><strong>第 36 次销毁后总供应为 133,166,127.91 BNB</strong>（官方博客一手）。</p>
+<blockquote>
+<p><strong>交叉验证通过</strong>：CoinGecko 显示当前总供应 <strong>133,161,962 BNB</strong>，比官方 7/15 的数字少约 <strong>4,166 枚</strong>——<br />
+这个差额正是 <strong>BEP-95 实时销毁</strong>在此后 50 天的累计效果，<strong>两个数据源自洽</strong>。</p>
+</blockquote>
+<p><strong>累计销毁进度</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初始供应</td>
+<td>2 亿枚</td>
+</tr>
+<tr>
+<td>当前供应</td>
+<td><strong>1.3316 亿枚</strong></td>
+</tr>
+<tr>
+<td><strong>已销毁</strong></td>
+<td><strong>6,684 万枚（初始供应的 33.4%）</strong></td>
+</tr>
+<tr>
+<td>目标供应</td>
+<td>1 亿枚</td>
+</tr>
+<tr>
+<td>距目标还需销毁</td>
+<td>3,316 万枚</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>「已销毁 33.4%」这个数字需要三处限定，否则会被高估。这三处都是发布前审查指出的。</strong></p>
+<p><strong>① 初始分配的构成。</strong> ICO 公售 1 亿枚（50%）、创始团队 8,000 万枚（40%，四年归属）、天使投资人 2,000 万枚（10%）。<br />
+团队部分按每年 20% 释放，归属期已于 2021 年结束。<strong>2017–2021 年基于 Binance 季度利润 20% 的销毁中，有一部分销毁的可能是当时尚未流通的份额</strong>——<br />
+<strong>因此「销毁了初始供应的 33.4%」不等于「流通盘减少了 33.4%」。</strong></p>
+<p><strong>② 2022 年桥漏洞曾额外铸造 200 万枚 BNB。</strong> 2022 年 10 月，BSC Token Hub 跨链桥被利用漏洞，<br />
+攻击者<strong>凭空铸造了 200 万 BNB</strong>（当时约 $5.7 亿），其中约 $1.37 亿流出至其他链，其余在 BSC 上被冻结；<br />
+Binance 当时提出用 Auto-Burn 销毁被盗部分。<br />
+<strong>这意味着历史总供应一度超过 2 亿枚</strong>，因此<strong>「2 亿 − 当前供应 = 已销毁」这个减法混入了对漏洞铸造的修复</strong>，<br />
+<strong>它不全是回购性质的销毁。</strong> 本报告无法从公开数据中精确拆分这部分。</p>
+<p><strong>③ 但以上两点都不影响本报告的核心计算。</strong> CoinGecko 显示当前 <strong>流通量 = 总供应 = 1.3316 亿枚，FDV ≈ 市值，无任何锁仓</strong>——<br />
+<strong>从现在起每一次销毁都直接减少流通量</strong>。<br />
+<strong>而 4.3 节的回购收益率只使用 2026 年的三次销毁</strong>（2026 年 1 月、4 月、7 月），<br />
+<strong>全部发生在「流通量 = 总供应」的状态下，且远晚于 2022 年的事件，因此该计算不受上述限定影响。</strong></p>
+<p><strong>本报告因此保留「已销毁初始供应的 33.4%」这个描述，但它只应被读作「当前总量相对初始 2 亿的减少幅度」，<br />
+不应被读作「回购规模」或「流通盘减少幅度」。</strong></p>
+</blockquote>
+<h3 id="43">4.3 换算成「回购收益率」：本报告的估值核心</h3>
+<p><strong>BNB 的销毁在经济实质上接近股票回购</strong>——它减少流通份额，提高每一枚的相对权益，且<strong>没有任何对应的增发来稀释它</strong>。</p>
+<blockquote>
+<p><strong>「接近」而非「等同」，差别在于三点</strong>（这三点在 9.6 的弱点里会再次出现）：<br />
+① <strong>股票回购的资金来自公司利润，是可审计的财务支出</strong>；BNB 的销毁量由公式决定（BNB 价格 × BSC 出块数），<strong>与 Binance 的当期利润没有直接的、可验证的对应关系</strong>。<br />
+② <strong>股票回购有法定的信息披露要求</strong>；Auto-Burn 的公式参数可由 Binance 调整（2026 年因出块提速已调整过一次）。<br />
+③ <strong>股票回购减少的份额此前由市场持有</strong>；BNB 销毁减少的是总供应——<strong>在当前「流通量 = 总供应」的状态下两者一致，但这个状态是 2021 年归属期结束后才成立的</strong>（见 4.2 的限定）。</p>
+<p><strong>本报告使用「准回购」这个措辞，而非「回购」，正是为了保留这三点差异。</strong></p>
+</blockquote>
+<p>因此可以计算一个在本系列前四期都无法计算的指标：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>计算</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年化销毁量</td>
+<td>455.7 万 × 4/3</td>
+<td><strong>607.6 万 BNB</strong></td>
+</tr>
+<tr>
+<td><strong>占当前供应量比例</strong></td>
+<td>607.6 万 ÷ 1.3316 亿</td>
+<td><strong>4.56%</strong></td>
+</tr>
+<tr>
+<td>年化销毁额（按执行时美元值）</td>
+<td>$32.29 亿 × 4/3</td>
+<td>$43.05 亿</td>
+</tr>
+<tr>
+<td><strong>相对市值 $1,024.1 亿</strong></td>
+<td>—</td>
+<td><strong>4.20%</strong></td>
+</tr>
+<tr>
+<td>年化销毁额（按现价 $769.10 计）</td>
+<td>607.6 万 × $769.10</td>
+<td>$46.73 亿</td>
+</tr>
+<tr>
+<td><strong>相对市值</strong></td>
+<td>—</td>
+<td><strong>4.56%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>因此本报告给出的「回购收益率」区间是 4.20%–4.56%。</strong></p>
+<p><strong>这个数字的意义，在于它可以和什么比</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>对照项</th>
+<th style="text-align: right;">收益率</th>
+<th>性质</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>10 年期美债</strong></td>
+<td style="text-align: right;"><strong>4.79%</strong></td>
+<td>无风险</td>
+</tr>
+<tr>
+<td><strong>BNB 回购收益率</strong></td>
+<td style="text-align: right;"><strong>4.20%–4.56%</strong></td>
+<td><strong>真实减少供应，无对应增发</strong></td>
+</tr>
+<tr>
+<td>ETH 质押 APY</td>
+<td style="text-align: right;">2.59%</td>
+<td><strong>其中绝大部分来自增发</strong>，是持有者之间的转移</td>
+</tr>
+<tr>
+<td>ADA 质押 APY</td>
+<td style="text-align: right;">2.07%</td>
+<td>同上，来自增发</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>这是本系列五期以来第一次，一个加密资产的持有人回报可以与无风险利率直接对标。</strong></p>
+<p><strong>必须讲清楚它与 ETH 质押收益的本质差异</strong>：<br />
+ETH 的 2.59% 中约 96% 来自新发行——<strong>它是从不质押的人转移给质押的人，对整体持有者净额为零</strong>。<br />
+<strong>BNB 的销毁不同：它减少的是总量，收益归属于每一个持有者，无需任何操作，也不稀释任何人。</strong><br />
+<strong>在经济实质上，前者是分配问题，后者是真实的股东回报。</strong></p>
+</blockquote>
+<h3 id="44">4.4 但这个收益率的三个限定条件</h3>
+<p><strong>给出一个可以对标美债的数字，就必须同时给出它不成立的条件。</strong></p>
+<ol>
+<li><strong>它不是承诺，是公式的产物。</strong> Auto-Burn 依据 BNB 价格与出块数计算，<strong>两者都会变</strong>。价格下跌时销毁的枚数会变化，出块数取决于链上活动。<strong>过去三个季度的美元销毁额是逐季递减的</strong>（$12.77 亿 → $10.20 亿 → $9.32 亿），这个趋势本身值得警惕。</li>
+<li><strong>它有终点。</strong> 目标供应 1 亿枚，<strong>距今只剩 3,316 万枚可销毁</strong>。按当前年化 607.6 万枚的速度，<strong>约 5.5 年后销毁将结束</strong>。届时这条估值逻辑消失，BNB 必须靠别的东西支撑。</li>
+<li><strong>被销毁的 BNB 来自预留供应，而预留由谁控制是第 5 章的问题。</strong> 销毁的执行是链上可验证的，<strong>但「继续按此公式销毁」这个承诺，依赖于 Binance 的持续意愿与能力</strong>。</li>
+</ol>
+<blockquote>
+<p><strong>本报告的立场</strong>：4.20%–4.56% 是一个<strong>真实的、可验证的、当前正在发生的</strong>持有人回报，<br />
+<strong>但它不具备美债那样的契约性</strong>。把它当作「加密资产里少见的、有现金流特征的回报」是合理的；<br />
+<strong>把它当作「无风险收益」是错的。</strong></p>
+</blockquote>
+<hr />
+<h2 id="5-binance-bnb">5. 对 Binance 的依赖：BNB 最根本的结构特征（本期核心章之二）</h2>
+<blockquote>
+<p>本章是 BNB 独有的，另外四个资产都没有对应章节。<br />
+<strong>它讨论的不是「Binance 会不会出事」这种预测，而是一个结构事实：BNB 价值链的每一环都绕不开同一个实体。</strong></p>
+</blockquote>
+<h3 id="51">5.1 依赖的四个环节</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>环节</th>
+<th>依赖内容</th>
+<th>若该环节变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>需求侧</strong></td>
+<td>BNB 的核心用途之一是 Binance 手续费折扣与生态权益</td>
+<td>交易所份额下滑 → 折扣价值下降</td>
+</tr>
+<tr>
+<td><strong>供应侧</strong></td>
+<td>销毁公式由 Binance 定义与执行，被销毁的 BNB 来自预留供应</td>
+<td>公式变更或停止 → 第 4 章的估值逻辑消失</td>
+</tr>
+<tr>
+<td><strong>链的层面</strong></td>
+<td>BSC 采用 PoSA，验证者集合仅数十个，生态基金与主要激励由 Binance 及关联方主导</td>
+<td>治理与安全性高度集中</td>
+</tr>
+<tr>
+<td><strong>机构通道</strong></td>
+<td>VBNB 等 ETF 的底层资产、流动性、定价，最终仍依赖 Binance 主导的市场</td>
+<td>交易所出现问题 → 传导至 ETF</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>四个环节共享同一个单点。</strong> 这在本系列覆盖的五个资产里是<strong>独一份</strong>：<br />
+BTC 与 ETH 没有单一控制实体；SOL 与 ADA 有强势的基金会，但基金会不经营交易所，也不控制代币的主要需求来源。</p>
+</blockquote>
+<h3 id="52-binance">5.2 Binance 目前的经营状况</h3>
+<p><strong>市场份额（第三方统计，非一手）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>市场</th>
+<th style="text-align: right;">Binance 份额</th>
+<th>规模</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>衍生品</strong>（2026 Q1，前十交易所口径）</td>
+<td style="text-align: right;"><strong>约 34.9%</strong></td>
+<td>约 $4.9 万亿</td>
+</tr>
+<tr>
+<td><strong>现货</strong>（2026 Q1）</td>
+<td style="text-align: right;"><strong>约 34%</strong></td>
+<td>约 $6,399 亿</td>
+</tr>
+</tbody>
+</table></div>
+<p>据 CoinGlass 的 2026 Q1 报告，Binance 的衍生品交易量<strong>超过第二名 OKX（$2.19 万亿）与第三名 Bybit（$1.49 万亿）之和</strong>，且在四个核心子市场中均排第一。</p>
+<p><strong>监管状况</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>美国</td>
+<td><strong>$43 亿司法部和解</strong>（2023 年），创始人 CZ 认罪并卸任；现由新 CEO 管理，实施季度储备证明</td>
+</tr>
+<tr>
+<td><strong>阿布扎比（ADGM）</strong></td>
+<td><strong>2025-12-08 取得该框架下首个加密交易所全球牌照</strong>，覆盖交易所、清算、经纪三类实体</td>
+</tr>
+<tr>
+<td>欧洲</td>
+<td>2026-06 有报道称其在希腊的申请被拒，<strong>Binance 回应称申请「完全合规」</strong>。MiCA 框架下的进展仍在进行中</td>
+</tr>
+<tr>
+<td>其他</td>
+<td>迪拜（VARA）、法国（PSAN）、意大利（OAM）、西班牙、波兰、萨尔瓦多等地持牌</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>公平的评价</strong>：<strong>Binance 在 2024–2026 年的合规重建是有实质进展的</strong>——ADGM 全球牌照是行业首个，<br />
+多辖区持牌与季度储备证明都是可验证的动作。<strong>它不再是 2023 年那个监管黑箱。</strong><br />
+<strong>但欧洲进展受阻说明这个过程远未结束</strong>，而欧洲是全球第二大加密市场。</p>
+</blockquote>
+<h3 id="53">5.3 本章的定性：结构性依赖，不是即将断裂</h3>
+<blockquote>
+<p><strong>该说的是</strong>：<strong>BNB 的价值链高度集中于单一实体，这是一个结构事实，不因 Binance 经营好坏而改变。</strong><br />
+它意味着 BNB 承担了另外四个资产<strong>都不承担</strong>的一类风险：一家公司的经营、合规与声誉风险。</p>
+<p><strong>也该说的是</strong>：<strong>该实体目前的经营状况是强的。</strong> 三分之一的市场份额、行业首个 ADGM 全球牌照、<br />
+链上费用同比 +62.6%——<strong>这些都是可验证的正面证据，不能因为「中心化」这个标签就忽略。</strong></p>
+<p><strong>不该说的是</strong>：「Binance 出事 BNB 就归零」。这是本系列记分卡中反复出现的误判模式——<br />
+<strong>把「结构性脆弱」写成「即将断裂」</strong>（BTC 期出现过 3 次）。<strong>本报告刻意规避这个表述。</strong><br />
+2023 年 $43 亿和解与创始人认罪，是比多数人预想更严重的冲击，<strong>而 BNB 与 BSC 都活了下来</strong>。</p>
+</blockquote>
+<p><strong>因此本报告对这一章的结论是</strong>：</p>
+<blockquote>
+<p><strong>不要把「中心化」当作一个道德判断或自动的减分项，要把它当作一个可定价的风险因子。</strong><br />
+<strong>具体地说</strong>：BNB 的回购收益率 4.20%–4.56% 与 10 年期美债 4.79% 相当接近，<br />
+<strong>而它承担了单一实体风险、监管风险与加密资产的全部波动率。</strong><br />
+<strong>收益率大致相当而风险显著更高——这个对照本身，就是本报告对 BNB 估值最有信息量的一句话。</strong></p>
+</blockquote>
+<hr />
+<h2 id="6">6. 机构通道与持有者结构</h2>
+<h3 id="61-etf">6.1 ETF：五个资产里的第三个</h3>
+<p><strong>2026 年 5 月 29 日，VanEck 的 VBNB 在 Nasdaq 上市，是首个美国现货 BNB ETF。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码 / 交易所</td>
+<td><strong>VBNB / Nasdaq</strong></td>
+</tr>
+<tr>
+<td>上市日</td>
+<td><strong>2026-05-29</strong></td>
+</tr>
+<tr>
+<td>赞助费</td>
+<td><strong>0.39%</strong></td>
+</tr>
+<tr>
+<td>托管</td>
+<td><strong>Anchorage Digital Bank</strong>，冷存储</td>
+</tr>
+<tr>
+<td>申请历程</td>
+<td>VanEck 于 <strong>2025 年 5 月</strong>首次提交申请，历时一年余</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>五个资产的 ETF 通道对照</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th>现货 ETF 状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BTC</td>
+<td>成熟，规模最大</td>
+</tr>
+<tr>
+<td>ETH</td>
+<td>成熟，且有质押型产品</td>
+</tr>
+<tr>
+<td><strong>BNB</strong></td>
+<td><strong>已上市（VBNB，2026-05-29），单一发行方</strong></td>
+</tr>
+<tr>
+<td>SOL</td>
+<td>已上市</td>
+</tr>
+<tr>
+<td>ADA</td>
+<td><strong>零份在申请</strong>（Grayscale 于 2026-08-07 撤回）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>VBNB 的意义</strong>：它让 BNB 敞口<strong>可以不通过 Binance 账户获得</strong>。<br />
+对一个价值高度依赖单一交易所的资产而言，<strong>这是分散该依赖的第一步</strong>——<br />
+<strong>但只是第一步</strong>：ETF 的底层资产、流动性与定价，最终仍依赖 Binance 主导的市场（见 5.1）。</p>
+<p>⚠️ <strong>本报告未获取 VBNB 的资产规模（AUM）与资金流数据</strong>，这是一处明确的证据缺口。<br />
+<strong>因此本报告不对「机构需求有多强」下任何结论</strong>，只记录通道已经打开这个事实。</p>
+</blockquote>
+<h3 id="62">6.2 持有者结构</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>流通量</strong></td>
+<td><strong>1.3316 亿枚，与总供应相等——无锁仓、无线性解锁</strong></td>
+</tr>
+<tr>
+<td>FDV / 市值</td>
+<td><strong>≈ 1.0</strong>（另外四个资产中，ADA 的 FDV/市值为 1.20）</td>
+</tr>
+<tr>
+<td>企业储备</td>
+<td><strong>本报告未发现规模化的上市公司 BNB 储备案例</strong></td>
+</tr>
+<tr>
+<td>ETF 持有</td>
+<td>VBNB，<strong>规模未获取</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>一个容易被忽略的正面结构特征</strong>：<strong>BNB 没有未来解锁压力。</strong><br />
+它的 FDV 等于市值，意味着<strong>不存在「早期投资者代币解锁」这类悬在头上的抛压</strong>——<br />
+而这是 SOL、ADA 等资产历史上反复出现的问题。<br />
+<strong>叠加只减不增的销毁机制，BNB 的供应侧是五个资产里最干净的。</strong></p>
+</blockquote>
+<hr />
+<h2 id="7-bnb">7. BNB 的核心价值逻辑</h2>
+<h3 id="71">7.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th style="text-align: center;">强度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>唯一实现真实通缩，且回购收益率可对标美债</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>2026 前三季度销毁 455.7 万枚（约 $32.3 亿），<strong>无任何对应增发</strong>。年化回购收益率 <strong>4.20%–4.56%</strong> vs 10 年期美债 4.79%。<strong>这是五个资产里唯一具备此性质的</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>五个资产里唯一 L1 费用同比增长的链</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>真年同比 <strong>+62.6%</strong>，且 2026-08 的 $1,836 万<strong>已是 ETH 的 1.77 倍</strong>。<strong>数据来自 DefiLlama 月度序列，一手可复现</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>估值倍数五个里最低</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>市值 / L1 年化费用 <strong>465–699 倍</strong>（区间取决于年化口径，见 8.1 注），ETH 与 ADA 高出一到两个数量级。<strong>从四星降为三星</strong>：初稿只用 8 月单月年化得出 486 倍，<strong>而 8 月是 BSC 全年第二高的月份</strong>；改用 2026 年 1–8 月均值口径为 <strong>699 倍</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>beta 是五个里唯一低于 1 的</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>相对 BTC 的 <strong>beta 0.921</strong>（ETH 1.301、SOL 1.321、ADA 1.374），近 1 年跌幅 –11.1% 为五个最小。<strong>从四星降为三星，且标题已修正</strong>：初稿写「最抗跌」并归因于「销毁提供持续买盘」——<strong>但年化波动率 52.6% 高于 BTC 的 44.2%，且销毁是供应端注销、并无买单进入市场</strong>（见 3.2）</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>8 月 TVL 与价格同向</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>价格 +16.71%、TVL +12.4%。<strong>对照 ADA 8 月的价格 +14.65% / TVL –11.2% 背离</strong>，本次上涨有链上资金跟随</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>供应侧最干净</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>FDV ≈ 市值，无锁仓解锁压力，且只减不增</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>机构通道已打开</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>VBNB 于 2026-05-29 上市。<strong>降为两星的原因</strong>：单一发行方，且<strong>本报告未获取其 AUM 与资金流</strong>，无法判断需求强度</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="72">7.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th style="text-align: center;">强度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>价值链的每一环都依赖同一个实体</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>需求（手续费折扣）、供应（销毁公式与预留）、链（PoSA 数十个验证者）、机构通道（ETF 底层市场）——<strong>四个环节共享同一个单点</strong>。这在五个资产里独一份</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>生态活跃度 43% 来自 meme 币相关协议</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>Flap sh（$1,713 万）+ GMGN（$1,189 万）合计占生态费用 43.0%。<strong>SOL 8 月版的教训是：meme 热度退潮可致网络收入同比 –87%</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>回购收益率有终点且正在递减</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>距 1 亿枚目标仅剩 3,316 万枚，<strong>按当前速度约 5.5 年后销毁结束</strong>；且三次销毁的美元额逐季递减（$12.77 亿 → $10.20 亿 → $9.32 亿）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>TVL 长周期仍在收缩</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>同比 <strong>–25.3%</strong>，距 2021 年高点 <strong>–73.4%</strong>。8 月的 +12.4% 是短周期改善</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>监管未了结</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>$43 亿 DOJ 和解的后续义务仍在履行；欧洲牌照进展受阻，而欧洲是全球第二大加密市场</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>费用序列波动性高</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>2025-10 出现 $7,069 万的孤立极值（相邻月份的 3–5 倍），<strong>成因本报告未能查明</strong>，说明该序列不如表面稳定</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>宏观逆风</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>9 月加息概率 65.9%；且 10 年期美债 4.79% <strong>直接与 BNB 的回购收益率竞争</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="73">7.3 多空对照的一句话总结</h3>
+<blockquote>
+<p><strong>多头买的是「一个有真实回购收益、费用还在增长、估值倍数最低的资产」；<br />
+空头卖的是「这一切的前提，是同一家公司持续做好同一件事」。</strong></p>
+</blockquote>
+<p><strong>两者都成立，而且它们指向同一个判断方法</strong>：</p>
+<blockquote>
+<p><strong>BNB 的分析不该问「这条链好不好」，而该问「这个回报率，配不配得上这个风险」。</strong><br />
+回购收益率 4.20%–4.56%，10 年期美债 4.79%。<strong>收益率大致相当，风险显著更高。</strong><br />
+<strong>第 9 章会把这句话变成可检验的数字。</strong></p>
+</blockquote>
+<hr />
+<h2 id="8-bnb">8. BNB 与其他四个资产的比较</h2>
+<blockquote>
+<p><strong>口径声明</strong>：市值、排名、距 ATH、近 1 年均取自 2026-09-05 14:55 UTC 的同一次 API 调用；<br />
+8 月月度涨幅统一为 8/1→8/31。<strong>费用为各链 2026-08 的月度实际值。</strong></p>
+</blockquote>
+<h3 id="81">8.1 五资产核心矩阵</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th><strong>BNB</strong></th>
+<th>BTC</th>
+<th>ETH</th>
+<th>SOL</th>
+<th>ADA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市值 / 排名</td>
+<td><strong>$1,024.1 亿 / 4</strong></td>
+<td>$1.601 万亿 / 1</td>
+<td>$2,997.8 亿 / 2</td>
+<td>$602.2 亿 / 7</td>
+<td>$81.6 亿 / 19</td>
+</tr>
+<tr>
+<td>距 ATH</td>
+<td>–43.86%</td>
+<td>–36.76%</td>
+<td>–50.33%</td>
+<td>–64.93%</td>
+<td>–92.95%</td>
+</tr>
+<tr>
+<td><strong>近 1 年</strong></td>
+<td><strong>–11.1%</strong></td>
+<td>–29.7%</td>
+<td>–45.1%</td>
+<td>–50.9%</td>
+<td>–74.5%</td>
+</tr>
+<tr>
+<td>8 月月度</td>
+<td>+16.71%</td>
+<td>+23.62%</td>
+<td>+29.86%</td>
+<td>+39.68%</td>
+<td>+14.65%</td>
+</tr>
+<tr>
+<td><strong>2026-08 L1 费用</strong></td>
+<td><strong>$1,836 万</strong></td>
+<td>—</td>
+<td>$1,038 万</td>
+<td>—</td>
+<td>$3.8 万</td>
+</tr>
+<tr>
+<td><strong>L1 费用真年同比</strong></td>
+<td><strong>+62.6%</strong></td>
+<td>—</td>
+<td><strong>–73.8%</strong></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>年通胀 / 通缩</strong></td>
+<td><strong>–4.56%（通缩）</strong></td>
+<td>约 +0.85%</td>
+<td><strong>+0.863%</strong></td>
+<td>约 +3.8%</td>
+<td>+1.47%</td>
+</tr>
+<tr>
+<td>DeFi TVL</td>
+<td>$58.0 亿</td>
+<td>—</td>
+<td>$491.3 亿</td>
+<td>$58.8 亿</td>
+<td>$0.6 亿</td>
+</tr>
+<tr>
+<td><strong>市值 / L1 年化费用</strong></td>
+<td><strong>465–699 倍</strong></td>
+<td>—</td>
+<td>约 2,400 倍</td>
+<td>—</td>
+<td>约 17,500 倍</td>
+</tr>
+<tr>
+<td>现货 ETF</td>
+<td>已上市</td>
+<td>成熟</td>
+<td>成熟（含质押型）</td>
+<td>已上市</td>
+<td><strong>零申请</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>估值倍数的口径说明（审查指出后补入）</strong>：上表 BNB 的区间对应两种年化方式——<br />
+<strong>465 倍</strong>用过去 12 个月实际费用（$220,295,457），<strong>699 倍</strong>用 2026 年 1–8 月的月均值（$1,221.5 万）年化。<br />
+<strong>初稿只给 486 倍（30 天口径年化），而 8 月是 BSC 全年第二高的月份</strong>，单月年化会系统性低估倍数。<br />
+ETH 与 ADA 的倍数同样随口径变动，<strong>因此本表只保留量级比较，不做精确排序。</strong><br />
+<strong>「BNB 的倍数比 ETH 低一个数量级」在所有口径下都成立；「只有 ETH 的五分之一」则依赖口径选择。</strong></p>
+</blockquote>
+<h3 id="82-bnb-vs-eth">8.2 BNB vs ETH：同为「有收入的链」，结论相反</h3>
+<p>这是本期最有信息量的一组对照——<strong>两条链都有真实的费用收入，但方向完全相反</strong>。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th><strong>BNB / BSC</strong></th>
+<th><strong>ETH</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08 L1 费用</td>
+<td><strong>$1,836 万</strong></td>
+<td>$1,038 万</td>
+</tr>
+<tr>
+<td><strong>真年同比</strong></td>
+<td><strong>+62.6%</strong></td>
+<td><strong>–73.8%</strong></td>
+</tr>
+<tr>
+<td>供应变化</td>
+<td><strong>通缩 –4.56%/年</strong></td>
+<td><strong>通胀 +0.863%/年</strong></td>
+</tr>
+<tr>
+<td>持有人回报机制</td>
+<td><strong>销毁（回馈全体持有者）</strong></td>
+<td>质押（<strong>其中约 96% 来自增发，是持有者间转移</strong>）</td>
+</tr>
+<tr>
+<td>持有人回报率</td>
+<td><strong>4.20%–4.56%</strong></td>
+<td>2.59%（名义）</td>
+</tr>
+<tr>
+<td>市值 / L1 年化费用</td>
+<td><strong>465–699 倍</strong></td>
+<td>约 2,400 倍</td>
+</tr>
+<tr>
+<td>架构</td>
+<td>单体，PoSA 数十个验证者</td>
+<td>模块化，执行外包给 L2</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><img alt="BNB 通缩与另外四个资产的通胀对照" src="charts/supply-divergence-202608.svg" /></p>
+</blockquote>
+<p><strong>这组对照的含义需要小心表述。</strong></p>
+<blockquote>
+<p><strong>能说的是</strong>：<strong>按 L1 费用与供应机制这两项客观指标，BNB 在本期优于 ETH</strong>——<br />
+2026-08 的费用是它的 1.77 倍且年同比方向相反，估值倍数低一个数量级，且一个通缩一个通胀。<br />
+⚠️ <strong>但「1.77 倍」用的是 BSC 的全年次高月对 ETH 的低谷月，这个比值不应被外推为常态。</strong></p>
+<p><strong>不能说的是</strong>「所以 BNB 比 ETH 好」。两者的<strong>风险结构完全不同</strong>：<br />
+ETH 的价值不依赖任何单一实体，BNB 的每一环都依赖 Binance；<br />
+ETH 的 TVL 是 BNB 的 <strong>8.5 倍</strong>，抵押品层地位不可比。<br />
+<strong>本报告的立场是：这是一个「更高的确定性回报 vs 更低的单点风险」的取舍，而不是优劣排序。</strong></p>
+</blockquote>
+<h3 id="83-bnb-vs-sol">8.3 BNB vs SOL：两种「高性能链」的不同问题</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>BNB / BSC</strong></th>
+<th>SOL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>近 1 年</td>
+<td><strong>–11.1%</strong></td>
+<td>–50.9%</td>
+</tr>
+<tr>
+<td>DeFi TVL</td>
+<td>$58.0 亿</td>
+<td>$58.8 亿（<strong>几乎相同</strong>）</td>
+</tr>
+<tr>
+<td>供应</td>
+<td><strong>通缩 –4.56%</strong></td>
+<td>通胀约 +3.8%</td>
+</tr>
+<tr>
+<td>投机性收入占比</td>
+<td>meme 相关约 <strong>43%</strong></td>
+<td>SOL 8 月版记录：收入崩塌主因正是 meme 退潮</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>两者 TVL 几乎相同（$58.0 亿 vs $58.8 亿），而 BNB 市值是 SOL 的 1.70 倍。</strong><br />
+差异主要来自 BNB 的交易所权益与通缩机制——<strong>这部分溢价是否合理，取决于你如何给单一实体风险定价。</strong></p>
+<p>⚠️ <strong>一处必须点明的共同风险</strong>：<strong>两者都高度依赖 meme 币投机需求。</strong><br />
+<strong>SOL 已经演示过这个需求崩塌时会发生什么（网络收入同比 –87%）。</strong><br />
+BSC 目前 43% 的生态费用来自同类协议——<strong>这是本报告对 BNB「+62.6% 增长可持续性」持保留的核心理由。</strong></p>
+</blockquote>
+<h3 id="84-bnb-vs-ada">8.4 BNB vs ADA：证明「有人用」和「没人用」的极端差距</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th><strong>BNB</strong></th>
+<th>ADA</th>
+<th style="text-align: right;">倍数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市值</td>
+<td>$1,024.1 亿</td>
+<td>$81.6 亿</td>
+<td style="text-align: right;">12.5×</td>
+</tr>
+<tr>
+<td><strong>2026-08 L1 费用</strong></td>
+<td><strong>$1,836 万</strong></td>
+<td><strong>$3.8 万</strong></td>
+<td style="text-align: right;"><strong>约 483×</strong></td>
+</tr>
+<tr>
+<td>DeFi TVL</td>
+<td>$58.0 亿</td>
+<td>$0.6 亿</td>
+<td style="text-align: right;">约 97×</td>
+</tr>
+<tr>
+<td>稳定币</td>
+<td>$133.1 亿</td>
+<td>$0.64 亿</td>
+<td style="text-align: right;">约 208×</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>市值只差 12.5 倍，L1 费用差约 483 倍。</strong><br />
+<strong>ADA 8 月版的结论是「制度在运转、研发在拿钱、安全没出事——却没有人用」；BNB 是它的镜像</strong>：<br />
+中心化、被诟病、学术光环为零，<strong>但链上有人真金白银地付费。</strong></p>
+</blockquote>
+<hr />
+<h2 id="9">9. 关键变量与三种情景推演</h2>
+<h3 id="91-1218">9.1 未来 12–18 个月的催化剂日历</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th>事件</th>
+<th style="text-align: center;">方向</th>
+<th style="text-align: center;">重要性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2026-09 FOMC</strong></td>
+<td>加息概率 65.9%</td>
+<td style="text-align: center;">利空</td>
+<td style="text-align: center;">★★★★☆</td>
+</tr>
+<tr>
+<td><strong>2026 年 10 月前后</strong></td>
+<td><strong>第 37 次季度销毁</strong>。<strong>销毁的美元额能否止住逐季递减</strong>（$12.77 亿 → $10.20 亿 → $9.32 亿）是本期第一观察点</td>
+<td style="text-align: center;">关键</td>
+<td style="text-align: center;">★★★★★</td>
+</tr>
+<tr>
+<td><strong>持续</strong></td>
+<td><strong>BSC 月度 L1 费用能否守住 $1,800 万量级</strong>（2026-08 为 $1,836 万）</td>
+<td style="text-align: center;">关键</td>
+<td style="text-align: center;">★★★★★</td>
+</tr>
+<tr>
+<td><strong>持续</strong></td>
+<td><strong>meme 相关协议（Flap sh、GMGN）的费用占比变化</strong>——当前 43.0%</td>
+<td style="text-align: center;">关键</td>
+<td style="text-align: center;">★★★★☆</td>
+</tr>
+<tr>
+<td><strong>持续</strong></td>
+<td>VBNB 的 AUM 与资金流（<strong>本期未获取</strong>）</td>
+<td style="text-align: center;">观察</td>
+<td style="text-align: center;">★★★☆☆</td>
+</tr>
+<tr>
+<td><strong>未定</strong></td>
+<td>欧洲 MiCA 牌照进展</td>
+<td style="text-align: center;">关键</td>
+<td style="text-align: center;">★★★★☆</td>
+</tr>
+<tr>
+<td><strong>持续</strong></td>
+<td>Binance 的市场份额（当前衍生品与现货均约 35%）</td>
+<td style="text-align: center;">关键</td>
+<td style="text-align: center;">★★★★☆</td>
+</tr>
+<tr>
+<td><strong>已发生</strong></td>
+<td>Pasteur 硬分叉（2026-08-25），测试网吞吐 1,237 → 2,324 TPS</td>
+<td style="text-align: center;">中性偏多</td>
+<td style="text-align: center;">★★☆☆☆</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="92">9.2 估值方法：第五种框架</h3>
+<p>本系列前四期分别用了四种方法，<strong>它们用在 BNB 身上都不合适</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th>方法</th>
+<th>用在 BNB 上的问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BTC</td>
+<td>已实现价格 × MVRV</td>
+<td>BNB 不是货币资产，无此类链上成本基准叙事</td>
+</tr>
+<tr>
+<td>SOL</td>
+<td>假设收入 × 收入倍数</td>
+<td>可用，但会漏掉 BNB 价值的主要来源（交易所权益 + 回购）</td>
+</tr>
+<tr>
+<td>ADA</td>
+<td>参照资产市值 × 概率</td>
+<td>ADA 用它是因为无锚可用；<strong>BNB 有锚，不必退到这一步</strong></td>
+</tr>
+<tr>
+<td>ETH</td>
+<td>自身实际市值区间 × 概率</td>
+<td>部分可用，但同样漏掉回购这条现金流特征</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>BNB 的特殊之处在于：它是五个资产里唯一有「类现金流」的。</strong> 因此本报告采用<strong>准股权框架</strong>：</p>
+<blockquote>
+<p><strong>总回报 = 资本利得（由情景决定）+ 回购收益率（由销毁机制决定）</strong></p>
+<p><strong>这是本系列第一次可以把一个加密资产的回报拆成这两项。</strong></p>
+</blockquote>
+<p><strong>第 1 步 · 回购收益率</strong>（第 4.3 节已推导）：<strong>年化 4.20%–4.56%</strong>。</p>
+<p><strong>第 2 步 · 情景参照市值</strong>，全部取自 BNB 实际交易过的水平（CoinGecko 2022-01 至今日线，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>年份</th>
+<th>最低市值</th>
+<th>最高市值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2022</td>
+<td>$322 亿（6/19，$197.19）</td>
+<td>$893 亿</td>
+</tr>
+<tr>
+<td><strong>2023</strong></td>
+<td><strong>$315 亿（10/13，$205.26）</strong></td>
+<td>$550 亿</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>$450 亿</td>
+<td>$1,095 亿</td>
+</tr>
+<tr>
+<td><strong>2025</strong></td>
+<td>$775 亿</td>
+<td><strong>$1,819 亿（10/09，市值历史最高）</strong></td>
+</tr>
+<tr>
+<td>2026</td>
+<td><strong>$736 亿（7/1）</strong></td>
+<td>$1,305 亿（1/15）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>2023 年的 $315 亿低点具有特殊参照价值</strong>：它对应的正是 <strong>$43 亿司法部和解、创始人认罪</strong>那段时期。<br />
+<strong>换言之，本报告的悲观情景下限，是一个「重大监管冲击已经发生过」的真实定价。</strong></p>
+</blockquote>
+<p><strong>第 3 步 · 折算价格。</strong> <strong>BNB 是五个资产里唯一流通量会减少的</strong>：按当前年化销毁 607.6 万枚推算，<br />
+<strong>2029 年流通量约 1.1493 亿枚</strong>（当前 1.3316 亿）。<br />
+（作为对照：ETH 的 2029 年推算流通量是<strong>增加</strong>到 1.2520 亿。）</p>
+<h3 id="93-25">9.3 乐观情景：增长持续 + 单点风险未兑现（概率 <strong>25%</strong>）</h3>
+<p><strong>需要发生</strong>：L1 费用守住并继续增长；meme 依赖度下降而非上升；欧洲牌照取得进展；Binance 份额稳定；销毁按公式持续。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参照市值</td>
+<td><strong>$1,300 亿 – $1,819 亿</strong>（上限为 2025-10-09 的市值历史最高）</td>
+</tr>
+<tr>
+<td><strong>目标价（2029 年）</strong></td>
+<td><strong>$1,131 – $1,583</strong></td>
+</tr>
+<tr>
+<td>相对现价</td>
+<td>+47% – +106%</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="94-50">9.4 中性情景：区间震荡，靠回购收益(概率 <strong>50%</strong>)</h3>
+<p><strong>特征</strong>：费用在当前量级波动；监管无重大进展也无重大恶化；价格随加密市场 beta 波动，<strong>而持有者主要靠销毁获得回报</strong>。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参照市值</td>
+<td><strong>$736 亿 – $1,305 亿</strong>（2026 年实际交易区间）</td>
+</tr>
+<tr>
+<td><strong>目标价（2029 年）</strong></td>
+<td><strong>$640 – $1,135</strong></td>
+</tr>
+<tr>
+<td>相对现价</td>
+<td>–17% – +48%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>本节初稿在此写「即便价格原地不动，持有者仍在获得 4.20%–4.56% 的回购收益」，这是重复计算，已删除。</strong><br />
+<strong>销毁效应已经全额包含在上表的目标价里了</strong>——目标价 = 参照市值 ÷ <strong>2029 年缩减后的流通量 1.1493 亿枚</strong>，<br />
+而供应从 1.3316 亿缩减到 1.1493 亿，本身就贡献了 <strong>+15.86%</strong> 的单币价格。<br />
+<strong>把它再作为独立的第二项收益相加，会重复计入约 16 个百分点。</strong></p>
+<p><strong>更根本的一点</strong>：<strong>价格原地不动 = 持有者的美元价值原地不动。</strong> 你的币数没有增加，只是总量变小了。<br />
+销毁的价值<strong>只能通过价格实现</strong>，它不是一笔可以单独收到的现金流。<strong>这是它与债券票息的本质差异</strong>（见 9.7）。</p>
+</blockquote>
+<h3 id="95-25">9.5 悲观情景：单点风险兑现（概率 <strong>25%</strong>）</h3>
+<p><strong>触发条件</strong>：Binance 遭遇新的重大监管行动或份额显著下滑；meme 热度退潮导致费用大幅回落（参照 SOL 的 –87%）；销毁公式变更或暂停。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参照市值</td>
+<td><strong>$315 亿 – $736 亿</strong>（下限为 2023 年监管风暴时的实际低点）</td>
+</tr>
+<tr>
+<td><strong>目标价（2029 年）</strong></td>
+<td><strong>$274 – $640</strong></td>
+</tr>
+<tr>
+<td>相对现价</td>
+<td>–64% – –17%</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="_2">情景对比</h3>
+<blockquote>
+<p>⏱️ <strong>时间范围：以下目标价均为 2029 年水平</strong>，按 2029 年推算流通量 1.1493 亿枚折算。<br />
+<strong>这不是 12 个月目标价。</strong> 9.1 的催化剂日历是 12–18 个月尺度，记分卡检验条件是 2026-12 尺度，三者不可混用。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>情景</th>
+<th style="text-align: center;">概率</th>
+<th>参照市值</th>
+<th>目标价（<strong>2029 年</strong>）</th>
+<th>相对现价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>乐观</td>
+<td style="text-align: center;"><strong>25%</strong></td>
+<td>$1,300 – $1,819 亿</td>
+<td><strong>$1,131 – $1,583</strong></td>
+<td>+47% ~ +106%</td>
+</tr>
+<tr>
+<td>中性</td>
+<td style="text-align: center;"><strong>50%</strong></td>
+<td>$736 – $1,305 亿</td>
+<td><strong>$640 – $1,135</strong></td>
+<td>–17% ~ +48%</td>
+</tr>
+<tr>
+<td>悲观</td>
+<td style="text-align: center;"><strong>25%</strong></td>
+<td>$315 – $736 亿</td>
+<td><strong>$274 – $640</strong></td>
+<td>–64% ~ –17%</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="BNB 三情景目标价区间" src="charts/scenarios-202608.svg" /></p>
+<p><strong>概率赋值依据</strong>（<strong>只用可观测的外部证据，不用本报告自己的星级评分</strong>）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>情景</th>
+<th style="text-align: center;">概率</th>
+<th>依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>乐观 <strong>25%</strong></td>
+<td style="text-align: center;">中等</td>
+<td>费用 +62.6%、TVL 8 月 +12.4%、ETF 已上市——<strong>这些是已发生的事实</strong>。但乐观情景要求「meme 依赖度下降」，<strong>而这一条目前没有任何证据支持</strong></td>
+</tr>
+<tr>
+<td>中性 <strong>50%</strong></td>
+<td style="text-align: center;">最高</td>
+<td><strong>BNB 相对 BTC 的 beta 为 0.921，是五个里唯一低于 1 的</strong>（实测值，见 3.2），随大盘波动较小，这类资产的重估通常缓慢。⚠️ <strong>初稿此处的依据是「波动性五个里最低」，经实测为错</strong>（BNB 年化波动率 52.6%，高于 BTC 的 44.2%），已改用 beta</td>
+</tr>
+<tr>
+<td>悲观 <strong>25%</strong></td>
+<td style="text-align: center;">中等</td>
+<td><strong>2023 年已经发生过一次</strong>（$43 亿和解 + 创始人认罪），说明该风险是真实且有先例的。<strong>但也正因发生过一次而未致命</strong>，本报告不把它设得更高</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="96">9.6 这套推导方法的六个弱点（必读）</h3>
+<ol>
+<li><strong>回购收益率不是契约性的。</strong> 它由公式产生，公式由 Binance 定义并可调整（2026 年已因出块提速调整过参数）。<strong>把它与美债并列是为了提供量级参照，不意味着两者性质相同。</strong></li>
+<li><strong>销毁的美元额正在逐季递减</strong>（$12.77 亿 → $10.20 亿 → $9.32 亿）。本报告用「前三季度 × 4/3」年化，<strong>若递减持续，实际年化会低于 4.20%</strong>。</li>
+<li><strong>2029 年流通量推算假设销毁速度不变。</strong> 但公式与价格挂钩，且距 1 亿枚目标只剩 3,316 万枚——<strong>销毁必然在某个时点放缓</strong>。误差方向是流通量被低估、目标价被高估。</li>
+<li><strong>参照区间的选择主导结论。</strong> 悲观下限取 2023 年的 $315 亿——那是<strong>尚无 ETF、尚无 ADGM 牌照、合规重建尚未开始</strong>时的定价。用它作 2029 年地板，隐含「结构性改善可被完全抹去」，未经论证。</li>
+<li><strong>概率是主观赋值。</strong> 敏感性测试：15/50/35 → 期望市值 $928 亿（<strong>–9.4%</strong>）；25/50/25 → $1,032 亿（<strong>+0.7%</strong>）；35/50/15 → $1,135 亿（<strong>+10.8%</strong>）。<strong>仅调概率就能在 ±10% 间移动。</strong></li>
+<li><strong>情景集不完备。</strong> 缺失一种现实可能：<strong>「Binance 稳健但 BSC 生态萎缩」</strong>——即交易所业务照常、销毁照常，而链上活动因 meme 退潮大幅回落。<strong>本框架把两者绑在同一情景里，而 SOL 的先例说明它们可以分离。</strong></li>
+</ol>
+<h3 id="97">9.7 本报告的结论</h3>
+<p><strong>资本利得部分</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>期望市值</strong></td>
+<td>0.25 × $1,559.5 亿 + 0.50 × $1,020.5 亿 + 0.25 × $525.5 亿 = <strong>$1,031.5 亿</strong></td>
+</tr>
+<tr>
+<td>相对当前市值 $1,024.1 亿</td>
+<td><strong>+0.7%</strong></td>
+</tr>
+<tr>
+<td>概率最高的中性情景中值</td>
+<td>$1,020.5 亿 → <strong>–0.4%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>和 ETH 期一样，本报告不给出「低估/高估」的方向性判断</strong>——<strong>+0.7% 完全落在框架误差之内</strong><br />
+（9.6 弱点 5 显示仅调概率就能移动 ±10%）。</p>
+</blockquote>
+<p><strong>但必须区分两个分析层次，否则会重复计算</strong>（这是本期审查抓到的最重要一处错误）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>层次</th>
+<th>口径</th>
+<th style="text-align: right;">三年期望</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>市值层</strong></td>
+<td>期望市值 $1,031.5 亿 ÷ 当前 $1,024.1 亿</td>
+<td style="text-align: right;"><strong>+0.7%</strong></td>
+</tr>
+<tr>
+<td><strong>供应缩减</strong></td>
+<td>流通量 1.3316 亿 → 1.1493 亿</td>
+<td style="text-align: right;"><strong>+15.86%</strong></td>
+</tr>
+<tr>
+<td><strong>单币层（两者相乘，非相加）</strong></td>
+<td>1.0070 × 1.1586</td>
+<td style="text-align: right;"><strong>+16.67%</strong></td>
+</tr>
+<tr>
+<td><strong>折合年化</strong></td>
+<td>—</td>
+<td style="text-align: right;"><strong>约 +5.3%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>初稿把它写成「资本利得约 0% + 回购收益率 4.20%–4.56%」两项相加，这是错的。</strong><br />
+<strong>销毁效应已经包含在目标价里</strong>（目标价除的是缩减后的流通量），<strong>再加一次就重复计入约 16 个百分点</strong>。<br />
+<strong>修正后的正确表述只有一个数字：单币层三年期望回报约 +16.67%，年化约 +5.3%。</strong></p>
+</blockquote>
+<p><strong>而这个结论真正的落点，是一个对照</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">收益率</th>
+<th>期限</th>
+<th>风险</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>美债</strong></td>
+<td style="text-align: right;">联邦基金 3.50–3.75%；<strong>10 年期 4.79%</strong></td>
+<td>—</td>
+<td>无风险</td>
+</tr>
+<tr>
+<td><strong>BNB（单币层期望年化）</strong></td>
+<td style="text-align: right;"><strong>约 5.3%</strong></td>
+<td><strong>3 年</strong></td>
+<td>年化波动率 <strong>52.6%</strong> + <strong>单一实体风险</strong> + 监管风险</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>期限匹配的说明（审查指出后补入）</strong>：本报告的持有期是<strong>约 3 年</strong>（至 2029 年），<br />
+<strong>因此严格对应的基准是 3 年期美债，而非 10 年期。</strong> 本报告<strong>未获取 3 年期美债收益率</strong>，<br />
+但已知联邦基金利率 3.50–3.75%、10 年期 4.79%，<strong>曲线中段大致落在两者之间</strong>。<br />
+<strong>初稿只用 10 年期的 4.79% 做对照，是在收益率曲线上选取了对结论最不利的一点——这个选择当时没有被论证。</strong></p>
+<p><strong>修正后的判断</strong>：BNB 的单币层期望年化约 <strong>5.3%</strong>，相对曲线中段的无风险利率，<strong>溢价大致在 100–130 个基点量级</strong>。<br />
+<strong>这个溢价，要覆盖 52.6% 的年化波动率、单一实体风险与监管风险。</strong></p>
+<p><strong>本报告认为它偏薄，但这个判断需要一个门槛才能被检验</strong>——见下方。</p>
+<p><strong>所以本报告对 BNB 的判断是</strong>：它是五个资产里<strong>基本面证据最强、估值倍数最低、且唯一供应真实减少</strong>的；<br />
+<strong>但它提供的约 100–130 个基点的溢价，本报告认为不足以补偿其额外承担的单点风险。</strong></p>
+<p>⚠️ <strong>「不足以」需要一个门槛，否则不可证伪。本报告给出的门槛是</strong>：<br />
+<strong>单一实体风险 + 监管风险合计，应至少要求 300 个基点的溢价</strong>（参照单一发行人高收益债的信用利差量级）。<br />
+<strong>按此门槛，BNB 当前的 100–130bp 明显不足。</strong><br />
+<strong>若你认为 100bp 就够（即认为 Binance 的单点风险接近投资级），那么结论会翻转为「大致合理」。</strong><br />
+<strong>本报告的立场因此可以被具体地反驳——这正是给出门槛的目的。</strong></p>
+<p><strong>这不是看空。</strong> 它意味着：<strong>买 BNB 的理由不该是「它便宜」或「它有收益」，<br />
+而应该是「我认为乐观情景的概率高于 25%」</strong>——即你对 Binance 的前景比本报告更乐观。<br />
+<strong>这是一个关于一家公司的判断，不是关于一条链的判断。</strong> 这也是 BNB 与另外四个资产最根本的差异。</p>
+</blockquote>
+<hr />
+<h2 id="10">10. 投资与风险启示</h2>
+<h3 id="101-bnb">10.1 BNB 现在处于什么位置</h3>
+<p>用一句话概括：<strong>BNB 是五个资产里基本面数据最好的一个，也是唯一一个「基本面」这个词需要加引号的。</strong></p>
+<p>数据一侧占优：L1 费用真年同比 <strong>+62.6%</strong>（五个里唯一增长）；<strong>唯一供应真实减少</strong>，回购收益率 4.20%–4.56%；估值倍数 465–699 倍，比 ETH、ADA 低一到两个数量级；<strong>相对 BTC 的 beta 0.921，是五个里唯一低于 1 的</strong>。</p>
+<p><strong>但这些数据的分母都是同一家公司。</strong> 需求、供应、链、机构通道——四个环节共享同一个单点。</p>
+<blockquote>
+<p><strong>所以对 BNB 的分析必须换一个问法。</strong> 另外四个资产问的是「这条链能不能成」，<br />
+<strong>BNB 问的是「这家公司能不能持续做好这件事，以及这个回报率配不配得上这个风险」。</strong></p>
+</blockquote>
+<h3 id="102">10.2 策略建议</h3>
+<blockquote>
+<p>以下为研究性质的框架整理，<strong>不构成投资建议</strong>。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>持有者类型</th>
+<th>框架</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>未持有者</strong></td>
+<td>9.7 已说明：<strong>总回报预期约 4.2%–5.3%，而 10 年期美债 4.79%</strong>。<strong>收益率相当而风险显著更高。</strong> 若要配置，理由应当是「我认为乐观情景概率高于 25%」——<strong>这是对 Binance 前景的判断，不是对区块链技术的判断。 别用「它便宜」或「它有收益」当理由</strong></td>
+</tr>
+<tr>
+<td><strong>已持有者</strong></td>
+<td>关键问题不是价格，而是<strong>你的持仓理由是否与第 5 章的依赖结构一致</strong>。若你买入是因为「BSC 生态好」，请注意 43% 的生态费用来自 meme 相关协议；若因为「有销毁」，请注意它约 5.5 年后结束且美元额正逐季递减</td>
+</tr>
+<tr>
+<td><strong>仓位角色</strong></td>
+<td><strong>BNB 相对 BTC 的 beta 为 0.921</strong>，是五个资产里唯一低于 1 的——<strong>在加密内部它确实提供了一定的相对分散</strong>。⚠️ <strong>但它的绝对年化波动率 52.6% 高于 BTC 的 44.2%，最大回撤 –58.3% 也差于 BTC 的 –53.0%</strong>——<strong>它不能替代 BTC 作为组合里的稳健仓位</strong>。且这份相对分散是以承担单一实体风险换来的，不是免费的</td>
+</tr>
+<tr>
+<td><strong>杠杆</strong></td>
+<td>悲观情景（25%）对应 2029 年 –17% 至 –64%。<strong>更重要的是</strong>：单一实体风险的兑现方式通常是<strong>突发的</strong>（2023 年的和解公告即是先例），<strong>杠杆头寸没有反应时间</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="103">10.3 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>指标</th>
+<th>当前值</th>
+<th>改变结论的阈值</th>
+<th>观测方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>季度销毁的美元额</strong></td>
+<td>Q1 $12.77 亿 → Q2 $10.20 亿 → <strong>Q3 $9.32 亿</strong></td>
+<td><strong>第 37 次销毁若低于 $8 亿</strong> → 递减趋势确立，回购收益率下修；<strong>若回升至 $11 亿以上</strong> → 趋势逆转</td>
+<td>BNB Chain 官方博客</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>BSC 月度 L1 费用</strong></td>
+<td><strong>$1,836 万</strong>（2026-08）</td>
+<td><strong>连续两月 &lt;$1,000 万</strong> → +62.6% 的增长被证伪；<strong>连续两月 &gt;$2,000 万</strong> → 增长确立</td>
+<td>DefiLlama API</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>meme 相关协议费用占比</strong></td>
+<td><strong>43.0%</strong>（Flap sh + GMGN）</td>
+<td><strong>&gt;60%</strong> → 需求质量恶化；<strong>&lt;25%</strong> → 生态多元化改善</td>
+<td>DefiLlama API</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>BSC TVL</strong></td>
+<td><strong>$58.0 亿</strong></td>
+<td><strong>&gt;$80 亿</strong> → 长周期收缩逆转；<strong>&lt;$40 亿</strong> → 收缩加速</td>
+<td>DefiLlama API</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Binance 市场份额</strong></td>
+<td>衍生品约 34.9%、现货约 34%</td>
+<td><strong>任一跌破 25%</strong> → 需求侧论据受损</td>
+<td>第三方季度报告</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>欧洲牌照进展</strong></td>
+<td>受阻，Binance 称申请合规</td>
+<td>取得 MiCA 牌照 → 监管风险显著下降</td>
+<td>官方公告</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>VBNB 的 AUM</strong></td>
+<td><strong>本期未获取</strong></td>
+<td>—</td>
+<td><strong>本期证据缺口，下期必须补</strong></td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>总供应量</strong></td>
+<td><strong>1.3316 亿枚</strong></td>
+<td>接近 1 亿时销毁必然放缓——<strong>届时第 9 章的估值逻辑需要重建</strong></td>
+<td>CoinGecko / 链上</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="104">10.4 风险提醒</h3>
+<ol>
+<li><strong>单一实体风险（BNB 独有）</strong>：需求、供应、链、机构通道四个环节共享同一个单点。<strong>这不是「Binance 会不会出事」的预测，是一个结构事实。</strong></li>
+<li><strong>它的兑现方式通常是突发的</strong>：2023 年 $43 亿和解与创始人认罪是先例。<strong>该事件当时把 BNB 市值打到 $315 亿</strong>（本报告悲观情景的下限即取自此）。</li>
+<li><strong>需求质量风险</strong>：43% 的生态费用来自 meme 相关协议。<strong>SOL 8 月版记录过这类需求崩塌的后果：网络收入同比 –87%。</strong></li>
+<li><strong>回购收益率会结束</strong>：距 1 亿枚目标仅剩 3,316 万枚，约 5.5 年。<strong>且美元额正逐季递减。</strong></li>
+<li><strong>宏观风险</strong>：10 年期美债 4.79% <strong>直接与 BNB 的回购收益率竞争</strong>——这是五个资产里唯一存在直接收益率竞争关系的。</li>
+<li><strong>本报告自身的风险</strong>：这是 BNB 首期报告，<strong>无过往论点可校验</strong>。BTC 系列已检验的 8 个论点只说对 1 个；<strong>ADA 首期有一处核心事实被外部审查发现完全写反</strong>；<strong>ETH 首期有三处口径错误被审查抓出</strong>（其中一处的反证就写在同一段落里）。请以相应的怀疑程度对待本报告。</li>
+</ol>
+<h3 id="105">10.5 长期认知</h3>
+<p><strong>第一，「中心化」是一个可定价的风险因子，不是一个道德标签。</strong><br />
+本系列覆盖的五个资产里，BNB 的中心化程度最高，<strong>而它的链上费用增长最快、估值倍数最低、持有人回报最真实</strong>。<br />
+<strong>把中心化当作自动的减分项，会漏掉这些事实；把它当作无所谓，会漏掉第 5 章的全部内容。</strong> 正确的做法是问：<strong>这个风险，市场给了多少折价？</strong> 本报告的答案是：<strong>折价存在，但不算充分。</strong></p>
+<p><strong>第二，真实的回报和名义的回报，差别可以很大。</strong><br />
+ETH 质押 2.59%、ADA 质押 2.07%，看起来都是收益——<strong>但它们的绝大部分来自增发，是持有者之间的转移。</strong><br />
+BNB 的销毁不同：<strong>它减少总量，回报归属每一个持有者，无需任何操作。</strong><br />
+<strong>同样叫「收益」，一个是分配问题，一个是真实的股东回报。</strong> 这个区分在本系列做到第五期才第一次能清晰地做出来。</p>
+<p><strong>第三，最好的数据也可能有最差的分母。</strong><br />
+BNB 的每一项数据都是五个资产里最好的之一。<strong>但把这些数据放在一起，它们衡量的其实是同一件事——Binance 做得好不好。</strong><br />
+<strong>五个独立的正面指标，如果都源自同一个分母，它们提供的信息量远少于五个。</strong> 这是本期在方法论上最该记住的一点。</p>
+<p><strong>第四，五个资产做下来，本系列没有找到一套能直接套用于全部五个的估值方法。</strong><br />
+BTC 靠稀缺性、SOL 靠网络收入、ADA 无锚可用、ETH 的现金流锚在本期失效、<strong>BNB 是准股权</strong>。</p>
+<blockquote>
+<p>⚠️ <strong>初稿写「没有一套方法能套用全部五个，任何声称有统一框架的说法都站不住」——审查指出两处问题，已收窄。</strong><br />
+① <strong>前提是「我五次各选了一种方法」，这是关于本报告方法选择过程的证据，不是资产本身的属性。</strong> 换一位分析师五次都用同一框架，同样的样本会给出相反的「结论」。<br />
+② <strong>本报告在否认统一框架的同时，恰恰展示了一个</strong>：11.3 的表把五个资产排在同两个维度上——<strong>能把五个对象排进同一张表的两列，本身就是一个框架</strong>，即「代币持有者能捕获多少价值、以什么形式捕获」：BTC 零、ADA 近零、SOL 与 ETH 来自增发的转移、<strong>BNB 来自供应实际减少</strong>。<strong>这是一个连续谱，不是五个不可通约的类别。</strong></p>
+<p><strong>准确的表述是</strong>：本报告在五次实践中<strong>没有找到可直接套用的统一方法</strong>（可辩护的经验陈述）；<br />
+<strong>但「不存在统一框架」是更强的全称命题，五个非随机样本不足以支撑。</strong><br />
+并且必须指出：<strong>这个结论恰好豁免了对本系列最自然的一条批评——「你五期用了五套方法，方法本身不一致」。一个能免疫针对自己的批评的结论，需要比五个样本更强的支撑。</strong></p>
+</blockquote>
+<hr />
+<h2 id="11_1">11. 附录</h2>
+<h3 id="111-bnb">11.1 BNB 发展阶段速查</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>标志</th>
+<th>对代币的影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>交易所折扣券</td>
+<td>2017–2019</td>
+<td>ICO 发行，ERC-20，手续费折扣</td>
+<td>季度销毁机制确立</td>
+</tr>
+<tr>
+<td>自有链与 DeFi</td>
+<td>2019–2021</td>
+<td>BSC 上线（2020-09）</td>
+<td><strong>TVL 触及 $217.8 亿（2021-05-05）</strong>，至今未破</td>
+</tr>
+<tr>
+<td>监管风暴</td>
+<td>2022–2024</td>
+<td><strong>$43 亿 DOJ 和解、创始人认罪</strong></td>
+<td><strong>市值最低至 $315 亿（2023-10-13）</strong></td>
+</tr>
+<tr>
+<td>合规重建</td>
+<td>2024–2025</td>
+<td>ADGM 全球牌照（2025-12-08）</td>
+<td><strong>ATH $1,369.99（2025-10-13）</strong>，市值 ATH $1,819 亿</td>
+</tr>
+<tr>
+<td><strong>机构化与链上放量</strong></td>
+<td>2026 至今</td>
+<td><strong>VBNB 上市（05-29）</strong>、Pasteur 硬分叉（08-25）</td>
+<td><strong>L1 费用真年同比 +62.6%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112-2026-09-05">11.2 关键数据速查（截至 2026-09-05）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>市场</strong></td>
+<td>价格</td>
+<td>$769.10</td>
+</tr>
+<tr>
+<td></td>
+<td>市值 / 排名</td>
+<td>$1,024.1 亿 / 第 4</td>
+</tr>
+<tr>
+<td></td>
+<td>ATH</td>
+<td><strong>$1,369.99（2025-10-13）</strong>，距其 –43.86%</td>
+</tr>
+<tr>
+<td></td>
+<td>8 月月度（8/1→8/31）</td>
+<td><strong>+16.71%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>YTD / <strong>近 1 年</strong></td>
+<td>–10.85% / <strong>–11.1%（五资产最抗跌）</strong></td>
+</tr>
+<tr>
+<td><strong>供应</strong></td>
+<td>流通 = 总供应</td>
+<td><strong>1.3316 亿枚</strong>（FDV ≈ 市值）</td>
+</tr>
+<tr>
+<td></td>
+<td>初始供应 / 目标</td>
+<td>2 亿 / 1 亿</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>已销毁</strong></td>
+<td><strong>6,684 万枚（33.4%）</strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>年化通缩率</strong></td>
+<td><strong>–4.56%</strong></td>
+</tr>
+<tr>
+<td><strong>销毁</strong></td>
+<td>2026 前三季度合计</td>
+<td><strong>4,556,939 BNB ≈ $32.29 亿</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>第 36 次（2026-07-15）</td>
+<td>1,615,827.795 BNB ≈ $9.32 亿</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>回购收益率</strong></td>
+<td><strong>4.20%–4.56%</strong></td>
+</tr>
+<tr>
+<td><strong>费用</strong></td>
+<td><strong>2026-08 L1 费用</strong></td>
+<td><strong>$18,360,725</strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>真年同比</strong></td>
+<td><strong>+62.6%</strong>（2025-08 为 $11,292,440）</td>
+</tr>
+<tr>
+<td></td>
+<td>生态合计 30 天</td>
+<td>$67,428,659</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>meme 相关占比</strong></td>
+<td><strong>43.0%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>市值 / L1 年化费用</strong></td>
+<td><strong>486 倍（五资产最低）</strong></td>
+</tr>
+<tr>
+<td><strong>生态</strong></td>
+<td>TVL</td>
+<td><strong>$58.0 亿</strong>（8 月 +12.4%，同比 –25.3%，距 2021 高点 –73.4%）</td>
+</tr>
+<tr>
+<td></td>
+<td>稳定币</td>
+<td>$133.1 亿</td>
+</tr>
+<tr>
+<td><strong>机构</strong></td>
+<td>现货 ETF</td>
+<td><strong>VBNB（Nasdaq，2026-05-29，费率 0.39%）</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>Binance 份额</td>
+<td>衍生品约 34.9%、现货约 34%（2026 Q1）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113">11.3 五个资产的分析框架差异</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>BTC</th>
+<th>ETH</th>
+<th>SOL</th>
+<th>ADA</th>
+<th><strong>BNB</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>资产性质</td>
+<td>货币资产</td>
+<td>混合型</td>
+<td>生产性资产</td>
+<td>期权型</td>
+<td><strong>准股权型</strong></td>
+</tr>
+<tr>
+<td>估值锚</td>
+<td>稀缺性</td>
+<td>现金流锚<strong>已失效</strong></td>
+<td>网络收入</td>
+<td><strong>无可用锚</strong></td>
+<td><strong>回购收益 + 交易所业务</strong></td>
+</tr>
+<tr>
+<td>情景推导</td>
+<td>已实现价格 × MVRV</td>
+<td>自身市值区间 × 概率</td>
+<td>收入 × 倍数</td>
+<td>参照资产市值 × 概率</td>
+<td><strong>自身市值区间 × 概率 + 回购收益率</strong></td>
+</tr>
+<tr>
+<td>特有章节</td>
+<td>减半、算力</td>
+<td>发行销毁、L2 价值捕获</td>
+<td>验证者经济、网络稳定性</td>
+<td>国库与链上治理</td>
+<td><strong>销毁与准回购、对 Binance 的依赖</strong></td>
+</tr>
+<tr>
+<td>本期核心矛盾</td>
+<td>ETF 与紧缩拉锯</td>
+<td>网络越有用、代币越收不到钱</td>
+<td>收入崩塌 vs 用量新高</td>
+<td>制度在运转却没人用</td>
+<td><strong>数据全面最优，而分母只有一个</strong></td>
+</tr>
+<tr>
+<td><strong>持有人回报性质</strong></td>
+<td>无</td>
+<td>质押（<strong>96% 来自增发</strong>）</td>
+<td>质押（来自增发）</td>
+<td>质押（来自增发）</td>
+<td><strong>销毁（真实减少供应）</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="114">11.4 数据来源与核实状态</h3>
+<p><strong>标注规则</strong>：✅ = 本报告直接抓取一手来源；⚠️ = 仅搜索摘要或二手转述；❌ = 核实失败。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th style="text-align: center;">核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格、市值、排名、ATH、供应量、2026 日线序列</td>
+<td>CoinGecko API</td>
+<td style="text-align: center;">✅ 直接调用</td>
+</tr>
+<tr>
+<td><strong>2022–2026 年度市值高低点</strong>（情景推导的全部参照）</td>
+<td>CoinGecko API <code>market_chart/range</code></td>
+<td style="text-align: center;">✅ 直接调用</td>
+</tr>
+<tr>
+<td><strong>五资产 8 月月度涨幅（统一 8/1→8/31）与当前快照</strong></td>
+<td>CoinGecko API，<strong>同一次调用取全部五个资产</strong></td>
+<td style="text-align: center;">✅ 直接调用</td>
+</tr>
+<tr>
+<td><strong>BSC L1 费用月度序列与真年同比 +62.6%</strong></td>
+<td>DefiLlama API 日度数据按月聚合</td>
+<td style="text-align: center;">✅ 直接调用</td>
+</tr>
+<tr>
+<td>生态合计费用与各协议分项（Flap sh / GMGN / PancakeSwap 等）</td>
+<td>DefiLlama API <code>overview/fees/bsc</code></td>
+<td style="text-align: center;">✅ 直接调用</td>
+</tr>
+<tr>
+<td>BSC TVL、历史 TVL、稳定币规模</td>
+<td>DefiLlama API</td>
+<td style="text-align: center;">✅ 直接调用</td>
+</tr>
+<tr>
+<td><strong>第 36 次销毁：1,615,827.795 BNB / $9.32 亿 / 销毁后供应 133,166,127.91 / Auto-Burn 公式说明 / 黑洞地址</strong></td>
+<td><strong>BNB Chain 官方博客</strong></td>
+<td style="text-align: center;">✅ 打开原文</td>
+</tr>
+<tr>
+<td>第 34、35 次销毁的数量与金额</td>
+<td>多个二手来源一致</td>
+<td style="text-align: center;">⚠️ 仅摘要，<strong>未打开官方原文</strong></td>
+</tr>
+<tr>
+<td>VanEck VBNB：上市日 2026-05-29、Nasdaq、费率 0.39%、Anchorage 托管</td>
+<td>CoinDesk / VanEck 新闻稿的搜索摘要</td>
+<td style="text-align: center;">⚠️ 仅摘要（<strong>SEC 备案链接已见于搜索结果但未打开</strong>）</td>
+</tr>
+<tr>
+<td>Binance 市场份额（衍生品 34.9%、现货 34%）</td>
+<td>CoinGlass 2026 Q1 报告的转述</td>
+<td style="text-align: center;">⚠️ 仅摘要</td>
+</tr>
+<tr>
+<td>监管：$43 亿和解、ADGM 牌照、欧洲受阻</td>
+<td>多家媒体转述</td>
+<td style="text-align: center;">⚠️ 仅摘要</td>
+</tr>
+<tr>
+<td>Pasteur 硬分叉（BEP-682/695/675，吞吐 1,237→2,324 TPS）</td>
+<td>二手来源</td>
+<td style="text-align: center;">⚠️ 仅摘要</td>
+</tr>
+<tr>
+<td>宏观：9 月加息概率 65.9%、PCE、10 年期美债 4.79%</td>
+<td><strong>CME</strong> FedWatch 经媒体转述；沿用本系列 ETH / ADA 期</td>
+<td style="text-align: center;">⚠️ 转述</td>
+</tr>
+<tr>
+<td>BTC / ETH / SOL / ADA 的对照数据</td>
+<td>本系列各资产 2026-08 报告 + 本期 API 快照</td>
+<td style="text-align: center;">✅/⚠️ 混合</td>
+</tr>
+<tr>
+<td><strong>VBNB 的 AUM 与资金流</strong></td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>未获取。因此本报告不对 BNB 的机构需求强度下任何结论</strong></td>
+</tr>
+<tr>
+<td><strong>2025-10 月度费用异常（$7,069 万）的成因</strong></td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>未查明。已据此排除该月作为同比基准，并禁用含该月的滚动均值</strong></td>
+</tr>
+<tr>
+<td>上市公司 BNB 储备</td>
+<td>—</td>
+<td style="text-align: center;">❌ 未发现规模化案例</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="115">11.5 来源偏向声明</h3>
+<p><strong>本期的证据结构与 ETH 期相反，这一点必须明确指出。</strong></p>
+<p><strong>ETH 期的问题是</strong>：空头论据来自一手 API，多头论据几乎全是二手转述，<strong>导致空头证据等级系统性高于多头</strong>。</p>
+<p><strong>本期恰好相反</strong>：<strong>本报告最强的多头论据（费用 +62.6%、真实通缩、回购收益率、估值倍数最低）全部来自一手 API 与官方原文</strong>；<br />
+而<strong>最强的空头论据（单一实体依赖、监管状况、市场份额）大量依赖二手转述</strong>。</p>
+<blockquote>
+<p>⚠️ <strong>因此读者应当注意</strong>：<strong>本期的证据等级偏向多头一侧。</strong><br />
+具体地说，第 5 章（对 Binance 的依赖）——本报告的核心空头章——<strong>其中的市场份额、监管进展、牌照状况全部是媒体转述，没有一项打开了一手文件</strong>。<br />
+<strong>本报告已据此把多头 #7（机构通道）降为两星</strong>，但<strong>无法通过降星弥补空头侧的证据不足</strong>——那需要下期补一手来源。</p>
+</blockquote>
+<p><strong>三处证据缺口</strong>（均已列入 10.3 监控指标）：VBNB 的 AUM 与资金流、2025-10 费用异常的成因、Binance 财务与储备的一手文件。</p>
+<p><strong>传统金融机构视角的配平</strong>：本期引用了 <strong>CME</strong>（FedWatch）、<strong>美联储</strong>政策立场、<strong>VanEck</strong>（VBNB 的实际产品发行与费率设计）、<strong>Nasdaq</strong>（上市）、以及美国司法部的和解事实。<br />
+其中 <strong>VanEck 发行首个美国现货 BNB ETF</strong> 这一事实，是本报告最有力的非加密原生正面证据；<br />
+而 <strong>$43 亿司法部和解</strong>是最有力的非加密原生风险证据。<strong>两者方向相反，构成了本期的主要配平。</strong></p>
+<hr />
+<h3 id="116">11.6 发布前审查记录（本期必读）</h3>
+<p>本报告按流程走了四层审查。<strong>审查修正了本报告估值链条上的一处逻辑错误、两处口径错误，并把一个悬空的论断变成了实测数据。</strong></p>
+<p><strong>推理审查抓到的（改变结论的六条）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>问题</th>
+<th style="text-align: center;">严重度</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>重复计算</strong>——初稿写「即便价格原地不动，持有者仍获得 4.20%–4.56% 回购收益」，并把总回报写成「资本利得 + 回购收益率」两项相加。<strong>但目标价除的就是缩减后的流通量，销毁效应已全额包含在内</strong>（贡献 +15.86%），再加一次重复计入约 16 个百分点</td>
+<td style="text-align: center;"><strong>极高</strong></td>
+<td>✅ 9.4、9.7 重写。改为单一口径：<strong>单币层三年期望回报 +16.67%，年化约 +5.3%</strong>（市值层 +0.7% × 供应缩减 +15.86%，<strong>相乘而非相加</strong>）</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>把「跌幅小」当成「波动率低」</strong>，而报告从未计算过波动率</td>
+<td style="text-align: center;">高</td>
+<td>✅ <strong>实际计算了五资产近一年的日收益率标准差、最大回撤与 beta</strong>。结果部分推翻初稿：<strong>BNB 年化波动率 52.6%，高于 BTC 的 44.2%，不是最低</strong>；<strong>但 beta 0.921 确实是五个里唯一低于 1 的</strong>。多头论据降星并改名</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>估值倍数只用 8 月单月年化</strong>（486 倍），<strong>而 8 月是 BSC 全年第二高的月份</strong>；同时报告对 2025-10 的异常值执行了排除规则——<strong>同一方法论规则的不对称使用</strong></td>
+<td style="text-align: center;">高</td>
+<td>✅ 改为区间 <strong>465–699 倍</strong>（12 个月实际 / 2026 年月均两种口径），并加口径说明。多头论据从四星降为三星</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>「折价不充分」这个最终判断没有门槛</strong>，因而不可证伪，且未进记分卡——<strong>而它是全报告被重复最多的判断（七处）</strong></td>
+<td style="text-align: center;">高</td>
+<td>✅ 9.7 给出具体门槛（<strong>要求至少 300bp 溢价</strong>），并登记为记分卡 B8-5</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>与 10 年期美债对标存在期限错配</strong>——本报告持有期是 3 年，且 10 年期是收益率曲线上对结论最不利的一点</td>
+<td style="text-align: center;">中</td>
+<td>✅ 已说明应对应 3 年期美债，并承认本报告未获取该数据；结论改为「溢价约 100–130bp」</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>「销毁提供与市场情绪无关的持续买盘」是机制虚构</strong>——销毁是供应端注销，没有任何买单进入市场；且恒定买盘应抬高价格中枢，解释不了低 beta</td>
+<td style="text-align: center;">中</td>
+<td>✅ 该表述已删除</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>领域审查抓到的两处（均经核实后采纳）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>问题</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>2022 年桥漏洞曾额外铸造 200 万枚 BNB</strong>（BSC Token Hub 被利用，约 $5.7 亿），<strong>因此「2 亿 − 当前供应 = 已销毁」这个减法混入了对漏洞铸造的修复，不全是回购性销毁</strong></td>
+<td>✅ 4.2 已加限定。<strong>但已说明它不影响 4.3 的核心计算</strong>——后者只用 2026 年的三次销毁</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>销毁的季度归属标注不准确</strong>——初稿标为「Q1 / Q2 / Q3」，而销毁在每季度中月执行（1/4/7/10 月），<strong>Auto-Burn 公式统计的是上一季度的出块数</strong></td>
+<td>✅ 改为只标执行日期（2026 年 1 月、04-15、07-15）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>记分卡六条检验条件全部重写</strong>，并新增第 5 条门槛：<strong>证伪区间必须覆盖论点为假的全部情形，不留与论点方向相反的灰区</strong>。<br />
+初稿六条里有四条存在这类灰区——例如 B8-2 论点说「回购收益率会继续递减」，而证伪线设在 $10.20 亿，<br />
+<strong>若下次销毁是 $10.19 亿（相对 Q3 上升 9.3%）仍会被记为 ✅</strong>。</p>
+<blockquote>
+<p><strong>本期最该记住的一条</strong>：<br />
+<strong>前四期的错误都是「数据或口径出错」，本期的最严重错误是「模型内部的重复计算」</strong>——<br />
+销毁效应已经在目标价的分母里了，我又把它当成一项独立收益加了一遍。<br />
+<strong>两处单独看都正确的计算，组合起来就成了错误。</strong> 这是随着框架变复杂而出现的新错误类型。</p>
+</blockquote>
+<hr />
+<blockquote>
+<p><strong>配套文件</strong>：<code>bnb_questions_summary_202608.md</code>（简明速查）、<code>thesis_scorecard.md</code>（论点滚动记分卡）。<br />
+本报告不构成投资建议。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-bnb-bnb-chain-2026-8">BNB / BNB Chain 简明速查（2026 年 8 月版）</h1>
+<blockquote>
+<p>本文是 <code>bnb_research_report_202608.md</code> 的浓缩版。<strong>首期报告。</strong><br />
+数据截止 2026-09-05。不构成投资建议。</p>
+</blockquote>
+<hr />
+<h2 id="s-1-bnb">1. BNB 是什么</h2>
+<p><strong>本系列覆盖的第一个非纯 L1 资产。</strong> 它有三重身份：</p>
+<ol>
+<li><strong>Binance 交易所的平台币</strong>（手续费折扣、生态权益）</li>
+<li><strong>BNB Chain（BSC）的 gas 代币</strong></li>
+<li><strong>一个持续回购销毁的准股权凭证</strong></li>
+</ol>
+<blockquote>
+<p><strong>理解它必须从第一重身份开始。</strong> 把它当成第五条公链来分析，会漏掉它价值的主要来源——<br />
+另外四个资产问「这条链能不能成」，<strong>BNB 问的是「这家公司能不能持续做好这件事」</strong>。</p>
+</blockquote>
+<h2 id="s-2">2. 当前位置</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>现价</td>
+<td><strong>$769.10</strong></td>
+</tr>
+<tr>
+<td>市值 / 排名</td>
+<td><strong>$1,024.1 亿 / 第 4</strong></td>
+</tr>
+<tr>
+<td>ATH</td>
+<td>$1,369.99（2025-10-13），距其 <strong>–43.86%</strong></td>
+</tr>
+<tr>
+<td>8 月月度</td>
+<td><strong>+16.71%</strong></td>
+</tr>
+<tr>
+<td>YTD / <strong>近 1 年</strong></td>
+<td>–10.85% / <strong>–11.1%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>五资产对照（统一 8/1→8/31 口径，同一次 API 调用）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th style="text-align: right;">8 月月度</th>
+<th style="text-align: right;"><strong>近 1 年</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SOL</td>
+<td style="text-align: right;">+39.68%</td>
+<td style="text-align: right;">–50.9%</td>
+</tr>
+<tr>
+<td>ETH</td>
+<td style="text-align: right;">+29.86%</td>
+<td style="text-align: right;">–45.1%</td>
+</tr>
+<tr>
+<td>BTC</td>
+<td style="text-align: right;">+23.62%</td>
+<td style="text-align: right;">–29.7%</td>
+</tr>
+<tr>
+<td><strong>BNB</strong></td>
+<td style="text-align: right;"><strong>+16.71%</strong></td>
+<td style="text-align: right;"><strong>–11.1%</strong></td>
+</tr>
+<tr>
+<td>ADA</td>
+<td style="text-align: right;">+14.65%</td>
+<td style="text-align: right;">–74.5%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>最值得看的是最后一列</strong>：<strong>BNB 近 1 年只跌 11.1%，是五个里最抗跌的</strong>，第二名 BTC 是 –29.7%。<br />
+<strong>8 月它涨得最少，一年下来它跌得也最少</strong>——典型的低 beta。</p>
+</blockquote>
+<h2 id="s-3">3. 三个「五个资产里唯一」</h2>
+<p><strong>① 唯一 L1 费用同比增长的链</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>2026-08 L1 费用</th>
+<th>真年同比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BSC</strong></td>
+<td><strong>$1,836 万</strong></td>
+<td><strong>+62.6%</strong></td>
+</tr>
+<tr>
+<td>ETH</td>
+<td>$1,038 万</td>
+<td><strong>–73.8%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>BSC 的 L1 月费已是以太坊的 1.77 倍。</strong></p>
+<p><strong>② 唯一实现真实通缩的</strong></p>
+<p>2026 前三季度三次季度销毁合计 <strong>4,556,939 BNB</strong>（约 $32.3 亿），<strong>没有任何对应增发</strong>。年化通缩 <strong>–4.56%</strong>。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th style="text-align: right;">年化供应变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BNB</strong></td>
+<td style="text-align: right;"><strong>–4.56%（通缩）</strong></td>
+</tr>
+<tr>
+<td>BTC</td>
+<td style="text-align: right;">约 +0.85%</td>
+</tr>
+<tr>
+<td>ETH</td>
+<td style="text-align: right;">+0.863%</td>
+</tr>
+<tr>
+<td>ADA</td>
+<td style="text-align: right;">+1.47%</td>
+</tr>
+<tr>
+<td>SOL</td>
+<td style="text-align: right;">约 +3.8%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>③ 唯一能与美债直接对标的持有人回报</strong></p>
+<p><strong>回购收益率 4.20%–4.56%</strong> vs <strong>10 年期美债 4.79%</strong>。</p>
+<blockquote>
+<p><strong>它与 ETH 质押收益的本质差异</strong>：ETH 的 2.59% 中约 96% 来自新发行——<strong>是持有者之间的转移，整体净额为零</strong>。<br />
+<strong>BNB 的销毁减少总量，回报归属每一个持有者，无需任何操作，也不稀释任何人。</strong><br />
+<strong>同样叫「收益」，一个是分配问题，一个是真实的股东回报。</strong></p>
+</blockquote>
+<h2 id="s-4">4. 估值倍数也是五个里最低的</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th style="text-align: right;">市值 / L1 年化费用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BNB</strong></td>
+<td style="text-align: right;"><strong>486 倍</strong></td>
+</tr>
+<tr>
+<td>ETH</td>
+<td style="text-align: right;">2,343 倍</td>
+</tr>
+<tr>
+<td>ADA</td>
+<td style="text-align: right;">17,528 倍</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-5">5. 但所有这些数据的分母只有一个</h2>
+<p><strong>BNB 价值链的四个环节共享同一个单点</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>环节</th>
+<th>依赖</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需求</td>
+<td>Binance 手续费折扣与生态权益</td>
+</tr>
+<tr>
+<td>供应</td>
+<td>销毁公式由 Binance 定义与执行</td>
+</tr>
+<tr>
+<td>链</td>
+<td>PoSA，验证者仅数十个</td>
+</tr>
+<tr>
+<td>机构通道</td>
+<td>ETF 底层资产与流动性仍依赖 Binance 主导的市场</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Binance 目前的状况</strong>：衍生品份额约 34.9%、现货约 34%（2026 Q1）；2025-12-08 取得 ADGM 框架下<strong>首个加密交易所全球牌照</strong>；但欧洲牌照申请受阻，且仍在履行 <strong>$43 亿司法部和解</strong>的后续义务。</p>
+<blockquote>
+<p><strong>该说的</strong>：这是一个<strong>结构事实</strong>，不因 Binance 经营好坏而改变。BNB 承担了另外四个资产都不承担的单一实体风险。<br />
+<strong>也该说的</strong>：该实体目前经营状况是强的——三分之一市场份额、行业首个 ADGM 全球牌照、链上费用 +62.6%。<br />
+<strong>不该说的</strong>：「Binance 出事 BNB 就归零」。<strong>2023 年 $43 亿和解与创始人认罪是比多数人预想更严重的冲击，而 BNB 与 BSC 都活了下来。</strong></p>
+</blockquote>
+<h2 id="s-6">6. 三个需要打折的地方</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>生态活跃度 43% 来自 meme 币相关</strong></td>
+<td>Flap sh（$1,713 万）+ GMGN（$1,189 万）占生态费用 43.0%。<strong>SOL 的先例：meme 退潮致网络收入同比 –87%</strong></td>
+</tr>
+<tr>
+<td><strong>回购收益率有终点且正在递减</strong></td>
+<td>距 1 亿枚目标仅剩 3,316 万枚，约 5.5 年结束；三次销毁美元额 $12.77 亿 → $10.20 亿 → <strong>$9.32 亿</strong></td>
+</tr>
+<tr>
+<td><strong>TVL 长周期仍在收缩</strong></td>
+<td>同比 –25.3%，距 2021 年高点 <strong>–73.4%</strong>。8 月的 +12.4% 是短周期改善</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>另有一处口径限定</strong>：「已销毁初始供应的 33.4%」<strong>不等于「流通盘减少了 33.4%」</strong>——<br />
+早期销毁中有一部分可能来自当时尚未流通的团队份额。<strong>但当前流通量 = 总供应，无锁仓，<br />
+因此从现在起每次销毁都直接减少流通量，回购收益率的计算不受影响。</strong></p>
+</blockquote>
+<h2 id="s-7">7. 结论：不是「贵不贵」，是「配不配」</h2>
+<p><strong>三情景（目标价为 2029 年水平）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>情景</th>
+<th style="text-align: center;">概率</th>
+<th>目标价（2029）</th>
+<th>相对现价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>乐观</td>
+<td style="text-align: center;"><strong>25%</strong></td>
+<td>$1,131 – $1,583</td>
+<td>+47% ~ +106%</td>
+</tr>
+<tr>
+<td>中性</td>
+<td style="text-align: center;"><strong>50%</strong></td>
+<td>$640 – $1,135</td>
+<td>–17% ~ +48%</td>
+</tr>
+<tr>
+<td>悲观</td>
+<td style="text-align: center;"><strong>25%</strong></td>
+<td>$274 – $640</td>
+<td>–64% ~ –17%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>资本利得预期约 +0.7%，落在框架误差内</strong>（仅调概率就能在 ±10% 间移动），<strong>因此本报告不给「低估/高估」判断。</strong></p>
+<p><strong>但必须区分两个层次，否则会重复计算</strong>（这是本期审查抓到的最重要错误）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>层次</th>
+<th style="text-align: right;">三年期望</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市值层</td>
+<td style="text-align: right;"><strong>+0.7%</strong></td>
+</tr>
+<tr>
+<td>供应缩减（1.3316 亿 → 1.1493 亿）</td>
+<td style="text-align: right;"><strong>+15.86%</strong></td>
+</tr>
+<tr>
+<td><strong>单币层（两者相乘）</strong></td>
+<td style="text-align: right;"><strong>+16.67%，年化约 +5.3%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>初稿写成「资本利得 0% + 回购收益率 4.2%–4.56%」两项相加，这是错的。</strong><br />
+<strong>销毁效应已经包含在目标价里</strong>（目标价除的是缩减后的流通量），<strong>再加一次重复计入约 16 个百分点</strong>。<br />
+而且：<strong>价格不动 = 美元价值不动</strong>。销毁的价值只能通过价格实现，<strong>它不是可单独收到的票息</strong>。</p>
+</blockquote>
+<p><strong>结论的落点是一个对照</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">收益率</th>
+<th>期限</th>
+<th>风险</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>美债</td>
+<td style="text-align: right;">联邦基金 3.50–3.75%；10 年期 <strong>4.79%</strong></td>
+<td>—</td>
+<td>无风险</td>
+</tr>
+<tr>
+<td><strong>BNB</strong></td>
+<td style="text-align: right;"><strong>约 5.3%</strong></td>
+<td><strong>3 年</strong></td>
+<td>年化波动率 <strong>52.6%</strong> + <strong>单一实体风险</strong> + 监管风险</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>溢价约 100–130bp</strong>（本报告持有期 3 年，严格对应 3 年期美债，该数据未获取，曲线中段介于两者之间）。<br />
+<strong>本报告认为这不足以补偿单点风险——门槛是至少 300bp</strong>（参照单一发行人高收益债的信用利差量级）。<br />
+<strong>若你认为 100bp 就够，结论会翻转为「大致合理」——给出门槛正是为了让这个判断可被反驳。</strong></p>
+<p><strong>所以：BNB 是五个资产里基本面证据最强、估值倍数最低、唯一有真实持有人回报的；<br />
+但它提供的回报水平，并没有为它额外承担的单点风险支付足够溢价。</strong></p>
+<p><strong>这不是看空。</strong> 它意味着：<strong>买 BNB 的理由不该是「它便宜」或「它有收益」，<br />
+而应该是「我认为乐观情景概率高于 25%」——即你对 Binance 的前景比本报告更乐观。</strong><br />
+<strong>这是一个关于一家公司的判断，不是关于一条链的判断。</strong></p>
+</blockquote>
+<h2 id="s-8">8. 该盯什么</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>当前值</th>
+<th>阈值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>季度销毁美元额</strong></td>
+<td>Q3 <strong>$9.32 亿</strong>（逐季递减）</td>
+<td>&lt;$8 亿 → 递减确立；&gt;$11 亿 → 逆转</td>
+</tr>
+<tr>
+<td>BSC 月度 L1 费用</td>
+<td><strong>$1,836 万</strong></td>
+<td>连续两月 &lt;$1,000 万 → 增长被证伪</td>
+</tr>
+<tr>
+<td><strong>meme 协议费用占比</strong></td>
+<td><strong>43.0%</strong></td>
+<td>&gt;60% 恶化；&lt;25% 改善</td>
+</tr>
+<tr>
+<td>BSC TVL</td>
+<td>$58.0 亿</td>
+<td>&gt;$80 亿 复苏；&lt;$40 亿 加速收缩</td>
+</tr>
+<tr>
+<td>Binance 市场份额</td>
+<td>衍生品约 34.9%</td>
+<td>跌破 25% → 需求侧论据受损</td>
+</tr>
+<tr>
+<td>欧洲牌照</td>
+<td>受阻</td>
+<td>取得 MiCA → 监管风险显著下降</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-9-3-5">9. 如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>BNB 是五个资产里基本面数据最好的一个，也是唯一一个「基本面」需要加引号的。</strong> 费用 +62.6%（唯一增长）、真实通缩、估值倍数最低——<strong>但这些数据的分母都是同一家公司</strong>。</p>
+</li>
+<li>
+<p><strong>它是唯一由供应实际减少产生持有人回报的加密资产。</strong> 靠流通份额减少，不靠稀释别人。<strong>ETH 的质押收益 96% 来自增发，那是转移不是创造。</strong> ⚠️ <strong>但这份回报只能通过价格实现，不是可单独收到的票息。</strong></p>
+</li>
+<li>
+<p><strong>单币层三年期望年化约 5.3%，相对无风险利率溢价约 100–130bp。</strong> <strong>本报告认为不足</strong>——门槛是至少 300bp。</p>
+</li>
+<li>
+<p><strong>它的 beta 是五个里唯一低于 1 的（0.921）</strong>，近 1 年跌幅 –11.1% 最小。⚠️ <strong>但年化波动率 52.6% 高于 BTC 的 44.2%</strong>——它在加密内部提供相对分散，<strong>不能替代 BTC 作为稳健仓位</strong>。</p>
+</li>
+<li>
+<p><strong>买它的理由应该是「我对 Binance 的前景比这份报告乐观」，而不是「它便宜」。</strong> 这是关于一家公司的判断，不是关于一条链的判断。</p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>bnb_research_report_202608.md</code>。<br />
+论点检验记录见 <code>thesis_scorecard.md</code>（下期核对）。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>

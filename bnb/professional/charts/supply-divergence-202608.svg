@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 430" width="720" height="430" font-family='-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Helvetica,Arial,sans-serif'><rect width="720" height="430" fill="#fff"/><text x="24" y="30" font-size="16" font-weight="700" fill="#1c1917">供应机制的分岔：BNB 通缩 –4.56%，ETH 通胀 +0.863%</text><text x="24" y="50" font-size="11.5" fill="#57534e">年化供应变化率。正值＝稀释持有者，负值＝回馈持有者</text>
+<rect x="118" y="105.7" width="66" height="100.3" rx="3" fill="#F0B90B"/>
+<text x="151" y="96.7" font-size="12" font-weight="700" text-anchor="middle" fill="#1c1917">–4.56%</text>
+<text x="151" y="200" font-size="0" fill="none"> </text>
+<text x="151" y="222" font-size="12.5" font-weight="800" text-anchor="middle" fill="#1c1917">BNB</text>
+<rect x="216" y="206.0" width="66" height="19.0" rx="3" fill="#e34948"/>
+<text x="249" y="243.0" font-size="12" font-weight="700" text-anchor="middle" fill="#1c1917">+0.863%</text>
+<text x="249" y="200" font-size="0" fill="none"> </text>
+<text x="249" y="198" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1c1917">ETH</text>
+<rect x="314" y="206.0" width="66" height="32.3" rx="3" fill="#e34948"/>
+<text x="347" y="256.3" font-size="12" font-weight="700" text-anchor="middle" fill="#1c1917">+1.47%</text>
+<text x="347" y="200" font-size="0" fill="none"> </text>
+<text x="347" y="198" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1c1917">ADA</text>
+<rect x="412" y="206.0" width="66" height="83.6" rx="3" fill="#e34948"/>
+<text x="445" y="307.6" font-size="12" font-weight="700" text-anchor="middle" fill="#1c1917">+3.8%</text>
+<text x="445" y="200" font-size="0" fill="none"> </text>
+<text x="445" y="198" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1c1917">SOL</text>
+<rect x="510" y="206.0" width="66" height="18.7" rx="3" fill="#e34948"/>
+<text x="543" y="242.7" font-size="12" font-weight="700" text-anchor="middle" fill="#1c1917">+0.85%</text>
+<text x="543" y="200" font-size="0" fill="none"> </text>
+<text x="543" y="198" font-size="12.5" font-weight="600" text-anchor="middle" fill="#1c1917">BTC</text>
+<line x1="90" y1="206" x2="656" y2="206" stroke="#1c1917" stroke-width="1.8"/>
+<text x="82" y="210" font-size="11" text-anchor="end" fill="#57534e">0</text>
+<text x="24" y="378" font-size="11.5" font-weight="700" fill="#1c1917">BNB 是五个资产里唯一供应减少的：2026 前三季度销毁 4,556,939 枚，无任何对应增发。</text>
+<text x="24" y="398" font-size="10.5" fill="#57534e">换算成回购收益率 4.20%–4.56%，可与 10 年期美债 4.79% 直接对标——这是五个资产里唯一能这样比的。</text>
+<text x="24" y="416" font-size="10.5" fill="#57534e">来源：BNB Chain 官方博客（销毁）、ultrasound.money（ETH）、StakingRewards、CoinGecko。</text>
+</svg>

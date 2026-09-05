@@ -31,6 +31,8 @@ PROFILES = {
                 accent='#0033AD', badge='₳ Cardano'),
     'eth': dict(symbol='Ξ', name='ETH / Ethereum', short='ETH',
                 accent='#627EEA', badge='Ξ Ethereum'),
+    'bnb': dict(symbol='◆', name='BNB / BNB Chain', short='BNB',
+                accent='#F0B90B', badge='◆ BNB'),
 }
 
 
