@@ -29,6 +29,8 @@ PROFILES = {
                 accent='#14f195', badge='◎ Solana'),
     'ada': dict(symbol='₳', name='ADA / Cardano', short='ADA',
                 accent='#0033AD', badge='₳ Cardano'),
+    'eth': dict(symbol='Ξ', name='ETH / Ethereum', short='ETH',
+                accent='#627EEA', badge='Ξ Ethereum'),
 }
 
 

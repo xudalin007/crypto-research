@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" width="720" height="340" font-family='-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Helvetica,Arial,sans-serif'><rect width="720" height="340" fill="#ffffff"/><text x="24" y="30" font-size="16" font-weight="700" fill="#1c1917">ETH 过去 30 天：销毁只抵消了发行的 1.34%</text><text x="24" y="50" font-size="11.5" fill="#57534e">「超声波货币」叙事的量化终点。单位：ETH</text>
+<rect x="200" y="104" width="450.0" height="34" rx="4" fill="#e34948" opacity="1"/>
+<text x="186" y="127" font-size="13" font-weight="700" text-anchor="end" fill="#1c1917">总发行</text>
+<text x="638.0" y="127" font-size="12.5" font-weight="700" text-anchor="end" fill="#ffffff">87,701</text>
+<rect x="200" y="156" width="6.0" height="34" rx="4" fill="#1baf7a" opacity="1"/>
+<text x="186" y="179" font-size="13" font-weight="700" text-anchor="end" fill="#1c1917">销毁</text>
+<text x="218.0" y="179" font-size="12.5" font-weight="700" text-anchor="start" fill="#1c1917">1,178</text>
+<rect x="200" y="208" width="444.0" height="34" rx="4" fill="#e34948" opacity="0.55"/>
+<text x="186" y="231" font-size="13" font-weight="700" text-anchor="end" fill="#1c1917">净增</text>
+<text x="632.0" y="231" font-size="12.5" font-weight="700" text-anchor="end" fill="#ffffff">86,523</text>
+<line x1="200" y1="92" x2="200" y2="250" stroke="#57534e" stroke-width="1.5"/>
+<text x="200" y="278" font-size="13" font-weight="700" fill="#1c1917">年通胀率 +0.863%　｜　销毁 / 发行 = 1.34%</text>
+<text x="24" y="308" font-size="10.5" fill="#57534e">来源：ultrasound.money API（一手）。通胀率经 30 天 / 7 天 / 1 天三窗口交叉验证，并与 StakingRewards 的 0.86% 吻合。</text>
+<text x="24" y="326" font-size="10.5" fill="#57534e">对比：BTC 约 0.85%（硬编码递减）、ADA 1.47%、SOL 约 3.8%。ETH 的发行随质押量上升而上升。</text>
+</svg>
