@@ -33,6 +33,8 @@ PROFILES = {
                 accent='#627EEA', badge='Ξ Ethereum'),
     'bnb': dict(symbol='◆', name='BNB / BNB Chain', short='BNB',
                 accent='#F0B90B', badge='◆ BNB'),
+    'hype': dict(symbol='◈', name='HYPE / Hyperliquid', short='HYPE',
+                 accent='#97FCE4', badge='◈ Hyperliquid'),
 }
 
 

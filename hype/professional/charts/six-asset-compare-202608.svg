@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 392" width="720" height="392" font-family='-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Helvetica,Arial,sans-serif'><rect width="720" height="392" fill="#fff"/><text x="24" y="30" font-size="16" font-weight="700" fill="#1c1917">六个资产：HYPE 是唯一近 1 年为正、且唯一在 ATH 附近的</text><text x="24" y="50" font-size="11.5" fill="#57534e">左＝8 月月度（统一 8/1→8/31）；右＝近 1 年。金色为 HYPE</text>
+<rect x="100" y="100" width="162.0" height="28" rx="3" fill="#0f9b7e"/>
+<text x="88" y="119" font-size="12.5" font-weight="800" text-anchor="end" fill="#1c1917">HYPE</text>
+<text x="269.0" y="119" font-size="11" font-weight="700" fill="#1c1917">+52.42%</text>
+<rect x="462" y="100" width="175.4" height="28" rx="3" fill="#0f9b7e"/>
+<text x="644.4" y="119" font-size="11" font-weight="700" fill="#1c1917">+84.0%</text>
+<rect x="100" y="142" width="122.6" height="28" rx="3" fill="#2a78d6"/>
+<text x="88" y="161" font-size="12.5" font-weight="600" text-anchor="end" fill="#1c1917">SOL</text>
+<text x="229.6" y="161" font-size="11" font-weight="700" fill="#1c1917">+39.68%</text>
+<rect x="361.3" y="142" width="100.7" height="28" rx="3" fill="#e34948"/>
+<text x="354.3" y="161" font-size="11" font-weight="700" text-anchor="end" fill="#1c1917">-48.2%</text>
+<rect x="100" y="184" width="92.3" height="28" rx="3" fill="#2a78d6"/>
+<text x="88" y="203" font-size="12.5" font-weight="600" text-anchor="end" fill="#1c1917">ETH</text>
+<text x="199.3" y="203" font-size="11" font-weight="700" fill="#1c1917">+29.86%</text>
+<rect x="374.3" y="184" width="87.7" height="28" rx="3" fill="#e34948"/>
+<text x="367.3" y="203" font-size="11" font-weight="700" text-anchor="end" fill="#1c1917">-42.0%</text>
+<rect x="100" y="226" width="73.0" height="28" rx="3" fill="#2a78d6"/>
+<text x="88" y="245" font-size="12.5" font-weight="600" text-anchor="end" fill="#1c1917">BTC</text>
+<text x="180.0" y="245" font-size="11" font-weight="700" fill="#1c1917">+23.62%</text>
+<rect x="400.0" y="226" width="62.0" height="28" rx="3" fill="#e34948"/>
+<text x="393.0" y="245" font-size="11" font-weight="700" text-anchor="end" fill="#1c1917">-29.7%</text>
+<rect x="100" y="268" width="51.6" height="28" rx="3" fill="#2a78d6"/>
+<text x="88" y="287" font-size="12.5" font-weight="600" text-anchor="end" fill="#1c1917">BNB</text>
+<text x="158.6" y="287" font-size="11" font-weight="700" fill="#1c1917">+16.71%</text>
+<rect x="438.8" y="268" width="23.2" height="28" rx="3" fill="#e34948"/>
+<text x="431.8" y="287" font-size="11" font-weight="700" text-anchor="end" fill="#1c1917">-11.1%</text>
+<rect x="100" y="310" width="45.3" height="28" rx="3" fill="#2a78d6"/>
+<text x="88" y="329" font-size="12.5" font-weight="600" text-anchor="end" fill="#1c1917">ADA</text>
+<text x="152.3" y="329" font-size="11" font-weight="700" fill="#1c1917">+14.65%</text>
+<rect x="306.4" y="310" width="155.6" height="28" rx="3" fill="#e34948"/>
+<text x="299.4" y="329" font-size="11" font-weight="700" text-anchor="end" fill="#1c1917">-74.5%</text>
+<text x="100" y="88" font-size="11.5" font-weight="700" fill="#57534e">8 月月度 →</text>
+<text x="462" y="88" font-size="11.5" font-weight="700" text-anchor="middle" fill="#57534e">近 1 年（零轴）</text>
+<line x1="100" y1="94" x2="100" y2="344" stroke="#57534e" stroke-width="1.5"/>
+<line x1="462" y1="94" x2="462" y2="344" stroke="#1c1917" stroke-width="1.8"/>
+<text x="24" y="360" font-size="10.5" fill="#57534e">HYPE 距 ATH 仅 –1.02%（三天前创下），另外五个是 –36.8% 到 –93.0%。</text>
+<text x="24" y="378" font-size="10.5" fill="#57534e">来源：CoinGecko API，六个资产取自同一次调用。⚠ 上升趋势不是估值论据，且它同时意味着没有安全边际。</text>
+</svg>

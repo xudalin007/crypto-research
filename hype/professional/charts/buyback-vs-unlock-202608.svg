@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" width="720" height="400" font-family='-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Helvetica,Arial,sans-serif'><rect width="720" height="400" fill="#fff"/><text x="24" y="30" font-size="16" font-weight="700" fill="#1c1917">初稿把每月解锁高估了 5.7–8.3 倍</text><text x="24" y="50" font-size="11.5" fill="#57534e">单位：万枚/月。红＝解锁，绿＝回购销毁</text>
+<rect x="250" y="100" width="400.0" height="28" rx="4" fill="#f0a0a0"/>
+<text x="236" y="119" font-size="11.5" font-weight="700" text-anchor="end" fill="#1c1917">初稿假设的解锁（已撤回）</text>
+<text x="640.0" y="119" font-size="11.5" font-weight="700" text-anchor="end" fill="#7f1d1d">约 992　✗ 虚构</text>
+<rect x="250" y="142" width="70.6" height="28" rx="4" fill="#e34948"/>
+<text x="236" y="161" font-size="11.5" font-weight="700" text-anchor="end" fill="#1c1917">实际解锁 2025-11</text>
+<text x="330.6" y="161" font-size="11.5" font-weight="700" text-anchor="start" fill="#1c1917">175</text>
+<rect x="250" y="184" width="48.4" height="28" rx="4" fill="#e34948"/>
+<text x="236" y="203" font-size="11.5" font-weight="700" text-anchor="end" fill="#1c1917">实际解锁 2026-01</text>
+<text x="308.4" y="203" font-size="11.5" font-weight="700" text-anchor="start" fill="#1c1917">120</text>
+<rect x="250" y="226" width="33.8" height="28" rx="4" fill="#0f9b7e"/>
+<text x="236" y="245" font-size="11.5" font-weight="700" text-anchor="end" fill="#1c1917">回购销毁（按 8 月均价）</text>
+<text x="293.8" y="245" font-size="11.5" font-weight="700" text-anchor="start" fill="#1c1917">约 84</text>
+<rect x="250" y="268" width="25.6" height="28" rx="4" fill="#0f9b7e"/>
+<text x="236" y="287" font-size="11.5" font-weight="700" text-anchor="end" fill="#1c1917">回购销毁（按现价）</text>
+<text x="285.6" y="287" font-size="11.5" font-weight="700" text-anchor="start" fill="#1c1917">约 64</text>
+<line x1="250" y1="90" x2="250" y2="296" stroke="#57534e" stroke-width="1.5"/>
+<text x="250" y="324" font-size="12.5" font-weight="800" fill="#1c1917">修正后：回购 / 解锁 = 37% – 70%（初稿称 6.4% – 8.5%）</text>
+<text x="24" y="342" font-size="10.5" fill="#57534e">初稿的 992 万＝2.38 亿 ÷ 24 个月的机械平均。而团队明确表示归属「不是线性的」（The Block，一手）。</text>
+<text x="24" y="360" font-size="10.5" fill="#57534e">实际已知的两个月度观测值是 175 万（2025-11）与 120 万（2026-01）。完整归属时间表官方未公开。</text>
+<text x="24" y="378" font-size="10.5" fill="#57534e">回购销毁：DefiLlama 归持有人收入 $5,535 万/月（一手）÷ 价格。AF 买入进入无私钥地址，等同销毁。</text>
+</svg>
