@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" width="720" height="340" font-family='-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Helvetica,Arial,sans-serif'><rect width="720" height="340" fill="#fff"/><text x="24" y="30" font-size="16" font-weight="700" fill="#1c1917">UNI 三情景市值区间</text><text x="24" y="50" font-size="11.5" fill="#57534e">参照取自 UNI 2022 年以来实际交易过的市值水平。单币层不给区间，理由见 8.2</text>
+<line x1="208.0" y1="88" x2="208.0" y2="242" stroke="#e7e5e4" stroke-width="1"/>
+<line x1="278.3" y1="88" x2="278.3" y2="242" stroke="#e7e5e4" stroke-width="1"/>
+<line x1="348.7" y1="88" x2="348.7" y2="242" stroke="#e7e5e4" stroke-width="1"/>
+<line x1="419.0" y1="88" x2="419.0" y2="242" stroke="#e7e5e4" stroke-width="1"/>
+<line x1="489.3" y1="88" x2="489.3" y2="242" stroke="#e7e5e4" stroke-width="1"/>
+<line x1="559.7" y1="88" x2="559.7" y2="242" stroke="#e7e5e4" stroke-width="1"/>
+<line x1="630.0" y1="88" x2="630.0" y2="242" stroke="#e7e5e4" stroke-width="1"/>
+<text x="208.0" y="260" font-size="10.5" text-anchor="middle" fill="#57534e">$0</text>
+<text x="419.0" y="260" font-size="10.5" text-anchor="middle" fill="#57534e">网格线等距递增（亿美元）→</text>
+<rect x="419.0" y="104" width="196.9" height="30" rx="4" fill="#1baf7a"/>
+<text x="32" y="124" font-size="12.5" font-weight="700" fill="#1c1917">乐观</text>
+<text x="192" y="124" font-size="12" text-anchor="end" fill="#57534e">概率 25%</text>
+<text x="625.9" y="124" font-size="11.5" font-weight="700" fill="#1c1917">$60 – $116 亿</text>
+<rect x="313.5" y="150" width="105.5" height="30" rx="4" fill="#2a78d6"/>
+<text x="32" y="170" font-size="12.5" font-weight="700" fill="#1c1917">中性</text>
+<text x="192" y="170" font-size="12" text-anchor="end" fill="#57534e">概率 45%</text>
+<text x="429.0" y="170" font-size="11.5" font-weight="700" fill="#1c1917">$30 – $60 亿</text>
+<rect x="260.8" y="196" width="52.8" height="30" rx="4" fill="#e34948"/>
+<text x="32" y="216" font-size="12.5" font-weight="700" fill="#1c1917">悲观</text>
+<text x="192" y="216" font-size="12" text-anchor="end" fill="#57534e">概率 30%</text>
+<text x="323.5" y="216" font-size="11.5" font-weight="700" fill="#1c1917">$15 – $30 亿</text>
+<line x1="361.0" y1="88" x2="361.0" y2="242" stroke="#1c1917" stroke-width="1.8" stroke-dasharray="5,4"/>
+<text x="369.0" y="82" font-size="11.5" font-weight="700" fill="#1c1917">当前 $43.50 亿</text>
+<line x1="208" y1="242" x2="630" y2="242" stroke="#57534e" stroke-width="1.5"/>
+<text x="24" y="288" font-size="11.5" font-weight="700" fill="#1c1917">期望市值 $49.00 亿（+12.6%）——落在框架误差内，本报告不给方向性判断。</text>
+<text x="24" y="308" font-size="10.5" fill="#57534e">悲观下限 $15 亿取自 2026-06-11 的五年最低 $14.91 亿——该水平三个月前刚发生过，不是假设。</text>
+<text x="24" y="326" font-size="10.5" fill="#57534e">⚠ 仅调整概率即可在 –2.4% 到 +27.7% 之间移动（见 8.3 敏感性）。</text>
+</svg>

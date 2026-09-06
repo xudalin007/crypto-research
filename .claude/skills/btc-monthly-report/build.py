@@ -35,6 +35,8 @@ PROFILES = {
                 accent='#F0B90B', badge='◆ BNB'),
     'hype': dict(symbol='◈', name='HYPE / Hyperliquid', short='HYPE',
                  accent='#97FCE4', badge='◈ Hyperliquid'),
+    'uni': dict(symbol='🦄', name='UNI / Uniswap', short='UNI',
+                accent='#FF007A', badge='🦄 Uniswap'),
 }
 
 

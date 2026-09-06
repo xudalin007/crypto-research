@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 376" width="720" height="376" font-family='-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",Helvetica,Arial,sans-serif'><rect width="720" height="376" fill="#fff"/><text x="24" y="30" font-size="16" font-weight="700" fill="#1c1917">从严格的零开始：Uniswap 价值捕获的完整执行曲线</text><text x="24" y="50" font-size="11.5" fill="#57534e">月度归代币持有人收入。2025-11 及以前为 $0。逐月折算累计销毁约 1,099 万枚</text>
+<line x1="88" y1="232.6" x2="660" y2="232.6" stroke="#e7e5e4" stroke-width="1"/>
+<text x="78" y="236.6" font-size="10" text-anchor="end" fill="#57534e">$2M</text>
+<line x1="88" y1="197.3" x2="660" y2="197.3" stroke="#e7e5e4" stroke-width="1"/>
+<text x="78" y="201.3" font-size="10" text-anchor="end" fill="#57534e">$4M</text>
+<line x1="88" y1="161.9" x2="660" y2="161.9" stroke="#e7e5e4" stroke-width="1"/>
+<text x="78" y="165.9" font-size="10" text-anchor="end" fill="#57534e">$6M</text>
+<line x1="88" y1="126.5" x2="660" y2="126.5" stroke="#e7e5e4" stroke-width="1"/>
+<text x="78" y="130.5" font-size="10" text-anchor="end" fill="#57534e">$8M</text>
+<rect x="74.4" y="268.0" width="27.3" height="1.5" rx="2" fill="#d6d3d1"/>
+<text x="88.0" y="285" font-size="9" text-anchor="middle" fill="#57534e">八月</text>
+<text x="88.0" y="299" font-size="9.5" font-weight="700" text-anchor="middle" fill="#1c1917">2025</text>
+<rect x="122.0" y="268.0" width="27.3" height="1.5" rx="2" fill="#d6d3d1"/>
+<text x="135.7" y="285" font-size="9" text-anchor="middle" fill="#57534e">九月</text>
+<rect x="169.7" y="268.0" width="27.3" height="1.5" rx="2" fill="#d6d3d1"/>
+<text x="183.3" y="285" font-size="9" text-anchor="middle" fill="#57534e">十月</text>
+<rect x="217.4" y="268.0" width="27.3" height="1.5" rx="2" fill="#d6d3d1"/>
+<text x="231.0" y="285" font-size="9" text-anchor="middle" fill="#57534e">十一月</text>
+<rect x="265.0" y="265.1" width="27.3" height="2.9" rx="2" fill="#2a78d6"/>
+<text x="278.7" y="285" font-size="9" text-anchor="middle" fill="#57534e">十二月</text>
+<rect x="312.7" y="217.3" width="27.3" height="50.7" rx="2" fill="#2a78d6"/>
+<text x="326.3" y="285" font-size="9" text-anchor="middle" fill="#57534e">一月</text>
+<text x="326.3" y="299" font-size="9.5" font-weight="700" text-anchor="middle" fill="#1c1917">2026</text>
+<rect x="360.4" y="211.3" width="27.3" height="56.7" rx="2" fill="#2a78d6"/>
+<text x="374.0" y="285" font-size="9" text-anchor="middle" fill="#57534e">二月</text>
+<rect x="408.0" y="186.9" width="27.3" height="81.1" rx="2" fill="#2a78d6"/>
+<text x="421.7" y="285" font-size="9" text-anchor="middle" fill="#57534e">三月</text>
+<rect x="455.7" y="188.4" width="27.3" height="79.6" rx="2" fill="#2a78d6"/>
+<text x="469.3" y="285" font-size="9" text-anchor="middle" fill="#57534e">四月</text>
+<rect x="503.4" y="199.9" width="27.3" height="68.1" rx="2" fill="#2a78d6"/>
+<text x="517.0" y="285" font-size="9" text-anchor="middle" fill="#57534e">五月</text>
+<rect x="551.0" y="177.5" width="27.3" height="90.5" rx="2" fill="#2a78d6"/>
+<text x="564.7" y="285" font-size="9" text-anchor="middle" fill="#57534e">六月</text>
+<rect x="598.7" y="190.5" width="27.3" height="77.5" rx="2" fill="#2a78d6"/>
+<text x="612.3" y="285" font-size="9" text-anchor="middle" fill="#57534e">七月</text>
+<rect x="646.4" y="110.9" width="27.3" height="157.1" rx="2" fill="#d6006e"/>
+<text x="660.0" y="285" font-size="9" text-anchor="middle" fill="#57534e">八月</text>
+<text x="660.0" y="101.9" font-size="12" font-weight="700" text-anchor="middle" fill="#d6006e">$888万</text>
+<text x="231.0" y="259.0" font-size="11" font-weight="700" text-anchor="middle" fill="#57534e">$0</text>
+<line x1="88" y1="268" x2="660" y2="268" stroke="#1c1917" stroke-width="1.5"/>
+<text x="24" y="320" font-size="11.5" font-weight="700" fill="#1c1917">2025-12-25 UNIfication 通过 → 首月 $16.4 万 → 2026-08 达 $888 万（环比 +102.6%）</text>
+<text x="24" y="340" font-size="10.5" fill="#57534e">⚠ 8 月同时是加密普涨月，交易量上升本身会抬高费用——本报告未能拆分归因（见 5.1）。</text>
+<text x="24" y="360" font-size="10.5" fill="#57534e">来源：DefiLlama API（一手）。本系列七个资产里，只有 UNI 能提供「捕获从零开始」的完整月度记录。</text>
+</svg>
