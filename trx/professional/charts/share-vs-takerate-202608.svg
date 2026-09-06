@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="470" viewBox="0 0 720 470" font-family='-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB",sans-serif'>
+<rect width="720" height="470" fill="#fff"/>
+<text x="70" y="24" font-size="14" font-weight="700" fill="#1c1917">份额回来了，单位收费率没有</text>
+<text x="70" y="42" font-size="11" fill="#57534e">上：Tron 占全球稳定币的份额　下：take rate（年化销毁额 ÷ 稳定币存量）。2024-08 至 2026-08</text>
+<text x="70" y="70" font-size="11" font-weight="700" fill="#1c1917">① Tron 稳定币全球份额</text>
+<line x1="70" y1="203.0" x2="694" y2="203.0" stroke="#e7e5e4" stroke-width="1"/>
+<text x="62" y="207.0" font-size="10" fill="#57534e" text-anchor="end">25.52%</text>
+<line x1="70" y1="150.1" x2="694" y2="150.1" stroke="#e7e5e4" stroke-width="1"/>
+<text x="62" y="154.1" font-size="10" fill="#57534e" text-anchor="end">30.24%</text>
+<line x1="70" y1="96.5" x2="694" y2="96.5" stroke="#e7e5e4" stroke-width="1"/>
+<text x="62" y="100.5" font-size="10" fill="#57534e" text-anchor="end">35.03%</text>
+<polyline points="70.0,96.6 96.0,100.4 122.0,96.4 148.0,140.5 174.0,169.5 200.0,177.4 226.0,172.8 252.0,172.3 278.0,158.9 304.0,138.6 330.0,129.2 356.0,140.1 382.0,169.5 408.0,199.7 434.0,202.9 460.0,199.4 486.0,190.5 512.0,179.5 538.0,176.8 564.0,182.2 590.0,181.6 616.0,170.9 642.0,166.1 668.0,155.4 694.0,150.1" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="70.0" cy="96.6" r="4.5" fill="#2a78d6" stroke="#fff" stroke-width="2"/>
+<text x="76.0" y="88.6" font-size="10" font-weight="700" fill="#1c1917" text-anchor="start">35.02%</text>
+<circle cx="434.0" cy="202.9" r="4.5" fill="#2a78d6" stroke="#fff" stroke-width="2"/>
+<text x="434.0" y="223.9" font-size="10" font-weight="700" fill="#1c1917" text-anchor="middle">25.52%（谷底）</text>
+<circle cx="694.0" cy="150.1" r="4.5" fill="#2a78d6" stroke="#fff" stroke-width="2"/>
+<text x="690.0" y="140.1" font-size="10" font-weight="700" fill="#1c1917" text-anchor="end">30.24%</text>
+<text x="70" y="290" font-size="11" font-weight="700" fill="#1c1917">② take rate（基点/年）</text>
+<line x1="70" y1="431.3" x2="694" y2="431.3" stroke="#e7e5e4" stroke-width="1"/>
+<text x="62" y="435.3" font-size="10" fill="#57534e" text-anchor="end">33.4</text>
+<line x1="70" y1="372.5" x2="694" y2="372.5" stroke="#e7e5e4" stroke-width="1"/>
+<text x="62" y="376.5" font-size="10" fill="#57534e" text-anchor="end">90.1</text>
+<line x1="70" y1="309.1" x2="694" y2="309.1" stroke="#e7e5e4" stroke-width="1"/>
+<text x="62" y="313.1" font-size="10" fill="#57534e" text-anchor="end">151.2</text>
+<polyline points="70.0,340.8 96.0,364.8 122.0,367.2 148.0,348.6 174.0,309.2 200.0,352.5 226.0,365.4 252.0,367.6 278.0,373.6 304.0,373.1 330.0,380.4 356.0,374.7 382.0,372.5 408.0,404.0 434.0,404.2 460.0,418.9 486.0,420.1 512.0,423.6 538.0,427.5 564.0,424.3 590.0,421.7 616.0,422.2 642.0,427.7 668.0,429.1 694.0,431.3" fill="none" stroke="#e34948" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="70.0" cy="340.8" r="4.5" fill="#e34948" stroke="#fff" stroke-width="2"/>
+<text x="76.0" y="332.8" font-size="10" font-weight="700" fill="#1c1917" text-anchor="start">120.7 bp</text>
+<circle cx="174.0" cy="309.2" r="4.5" fill="#e34948" stroke="#fff" stroke-width="2"/>
+<text x="180.0" y="303.2" font-size="10" font-weight="700" fill="#1c1917" text-anchor="start">151.2 bp</text>
+<circle cx="382.0" cy="372.5" r="4.5" fill="#e34948" stroke="#fff" stroke-width="2"/>
+<text x="374.0" y="364.5" font-size="10" font-weight="700" fill="#1c1917" text-anchor="end">90.1 bp</text>
+<circle cx="694.0" cy="431.3" r="4.5" fill="#e34948" stroke="#fff" stroke-width="2"/>
+<text x="690.0" y="421.3" font-size="10" font-weight="700" fill="#1c1917" text-anchor="end">33.4 bp</text>
+<text x="70.0" y="454" font-size="9" fill="#57534e" text-anchor="middle">2024-08</text>
+<text x="226.0" y="454" font-size="9" fill="#57534e" text-anchor="middle">2025-02</text>
+<text x="382.0" y="454" font-size="9" fill="#57534e" text-anchor="middle">2025-08</text>
+<text x="538.0" y="454" font-size="9" fill="#57534e" text-anchor="middle">2026-02</text>
+<text x="694.0" y="454" font-size="9" fill="#57534e" text-anchor="middle">2026-08</text>
+<line x1="395.0" y1="80" x2="395.0" y2="220" stroke="#1c1917" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="395.0" y1="300" x2="395.0" y2="440" stroke="#1c1917" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="395.0" y="262" font-size="10" font-weight="700" fill="#1c1917" text-anchor="middle">提案 #104 生效</text>
+</svg>

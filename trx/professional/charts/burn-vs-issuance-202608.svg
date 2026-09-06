@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="420" viewBox="0 0 720 420" font-family='-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB",sans-serif'>
+<rect width="720" height="420" fill="#fff"/>
+<text x="64" y="24" font-size="14" font-weight="700" fill="#1c1917">TRX 年化净通胀率：通缩在 2025 年 9 月结束</text>
+<text x="64" y="42" font-size="11" fill="#57534e">按当月「增发 − 销毁」折年 ÷ 当月总供应量。数据：Tronscan 逐日一手</text>
+<line x1="64" y1="330.7" x2="696" y2="330.7" stroke="#e7e5e4" stroke-width="1"/>
+<text x="56" y="334.7" font-size="10" fill="#57534e" text-anchor="end">−1.0%</text>
+<line x1="64" y1="247.6" x2="696" y2="247.6" stroke="#e7e5e4" stroke-width="1"/>
+<text x="56" y="251.6" font-size="10" fill="#57534e" text-anchor="end">−0.5%</text>
+<line x1="64" y1="164.4" x2="696" y2="164.4" stroke="#a8a29e" stroke-width="1.4"/>
+<text x="56" y="168.4" font-size="10" fill="#57534e" text-anchor="end">0</text>
+<line x1="64" y1="81.3" x2="696" y2="81.3" stroke="#e7e5e4" stroke-width="1"/>
+<text x="56" y="85.3" font-size="10" fill="#57534e" text-anchor="end">+0.5%</text>
+<rect x="70.0" y="164.4" width="19.6" height="147.0" fill="#2a78d6" rx="2"/>
+<text x="79.8" y="370.0" font-size="9" fill="#57534e" text-anchor="middle">2025-01</text>
+<rect x="101.6" y="164.4" width="19.6" height="134.2" fill="#2a78d6" rx="2"/>
+<rect x="133.2" y="164.4" width="19.6" height="149.7" fill="#2a78d6" rx="2"/>
+<rect x="164.8" y="164.4" width="19.6" height="133.0" fill="#2a78d6" rx="2"/>
+<rect x="196.4" y="164.4" width="19.6" height="131.4" fill="#2a78d6" rx="2"/>
+<text x="206.2" y="370.0" font-size="9" fill="#57534e" text-anchor="middle">2025-05</text>
+<rect x="228.0" y="164.4" width="19.6" height="144.2" fill="#2a78d6" rx="2"/>
+<rect x="259.6" y="164.4" width="19.6" height="166.3" fill="#2a78d6" rx="2"/>
+<rect x="291.2" y="164.4" width="19.6" height="117.1" fill="#2a78d6" rx="2"/>
+<rect x="322.8" y="149.8" width="19.6" height="14.6" fill="#e34948" rx="2"/>
+<text x="332.6" y="370.0" font-size="9" fill="#57534e" text-anchor="middle">2025-09</text>
+<rect x="354.4" y="164.4" width="19.6" height="4.5" fill="#2a78d6" rx="2"/>
+<rect x="386.0" y="132.7" width="19.6" height="31.8" fill="#e34948" rx="2"/>
+<rect x="417.6" y="138.6" width="19.6" height="25.8" fill="#e34948" rx="2"/>
+<rect x="449.2" y="114.9" width="19.6" height="49.6" fill="#e34948" rx="2"/>
+<text x="459.0" y="370.0" font-size="9" fill="#57534e" text-anchor="middle">2026-01</text>
+<rect x="480.8" y="111.5" width="19.6" height="52.9" fill="#e34948" rx="2"/>
+<rect x="512.4" y="116.0" width="19.6" height="48.4" fill="#e34948" rx="2"/>
+<rect x="544.0" y="115.5" width="19.6" height="48.9" fill="#e34948" rx="2"/>
+<rect x="575.6" y="102.7" width="19.6" height="61.7" fill="#e34948" rx="2"/>
+<text x="585.4" y="370.0" font-size="9" fill="#57534e" text-anchor="middle">2026-05</text>
+<rect x="607.2" y="91.8" width="19.6" height="72.7" fill="#e34948" rx="2"/>
+<rect x="638.8" y="87.4" width="19.6" height="77.0" fill="#e34948" rx="2"/>
+<rect x="670.4" y="78.1" width="19.6" height="86.3" fill="#e34948" rx="2"/>
+<text x="680.2" y="370.0" font-size="9" fill="#57534e" text-anchor="middle">2026-08</text>
+<line x1="316.8" y1="54" x2="316.8" y2="344" stroke="#1c1917" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="322.8" y="66" font-size="10" font-weight="700" fill="#1c1917">提案 #104 生效（2025-08-29）</text>
+<text x="322.8" y="80" font-size="10" fill="#57534e">能量单价 210 → 100 sun</text>
+<text x="269.4" y="345.7" font-size="10" font-weight="700" fill="#1c1917" text-anchor="middle">−1.000%</text>
+<text x="293.0" y="296.5" font-size="10" font-weight="700" fill="#1c1917" text-anchor="end">−0.704%</text>
+<text x="680.2" y="70.1" font-size="10" font-weight="700" fill="#1c1917" text-anchor="middle">+0.519%</text>
+<rect x="64" y="396" width="10" height="10" fill="#2a78d6" rx="2"/><text x="80" y="405" font-size="10" fill="#57534e">通缩（销毁 &gt; 增发）</text>
+<rect x="214" y="396" width="10" height="10" fill="#e34948" rx="2"/><text x="230" y="405" font-size="10" fill="#57534e">通胀（增发 &gt; 销毁）</text>
+</svg>
