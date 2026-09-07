@@ -39,6 +39,8 @@ PROFILES = {
                 accent='#FF007A', badge='🦄 Uniswap'),
     'trx': dict(symbol='◈', name='TRX / Tron', short='TRX',
                 accent='#eb0029', badge='◈ Tron'),
+    'xin': dict(symbol='◐', name='XIN / Mixin', short='XIN',
+                accent='#4b7bec', badge='◐ Mixin'),
 }
 
 

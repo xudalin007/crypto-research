@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="360" viewBox="0 0 720 360" font-family='-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB",sans-serif'>
+<rect width="720" height="360" fill="#fff"/>
+<text x="64" y="26" font-size="14" font-weight="700" fill="#1c1917">前 50 个地址持有 98.88% 的 XIN</text>
+<text x="64" y="44" font-size="11" fill="#57534e">累计持仓占总供应（1,000,000 枚）。持有人共 20,897 个。Blockscout 一手</text>
+<line x1="64" y1="292.6" x2="596" y2="292.6" stroke="#e7e5e4" stroke-width="1"/>
+<text x="56" y="296.6" font-size="10" fill="#57534e" text-anchor="end">43.00%</text>
+<line x1="64" y1="176.6" x2="596" y2="176.6" stroke="#e7e5e4" stroke-width="1"/>
+<text x="56" y="180.6" font-size="10" fill="#57534e" text-anchor="end">73.50%</text>
+<line x1="64" y1="80.2" x2="596" y2="80.2" stroke="#e7e5e4" stroke-width="1"/>
+<text x="56" y="84.2" font-size="10" fill="#57534e" text-anchor="end">98.88%</text>
+<polyline points="64.0,292.6 74.9,209.0 85.7,176.6 96.6,147.5 107.4,127.1 118.3,119.5 129.1,112.8 140.0,107.7 150.9,102.6 161.7,98.4 172.6,96.7 183.4,95.0 194.3,93.4 205.1,91.9 216.0,90.6 226.9,89.6 237.7,88.7 248.6,87.8 259.4,86.8 270.3,86.1 281.1,85.5 292.0,84.9 302.9,84.5 313.7,84.1 324.6,83.8 335.4,83.6 346.3,83.3 357.1,83.1 368.0,82.9 378.9,82.7 389.7,82.5 400.6,82.3 411.4,82.1 422.3,81.9 433.1,81.8 444.0,81.6 454.9,81.5 465.7,81.3 476.6,81.2 487.4,81.1 498.3,81.0 509.1,80.9 520.0,80.8 530.9,80.7 541.7,80.6 552.6,80.5 563.4,80.4 574.3,80.3 585.1,80.2 596.0,80.2" fill="none" stroke="#e34948" stroke-width="2.4" stroke-linejoin="round"/>
+<circle cx="64.0" cy="292.6" r="4.5" fill="#e34948" stroke="#fff" stroke-width="2"/>
+<text x="74.0" y="308.6" font-size="10.5" font-weight="700" fill="#1c1917" text-anchor="start">前 1 名 43.00%</text>
+<circle cx="85.7" cy="176.6" r="4.5" fill="#e34948" stroke="#fff" stroke-width="2"/>
+<text x="95.7" y="192.6" font-size="10.5" font-weight="700" fill="#1c1917" text-anchor="start">前 3 名 73.50%</text>
+<circle cx="161.7" cy="98.4" r="4.5" fill="#e34948" stroke="#fff" stroke-width="2"/>
+<text x="171.7" y="114.4" font-size="10.5" font-weight="700" fill="#1c1917" text-anchor="start">前 10 名 94.08%</text>
+<circle cx="596.0" cy="80.2" r="4.5" fill="#e34948" stroke="#fff" stroke-width="2"/>
+<text x="590.0" y="70.2" font-size="10.5" font-weight="700" fill="#1c1917" text-anchor="end">前 50 名 98.88%</text>
+<text x="64.0" y="326" font-size="9.5" fill="#57534e" text-anchor="middle">1</text>
+<text x="161.7" y="326" font-size="9.5" fill="#57534e" text-anchor="middle">10</text>
+<text x="270.3" y="326" font-size="9.5" fill="#57534e" text-anchor="middle">20</text>
+<text x="378.9" y="326" font-size="9.5" fill="#57534e" text-anchor="middle">30</text>
+<text x="487.4" y="326" font-size="9.5" fill="#57534e" text-anchor="middle">40</text>
+<text x="596.0" y="326" font-size="9.5" fill="#57534e" text-anchor="middle">50</text>
+<text x="330.0" y="346" font-size="10" fill="#57534e" text-anchor="middle">地址排名</text>
+<text x="610" y="84.2" font-size="10" fill="#57534e">其余 20,847 个</text>
+<text x="610" y="98.2" font-size="10" fill="#57534e">地址合计 1.12%</text>
+</svg>
