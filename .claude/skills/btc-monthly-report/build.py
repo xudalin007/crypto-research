@@ -44,6 +44,8 @@ PROFILES = {
                 accent='#eb0029', badge='◈ Tron'),
     'xin': dict(symbol='◐', name='XIN / Mixin', short='XIN',
                 accent='#4b7bec', badge='◐ Mixin'),
+    'dot': dict(symbol='●', name='DOT / Polkadot', short='DOT',
+                accent='#e6007a', badge='● Polkadot'),
 }
 
 

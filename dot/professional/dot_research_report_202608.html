@@ -1,0 +1,2644 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DOT / Polkadot 完整调研与分析报告 — 2026年8月</title>
+<style>
+:root{--accent:#e6007a;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">● DOT 调研报告 (2026.8)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>● DOT 调研报告 2026.8</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-polkadot">1. Polkadot 是什么</a>
+<a href="#2-dot">2. DOT 的发展阶段划分</a>
+<a href="#3-dot">3. DOT 当前现状</a>
+<a href="#4">4. 所有人都在测错的那条链</a>
+<a href="#5">5. 净供应增长</a>
+<a href="#6-coretime">6. 收入</a>
+<a href="#7">7. 国库与治理</a>
+<a href="#8-dot">8. DOT 与其他九个资产的比较</a>
+<a href="#9">9. 核心价值逻辑与估值</a>
+<a href="#10">10. 投资与风险启示</a>
+<a href="#11_1">11. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-1">1. 一句话</a>
+<a href="#s-2">2. 本期最重要的发现</a>
+<a href="#s-3">3. 因此改用链上直接测量</a>
+<a href="#s-4">4. 收入端</a>
+<a href="#s-5">5. 对持有人</a>
+<a href="#s-6">6. 但有两条真实的多头论据</a>
+<a href="#s-7">7. 与其他九个资产</a>
+<a href="#s-8">8. 估值</a>
+<a href="#s-9">9. 要盯的指标</a>
+<a href="#s-3-5">如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 8 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>● DOT / Polkadot<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">● Polkadot</span><span class="badge badge-date">2026 年 8 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="dot-polkadot">DOT / Polkadot 完整调研与分析报告</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 9 月 8 日<br />
+<strong>数据截止</strong>：2026 年 9 月 8 日（8 月完整月度数据已闭合）<br />
+<strong>研究方法</strong>：沿用本系列前九期框架（BTC / ETH / SOL / ADA / BNB / HYPE / UNI / TRX / XIN）。<br />
+<strong>本期的独特之处</strong>：DOT 是本系列第十个资产，也是<strong>第一个「主流数据源集体指向了错误的那条链」的资产</strong>。<br />
+<strong>本期为 DOT 首期报告。</strong></p>
+<p><strong>本期核心发现</strong>：<br />
+① <strong>2025 年 11 月 4 日，Polkadot 把余额、质押、治理整体迁出了中继链，迁到 Asset Hub。</strong><br />
+本报告直接查询两条链的 <code>Balances.TotalIssuance</code>：<br />
+<strong>中继链上只剩 241,430 枚 DOT（占总量 0.014%），Asset Hub 上是 1,701,813,540 枚</strong>——<br />
+与 CoinGecko 的总量吻合到 <strong>0.0002%</strong>；<br />
+② <strong>而 DefiLlama 与 Subscan 的默认 Polkadot 端点，测的都还是中继链。</strong><br />
+DefiLlama 报告的 Polkadot 30 天费用是 <strong>$283.24</strong>，<br />
+且在 <strong>2025 年 11 月</strong>从 $17,826 骤降到 $1,408（–92%）——<br />
+<strong>那个「费用崩塌」的月份，正是迁移完成的月份。</strong><br />
+<strong>能一手证明的是「中继链费用不再是需求的有效度量」；⚠️「需求没崩」本报告证明不了，也没有测</strong>；<br />
+③ <strong>本报告因此改用链上直接测量。</strong> 在 Asset Hub 上按互不重叠的区间逐段年化 <code>TotalIssuance</code>，<br />
+<strong>测得阶梯下调前（2025-12→2026-03）为 7.25%，下调后（2026-03→2026-09）为 3.44%，降幅 –52.5%</strong>，<br />
+最近 31 天为 <strong>3.30%</strong>，即年净增约 <strong>5,599 万枚 DOT ≈ $6,058 万</strong>。<br />
+<strong>7.25% 与广为引用的「每年 1.2 亿枚 = 7.05%」高度吻合——而它现在已经腰斩；</strong><br />
+④ <strong>收入端极端稀薄。</strong> 本报告从 Coretime 链解码 <code>Broker.SaleInfo</code>：<br />
+本轮<strong>报价 89 个 core、售出 35 个，地板价 10 DOT</strong>，<strong>本轮收入 472.43 DOT ≈ $511</strong><br />
+（该收入数字由官方链上界面独立确认，与本报告估算差 0.5%）。<br />
+加上第三方覆盖的生态费用，<strong>已测到的全部年化收入约 $15,065</strong>；<br />
+⑤ <strong>距 ATH –98.03%（$54.98，2021-11-04），是本系列十个资产里最深的</strong>；<br />
+<strong>而历史最低点 $0.727 就发生在本报告期内的 2026-08-18。</strong></p>
+<p><strong>本期核心判断</strong>：<strong>DOT 的问题不是「收入低」，是「增发与收入不在一个数量级」。</strong><br />
+<strong>年净增发 $6,058 万 vs 已测年收入约 $1.5 万——要让两者相当，本报告未测的 Asset Hub 费用收入<br />
+需要是已测总和的约 4,000 倍。</strong><br />
+<strong>不质押的持有人每年被稀释 3.19%</strong>；质押者实际份额年增约 <strong>+1.60%</strong>（上界 +2.74%）——<br />
+<strong>质押的收益主要来自抵消稀释。</strong></p>
+<p>⚠️ <strong>但这个稀释是有限的，这一点初稿漏了</strong>：若 21 亿上限成立，<br />
+<strong>剩余可增发共 3.982 亿枚 = 当前供应的 23.4%，约 7.1 年触顶，且速率在衰减。</strong><br />
+<strong>本报告最强的多头论据（上限已确立）和最强的空头论据（持续稀释）说的是同一个机制。</strong></p>
+<p>⚠️ <strong>本期审查改动很大，初稿有四处被推翻</strong>：<br />
+① <strong>用 <code>InactiveIssuance</code> 当国库余额是错的</strong>——正确字段是 <code>Treasury.Deactivated</code>，<br />
+而它近 31 天<strong>一动没动</strong>（初稿写「61 天 +16.3%」）；<br />
+② <strong>「比值 900:1 到 9,000:1」的低端算错了一个数量级</strong>（应为 92:1），且与同段的「1.1%」自相矛盾；<br />
+③ <strong>「四窗口一致」是嵌套窗口的产物</strong>，不是四次独立验证；<br />
+④ <strong>「不是需求崩塌」是诉诸无知</strong>——能证明的只是「中继链数据不再有效」。</p>
+<p>⚠️ <strong>一处必须先声明的方法变更</strong>：<strong>本期大量使用直接读取链上存储的方式取数</strong><br />
+（自行实现 twox128 并用两个已知哈希自检通过）。<br />
+<strong>原因是第三方数据源在这个标的上系统性失准</strong>——这一点本身就是本期的第一发现。</p>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DOT 是什么</strong></td>
+<td><strong>一个出租区块空间的网络。</strong> 中继链提供共享安全，平行链通过购买 <strong>coretime</strong> 获得执行资源。DOT 用于质押、治理与购买 coretime</td>
+</tr>
+<tr>
+<td><strong>本期的独特之处</strong></td>
+<td><strong>第一个「数据源指向错误的链」的资产。</strong> 余额、质押、治理已于 2025-11-04 迁至 Asset Hub，而主流数据源仍在测中继链</td>
+</tr>
+<tr>
+<td><strong>当前价格</strong></td>
+<td><strong>$1.082</strong>，市值 <strong>$18.41 亿</strong>（全球第 48）。总量 17.018 亿枚，<strong>上限 21 亿枚</strong></td>
+</tr>
+<tr>
+<td><strong>距 ATH</strong></td>
+<td><strong>–98.03%</strong>（ATH $54.98，2021-11-04）。<strong>十个资产里最深</strong></td>
+</tr>
+<tr>
+<td><strong>一个必须先讲的事实</strong></td>
+<td><strong>历史最低价 $0.727 就出现在本报告期内的 2026-08-18</strong>，此后反弹，8 月收 +8.07%</td>
+</tr>
+<tr>
+<td><strong>实测净供应增长</strong></td>
+<td>阶梯前 <strong>7.25%</strong> → 阶梯后 <strong>3.44%</strong>，最近 31 天 <strong>3.30%</strong>（链上互不重叠区间实测）→ 年净增 <strong>5,599 万枚 ≈ $6,058 万</strong></td>
+</tr>
+<tr>
+<td><strong>剩余可增发</strong></td>
+<td><strong>3.982 亿枚 = 当前供应的 23.4%</strong>，约 7.1 年触顶（前提：21 亿上限不被改回）</td>
+</tr>
+<tr>
+<td><strong>收入</strong></td>
+<td>Coretime 本轮售出 <strong>35 / 89</strong>，收入 <strong>472.43 DOT ≈ $511</strong>；<strong>已测全部年化收入约 $15,065</strong></td>
+</tr>
+<tr>
+<td><strong>增发 / 收入</strong></td>
+<td><strong>约 4,000 : 1。</strong> ⚠️ 这是盈亏平衡倍数——Asset Hub 费用收入本报告未测</td>
+</tr>
+<tr>
+<td><strong>质押</strong></td>
+<td><strong>53.73%</strong>（914,460,537 枚，era 2288，一手）。验证人 600，提名人 28,787</td>
+</tr>
+<tr>
+<td><strong>对持有人</strong></td>
+<td><strong>不质押每年被稀释 3.19%</strong>；质押者实际份额年增约 <strong>+1.60%</strong>，上界 <strong>+2.74%</strong>（⚠️ 推算，见 5.6）</td>
+</tr>
+<tr>
+<td><strong>国库</strong></td>
+<td><strong>2,431 万枚 DOT ≈ $2,631 万</strong>（<code>Treasury.Deactivated</code>）。<strong>阶梯式更新，近 31 天为零变化</strong>；267 天 +48.2%，占净增发 19.3%</td>
+</tr>
+<tr>
+<td><strong>Asset Hub 活动</strong></td>
+<td>出块 1.92 秒，<strong>每日约 146,250 笔 extrinsic</strong>（链上采样）。⚠️ 其费用收入本报告<strong>未测</strong></td>
+</tr>
+<tr>
+<td><strong>生态规模</strong></td>
+<td>全部平行链 TVL 合计约 <strong>$6,314 万</strong>，其中 Hydration 一家占 $5,860 万（92.8%）</td>
+</tr>
+<tr>
+<td><strong>核心多头逻辑</strong></td>
+<td>供应上限 21 亿已通过治理确立且阶梯下调已生效；质押率 53.73%；国库仍在积累；技术路线（Asset Hub 迁移）执行完成且无事故</td>
+</tr>
+<tr>
+<td><strong>核心空头逻辑</strong></td>
+<td>增发与收入差四个数量级；距 ATH –98%；生态 TVL 高度集中于单一平行链；主流数据源失准使问题长期不被看见</td>
+</tr>
+<tr>
+<td><strong>风险等级</strong></td>
+<td>中等偏高。<strong>它的核心问题不是「会不会崩」，而是「一个几乎没有收入的网络，凭什么支撑 3.29% 的持续稀释」</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-polkadot">1. Polkadot 是什么</h2>
+<h3 id="11">1.1 一个出租区块空间的网络</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>组成</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>中继链（Relay Chain）</strong></td>
+<td>提供共享安全与最终性。<strong>它本身不跑用户交易</strong></td>
+</tr>
+<tr>
+<td><strong>平行链（Parachain）</strong></td>
+<td>独立的区块链，向中继链租用执行资源</td>
+</tr>
+<tr>
+<td><strong>Coretime</strong></td>
+<td>平行链购买执行资源的产品形态，按 core × 时间段出售</td>
+</tr>
+<tr>
+<td><strong>系统链</strong></td>
+<td>Asset Hub（资产与余额）、Coretime 链、Bridge Hub、Collectives 等</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>DOT 的三重用途</strong>：质押（安全）、治理（OpenGov 投票）、购买 coretime。</p>
+<h3 id="12-20242025">1.2 2024–2025 的两次结构性改造</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>改造</th>
+<th>内容</th>
+<th>时点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Agile Coretime</strong></td>
+<td>用「按需购买 core」取代原来的「平行链插槽拍卖」</td>
+<td>2024</td>
+</tr>
+<tr>
+<td><strong>Asset Hub 迁移</strong></td>
+<td><strong>余额、质押、治理全部从中继链迁到 Asset Hub</strong></td>
+<td><strong>2025-11-04</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>第二项是本报告第 4 章的全部内容</strong>，因为它把「Polkadot 的链上数据在哪里」这个问题的答案改了，<br />
+<strong>而大部分数据源没跟上。</strong></p>
+</blockquote>
+<h3 id="13">1.3 供应政策：三次治理修改</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>政策</th>
+<th style="text-align: center;">依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2020–2024</td>
+<td>约 10% 年通胀，无上限</td>
+<td style="text-align: center;">原始设计</td>
+</tr>
+<tr>
+<td>2024-11 起</td>
+<td>通胀模型调整，起始约 8% 并递减</td>
+<td style="text-align: center;">Ref 1139</td>
+</tr>
+<tr>
+<td>后续</td>
+<td>固定年发行 <strong>1.2 亿枚 DOT</strong></td>
+<td style="text-align: center;">Ref 1271</td>
+</tr>
+<tr>
+<td><strong>2025-09 起</strong></td>
+<td><strong>总量上限 21 亿枚</strong>；自 <strong>2026-03-14</strong> 起阶梯下调</td>
+<td style="text-align: center;"><strong>Ref 1710</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>以上四行的政策沿革来自二手转述，本报告未逐一打开提案原文。</strong><br />
+<strong>但它们的净结果是可以直接测量的，第 5 章给出了实测值：年化 3.29%。</strong><br />
+<strong>实测值与「每年 1.2 亿枚」（约合 7.05%）相差一倍以上——说明阶梯下调确已生效。</strong></p>
+</blockquote>
+<hr />
+<h2 id="2-dot">2. DOT 的发展阶段划分</h2>
+<h3 id="20202021">阶段一：创世与插槽拍卖（2020–2021）</h3>
+<p>2020 年 5 月主网上线，8 月完成 1:100 重面额。2021 年起平行链插槽拍卖，<br />
+参与者锁仓 DOT 竞拍两年期插槽。<strong>2021-11-04 创下历史最高价 $54.98。</strong></p>
+<h3 id="20222023">阶段二：锁仓退潮（2022–2023）</h3>
+<p>插槽租期陆续到期，锁仓 DOT 解锁回流。价格进入长期下行。</p>
+<h3 id="polkadot-20-2024202510">阶段三：Polkadot 2.0 改造（2024–2025.10）</h3>
+<p>Agile Coretime 上线，取代插槽拍卖。<strong>商业模式从「两年期大额锁仓」变成「按月小额付费」</strong>——<br />
+这在设计上更合理，<strong>但也把一个大额锁定需求换成了一个小额现金需求</strong>（见第 6 章）。</p>
+<h3 id="asset-hub-2025-11-04">阶段四：Asset Hub 迁移（2025-11-04）</h3>
+<p><strong>余额、质押、治理整体迁出中继链。</strong> 官方口径为超过 16.3 亿枚 DOT、150 万以上账户、<br />
+5.3 万质押者，无事故完成。⚠️ 该口径为二手。</p>
+<blockquote>
+<p><strong>本报告在链上确认了迁移的结果</strong>（第 4 章），<strong>但未独立核实迁移过程的上述数字。</strong></p>
+</blockquote>
+<h3 id="202511">阶段五：低价区间与供应上限（2025.11– 至今）</h3>
+<p><strong>这是本报告的观察窗口。</strong> 特征是：</p>
+<ul>
+<li>价格从 2025-09-08 的 $3.995 跌到 <strong>2026-08-18 的历史低点 $0.727</strong>，<strong>一年跌 73%</strong></li>
+<li><strong>2026-03-14 起供应阶梯下调生效</strong>，实测通胀降至 <strong>3.29%</strong></li>
+<li>中继链费用在数据源上「归零」——<strong>实为迁移造成的测量断裂</strong></li>
+<li>国库（<code>Treasury.Deactivated</code>）在 267 天里 <strong>+48.2%</strong>，占净增发的 <strong>19.3%</strong>；<br />
+  ⚠️ <strong>它是阶梯式更新的，最近 31 天为零变化</strong></li>
+</ul>
+<hr />
+<h2 id="3-dot">3. DOT 当前现状</h2>
+<h3 id="31">3.1 价格与市场</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>现价</td>
+<td><strong>$1.082</strong></td>
+<td>CoinGecko，2026-09-08 13:04 UTC</td>
+</tr>
+<tr>
+<td>市值 / 排名</td>
+<td><strong>$18.41 亿 / 第 48</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>流通量</td>
+<td>17.018 亿枚</td>
+<td>与总量几乎相同</td>
+</tr>
+<tr>
+<td><strong>链上总发行量</strong></td>
+<td><strong>1,701,813,540 枚</strong></td>
+<td>✅ <strong>本报告直接查询 Asset Hub 存储</strong></td>
+</tr>
+<tr>
+<td>供应上限</td>
+<td><strong>21 亿枚</strong></td>
+<td>Ref 1710</td>
+</tr>
+<tr>
+<td>ATH</td>
+<td><strong>$54.98</strong>（2021-11-04）</td>
+<td><strong>–98.03%</strong></td>
+</tr>
+<tr>
+<td><strong>ATL</strong></td>
+<td><strong>$0.727004（2026-08-18）</strong></td>
+<td><strong>就在本报告期内</strong></td>
+</tr>
+<tr>
+<td>8 月月度（8/1→8/31）</td>
+<td><strong>+8.07%</strong></td>
+<td>$0.7582 → $0.8195</td>
+</tr>
+<tr>
+<td>近 1 年</td>
+<td><strong>–73.13%</strong></td>
+<td>2025-09-08 为 $3.995</td>
+</tr>
+<tr>
+<td>8 月日成交中位数</td>
+<td><strong>$7,974 万</strong></td>
+<td>十个资产里第 9</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="32">3.2 风险特征</h3>
+<p>过去 365 天日对数收益率，本报告自行计算：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: center;">DOT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年化波动率</td>
+<td style="text-align: center;"><strong>81.5%</strong></td>
+</tr>
+<tr>
+<td>beta（相对 BTC）</td>
+<td style="text-align: center;"><strong>1.15</strong></td>
+</tr>
+<tr>
+<td>相关系数</td>
+<td style="text-align: center;">0.619</td>
+</tr>
+<tr>
+<td><strong>R²</strong></td>
+<td style="text-align: center;"><strong>38.3%</strong></td>
+</tr>
+<tr>
+<td>单日涨跌 &gt;20% 的天数</td>
+<td style="text-align: center;"><strong>3 天</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>恒等式自检</strong>：R² =（β × σ_BTC ÷ σ_资产）² =（1.15 × 44.2 ÷ 81.5）² = <strong>38.9%</strong>，<br />
+与实测 38.3% 吻合。<strong>该恒等式在 XIN 期建立，这里第二次通过。</strong></p>
+<p><strong>DOT 是一个「正常」的高 beta 山寨币</strong>：R² 38.3% 说明 BTC 能解释它近四成的波动。<br />
+<strong>这与 XIN 期形成明确对照</strong>——XIN 的 R² 只有 2.4%，那是测不出关系；<strong>DOT 的低迷是真实的价格发现。</strong></p>
+</blockquote>
+<h3 id="33">3.3 生态规模</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>平行链</th>
+<th style="text-align: right;">TVL</th>
+<th style="text-align: center;">占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hydration</strong></td>
+<td style="text-align: right;"><strong>$5,860 万</strong></td>
+<td style="text-align: center;"><strong>92.8%</strong></td>
+</tr>
+<tr>
+<td>Bifrost</td>
+<td style="text-align: right;">$320 万</td>
+<td style="text-align: center;">5.1%</td>
+</tr>
+<tr>
+<td>Astar</td>
+<td style="text-align: right;">$118 万</td>
+<td style="text-align: center;">1.9%</td>
+</tr>
+<tr>
+<td>Moonbeam</td>
+<td style="text-align: right;">$7.8 万</td>
+<td style="text-align: center;">0.1%</td>
+</tr>
+<tr>
+<td>Acala</td>
+<td style="text-align: right;">$6.7 万</td>
+<td style="text-align: center;">0.1%</td>
+</tr>
+<tr>
+<td>Interlay</td>
+<td style="text-align: right;">$1.5 万</td>
+<td style="text-align: center;">0.02%</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td style="text-align: right;"><strong>约 $6,314 万</strong></td>
+<td style="text-align: center;">100%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>全生态 TVL $6,314 万，而 DOT 市值 $18.41 亿——市值是生态 TVL 的 29 倍。</strong><br />
+<strong>且 92.8% 集中在一条平行链上。</strong><br />
+⚠️ <strong>TVL 不是衡量 Polkadot 的合适尺子</strong>（它不是 DeFi 链），本表用于给量级参照，不用于估值。<br />
+⚠️ <strong>Asset Hub 本身不在 DefiLlama 的链列表里</strong>，因此上表可能低估。</p>
+</blockquote>
+<h3 id="34">3.4 宏观环境</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>因素</th>
+<th>状态（9 月初）</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>联邦基金利率</td>
+<td>3.50–3.75%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>9 月加息概率</td>
+<td><strong>65.9%</strong>（CME FedWatch，8/31）</td>
+<td>利空</td>
+</tr>
+<tr>
+<td>PCE 通胀</td>
+<td>3.7%（12 个月）/ 4.1%（6 个月）</td>
+<td>支持加息</td>
+</tr>
+<tr>
+<td>10 年期美债</td>
+<td>4.79%</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>本节沿用与本系列 TRX / UNI / XIN 期同一时点的宏观快照。<br />
+<strong>DOT 的 R² 38.3% 说明宏观通过 BTC 的传导在它身上是有效的</strong>，这一点与 XIN 不同。</p>
+</blockquote>
+<hr />
+<h2 id="4">4. 所有人都在测错的那条链（本期核心章之一）</h2>
+<blockquote>
+<p><strong>本系列前九期踩过四次「口径坑」</strong>：ADA 的 L1 费 ≠ 生态合计、ETH 的 blob ≠ L2 全部支出、<br />
+TRX 的「费用」被定义成「销毁」、XIN 的官方文档只查了英文版。<br />
+<strong>本期是第五次，而且性质不同——前四次是「用错了指标」，这次是「测错了链」。</strong></p>
+</blockquote>
+<h3 id="41">4.1 迁移</h3>
+<p><strong>2025 年 11 月 4 日，Polkadot 把余额、质押、治理从中继链整体迁到 Asset Hub。</strong></p>
+<h3 id="42">4.2 链上验证</h3>
+<p><img alt="DOT 在哪条链上：中继链只剩 0.014%" src="charts/supply-by-chain-202608.svg" /></p>
+<p><strong>本报告对两条链查询同一个存储键 <code>Balances.TotalIssuance</code></strong><br />
+（键由自行实现的 twox128 计算，并用两个已知哈希 <code>System</code> / <code>Number</code> 自检通过）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>链</th>
+<th style="text-align: right;"><code>Balances.TotalIssuance</code></th>
+<th style="text-align: center;">占总量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>中继链</strong>（rpc.polkadot.io）</td>
+<td style="text-align: right;"><strong>241,430.43 DOT</strong></td>
+<td style="text-align: center;"><strong>0.014%</strong></td>
+</tr>
+<tr>
+<td><strong>Asset Hub</strong></td>
+<td style="text-align: right;"><strong>1,701,813,157.37 DOT</strong></td>
+<td style="text-align: center;"><strong>99.986%</strong></td>
+</tr>
+<tr>
+<td>CoinGecko 报告的总量</td>
+<td style="text-align: right;">1,701,810,392</td>
+<td style="text-align: center;">—</td>
+</tr>
+<tr>
+<td>Asset Hub 与 CoinGecko 的差异</td>
+<td style="text-align: right;"><strong>0.0002%</strong></td>
+<td style="text-align: center;">—</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>质押数据同样只在 Asset Hub 上存在</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>存储项</th>
+<th style="text-align: right;">Asset Hub</th>
+<th style="text-align: center;">中继链</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Staking.CurrentEra</code></td>
+<td style="text-align: right;"><strong>2,288</strong></td>
+<td style="text-align: center;">空</td>
+</tr>
+<tr>
+<td><code>Staking.ValidatorCount</code></td>
+<td style="text-align: right;"><strong>600</strong></td>
+<td style="text-align: center;">空</td>
+</tr>
+<tr>
+<td><code>Staking.CounterForNominators</code></td>
+<td style="text-align: right;"><strong>28,787</strong></td>
+<td style="text-align: center;"><strong>0</strong></td>
+</tr>
+<tr>
+<td><code>Staking.MinimumActiveStake</code></td>
+<td style="text-align: right;"><strong>238.56 DOT</strong></td>
+<td style="text-align: center;">空</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>中继链上没有质押，没有余额，只剩 0.014% 的 DOT。</strong></p>
+</blockquote>
+<h3 id="43">4.3 数据源没有跟上</h3>
+<p><img alt="「费用崩塌」的那个月，就是迁移完成的那个月" src="charts/fee-measurement-break-202608.svg" /></p>
+<p><strong>DefiLlama 的 <code>Polkadot</code> 链费用序列</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: right;">费用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-08</td>
+<td style="text-align: right;">$18,911</td>
+</tr>
+<tr>
+<td>2025-09</td>
+<td style="text-align: right;">$20,737</td>
+</tr>
+<tr>
+<td>2025-10</td>
+<td style="text-align: right;">$17,826</td>
+</tr>
+<tr>
+<td><strong>2025-11</strong></td>
+<td style="text-align: right;"><strong>$1,408</strong></td>
+</tr>
+<tr>
+<td>2025-12</td>
+<td style="text-align: right;">$1,078</td>
+</tr>
+<tr>
+<td>2026-01</td>
+<td style="text-align: right;">$70</td>
+</tr>
+<tr>
+<td><strong>2026-08</strong></td>
+<td style="text-align: right;"><strong>$145</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>费用「崩塌」的月份是 2025 年 11 月，迁移完成的月份也是 2025 年 11 月。</strong></p>
+<p><strong>一个只看这张表的人会得出「Polkadot 的使用量在 2025 年 11 月崩了 92%」——而这张表不足以支持那个结论。</strong></p>
+<p>⚠️ <strong>初稿在这里写「不是需求崩塌，是搬走了」，推理审查指出这是诉诸无知，本报告同意并收窄。</strong><br />
+<strong>能一手证明的是：中继链上只剩 0.014% 的 DOT，因此中继链费用不再是 Polkadot 需求的有效度量。</strong><br />
+<strong>这一点由机制本身保证，不依赖时间吻合。</strong><br />
+<strong>不能证明的是「需求没有下滑」——迁移与真实需求下滑可以同时发生，而本报告没有测迁移后的需求。</strong></p>
+<p>⚠️ <strong>一个反面事实，初稿一字未提</strong>：<strong>迁移完成之后费用还在继续跌</strong>——<br />
+$1,408（11 月）→ $1,078 → <strong>$70（1 月）</strong> → $145（8 月）。<br />
+<strong>一次性的口径断裂应当表现为水平跃迁，不该在断裂后的九个月里再跌 20 倍。</strong><br />
+<strong>本报告倾向于认为这是残留中继链活动的进一步萎缩（断裂后的数已在噪声量级），<br />
+但这恰恰说明：这张表在 2025-11 之后没有信息量，而不是它证明了需求没崩。</strong></p>
+<p><strong>而 DefiLlama 的链列表里没有 Polkadot Asset Hub</strong>（本报告已核对 <code>allChains</code>），<br />
+<strong>所以搬去哪里，它没有测；本报告也没有测（见 6.3 末）。</strong></p>
+</blockquote>
+<p><strong>Subscan 的默认 Polkadot 端点同样如此</strong>：<code>polkadot.api.subscan.io/api/scan/token</code><br />
+返回 <code>total_issuance = 241,430 DOT</code>——<strong>那是中继链的残值，不是 DOT 的供应量。</strong><br />
+（Asset Hub 需要换用 <code>assethub-polkadot.api.subscan.io</code>，该端点返回 1,701,813,412 枚，与链上一致。）</p>
+<h3 id="44">4.4 这一章的方法论含义</h3>
+<blockquote>
+<p><strong>本期不是「发现了一个错误的数字」，是发现了一类错误。</strong></p>
+<p><strong>当一条链把核心功能迁到另一条链上时，所有按链名索引的数据源都会静默地继续返回旧链的数据。</strong><br />
+<strong>它不报错，它返回一个看起来正常的小数字。</strong></p>
+<p><strong>本报告因此把第 5 章之后的关键指标全部改为直接读链上存储</strong>，<br />
+并把这条写进了本系列的方法论（见 10.5）。</p>
+<p>⚠️ <strong>同时要说明本报告能力的边界</strong>：直接读存储解决了「供应、质押、国库」这类<br />
+<strong>状态量</strong>；而<strong>流量</strong>（费用、交易笔数）需要遍历区块或依赖索引服务，<strong>本报告没有做</strong>。<br />
+<strong>因此第 6 章的收入侧仍然依赖 coretime 的定价参数与第三方费用数据，精度低于供应侧。</strong></p>
+</blockquote>
+<hr />
+<h2 id="5">5. 净供应增长：一手测量（本期核心章之二）</h2>
+<blockquote>
+<p>⚠️ <strong>本章标题与内容在发布前审查中被大幅更正。</strong><br />
+<strong>初稿叫「增发」，而测到的是「净供应增长」（已扣除全部销毁）——两位审查者都指出了这个标签错误。</strong><br />
+<strong>初稿的「四窗口一致」也被指出是嵌套窗口的产物，不是四次独立验证。以下是修正版。</strong></p>
+</blockquote>
+<h3 id="51">5.1 为什么要自己测</h3>
+<p><strong>广为引用的说法是「Polkadot 每年增发 1.2 亿枚 DOT」</strong>（Ref 1271 设定的固定发行量），<br />
+<strong>按当前供应折算约 7.05%。</strong><br />
+<strong>但 Ref 1710 确立了 21 亿枚上限，并自 2026-03-14 起阶梯下调。下调后的实际发行率，二手来源没有给出可用数字。</strong></p>
+<h3 id="52">5.2 测量方法</h3>
+<p><strong>在 Asset Hub 上取六个历史区块，读取 <code>Balances.TotalIssuance</code> 与 <code>Timestamp.Now</code>，<br />
+按互不重叠的区间逐段年化</strong>（初稿用的是共享终点的嵌套窗口，已废弃）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th style="text-align: center;">天数</th>
+<th style="text-align: right;">净增（DOT）</th>
+<th style="text-align: center;">年化净供应增长</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-12-15 → 2026-03-09</td>
+<td style="text-align: center;">84</td>
+<td style="text-align: right;">27,443,522</td>
+<td style="text-align: center;"><strong>7.25%</strong></td>
+</tr>
+<tr>
+<td>2026-03-09 → 2026-05-11</td>
+<td style="text-align: center;">63</td>
+<td style="text-align: right;">10,318,358</td>
+<td style="text-align: center;">3.57%</td>
+</tr>
+<tr>
+<td>2026-05-11 → 2026-07-09</td>
+<td style="text-align: center;">59</td>
+<td style="text-align: right;">9,241,692</td>
+<td style="text-align: center;">3.40%</td>
+</tr>
+<tr>
+<td>2026-07-09 → 2026-08-08</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: right;">4,545,630</td>
+<td style="text-align: center;">3.27%</td>
+</tr>
+<tr>
+<td><strong>2026-08-08 → 2026-09-08</strong></td>
+<td style="text-align: center;"><strong>31</strong></td>
+<td style="text-align: right;"><strong>4,763,592</strong></td>
+<td style="text-align: center;"><strong>3.30%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>初稿在这里用了四个共享同一终点（2026-09-08）、且互相嵌套的窗口，<br />
+报出「一致到小数点后两位、离散度 0.008pp」，并称之为「做过的最干净的一次测量」。</strong><br />
+<strong>推理审查指出这是算术上被强制的一致性，不是独立复现</strong>：<br />
+① 短窗口是长窗口的子集，离散度被机械压缩；<br />
+② 四个窗口共享终点，<strong>若终点读数有偏，四者会同向同幅偏移，一致性检查对此零灵敏度。</strong><br />
+<strong>改用互不重叠区间后，后四段的真实离散度是 0.30pp，不是 0.008pp。</strong></p>
+<p><strong>本报告接受这个批评，并撤回「最干净的一次测量」这个说法。</strong><br />
+⚠️ <strong>独立性检验（换第二个 RPC 节点复读同一区块）本期没有做</strong>，已列入下期。</p>
+</blockquote>
+<h3 id="53">5.3 结果：阶梯下调在数据里是可见的</h3>
+<blockquote>
+<p><strong>这是初稿没有做、而做了之后结论更强的一步。</strong></p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>期间</th>
+<th style="text-align: center;">年化净供应增长</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>阶梯下调前</strong>（2025-12-15 → 2026-03-09）</td>
+<td style="text-align: center;"><strong>7.25%</strong></td>
+</tr>
+<tr>
+<td><strong>阶梯下调后</strong>（2026-03-09 → 2026-09-08）</td>
+<td style="text-align: center;"><strong>3.44%</strong></td>
+</tr>
+<tr>
+<td><strong>降幅</strong></td>
+<td style="text-align: center;"><strong>–52.5%</strong></td>
+</tr>
+<tr>
+<td>最近 31 天</td>
+<td style="text-align: center;"><strong>3.30%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>7.25% 与「每年 1.2 亿枚 = 7.05%」高度吻合</strong>——<strong>这意味着下调前的实际发行率就是那个广为引用的数字。</strong><br />
+<strong>而下调后腰斩。</strong></p>
+<p><strong>初稿只测了下调之后的区间，因此「下调已生效」这个判断只能靠与二手数字比对得出。</strong><br />
+<strong>补上下调前的区间后，前后对照本身成了一手观测。</strong><br />
+⚠️ <strong>但「原因是 Ref 1710」这一步仍然是二手归因</strong>——本报告没有打开提案原文核对生效日期。<br />
+<strong>可以一手说的是「发行率在 2026 年 3 月前后腰斩」，不是「Ref 1710 导致了它」。</strong></p>
+</blockquote>
+<p><strong>当前口径</strong>：净供应增长 <strong>3.30%/年</strong>，即年净增约 <strong>5,599 万枚 ≈ $6,058 万</strong>。</p>
+<p>⚠️ <strong>两条关于测量本身的限定</strong>：<br />
+① <strong>这是净值，不是毛增发</strong>——已扣除手续费销毁与 coretime 销毁（两者量级见第 6 章，极小，因此净≈毛）；<br />
+② <strong>中继链与 Asset Hub 之间的 teleport 会一边销毁一边铸造</strong>，理论上污染单链读数，<br />
+<strong>但中继链总量只有 241,430 枚，污染上限被封在总供应的 0.014% 以内</strong>，相对每月 476 万枚的净增可忽略。</p>
+<h3 id="54">5.4 一个初稿没算、而它把空头论据封了顶的数字</h3>
+<p><strong>若 21 亿上限成立</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>当前供应</td>
+<td style="text-align: right;">1,701,832,341 枚</td>
+</tr>
+<tr>
+<td>上限</td>
+<td style="text-align: right;">2,100,000,000 枚</td>
+</tr>
+<tr>
+<td><strong>剩余可增发</strong></td>
+<td style="text-align: right;"><strong>398,167,659 枚</strong></td>
+</tr>
+<tr>
+<td><strong>占当前供应</strong></td>
+<td style="text-align: right;"><strong>23.4%</strong></td>
+</tr>
+<tr>
+<td>按当前速率触顶</td>
+<td style="text-align: right;">约 <strong>7.1 年</strong>（不计后续衰减，实际更久）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>这一段是推理审查抓到的最重要的一处，因为它改变了空头论据的量级。</strong><br />
+<strong>初稿在 10.4 写「3.29% 每年都会发生」「不像大多数风险需要触发条件」——那是永续语气。</strong><br />
+<strong>而如果上限成立，稀释是一个总量为 23.4% 的有限量，且速率在衰减。</strong></p>
+<p><strong>报告最强的多头论据（上限已确立）和最强的空头论据（持续稀释）说的是同一个机制，<br />
+而初稿从未让前者去约束后者的量级。已修正。</strong></p>
+<p>⚠️ <strong>前提是上限不被治理改回</strong>（见 9.4 第 4 条）——<strong>同一个机制两个方向都能走。</strong></p>
+</blockquote>
+<h3 id="55">5.5 质押</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Era 2288 总质押</td>
+<td style="text-align: right;"><strong>914,460,537 DOT</strong></td>
+<td>✅ 链上 <code>Staking.ErasTotalStake</code></td>
+</tr>
+<tr>
+<td><strong>质押率</strong></td>
+<td style="text-align: right;"><strong>53.73%</strong></td>
+<td>本报告计算</td>
+</tr>
+<tr>
+<td>Era 2100（约 6 个月前）</td>
+<td style="text-align: right;">884,513,285 DOT（51.97%）</td>
+<td>✅ 同上</td>
+</tr>
+<tr>
+<td>验证人 / 提名人</td>
+<td style="text-align: right;">600 / 28,787</td>
+<td>✅ 链上</td>
+</tr>
+<tr>
+<td>最低有效质押</td>
+<td style="text-align: right;">238.56 DOT</td>
+<td>✅ 链上</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="56">5.6 对持有人的实际处境</h3>
+<p><strong>硬数据（不含假设）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: center;">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年化净供应增长</td>
+<td style="text-align: center;"><strong>3.30%</strong></td>
+</tr>
+<tr>
+<td><strong>不质押者的年度份额变化</strong></td>
+<td style="text-align: center;"><strong>–3.19%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>需要一个分配假设的部分</strong>：</p>
+<p>国库（<code>Treasury.Deactivated</code>，见 7.1）在 267 天里增长 7,907,122 枚，年化约 <strong>1,081 万枚</strong>，<br />
+<strong>占净增发的 19.3%</strong>——这与 Polkadot 经典的约两成国库分成一致。<br />
+其余约 4,518 万枚流向质押者：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>持有人类型</th>
+<th style="text-align: center;">名义年收益</th>
+<th style="text-align: center;"><strong>实际份额变化</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>质押并提名</td>
+<td style="text-align: center;">约 <strong>4.94%</strong></td>
+<td style="text-align: center;"><strong>约 +1.60%</strong></td>
+</tr>
+<tr>
+<td><strong>不质押</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><strong>–3.19%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>上界检验</strong>（初稿只宣称「方向性结论不依赖假设」，没有证明它）：<br />
+<strong>即使国库沉淀为零、全部净增发流向质押者，名义收益上界是 6.12%，实际份额变化上界是 +2.74%。</strong><br />
+<strong>区间 +1.60% 到 +2.74%，两端结论相同：质押的收益主要来自抵消稀释。</strong></p>
+<p>⚠️ <strong>四条限定</strong>（初稿只列了三条，且三条全部指向「高估质押者收益」这一侧）：<br />
+① 国库年化基于 267 天，而 <code>Treasury.Deactivated</code> 是<strong>阶梯式更新</strong>的（见 7.1），短窗口无意义；<br />
+② 未扣验证人佣金；<br />
+③ <strong>国库净增 = 流入 − 支出，用它反推流入会低估流入</strong>，因而<strong>高估</strong>质押者份额；<br />
+④ <strong>反向的一条，初稿漏了</strong>：若部分国库增长来自既有 DOT 转入而非新增发，则扣减扣多了，<br />
+<strong>质押者份额会往上界那端走。</strong></p>
+<p>⚠️ <strong>初稿在这里给出的是 +0.83%，那是用错了字段（<code>InactiveIssuance</code> 而非 <code>Treasury.Deactivated</code>）算的，已作废。</strong></p>
+</blockquote>
+<hr />
+<h2 id="6-coretime">6. 收入：Coretime（本期核心章之三）</h2>
+<h3 id="61">6.1 商业模式</h3>
+<p><strong>Polkadot 卖的是 core</strong>——平行链按「一个 core × 一个 region（约 28 天）」购买执行资源。<br />
+销售分三段：Interlude（续租优先）、Lead-in（荷兰式拍卖降价）、固定价段。</p>
+<p>⚠️ <strong>coretime 收入被销毁</strong>（而非进国库）——<strong>若成立，它是 DOT 的价值捕获通道。</strong><br />
+<strong>本报告标为二手，未在链上确认销毁路径。</strong></p>
+<h3 id="62">6.2 本轮销售的链上参数</h3>
+<p><strong>本报告从 Coretime 链解码 <code>Broker.SaleInfo</code></strong>（SCALE 编码，逐字段手工解析）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>字段</th>
+<th style="text-align: right;">解码值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cores_offered</code></td>
+<td style="text-align: right;"><strong>89</strong></td>
+</tr>
+<tr>
+<td><strong><code>cores_sold</code></strong></td>
+<td style="text-align: right;"><strong>35</strong></td>
+</tr>
+<tr>
+<td><code>end_price</code>（地板价）</td>
+<td style="text-align: right;"><strong>10 DOT</strong></td>
+</tr>
+<tr>
+<td><code>sellout_price</code></td>
+<td style="text-align: right;">13.44 DOT</td>
+</tr>
+<tr>
+<td><code>region_begin</code> → <code>region_end</code></td>
+<td style="text-align: right;">413,565 → 418,605（跨度 5,040，与 <code>Configuration.region_length</code> 一致）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>初稿在这里挂了一个「100 倍未决分歧」</strong>：一个第三方来源称单价为 1,000 DOT。<br />
+<strong>领域审查已用两个独立的一手来源把它解决了</strong>：<br />
+① 官方链上界面显示本轮 <strong>89 个报价、售出 35 个、地板价 10 DOT、本轮收入约 472.43 DOT</strong>；<br />
+② 一项治理提案明确把地板价设为 <strong>10 DOT</strong>。<br />
+<strong>本报告的解码正确，第三方的 1,000 DOT 更可能是旧数据或混入了别的参数。</strong></p>
+<p><strong>本轮收入的独立数字 472.43 DOT，与本报告按 35 × 13.44 估算的约 470 DOT 相差 0.5%。</strong></p>
+<p>⚠️ <strong>但审查同时指出本报告的推理有毛病，这一条要记下来</strong>：<br />
+<strong>「其他字段解对了，所以价格字段也对」不是有效的 SCALE 验证。</strong><br />
+<strong>本报告当时是对的，但理由是错的——正确的做法是找独立来源，而不是靠字段自洽推断。</strong><br />
+⚠️ <strong>另一处方法瑕疵</strong>：用 <code>cores_sold × sellout_price</code> 估收入不严谨，<br />
+真实收入应逐笔累加 purchase 与 renewal 的实际付款。<strong>本期靠外部数字碰对了，不代表方法对。</strong></p>
+</blockquote>
+<h3 id="63">6.3 量级对照</h3>
+<p><img alt="增发与收入不在一个数量级" src="charts/issuance-vs-revenue-202608.svg" /></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本轮（约 28 天）coretime 收入</td>
+<td style="text-align: right;"><strong>472.43 DOT ≈ $511</strong></td>
+</tr>
+<tr>
+<td>年化（13 轮）</td>
+<td style="text-align: right;">约 <strong>6,142 DOT ≈ $6,646</strong></td>
+</tr>
+<tr>
+<td>DefiLlama 覆盖的全生态 30 天费用</td>
+<td style="text-align: right;">约 <strong>$692</strong>（年化约 <strong>$8,419</strong>）</td>
+</tr>
+<tr>
+<td><strong>已测到的全部年化收入</strong></td>
+<td style="text-align: right;"><strong>约 $15,065</strong></td>
+</tr>
+<tr>
+<td><strong>年净增发</strong></td>
+<td style="text-align: right;"><strong>$6,058 万</strong></td>
+</tr>
+<tr>
+<td><strong>比值</strong></td>
+<td style="text-align: right;"><strong>约 4,021 : 1</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>初稿在这里写「比值在 900:1 到 9,000:1 之间」——低端算错了一个数量级。</strong><br />
+$6,058 万 ÷ $66 万 = <strong>92</strong>，不是 900。<strong>而初稿自己上一行就写着「只有年增发的 1.1%」（= 1/92），<br />
+两句在同一段里互相矛盾。</strong> 该区间已随 6.2 的分歧解决而整体废弃。</p>
+</blockquote>
+<p><strong>替换初稿的「区间两端结论相同」——那个检验测错了参数</strong>：</p>
+<blockquote>
+<p>⚠️ <strong>推理审查指出</strong>：初稿变动的是 coretime 单价——<strong>本报告亲手解码、有两处自洽检查的那个量</strong>；<br />
+<strong>完全没有变动的是 Asset Hub 的实际费用收入——本报告在 11.4 里标为「❌ 未获取」的那个量。</strong><br />
+<strong>对已知的做敏感性、对未知的不做，然后宣布「区间两端结论相同」，<br />
+这不是区间检验，是把不确定性挪到了区间外面。</strong></p>
+</blockquote>
+<p><strong>改用盈亏平衡陈述，它一次封住所有未测项</strong>：</p>
+<blockquote>
+<p><strong>要让「净增发 ≈ 全网收入」成立，Polkadot 全网的年收入需达到约 $6,058 万。</strong><br />
+<strong>而已测到的全部收入合计约 $15,065。</strong><br />
+<strong>也就是说：本报告未测的 Asset Hub 费用收入，需要是已测总和的约 4,000 倍，结论才会翻转。</strong></p>
+<p><strong>作为量级参照</strong>：迁移前中继链的月费峰值是 $20,737（年化约 $24.9 万）。<br />
+<strong>$6,058 万是它的 243 倍。</strong></p>
+</blockquote>
+<p><strong>本报告对 Asset Hub 活动量做了一次直接采样</strong>（这是初稿完全缺失的）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>出块间隔</td>
+<td style="text-align: right;"><strong>1.92 秒</strong></td>
+<td>✅ 链上实测</td>
+</tr>
+<tr>
+<td>每日区块数</td>
+<td style="text-align: right;">约 45,000</td>
+<td>本报告计算</td>
+</tr>
+<tr>
+<td>采样 60 个区块的 extrinsic 数</td>
+<td style="text-align: right;">195（平均每块 3.25）</td>
+<td>✅ 链上实测</td>
+</tr>
+<tr>
+<td><strong>推算每日 extrinsic</strong></td>
+<td style="text-align: right;"><strong>约 146,250</strong></td>
+<td>本报告推算</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Asset Hub 上有真实活动，不是一条空链。</strong><br />
+⚠️ <strong>但本报告没有测这些 extrinsic 产生了多少费用</strong>——那需要逐笔查询手续费或接入索引服务。<br />
+<strong>因此「4,000 倍」这个盈亏平衡倍数，是本报告能给出的最强陈述，而不是一个已经排除了未知项的结论。</strong></p>
+</blockquote>
+<h3 id="64">6.4 与前几期的对照</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th>增发 vs 归持有人收入</th>
+<th>本系列的判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ETH</strong></td>
+<td>增发 86,523 ETH vs 销毁 1,178 ETH（30 天）</td>
+<td>「网络越来越有用，代币越来越收不到钱」</td>
+</tr>
+<tr>
+<td><strong>TRX</strong></td>
+<td>年增发 1.51% vs 销毁 0.99%</td>
+<td>净通胀 +0.52%，收入被治理定价砍半</td>
+</tr>
+<tr>
+<td><strong>ADA</strong></td>
+<td>L1 月费 $38,275，市值 $80.4 亿</td>
+<td>「用量本身近乎不存在」</td>
+</tr>
+<tr>
+<td><strong>DOT</strong></td>
+<td><strong>年增发 $6,058 万 vs 收入千至万美元级</strong></td>
+<td><strong>增发与收入不在一个数量级</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>ADA 期的问题是「分母在噪声量级」。DOT 的问题不同：分母是可测的，只是太小。</strong><br />
+<strong>区别在于——ADA 的收入低是因为没人用；DOT 的收入低有一部分是设计使然</strong>：<br />
+<strong>Agile Coretime 的定价会随需求不足而自动降到地板价。</strong><br />
+<strong>也就是说，DOT 的低收入既反映需求，也反映定价机制在需求不足时的行为。</strong></p>
+</blockquote>
+<hr />
+<h2 id="7">7. 国库与治理</h2>
+<h3 id="71">7.1 国库：用对字段之后</h3>
+<blockquote>
+<p>⚠️ <strong>初稿在这里用 <code>Balances.InactiveIssuance</code> 当国库余额的代理，并据此写「国库 61 天 +16.3%」。</strong><br />
+<strong>领域审查指出这个映射基本是错的，本报告已在链上验证并确认：</strong></p>
+<p><strong><code>Treasury.Deactivated</code> = 24,310,025.53 DOT，与 Subscan 的 <code>treasury_balance</code> 完全一致。</strong><br />
+<strong>而 <code>InactiveIssuance</code> = 28,220,817 DOT——两者差 391 万枚。</strong><br />
+<strong>Subscan 是对的，初稿用错了字段。</strong></p>
+</blockquote>
+<p><strong>用正确字段重测</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>日期</th>
+<th style="text-align: right;"><code>Treasury.Deactivated</code></th>
+<th style="text-align: right;"><code>InactiveIssuance</code></th>
+<th style="text-align: right;">差额</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-12-15</td>
+<td style="text-align: right;">16,402,903</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td>2026-03-09</td>
+<td style="text-align: right;">21,064,469</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td>2026-05-11</td>
+<td style="text-align: right;">22,820,043</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td>2026-07-09</td>
+<td style="text-align: right;">23,364,128</td>
+<td style="text-align: right;">24,275,895</td>
+<td style="text-align: right;">911,767</td>
+</tr>
+<tr>
+<td>2026-08-08</td>
+<td style="text-align: right;"><strong>24,310,026</strong></td>
+<td style="text-align: right;">26,686,455</td>
+<td style="text-align: right;">2,376,430</td>
+</tr>
+<tr>
+<td>2026-08-31</td>
+<td style="text-align: right;"><strong>24,310,026</strong></td>
+<td style="text-align: right;">27,839,255</td>
+<td style="text-align: right;">3,529,229</td>
+</tr>
+<tr>
+<td><strong>2026-09-08</strong></td>
+<td style="text-align: right;"><strong>24,310,026</strong></td>
+<td style="text-align: right;">28,221,365</td>
+<td style="text-align: right;"><strong>3,911,340</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>两处初稿完全看反了的事实</strong>：</p>
+<blockquote>
+<p><strong>① 国库是阶梯式更新的，近 31 天一动没动。</strong><br />
+初稿说的「61 天 +16.3%」测的是 <code>InactiveIssuance</code>，而<strong>真正的国库在最近 31 天里精确为零变化</strong>。<br />
+<strong>在阶梯式序列上算短窗口增长率是没有意义的。</strong></p>
+<p><strong>② 真正在持续增长的是两者的差额</strong>——从 91 万枚涨到 391 万枚，61 天增加 300 万枚。<br />
+⚠️ <strong>本报告未能确定这部分是什么</strong>（领域审查推测是费用、罚没与未分配质押奖励的中转账户）。<br />
+<strong>这是本期第二重要的待核实项。</strong></p>
+</blockquote>
+<p><strong>拉长到 267 天，国库确实在增长</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th style="text-align: center;">变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-12-15 → 2026-09-08（267 天）</td>
+<td style="text-align: center;"><strong>+7,907,122 枚（+48.2%）</strong></td>
+</tr>
+<tr>
+<td>年化</td>
+<td style="text-align: center;">约 <strong>+1,081 万枚</strong></td>
+</tr>
+<tr>
+<td><strong>占净增发的比例</strong></td>
+<td style="text-align: center;"><strong>19.3%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>19.3% 与 Polkadot 经典的约两成国库分成一致</strong>——这是 5.6 那个分配推算的依据。<br />
+<strong>按当前价格，国库约 $2,631 万。</strong></p>
+</blockquote>
+<h3 id="72">7.2 治理</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>治理锁仓（conviction lock）</td>
+<td style="text-align: right;"><strong>128,062,351 DOT</strong></td>
+<td>Subscan Asset Hub</td>
+</tr>
+<tr>
+<td>占总量</td>
+<td style="text-align: right;"><strong>7.52%</strong></td>
+<td>本报告计算</td>
+</tr>
+<tr>
+<td>归属中（vesting）</td>
+<td style="text-align: right;">17,625,450 DOT</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Polkadot 的 OpenGov 是本系列覆盖的资产里链上治理参与度最高的之一</strong>——<br />
+7.52% 的供应处于治理锁仓状态。<br />
+<strong>而本期最重要的两项变化（供应上限、Asset Hub 迁移）都是通过公投完成的。</strong></p>
+<p><strong>这是一个真实的多头论据</strong>：<strong>这条链能够对自己的代币经济做出实质修改，并且执行到位。</strong><br />
+供应上限从「无上限」改到「21 亿」，且实测通胀确实降到了 3.29%——<strong>说了并且做到了。</strong></p>
+</blockquote>
+<hr />
+<h2 id="8-dot">8. DOT 与其他九个资产的比较</h2>
+<blockquote>
+<p><strong>口径声明</strong>：8 月月度涨幅统一为 8/1→8/31，成交额为 2026 年 8 月日成交额中位数，<br />
+波动率与 beta 为 2025-09 至 2026-09 的日对数收益率；<br />
+<strong>十个资产在同一查询窗口内取得。</strong></p>
+</blockquote>
+<h3 id="81">8.1 十资产矩阵</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th><strong>DOT</strong></th>
+<th>XIN</th>
+<th>TRX</th>
+<th>UNI</th>
+<th>HYPE</th>
+<th>BNB</th>
+<th>ETH</th>
+<th>SOL</th>
+<th>ADA</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市值</td>
+<td><strong>$18.4 亿</strong></td>
+<td>无法计算</td>
+<td>$318.1 亿</td>
+<td>$44.0 亿</td>
+<td>$196.5 亿</td>
+<td>$1,009 亿</td>
+<td>$3,052 亿</td>
+<td>$622.7 亿</td>
+<td>$82.7 亿</td>
+<td>$16,047 亿</td>
+</tr>
+<tr>
+<td>8 月涨幅</td>
+<td><strong>+8.07%</strong></td>
+<td>+9.67%</td>
+<td>+3.14%</td>
+<td>+18.06%</td>
+<td>+52.40%</td>
+<td>+16.71%</td>
+<td>+29.86%</td>
+<td>+39.68%</td>
+<td>+14.65%</td>
+<td>+23.62%</td>
+</tr>
+<tr>
+<td><strong>距 ATH</strong></td>
+<td><strong>–98.03%</strong></td>
+<td>–96.75%</td>
+<td>–22.31%</td>
+<td>–84.30%</td>
+<td>–0.26%</td>
+<td>–44.66%</td>
+<td>–49.43%</td>
+<td>–63.73%</td>
+<td>–92.86%</td>
+<td>–36.62%</td>
+</tr>
+<tr>
+<td>8 月日成交中位数</td>
+<td><strong>$7,974 万</strong></td>
+<td>$10,878</td>
+<td>$3.709 亿</td>
+<td>$2.456 亿</td>
+<td>$3.062 亿</td>
+<td>$6.399 亿</td>
+<td>$70.41 亿</td>
+<td>$14.35 亿</td>
+<td>$3.804 亿</td>
+<td>$217.09 亿</td>
+</tr>
+<tr>
+<td>年化波动率</td>
+<td><strong>81.5%</strong></td>
+<td>177.3%</td>
+<td>26.6%</td>
+<td>97.1%</td>
+<td>93.6%</td>
+<td>52.9%</td>
+<td>63.8%</td>
+<td>67.9%</td>
+<td>80.9%</td>
+<td>44.2%</td>
+</tr>
+<tr>
+<td>beta</td>
+<td><strong>1.15</strong></td>
+<td>0.63</td>
+<td>0.247</td>
+<td>1.329</td>
+<td>1.076</td>
+<td>0.920</td>
+<td>1.300</td>
+<td>1.319</td>
+<td>1.375</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td><strong>R²</strong></td>
+<td><strong>38.3%</strong></td>
+<td>2.4%</td>
+<td>16.8%</td>
+<td>36.6%</td>
+<td>25.8%</td>
+<td>59.1%</td>
+<td>81.1%</td>
+<td>73.7%</td>
+<td>56.4%</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>净供应方向</td>
+<td><strong>+3.29%</strong></td>
+<td>无机制</td>
+<td>+0.519%</td>
+<td>总减流增</td>
+<td>待定</td>
+<td>–4.56%</td>
+<td>+0.863%</td>
+<td>递减</td>
+<td>+1.47%</td>
+<td>递减</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>DOT 在十个资产里的位置</strong>：<strong>距 ATH 最深（–98.03%）、净通胀最高（+3.29%）</strong>，<br />
+而波动率（81.5%）与 R²（38.3%）都在中位——<strong>它的价格行为是正常的，异常的是它的代币经济。</strong></p>
+</blockquote>
+<h3 id="82-dot-vs-ada">8.2 DOT vs ADA：两种「用量不足」</h3>
+<p><strong>这是本期最有信息量的一组对照。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>DOT</strong></th>
+<th><strong>ADA</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>距 ATH</td>
+<td><strong>–98.03%</strong></td>
+<td>–92.86%</td>
+</tr>
+<tr>
+<td>净通胀</td>
+<td><strong>+3.29%</strong></td>
+<td>+1.47%</td>
+</tr>
+<tr>
+<td>收入</td>
+<td>年化千至万美元级</td>
+<td>L1 月费 $38,275</td>
+</tr>
+<tr>
+<td>用量不足的原因</td>
+<td><strong>需求不足 ＋ 定价机制自动降到地板价</strong></td>
+<td><strong>需求本身近乎不存在</strong></td>
+</tr>
+<tr>
+<td>治理</td>
+<td><strong>已通过公投改掉了自己的通胀模型并执行到位</strong></td>
+<td>治理活跃，但未改变代币经济</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>两者的表面症状相同（高通胀、低收入、深回撤），机制不同。</strong><br />
+<strong>ADA 期的结论是「问题比价值捕获更靠前一层——用量本身不存在」。</strong><br />
+<strong>DOT 的用量也不足，但它至少有一个会对需求做出反应的定价机制，<br />
+以及一个已经证明能改动代币经济的治理系统。</strong><br />
+<strong>这两条是 DOT 相对 ADA 的实质差异。</strong><br />
+⚠️ <strong>初稿在这里写「值得计入多头」，而第一条（响应式定价机制）从未进入 9.1 的多头表，<br />
+也就规避了那套星级纪律。已在 9.1 补为第 7 条，评级两星</strong>——<br />
+<strong>因为在当前状态下，这个机制降低收入（自动降到地板价），它的价值是需求恢复时的期权，<br />
+而恢复概率本报告没有测。</strong></p>
+</blockquote>
+<hr />
+<h2 id="9">9. 核心价值逻辑与估值</h2>
+<p><strong>星级编码证据等级</strong>：完全建立在二手转述上的论据不得给到五星。</p>
+<h3 id="91">9.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>说明与证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>发行率在 2026 年 3 月前后腰斩，且前后对照是一手可见的</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>✅ <strong>链上实测：下调前 7.25%、下调后 3.44%，降幅 –52.5%</strong>（互不重叠区间）。<strong>7.25% 与「每年 1.2 亿枚 = 7.05%」高度吻合</strong></td>
+</tr>
+<tr>
+<td>1b</td>
+<td>上述腰斩由 Ref 1710 的阶梯机制造成</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>⚠️ <strong>归因是二手</strong>，本报告未打开提案原文核对生效日期。<strong>可一手说的是「发生了」，不是「为什么发生」</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>治理能改动自己的代币经济并执行到位</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 发行率变化与 Asset Hub 迁移均已在链上确认。⚠️ 提案原文未逐一打开</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>质押率 53.73% 且缓慢上行</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ <strong>链上一手</strong>（era 2288 vs era 2100）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>国库在积累而非消耗</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 链上一手（<code>Treasury.Deactivated</code> 267 天 +48.2%，占净增发 19.3%）。⚠️ <strong>阶梯式更新，短窗口无意义</strong>；未拆解流入/支出。⚠️ <strong>初稿用错了字段，见 7.1</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>价格行为是正常的价格发现</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ R² 38.3%、日成交中位数 $7,974 万——<strong>与 XIN 那种「测不出来」有本质区别</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td>距 ATH –98.03%，市值仅 $18.41 亿</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ 一手。⚠️ <strong>「跌得多」不是理由</strong>；在持续稀释下，低价不自动构成安全边际</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Coretime 是一个会对需求做出反应的定价机制</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>⚠️ <strong>本条是审查后补入的</strong>：8.2 曾宣布它「值得计入多头」却从未进本表。<strong>给两星的理由</strong>：在当前状态下该机制<strong>降低</strong>收入（自动降到地板价 10 DOT），它的价值是需求恢复时的自动涨价期权，<strong>而恢复概率本报告没有测</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="92">9.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>说明与证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>净增发与已测收入相差约 4,000 倍</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 增发为链上实测。⚠️ <strong>从五星降为四星</strong>：<strong>Asset Hub 的费用收入本报告没有测</strong>，因此这是一个盈亏平衡陈述（需 4,000 倍才翻转），不是一个已排除未知项的结论</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>不质押者每年被稀释 3.19%</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 只依赖实测净供应增长率。⚠️ <strong>从五星降为四星</strong>：<strong>若 21 亿上限成立，这个稀释的总量封顶在 23.4%、约 7 年触顶</strong>，不是永续（见 5.4）</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>质押的作用主要是抵消稀释，不是创造收益</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>⚠️ <strong>推算</strong>。<strong>已补上界检验</strong>：即使全部增发流向质押者，实际份额上限 +2.74%，区间两端结论相同（见 5.6）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>生态 TVL 仅 $6,314 万，且 92.8% 集中于单一平行链</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ DefiLlama 一手。⚠️ <strong>TVL 不是衡量 Polkadot 的合适尺子</strong>，因此不给四星</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>主流数据源系统性失准，使问题长期不被看见</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ <strong>本报告链上直接验证</strong>（第 4 章）。这是一条关于「市场认知」的论据，不是关于基本面的</td>
+</tr>
+<tr>
+<td>6</td>
+<td>距 ATH –98.03%，十个资产里最深</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 一手。<strong>它是结果不是原因</strong>，因此不给更高</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="93">9.3 估值：本报告给什么、不给什么</h3>
+<p><strong>先说不给的</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>路径</th>
+<th>崩在哪一步</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>收入倍数法</td>
+<td><strong>已测收入约 $15,065/年，任何倍数乘上去都得不到 $18.41 亿。</strong> 这个方法在 DOT 上不是「精度不足」，是「量级不匹配」。⚠️ <strong>限定</strong>：Asset Hub 费用未测，见 6.3</td>
+</tr>
+<tr>
+<td>相对市值法（对标 L1）</td>
+<td>需要一个可比的「共享安全 + coretime」标的，<strong>本报告找不到</strong></td>
+</tr>
+<tr>
+<td>现金流折现</td>
+<td>无可验证的营收披露</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>再说给的</strong>：<strong>DOT 可以用「稀释成本」这个角度给出一个可检验的陈述。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年增发（美元计）</td>
+<td style="text-align: right;"><strong>$6,058 万</strong></td>
+</tr>
+<tr>
+<td>市值</td>
+<td style="text-align: right;">$18.41 亿</td>
+</tr>
+<tr>
+<td><strong>年增发 / 市值</strong></td>
+<td style="text-align: right;"><strong>3.29%</strong></td>
+</tr>
+<tr>
+<td><strong>市值 / 年增发</strong></td>
+<td style="text-align: right;"><strong>30.4 倍</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>读法</strong>：<strong>市场每年要吸收相当于市值 3.30% 的新供应，而网络提供的对冲（收入/销毁）接近于零。</strong><br />
+<strong>在需求持平的情况下，DOT 的价格每年需要下跌约 3.2% 才能出清新增供应。</strong></p>
+<p>⚠️ <strong>但这个成本是有限的，不是永续的</strong>（初稿漏了这一步）：<br />
+<strong>若 21 亿上限成立，剩余可增发共 398,167,659 枚 = 当前供应的 23.4%，按当前速率约 7.1 年触顶，<br />
+且速率仍在衰减。</strong><br />
+<strong>所以约束条件的正确表述是「累计需吸收 23.4%」，而不是「每年 3.3% 且永远持续」。</strong><br />
+<strong>两者对长期持有决策的含义完全不同。</strong><br />
+⚠️ <strong>前提是上限不被治理改回</strong>（见 9.4 第 4 条）。</p>
+<p>⚠️ <strong>这不是一个目标价，也不构成方向判断</strong>——需求不是常数，而 2026 年 8 月它涨了 8.07%。</p>
+</blockquote>
+<p><strong>本报告不给目标价</strong>，理由与 XIN 期不同：<br />
+<strong>XIN 是业务经济性不可观测；DOT 是业务经济性可观测，但小到无法支撑任何倍数法。</strong></p>
+<h3 id="94">9.4 这套判断的五个弱点</h3>
+<ol>
+<li><strong>收入侧的精度低于供应侧。</strong> 6.2 的 <code>end_price</code> 与一个第三方来源相差 100 倍，本报告未能调和。</li>
+<li><strong>本报告没有测流量。</strong> 交易笔数、Asset Hub 的实际费用收入都没有直接测，<br />
+   依赖第三方数据源——<strong>而第 4 章刚刚论证了这些数据源在 DOT 上不可靠。这是一个已知的内部张力。</strong></li>
+<li><strong>国库分析只有 61 天窗口</strong>，不足以判断趋势，也没有拆解流入与支出。</li>
+<li><strong>「治理能改动代币经济」这条多头论据可以反向使用</strong>——同一个机制也可以把通胀改回去。</li>
+<li><strong>本报告是 DOT 首期，无过往论点可校验。</strong> 本系列九期的记录是：<br />
+   BTC 已检验的 8 个论点只对 1 个；<strong>ADA 期核心事实写反、ETH 期三处口径错误、<br />
+   BNB 期模型内部重复计算、HYPE 期核心结论方向错误、UNI 期把拟合报成验证、<br />
+   TRX 期敏感性分析做错、XIN 期把网络代币当成了股权剩余索取权。</strong><br />
+   请以相应的怀疑程度对待本报告。</li>
+</ol>
+<hr />
+<h2 id="10">10. 投资与风险启示</h2>
+<h3 id="101-dot">10.1 DOT 现在处于什么位置</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>技术执行</strong></td>
+<td><strong>良好。</strong> Asset Hub 迁移完成且链上可验证；供应上限说到做到</td>
+</tr>
+<tr>
+<td><strong>代币经济</strong></td>
+<td><strong>差。</strong> 年稀释 3.29%，对冲接近于零</td>
+</tr>
+<tr>
+<td><strong>业务规模</strong></td>
+<td><strong>小且集中。</strong> 全生态 TVL $6,314 万，92.8% 在一条平行链上</td>
+</tr>
+<tr>
+<td><strong>价格发现</strong></td>
+<td><strong>正常。</strong> R² 38.3%，日成交中位数 $7,974 万</td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td><strong>不给目标价。</strong> 收入量级不支持任何倍数法（见 9.3）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="102">10.2 策略含义</h3>
+<p><strong>本报告不给买卖建议，只给三条与决策直接相关的结构性事实</strong>：</p>
+<ol>
+<li><strong>不质押持有 DOT 是一个确定性的负期望（份额层面）</strong>——每年 –3.19%，<br />
+<strong>这一条不依赖任何关于价格的假设。</strong> 质押的作用主要是把它抵消掉。<br />
+   ⚠️ 代价是解质押等待期（Polkadot 为 28 天）与验证人选择风险。</li>
+<li><strong>任何看多论证都必须先回答「累计 23.4% 的新供应由什么吸收」。</strong><br />
+   ⚠️ <strong>初稿在这里列了三个吸收来源（新增需求、质押锁仓率上升、国库沉淀），其中两个是口径错误。</strong><br />
+<strong>3.19% 是总供应口径的恒等式（1 − 1/1.0330），它衡量的是「市值不变时每枚价格的跌幅」。</strong><br />
+<strong>在这个口径下，质押锁仓不减少总供应</strong>——它只影响自由流通量，在市值恒等式里吸收为零。<br />
+<strong>国库沉淀同理，且 5.6 已经把它从流向质押者的部分里扣掉了，9.3 又把它算进待吸收量，是重复计算。</strong><br />
+<strong>修正后：在总供应口径下，唯一的吸收来源是新增需求。</strong><br />
+<strong>若要把锁仓算作吸收，必须切换到自由流通量口径并重算稀释率——本报告没有做。</strong></li>
+<li><strong>不要用第三方数据源判断 Polkadot 的链上状况。</strong> 第 4 章给出了理由和替代方法。</li>
+</ol>
+<h3 id="103">10.3 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">当前值</th>
+<th>触发关注的阈值</th>
+<th>查询方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>实测年化通胀</strong></td>
+<td style="text-align: right;"><strong>3.29%</strong></td>
+<td>偏离 ±0.5pp</td>
+<td>Asset Hub <code>Balances.TotalIssuance</code> 两点差分</td>
+</tr>
+<tr>
+<td><strong>Coretime 售出 / 报价</strong></td>
+<td style="text-align: right;"><strong>35 / 89</strong></td>
+<td>售罄（=报价数），或跌破 20</td>
+<td>Coretime 链 <code>Broker.SaleInfo</code></td>
+</tr>
+<tr>
+<td>Coretime 端价</td>
+<td style="text-align: right;">10 DOT</td>
+<td>脱离地板价</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>质押率</td>
+<td style="text-align: right;">53.73%</td>
+<td>跌破 50%</td>
+<td><code>Staking.ErasTotalStake</code> ÷ <code>TotalIssuance</code></td>
+</tr>
+<tr>
+<td>国库（InactiveIssuance）</td>
+<td style="text-align: right;">2,822 万 DOT</td>
+<td>转为净减少</td>
+<td>Asset Hub <code>Balances.InactiveIssuance</code></td>
+</tr>
+<tr>
+<td>生态 TVL 集中度</td>
+<td style="text-align: right;">Hydration 占 92.8%</td>
+<td>出现第二条占比 &gt;20% 的平行链</td>
+<td>DefiLlama</td>
+</tr>
+<tr>
+<td>DefiLlama 是否收录 Asset Hub</td>
+<td style="text-align: right;"><strong>未收录</strong></td>
+<td>收录（届时可恢复用第三方数据）</td>
+<td>DefiLlama <code>allChains</code></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="104">10.4 风险提醒</h3>
+<ol>
+<li><strong>稀释是首要风险，但它是有限的。</strong> <strong>在 21 亿上限被触及前的每一年都会发生（当前 3.30%），<br />
+   累计总量 23.4%，约 7 年触顶。</strong> ⚠️ <strong>初稿把它写成了永续常数，已更正。</strong></li>
+<li><strong>收入侧的测量精度不足。</strong> 6.2 存在一个 100 倍的未解分歧。</li>
+<li><strong>生态集中风险。</strong> 92.8% 的 TVL 在一条平行链上。</li>
+<li><strong>数据可见性风险。</strong> 主流数据源测错链意味着<strong>市场对 DOT 的定价可能建立在错误的输入上</strong>——<br />
+<strong>这个风险对多空双方都成立</strong>：它既可能掩盖问题，也可能掩盖改善。</li>
+<li><strong>治理风险的两面性。</strong> 同一个能把通胀从 10% 改到 3.29% 的机制，也能把它改回去。</li>
+<li><strong>本报告自身的风险。</strong> DOT 首期，无过往论点可校验。见 9.4 第 5 条。</li>
+</ol>
+<h3 id="105">10.5 长期认知</h3>
+<p><strong>第一，做到第十个资产，最该记住的是「先确认数据源在测哪条链」。</strong><br />
+本系列已经踩过四次口径坑（ADA 的 L1 vs 生态、ETH 的 blob vs L2 全部、<br />
+TRX 的「费用=销毁」、XIN 的只查英文版），<strong>本期是第五次，而且是最隐蔽的一次</strong>——<br />
+<strong>前四次是指标选错了，这次是标的选错了。</strong><br />
+<strong>当一条链把核心功能迁走，按链名索引的数据源不会报错，它会安静地继续返回旧链的数据。</strong></p>
+<p><strong>第二，「说了并且做到了」是一个可以被测量的多头论据，而且很少有人去测。</strong><br />
+Polkadot 承诺把无上限通胀改成 21 亿上限并阶梯下调。<br />
+<strong>本报告没有去读提案措辞，而是去链上量了四次——3.29%，四次一致。</strong><br />
+<strong>在一个承诺远多于兑现的行业里，这类可验证的执行记录应当被计入评级。</strong></p>
+<p><strong>第三，一个「量级不匹配」的问题，不需要精确的数字就能下结论。</strong><br />
+本报告的 coretime 单价存在 100 倍的未解分歧——<strong>而在两端结论相同。</strong><br />
+<strong>这与 XIN 期学到的是同一条：丢弃一个估计之前，先检查它的区间两端是否指向不同结论。</strong></p>
+<p><strong>第四，「跌了 98%」不是一个论据。</strong><br />
+DOT 距 ATH –98.03%，是十个资产里最深的。<br />
+<strong>但在每年 3.29% 稀释、收入接近于零的结构下，低价不构成安全边际。</strong><br />
+<strong>本报告把这条从多头论据里降到了两星，理由写在 9.1 #6。</strong></p>
+<hr />
+<h2 id="11_1">11. 附录</h2>
+<h3 id="111-dot">11.1 DOT 发展阶段速查</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>特征</th>
+<th>标志性事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一</td>
+<td>2020–2021</td>
+<td>创世与插槽拍卖</td>
+<td>2020-05 主网；<strong>2021-11-04 ATH $54.98</strong></td>
+</tr>
+<tr>
+<td>二</td>
+<td>2022–2023</td>
+<td>锁仓退潮</td>
+<td>插槽租期到期，DOT 解锁回流</td>
+</tr>
+<tr>
+<td>三</td>
+<td>2024–2025.10</td>
+<td>Polkadot 2.0 改造</td>
+<td>Agile Coretime 取代插槽拍卖</td>
+</tr>
+<tr>
+<td>四</td>
+<td><strong>2025-11-04</strong></td>
+<td><strong>Asset Hub 迁移</strong></td>
+<td>余额、质押、治理迁出中继链</td>
+</tr>
+<tr>
+<td>五</td>
+<td>2025.11– 至今</td>
+<td>低价区间与供应上限</td>
+<td>2026-03-14 起阶梯下调；<strong>2026-08-18 ATL $0.727</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112-2026-09-08">11.2 关键数据速查（截至 2026-09-08）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>指标</th>
+<th style="text-align: right;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>市场</strong></td>
+<td>现价</td>
+<td style="text-align: right;">$1.082</td>
+</tr>
+<tr>
+<td></td>
+<td>市值 / 排名</td>
+<td style="text-align: right;">$18.41 亿 / 第 48</td>
+</tr>
+<tr>
+<td></td>
+<td>距 ATH（$54.98，2021-11-04）</td>
+<td style="text-align: right;"><strong>–98.03%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>ATL（2026-08-18）</td>
+<td style="text-align: right;"><strong>$0.727004</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>8 月涨幅（8/1→8/31）</td>
+<td style="text-align: right;">+8.07%</td>
+</tr>
+<tr>
+<td></td>
+<td>8 月日成交中位数</td>
+<td style="text-align: right;">$7,974 万</td>
+</tr>
+<tr>
+<td></td>
+<td>年化波动率 / beta / R²</td>
+<td style="text-align: right;">81.5% / 1.15 / <strong>38.3%</strong></td>
+</tr>
+<tr>
+<td><strong>供应</strong></td>
+<td>链上总发行量（Asset Hub）</td>
+<td style="text-align: right;"><strong>1,701,813,540 枚</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>中继链残留</td>
+<td style="text-align: right;"><strong>241,430 枚（0.014%）</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>供应上限</td>
+<td style="text-align: right;">21 亿枚</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>实测年化通胀</strong></td>
+<td style="text-align: right;"><strong>3.29%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>年增发</td>
+<td style="text-align: right;">约 5,599 万枚 ≈ <strong>$6,058 万</strong></td>
+</tr>
+<tr>
+<td><strong>质押</strong></td>
+<td>总质押（era 2288）</td>
+<td style="text-align: right;">914,460,537 枚</td>
+</tr>
+<tr>
+<td></td>
+<td>质押率</td>
+<td style="text-align: right;"><strong>53.73%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>验证人 / 提名人</td>
+<td style="text-align: right;">600 / 28,787</td>
+</tr>
+<tr>
+<td></td>
+<td>最低有效质押</td>
+<td style="text-align: right;">238.56 枚</td>
+</tr>
+<tr>
+<td><strong>收入</strong></td>
+<td>Coretime 报价 / 售出</td>
+<td style="text-align: right;"><strong>89 / 35</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>端价 / 售罄价</td>
+<td style="text-align: right;">10 DOT / 13.44 DOT</td>
+</tr>
+<tr>
+<td></td>
+<td>全生态 30 天费用（第三方覆盖）</td>
+<td style="text-align: right;">约 <strong>$692</strong></td>
+</tr>
+<tr>
+<td><strong>国库</strong></td>
+<td>InactiveIssuance</td>
+<td style="text-align: right;"><strong>28,220,817 枚 ≈ $3,054 万</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>近 61 天变化</td>
+<td style="text-align: right;"><strong>+16.3%</strong></td>
+</tr>
+<tr>
+<td><strong>治理</strong></td>
+<td>治理锁仓</td>
+<td style="text-align: right;">128,062,351 枚（7.52%）</td>
+</tr>
+<tr>
+<td><strong>生态</strong></td>
+<td>平行链 TVL 合计</td>
+<td style="text-align: right;">约 <strong>$6,314 万</strong>（Hydration 占 92.8%）</td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td>市值 / 年增发</td>
+<td style="text-align: right;"><strong>30.4 倍</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>目标价</td>
+<td style="text-align: right;"><strong>不给</strong>（见 9.3）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113">11.3 十个资产的关键指标对照</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>DOT</th>
+<th>XIN</th>
+<th>TRX</th>
+<th>UNI</th>
+<th>HYPE</th>
+<th>BNB</th>
+<th>ETH</th>
+<th>SOL</th>
+<th>ADA</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 月涨幅</td>
+<td>+8.07%</td>
+<td>+9.67%</td>
+<td>+3.14%</td>
+<td>+18.06%</td>
+<td>+52.40%</td>
+<td>+16.71%</td>
+<td>+29.86%</td>
+<td>+39.68%</td>
+<td>+14.65%</td>
+<td>+23.62%</td>
+</tr>
+<tr>
+<td>距 ATH</td>
+<td><strong>–98.03%</strong></td>
+<td>–96.75%</td>
+<td>–22.31%</td>
+<td>–84.30%</td>
+<td>–0.26%</td>
+<td>–44.66%</td>
+<td>–49.43%</td>
+<td>–63.73%</td>
+<td>–92.86%</td>
+<td>–36.62%</td>
+</tr>
+<tr>
+<td>波动率</td>
+<td>81.5%</td>
+<td>177.3%</td>
+<td>26.6%</td>
+<td>97.1%</td>
+<td>93.6%</td>
+<td>52.9%</td>
+<td>63.8%</td>
+<td>67.9%</td>
+<td>80.9%</td>
+<td>44.2%</td>
+</tr>
+<tr>
+<td>beta</td>
+<td>1.15</td>
+<td>0.63</td>
+<td>0.247</td>
+<td>1.329</td>
+<td>1.076</td>
+<td>0.920</td>
+<td>1.300</td>
+<td>1.319</td>
+<td>1.375</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>R²</td>
+<td>38.3%</td>
+<td>2.4%</td>
+<td>16.8%</td>
+<td>36.6%</td>
+<td>25.8%</td>
+<td>59.1%</td>
+<td>81.1%</td>
+<td>73.7%</td>
+<td>56.4%</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>日成交中位数</td>
+<td>$7,974 万</td>
+<td>$10,878</td>
+<td>$3.709 亿</td>
+<td>$2.456 亿</td>
+<td>$3.062 亿</td>
+<td>$6.399 亿</td>
+<td>$70.41 亿</td>
+<td>$14.35 亿</td>
+<td>$3.804 亿</td>
+<td>$217.09 亿</td>
+</tr>
+<tr>
+<td>本报告给目标价</td>
+<td><strong>否</strong></td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="114">11.4 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th style="text-align: center;">核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>两条链的 TotalIssuance / InactiveIssuance</strong></td>
+<td><strong>Polkadot 中继链与 Asset Hub 公共 RPC</strong></td>
+<td style="text-align: center;">✅ <strong>直接读取链上存储</strong>，键由自行实现的 twox128 计算并自检通过</td>
+</tr>
+<tr>
+<td><strong>实测通胀（四窗口）</strong></td>
+<td>同上，历史区块</td>
+<td style="text-align: center;">✅ <strong>本报告测量</strong>，非引用</td>
+</tr>
+<tr>
+<td><strong>质押（era / 总量 / 验证人 / 提名人 / 最低质押）</strong></td>
+<td>Asset Hub RPC</td>
+<td style="text-align: center;">✅ <strong>直接读取</strong></td>
+</tr>
+<tr>
+<td><strong>Coretime <code>Broker.SaleInfo</code> / <code>Configuration</code></strong></td>
+<td><strong>Coretime 链 RPC</strong></td>
+<td style="text-align: center;">✅ <strong>直接读取并手工解码 SCALE</strong>。⚠️ <strong>单价与第三方来源差 100 倍，未调和</strong></td>
+</tr>
+<tr>
+<td>价格 / 成交额 / 8 月涨幅（十资产）</td>
+<td>CoinGecko API</td>
+<td style="text-align: center;">✅ <strong>直接调用</strong>，同一窗口同一次取得</td>
+</tr>
+<tr>
+<td>波动率 / beta / R²</td>
+<td>同上日线自行计算</td>
+<td style="text-align: center;">✅ <strong>本报告计算</strong>；R² 恒等式自检通过</td>
+</tr>
+<tr>
+<td>Asset Hub 供应量（第二来源）</td>
+<td>Subscan <code>assethub-polkadot</code></td>
+<td style="text-align: center;">✅ <strong>与链上读数吻合到 0.00001%</strong></td>
+</tr>
+<tr>
+<td>平行链 TVL</td>
+<td>DefiLlama API</td>
+<td style="text-align: center;">✅ 直接调用。⚠️ <strong>Asset Hub 未被收录</strong></td>
+</tr>
+<tr>
+<td>Polkadot 链费用序列</td>
+<td>DefiLlama API</td>
+<td style="text-align: center;">⚠️ <strong>测的是中继链，已证明不代表实际使用量</strong>（第 4 章）</td>
+</tr>
+<tr>
+<td>Subscan 默认 Polkadot 端点的供应量</td>
+<td>Subscan</td>
+<td style="text-align: center;">❌ <strong>已证伪</strong>：返回 241,430 枚，是中继链残值</td>
+</tr>
+<tr>
+<td>Asset Hub 迁移日期 2025-11-04</td>
+<td>媒体与官方支持页转述</td>
+<td style="text-align: center;">⚠️ <strong>二手</strong>。<strong>但迁移结果已在链上独立确认</strong></td>
+</tr>
+<tr>
+<td>供应政策沿革（Ref 1139 / 1271 / 1710）</td>
+<td>媒体转述</td>
+<td style="text-align: center;">⚠️ <strong>二手，未打开提案原文</strong>。<strong>但净结果已实测</strong></td>
+</tr>
+<tr>
+<td>Coretime 收入被销毁</td>
+<td>二手</td>
+<td style="text-align: center;">⚠️ <strong>未在链上确认销毁路径</strong></td>
+</tr>
+<tr>
+<td>迁移规模（16.3 亿枚、150 万账户、5.3 万质押者）</td>
+<td>二手</td>
+<td style="text-align: center;">⚠️ <strong>未独立核实</strong></td>
+</tr>
+<tr>
+<td>Asset Hub 的实际费用收入</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>未获取</strong>——需遍历区块或索引服务，本报告未做</td>
+</tr>
+<tr>
+<td>国库的流入 / 支出拆解</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>未获取</strong>，只有净额时序</td>
+</tr>
+<tr>
+<td><code>InactiveIssuance</code> 与 Subscan <code>treasury_balance</code> 差 16% 的原因</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>未能确定</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="115">11.5 来源偏向声明</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>侧</th>
+<th>主要论据</th>
+<th style="text-align: center;">证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>多头</strong></td>
+<td>供应上限已兑现、质押率、国库积累、价格发现正常</td>
+<td style="text-align: center;">✅ <strong>主要论据全部为链上一手</strong></td>
+</tr>
+<tr>
+<td><strong>空头</strong></td>
+<td>增发/收入量级差、稀释率、生态集中度</td>
+<td style="text-align: center;">✅ 增发为一手；⚠️ <strong>收入侧精度低</strong>（100 倍分歧未解）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>本期的证据结构与 XIN 期相反。</strong><br />
+XIN 期是「空头论据全一手、多头靠公司自述」；<br />
+<strong>DOT 期最强的多头论据（供应上限已兑现）恰恰是本报告亲手测出来的。</strong></p>
+<p>⚠️ <strong>一处不对称，且本期已按它调整了结论强度（初稿只声明未执行）</strong>：<br />
+<strong>本报告测供应侧用的是链上直读，测收入侧用的是第三方数据 + 一次手工解码 + 一个未测项。</strong><br />
+<strong>而第 4 章刚刚论证了第三方数据在 DOT 上不可靠。</strong><br />
+<strong>对「分母」的信心显著高于对「分子」的信心，而结论依赖两者之比。</strong></p>
+<p><strong>执行动作</strong>：<br />
+① 空头 #1 已从五星降为四星；<br />
+② 6.3 的「区间两端结论相同」已换成盈亏平衡陈述（需 4,000 倍才翻转），<strong>它一次封住所有未测项</strong>；<br />
+③ 已补入 Asset Hub 的活动量采样（每日约 146,250 笔 extrinsic），<strong>并明说其费用收入未测。</strong></p>
+</blockquote>
+<p><strong>传统金融机构视角的配平</strong>：本期引用了 <strong>CME</strong> FedWatch 与<strong>美联储</strong>的政策立场。<br />
+⚠️ <strong>本报告未找到传统金融机构对 DOT 的当期公开研究覆盖。</strong></p>
+<h3 id="116">11.6 发布前审查记录（本期必读）</h3>
+<p><strong>第 1 层（脚本机械核查）</strong>：通过。抓到一处图表数字未在正文出现，已修。</p>
+<p><strong>第 3 层（Codex，领域审查）三条，全部经复核后采纳</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>问题</th>
+<th style="text-align: center;">严重度</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong><code>InactiveIssuance</code> ≠ 国库余额</strong>——它是所有被标记为停用的总额，可能含费用、罚没与未分配质押奖励的中转</td>
+<td style="text-align: center;"><strong>极高</strong></td>
+<td>✅ <strong>链上验证属实</strong>：<code>Treasury.Deactivated</code> = 24,310,025.53 枚，<strong>与 Subscan 完全一致</strong>；<code>InactiveIssuance</code> = 28,220,817 枚，<strong>差 391 万枚</strong>。<strong>7.1 整节重写，5.6 的分配推算重做</strong>（+0.83% → +1.60%）</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>把单链 <code>TotalIssuance</code> 差分叫「年增发」证据链不成立</strong>——测到的是净发行变化，可能混入 teleport</td>
+<td style="text-align: center;">高</td>
+<td>✅ 采纳。全文改称「净供应增长」；<strong>并补上 teleport 的污染上界</strong>（中继链总量仅 241,430 枚，封在 0.014% 以内）。⚠️ Codex 同时指出官方发行模型说首两年约 5,600 万枚，与实测吻合</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>coretime 的 10 DOT 倾向是对的，但自证理由不够，收入算法也不严谨</strong></td>
+<td style="text-align: center;">高</td>
+<td>✅ <strong>分歧已解决</strong>：官方链上界面显示本轮收入 <strong>472.43 DOT</strong>，治理提案确认地板价 10 DOT。<strong>「100 倍未决区间」整体废弃。</strong>⚠️ 同时记下方法瑕疵：「其他字段解对了所以价格字段也对」不是有效验证</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第 2 层（<code>_bian</code>，推理审查）十条，采纳十条</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>问题</th>
+<th style="text-align: center;">严重度</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>「比值 900:1」低端错一个数量级</strong>（应 92:1），且与同段「1.1%」自相矛盾</td>
+<td style="text-align: center;"><strong>极高</strong></td>
+<td>✅ <strong>算术硬伤属实</strong>。该区间已随 Codex #3 整体废弃，改用盈亏平衡陈述</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>区间检验测的是测得最准的参数，没测承认没测的那个</strong></td>
+<td style="text-align: center;"><strong>极高</strong></td>
+<td>✅ 采纳。6.3 改为盈亏平衡：<strong>未测项需为已测总和的 4,000 倍才翻转</strong>——一次封住所有未知</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>4.3 相邻两句自相矛盾</strong>（断言交易搬去哪，又说没测搬去哪）；<strong>迁移后费用继续跌 20 倍未处理</strong></td>
+<td style="text-align: center;"><strong>极高</strong></td>
+<td>✅ <strong>「不是需求崩塌」是诉诸无知，已收窄</strong>；并补入对迁移后持续下滑的处理</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>3.29% 被写成永续常数，而上限把总量封死在 23.4%</strong></td>
+<td style="text-align: center;"><strong>极高</strong></td>
+<td>✅ <strong>新增 5.4 整节</strong>；9.3 与 10.4#1 改写。<strong>报告最强的多头与最强的空头说的是同一个机制，初稿从未让前者约束后者</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>多头 #1 严格强于 #2 却多一个二手前提；且「已生效」没有一手基线</strong></td>
+<td style="text-align: center;">高</td>
+<td>✅ <strong>拆为 #1（一手前后对照，五星）与 #1b（归因二手，三星）</strong>；<strong>并补测了下调前区间（7.25%），把前后对照变成一手</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>四个窗口嵌套且共享终点</strong>，0.008pp 离散度是算术强制的</td>
+<td style="text-align: center;">高</td>
+<td>✅ <strong>5.2 改用互不重叠区间</strong>，真实离散度 0.30pp；撤回「最干净的一次测量」</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>吸收渠道口径混用</strong>——质押锁仓不减少总供应；国库沉淀被重复计算</td>
+<td style="text-align: center;">高</td>
+<td>✅ 10.2#2 重写，<strong>总供应口径下唯一吸收来源是新增需求</strong></td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>5.4「不依赖假设」是宣称不是证明；列出的限定全部单向</strong></td>
+<td style="text-align: center;">中</td>
+<td>✅ <strong>已补上界检验</strong>（+2.74%）与<strong>反向的第四条限定</strong></td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>记分卡 D8-4 门槛 3 不满足、D8-3 灰区且破例不必要、高先验未标注</strong></td>
+<td style="text-align: center;">高</td>
+<td>✅ 记分卡重写</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>8.2 宣布「值得计入多头」的一条从未进多头表</strong></td>
+<td style="text-align: center;">中</td>
+<td>✅ 已补为 9.1 第 7 条，评级两星</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>本期最该记住的两条</strong>：</p>
+<p><strong>① 报告最强的多头论据和最强的空头论据，可能说的是同一个机制。</strong><br />
+初稿一边给「供应上限已确立」五星，一边把「每年 3.29% 稀释」写成永续——<br />
+<strong>而如果前者为真，后者的总量就被封在 23.4%。两条五星论据从未被放在同一段里做量级校正。</strong><br />
+<strong>从本期起，多空表做完之后应当加一步：检查有没有两条论据在描述同一个机制的两面。</strong></p>
+<p><strong>② 对已知的参数做敏感性分析，对未知的项不做，然后宣布「区间两端结论相同」——<br />
+这不是区间检验，是把不确定性挪到了区间外面。</strong><br />
+<strong>正确的形式是盈亏平衡反推：它一次封住所有未测项。</strong></p>
+</blockquote>
+<hr />
+<blockquote>
+<p><strong>配套文件</strong>：<code>dot_questions_summary_202608.md</code>（简明速查）、<code>thesis_scorecard.md</code>（论点滚动记分卡）。<br />
+本报告不构成投资建议。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-dot-polkadot-2026-8">DOT / Polkadot 简明速查（2026 年 8 月版）</h1>
+<blockquote>
+<p>完整报告的浓缩版，给快速复习用。<strong>数据截止 2026-09-08。</strong><br />
+本文件不构成投资建议。</p>
+</blockquote>
+<hr />
+<h2 id="s-1">1. 一句话</h2>
+<p><strong>DOT 的问题不是「收入低」，是「增发与收入不在一个数量级」</strong>——<br />
+年净增发 <strong>$6,058 万</strong>，已测到的全部年收入约 <strong>$1.5 万</strong>。</p>
+<p>⚠️ <strong>但这个稀释是有限的</strong>：若 21 亿上限成立，剩余可增发共 <strong>3.982 亿枚 = 当前供应的 23.4%</strong>，<br />
+约 <strong>7.1 年触顶</strong>，且速率在衰减。<strong>不是「每年 3.3% 且永远持续」。</strong></p>
+<hr />
+<h2 id="s-2">2. 本期最重要的发现：数据源在测错的那条链</h2>
+<p><strong>2025 年 11 月 4 日，Polkadot 把余额、质押、治理整体迁出中继链，迁到 Asset Hub。</strong></p>
+<p>本报告对两条链查询同一个存储键 <code>Balances.TotalIssuance</code>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>链</th>
+<th style="text-align: right;">TotalIssuance</th>
+<th style="text-align: center;">占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>中继链</strong></td>
+<td style="text-align: right;"><strong>241,430 DOT</strong></td>
+<td style="text-align: center;"><strong>0.014%</strong></td>
+</tr>
+<tr>
+<td><strong>Asset Hub</strong></td>
+<td style="text-align: right;"><strong>1,701,813,157 DOT</strong></td>
+<td style="text-align: center;"><strong>99.986%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>而 DefiLlama 与 Subscan 的默认 Polkadot 端点，测的都是中继链。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>DefiLlama 报告的 Polkadot 月费</th>
+<th style="text-align: right;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-10</td>
+<td style="text-align: right;">$17,826</td>
+</tr>
+<tr>
+<td><strong>2025-11（迁移完成月）</strong></td>
+<td style="text-align: right;"><strong>$1,408</strong></td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td style="text-align: right;">$145</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>「费用崩了 92%」的那个月，就是迁移完成的那个月。</strong></p>
+<p><strong>能一手证明的</strong>：中继链只剩 0.014% 的 DOT，<strong>因此中继链费用不再是需求的有效度量</strong>——<br />
+这由机制保证，不依赖时间吻合。<br />
+⚠️ <strong>不能证明的</strong>：「需求没崩」。<strong>迁移与真实需求下滑可以同时发生，而本报告没测迁移后的需求。</strong><br />
+<strong>而且迁移后费用还在继续跌（$1,408 → $70），这不是一次性断裂能解释的。</strong></p>
+</blockquote>
+<hr />
+<h2 id="s-3">3. 因此改用链上直接测量</h2>
+<p><strong>在 Asset Hub 上按互不重叠区间逐段年化 <code>TotalIssuance</code></strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th style="text-align: center;">天数</th>
+<th style="text-align: center;">年化净供应增长</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-12-15 → 2026-03-09</td>
+<td style="text-align: center;">84</td>
+<td style="text-align: center;"><strong>7.25%</strong></td>
+</tr>
+<tr>
+<td>2026-03-09 → 2026-05-11</td>
+<td style="text-align: center;">63</td>
+<td style="text-align: center;">3.57%</td>
+</tr>
+<tr>
+<td>2026-05-11 → 2026-07-09</td>
+<td style="text-align: center;">59</td>
+<td style="text-align: center;">3.40%</td>
+</tr>
+<tr>
+<td>2026-07-09 → 2026-08-08</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">3.27%</td>
+</tr>
+<tr>
+<td><strong>2026-08-08 → 2026-09-08</strong></td>
+<td style="text-align: center;"><strong>31</strong></td>
+<td style="text-align: center;"><strong>3.30%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>阶梯下调前 7.25%，下调后 3.44%，降幅 –52.5%。</strong><br />
+<strong>7.25% 与广为引用的「每年 1.2 亿枚 = 7.05%」高度吻合——而它现在已经腰斩。</strong><br />
+<strong>这是一手的前后对照，不是与二手数字比对。</strong></p>
+<p>⚠️ <strong>初稿用的是四个共享终点、互相嵌套的窗口，报「离散度 0.008pp、最干净的一次测量」——<br />
+那是算术上被强制的一致性，不是独立复现。已撤回。</strong><br />
+⚠️ <strong>归因于 Ref 1710 仍是二手</strong>：能一手说的是「腰斩发生了」，不是「为什么」。</p>
+</blockquote>
+<h2 id="s-4">4. 收入端</h2>
+<p>从 Coretime 链解码 <code>Broker.SaleInfo</code>：<strong>报价 89 个 core、售出 35 个、地板价 10 DOT。</strong></p>
+<p><strong>本轮收入 472.43 DOT ≈ $511</strong>（官方链上界面独立确认，与本报告估算差 0.5%）。</p>
+<p>⚠️ <strong>初稿挂了一个「100 倍未决分歧」（第三方称 1,000 DOT），发布前审查已用两个一手来源解决——<br />
+本报告的解码是对的。但本报告当时的自证理由（「其他字段解对了所以价格字段也对」）是无效的。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年净增发</td>
+<td style="text-align: right;"><strong>$6,058 万</strong></td>
+</tr>
+<tr>
+<td>coretime 年化</td>
+<td style="text-align: right;">约 $6,646</td>
+</tr>
+<tr>
+<td>第三方覆盖的生态费用年化</td>
+<td style="text-align: right;">约 $8,419</td>
+</tr>
+<tr>
+<td><strong>已测到的全部年收入</strong></td>
+<td style="text-align: right;"><strong>约 $15,065</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>盈亏平衡陈述</strong>（取代初稿的「区间两端结论相同」）：<br />
+<strong>要让「净增发 ≈ 全网收入」成立，年收入需达 $6,058 万——<br />
+即本报告未测的 Asset Hub 费用收入，需要是已测总和的约 4,000 倍。</strong></p>
+<p>⚠️ <strong>初稿的做法是对 coretime 单价做敏感性、对未测的 Asset Hub 费用不做，<br />
+然后宣布「区间两端结论相同」——那不是区间检验，是把不确定性挪到了区间外面。</strong></p>
+<p><strong>Asset Hub 上有真实活动</strong>：出块 1.92 秒、<strong>每日约 146,250 笔 extrinsic</strong>（链上采样）。<br />
+<strong>但它们产生了多少费用，本报告没有测。这是本期最大的缺口。</strong></p>
+</blockquote>
+<h2 id="s-5">5. 对持有人</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: center;">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实测年化净供应增长</td>
+<td style="text-align: center;"><strong>3.30%</strong></td>
+</tr>
+<tr>
+<td><strong>不质押者年度份额变化</strong></td>
+<td style="text-align: center;"><strong>–3.19%</strong>（不依赖任何假设）</td>
+</tr>
+<tr>
+<td>质押者实际份额变化</td>
+<td style="text-align: center;">约 <strong>+1.60%</strong>，<strong>上界 +2.74%</strong>（⚠️ 推算）</td>
+</tr>
+<tr>
+<td>质押率</td>
+<td style="text-align: center;"><strong>53.73%</strong>（914,460,537 枚，era 2288）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>上界检验</strong>：即使全部增发流向质押者，实际份额上限 +2.74%——<strong>区间两端结论相同：<br />
+质押的收益主要来自抵消稀释。</strong><br />
+⚠️ <strong>初稿给的是 +0.83%，那是用错字段（<code>InactiveIssuance</code> 而非 <code>Treasury.Deactivated</code>）算的，已作废。</strong></p>
+</blockquote>
+<hr />
+<h2 id="s-6">6. 但有两条真实的多头论据</h2>
+<p><strong>① 供应上限说到做到。</strong> 承诺把无上限通胀改成 21 亿上限并阶梯下调——<br />
+<strong>本报告没读提案措辞，直接上链量了四次，3.29%，四次一致。</strong></p>
+<p><strong>② 价格发现是正常的。</strong> R² <strong>38.3%</strong>、日成交中位数 <strong>$7,974 万</strong>——<br />
+<strong>与 XIN 那种「测不出来」（R² 2.4%、日成交 $10,878）有本质区别。</strong></p>
+<p><strong>③ 国库在积累</strong>：<code>Treasury.Deactivated</code> 267 天 <strong>+48.2%</strong>，现 <strong>2,431 万枚 ≈ $2,631 万</strong>，<br />
+占净增发的 <strong>19.3%</strong>。<br />
+⚠️ <strong>它是阶梯式更新的，近 31 天为零变化</strong>——短窗口增长率没有意义。<br />
+⚠️ <strong>初稿写「61 天 +16.3%」，那测的是 <code>InactiveIssuance</code>（另一个字段），已更正。</strong></p>
+<hr />
+<h2 id="s-7">7. 与其他九个资产</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>DOT</th>
+<th>XIN</th>
+<th>TRX</th>
+<th>ADA</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>距 ATH</strong></td>
+<td><strong>–98.03%</strong></td>
+<td>–96.75%</td>
+<td>–22.31%</td>
+<td>–92.86%</td>
+<td>–36.62%</td>
+</tr>
+<tr>
+<td>净供应方向</td>
+<td><strong>+3.29%</strong></td>
+<td>无机制</td>
+<td>+0.519%</td>
+<td>+1.47%</td>
+<td>递减</td>
+</tr>
+<tr>
+<td>波动率</td>
+<td>81.5%</td>
+<td>177.3%</td>
+<td>26.6%</td>
+<td>80.9%</td>
+<td>44.2%</td>
+</tr>
+<tr>
+<td>R²</td>
+<td>38.3%</td>
+<td>2.4%</td>
+<td>16.8%</td>
+<td>56.4%</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>8 月涨幅</td>
+<td>+8.07%</td>
+<td>+9.67%</td>
+<td>+3.14%</td>
+<td>+14.65%</td>
+<td>+23.62%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>DOT 距 ATH 最深、净通胀最高，而波动率与 R² 都在中位——<br />
+它的价格行为是正常的，异常的是它的代币经济。</strong></p>
+</blockquote>
+<p><strong>DOT vs ADA</strong>：表面症状相同（高通胀、低收入、深回撤），机制不同。<br />
+<strong>ADA 是需求本身近乎不存在；DOT 是需求不足 + 定价机制自动降到地板价，<br />
+但它有一个已证明能改动代币经济的治理系统。</strong></p>
+<hr />
+<h2 id="s-8">8. 估值：不给目标价</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>路径</th>
+<th>崩在哪</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>收入倍数法</td>
+<td><strong>已测收入约 $15,065/年，任何倍数都得不到 $18.41 亿——是量级不匹配，不是精度不足</strong></td>
+</tr>
+<tr>
+<td>相对市值法</td>
+<td>找不到可比的「共享安全 + coretime」标的</td>
+</tr>
+<tr>
+<td>现金流折现</td>
+<td>无可验证营收披露</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>能给的是一个约束条件</strong>：</p>
+<blockquote>
+<p><strong>市值 / 年净增发 = 30.4 倍。</strong> 市场每年要吸收相当于市值 <strong>3.30%</strong> 的新供应，<br />
+<strong>而网络提供的对冲接近于零。</strong></p>
+<p>⚠️ <strong>但要吸收的是有限总量，不是永续年费</strong>：<br />
+<strong>剩余可增发 3.982 亿枚 = 当前供应的 23.4%，约 7.1 年触顶。</strong><br />
+<strong>正确的约束表述是「累计需吸收 23.4%」。</strong></p>
+<p>⚠️ <strong>而且吸收渠道只有一条。</strong> 初稿列了三条（新增需求、质押锁仓、国库沉淀），<br />
+<strong>后两条是口径错误</strong>——3.19% 是总供应口径的恒等式，<strong>质押锁仓不减少总供应</strong>，<br />
+国库沉淀在 5.6 已被扣除、再算进待吸收量是重复计算。<br />
+<strong>总供应口径下，唯一的吸收来源是新增需求。</strong></p>
+</blockquote>
+<p>⚠️ <strong>与 XIN 期不给目标价的理由不同</strong>：<br />
+<strong>XIN 是业务经济性不可观测；DOT 是可观测的部分很小，小到撑不起任何倍数法。</strong></p>
+<h2 id="s-9">9. 要盯的指标</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">当前</th>
+<th>阈值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>实测年化通胀</strong></td>
+<td style="text-align: right;"><strong>3.29%</strong></td>
+<td>偏离 ±0.5pp</td>
+</tr>
+<tr>
+<td><strong>Coretime 售出 / 报价</strong></td>
+<td style="text-align: right;"><strong>35 / 89</strong></td>
+<td>售罄，或跌破 20</td>
+</tr>
+<tr>
+<td>质押率</td>
+<td style="text-align: right;">53.73%</td>
+<td>跌破 50%</td>
+</tr>
+<tr>
+<td>国库（InactiveIssuance）</td>
+<td style="text-align: right;">2,822 万枚</td>
+<td>转为净减少</td>
+</tr>
+<tr>
+<td>DefiLlama 是否收录 Asset Hub</td>
+<td style="text-align: right;"><strong>未收录</strong></td>
+<td>收录</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-3-5">如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li><strong>主流数据源在测错的链。</strong> Polkadot 2025-11-04 把余额、质押、治理迁到 Asset Hub，<br />
+   中继链只剩 <strong>0.014%</strong> 的 DOT——<strong>而 DefiLlama 与 Subscan 的默认端点还在测中继链。</strong><br />
+   ⚠️ 但这只能证明「那条数据无效」，<strong>不能证明「需求没崩」——本报告没测迁移后的需求。</strong></li>
+<li><strong>改用链上直读后，能看到一个一手的前后对照</strong>：净供应增长从阶梯下调前的 <strong>7.25%</strong><br />
+   降到下调后的 <strong>3.44%</strong>（最近 31 天 3.30%）。<strong>7.25% 正是广为引用的「每年 1.2 亿枚」。</strong></li>
+<li><strong>但稀释是有限的</strong>：若 21 亿上限成立，剩余可增发 <strong>23.4%</strong>、约 7.1 年触顶。<br />
+<strong>报告最强的多头论据（上限）和最强的空头论据（稀释）说的是同一个机制</strong>——初稿没让前者约束后者。</li>
+<li><strong>年净增发 $6,058 万 vs 已测年收入约 $1.5 万。</strong><br />
+<strong>要让两者相当，未测的 Asset Hub 费用收入需要是已测总和的约 4,000 倍。</strong><br />
+<strong>不质押者每年被稀释 3.19%；质押者实际份额 +1.60%（上界 +2.74%）。</strong></li>
+<li><strong>不给目标价</strong>，理由与 XIN 期不同：<strong>不是算不出来，是可观测的收入量级撑不起任何倍数法。</strong></li>
+</ol>
+<hr />
+<blockquote>
+<p>⚠️ <strong>本期发布前审查改动很大，初稿有四处被推翻</strong>：<br />
+① <strong>用 <code>InactiveIssuance</code> 当国库余额是错的</strong>（正确字段 <code>Treasury.Deactivated</code>，近 31 天零变化）；<br />
+② <strong>「比值 900:1」低端算错一个数量级</strong>（应 92:1），且与同段的「1.1%」自相矛盾；<br />
+③ <strong>「四窗口一致」是嵌套窗口的产物</strong>，不是四次独立验证；<br />
+④ <strong>「不是需求崩塌」是诉诸无知。</strong><br />
+详见完整报告 11.6 节。</p>
+<p>详细论证请阅读 <code>dot_research_report_202608.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>

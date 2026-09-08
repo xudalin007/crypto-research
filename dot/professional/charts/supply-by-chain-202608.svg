@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="300" viewBox="0 0 720 300" font-family='-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB",sans-serif'>
+<rect width="720" height="300" fill="#fff"/>
+<text x="70" y="30" font-size="14" font-weight="700" fill="#1c1917">DOT 在哪条链上：中继链只剩 0.014%</text>
+<text x="70" y="48" font-size="11" fill="#57534e">对两条链查询同一个存储键 Balances.TotalIssuance。键由自行实现的 twox128 计算并自检通过</text>
+<text x="70" y="66" font-size="11" fill="#57534e">而 DefiLlama 与 Subscan 的默认 Polkadot 端点，测的都是中继链</text>
+<rect x="70" y="110" width="580" height="46" fill="#2a78d6" rx="5"/>
+<rect x="70" y="110" width="0.08" height="46" fill="#e34948"/>
+<text x="360" y="139" font-size="13" font-weight="700" fill="#fff" text-anchor="middle">Asset Hub：17.018 亿 DOT（99.986%）</text>
+<line x1="72" y1="160" x2="72" y2="184" stroke="#e34948" stroke-width="1.4"/>
+<text x="80" y="190" font-size="12" font-weight="700" fill="#e34948">中继链：241,430 DOT（0.014%）</text>
+<text x="70" y="222" font-size="11" fill="#57534e">CoinGecko 报告的总量与 Asset Hub 链上读数相差 0.0002%</text>
+<text x="70" y="242" font-size="11" fill="#57534e">质押数据同样只在 Asset Hub 上：era 2,288、验证人 600、提名人 28,787；中继链全为空</text>
+</svg>

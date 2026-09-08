@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="400" viewBox="0 0 720 400" font-family='-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB",sans-serif'>
+<rect width="720" height="400" fill="#fff"/>
+<text x="70" y="26" font-size="14" font-weight="700" fill="#1c1917">「费用崩塌」的那个月，就是迁移完成的那个月</text>
+<text x="70" y="44" font-size="11" fill="#57534e">DefiLlama 报告的 Polkadot 月度费用（美元）。它测的是中继链——而中继链上已经没有用户交易</text>
+<text x="70" y="60" font-size="11" fill="#57534e">数据：DefiLlama API 一手；迁移日期已在链上独立确认</text>
+<line x1="70" y1="83.1" x2="694" y2="83.1" stroke="#e7e5e4" stroke-width="1"/>
+<line x1="70" y1="104.7" x2="694" y2="104.7" stroke="#e7e5e4" stroke-width="1"/>
+<line x1="70" y1="117.5" x2="694" y2="117.5" stroke="#e7e5e4" stroke-width="1"/>
+<line x1="70" y1="311.4" x2="694" y2="311.4" stroke="#e7e5e4" stroke-width="1"/>
+<line x1="70" y1="326.3" x2="694" y2="326.3" stroke="#e7e5e4" stroke-width="1"/>
+<text x="62" y="87.1" font-size="10" fill="#57534e" text-anchor="end">$20,737</text>
+<text x="62" y="315.4" font-size="10" fill="#57534e" text-anchor="end">$1,408</text>
+<rect x="78.3" y="146.3" width="25.0" height="181.7" fill="#2a78d6" rx="2"/>
+<text x="90.8" y="346.0" font-size="8.5" fill="#57534e" text-anchor="middle" transform="rotate(-40 90.8 346.0)">2025-06</text>
+<rect x="119.9" y="121.6" width="25.0" height="206.4" fill="#2a78d6" rx="2"/>
+<rect x="161.5" y="104.7" width="25.0" height="223.3" fill="#2a78d6" rx="2"/>
+<text x="174.0" y="346.0" font-size="8.5" fill="#57534e" text-anchor="middle" transform="rotate(-40 174.0 346.0)">2025-08</text>
+<rect x="203.1" y="83.1" width="25.0" height="244.9" fill="#2a78d6" rx="2"/>
+<rect x="244.7" y="117.5" width="25.0" height="210.5" fill="#2a78d6" rx="2"/>
+<text x="257.2" y="346.0" font-size="8.5" fill="#57534e" text-anchor="middle" transform="rotate(-40 257.2 346.0)">2025-10</text>
+<rect x="286.3" y="311.4" width="25.0" height="16.6" fill="#e34948" rx="2"/>
+<rect x="327.9" y="315.3" width="25.0" height="12.7" fill="#e34948" rx="2"/>
+<text x="340.4" y="346.0" font-size="8.5" fill="#57534e" text-anchor="middle" transform="rotate(-40 340.4 346.0)">2025-12</text>
+<rect x="369.5" y="327.2" width="25.0" height="0.8" fill="#e34948" rx="2"/>
+<rect x="411.1" y="327.7" width="25.0" height="0.3" fill="#e34948" rx="2"/>
+<text x="423.6" y="346.0" font-size="8.5" fill="#57534e" text-anchor="middle" transform="rotate(-40 423.6 346.0)">2026-02</text>
+<rect x="452.7" y="321.3" width="25.0" height="6.7" fill="#e34948" rx="2"/>
+<rect x="494.3" y="325.0" width="25.0" height="3.0" fill="#e34948" rx="2"/>
+<text x="506.8" y="346.0" font-size="8.5" fill="#57534e" text-anchor="middle" transform="rotate(-40 506.8 346.0)">2026-04</text>
+<rect x="535.9" y="327.8" width="25.0" height="0.2" fill="#e34948" rx="2"/>
+<rect x="577.5" y="321.5" width="25.0" height="6.5" fill="#e34948" rx="2"/>
+<text x="590.0" y="346.0" font-size="8.5" fill="#57534e" text-anchor="middle" transform="rotate(-40 590.0 346.0)">2026-06</text>
+<rect x="619.1" y="327.9" width="25.0" height="0.1" fill="#e34948" rx="2"/>
+<rect x="660.7" y="326.3" width="25.0" height="1.7" fill="#e34948" rx="2"/>
+<text x="673.2" y="346.0" font-size="8.5" fill="#57534e" text-anchor="middle" transform="rotate(-40 673.2 346.0)">2026-08</text>
+<line x1="278.0" y1="74" x2="278.0" y2="328" stroke="#1c1917" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="285.0" y="90" font-size="10.5" font-weight="700" fill="#1c1917">2025-11-04 Asset Hub 迁移完成</text>
+<text x="285.0" y="105" font-size="10" fill="#57534e">余额 / 质押 / 治理迁出中继链</text>
+<rect x="70" y="374" width="10" height="10" fill="#2a78d6" rx="2"/><text x="86" y="383" font-size="10" fill="#57534e">迁移前</text>
+<rect x="160" y="374" width="10" height="10" fill="#e34948" rx="2"/><text x="176" y="383" font-size="10" fill="#57534e">迁移后（中继链已无用户交易）</text>
+</svg>
