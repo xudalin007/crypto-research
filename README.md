@@ -16,7 +16,6 @@ btc/                            比特币
   professional/                 专业版（面向分析师 / 从业者）
     btc_research_report_YYYYMM.md      完整报告，11 章
     btc_research_report_YYYYMM.html    网页版（侧边导航 + 移动适配）
-    btc_research_report_YYYYMM.pdf     PDF
     btc_questions_summary_YYYYMM.md    简明速查
     charts/*-YYYYMM.svg                图表
     thesis_scorecard.md                跨期论点记分卡（不带月份，持续追加）
@@ -153,7 +152,7 @@ xin/                            Mixin（第一个自始判定「无法给出目�
 生成 2026 年 9 月版 BTC 报告
 ```
 
-只做 HTML/PDF 重建（Markdown 已改好时）：
+只做 HTML 重建（Markdown 已改好时）：
 
 ```bash
 python3 .claude/skills/btc-monthly-report/build.py 202609              # BTC
@@ -161,7 +160,6 @@ python3 .claude/skills/btc-monthly-report/build.py 202609 --asset sol  # SOL
 python3 .claude/skills/btc-monthly-report/build.py 202609 --asset ada  # ADA
 python3 .claude/skills/btc-monthly-report/build.py 202609 --asset trx  # TRX
 python3 .claude/skills/btc-monthly-report/build.py 202609 --asset xin  # XIN
-# 脚本会打印 PDF 生成命令，复制执行即可
 ```
 
 脚本自带校验：导航锚点必须全部命中、不得有重复锚点，否则退出非零。
@@ -184,7 +182,10 @@ claude plugin install market-researcher@claude-for-financial-services --scope pr
 - `equity-research:catalyst-calendar` — 催化剂日历
 - `financial-analysis:competitive-analysis` — 资产横向对比
 
-另需 Python `markdown` 库和 Google Chrome（PDF 渲染）。
+另需 Python `markdown` 库。
+
+> 📌 **本仓库不产出 PDF**（2026-09 起）。产物为 Markdown + HTML + SVG 图表。
+> HTML 保留了打印样式，需要时可自行从浏览器打印。
 
 ## 免责声明
 

@@ -1,6 +1,6 @@
 ---
 name: btc-monthly-report
-description: 生成或更新加密资产月度专业调研报告（Markdown + HTML + PDF），目前覆盖 BTC、SOL、ADA、ETH、BNB 与 HYPE。当 _dalin 说"生成 X 月版报告""更新报告""出一份新的调研""按上次那套做一份"时使用。也用于修改已有月份的报告后重新出 HTML/PDF。
+description: 生成或更新加密资产月度专业调研报告（Markdown + HTML），目前覆盖 BTC、SOL、ADA、ETH、BNB、HYPE、UNI、TRX 与 XIN。当 _dalin 说"生成 X 月版报告""更新报告""出一份新的调研""按上次那套做一份"时使用。也用于修改已有月份的报告后重新出 HTML。**不产出 PDF。**
 ---
 
 # 加密资产月度专业调研报告
@@ -66,14 +66,13 @@ description: 生成或更新加密资产月度专业调研报告（Markdown + HT
 
 # BTC 月度专业调研报告（以下流程通用）
 
-产出一套四件产物，放在 `btc/professional/`：
+产出一套产物，放在 `<asset>/professional/`。**不含 PDF**：
 
 | 文件 | 说明 |
 |------|------|
 | `btc_research_report_<YYYYMM>.md` | 完整报告，11 章 |
 | `btc_questions_summary_<YYYYMM>.md` | 简明速查，10-11 节 |
 | `btc_research_report_<YYYYMM>.html` | 网页版（脚本生成，勿手写） |
-| `btc_research_report_<YYYYMM>.pdf` | PDF（Chrome 无头渲染） |
 | `charts/*-<YYYYMM>.svg` | 三张图表 |
 | `thesis_scorecard.md` | **跨期滚动**，不带月份后缀，每期追加；**每个资产各一份，不混记** |
 
@@ -496,7 +495,7 @@ calldata、状态提交、证明验证等路径付费。**L2BEAT 与 Dune 提供
 ![2026 年 5–8 月 ETF 月度净流量](charts/etf-flows-202608.svg)
 ```
 
-**为什么用独立 SVG 文件而不是内联**：GitHub 的 Markdown 渲染器会剥掉内联 `<svg>`，但能正常显示 `![](x.svg)` 引用的图片。独立文件同时满足 GitHub 预览、HTML 构建、PDF 渲染三处。
+**为什么用独立 SVG 文件而不是内联**：GitHub 的 Markdown 渲染器会剥掉内联 `<svg>`，但能正常显示 `![](x.svg)` 引用的图片。独立文件同时满足 GitHub 预览与 HTML 构建。
 
 固定的三张：
 
@@ -538,17 +537,19 @@ node $D/scripts/validate_palette.js "#2a78d6,#e34948" --mode light
 
 末尾注明配套文件：``> 详细论证请阅读 `btc_research_report_<YYYYMM>.md`。``
 
-## 第 4 步：构建 HTML + PDF
+## 第 4 步：构建 HTML
 
 **不要手写 HTML**，用脚本：
 
 ```bash
-python3 .claude/skills/btc-monthly-report/build.py <YYYYMM>
+python3 .claude/skills/btc-monthly-report/build.py <YYYYMM> --asset <asset>
 ```
 
 脚本会自检并打印导航条数、锚点是否全部命中、表格容器数、有无重复锚点。**校验不过会退出非零**。
 
-然后按脚本末尾打印的命令生成 PDF（Chrome 无头模式，会自动套用 `@media print` 样式隐藏侧边栏）。
+> ⚠️ **不要生成 PDF**（_dalin 2026-09 决定，且已删除仓库内全部历史 PDF）。
+> 产物只有 Markdown + HTML + SVG 图表。
+> HTML 仍保留 `@media print` 样式，_dalin 需要时可自行从浏览器打印——**但不要主动做这一步，也不要主动提议。**
 
 ## 第 4.5 步：更新论点记分卡
 

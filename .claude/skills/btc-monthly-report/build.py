@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """
-BTC 月度报告构建器 —— Markdown → HTML（→ PDF 由调用方用 Chrome 渲染）
+BTC 月度报告构建器 —— Markdown → HTML
+
+产物只有 HTML。**不生成 PDF**（_dalin 2026-09 决定）。
+HTML 仍保留 @media print 样式，需要时可从浏览器自行打印。
 
 用法:
     python3 .claude/skills/btc-monthly-report/build.py 202608          # 默认 btc
@@ -192,11 +195,6 @@ def main():
     print(f"   重复锚点: {'无' if not dupes else '❌ ' + str(dupes)}")
     if missing or dupes:
         sys.exit(1)
-    print(f"\n下一步生成 PDF：")
-    print(f'   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu \\')
-    print(f'     --no-pdf-header-footer --print-to-pdf-no-header \\')
-    print(f'     --print-to-pdf="{base}/{asset}_research_report_{ym}.pdf" \\')
-    print(f'     "file://$(pwd)/{out}"')
 
 
 if __name__ == '__main__':
