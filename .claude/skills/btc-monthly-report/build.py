@@ -48,6 +48,8 @@ PROFILES = {
                 accent='#e6007a', badge='● Polkadot'),
     'zec': dict(symbol='ⓩ', name='ZEC / Zcash', short='ZEC',
                 accent='#ecb244', badge='ⓩ Zcash'),
+    'ckb': dict(symbol='▣', name='CKB / Nervos', short='CKB',
+                accent='#3cc68a', badge='▣ Nervos'),
 }
 
 

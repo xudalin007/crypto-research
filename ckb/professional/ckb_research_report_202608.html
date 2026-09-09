@@ -1,0 +1,2881 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CKB / Nervos 完整调研与分析报告 — 2026年8月</title>
+<style>
+:root{--accent:#3cc68a;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">▣ CKB 调研报告 (2026.8)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>▣ CKB 调研报告 2026.8</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-ckb">1. CKB 是什么</a>
+<a href="#2-ckb">2. CKB 的发展阶段划分</a>
+<a href="#3-ckb">3. CKB 当前现状</a>
+<a href="#4">4. 八月的货币流</a>
+<a href="#5">5. 状态租金</a>
+<a href="#6-rgb">6. RGB++ 的收缩</a>
+<a href="#7">7. 矿工经济与安全预算</a>
+<a href="#8-ckb">8. CKB 与其他十一个资产的比较</a>
+<a href="#9">9. 核心价值逻辑</a>
+<a href="#10">10. 估值</a>
+<a href="#11_1">11. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-1-ckb">1. CKB 是什么</a>
+<a href="#s-2">2. 两种发行</a>
+<a href="#s-3-97">3. 本期最重要的发现</a>
+<a href="#s-4-2024-1-31">4. 这个真实状态在 2024 年 1 月…</a>
+<a href="#s-5-rfc0015-vs-2026-8">5. RFC0015 的设计假设 vs 2…</a>
+<a href="#s-6">6. 八月的货币流</a>
+<a href="#s-7-nervosdao">7. NervosDAO 保护了什么，没保…</a>
+<a href="#s-8-rgb-88">8. RGB++</a>
+<a href="#s-9">9. 矿工经济</a>
+<a href="#s-10">10. 价格、流动性与一个数据陷阱</a>
+<a href="#s-11-3-5">11. 如果你只有 3 分钟，记住这 5 …</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 8 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>▣ CKB / Nervos<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">▣ Nervos</span><span class="badge badge-date">2026 年 8 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="ckb-nervos">CKB / Nervos 完整调研与分析报告</h1>
+<blockquote>
+<p><strong>版本</strong>：2026 年 8 月（首期）<br />
+<strong>完成日期</strong>：2026-09-09<br />
+<strong>本系列第十二个资产</strong>（BTC / SOL / ADA / ETH / BNB / HYPE / UNI / TRX / XIN / DOT / ZEC / <strong>CKB</strong>）</p>
+<p><strong>本版更新要点（首期，故为「本期确立了什么」）</strong>：</p>
+<ol>
+<li><strong>本期把 CKB 区块头的 <code>dao</code> 字段解出来了，并用它做出一份逐项的月度货币流分解。</strong><br />
+   八月总发行 <code>ΔC</code> = +292,369,042 CKB，进入 DAO/国库池 <code>ΔS</code> = +100,267,109 CKB，<br />
+   进入流通 <strong>+192,101,933 CKB</strong>。<br />
+<strong>⚠️ 初稿把它称为「本系列第一个完全闭合的分解」并以浏览器流通量序列为证，这是错的，已撤回</strong>——<br />
+   浏览器的 <code>circulating_supply</code> 在源码里就是 <code>C − S − 常数</code>，与本推导是同一个式子（见 4.3）。<br />
+<strong>本报告真正独立的交叉核对有五处，列在 4.3.1。</strong></li>
+<li><strong><code>dao</code> 字段里的「占用容量」<code>U</code> 有 97.06% 是一个硬编码的虚拟数</strong>——<br />
+   创世那枚 84 亿 CKB 的销毁 cell 被按 <code>SATOSHI_CELL_OCCUPIED_RATIO = 6/10</code> 记作 50.4 亿的占用。<br />
+   剔除它之后，<strong>CKB 真实的链上状态是 1.529 亿 CKB（2026-09 月均），占流通量的 0.3093%。</strong></li>
+<li><strong>这个真实状态的月均值在 2024 年 1 月见顶 166,852,970 CKB，此后 31 个月未创新高；<br />
+   2026 年 8 月月均 156,235,117，较峰值 −6.36%，近三年月均年化 +1.25%。</strong><br />
+   CKB 的整套经济模型是向状态收租，而这个税基已经两年半没有创新高。<br />
+<strong>⚠️ 初稿写的是「三年增长 0.38%」，那是拿两个 9 月 1 日的快照相减得出的端点假象</strong>——<br />
+   同一序列在 1,103 天里有 878 天高于那个起点。<strong>已全部改用月均口径，见第 2 章与图 1。</strong></li>
+<li><strong>RGB++ 在 8 月 14–17 日的两天多里解绑掉约 88% 的链上足迹。</strong><br />
+   抽样归因（22/51 个下降段，覆盖降幅 36.8%）显示释放的占用容量里 <strong>91.5% 来自 RGB++ lock + xUDT 的 cell</strong>。<br />
+   其官方工具链三个主仓库全部处于 archived 状态。</li>
+<li><strong>本期发现 CoinGecko 的 CKB 价格序列在 2026-01 至 2026-05 是坏的</strong>（四月隐含年化波动率 632%，<br />
+   而币安同期是 68%）。<strong>对照检查了 DOT / ZEC / TRX 三个资产，均正常。</strong><br />
+<strong>⚠️ 三个不足以断言「前十一期都没被污染」——余 8 个未查（XIN 最该查）。</strong></li>
+</ol>
+<hr />
+<p><strong>本报告不给目标价。</strong> 理由写在第 10 章，并给出可替代的反解式约束。</p>
+<p><strong>利益冲突声明</strong>：作者未持有 CKB，与 Nervos 基金会、Cryptape 及任何 CKB 生态项目无雇佣、<br />
+顾问或投资关系。本报告的链上数据全部由作者从 CKB 主网节点与 GitHub 一手仓库直接抓取。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>观测</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>价格（8/31）</strong></td>
+<td>$0.001033，八月 <strong>+25.82%</strong>（BTC +24.95%）</td>
+<td><strong>beta 预期是 +30.7%（1.231 × 24.95%），实际 +25.82%——特质成分约 −4.9pp</strong></td>
+</tr>
+<tr>
+<td><strong>历史最低点</strong></td>
+<td><strong>$0.000796，2026-08-14</strong>——就在本报告期内</td>
+<td>两个独立来源（CoinGecko / 币安）吻合到 0.04%</td>
+</tr>
+<tr>
+<td><strong>距 ATH</strong></td>
+<td><strong>−97.40%</strong>（$0.04370633，2021-03-31）</td>
+<td>十二个资产里第二深，仅次于 DOT</td>
+</tr>
+<tr>
+<td><strong>真实链上状态（存储字节折 CKB）</strong></td>
+<td><strong>1.529 亿 CKB = 流通量的 0.3093%</strong>（2026-09 月均 ÷ 2026-09-01 流通量）</td>
+<td><strong>这是状态租金机制的全部税基</strong>。⚠️ 它测字节数，不等于「被应用锁住的 CKB」</td>
+</tr>
+<tr>
+<td><strong>状态的长期轨迹（月均）</strong></td>
+<td>2024-01 见顶 <strong>166,852,970</strong> → 2026-08 <strong>156,235,117</strong>，<strong>31 个月未创新高</strong>；近三年年化 <strong>+1.25%</strong></td>
+<td>增长在 2024 年初停下，此后在 −6% 的区间内震荡</td>
+</tr>
+<tr>
+<td><strong>协议记的「占用容量」</strong></td>
+<td>51.93 亿 CKB，其中 <strong>97.06% 是虚拟的</strong></td>
+<td>硬编码常量，非真实状态</td>
+</tr>
+<tr>
+<td><strong>二次发行去向</strong></td>
+<td>矿工 7.97% / DAO 13.97% / <strong>销毁 78.06%</strong></td>
+<td>RFC0015 举例设想的是 60% / 35% / 5%（<strong>是例子，不是协议要求</strong>）</td>
+</tr>
+<tr>
+<td><strong>八月手续费</strong></td>
+<td><strong>全月合计 1,298.74 CKB = $1.16</strong></td>
+<td>占矿工收入的 <strong>0.000693%</strong></td>
+</tr>
+<tr>
+<td><strong>安全预算</strong></td>
+<td>日均 <strong>$5,388</strong>，年化占市值 3.56%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>NervosDAO</strong></td>
+<td>91.60 亿 CKB（流通量 18.53%），其中 8.12 亿已在退出队列</td>
+<td>八月净流出 5,522 万 CKB</td>
+</tr>
+<tr>
+<td><strong>DAO 名义收益</strong></td>
+<td><strong>2.06%/年</strong>，而流通量年增 4.69%</td>
+<td><strong>存款人份额仍在以 −2.49%/年缩水</strong></td>
+</tr>
+<tr>
+<td><strong>RGB++</strong></td>
+<td>活跃容量剩 <strong>2,139,213 CKB</strong></td>
+<td>官方 SDK / API / 浏览器三个仓库均已归档</td>
+</tr>
+<tr>
+<td><strong>在建的东西</strong></td>
+<td><strong>Fiber</strong>（支付通道网络），主网脚本 2025-02-28 已部署</td>
+<td><strong>链上 34 个通道、39,691 CKB</strong>——只有 RGB++ 残余量的 1/54</td>
+</tr>
+<tr>
+<td><strong>本报告给目标价</strong></td>
+<td><strong>否</strong></td>
+<td>理由与替代约束见第 10 章</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>一句话</strong>：<strong>CKB 的设计是一台向链上状态收租的机器，而它要收租的那个状态，<br />
+折合供应量的 0.31%、且已经三年没有长大；<br />
+机器仍在付钱给矿工，只是 97% 的付款依据是一枚 2019 年就写死的虚拟占用。</strong></p>
+</blockquote>
+<hr />
+<h2 id="1-ckb">1. CKB 是什么</h2>
+<h3 id="11">1.1 一个把「存储」而不是「计算」定价的链</h3>
+<p>CKB（Common Knowledge Base）是 Nervos 网络的 L1，2019-11-15 创世，PoW（Eaglesong 算法）。<br />
+它与主流 L1 最根本的差别不在性能，而在<strong>代币的用途定义</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>以太坊</th>
+<th>CKB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代币主要用途</td>
+<td>支付<strong>计算</strong>（gas）</td>
+<td><strong>占用状态空间的凭证</strong></td>
+</tr>
+<tr>
+<td>存 1 字节状态要</td>
+<td>一次性 gas</td>
+<td><strong>持有并锁定 1 CKB</strong>，只要状态在就一直锁着</td>
+</tr>
+<tr>
+<td>状态膨胀的代价</td>
+<td>由全节点承担，用户不直接付</td>
+<td><strong>用户以「持有代币的机会成本」持续支付</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>CKB 的账本模型叫 <strong>Cell 模型</strong>（UTXO 的泛化）。每个 Cell 有一个 <code>capacity</code> 字段，<br />
+单位是 CKB；一个 Cell 实际占用多少字节，就必须至少持有多少 CKB。<br />
+<strong>一个最小的 Cell 是 61 字节，因此至少要 61 CKB。</strong></p>
+<p><strong>这套设计的经济含义是：链上状态越多，被锁住的 CKB 越多，流通中的 CKB 越少。</strong><br />
+本报告第 5 章要做的事，就是把「链上状态」这个量真正测出来。</p>
+<h3 id="12">1.2 两种发行：一次发行有上限，二次发行永续</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>一次发行（base issuance）</th>
+<th>二次发行（secondary issuance）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总量</td>
+<td><strong>336 亿 CKB 封顶</strong></td>
+<td><strong>无上限，恒定 13.44 亿 CKB / 年</strong></td>
+</tr>
+<tr>
+<td>节奏</td>
+<td>每 8,760 个 epoch（约 4 年）减半</td>
+<td>永不改变</td>
+</tr>
+<tr>
+<td>去向</td>
+<td><strong>全部给矿工</strong></td>
+<td><strong>分给三方</strong>，见下</td>
+</tr>
+<tr>
+<td>源码常量</td>
+<td><code>INITIAL_PRIMARY_EPOCH_REWARD = 1,917,808.21917808</code> CKB/epoch</td>
+<td><code>DEFAULT_SECONDARY_EPOCH_REWARD = 613,698.63013698</code> CKB/epoch</td>
+</tr>
+</tbody>
+</table></div>
+<p>二次发行的分配规则写在 RFC0015 里，<strong>原文（第 136 行）给的例子是</strong>：</p>
+<blockquote>
+<p>假设在一次二次发行时，全部 CK Byte 的 <strong>60% 用于存储状态</strong>、<strong>35% 存入 NervosDAO 锁定</strong>、<br />
+<strong>5% 保持流动</strong>。那么二次发行的 60% 归矿工，35% 归 NervosDAO 按锁定量比例分配。<br />
+剩下的部分（本例中的 5%）如何使用由社区通过治理机制决定；<br />
+<strong>在社区达成一致之前，这部分二次发行将被销毁。</strong></p>
+</blockquote>
+<p><strong>这段话是本报告的锚。</strong> 第 5 章会把「60% / 35% / 5%」这三个假设逐一与 2026 年 8 月的实测对齐。</p>
+<h3 id="13">1.3 三个账都写在区块头里</h3>
+<p>CKB 每个区块头有一个 32 字节的 <code>dao</code> 字段，装着四个小端序 u64。<br />
+<strong>这是本报告全部供应量分析的一手数据源，不经过任何第三方统计。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>偏移</th>
+<th>含义</th>
+<th>2026-09-01 的值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>[0..8]</code></td>
+<td><strong>C</strong> — 累计发行量</td>
+<td>65,349,752,951 CKB</td>
+</tr>
+<tr>
+<td><code>[8..16]</code></td>
+<td><strong>AR</strong> — 累计利率（创世值恰为 10^16）</td>
+<td>1.202838（÷10^16 后）</td>
+</tr>
+<tr>
+<td><code>[16..24]</code></td>
+<td><strong>S</strong> — 累计进入 NervosDAO/国库池的二次发行，减去已提取利息</td>
+<td>7,415,902,821 CKB</td>
+</tr>
+<tr>
+<td><code>[24..32]</code></td>
+<td><strong>U</strong> — 占用容量</td>
+<td>5,192,741,969 CKB</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>一个必须记下的坑</strong>：CKB 官方库的解码函数 <code>extract_dao_data</code> 的<strong>返回值签名是 <code>(ar, c, s, u)</code>，<br />
+而它读取的字节顺序是 <code>c, ar, s, u</code>。</strong><br />
+<strong>只看返回值的变量名会把 C 和 AR 解反。</strong><br />
+本报告是用两个不依赖任何命名的实测证据定序的：<br />
+① 创世块 <code>[8..16]</code> 恰好等于 <code>10,000,000,000,000,000</code> = 10^16，而只有 AR 的定义初值是这个数；<br />
+② 创世块 <code>[0..8]</code> 折合 33,600,001,452 CKB，与文档记载的 336 亿创世发行量一致。<br />
+事后在 <code>ckb-dao-utils</code> 源码中确认，字节顺序确实是 <code>c, ar, s, u</code>。</p>
+</blockquote>
+<hr />
+<h2 id="2-ckb">2. CKB 的发展阶段划分</h2>
+<h3 id="2019-11-2020">阶段一：创世与「不做通用计算」的路线（2019-11 – 2020）</h3>
+<p>CKB 主网 2019-11-15 上线。创世分配 336 亿 CKB，其中 <strong>84 亿（25%）打入一个 <code>code_hash</code> 全零的锁</strong>——<br />
+永久不可花费，即所谓「中本聪的礼物」（Satoshi's Gift），<br />
+其锁参数 <code>0x62e907b15cbf27d5425399ebf6f0fb50ebb88f18</code> 与源码常量 <code>SATOSHI_PUBKEY_HASH</code> 逐字节相同。</p>
+<p><strong>这枚销毁 cell 在第 5 章会重新出现，而且是本期最重要的发现的核心。</strong></p>
+<h3 id="2021-2023-09">阶段二：状态快速积累（2021 – 2023-09）</h3>
+<p>链上真实占用容量从 2020-09 的 1,048 万 CKB 涨到 2023-09 的 1.522 亿 CKB，<strong>三年 14.5 倍</strong>。<br />
+这是 CKB 唯一一段「税基真的在长」的时期。2021-03-31 价格见 ATH $0.04370633。</p>
+<h3 id="2023-11-19">阶段三：首次减半（2023-11-19）</h3>
+<p>epoch 8760、区块 11,487,788、2023-11-19 17:23 UTC，一次发行从每 epoch 1,917,808 CKB 减半到 958,904 CKB。</p>
+<h3 id="rgb-2024-2025">阶段四：RGB++ 叙事（2024 – 2025）</h3>
+<p>RGB++ 是把比特币 UTXO 与 CKB Cell 做同构绑定的协议，让比特币上的资产用 CKB 做验证层。<br />
+这是 CKB 在 2024–2025 年的主叙事，也是本期第 6 章的对象。</p>
+<h3 id="rgb-2024-01">阶段五：状态见顶与 RGB++ 退潮（2024-01 – 至今）</h3>
+<blockquote>
+<p>⚠️ <strong>本节的口径经过一次修订，修订本身值得记录。</strong><br />
+<strong>初稿用「每年 9 月 1 日」的年度快照，得出「三年 +0.38%，不是放缓是停止增长」。</strong><br />
+<strong>推理审查指出这是端点选择</strong>：终点 2026-09-01 恰好在本报告自己判定「不应外推为趋势」的<br />
+RGB++ 解绑事件之后。<strong>复核浏览器 1,103 天的日度序列后，初稿的描述不成立</strong>——<br />
+该窗口内有 878 天高于那个起点，且序列在 2024-01-22 至 01-28 曾连续七天站上 1.80 亿。<br />
+<strong>本节改用月均值，它对端点不敏感。</strong></p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份（月均）</th>
+<th>真实占用容量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2023-08</td>
+<td>150,526,365 CKB</td>
+</tr>
+<tr>
+<td>2023-12</td>
+<td>156,920,036 CKB</td>
+</tr>
+<tr>
+<td><strong>2024-01</strong></td>
+<td><strong>166,852,970 CKB</strong> ← 月均峰值</td>
+</tr>
+<tr>
+<td>2024-09</td>
+<td>146,032,169 CKB ← <strong>峰值后的月均低点</strong>（2023-01 之前另有更低的月份）</td>
+</tr>
+<tr>
+<td>2025-08</td>
+<td>152,958,239 CKB</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td>159,019,263 CKB</td>
+</tr>
+<tr>
+<td><strong>2026-08</strong></td>
+<td><strong>156,235,117 CKB</strong>（较峰值 <strong>−6.36%</strong>）</td>
+</tr>
+<tr>
+<td>2026-09</td>
+<td>152,933,335 CKB</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径（月均）</th>
+<th>变化</th>
+<th>年化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2023-08 → 2026-08（三年）</td>
+<td>+3.79%</td>
+<td><strong>+1.25%</strong></td>
+</tr>
+<tr>
+<td>2024-08 → 2026-08（两年）</td>
+<td>+4.76%</td>
+<td><strong>+2.35%</strong></td>
+</tr>
+<tr>
+<td>2025-08 → 2026-08（一年）</td>
+<td>+2.14%</td>
+<td><strong>+2.14%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="CKB 真实链上状态占用容量的月均轨迹" src="charts/state-occupancy-202608.svg" /></p>
+<p><strong>修订后的判断</strong>：<strong>不是「三年零增长」，而是「2024 年 1 月见顶后 31 个月没有创新高，<br />
+期间以每年 1–2% 的速度在一个约 ±6% 的带内震荡」。</strong></p>
+<blockquote>
+<p><strong>阶段四和阶段五在时间上是重叠的</strong>——RGB++ 叙事最热的两年，<br />
+<strong>链上状态从 2024 年初的峰值一路走平并小幅回落。</strong><br />
+<strong>这两件事同时为真，本身就是本报告要解释的东西。</strong></p>
+</blockquote>
+<hr />
+<h2 id="3-ckb">3. CKB 当前现状</h2>
+<h3 id="31">3.1 价格与市场</h3>
+<blockquote>
+<p><strong>口径</strong>：CKB 与 BTC 均取<strong>币安 UTC 日收盘价</strong>，八月定义为 2026-07-31 收盘 → 2026-08-31 收盘。<br />
+原因见 3.2——CoinGecko 的 CKB 序列在今年前五个月不可用。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格（2026-09-09）</td>
+<td><strong>$0.00113774</strong>（CoinGecko）/ 币安中间价 $0.0011465</td>
+</tr>
+<tr>
+<td>市值 / FDV</td>
+<td><strong>$56,300,510</strong> / $57,257,710</td>
+</tr>
+<tr>
+<td>CoinGecko 排名</td>
+<td><strong>第 421 位</strong></td>
+</tr>
+<tr>
+<td>流通量 / 总量</td>
+<td>49,486,923,659 / 50,328,778,792（<strong>无上限</strong>，二次发行永续）</td>
+</tr>
+<tr>
+<td><strong>八月涨幅</strong></td>
+<td><strong>+25.82%</strong>（BTC +24.95%）</td>
+</tr>
+<tr>
+<td>八月盘中区间</td>
+<td><strong>$0.000796（8/14）– $0.001129（8/20）</strong>，振幅 41.8%</td>
+</tr>
+<tr>
+<td><strong>历史最低</strong></td>
+<td><strong>$0.000796，2026-08-14</strong> — 就在本报告期内</td>
+</tr>
+<tr>
+<td>距 ATH</td>
+<td><strong>−97.40%</strong>（$0.04370633，2021-03-31）</td>
+</tr>
+<tr>
+<td>近一年 / 年初至今</td>
+<td><strong>−77.60%</strong> / <strong>−54.01%</strong>（BTC −30.75% / −11.17%）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>八月是 CKB 近 13 个月里第二个上涨的月份</strong>（另一个是 2026-04 的 +0.62%），<br />
+而它与 BTC 同月的 +24.95% 几乎同步——<strong>8/20–8/22 三天 BTC 从 $64,686 涨到 $78,318，CKB 同步跳升。</strong></p>
+<blockquote>
+<p><strong>八月的上涨里，CKB 自身贡献的部分是负的。</strong><br />
+<strong>正确的算法不是看 R²</strong>（R² = 46.2% 的字面含义是「53.8% 的日波动不由 BTC 解释」，<br />
+<strong>拿它来论证「没有自己的信息」是把反证当证据，初稿这么写过，已更正</strong>），<br />
+<strong>而是看 beta 预期与实际的残差</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BTC 八月（币安口径）</td>
+<td>+24.95%</td>
+</tr>
+<tr>
+<td>CKB 的 beta</td>
+<td>1.231</td>
+</tr>
+<tr>
+<td><strong>beta 预期涨幅</strong></td>
+<td><strong>+30.71%</strong></td>
+</tr>
+<tr>
+<td>CKB 实际涨幅</td>
+<td>+25.82%</td>
+</tr>
+<tr>
+<td><strong>特质（残差）成分</strong></td>
+<td><strong>约 −4.89 个百分点</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>用 CoinGecko 口径（CKB +20.15% / BTC +23.62%，beta 预期 +29.08%）算，残差约 <strong>−8.9pp</strong>，<strong>方向相同</strong>。<br />
+<strong>这与第 6 章的叙事一致</strong>：八月中旬 CKB 链上发生的唯一大事是 RGB++ 资产被大规模解绑。</p>
+</blockquote>
+<h3 id="32-coingecko-ckb">3.2 一个必须先说明的数据问题：CoinGecko 的 CKB 序列在今年前五个月是坏的</h3>
+<p>本报告在计算年化波动率时得到 <strong>234.2%</strong> 和一个近乎为零的 R²（0.008），这个结果不可信，<br />
+因此回到交易所一手数据对质。<strong>币安 CKBUSDT 日线与 CoinGecko 逐月对照：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th>CoinGecko 隐含年化波动率</th>
+<th>币安</th>
+<th>月均价偏差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-09 至 2025-12</td>
+<td>64%–149%</td>
+<td>63%–150%</td>
+<td><strong>0.2%–1.0%</strong></td>
+</tr>
+<tr>
+<td><strong>2026-01</strong></td>
+<td>111%</td>
+<td>86%</td>
+<td><strong>+6.4%</strong></td>
+</tr>
+<tr>
+<td><strong>2026-02</strong></td>
+<td>183%</td>
+<td>96%</td>
+<td><strong>+22.6%</strong></td>
+</tr>
+<tr>
+<td><strong>2026-03</strong></td>
+<td>322%</td>
+<td>49%</td>
+<td><strong>+36.8%</strong></td>
+</tr>
+<tr>
+<td><strong>2026-04</strong></td>
+<td><strong>632%</strong></td>
+<td>68%</td>
+<td><strong>+41.7%</strong></td>
+</tr>
+<tr>
+<td><strong>2026-05</strong></td>
+<td>252%</td>
+<td>54%</td>
+<td><strong>+33.8%</strong></td>
+</tr>
+<tr>
+<td>2026-06 至 2026-09</td>
+<td>44%–77%</td>
+<td>44%–65%</td>
+<td><strong>0.7%–2.9%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>这是本系列第一次遇到「数据源在窗口两端都对、中间一段坏掉」的情况。</strong><br />
+前几期遇到的是「数据源在测另一条链」（DOT）或「数据源的模型不适用」（ZEC），<br />
+那两种错误在整个窗口内一致；<strong>这一次的错误只在特定时段出现，因此任何只看首尾的核对都发现不了它。</strong></p>
+<p><strong>排他性检查</strong>：用同一方法对照了 <strong>DOT / ZEC / TRX 三个资产</strong>的 CoinGecko 与币安序列，<br />
+<strong>三者在全部 13 个月内均一致</strong>（波动率比值 &lt; 1.5 倍、月均价偏差 &lt; 5%）。</p>
+<blockquote>
+<p>⚠️ <strong>这三个不足以支持「前十一期都没被污染」的全称结论，初稿这么写过，已收窄。</strong><br />
+<strong>已查 3 个（DOT / ZEC / TRX），均正常；余 8 个（BTC / SOL / ADA / ETH / BNB / HYPE / UNI / XIN）未查。</strong><br />
+<strong>按本报告自己的诊断逻辑（流动性越低的资产，聚合报价越容易坏），<br />
+XIN（八月日成交中位数 $10,878）恰恰是最该查而没查的那一个。下期补。</strong></p>
+</blockquote>
+<p><strong>修正后的风险特征（币安，2025-09-10 至 2026-09-09，365 天日对数收益）：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>CKB</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年化波动率</td>
+<td><strong>80.3%</strong></td>
+<td>44.3%</td>
+</tr>
+<tr>
+<td>beta（相对 BTC）</td>
+<td><strong>1.231</strong></td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>相关系数 / R²</td>
+<td>0.680 / <strong>0.462</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>校验：R² = (β × σ_BTC ÷ σ_CKB)² = (1.231 × 44.3% ÷ 80.3%)² = 0.462 ✓</p>
+</blockquote>
+<h3 id="33">3.3 流动性：这是本系列见过的最薄的可交易资产</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>币安 CKBUSDT 八月日成交额（中位数 / 均值）</td>
+<td><strong>$153,486</strong> / $239,910</td>
+</tr>
+<tr>
+<td>CoinGecko 全站八月日成交额中位数</td>
+<td>$1,464,833</td>
+</tr>
+<tr>
+<td>币安订单簿 ±1%（买 / 卖）</td>
+<td>$35,156 / <strong>$12,403</strong></td>
+</tr>
+<tr>
+<td>币安订单簿 ±2%（买 / 卖）</td>
+<td>$37,601 / <strong>$22,594</strong></td>
+</tr>
+<tr>
+<td>500 档双边深度合计</td>
+<td><strong>$259,092 = 市值的 0.46%</strong></td>
+</tr>
+<tr>
+<td>买一卖一价差</td>
+<td>0.087%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>卖出约 2.3 万美元就会把币安价格打下 2%。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>交易对状态（币安 <code>exchangeInfo</code>，一手）</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CKBUSDT</td>
+<td><strong>TRADING</strong>（现货 + 杠杆）</td>
+</tr>
+<tr>
+<td>CKBBTC</td>
+<td><strong>BREAK</strong>（暂停），最后一根日线成交在 <strong>2022-05-14</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>CKB 目前不在币安的 Monitoring Tag（观察名单）上（2026-09-04 那批加入的是 AVA / GNS / SCR / TOWNS）。<br />
+<strong>⚠️ 该条与「KuCoin 于 2026-05-20 将 CKB 移出全仓杠杆」一样，来源为搜索摘要，本报告未打开一手公告，核实等级低。</strong></p>
+<h3 id="34">3.4 宏观环境</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>因素</th>
+<th>状态（9 月初）</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>联邦基金利率</td>
+<td>3.50–3.75%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>9 月加息概率</td>
+<td><strong>65.9%</strong>（CME FedWatch，8/31）</td>
+<td>利空</td>
+</tr>
+<tr>
+<td>PCE 通胀</td>
+<td>3.7%（12 个月）/ 4.1%（6 个月）</td>
+<td>支持加息</td>
+</tr>
+<tr>
+<td>10 年期美债</td>
+<td>4.79%</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>本节沿用与本系列 TRX / UNI / XIN / DOT / ZEC 期同一时点的宏观快照。<br />
+<strong>CKB 的 R² 为 46.2%，在十二个资产里居中——宏观通过 BTC 的传导可以解释它约四成六的波动。</strong></p>
+</blockquote>
+<hr />
+<h2 id="4">4. 八月的货币流：逐项分解（本期核心章之一）</h2>
+<h3 id="41">4.1 测量方法</h3>
+<p>取两个区块头的 <code>dao</code> 字段直接相减。<strong>没有第三方统计参与。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>起点</th>
+<th>终点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>时点（UTC）</td>
+<td>2026-08-01 00:00</td>
+<td>2026-09-01 00:00</td>
+</tr>
+<tr>
+<td>区块高度</td>
+<td>20,025,197</td>
+<td>20,321,726</td>
+</tr>
+<tr>
+<td>epoch</td>
+<td>14,661</td>
+<td>14,847</td>
+</tr>
+<tr>
+<td><strong>C</strong>（累计发行）</td>
+<td>65,057,383,909</td>
+<td>65,349,752,951</td>
+</tr>
+<tr>
+<td><strong>S</strong>（DAO/国库池）</td>
+<td>7,315,635,712</td>
+<td>7,415,902,821</td>
+</tr>
+<tr>
+<td><strong>U</strong>（占用容量）</td>
+<td>5,199,777,992</td>
+<td>5,192,741,969</td>
+</tr>
+<tr>
+<td><strong>AR</strong>（累计利率）</td>
+<td>1.200735</td>
+<td>1.202838</td>
+</tr>
+</tbody>
+</table></div>
+<p>区间跨 296,529 个区块、186 个 epoch。实测出块间隔 <strong>9.03 秒</strong>（协议目标 8 秒），<br />
+epoch 长度因此被调到约 1,594 块，<strong>epoch 实际时长正好 4.00 小时</strong>（协议目标 4 小时）。</p>
+<h3 id="42">4.2 分解</h3>
+<p>一次发行与二次发行的比例由源码常量固定：当前处于第一次减半之后，<br />
+每 epoch 一次发行 958,904.109589 CKB、二次发行 613,698.630137 CKB，<br />
+即一次发行占总发行的 <strong>60.9754%</strong>。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th style="text-align: right;">CKB</th>
+<th style="text-align: right;">占总发行</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>总发行 ΔC</strong></td>
+<td style="text-align: right;"><strong>+292,369,042</strong></td>
+<td style="text-align: right;">100%</td>
+</tr>
+<tr>
+<td>├ 一次发行（全部给矿工）</td>
+<td style="text-align: right;">+178,273,806</td>
+<td style="text-align: right;">60.98%</td>
+</tr>
+<tr>
+<td>└ 二次发行</td>
+<td style="text-align: right;">+114,095,236</td>
+<td style="text-align: right;">39.02%</td>
+</tr>
+</tbody>
+</table></div>
+<p>二次发行按共识规则拆分。矿工那一份的公式在 <code>ckb/util/dao/src/lib.rs</code> 里写得很直白：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">miner_issuance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g2</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="n">parent_u</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">parent_c</span><span class="w">      </span><span class="c1">// g2 = 该块的二次发行</span>
+<span class="n">nervosdao_issuance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g2</span><span class="w"> </span><span class="err">−</span><span class="w"> </span><span class="n">miner_issuance</span><span class="w">       </span><span class="c1">// 其余全部进入 S</span>
+<span class="n">current_s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent_s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nervosdao_issuance</span><span class="w"> </span><span class="err">−</span><span class="w"> </span><span class="n">withdrawed_interests</span>
+</code></pre></div>
+
+<p>区间内 U/C 的均值为 <strong>7.9693%</strong>，据此：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>二次发行的去向</th>
+<th style="text-align: right;">CKB</th>
+<th style="text-align: right;">占二次发行</th>
+<th>对照</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>→ 矿工（状态租金）</strong></td>
+<td style="text-align: right;">+9,092,578</td>
+<td style="text-align: right;"><strong>7.97%</strong></td>
+<td>✅ <strong>独立</strong>：浏览器 <code>mining_reward</code> = 逐块 <code>secondary_reward</code> 求和，增量 <strong>9,089,920</strong>，差 <strong>0.03%</strong></td>
+</tr>
+<tr>
+<td><strong>→ NervosDAO 存款人计提</strong></td>
+<td style="text-align: right;">+15,937,324</td>
+<td style="text-align: right;"><strong>13.97%</strong></td>
+<td>⚪ <strong>直接取用</strong>浏览器 <code>deposit_compensation</code> 增量，非本报告独立推导</td>
+</tr>
+<tr>
+<td><strong>→ 国库（未发行，即销毁）</strong></td>
+<td style="text-align: right;">+89,065,334</td>
+<td style="text-align: right;"><strong>78.06%</strong></td>
+<td>⚠️ <strong>不独立</strong>：浏览器 <code>treasury_amount</code> 由 <code>S</code> 派生（见 4.4），增量 95,802,883，差 +7.6%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>S 的变化</strong>：进入 S 的是 114,095,236 − 9,092,578 = <strong>105,002,658</strong>；<br />
+实测 ΔS = <strong>+100,267,109</strong>；<strong>差额 4,735,549 CKB 就是八月 NervosDAO 存款人实际提走的利息。</strong></p>
+<h3 id="43">4.3 闭合检验</h3>
+<p>进入流通的量 = 总发行 − 留在 S 里的量：</p>
+<div class="codehilite"><pre><span></span><code>ΔC − ΔS = 292,369,042 − 100,267,109 = +192,101,933 CKB
+</code></pre></div>
+
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>八月流通量增量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>本报告（区块头 dao 字段推导）</strong></td>
+<td><strong>+192,101,933 CKB</strong></td>
+</tr>
+<tr>
+<td>CKB 浏览器 <code>circulating_supply</code> 日度序列</td>
+<td>+192,142,780 CKB</td>
+</tr>
+<tr>
+<td>差额</td>
+<td>40,847 CKB（0.021%）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>本报告初稿把这一行写成「两条独立路径的核对」，这是错的，现予撤回。</strong></p>
+<p><strong>打开 CKB 浏览器源码 <code>app/models/market_data.rb</code> 后可以看到，它的 <code>circulating_supply</code> 是：</strong></p>
+<p><code>ruby
+parsed_dao.c_i - parsed_dao.s_i - BURN_QUOTA
+  - ecosystem_locked - team_locked - private_sale_locked
+  - founding_partners_locked - foundation_reserve_locked - bug_bounty_locked</code></p>
+<p><strong>即 <code>C − S − 84 亿 − 各归属锁定 − 赏金地址余额</code>。</strong> 而全部归属锁定的最后一档在 2022-12-31 释放完毕，<br />
+赏金地址（<code>ckb1qyqy6mtud5sgctjwgg6gydd0ea05mr339lnslczzrc</code>）<strong>余额 103,000,771 CKB、历史上只有 1 笔交易、<br />
+当前 1 个活跃 cell</strong>，八月未发生变化。</p>
+<p><strong>所以浏览器算的就是 <code>C − S − 常数</code>，与本报告的 <code>ΔC − ΔS</code> 在代数上是同一个量，不是独立测量。</strong><br />
+<strong>那 40,847 CKB 的差额也不是「两个方法吻合」，它对应约 9.5 分钟的区块边界漂移</strong><br />
+（本报告取的是 20,025,197 与 20,321,726 两个块，浏览器取的是它自己日度快照时刻的 tip）。</p>
+<p><strong>这是本系列 UNI 期「把拟合报成了验证」的同型错误，只是更彻底——那次是拟合，这次是恒等式。</strong></p>
+</blockquote>
+<p><strong>本报告因此把这一条降级为「恒等式自洽」，不作为交叉验证。</strong><br />
+<strong>八月的流通量增速仍然成立：+0.3901%（月），年化 4.59%（简单）/ 4.69%（复利）</strong>，<br />
+因为它只依赖 <code>ΔC</code> 与 <code>ΔS</code> 两个链上直读值，不依赖浏览器。</p>
+<h3 id="431">4.3.1 本报告真正独立的五处交叉核对</h3>
+<p><strong>撤回上面那一条之后，需要说清楚哪些核对是真的独立的</strong>（判据：两条路径不共用同一个输入字段）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>被核对的量</th>
+<th>路径一</th>
+<th>路径二</th>
+<th>残差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>真实占用容量</strong></td>
+<td>区块头 <code>dao</code> 的 U 减虚拟基数</td>
+<td>浏览器 <code>occupied_capacity</code> = <strong>对全部活跃 cell 的 <code>occupied_capacity</code> 求和</strong>（源码 <code>daily_statistic.rb</code>，与 dao 字段无关）</td>
+<td><strong>0.0015% / 0.0092%</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>二次发行给矿工的部分</strong></td>
+<td>本报告按 <code>g2 × U/C</code> 推导</td>
+<td>浏览器 <code>mining_reward</code> = <strong>逐块 <code>secondary_reward</code> 求和</strong>（来自节点的 block economic state）</td>
+<td><strong>0.03%</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>NervosDAO 存量</strong></td>
+<td>本报告用 indexer <code>get_cells</code> 全量遍历 22,675 枚 cell</td>
+<td>浏览器 <code>total_dao_deposit</code>（基于其自建的 DaoEvent 索引）</td>
+<td><strong>0.003%</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>八月总发行 ΔC</strong></td>
+<td>区块头 C 相减 = 292,369,042</td>
+<td>186 个 epoch × 每 epoch 1,572,602.74 CKB = 292,504,109</td>
+<td><strong>0.05%</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>累计一次发行</strong></td>
+<td><code>C(9/1) − C(创世) − epoch × 二次发行常量</code></td>
+<td>era0 + era1 分档累加</td>
+<td><strong>0.01%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>第 1 项是本报告最重要的核对</strong>，因为第 5 章的全部结论都建立在它上面，<br />
+<strong>而它确实是两条不共用输入的路径。</strong></p>
+</blockquote>
+<h3 id="44">4.4 国库项的残差：成因已定位</h3>
+<p>上表里 <code>treasury_amount</code> 一项与本报告的推导差 <strong>+7.6%</strong>；<br />
+浏览器三项加总（95,802,883 + 15,937,324 + 9,089,920 = 120,830,127）比区间实际的二次发行 114,095,236<br />
+<strong>多出 6,731,020 CKB（5.9%）——一个正确的分解不可能大于被分解的总量。</strong></p>
+<p><strong>初稿把这归因于「日度边界对齐」，这是猜测。领域审查（Codex）提出了一个具体假说，<br />
+本报告打开浏览器源码 <code>app/models/daily_statistic.rb</code> 核实，假说成立：</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">define_logic</span><span class="w"> </span><span class="ss">:deposit_compensation</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="n">unclaimed_compensation</span><span class="o">.</span><span class="n">to_i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">claimed_compensation</span><span class="o">.</span><span class="n">to_i</span><span class="w">     </span><span class="c1"># 全部未领取 + 已领取</span>
+<span class="k">end</span>
+
+<span class="n">define_logic</span><span class="w"> </span><span class="ss">:treasury_amount</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="n">parse_dao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="no">CkbUtils</span><span class="o">.</span><span class="n">parse_dao</span><span class="p">(</span><span class="n">current_tip_block</span><span class="o">.</span><span class="n">dao</span><span class="p">)</span>
+<span class="w">  </span><span class="n">parse_dao</span><span class="o">.</span><span class="n">s_i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">unmade_dao_interests</span><span class="w">                        </span><span class="c1"># S 减去「阶段一未领取」</span>
+<span class="k">end</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">unmaed_cells</span>
+<span class="w">  </span><span class="no">DaoEvent</span><span class="o">...</span><span class="n">deposit_to_dao</span><span class="o">.</span><span class="n">created_before</span><span class="p">(</span><span class="n">ended_at</span><span class="p">)</span><span class="o">.</span><span class="n">unconsumed_at</span><span class="p">(</span><span class="n">ended_at</span><span class="p">)</span><span class="w">   </span><span class="c1"># 只含阶段一</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p><strong><code>treasury_amount</code> 只从 S 里减掉「阶段一存款 cell 的未领取利息」，<br />
+而 <code>deposit_compensation</code> 把阶段一、阶段二、已领取的全部计入。<br />
+因此「阶段二（取款中）cell 的未领取利息」同时落在两项里，被重复计算。</strong></p>
+<p><strong>本报告 5.5 测出阶段二 cell 有 812,109,529 CKB，占 DAO 总量的 8.9%——<br />
+这个量级与 6,731,020 CKB 的超额是相容的。</strong></p>
+<blockquote>
+<p><strong>两条要记住的</strong>：<br />
+<strong>① 浏览器的 <code>treasury_amount</code> 不是独立测量</strong>——它由 <code>S</code> 派生，而 <code>S</code> 正是本报告用的那个字段。<br />
+<strong>② 初稿说「浏览器有问题，本报告没问题」是不成立的</strong>——在没有读源码之前，<br />
+本报告没有任何依据把误差归到对方身上。<strong>这个判断是被外部审查纠正的。</strong></p>
+</blockquote>
+<hr />
+<h2 id="5">5. 状态租金：设计与实测之间有多远（本期核心章之二）</h2>
+<h3 id="51-97">5.1 协议记的「占用容量」有 97% 是一个虚拟数</h3>
+<p><code>dao</code> 字段里的 U 在 2026-09-09 是 <strong>5,193,042,382 CKB</strong>。<br />
+按字面理解，这意味着 CKB 链上有 51.93 亿字节（约 5.2 GB）的状态。<strong>这个数是假的。</strong></p>
+<p><strong>证据一：创世块的 U 就已经是 50.41 亿。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>CKB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创世块 <code>dao</code> 字段的 U</td>
+<td><strong>5,041,203,089</strong></td>
+</tr>
+<tr>
+<td>本报告遍历创世块 673 个输出、逐个按 <code>8 + lock脚本 + type脚本 + data</code> 字节数算出的真实占用</td>
+<td><strong>1,203,211</strong></td>
+</tr>
+<tr>
+<td>差额</td>
+<td><strong>5,039,999,878</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>证据二：这个差额等于 84 亿 × 0.6。</strong></p>
+<p>CKB 源码 <code>spec/src/consensus.rs</code>：</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// Ratio of satoshi cell occupied of capacity,</span>
+<span class="c1">// only affects genesis cellbase&#39;s satoshi lock cells.</span>
+<span class="k">pub</span><span class="p">(</span><span class="k">crate</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">SATOSHI_CELL_OCCUPIED_RATIO</span>: <span class="nc">Ratio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ratio</span>::<span class="n">new</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+</code></pre></div>
+
+<p>而 <code>spec/src/lib.rs</code> 里这个字段的文档注释是：</p>
+<blockquote>
+<p><code>/// The burned cell virtual occupied, design for NervosDAO</code><br />
+（被销毁 cell 的<strong>虚拟占用</strong>，为 NervosDAO 而设计）</p>
+</blockquote>
+<p><strong>即：创世那枚 84 亿 CKB 的永久销毁 cell，被协议按 60% 记作 50.4 亿 CKB 的「占用容量」。</strong><br />
+84 亿 × 0.6 = <strong>5,040,000,000</strong>，与上表差额 5,039,999,878 相差 122 CKB<br />
+（这 122 来自本报告对创世 cell 占用字节数的近似算法，误差 0.01%）。</p>
+<p><strong>证据三：剔除虚拟基数后，与浏览器独立索引的结果吻合。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>2026-08-01</th>
+<th>2026-09-01</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dao</code> 字段 U</td>
+<td>5,199,777,992</td>
+<td>5,192,741,969</td>
+</tr>
+<tr>
+<td><strong>减去虚拟基数 5,040,000,000</strong></td>
+<td><strong>159,777,992</strong></td>
+<td><strong>152,741,969</strong></td>
+</tr>
+<tr>
+<td>CKB 浏览器 <code>occupied_capacity</code>（独立索引全部活跃 cell）</td>
+<td><strong>159,780,423</strong></td>
+<td><strong>152,727,921</strong></td>
+</tr>
+<tr>
+<td>残差</td>
+<td><strong>−0.0015%</strong></td>
+<td>+0.0092%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>结论：CKB 真实的链上状态是 1.527 亿 CKB。协议记的 51.93 亿里，97.06% 是那枚销毁 cell 的虚拟占用。</strong></p>
+<h3 id="52-rfc0015">5.2 RFC0015 的三个假设，逐一对照</h3>
+<p>RFC0015 的分配例子假设 60% 存状态 / 35% 存 DAO / 5% 流动。<strong>2026 年 8 月的实测：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>RFC0015 的例子</strong></th>
+<th><strong>2026-08 实测</strong></th>
+<th>差距</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>状态占用 → 矿工</td>
+<td><strong>60%</strong></td>
+<td><strong>7.97%</strong></td>
+<td><strong>7.5 倍</strong></td>
+</tr>
+<tr>
+<td>└ 其中来自真实状态</td>
+<td>—</td>
+<td><strong>0.23 个百分点</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>└ 其中来自虚拟销毁 cell</td>
+<td>—</td>
+<td><strong>7.74 个百分点</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>NervosDAO → 存款人</td>
+<td><strong>35%</strong></td>
+<td><strong>13.97%</strong></td>
+<td>2.5 倍</td>
+</tr>
+<tr>
+<td>剩余 → 销毁</td>
+<td><strong>5%</strong></td>
+<td><strong>78.06%</strong></td>
+<td><strong>15.6 倍</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="二次发行的去向：RFC0015 假设 vs 2026 年 8 月实测" src="charts/secondary-split-202608.svg" /></p>
+<blockquote>
+<p><strong>这张表是本报告最重要的一张。</strong></p>
+<p><strong>① 状态租金这条腿几乎没有在工作。</strong> 矿工拿到的 7.97% 里，只有 0.23 个百分点对应真实状态；<br />
+其余 7.74 个百分点是在为一枚 2019 年就被销毁、永远不会变化的 cell 付租金。<br />
+<strong>如果没有这个虚拟基数，矿工的状态租金收入会是现在的 1/34。</strong></p>
+<p><strong>② 「在社区达成一致之前销毁」这个临时安排，运行到今天已经烧掉了约 67 亿 CKB</strong><br />
+（浏览器 <code>treasury_amount</code> 累计值 6,698,061,406 CKB），<strong>八月一个月就烧掉 8,907 万 CKB。</strong><br />
+而截至 2026-09，Nervos 官方唯一与国库有关的仓库是 <code>nervosnetwork/ckb-treasury-lab</code>，<br />
+<strong>建于 2026-07-02，README 第一行写着「NOTE This is not a production project.」</strong><br />
+——距 RFC0015 写下这个「临时安排」已经过去八年。</p>
+</blockquote>
+<h3 id="521">5.2.1 虚拟占用不是「白记的账」——它是一笔从持有人到矿工的转移</h3>
+<p><strong>初稿把「97.06% 是虚拟的」当成纯粹的诊断性发现。推理审查指出它有可量化的经济后果，且方向与本报告的另一处叙述冲突。</strong></p>
+<p>假设把虚拟基数取消、U 只记真实状态：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>现状（含虚拟基数）</th>
+<th>假想（只记真实状态）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>U / C</td>
+<td><strong>7.9693%</strong></td>
+<td><strong>0.2342%</strong></td>
+</tr>
+<tr>
+<td>八月矿工的状态租金</td>
+<td><strong>9,092,578 CKB</strong></td>
+<td><strong>267,199 CKB</strong></td>
+</tr>
+<tr>
+<td>八月进入销毁的部分</td>
+<td>89,065,334 CKB</td>
+<td><strong>97,890,713 CKB</strong></td>
+</tr>
+<tr>
+<td><strong>销毁占二次发行</strong></td>
+<td><strong>78.06%</strong></td>
+<td><strong>85.80%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>差额 8,825,379 CKB/月、年化 105,904,545 CKB（流通量的 0.214%），<br />
+是虚拟基数把本应销毁的部分转给了矿工。</strong></p>
+<blockquote>
+<p><strong>这个发现纠正了本报告 9.1/9.2 两张表里的一处不一致</strong>：<br />
+<strong>多头 #1「78.06% 被销毁，实际稀释低」与空头 #2「97.06% 的占用是虚拟的」是同一枚硬币的两面</strong>——<br />
+<strong>正是那个虚拟基数把销毁比例从 85.80% 压到了 78.06%。</strong><br />
+<strong>对持有人而言，虚拟占用等于每年多 0.214% 的稀释；对矿工而言是一笔补贴。</strong></p>
+<p><strong>同时也要给这个设计一个公允的读法</strong>（本报告未找到设计文档，以下是重构，<strong>未经核实</strong>）：<br />
+创世那 84 亿销毁币仍然计在 C 里。<strong>若不给它记虚拟占用，它对应的那份二次发行会被永久销毁</strong>——<br />
+协议按 60% 把它当作一个「平均参与者」对待，是一个可以争论但并非无理的选择。<br />
+<strong>下期需核实：<code>SATOSHI_CELL_OCCUPIED_RATIO = 6/10</code> 是否有对应的 RFC / issue / PR 讨论记录。</strong></p>
+</blockquote>
+<h3 id="53-rfc0015">5.3 反解：要让 RFC0015 的假设成立，需要什么</h3>
+<p><strong>不给目标价，改给约束</strong>（本系列 DOT 期确立的做法：反解比单边区间敏感性有信息量）。</p>
+<p>要让「60% 的 CK Byte 用于存储状态」成立，真实状态需要达到 0.60 × C = <strong>392.10 亿 CKB</strong>，<br />
+即当前 1.527 亿的 <strong>257 倍</strong>。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>按什么增速外推</th>
+<th>实测增速</th>
+<th>达到 257 倍需要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>近 12 个月</td>
+<td><strong>+1.90% / 年</strong></td>
+<td><strong>295 年</strong></td>
+</tr>
+<tr>
+<td>近 36 个月年化</td>
+<td><strong>+0.13% / 年</strong></td>
+<td><strong>4,429 年</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>这个反解不是修辞。</strong> 它说明的是：<strong>RFC0015 设想的那个均衡状态，在当前的采用轨迹上不可达，<br />
+因此「状态租金」不是一个即将启动的机制，而是一个需要重新设计的机制。</strong><br />
+而重新设计需要治理，治理需要国库，国库还停在 lab 阶段。</p>
+</blockquote>
+<h3 id="54-nervosdao">5.4 NervosDAO 保护了什么，没保护什么</h3>
+<p>RFC0015 第 138 行写：</p>
+<blockquote>
+<p>对长期持币者而言，只要把代币锁进 NervosDAO，二次发行的通胀效应就只是名义上的。<br />
+对他们来说就像二次发行不存在一样，<strong>他们持有的是像比特币那样有硬顶的代币。</strong></p>
+</blockquote>
+<p><strong>这句话在它自己的范围内成立，但读者很容易把它理解成「存进 DAO 就不被稀释」，那是错的。</strong></p>
+<p>AR 的更新公式（源码）是 <code>ar_increase = parent_ar × g2 / parent_c</code>——<br />
+<strong>存款人按「二次发行 ÷ 累计发行」的全额计息，因此二次发行对他们确实是中性的。</strong><br />
+<strong>但一次发行不在补偿范围内。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>八月实测</th>
+<th>年化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NervosDAO 名义收益（AR 增长）</td>
+<td>+0.1751%</td>
+<td><strong>+2.06%</strong></td>
+</tr>
+<tr>
+<td>流通量增长</td>
+<td>+0.3901%</td>
+<td><strong>+4.69%</strong></td>
+</tr>
+<tr>
+<td><strong>存款人相对份额变化</strong></td>
+<td></td>
+<td><strong>−2.49%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>所以：把 CKB 存进 NervosDAO，仍然每年损失约 2.5% 的网络份额。</strong><br />
+这不是设计缺陷——RFC0015 从没承诺补偿一次发行，就像比特币持有者也承受比特币的区块奖励稀释。<br />
+<strong>它是「像比特币一样有硬顶」这个类比在读者端的失真。</strong></p>
+<p><strong>这个缺口会随减半收敛。</strong> 按当前参数外推（假设 U/C 与 DAO 占比不变）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th>一次发行</th>
+<th>流通量年增</th>
+<th>DAO 收益率</th>
+<th>存款人份额年变</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>现在</td>
+<td>21.0 亿/年</td>
+<td>4.72%</td>
+<td>1.95%</td>
+<td><strong>−2.64%</strong></td>
+</tr>
+<tr>
+<td>2027-11 第二次减半后</td>
+<td>10.5 亿/年</td>
+<td>2.53%</td>
+<td>1.89%</td>
+<td><strong>−0.63%</strong></td>
+</tr>
+<tr>
+<td>2031-11 第三次减半后</td>
+<td>5.25 亿/年</td>
+<td>1.34%</td>
+<td>1.64%</td>
+<td><strong>+0.29%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>一个可检验的推论：NervosDAO 存款人的份额侵蚀会在 2031 年前后由负转正。</strong><br />
+<strong>⚠️ 这是一个恒等式外推，不是预测</strong>——它假设 U/C、DAO 占比、提取行为都不变，<br />
+而这三个量在过去 12 个月都在变。它的用途是给出量级，不是给出时点。</p>
+</blockquote>
+<h3 id="55-nervosdao">5.5 NervosDAO 的存量与口径</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>数量</th>
+<th>CKB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>阶段一（存款中）cell</strong></td>
+<td>20,776 枚</td>
+<td><strong>8,347,466,893</strong></td>
+</tr>
+<tr>
+<td><strong>阶段二（取款中）cell</strong></td>
+<td>1,899 枚</td>
+<td><strong>812,109,529</strong></td>
+</tr>
+<tr>
+<td><strong>合计（链上 indexer 遍历）</strong></td>
+<td>22,675 枚</td>
+<td><strong>9,159,576,422</strong></td>
+</tr>
+<tr>
+<td>对照：<code>get_cells_capacity</code> 一次性查询</td>
+<td>—</td>
+<td>9,159,593,814（差 0.0002%）</td>
+</tr>
+<tr>
+<td>对照：CKB 浏览器 <code>total_dao_deposit</code></td>
+<td>—</td>
+<td>8,347,705,393（<strong>只数阶段一</strong>，差 0.003%）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>口径差异必须说明</strong>：CKB 浏览器报的「NervosDAO 存款」只包含阶段一，<br />
+<strong>漏掉了 8.12 亿 CKB（占合计的 8.9%）已经进入取款流程的部分。</strong><br />
+本报告在讲「锁仓比例」时用合计口径，在与浏览器序列做增量对照时用阶段一口径。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>锁仓 / 流通量（合计口径）</td>
+<td><strong>18.53%</strong></td>
+</tr>
+<tr>
+<td>锁仓 / 流通量（仅阶段一）</td>
+<td>16.88%</td>
+</tr>
+<tr>
+<td><strong>八月存款净变化（浏览器口径）</strong></td>
+<td><strong>−55,216,610 CKB</strong></td>
+</tr>
+<tr>
+<td>八月新增存入合计</td>
+<td>+131,481,506 CKB</td>
+</tr>
+<tr>
+<td><strong>隐含提取</strong></td>
+<td><strong>−186,698,116 CKB</strong></td>
+</tr>
+<tr>
+<td>累计存款人数</td>
+<td>79,965 → 80,087</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>八月 NervosDAO 是净流出的</strong>，且 8.12 亿 CKB 还排在取款队列里（占流通量 1.64%）。</p>
+<hr />
+<h2 id="6-rgb">6. RGB++ 的收缩：一次可以被逐块测量的解绑（本期核心章之三）</h2>
+<h3 id="61">6.1 事件</h3>
+<p>第 5 章测出的真实状态在八月从 1.598 亿掉到 1.527 亿（<strong>−4.40%</strong>），<br />
+但这个下降不是渐进的——<strong>它集中在 8 月 14 日到 17 日的两天多里。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>采样时点（UTC）</th>
+<th>区块</th>
+<th>真实占用容量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>08-13 17:39</td>
+<td>20,149,542</td>
+<td>161,347,500</td>
+</tr>
+<tr>
+<td><strong>08-14 18:53</strong></td>
+<td>20,159,107</td>
+<td><strong>161,446,936</strong> ← 采样期最高</td>
+</tr>
+<tr>
+<td>08-15 20:30</td>
+<td>20,168,672</td>
+<td>159,211,023</td>
+</tr>
+<tr>
+<td><strong>08-16 21:49</strong></td>
+<td>20,178,237</td>
+<td><strong>152,428,063</strong> ← 本轮下降结束</td>
+</tr>
+<tr>
+<td>08-17 21:27</td>
+<td>20,187,802</td>
+<td>152,567,815</td>
+</tr>
+<tr>
+<td><strong>08-26 03:05</strong></td>
+<td>20,264,322</td>
+<td><strong>152,200,905</strong> ← 采样期最低</td>
+</tr>
+<tr>
+<td>08-31 23:58</td>
+<td>20,321,712</td>
+<td>152,741,115</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>采样步长为 <strong>9,565</strong> 个区块（约一日），共 32 个采样点。</p>
+</blockquote>
+<p><strong>这次下降从 08-14 18:53 的 161,446,936 到 08-16 21:49 的 152,428,063，<br />
+两天多下降 9,018,873 CKB，此后没有恢复。</strong></p>
+<blockquote>
+<p>⚠️ <strong>口径提醒</strong>：<strong>08-16 是这一轮下降的终点，不是八月的最低点。</strong><br />
+采样期的最低点是 <strong>08-26 03:05 的 152,200,905 CKB</strong>，比 08-16 又低 227,158 CKB。<br />
+<strong>从采样期最高到采样期最低是 −9,246,031 CKB。</strong><br />
+本报告在描述这次事件时用 08-14 → 08-16 的区间，因为归因分析只覆盖这个窗口；<br />
+<strong>两个数不可互换使用。</strong></p>
+</blockquote>
+<p><img alt="2026 年 8 月真实占用容量的逐日轨迹" src="charts/rgbpp-unwind-202608.svg" /></p>
+<h3 id="62">6.2 归因：抽样分类，不做推断</h3>
+<p>以 10 个区块为步长扫过 20,159,107–20,178,237 这 19,130 个区块的 U 序列，<br />
+得到 <strong>51 个降幅超过 50,000 CKB 的下降段，合计 −9,453,316 CKB</strong>。</p>
+<p><strong>在「下降段」这个总体里随机抽 22 段</strong>（覆盖总降幅的 <strong>36.8%</strong>），<br />
+把这些区块的全部非 cellbase 交易的输入 cell 取回来，按 lock + type 脚本分类：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>输入 cell 的 lock + type</th>
+<th style="text-align: right;">释放的占用容量</th>
+<th style="text-align: right;">占比</th>
+<th style="text-align: right;">释放的容量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RGB++ lock + xUDT</strong></td>
+<td style="text-align: right;"><strong>3,264,442 CKB</strong></td>
+<td style="text-align: right;"><strong>91.5%</strong></td>
+<td style="text-align: right;">5,847,291 CKB</td>
+</tr>
+<tr>
+<td>secp256k1 + 无 type</td>
+<td style="text-align: right;">279,136 CKB</td>
+<td style="text-align: right;">7.8%</td>
+<td style="text-align: right;">4,669,045 CKB</td>
+</tr>
+<tr>
+<td>其余四类合计</td>
+<td style="text-align: right;">25,971 CKB</td>
+<td style="text-align: right;">0.7%</td>
+<td style="text-align: right;">115,772 CKB</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>样本自洽性检验</strong>（220 个区块、674 笔非 cellbase 交易，与上表同一次运行）：<br />
+逐笔算出的占用容量净变化为 <strong>−3,488,043 CKB</strong>（释放 3,569,549 − 新增 81,506），<br />
+而这些区块 <code>dao</code> 字段 U 的实测净变化是 <strong>−3,474,623 CKB</strong>，<strong>残差 +0.39%</strong><br />
+（残差方向与创世块那 122 CKB 一致，来自本报告对 occupied 字节数的近似算法）。</p>
+<p><strong>脚本身份用一手来源核对</strong>（<code>ckb-cell/rgbpp-sdk</code> 的 <code>MainnetInfo</code> 常量表）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>脚本</th>
+<th>code_hash</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RGB++ lock</td>
+<td><code>0xbc6c568a1a0d0a09f6844dc9d74ddb4343c32143ff25f727c59edf4fb72d6936</code></td>
+<td><code>MainnetInfo.RgbppLockScript.codeHash</code></td>
+</tr>
+<tr>
+<td>xUDT type</td>
+<td><code>0x50bd8d6680b8b9cf98b73f3c08faf8b2a21914311954118ad6609be6e78a1b95</code></td>
+<td><code>MainnetInfo.XUDTTypeScript.codeHash</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>典型交易形态</strong>：40 个 RGB++ lock + xUDT 的 cell（每枚容量中位数 254 CKB）作为输入，<br />
+输出 1 个 61 字节的标准 secp256k1 裸 cell。<strong>即：把绑定在比特币 UTXO 上的资产解绑，换回普通 CKB。</strong><br />
+样本内共消耗 <strong>20,661 枚</strong> 这样的 cell。</p>
+<p><strong>外推到整个窗口</strong>（按 91.5% 的占比）：RGB++ 释放的占用容量约 <strong>864.5 万 CKB</strong>，<br />
+对应释放的容量约 <strong>1,549 万 CKB</strong>，约 <strong>5.6 万枚 cell</strong>。</p>
+<blockquote>
+<p>⚠️ <strong>外推的精度声明</strong>：抽样覆盖降幅的 36.8%，抽样框是「下降段」而非全部区块。<br />
+<strong>本报告不声称 91.5% 是全窗口的精确占比</strong>，只声称 RGB++ 是这次收缩的主要来源，<br />
+且其量级在千万 CKB 级。</p>
+</blockquote>
+<h3 id="63">6.3 收缩之后剩下多少</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>脚本（<code>get_cells_capacity</code>，2026-09-09 实时）</th>
+<th>活跃容量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RGB++ lock</strong></td>
+<td><strong>2,139,213 CKB</strong></td>
+</tr>
+<tr>
+<td>BTC time lock（RGB++ 跨链的等待锁）</td>
+<td>65,169 CKB</td>
+</tr>
+<tr>
+<td>xUDT type（全部 xUDT 资产，含非 RGB++）</td>
+<td>9,007,830 CKB</td>
+</tr>
+<tr>
+<td>NervosDAO type</td>
+<td>9,159,593,814 CKB</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>八月之前 RGB++ 的链上足迹约为 1,549 万 + 214 万 ≈ 1,763 万 CKB，现在剩 214 万。<br />
+两天多里缩掉约 87.9%。</strong></p>
+<blockquote>
+<p>⚠️ <strong>这些数字量的是「作为存储抵押被锁在这些 cell 里的 CKB」，不是「这些 cell 承载的资产的价值」。</strong><br />
+一枚 RGB++ 的 xUDT cell 锁着 254 CKB 的容量，而它记账的那笔 token 可以值任意金额（或零）。<br />
+<strong>本报告没有、也无法从链上直接读出 RGB++ 所承载资产的美元价值</strong>，<br />
+因此不把 2,139,213 CKB 折成美元来代表「RGB++ 生态的规模」。<strong>初稿这样做过，已删除。</strong></p>
+</blockquote>
+<h3 id="64">6.4 工具链状态：三个官方仓库都归档了</h3>
+<p><code>ckb-cell/rgbpp-sdk</code> 现在重定向到 <code>utxostack/rgbpp-sdk</code>。<strong>该组织下与 RGB++ 相关的仓库：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>仓库</th>
+<th>最后推送</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>utxostack/rgbpp-sdk</code>（官方 SDK，58 stars）</td>
+<td>2025-05-27</td>
+<td><strong>archived（归档只读）</strong></td>
+</tr>
+<tr>
+<td><code>utxostack/btc-assets-api</code>（资产 API）</td>
+<td>2025-09-13</td>
+<td><strong>archived</strong></td>
+</tr>
+<tr>
+<td><code>utxostack/rgbpp-explorer</code>（浏览器）</td>
+<td>2025-01-07</td>
+<td><strong>archived</strong></td>
+</tr>
+<tr>
+<td><code>utxostack/RGBPlusPlus-design</code>（设计文档，41 stars）</td>
+<td>2025-04-09</td>
+<td>未归档但停更</td>
+</tr>
+<tr>
+<td><code>utxostack/ckb-bitcoin-spv-service</code></td>
+<td>2025-01-09</td>
+<td>未归档但停更</td>
+</tr>
+<tr>
+<td><strong>整个组织最近一次推送</strong></td>
+<td><strong>2025-10-27</strong></td>
+<td>且是一个 0 star 的边缘仓库</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>排他性检查（避免把「搬家」误判成「停摆」）</strong>：<br />
+在 GitHub 全站搜索名称含 <code>rgbpp</code> 的仓库，共 <strong>20 个</strong>。<br />
+近期有推送的只有 <code>oxdev6/fiber-rgbpp-swap</code>（2026-09-02，0 stars）与<br />
+<code>fghdotio/rgbpp-indexer</code>（2026-08-26，0 stars）两个个人仓库。<br />
+<strong>没有找到任何机构维护的接班项目。</strong></p>
+<h3 id="65-nervos">6.5 与此同时，Nervos 在建的是另一个东西</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>仓库</th>
+<th>2026-08 提交数</th>
+<th>最近发版</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nervosnetwork/fiber</code>（支付通道网络）</td>
+<td><strong>40</strong></td>
+<td><strong>v0.9.0，2026-08-06</strong></td>
+</tr>
+<tr>
+<td><code>nervosnetwork/ckb</code>（L1 核心）</td>
+<td><strong>1</strong></td>
+<td>v0.209.0，2026-07-29</td>
+</tr>
+<tr>
+<td><code>nervosnetwork/rfcs</code>（协议提案）</td>
+<td>0（近 13 个月共 3 次提交）</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>nervosnetwork/fiber</code> 的仓库描述是 "A scalable, privacy-by-default payment &amp; swap network"，<br />
+v0.9.0 的发版说明全部是可靠性与安全加固条目（数据库迁移、通道恢复、强制关闭结算、路由重试、<br />
+gossip 校验与限流、watchtower 清理）。</p>
+<p><strong>Fiber 主网的状态（一手核实，初稿在此处出过错）</strong>：</p>
+<p>初稿写「未能从一手来源确认 Fiber 主网上线时间」，并据此拒绝采用搜索摘要里的「十一月上线」。<br />
+<strong>打开仓库之后发现，一手证据是充分的，初稿只是没有查到位：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>证据</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nervosnetwork/fiber</code> README（develop 分支）</td>
+<td>直接给出<strong>主网安装命令</strong>：<code>FNN_VERSION=0.9.0 NETWORK=mainnet</code>，并要求填入可信的主网 CKB RPC</td>
+</tr>
+<tr>
+<td><code>config/mainnet/config.yml</code></td>
+<td>存在，且注明脚本部署记录为 <code>fiber-scripts/deployment/mainnet/migrations/**2025-02-28**-114908.json</code></td>
+</tr>
+<tr>
+<td>FundingLock code_hash</td>
+<td><code>0xe45b1f8f21bff23137035a3ab751d75b36a981deec3e7820194b9c042967f4f1</code></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>即：Fiber 的主网脚本早在 2025-02-28 就部署在 CKB 主网上，主网不是「计划中」，而是已经在跑。</strong></p>
+<p><strong>因此本报告直接去链上量它的规模（<code>get_cells_capacity</code>，2026-09-09）：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fiber FundingLock 活跃 cell 数</strong></td>
+<td><strong>34</strong></td>
+</tr>
+<tr>
+<td><strong>Fiber FundingLock 活跃容量</strong></td>
+<td><strong>39,691 CKB</strong></td>
+</tr>
+<tr>
+<td>同期 RGB++ lock 活跃容量</td>
+<td>2,139,213 CKB（<strong>是 Fiber 的 54 倍</strong>）</td>
+</tr>
+<tr>
+<td>同期 NervosDAO</td>
+<td>9,159,593,814 CKB</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>这个结果对多空两边都重要</strong>：<br />
+<strong>多头方向</strong>——Fiber 主网确实存在，不是 PPT；<br />
+<strong>空头方向</strong>——它上线一年半之后，全网 34 个通道、锁定 39,691 CKB。<br />
+<strong>而 RGB++ 在经历八月那次 88% 的收缩之后，剩下的量仍然是 Fiber 的 54 倍。</strong></p>
+<p><strong>第 6 章的结论</strong>：<strong>CKB 在 2024–2025 年的主叙事（RGB++）在链上和代码库两个维度同时退潮，<br />
+而八月的价格上涨与此完全无关</strong>——它发生在 BTC 三天涨 21% 的同一个窗口里。<br />
+<strong>一个网络的叙事换轨本身不是坏消息</strong>（Fiber 是真实的、主网已上线、在被认真开发），<br />
+<strong>但接班者目前的链上规模是 34 个通道、39,691 CKB。</strong><br />
+<strong>这意味着 2024–2025 年基于 RGB++ 给 CKB 的任何估值都需要重做，<br />
+而重做时能拿来替换的东西，量级还非常小。</strong></p>
+</blockquote>
+<hr />
+<h2 id="7">7. 矿工经济与安全预算</h2>
+<h3 id="71">7.1 八月矿工收入的构成</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th style="text-align: right;">CKB</th>
+<th style="text-align: right;">美元（按八月均价 $0.00089145）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一次发行</td>
+<td style="text-align: right;">178,273,806</td>
+<td style="text-align: right;">$158,922</td>
+</tr>
+<tr>
+<td>二次发行中的状态租金</td>
+<td style="text-align: right;">9,092,578</td>
+<td style="text-align: right;">$8,106</td>
+</tr>
+<tr>
+<td><strong>区块奖励合计</strong></td>
+<td style="text-align: right;"><strong>187,366,384</strong></td>
+<td style="text-align: right;"><strong>$167,028</strong></td>
+</tr>
+<tr>
+<td><strong>交易手续费合计（全月）</strong></td>
+<td style="text-align: right;"><strong>1,298.74</strong></td>
+<td style="text-align: right;"><strong>$1.16</strong></td>
+</tr>
+<tr>
+<td><strong>手续费占矿工收入</strong></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"><strong>0.000693%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>派生指标</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>日均安全预算</td>
+<td><strong>$5,388</strong></td>
+</tr>
+<tr>
+<td>年化安全预算 / 市值</td>
+<td><strong>3.56%</strong></td>
+</tr>
+<tr>
+<td>八月交易笔数</td>
+<td>539,286（日均 17,396）</td>
+</tr>
+<tr>
+<td><strong>单笔平均手续费</strong></td>
+<td><strong>0.002408 CKB = $0.00000215</strong></td>
+</tr>
+<tr>
+<td>全网算力（Eaglesong）</td>
+<td>96.57 PH/s</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>「手续费全月 1.16 美元」这个数字需要正确理解，不要当成笑话读。</strong><br />
+CKB 的设计本来就不指望手续费——RFC0015 明说矿工的长期收入来自<strong>状态租金</strong>而非交易费。</p>
+<p>⚠️ <strong>初稿在这里写「状态租金也没有实质内容，支撑安全的实际上只有一次发行」，这是错的，现予更正。</strong><br />
+<strong>虚拟的是计算基数，不是支付。</strong> 矿工确实按 <code>g2 × U/C</code> 收到了 9,092,578 CKB，这笔钱真实入账。<br />
+<strong>而且因为那 50.4 亿的虚拟占用是永久的、写死在创世里的，它构成一条永不消失的状态租金底线：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>当前</th>
+<th>C 增长到 1,000 亿时</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>U/C</td>
+<td><strong>7.97%</strong></td>
+<td><strong>5.19%</strong></td>
+</tr>
+<tr>
+<td>对应的年度状态租金</td>
+<td><strong>107,107,392 CKB</strong></td>
+<td><strong>69,793,920 CKB</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>即使一次发行在未来某天全部发完、真实状态仍然是零，矿工每年仍会从二次发行里拿到这一笔。</strong><br />
+<strong>它随 C 增长而缓慢摊薄，但不会归零。</strong></p>
+<p><strong>另需注意「已用掉 67.38%」不是跑道剩余。</strong> 一次发行是几何衰减序列（每约 4 年减半），<br />
+剩余的 109.6 亿是一个收敛级数，<strong>永远发不完</strong>；「用掉 67.38%」的正确读法是<br />
+<strong>「发行速率将每四年砍半」</strong>，不是「还剩三分之一的时间」。</p>
+<p><strong>因此正确的表述是</strong>：CKB 的长期安全预算不是零，<br />
+<strong>但它的三个来源里有两个与采用度无关</strong>——一次发行按固定表减半，<br />
+状态租金的 97.06% 挂在一个 2019 年就固定下来的常数上；<br />
+<strong>只有手续费和那 0.23 个百分点对应的真实状态租金会随使用增长——<br />
+后者八月约 266,640 CKB，加上手续费 1,299 CKB，合计只占矿工收入的 0.143%。</strong></p>
+</blockquote>
+<h3 id="72">7.2 一次发行的剩余额度与减半时点</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一次发行总额度</td>
+<td><strong>336 亿 CKB</strong>（与创世的 336 亿是两笔，互不重叠）</td>
+</tr>
+<tr>
+<td>已发行（截至 2026-09-01）</td>
+<td><strong>22,638,167,937 CKB（67.38%）</strong></td>
+</tr>
+<tr>
+<td><strong>剩余</strong></td>
+<td><strong>10,961,832,063 CKB（32.62%）</strong></td>
+</tr>
+<tr>
+<td>首次减半</td>
+<td>epoch 8,760，区块 11,487,788，<strong>2023-11-19 17:23 UTC</strong></td>
+</tr>
+<tr>
+<td>当前 epoch</td>
+<td>14,898</td>
+</tr>
+<tr>
+<td><strong>第二次减半</strong></td>
+<td>epoch 17,520，还差 <strong>2,622 个 epoch</strong></td>
+</tr>
+<tr>
+<td>按协议目标 4 小时/epoch 推算</td>
+<td><strong>≈ 2027-11-20（437 天后）</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>累计一次发行用两条独立路径核对</strong>：① 减法 <code>C(2026-09-01) − C(创世) − epoch 数 × 二次发行常量</code><br />
+= <strong>22,638,167,937 CKB</strong>；② 分档累加 era0（epoch 0–8,760）@1,917,808.219 + era1（8,760–14,847）@958,904.110<br />
+= <strong>22,636,849,315 CKB</strong>。<strong>两者差 0.01%。</strong></p>
+<blockquote>
+<p><strong>推算口径说明</strong>：CKB 的 epoch <strong>长度是可变的</strong>（协议调整区块数以逼近 4 小时），<br />
+因此不能用「当前出块间隔 × 1800 块」外推——那会得到 2028-01-07，是错的。<br />
+用实测校准：本报告期内 186 个 epoch 恰好覆盖 31 天，<strong>平均 4.00 小时/epoch</strong>，<br />
+与协议目标一致，故采用 4 小时口径。</p>
+</blockquote>
+<hr />
+<h2 id="8-ckb">8. CKB 与其他十一个资产的比较</h2>
+<blockquote>
+<p><strong>口径声明</strong>：8 月涨幅统一为 CoinGecko 口径的 8/1→8/31，日成交额为 2026 年 8 月的日成交额中位数，<br />
+十二个资产在同一查询窗口内取得。<br />
+<strong>⚠️ CKB 一行的波动率 / beta / R² 用的是币安数据，其余十一个用 CoinGecko</strong>——<br />
+因为 CoinGecko 的 CKB 序列在 2026-01 至 2026-05 不可用（见 3.2）。<br />
+<strong>这一行因此与其余十一行不严格可比，读者应据此打折。</strong></p>
+</blockquote>
+<h3 id="81">8.1 十二资产矩阵</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th><strong>CKB</strong></th>
+<th>ZEC</th>
+<th>DOT</th>
+<th>XIN</th>
+<th>TRX</th>
+<th>UNI</th>
+<th>HYPE</th>
+<th>BNB</th>
+<th>ETH</th>
+<th>SOL</th>
+<th>ADA</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市值</td>
+<td><strong>$0.563 亿</strong></td>
+<td>$204.8 亿</td>
+<td>$18.4 亿</td>
+<td>无法计算</td>
+<td>$318.1 亿</td>
+<td>$44.0 亿</td>
+<td>$196.5 亿</td>
+<td>$1,009 亿</td>
+<td>$3,052 亿</td>
+<td>$622.7 亿</td>
+<td>$82.7 亿</td>
+<td>$16,047 亿</td>
+</tr>
+<tr>
+<td>8 月涨幅</td>
+<td><strong>+20.15%</strong></td>
+<td>+82.88%</td>
+<td>+8.07%</td>
+<td>+9.67%</td>
+<td>+3.14%</td>
+<td>+18.06%</td>
+<td>+52.40%</td>
+<td>+16.71%</td>
+<td>+29.86%</td>
+<td>+39.68%</td>
+<td>+14.65%</td>
+<td>+23.62%</td>
+</tr>
+<tr>
+<td><strong>距 ATH</strong></td>
+<td><strong>−97.40%</strong></td>
+<td>−62.09%</td>
+<td>−98.03%</td>
+<td>−96.75%</td>
+<td>−22.31%</td>
+<td>−84.30%</td>
+<td>−0.26%</td>
+<td>−44.66%</td>
+<td>−49.43%</td>
+<td>−63.73%</td>
+<td>−92.86%</td>
+<td>−36.62%</td>
+</tr>
+<tr>
+<td>8 月日成交中位数</td>
+<td><strong>$146.5 万</strong></td>
+<td>$2.091 亿</td>
+<td>$7,974 万</td>
+<td>$10,878</td>
+<td>$3.709 亿</td>
+<td>$2.456 亿</td>
+<td>$3.062 亿</td>
+<td>$6.399 亿</td>
+<td>$70.41 亿</td>
+<td>$14.35 亿</td>
+<td>$3.804 亿</td>
+<td>$217.09 亿</td>
+</tr>
+<tr>
+<td>年化波动率</td>
+<td><strong>80.3%</strong> ⚠️</td>
+<td>152.2%</td>
+<td>81.5%</td>
+<td>177.3%</td>
+<td>26.6%</td>
+<td>97.1%</td>
+<td>93.6%</td>
+<td>52.9%</td>
+<td>63.8%</td>
+<td>67.9%</td>
+<td>80.9%</td>
+<td>44.2%</td>
+</tr>
+<tr>
+<td>beta</td>
+<td><strong>1.231</strong> ⚠️</td>
+<td>1.549</td>
+<td>1.15</td>
+<td>0.63</td>
+<td>0.247</td>
+<td>1.329</td>
+<td>1.076</td>
+<td>0.920</td>
+<td>1.300</td>
+<td>1.319</td>
+<td>1.375</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>R²</td>
+<td><strong>46.2%</strong> ⚠️</td>
+<td>19.9%</td>
+<td>38.3%</td>
+<td>2.4%</td>
+<td>16.8%</td>
+<td>36.6%</td>
+<td>25.8%</td>
+<td>59.1%</td>
+<td>81.1%</td>
+<td>73.7%</td>
+<td>56.4%</td>
+<td>100%</td>
+</tr>
+<tr>
+<td><strong>年增发</strong></td>
+<td><strong>+4.69%</strong></td>
+<td>+3.87%</td>
+<td>+3.30%</td>
+<td>无机制</td>
+<td>+0.519%</td>
+<td>总减流增</td>
+<td>待定</td>
+<td>−4.56%</td>
+<td>+0.863%</td>
+<td>递减</td>
+<td>+1.47%</td>
+<td>+0.83%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>三个位次值得单独指出</strong>：<br />
+① <strong>CKB 的年增发 +4.69% 是十二个资产里给出了数值的八个当中最高的</strong>，超过 ZEC 的 3.87% 和 DOT 的 3.30%。<br />
+<strong>⚠️ 另外四个（XIN「无机制」、UNI「总减流增」、HYPE「待定」、SOL「递减」）本系列未给出可比数值，<br />
+   因此不能断言 CKB 是全局最高。</strong><br />
+② <strong>距 ATH −97.40% 是第二深的</strong>，仅次于 DOT 的 −98.03%；<br />
+③ <strong>市值 $0.563 亿是十二个里除 XIN（无法计算）外最小的</strong>，仅为 DOT 的 3.1%。</p>
+</blockquote>
+<h3 id="82">8.2 一个跨期观察：本系列见过的「采用度指标」又多了一个</h3>
+<p>ZEC 期确立了一条：<strong>最有价值的采用度指标是节点自己的记账项，不依赖第三方统计。</strong><br />
+ZEC 的屏蔽池占比是第一个，<strong>CKB 的真实占用容量是第二个</strong>——而且它比屏蔽占比更直接。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th>有没有节点原生的采用度指标</th>
+<th>本期读数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BTC</td>
+<td>无（它的产品就是它自己）</td>
+<td>—</td>
+</tr>
+<tr>
+<td>TRX</td>
+<td>有（稳定币存量）</td>
+<td>—</td>
+</tr>
+<tr>
+<td>UNI</td>
+<td>部分（DEX 份额与费用）</td>
+<td>—</td>
+</tr>
+<tr>
+<td>DOT</td>
+<td>弱（coretime 售出数 35/89）</td>
+<td>—</td>
+</tr>
+<tr>
+<td>XIN</td>
+<td><strong>无可验证的</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>ZEC</strong></td>
+<td><strong>有——屏蔽池占比</strong></td>
+<td>28.85%</td>
+</tr>
+<tr>
+<td><strong>CKB</strong></td>
+<td><strong>有——真实占用容量 ÷ 流通量</strong></td>
+<td><strong>0.3093%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>两者的差别在于「分母的含义」</strong>：ZEC 的屏蔽占比问的是「已有的币里有多少用了隐私功能」，<br />
+<strong>CKB 的占用比问的是「链上活跃状态的字节总量，折合成 CKB 后相当于流通量的多大比例」。</strong><br />
+<strong>答案是 0.3093%。</strong></p>
+<p>⚠️ <strong>这个指标有一个 ZEC 的屏蔽占比没有的局限，必须写清楚</strong>：<br />
+<strong>它测的是「状态字节数」，不是「被应用占用的 CKB 数量」。</strong><br />
+一枚 cell 的容量可以远大于其占用字节（本报告 6.2 实测的 RGB++ cell：容量中位数 254 CKB、占用约 158 字节）。<br />
+<strong>因此不能用它直接断言「只有 0.31% 的 CKB 在发挥用途」——那是过度解读。</strong><br />
+<strong>它能支持的是一个更窄但仍然重要的结论：CKB 被设计来定价的那个东西（状态存储）的需求，<br />
+三年没有增长。</strong></p>
+</blockquote>
+<hr />
+<h2 id="9">9. 核心价值逻辑</h2>
+<blockquote>
+<p><strong>评分规则（ETH 期确立）</strong>：星级编码<strong>证据等级</strong>，不是后果量级。<br />
+<strong>全部建立在二手转述上的论据不得给到五星</strong>，并在说明栏注明本报告是否取得一手来源。</p>
+<p>⚠️ <strong>本期按推理审查加两条限定</strong>：<br />
+<strong>① 列名改为「证据等级」</strong>——初稿列名写「强度」而规则说「证据等级」，两者不是一回事。<br />
+一个证据完美但后果微小的发现（空头 #2，年化 0.214%）会与一个证据完美且决定性的发现（空头 #1）<br />
+拿同样的五星。<strong>因此本期加一列「后果量级」。</strong><br />
+<strong>② 同源论据必须标注</strong>——多头 #1 / #2 / #4 后半说的都是「发行在下降」，不构成三份独立支持。</p>
+</blockquote>
+<h3 id="91">9.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">证据等级</th>
+<th style="text-align: center;">后果量级</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>实际稀释远低于名义</strong>：名义年增发 <strong>7.22%</strong>，扣掉从未进入流通的部分后 <strong>实际 4.69%</strong>（月 0.5937% / 0.3901%，复利年化同口径）</td>
+<td style="text-align: center;">★★★★</td>
+<td style="text-align: center;"><strong>中</strong></td>
+<td><strong>一手</strong>：dao 字段直读。<strong>⚠️ 不再以「与浏览器序列闭合」为佐证</strong>（见 4.3，那是同一个式子）。<strong>⚠️ 与 #2、#4 后半同源</strong>（都在说「发行在下降」），不构成独立支持。<strong>⚠️ 与空头 #9 不是重复计算</strong>：4.69% 已是净值</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>减半在 14 个月内</strong>：一次发行从 21.0 亿/年降到 10.5 亿/年，年增发降到约 2.5%</td>
+<td style="text-align: center;">★★★★</td>
+<td style="text-align: center;"><strong>中</strong></td>
+<td><strong>一手</strong>：协议常量与 epoch 计数，确定性事件。<strong>与 #1、#4 后半同源</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>估值极低且无解锁悬挂</strong>：市值 $0.563 亿，FDV/市值 = 1.017</td>
+<td style="text-align: center;">★★★</td>
+<td style="text-align: center;"><strong>中</strong></td>
+<td><strong>一手</strong>：CoinGecko + 链上供应量交叉核对。<strong>⚠️ 低估值本身不是论据</strong>，它同时是空头论据的结果</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>NervosDAO 锁住 18.53% 的流通量</strong>，且份额侵蚀随减半收敛、2031 年前后转正</td>
+<td style="text-align: center;">★★★</td>
+<td style="text-align: center;"><strong>中</strong></td>
+<td><strong>一手</strong>（存量）+ <strong>恒等式外推</strong>（收敛路径，假设 U/C 与 DAO 占比不变，而两者都在变）。<strong>⚠️ 后半段与 #1、#2 同源。⚠️ 且八月 DAO 是净流出 5,522 万 CKB、另有 8.12 亿在退出队列（见 5.5），本条只说了存量</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Fiber 主网已上线且在被认真开发</strong>：八月 40 次提交、v0.9.0 发版，主网脚本 2025-02-28 已部署</td>
+<td style="text-align: center;">★★★</td>
+<td style="text-align: center;"><strong>小（当前）</strong></td>
+<td><strong>一手</strong>（代码活跃度 + 主网配置 + 链上脚本实测）。<strong>⚠️ 链上足迹 34 个通道 / 39,691 CKB，见 6.5。⚠️ 但本报告的核心指标（占用容量）在结构上测不到支付通道的活跃度——见 10.3 第 2 条</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td>抗量子叙事（CoinGecko 归入 "Quantum-Resistant" 分类）</td>
+<td style="text-align: center;">★</td>
+<td style="text-align: center;"><strong>未知</strong></td>
+<td><strong>本报告未核实此说法的技术依据，仅记录分类标签的存在</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="92">9.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">证据等级</th>
+<th style="text-align: center;">后果量级</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>税基自 2024-01 见顶后 31 个月未创新高</strong>：月均 166,852,970 → 156,235,117（−6.36%），近三年年化 +1.25%</td>
+<td style="text-align: center;">★★★★★</td>
+<td style="text-align: center;"><strong>大</strong></td>
+<td><strong>一手，三路径核对</strong>：dao 字段减虚拟基数、浏览器 1,103 天日度序列独立索引、创世块逐 cell 复算。<strong>⚠️ 初稿写「三年零增长」是端点假象，已改用月均口径</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>状态租金的计算基数 97.06% 是虚拟的</strong>：源码常量把 84 亿销毁 cell 按 60% 计入占用</td>
+<td style="text-align: center;">★★★★★</td>
+<td style="text-align: center;"><strong>小（0.214%/年）</strong></td>
+<td><strong>一手</strong>：源码 + 链规范 + 创世块实测三处互证。<strong>⚠️ 后果量级已按 5.2.1 量化</strong>：取消它会把销毁从 78.06% 推到 85.80%，对持有人相当于每年 0.214% 的额外稀释。<strong>⚠️ 它与多头 #1 是同一枚硬币的两面</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>手续费全月 $1.16</strong>，占矿工收入 0.000693%</td>
+<td style="text-align: center;">★★★★★</td>
+<td style="text-align: center;"><strong>小</strong></td>
+<td><strong>一手</strong>：浏览器日度序列求和。<strong>⚠️ 后果量级标「小」是因为 CKB 的设计本就不指望手续费</strong>（见 7.1），本条的价值是诊断性的</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>RGB++ 退潮</strong>：八月中旬链上足迹缩约 88%，官方 SDK/API/浏览器三仓库均已归档</td>
+<td style="text-align: center;">★★★★★</td>
+<td style="text-align: center;"><strong>大</strong></td>
+<td><strong>一手</strong>：链上抽样归因（覆盖 36.8%，残差 0.39%）+ GitHub 全站排他性检索</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>流动性极薄</strong>：币安 ±2% 深度买 $37,601 / 卖 $22,594，500 档双边仅占市值 0.46%</td>
+<td style="text-align: center;">★★★★</td>
+<td style="text-align: center;"><strong>大（对可执行性）</strong></td>
+<td><strong>一手</strong>：币安订单簿快照（<strong>单一时点，未做日内多次采样</strong>）</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>治理与国库八年未落地</strong>：唯一相关仓库建于 2026-07-02 且自称「不是生产项目」</td>
+<td style="text-align: center;">★★★★</td>
+<td style="text-align: center;"><strong>中</strong></td>
+<td><strong>一手</strong>：RFC0015 原文 + 仓库 README</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>安全预算 $5,388/天</strong>，其中随使用增长的部分只占 0.143%</td>
+<td style="text-align: center;">★★★★</td>
+<td style="text-align: center;"><strong>中</strong></td>
+<td><strong>一手</strong>：发行分解 + 手续费序列。<strong>⚠️ 已按领域审查更正</strong>：状态租金是<strong>真实支付</strong>，只是计算基数虚拟，不能说它「没有实质内容」（见 7.1）</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>L1 核心开发放缓</strong>：<code>nervosnetwork/ckb</code> 八月 1 次提交（fiber 40 次）</td>
+<td style="text-align: center;">★★★</td>
+<td style="text-align: center;"><strong>小</strong></td>
+<td><strong>一手</strong>，但<strong>单月样本小</strong>：该仓库 2025-12 有 134 次、2026-06 有 70 次，波动很大</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>年增发 4.69%</strong>，是十二个资产里给出数值的八个中最高的</td>
+<td style="text-align: center;">★★★★</td>
+<td style="text-align: center;"><strong>中</strong></td>
+<td><strong>一手</strong>。<strong>⚠️ 另外四个未给出可比数值，不能断言全局最高。⚠️ 与多头 #1 是同一次测量的两侧，不要双重计数</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="93">9.3 多空之间真正的分歧点</h3>
+<p><strong>多空双方对事实没有分歧</strong>——上面两张表里的一手数据都不可争议。<strong>分歧在一个问题上：</strong></p>
+<blockquote>
+<p><strong>CKB 的低估值，是「一个还没被发现的期权」，还是「一个已经被正确定价的、失效的机制」？</strong></p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>多头读法</th>
+<th>空头读法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>状态没增长是因为<strong>还没有杀手级应用</strong>，机制本身是好的，一旦有应用，锁仓需求是非线性的</td>
+<td>状态没增长是因为<strong>「用代币换存储」这个定价方式本身没有需求</strong>——七年、三次叙事（通用 L1 / RGB++ / Fiber）都没验证出来</td>
+</tr>
+<tr>
+<td>78% 的销毁说明实际稀释很低，是隐藏的通缩</td>
+<td>78% 的销毁说明<strong>这套分配规则的两个接收方都名存实亡</strong>，销毁是失败的副产品而非设计目标</td>
+</tr>
+<tr>
+<td>减半临近，供给冲击</td>
+<td>减半降低的是稀释率，<strong>不创造需求</strong>；而 CKB 的问题在需求端</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>本报告的立场</strong>：<strong>两种读法都无法被 2026 年 8 月的数据证伪，因此本报告不在其间下注。</strong><br />
+但要指出一个不对称：<strong>多头读法需要一个未来事件（杀手级应用），<br />
+空头读法只需要现状延续。</strong> 第 10 章据此不给目标价。</p>
+</blockquote>
+<hr />
+<h2 id="10">10. 估值：本报告给什么、不给什么</h2>
+<h3 id="101">10.1 本报告不给目标价，理由</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>收入倍数法不可用</strong>：手续费（全月 $1.16）全额归矿工；二次发行的三个接收方是矿工、DAO 存款人、销毁——<strong>没有一项是「按持币比例分给全体持有人」</strong>。<strong>⚠️ 但这条理由本身不判别</strong>：BTC 持有人同样对手续费与区块奖励没有索取权，而本系列给了 BTC 目标价——用的是「已实现价格 × MVRV」这类<strong>不需要持有人现金流</strong>的成本基准法。<strong>因此本条只能排除收入倍数法，不能排除定价本身。</strong> 真正承重的是下面第 2、3 条。</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>唯一的需求锚是状态占用，而它是流通量的 0.3093%，且月均自 2024-01 见顶后 31 个月未创新高。</strong> 用它做分母会得到一个分辨率完全不够的比值（市值 ÷ 真实状态 = $0.368/CKB），<strong>而且没有任何可比对象</strong>——本系列另外十一个资产都没有同构的指标。</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>相对市值法在 CKB 上退化。</strong> 与谁比？RGB++ 已退潮，Fiber 主网虽已上线但链上足迹只有 39,691 CKB，通用 L1 的对标（ETH/SOL/ADA）在架构与用途上都不同构。<strong>任何选定的对标都是在偷偷假设结论。</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>本系列 TRX 期的教训</strong>：一个估值结构如果价格能从等式两边约掉，它就不是估值。CKB 上任何「市值 = 状态占用 × 倍数」的写法都会犯这个错，因为状态占用本身以 CKB 计价。</td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td><strong>⚠️ 一条本报告没有尝试的路径，必须声明</strong>：CKB 是完全透明的 Cell 账本，</td>
+</tr>
+<tr>
+<td>BTC 那套「已实现价格 / 持有者成本基准」在原理上可以做——Σ(逐块净流入 × 当日价格)。</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>本报告本期没有做这个尝试</strong>（工作量在逐块遍历七年全部 cell），</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>因此「不给目标价」目前站在「未尝试」而非「尝试失败」上，这是本期最大的方法论欠账。下期第一优先。</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="102">10.2 改给三个反解式约束</h3>
+<p><strong>反解不是预测，它把「需要发生什么」写成数字，让读者自己判断概率。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>约束</th>
+<th>计算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td><strong>要让 RFC0015 举例中的那个世界成立</strong>（60% 的 CK Byte 用于存状态）</td>
+<td>真实状态需从 1.529 亿（2026-09 月均）涨到 <strong>392.10 亿 CKB（约 256 倍）</strong>。按月均口径：近 12 个月年化 +2.14% 需 <strong>261 年</strong>，近 24 个月 +2.35% 需 <strong>238 年</strong>，近 36 个月 +1.25% 需 <strong>445 年</strong>。<strong>⚠️ 见下方两条限定</strong></td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td><strong>要让「随使用增长的收入」撑起当前的安全预算</strong>（手续费 + 真实状态租金，<strong>合并计算</strong>）</td>
+<td>两项八月合计 1,299 + 266,640 = <strong>267,939 CKB</strong>，而矿工总收入 187,366,384 CKB。<strong>需要增长约 699 倍。</strong> 两个极端：<strong>全靠状态</strong>，则真实状态需增长约 <strong>703 倍</strong>（与约束 A 的 256 倍同量级，差别在靶子——A 是「达到 60% 占比」，B 是「覆盖全部矿工收入」）；<strong>全靠手续费</strong>且交易量不变，则单笔需从 $0.00000215 涨到 <strong>$0.3097</strong>。<strong>⚠️ 初稿只单列手续费、得出「14.4 万倍」，那是把一个联合条件拆成了看起来更荒谬的独立条件</strong>——RFC0015 明说 CKB 不指望手续费，单独反解它等于打一个设计上就不存在的靶子；<strong>而且 A 与 B 不独立，读者不应把 256 倍与 14.4 万倍相乘理解难度。</strong></td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td><strong>要让 NervosDAO 存款人的份额不再缩水</strong></td>
+<td>需要 DAO 收益率（= 二次发行 ÷ 累计发行）≥ 流通量增速。按恒等式外推，<strong>这在 2031 年前后第三次减半后自然发生</strong>，无需任何采用度改善。</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>约束 A 的两条限定（分别来自领域审查与推理审查）</strong>：</p>
+<p><strong>① 60/35/5 是例子，不是目标。</strong> RFC0015 那段是说明分配规则用的数字例子，<br />
+协议在任何比例下都能正常运行——比例只决定钱流向谁。<br />
+<strong>因此「差 256 倍」不能读成「机制违约」，它衡量的是文档举例时设想的世界与七年后实际世界的距离。</strong><br />
+<strong>一个部分反驳</strong>：<code>SATOSHI_CELL_OCCUPIED_RATIO</code> 恰好是 <code>6/10</code>，与例子里的 60% 是同一个数，<br />
+说明 0.6 未必是随手写的——但「本例中的 5%」这个限定语是 RFC 原文自己写的，<br />
+<strong>因此拿 5% 当基准算出的「15.6 倍」不具备基准地位。</strong></p>
+<p><strong>② 这条约束不是本章的承重墙。</strong> 「U/C = 7.97%，其中只有 0.23 个百分点来自真实状态」<br />
+是一个自足的事实，<strong>不需要任何外部基准</strong>。约束 A 只提供量级直觉。</p>
+<p><strong>约束 C 是三个里唯一「不需要任何人做任何事」就会满足的</strong>——<br />
+它靠的是一次发行减半，不是靠 CKB 被更多人使用。<br />
+<strong>本报告认为这是理解 CKB 的关键：它的通缩改善路径是机械的，<br />
+而需求改善路径在本报告能观测到的范围内没有出现。</strong></p>
+</blockquote>
+<h3 id="103">10.3 这套判断的五个弱点</h3>
+<ol>
+<li><strong>单月样本。</strong> 本期是 CKB 首期，除状态占用有七年序列外，发行分解只有一个月的实测。<br />
+   八月中旬的 RGB++ 解绑是一次性事件，<strong>它对状态占用的影响不应被外推为趋势</strong>。</li>
+<li><strong>占用容量测的是「状态字节数」，不是「被应用锁住的 CKB」——这两个量差很多，本报告在多处把它们混用了。</strong><br />
+   一枚 cell 的容量可以远大于它的占用字节：本报告 6.2 抓到的 RGB++ cell 容量中位数 254 CKB，<br />
+   而占用只有约 158 字节。<strong>因此「真实状态只占流通量的 0.3093%」这句话的严格含义是<br />
+   「链上活跃 cell 的存储字节总量折合 CKB 后占流通量的 0.3093%」，<br />
+   它支持「存储需求疲弱」，但不支持「只有 0.31% 的 CKB 在发挥用途」。</strong><br />
+   作为对照，本报告实测的另外两个「被锁住」的量级是：<br />
+<strong>NervosDAO 9,159,576,422 CKB（流通量的 18.53%）、带 xUDT type script 的 cell 9,007,830 CKB。</strong><br />
+<strong>⚠️ 本条是领域审查（Codex）指出的，初稿在摘要与第 8 章确实作了过强的表述，已回改。</strong></li>
+<li><strong>「状态没增长」不等于「没人用」。</strong> 高频交易、Fiber 这类链下扩展、<br />
+   以及不占用新状态的 cell 更新，都不会体现在占用容量上。<br />
+<strong>本报告用了交易笔数（日均 17,396）做侧证，但这个指标同样低，<br />
+   不能排除「有大量价值活动但不落在这两个指标上」的可能。</strong></li>
+<li><strong>订单簿深度是单一时点快照。</strong> 未做日内多次采样，不能代表全天流动性。</li>
+<li><strong>Fiber 的价值本报告没有评估。</strong> 本报告只测到它的链上足迹（34 个通道、39,691 CKB），<br />
+<strong>没有测路由量、支付笔数、节点数</strong>——这些需要 Fiber 网络自身的 gossip 数据，本报告未取得。<br />
+<strong>如果 Fiber 产生真实支付量，本报告第 9.3 节的「不对称」判断需要重估。</strong></li>
+<li><strong>初稿的一个方法论错误已被审查抓到并撤回</strong>：把浏览器的 <code>circulating_supply</code> 当成对<br />
+<code>ΔC − ΔS</code> 的独立验证，而它在代数上就是同一个式子（见 4.3）。<br />
+<strong>这类错误的共同形态是「拿一个派生量去验证它的来源」，本系列 UNI 期已经犯过一次。</strong></li>
+</ol>
+<hr />
+<h2 id="11_1">11. 附录</h2>
+<h3 id="111-ckb">11.1 CKB 发展阶段速查</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>标志</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一 · 创世</td>
+<td>2019-11-15</td>
+<td>336 亿创世发行，84 亿打入零地址销毁</td>
+</tr>
+<tr>
+<td>二 · 状态积累</td>
+<td>2020 – 2023-09</td>
+<td>占用容量 1,048 万 → 1.522 亿（14.5 倍）；2021-03-31 见 ATH</td>
+</tr>
+<tr>
+<td>三 · 首次减半</td>
+<td>2023-11-19</td>
+<td>epoch 8,760，一次发行减半至 958,904 CKB/epoch</td>
+</tr>
+<tr>
+<td>四 · RGB++ 叙事</td>
+<td>2024 – 2025</td>
+<td>比特币 L2 叙事；官方 SDK 于 2025-05 停更并归档</td>
+</tr>
+<tr>
+<td>五 · 见顶与退潮</td>
+<td>2024-01 – 至今</td>
+<td>状态月均在 2024-01 见顶 166,852,970，此后 31 个月未创新高；2026-08 RGB++ 链上足迹缩约 88%；主力开发转向 Fiber</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112-2026-09-09">11.2 关键数据速查（截至 2026-09-09）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格 / 市值 / 排名</td>
+<td>$0.00113774 / $56,300,510 / 421</td>
+<td>CoinGecko</td>
+</tr>
+<tr>
+<td>ATL</td>
+<td><strong>$0.000796，2026-08-14</strong></td>
+<td>币安盘中 + CoinGecko，两源吻合 0.04%</td>
+</tr>
+<tr>
+<td>累计发行 C</td>
+<td>65,429,549,473 CKB</td>
+<td>区块头 dao</td>
+</tr>
+<tr>
+<td>流通量</td>
+<td>49,486,923,659 CKB</td>
+<td>CoinGecko；链上 49,482,380,991（差 0.009%）</td>
+</tr>
+<tr>
+<td>占用容量 U（协议记）</td>
+<td>5,193,042,382 CKB</td>
+<td>区块头 dao</td>
+</tr>
+<tr>
+<td><strong>其中虚拟基数</strong></td>
+<td><strong>5,040,000,000 CKB（97.06%）</strong></td>
+<td>源码 <code>SATOSHI_CELL_OCCUPIED_RATIO = 6/10</code></td>
+</tr>
+<tr>
+<td><strong>真实状态</strong></td>
+<td><strong>153,042,382 CKB</strong></td>
+<td>dao 减虚拟基数；浏览器独立索引 153,059,665</td>
+</tr>
+<tr>
+<td>活跃 cell 数</td>
+<td>1,480,776</td>
+<td>CKB 浏览器</td>
+</tr>
+<tr>
+<td>NervosDAO 锁仓</td>
+<td>9,159,576,422 CKB（22,675 枚 cell）</td>
+<td>indexer 遍历</td>
+</tr>
+<tr>
+<td>AR（累计利率）</td>
+<td>1.203411</td>
+<td>区块头 dao</td>
+</tr>
+<tr>
+<td>RGB++ lock 活跃容量</td>
+<td>2,139,213 CKB</td>
+<td>indexer</td>
+</tr>
+<tr>
+<td><strong>Fiber FundingLock 活跃容量 / cell 数</strong></td>
+<td><strong>39,691 CKB / 34 个</strong></td>
+<td>indexer</td>
+</tr>
+<tr>
+<td>全网算力</td>
+<td>96.57 PH/s（Eaglesong）</td>
+<td>CKB 浏览器</td>
+</tr>
+<tr>
+<td>当前 epoch</td>
+<td>14,898</td>
+<td>节点 RPC</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113">11.3 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th>核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>区块头 dao 字段（C / AR / S / U）</td>
+<td>CKB 主网节点 <code>https://mainnet.ckb.dev/rpc</code></td>
+<td>✅ <strong>一手直读</strong>，字节序经创世块双重实测定序并在源码确认</td>
+</tr>
+<tr>
+<td>创世块 673 个输出的逐 cell 占用容量</td>
+<td>同上，<code>get_block_by_number(0)</code></td>
+<td>✅ <strong>一手</strong>，本报告自行计算</td>
+</tr>
+<tr>
+<td><code>SATOSHI_CELL_OCCUPIED_RATIO</code> / 发行常量</td>
+<td><code>nervosnetwork/ckb</code> 源码 <code>spec/src/consensus.rs</code></td>
+<td>✅ <strong>一手</strong>，打开了原文件</td>
+</tr>
+<tr>
+<td>二次发行分配公式</td>
+<td><code>nervosnetwork/ckb</code> 源码 <code>util/dao/src/lib.rs</code></td>
+<td>✅ <strong>一手</strong>，打开了原文件</td>
+</tr>
+<tr>
+<td>dao 字节序</td>
+<td><code>util/dao/utils/src/lib.rs</code> 的 <code>extract_dao_data</code></td>
+<td>✅ <strong>一手</strong>，打开了原文件</td>
+</tr>
+<tr>
+<td>RFC0015 的 60/35/5 假设</td>
+<td><code>nervosnetwork/rfcs</code> 原文第 136 行</td>
+<td>✅ <strong>一手</strong>，打开了原文件</td>
+</tr>
+<tr>
+<td>创世销毁 cell 与 <code>satoshi_pubkey_hash</code></td>
+<td><code>resource/specs/mainnet.toml</code></td>
+<td>✅ <strong>一手</strong>，打开了原文件</td>
+</tr>
+<tr>
+<td>日度占用容量 / 手续费 / 交易数 / mining_reward</td>
+<td>CKB 浏览器 <code>mainnet-api.explorer.nervos.org</code></td>
+<td>✅ <strong>一手 API</strong>，且已读源码确认其计算路径（<code>daily_statistic.rb</code> / <code>market_data.rb</code>），区分了哪些独立于 dao 字段、哪些由它派生</td>
+</tr>
+<tr>
+<td>浏览器 <code>circulating_supply</code> / <code>treasury_amount</code></td>
+<td>同上</td>
+<td>⚠️ <strong>由 dao 字段派生，非独立测量</strong>——本报告不再用它们做交叉验证（见 4.3、4.4）</td>
+</tr>
+<tr>
+<td>NervosDAO cell 分阶段统计</td>
+<td>节点 indexer <code>get_cells</code> 全量分页遍历</td>
+<td>✅ <strong>一手</strong>，22,675 枚逐枚分类</td>
+</tr>
+<tr>
+<td>RGB++ / xUDT 脚本身份</td>
+<td><code>ckb-cell/rgbpp-sdk</code> 的 <code>MainnetInfo</code> 常量</td>
+<td>✅ <strong>一手</strong>，打开了原文件</td>
+</tr>
+<tr>
+<td>RGB++ 解绑归因</td>
+<td>节点区块与前置交易全量取回，抽样分类</td>
+<td>✅ <strong>一手</strong>，覆盖降幅 36.8%，残差 0.39%</td>
+</tr>
+<tr>
+<td>仓库活跃度 / 归档状态 / 发版</td>
+<td>GitHub REST API</td>
+<td>✅ <strong>一手</strong></td>
+</tr>
+<tr>
+<td>价格 / 波动率 / beta</td>
+<td><strong>币安 <code>api/v3/klines</code></strong></td>
+<td>✅ <strong>一手交易所</strong>（因 CoinGecko 序列在 1–5 月不可用）</td>
+</tr>
+<tr>
+<td>订单簿深度</td>
+<td>币安 <code>api/v3/depth</code></td>
+<td>⚠️ <strong>一手但单一时点快照</strong>，未做日内多次采样</td>
+</tr>
+<tr>
+<td>市值 / 排名 / ATH / ATL</td>
+<td>CoinGecko API</td>
+<td>✅ 一手 API</td>
+</tr>
+<tr>
+<td>宏观快照</td>
+<td>沿用本系列同期数据</td>
+<td>⚠️ 未在本期重新核实</td>
+</tr>
+<tr>
+<td>KuCoin 全仓杠杆移除 CKB</td>
+<td>搜索摘要</td>
+<td>❌ <strong>未打开一手公告</strong></td>
+</tr>
+<tr>
+<td>币安 Monitoring Tag 名单</td>
+<td>搜索摘要</td>
+<td>❌ <strong>未打开一手公告</strong></td>
+</tr>
+<tr>
+<td><strong>Fiber 主网状态与足迹</strong></td>
+<td>仓库 README + <code>config/mainnet/config.yml</code> + 链上 <code>get_cells_capacity</code></td>
+<td>✅ <strong>一手</strong>。<strong>初稿曾误判为「无法确认」，经复查更正</strong></td>
+</tr>
+<tr>
+<td>RGB++「400+ dApp」等生态数字</td>
+<td>搜索摘要</td>
+<td>❌ <strong>未核实，本报告未使用</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="114">11.4 来源偏向声明</h3>
+<p><strong>本期的偏向与前十一期相反，需要读者反向校正。</strong></p>
+<p>前几期的结构性问题是「数据来自生态内部来源，结构上看多」。<br />
+<strong>本期的绝大多数数据来自 CKB 节点和 Nervos 自己的代码仓库——它们没有立场，但本报告对它们的选择有立场：</strong></p>
+<ol>
+<li><strong>本报告主动去测的三个量（状态占用、二次发行去向、RGB++ 存量）都是空头方向的。</strong><br />
+   一个同样诚实的多头分析可以去测本报告没测的量，例如 Fiber 的通道数与路由量、<br />
+   xUDT 资产的持有人分布、CKB 在中文社区的开发者活跃度。<strong>本报告没有测这些，因此不能声称覆盖完整。</strong></li>
+<li><strong>传统金融机构对 CKB 没有覆盖。</strong> 本报告以 "Nervos CKB research coverage Deutsche Bank<br />
+   JPMorgan VanEck Bernstein institutional report" 检索，<strong>返回结果里没有任何一家传统机构的 CKB 研究</strong>；<br />
+   唯一出现的研究方是 <strong>Messari</strong>（加密原生研究机构，且该条为一则无日期的新闻稿，本报告未采用）。<br />
+<strong>一个市值 $0.563 亿、排名 421 的资产不在这些机构的覆盖范围内，这本身是一条信息。</strong><br />
+   本报告因此只能用 CME FedWatch 与美联储的宏观数据做配平，<br />
+<strong>无法用传统机构的资产层观点来对冲加密原生来源的看多倾向。</strong></li>
+<li><strong>本报告未联系 Nervos 基金会或任何生态项目求证。</strong> 上述所有「未落地 / 已归档」的判断<br />
+   都基于公开可查的仓库状态，<strong>不排除存在未公开的开发工作。</strong></li>
+</ol>
+<h3 id="115">11.5 发布前审查记录</h3>
+<p>见本期 <code>thesis_scorecard.md</code>。</p>
+<hr />
+<blockquote>
+<p><strong>免责声明</strong>：本报告是研究记录，不是投资建议。<br />
+CKB 是一个市值 $0.563 亿、币安 ±2% 深度不足 $4 万的资产，<br />
+<strong>任何有意义规模的买卖都会显著移动价格。</strong> 本报告的全部结论都可能是错的。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-ckb-nervos-2026-8">CKB / Nervos 简明速查（2026 年 8 月）</h1>
+<blockquote>
+<p>完整论证见 <code>ckb_research_report_202608.md</code>。本文件是浓缩版，供快速复习。<br />
+<strong>本系列第十二个资产。本报告不给目标价。</strong></p>
+</blockquote>
+<hr />
+<h2 id="s-1-ckb">1. CKB 是什么</h2>
+<p>一条 2019 年上线的 PoW L1（Eaglesong 算法），账本用 <strong>Cell 模型</strong>（UTXO 的泛化）。</p>
+<p><strong>它与其他 L1 最根本的差别是代币的用途定义</strong>：以太坊的代币付<strong>计算</strong>，<br />
+<strong>CKB 的代币是占用状态空间的凭证</strong>——存 1 字节状态就要持有并锁定 1 CKB，只要状态在就一直锁着。</p>
+<p><strong>因此 CKB 的价值逻辑只有一条：链上状态越多，被锁住的 CKB 越多。</strong><br />
+本报告做的事，就是把「链上状态」这个量真正测出来。</p>
+<h2 id="s-2">2. 两种发行</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>一次发行</th>
+<th>二次发行</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总量</td>
+<td><strong>336 亿 CKB 封顶</strong>（已发 67.38%）</td>
+<td><strong>无上限，恒定 13.44 亿 / 年</strong></td>
+</tr>
+<tr>
+<td>节奏</td>
+<td>每约 4 年减半，首次已于 2023-11-19 发生</td>
+<td>永不改变</td>
+</tr>
+<tr>
+<td>去向</td>
+<td>全部给矿工</td>
+<td>分给矿工 / NervosDAO / 销毁</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第二次减半约在 2027-11-20。</strong></p>
+<h2 id="s-3-97">3. 本期最重要的发现：协议记的「占用容量」有 97% 是假的</h2>
+<p>CKB 区块头的 <code>dao</code> 字段里记着 U（占用容量），当前 <strong>51.93 亿 CKB</strong>。</p>
+<p><strong>但创世块的 U 就已经是 50.41 亿，而创世块全部 673 个输出的真实占用只有 120 万。</strong></p>
+<p>差额来自源码里的一行常量：</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// The burned cell virtual occupied, design for NervosDAO</span>
+<span class="k">pub</span><span class="p">(</span><span class="k">crate</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">SATOSHI_CELL_OCCUPIED_RATIO</span>: <span class="nc">Ratio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ratio</span>::<span class="n">new</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+</code></pre></div>
+
+<p><strong>创世那枚 84 亿 CKB 的永久销毁 cell，被按 60% 记作 50.4 亿的「占用容量」。</strong></p>
+<p><strong>剔除它之后，CKB 真实的链上状态是 1.529 亿 CKB（2026-09 月均）——占流通量的 0.3093%。</strong></p>
+<h2 id="s-4-2024-1-31">4. 这个真实状态在 2024 年 1 月见顶，此后 31 个月没有创新高</h2>
+<blockquote>
+<p>⚠️ <strong>完整报告初稿在这里写「三年 +0.38%，不是放缓是停止增长」，那是端点假象，已撤回。</strong><br />
+它取的是两个恰好接近的 9 月 1 日快照；而同一序列的 1,103 天里有 878 天高于那个起点。<br />
+<strong>下表改用月均值，对端点不敏感。</strong></p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份（月均）</th>
+<th>真实占用容量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2023-08</td>
+<td>150,526,365</td>
+</tr>
+<tr>
+<td><strong>2024-01</strong></td>
+<td><strong>166,852,970</strong> ← 月均峰值</td>
+</tr>
+<tr>
+<td>2024-09</td>
+<td>146,032,169 ← 峰值后的月均低点</td>
+</tr>
+<tr>
+<td>2025-08</td>
+<td>152,958,239</td>
+</tr>
+<tr>
+<td><strong>2026-08</strong></td>
+<td><strong>156,235,117</strong>（较峰值 <strong>−6.36%</strong>）</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径（月均）</th>
+<th>年化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>近三年（2023-08→2026-08）</td>
+<td><strong>+1.25%</strong></td>
+</tr>
+<tr>
+<td>近两年</td>
+<td><strong>+2.35%</strong></td>
+</tr>
+<tr>
+<td>近一年</td>
+<td><strong>+2.14%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>CKB 的整套经济模型是向状态收租，而这个税基以每年 1–2% 的速度在原地震荡，<br />
+两年半没有创新高。</strong></p>
+<h2 id="s-5-rfc0015-vs-2026-8">5. RFC0015 的设计假设 vs 2026 年 8 月实测</h2>
+<p>RFC0015 原文的例子假设：60% 的 CK Byte 存状态、35% 存 NervosDAO、5% 流动。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>RFC0015 假设</strong></th>
+<th><strong>实测</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>→ 矿工（状态租金）</td>
+<td><strong>60%</strong></td>
+<td><strong>7.97%</strong>（其中真实状态只占 0.23 个百分点）</td>
+</tr>
+<tr>
+<td>→ NervosDAO 存款人</td>
+<td><strong>35%</strong></td>
+<td><strong>13.97%</strong></td>
+</tr>
+<tr>
+<td>→ <strong>销毁</strong></td>
+<td><strong>5%</strong></td>
+<td><strong>78.06%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>RFC0015 说「在社区达成一致之前，这部分将被销毁」。<br />
+<strong>这个临时安排至今烧掉约 67 亿 CKB。而 Nervos 唯一与国库有关的官方仓库建于 2026-07-02，<br />
+README 第一行写着「这不是一个生产项目」——距 RFC0015 写下这句话已过去八年。</strong></p>
+<h2 id="s-6">6. 八月的货币流：逐项分解</h2>
+<p>用区块头 <code>dao</code> 字段直读，不经任何第三方统计：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th style="text-align: right;">CKB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总发行 ΔC</td>
+<td style="text-align: right;"><strong>+292,369,042</strong></td>
+</tr>
+<tr>
+<td>├ 一次发行（矿工）</td>
+<td style="text-align: right;">+178,273,806</td>
+</tr>
+<tr>
+<td>└ 二次发行</td>
+<td style="text-align: right;">+114,095,236</td>
+</tr>
+<tr>
+<td>留在 DAO/国库池 ΔS</td>
+<td style="text-align: right;"><strong>+100,267,109</strong></td>
+</tr>
+<tr>
+<td><strong>进入流通 = ΔC − ΔS</strong></td>
+<td style="text-align: right;"><strong>+192,101,933</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>完整报告初稿曾用「浏览器 <code>circulating_supply</code> 增量 +192,142,780、差 0.021%」作为独立验证，已撤回</strong>——<br />
+浏览器源码里那个量就是 <code>C − S − 常数</code>，与本推导是同一个式子。<strong>真正独立的五处核对列在报告 4.3.1。</strong></p>
+</blockquote>
+<p><strong>八月流通量增速 +0.3901%，年化 4.69%——十二个资产里给出数值的八个当中最高。</strong><br />
+（另外四个本系列未给出可比数值，故不能称全局最高。）</p>
+<h2 id="s-7-nervosdao">7. NervosDAO 保护了什么，没保护什么</h2>
+<p>RFC0015 说存进 NervosDAO 就「像持有比特币那样有硬顶的代币」。<strong>这句话容易被读错。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>年化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NervosDAO 名义收益（AR 增长）</td>
+<td><strong>2.06%</strong></td>
+</tr>
+<tr>
+<td>流通量增长</td>
+<td><strong>4.69%</strong></td>
+</tr>
+<tr>
+<td><strong>存款人相对份额变化</strong></td>
+<td><strong>−2.49%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>DAO 只补偿二次发行，不补偿一次发行。存进去仍然每年损失约 2.5% 的网络份额。</strong></p>
+<p><strong>但这个缺口会随减半机械地收敛</strong>：2027-11 减半后约 −0.6%，2031-11 减半后转正。<br />
+<strong>这是三个反解约束里唯一「不需要任何人做任何事」就会满足的。</strong></p>
+<h2 id="s-8-rgb-88">8. RGB++：八月中旬缩掉约 88%</h2>
+<p>CKB 在 2024–2025 年的主叙事是 RGB++（比特币资产用 CKB 做验证层）。</p>
+<ul>
+<li><strong>8 月 14 日至 16 日两天多，链上占用容量掉了 9,018,873 CKB。</strong></li>
+<li>抽样归因（22/51 个下降段，覆盖 36.8%，残差 0.39%）：<strong>释放的占用容量里 91.5% 来自 RGB++ lock + xUDT 的 cell。</strong></li>
+<li><strong>现在 RGB++ lock 的活跃容量只剩 2,139,213 CKB</strong>（这是被锁作存储抵押的 CKB，<strong>不是它承载资产的价值</strong>）。</li>
+<li><strong>官方工具链三个主仓库（SDK / 资产 API / 浏览器）全部 archived</strong>，整个组织最后一次推送是 2025-10-27。</li>
+<li>排他性检查：GitHub 全站 20 个名称含 <code>rgbpp</code> 的仓库里，近期有推送的只有两个 0 star 的个人仓。</li>
+</ul>
+<p><strong>而 Nervos 真正在建的是 Fiber</strong>（支付通道网络）：八月 40 次提交、v0.9.0 发版。<br />
+<strong>Fiber 主网不是「计划中」——它的脚本 2025-02-28 就部署在 CKB 主网上。</strong><br />
+<strong>但链上足迹是：34 个通道、合计 39,691 CKB，只有 RGB++ 残余量的 1/54。</strong></p>
+<p><strong>2024–2025 年基于 RGB++ 给 CKB 的任何估值都需要重做，而能拿来替换的东西量级还非常小。</strong></p>
+<h2 id="s-9">9. 矿工经济</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>八月区块奖励</td>
+<td>187,366,384 CKB = <strong>$167,028</strong></td>
+</tr>
+<tr>
+<td><strong>八月手续费合计（全月）</strong></td>
+<td><strong>1,298.74 CKB = $1.16</strong></td>
+</tr>
+<tr>
+<td>手续费占矿工收入</td>
+<td><strong>0.000693%</strong></td>
+</tr>
+<tr>
+<td>日均安全预算</td>
+<td><strong>$5,388</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>⚠️ 注意不要读成「状态租金也是空的」</strong>：虚拟的是<strong>计算基数</strong>，付给矿工的 9,092,578 CKB 是真钱，<br />
+而且因为那 50.4 亿虚拟占用是永久的，它构成一条<strong>永不归零的状态租金底线</strong>（当前约 1.07 亿 CKB/年）。</p>
+<p><strong>它还有一个方向相反的后果</strong>：<strong>取消虚拟基数，销毁比例会从 78.06% 升到 85.80%。</strong><br />
+换言之，<strong>虚拟占用相当于每年把流通量的 0.214% 从持有人转移给矿工</strong>——<br />
+<strong>「78% 被销毁」这条多头论据和「97% 是虚拟的」这条空头论据，是同一枚硬币的两面。</strong></p>
+<p><strong>正确的表述是</strong>：矿工收入的三个来源里，<br />
+<strong>一次发行按固定表减半、状态租金的 97.06% 挂在 2019 年写死的常数上——<br />
+只有手续费和那 0.23 个百分点对应的真实租金会随使用增长，两者合计占矿工收入的 0.143%。</strong></p>
+<h2 id="s-10">10. 价格、流动性与一个数据陷阱</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>八月涨幅（币安 UTC 日收）</td>
+<td><strong>+25.82%</strong>（BTC +24.95%）</td>
+</tr>
+<tr>
+<td><strong>历史最低</strong></td>
+<td><strong>$0.000796，2026-08-14</strong>——就在本报告期内</td>
+</tr>
+<tr>
+<td>距 ATH</td>
+<td><strong>−97.40%</strong></td>
+</tr>
+<tr>
+<td>近一年</td>
+<td><strong>−77.60%</strong>（BTC −30.75%）</td>
+</tr>
+<tr>
+<td>年化波动率 / beta / R²</td>
+<td>80.3% / 1.231 / 46.2%</td>
+</tr>
+<tr>
+<td>币安 ±2% 深度（买/卖）</td>
+<td><strong>$37,601 / $22,594</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>⚠️ CoinGecko 的 CKB 价格序列在 2026-01 至 2026-05 是坏的</strong>（四月隐含年化波动率 632%，<br />
+币安同期 68%；月均价偏差最高 +41.7%）。<br />
+<strong>用同一方法检查了 DOT / ZEC / TRX，三者均正常。</strong><br />
+<strong>⚠️ 但三个不足以断言「前十一期都没被污染」——余 8 个未查，其中 XIN（日成交 $10,878）最该查。</strong></p>
+<h2 id="s-11-3-5">11. 如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li><strong>CKB 的代币是「买存储空间的凭证」，而全网链上状态的字节总量折合 CKB 只相当于流通量的 0.3093%，<br />
+   且它在 2024 年 1 月见顶后 31 个月未创新高。</strong><br />
+   （⚠️ 它测字节，不等于「只有 0.31% 的 CKB 在发挥用途」。）</li>
+<li><strong>协议记的「占用容量」有 97.06% 是一个 2019 年就硬编码进去的虚拟数</strong>——<br />
+   它在为一枚已销毁的 cell 付状态租金。</li>
+<li><strong>RFC0015 举例设想 5% 的二次发行会被临时销毁，实际是 78.06%</strong>——<br />
+   那段 60/35/5 只是数字例子、不是协议要求，但 78% 的销毁说明它设想的两个接收方都远小于预期；<br />
+   而「等社区达成一致」的国库方案八年未落地。</li>
+<li><strong>RGB++ 叙事在八月中旬两天多里退潮约 88%，官方工具链已归档</strong>；<br />
+   接班的 Fiber 主网已上线一年半，链上 34 个通道、39,691 CKB。</li>
+<li><strong>八月 CKB 自己贡献的部分是负的</strong>：beta 1.231 × BTC 的 +24.95% = 预期 +30.7%，实际 +25.82%，<br />
+<strong>残差约 −4.9 个百分点</strong>。（<strong>不要用 R² 论证这件事</strong>——R² = 46.2% 的字面含义是<br />
+   「53.8% 的波动不由 BTC 解释」，拿它当依据是把反证当证据，完整报告初稿犯过，已更正。）<br />
+<strong>CKB 的通缩改善路径是机械的（减半）；需求改善路径在本报告能观测到的指标上没有出现——<br />
+   但必须声明：Fiber 这类链下扩展在结构上就不落在这个指标里。</strong></li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>ckb_research_report_202608.md</code>。<br />
+本期登记的可证伪论点见 <code>thesis_scorecard.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>
