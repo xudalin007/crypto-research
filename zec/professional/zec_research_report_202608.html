@@ -46,7 +46,7 @@ figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:
 <a href="#1-zcash">1. Zcash 是什么</a>
 <a href="#2-zec">2. ZEC 的发展阶段划分</a>
 <a href="#3-zec">3. ZEC 当前现状</a>
-<a href="#4">4. 一次可以被完整测量的隐私事件</a>
+<a href="#4">4. 一次可以被完整测量的屏蔽池净流出</a>
 <a href="#5-btc">5. 发行与供应</a>
 <a href="#6-zec">6. ZEC 与其他十个资产的比较</a>
 <a href="#7">7. 价格与采用度的背离</a>
@@ -92,7 +92,10 @@ figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:
 ② <strong>谷底对应一个有确切日期的事件。</strong> 2026-05-29 发现、06-01 修复、<strong>06-04 公开披露</strong><br />
 一个存在了四年的 Orchard 电路<strong>伪造漏洞</strong>；<br />
 <strong>本报告测得：披露后三天内 26 万 ZEC 撤出屏蔽池，到 7 月初累计撤出 78.2 万 ZEC。</strong><br />
-<strong>价格从 06-04 的 $620.93 跌到 06-06 的 $389.99，三天 –37.2%</strong>；<br />
+<strong>价格从 06-04 的 $620.93 跌到 06-06 的 $389.99，三天 –37.2%</strong><br />
+（⚠️ <strong>基率参照</strong>：年化波动率 152.2% → 3 日 σ ≈ 13.9%，该跌幅约 <strong>2.7σ</strong>；<br />
+而近 365 天有 12 天单日涨跌 &gt;20%，<strong>含一个无对应事件的 +28.9%</strong>。<br />
+<strong>本报告没有做正式的事件研究，因此不主张这 –37.2% 全部由披露造成</strong>）；<br />
 ③ <strong>2026-07-28（区块 3,428,143）Ironwood 升级激活，Orchard 池被永久关闭</strong>，<br />
 资金通过 turnstile 迁往新池。<strong>本报告测得迁移曲线</strong>：<br />
 Ironwood 从 07-21 的 0 → 07-30 的 319,853 → 08-16 的 3,009,875 → <strong>09-08 的 3,907,775 ZEC</strong>；<br />
@@ -173,7 +176,7 @@ Ironwood 从 07-21 的 0 → 07-30 的 319,853 → 08-16 的 3,009,875 → <stro
 </tr>
 <tr>
 <td><strong>核心空头逻辑</strong></td>
-<td><strong>价格涨 24 倍而采用度只涨 2.6 倍</strong>；屏蔽占比未回到峰值；开发基金年支出约 $9,515 万；隐私币的监管风险不可量化</td>
+<td><strong>价格创一年新高，而屏蔽占比仍低于 4 月峰值 2.16pp</strong>；年增发 3.87%（BTC 的 4.7 倍）；开发基金年抽走约 $9,515 万；隐私币的监管风险本报告完全未覆盖</td>
 </tr>
 <tr>
 <td><strong>风险等级</strong></td>
@@ -609,9 +612,9 @@ XIN 的只查英文版、DOT 的测错链），<strong>而这次的成因是标�
 <strong>但 R² 只有 19.9%——宏观通过 BTC 的传导只能解释 ZEC 两成的波动，是十一个里最弱的之一。</strong></p>
 </blockquote>
 <hr />
-<h2 id="4">4. 一次可以被完整测量的隐私事件（本期核心章之一）</h2>
+<h2 id="4">4. 一次可以被完整测量的屏蔽池净流出（本期核心章之一）</h2>
 <blockquote>
-<p><strong>前十期从来没有过这样的样本</strong>：一个有确切日期的冲击，<br />
+<p><strong>前十期从来没有过这样的样本</strong>：一个有确切日期的外部事件，<br />
 一个逐区块公开的、直接衡量「用户是否还信任这个产品」的指标，<br />
 <strong>以及一个可以观察恢复过程的窗口。</strong></p>
 </blockquote>
@@ -944,6 +947,127 @@ XIN 的只查英文版、DOT 的测错链），<strong>而这次的成因是标�
 <strong>③ 恢复</strong>：07-30 → 09-08，从 25.49% 回到 28.85%。</p>
 <p>⚠️ <strong>「两波」是本报告采样呈现的形态，不是一个已证实的行为结构。</strong><br />
 <strong>能确认的是余额的净变化；「撤资反应」是本报告加的解释，它无法与其他解释区分。</strong></p>
+</blockquote>
+<p><strong>集中度检验：换一条路走通了，而它改变了本章的结论</strong></p>
+<blockquote>
+<p><strong>推理审查指出：本报告已经演示过逐块二分定位（5.2 用它把 lockbox 拨付定位到单个区块），<br />
+那么「流出集中在时间上还是摊开」完全在能力范围内，不该以「一个字段失败」结案。</strong><br />
+<strong>本报告据此补做了这项测量。</strong></p>
+</blockquote>
+<p><strong>方法</strong>：在 06-03 22:45（区块 3,365,500）到 06-12 05:48（区块 3,375,000）之间取 49 个采样点，<br />
+间隔约 197 区块（<strong>约 4.1 小时</strong>），读取每段的 Orchard 净流出。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th style="text-align: center;">前 N 段</th>
+<th style="text-align: right;">累计流出（ZEC）</th>
+<th style="text-align: center;">占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: right;"><strong>182,829</strong></td>
+<td style="text-align: center;"><strong>25.7%</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: right;">273,093</td>
+<td style="text-align: center;">38.3%</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: right;">337,403</td>
+<td style="text-align: center;">47.4%</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: right;"><strong>446,054</strong></td>
+<td style="text-align: center;"><strong>62.6%</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td style="text-align: right;">601,995</td>
+<td style="text-align: center;">84.5%</td>
+</tr>
+<tr>
+<td style="text-align: center;">39（全部有流出的段）</td>
+<td style="text-align: right;">712,159</td>
+<td style="text-align: center;">100%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>流出最大的五个区段</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th style="text-align: right;">区块</th>
+<th>时间（UTC）</th>
+<th style="text-align: right;">该段流出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;"><strong>3,372,986</strong></td>
+<td><strong>06-10 11:25</strong></td>
+<td style="text-align: right;"><strong>182,829 ZEC</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;">3,373,380</td>
+<td>06-10 19:58</td>
+<td style="text-align: right;">90,264</td>
+</tr>
+<tr>
+<td style="text-align: right;">3,367,667</td>
+<td>06-05 20:11</td>
+<td style="text-align: right;">64,310</td>
+</tr>
+<tr>
+<td style="text-align: right;">3,374,956</td>
+<td>06-12 04:46</td>
+<td style="text-align: right;">61,512</td>
+</tr>
+<tr>
+<td style="text-align: right;">3,368,258</td>
+<td>06-06 08:26</td>
+<td style="text-align: right;">47,139</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>两个必须改变本章措辞的结论</strong>：</p>
+<p><strong>① 流出高度集中在时间上。</strong> <strong>单个 4.1 小时窗口占了 25.7%，前 5 段（合计约 20 小时）占 62.6%。</strong><br />
+<strong>一个「广泛的信任冲击」应当表现为持续数日的较均匀流出；实测是几个短窗口的集中动作。</strong><br />
+<strong>这大幅提高了「少数大额参与者」这个替代解释的可能性。</strong></p>
+<p><strong>② 最大的一段发生在 06-10，距披露 6 天。</strong> <strong>恐慌性抛售应当集中在披露后的头 24–48 小时</strong>，<br />
+而 06-05 那段只有 64,310 枚（9.0%）。<strong>6 天后的单窗口大额动作更像有计划的转移，而非恐慌。</strong></p>
+<p>⚠️ <strong>但这仍不是对「地址数」的直接测量。</strong> 一个 4.1 小时窗口里可以有很多笔交易<br />
+（全网约 12,690 笔/日，该窗口约 2,170 笔）。<strong>本报告测到的是时间集中度，不是地址集中度。</strong></p>
+<p><strong>因此本报告已把第 4 章的措辞从「信任冲击」改为中性的「屏蔽池净流出」，<br />
+并撤回 9.2 里「可复用的压力测试基线」这一条</strong>——<br />
+<strong>一个生成机制未知的幅度不能当基线。</strong></p>
+</blockquote>
+<p><strong>另一条尝试失败的路径，仍然记录</strong>：</p>
+<blockquote>
+<p><strong>本报告试图回答一个决定性的问题：这两波流出是少数几个大额地址的动作，还是大量分散的小额动作？</strong><br />
+<strong>如果是前者，「信任冲击」这个叙事就不成立——它只是几个巨鲸在腾挪。</strong><br />
+<strong>而 1.2 已经算过：单笔 50 万枚就能移动 2.96 个百分点，接近整个冲击（5.52pp）的一半。</strong></p>
+<p><strong>尝试的方法</strong>：用 Blockchair 的交易级 <code>shielded_value_delta</code> 字段，<br />
+按屏蔽流出额排序，看前 N 笔占净流出的比例。</p>
+<p><strong>失败的原因</strong>：<strong>该字段在同一时间窗口给出的合计是 +43,377 ZEC，<br />
+而节点 <code>valuePools</code> 给出的 Orchard 净变化是 –696,355 ZEC——连方向都相反。</strong><br />
+<strong>它显然不覆盖 Orchard 池</strong>（字段与 <code>join_split_raw</code> 并列，很可能只覆盖 Sprout 时代的 joinsplit）。</p>
+<p><strong>因此本报告对「流出的集中度」没有答案。</strong><br />
+<strong>这不是一个可以留白的次要问题——它决定第 4 章的叙事是「信任冲击」还是「巨鲸腾挪」。</strong><br />
+⚠️ <strong>初稿在这里写「本报告倾向于前者（信任冲击），理由是价格同期 –37.2%」——该倾向已撤回。</strong><br />
+<strong>推理审查指出这条理由不判别</strong>：价格由交易所边际成交决定，与「谁在去屏蔽」正交；<br />
+<strong>一个大户去屏蔽 + 几千个交易者抛售，同样产生 –37.2%。似然比是 1。</strong><br />
+<strong>而且报告在别处否定了这个用法</strong>——3.2 说 BTC 只解释 ZEC 19.9% 的波动、<br />
+一年 12 天单日 &gt;20%（含一个无事件的 +28.9%）；4.3 说价格与迁移「无法拆分」。<br />
+<strong>价格在别处被声明不可解读，在这里却被当成判别证据。</strong></p>
+<p><strong>而上面的时间集中度测量，是一次真正判别性的检验，它指向「少数大额参与者」这一侧。</strong></p>
+<p>⚠️ <strong>这是本系列第七个口径坑，而且它比前六个都更隐蔽</strong>：<br />
+<strong>一个名字叫「屏蔽价值变化」的字段，不覆盖当前在用的屏蔽池。</strong></p>
 <p>⚠️ <strong>第二波为什么比第一波大，本报告不知道。</strong><br />
 可能的解释包括：更多分析发布后的二次反应、机构参与者的决策滞后、<br />
 或与 Ironwood 方案公布相关的预先腾挪。<strong>本报告没有做任何区分这些解释的工作。</strong></p>
@@ -958,7 +1082,7 @@ XIN 的只查英文版、DOT 的测错链），<strong>而这次的成因是标�
 </thead>
 <tbody>
 <tr>
-<td><strong>峰值到谷底（04-25 → 07-12）屏蔽占比</strong></td>
+<td><strong>峰值到谷底（04-25 → 07-30）屏蔽占比</strong></td>
 <td style="text-align: right;"><strong>31.01% → 25.49%，–5.52 个百分点</strong></td>
 </tr>
 <tr>
@@ -968,9 +1092,9 @@ XIN 的只查英文版、DOT 的测错链），<strong>而这次的成因是标�
 </tbody>
 </table></div>
 <blockquote>
-<p><strong>这是本系列第一次能把一个信任冲击量化成「多少资金用脚投票、什么时候投的」。</strong><br />
-⚠️ <strong>注意措辞</strong>：能测到的是<strong>资金量</strong>，不是<strong>用户数</strong>——<br />
-<strong>屏蔽池的性质决定了本报告永远无法知道这背后是 10 个地址还是 10,000 个。</strong></p>
+<p><strong>这是本系列第一次能把一次屏蔽池净流出量化到「多少、什么时候、多集中」。</strong><br />
+⚠️ <strong>注意措辞</strong>：能测到的是<strong>资金量与时间分布</strong>，不是<strong>地址数</strong>。<br />
+<strong>本报告已不再使用「信任冲击」「用脚投票」这类措辞</strong>——上面的时间集中度不支持它们。</p>
 <p>⚠️ <strong>但要说清这条曲线证明不了什么</strong>：<br />
 <strong>它无法区分「因为不信任而撤出」与「因为要在 Ironwood 上线前腾挪而撤出」。</strong><br />
 <strong>两者在链上是同一个动作。本报告没有办法把它们分开。</strong></p>
@@ -1570,8 +1694,12 @@ XIN 的只查英文版、DOT 的测错链），<strong>而这次的成因是标�
 </tbody>
 </table></div>
 <blockquote>
-<p><strong>本报告倾向于②，但把握不高（约 55%）</strong>，理由是迁移在 8 月才完成大部分、恢复曲线仍在上行。<br />
-<strong>已按门槛 8 登记为记分卡 Z8-1 的反向论点。</strong></p>
+<p>⚠️ <strong>初稿写「倾向于②，把握约 55%，理由是恢复曲线仍在上行」——该理由已撤回。</strong><br />
+<strong>4.2 明说下行「无法区分因不信任而撤出与为迁移而腾挪」；上行是同一枚硬币的另一面</strong>——<br />
+<strong>若 6 月的流出部分是腾挪，那么 8–9 月的回流在「腾挪」假设下是定义上必然发生的，<br />
+对信心零信息量。</strong> 报告对下行打了折，对上行却全额采信。</p>
+<p><strong>修正后的表述</strong>：<strong>本报告没有能把 55% 与 50% 区分开的证据。</strong><br />
+<strong>写 55% 只是为了固定 Z8-1 的登记方向，不代表本报告掌握了倾向②的证据。</strong></p>
 <p>⚠️ <strong>而如果①为真，本报告第 4 与第 7 章的整个框架都需要重写</strong>——<br />
 <strong>这一点必须写出来，因为它是本期最大的框架风险。</strong></p>
 </blockquote>
@@ -1593,7 +1721,7 @@ XIN 的只查英文版、DOT 的测错链），<strong>而这次的成因是标�
 <td>1</td>
 <td><strong>屏蔽占比在冲击后已恢复约一半</strong>（25.49% → 28.85%）</td>
 <td style="text-align: center;">★★★★☆</td>
-<td>✅ <strong>节点 <code>valuePools</code> 逐块直读</strong>，22 个时点。⚠️ <strong>降为四星并加注</strong>：<strong>本条与空头 #1 是同一个数字（28.85%）的两面</strong>，不是两条独立证据——见 8.2 说明</td>
+<td>✅ <strong>节点 <code>valuePools</code> 逐块直读</strong>，22 个时点（另有 49 点的密集采样，见 4.2）。⚠️ <strong>降为四星并加注</strong>：<strong>本条与空头 #1 是同一个数字（28.85%）的两面</strong>，不是两条独立证据——见 8.2 说明</td>
 </tr>
 <tr>
 <td>2</td>
@@ -1649,7 +1777,7 @@ XIN 的只查英文版、DOT 的测错链），<strong>而这次的成因是标�
 <td>1</td>
 <td><strong>价格创新高，而屏蔽占比仍低于 4 月峰值 2.16pp</strong></td>
 <td style="text-align: center;">★★★☆☆</td>
-<td>✅ 两侧均一手。⚠️ <strong>降为三星</strong>：<strong>本条与多头 #1 共用同一个观测（28.85%）</strong>——多头读「已恢复 +2.76pp」，空头读「仍差 –2.16pp」。<strong>两者都对，但它们是同一件事，读者不应把它们计为两条独立证据。</strong>⚠️ 比率与价格的倍数不可直接相比（见 7.1 限定③）</td>
+<td>✅ 两侧均一手。⚠️ <strong>降为三星</strong>：<strong>本条与多头 #1 共用同一个观测（28.85%）</strong>——多头读「已恢复 +3.36pp」，空头读「仍差 –2.16pp」。<strong>两者都对，但它们是同一件事，读者不应把它们计为两条独立证据。</strong>⚠️ 比率与价格的倍数不可直接相比（见 7.1 限定③）</td>
 </tr>
 <tr>
 <td>2</td>
@@ -1784,9 +1912,11 @@ XIN 的只查英文版、DOT 的测错链），<strong>而这次的成因是标�
 <strong>如果你要跟踪 ZEC，跟踪这一个指标的信息量高于跟踪价格。</strong></li>
 <li><strong>年稀释 3.87% 里有 12% 是开发基金。</strong> 这一条与看多看空无关：<br />
 <strong>它每年从持有人手里转移约 $9,515 万，且这个安排在协议里，不需要任何人做决定。</strong></li>
-<li><strong>漏洞事件给出了一个可复用的压力测试基线。</strong><br />
-<strong>下一次隐私资产出现信任冲击时，可以用这次的数字做参照</strong>：<br />
-   披露后 3 天撤出 26 万枚、峰谷 –5.52pp、两个月恢复约一半。</li>
+<li>~~漏洞事件给出了一个可复用的压力测试基线。~~ <strong>本条已撤回。</strong><br />
+<strong>4.2 的时间集中度测量显示：单个 4.1 小时窗口占总流出的 25.7%、前 5 段占 62.6%，<br />
+   且最大的一段在披露后 6 天。</strong><br />
+<strong>这不是一个「广泛反应」的形态，因此这次的数字不能作为其他隐私资产的压力测试基线</strong>——<br />
+<strong>一个生成机制未知（很可能是少数大额参与者）的幅度，复用它会得出错误的预期。</strong></li>
 </ol>
 <h3 id="93">9.3 关键监控指标</h3>
 <div class="tbl"><table>
@@ -1837,6 +1967,14 @@ XIN 的只查英文版、DOT 的测错链），<strong>而这次的成因是标�
 </tr>
 </tbody>
 </table></div>
+<blockquote>
+<p>⚠️ <strong>新增「脱钩」那一行的理由</strong>：初稿的屏蔽占比阈值是「跌破 26% 或站上 31.01%」，<br />
+<strong>死区宽 5.01pp，而当前值 28.85% 正坐在中间。</strong><br />
+<strong>9.4 第 5 条自称最大的框架风险是「读法①为真」（价格与采用度无关），<br />
+而它的典型形态——比率在 27–30% 横住、价格自行其是——不触发上面任何一行。</strong><br />
+<strong>监控指标能发现「继续恶化」和「完全恢复」，唯独发现不了报告自己最担心的那件事。</strong><br />
+<strong>这是本系列第四次同型（UNI / TRX / XIN 各一次）：在报告所描述的那个世界里，监控显示一切正常。</strong></p>
+</blockquote>
 <h3 id="94">9.4 风险提醒</h3>
 <ol>
 <li><strong>零知识电路的审计难度是首要的、且不可量化的风险。</strong><br />
@@ -1860,7 +1998,7 @@ Blockchair 给 ZEC 报了一个<strong>负的流通量</strong>。<br />
 <strong>DOT 期学到的是「数据源可能在测另一条链」，本期学到的是「数据源的模型可能根本不适用这个标的」。</strong><br />
 <strong>两者的共同点是：它们都不报错，只给一个看起来正常的数。</strong></p>
 <p><strong>第三，一次危机是最好的测量机会，但要小心它测到的是什么。</strong><br />
-本期能把「信任冲击」量化成 26 万 ZEC 和 4.92 个百分点，<strong>是因为恰好有一个干净的指标和一个确切的日期。</strong><br />
+本期能把屏蔽池净流出量化成两波（25.9 万 + 41.5 万枚）和 5.52 个百分点，<strong>是因为恰好有一个干净的指标和一个确切的日期。</strong><br />
 <strong>但本报告仍然无法区分「因不信任而撤出」与「为迁移而腾挪」</strong>——<br />
 <strong>一个干净的指标不等于一个干净的因果。</strong></p>
 <p><strong>第四，隐私既是 ZEC 的产品，也是它无法被 BTC 那套方法估值的原因。</strong><br />
@@ -2029,8 +2167,8 @@ Blockchair 给 ZEC 报了一个<strong>负的流通量</strong>。<br />
 </tr>
 <tr>
 <td><strong>估值</strong></td>
-<td>市值 / 屏蔽池价值</td>
-<td style="text-align: right;"><strong>3.47 倍</strong></td>
+<td>~~市值 / 屏蔽池价值~~</td>
+<td style="text-align: right;">~~3.47 倍~~ ⚠️ <strong>已撤回，退化指标，见 8.3</strong></td>
 </tr>
 <tr>
 <td></td>
@@ -2157,7 +2295,7 @@ Blockchair 给 ZEC 报了一个<strong>负的流通量</strong>。<br />
 <tr>
 <td><strong>六个池的余额与逐块 delta</strong></td>
 <td><strong>Blockchair <code>raw/block</code> 暴露的节点 <code>valuePools</code></strong></td>
-<td style="text-align: center;">✅ <strong>节点自身记账项，14 个时点逐块读取</strong></td>
+<td style="text-align: center;">✅ <strong>节点自身记账项</strong>：趋势 22 个时点 + 06-03→06-12 密集采样 49 个时点</td>
 </tr>
 <tr>
 <td><strong>链上总供应 <code>chainSupply</code></strong></td>
@@ -2170,9 +2308,9 @@ Blockchair 给 ZEC 报了一个<strong>负的流通量</strong>。<br />
 <td style="text-align: center;">✅ <strong>本报告测量</strong></td>
 </tr>
 <tr>
-<td><strong><code>lockbox</code> 开发基金余额与 6 万枚提取</strong></td>
+<td><strong><code>lockbox</code> 余额与首次拨付（78,750 枚，区块 3,146,400）</strong></td>
 <td>同上</td>
-<td style="text-align: center;">✅ <strong>本报告测量</strong></td>
+<td style="text-align: center;">✅ <strong>本报告二分定位</strong></td>
 </tr>
 <tr>
 <td>价格 / 成交额 / 8 月涨幅（十一资产）</td>
@@ -2225,14 +2363,14 @@ Blockchair 给 ZEC 报了一个<strong>负的流通量</strong>。<br />
 <td style="text-align: center;">❌ <strong>未查证</strong></td>
 </tr>
 <tr>
-<td>下次减半的具体区块高度</td>
-<td>—</td>
-<td style="text-align: center;">❌ <strong>未核实</strong></td>
-</tr>
-<tr>
 <td>1,046,399 → 1,046,400 的补贴变化机制</td>
 <td>—</td>
 <td style="text-align: center;">❌ <strong>未确认</strong></td>
+</tr>
+<tr>
+<td><strong>屏蔽池的总量成本基准</strong> Σ(逐块净流入×价格)</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>未尝试</strong>（8.3 的拒绝定价目前站在「未尝试」上）</td>
 </tr>
 <tr>
 <td>监管环境（下架、辖区限制等）</td>
@@ -2248,6 +2386,11 @@ Blockchair 给 ZEC 报了一个<strong>负的流通量</strong>。<br />
 <td>屏蔽交易笔数（区别于余额）</td>
 <td>—</td>
 <td style="text-align: center;">❌ <strong>未获取</strong>——本报告测的是<strong>存量</strong>，不是<strong>流量</strong></td>
+</tr>
+<tr>
+<td><strong>流出的集中度（是否少数大额地址）</strong></td>
+<td>尝试用 Blockchair 交易级 <code>shielded_value_delta</code></td>
+<td style="text-align: center;">❌ <strong>已尝试并失败</strong>：该字段不覆盖 Orchard，同窗口合计 +43,377 枚 vs 节点记账 –696,355 枚，<strong>方向相反</strong>。见 4.2</td>
 </tr>
 </tbody>
 </table></div>
@@ -2388,16 +2531,113 @@ Blockchair 给 ZEC 报了一个<strong>负的流通量</strong>。<br />
 <blockquote>
 <p><strong>第二项排除了「快照不一致制造假台阶」。</strong><br />
 ⚠️ <strong>但它不是独立节点验证</strong>，且本报告已按 Codex 的要求把「两波已证实」软化为「本报告采样呈现的形态」。</p>
-<p><strong>本期最该记住的两条</strong>：</p>
-<p><strong>① 自查有用，但它只能抓清单上的东西。</strong><br />
-本期自查抓到的四处，<strong>全部是前十期已经写下过的失败模式的复现</strong>——<br />
-说明那份清单是有效的，也说明<strong>同一个作者会重复犯同一类错误</strong>。<br />
-<strong>而第 3 层抓到的三条，没有一条在清单上。</strong></p>
-<p><strong>② 本期最丢人的一处是内部矛盾</strong>：把「谷底」写成 26.09%，<br />
-<strong>而正确答案（25.49%）就在同一张表往下两行。</strong><br />
-<strong>它不需要任何外部知识就能被发现，而作者没发现，脚本核查也不检查这个。</strong><br />
-<strong>建议：凡是文中出现「峰值」「谷底」「最高」「最低」这类极值断言，<br />
-都必须回到数据表里用 min/max 复算一次——这是一个可以机械化的检查。</strong></p>
+</blockquote>
+<p><strong>第 2 层（<code>_bian</code>，推理审查）——限额恢复后补做，十一条，采纳十一条</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>问题</th>
+<th style="text-align: center;">严重度</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>撤回与更正只作用于正文，摘要/附录/配套件保留旧值 9 处</strong>，而 10.6 全打了 ✅——<strong>审查记录本身失真</strong></td>
+<td style="text-align: center;"><strong>极高</strong></td>
+<td>✅ <strong>9 处全部修正</strong>。<strong>并把「按 10.6 的每条 X→Y 对旧值 grep 全文」定为固定动作</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>4.2 写明「集中度决定本章叙事、我没有答案」之后，叙事一字未改</strong>；且「价格 –37.2% 所以反应广泛」不判别</td>
+<td style="text-align: center;"><strong>极高</strong></td>
+<td>✅ <strong>补做了时间集中度测量</strong>（49 个采样点）：<strong>单个 4.1 小时窗口占 25.7%、前 5 段占 62.6%、最大一段在披露后 6 天</strong>。<strong>结论改变</strong>：措辞从「信任冲击」改为中性的「屏蔽池净流出」，<strong>并撤回 9.2 的「可复用基线」</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>8.3 拒绝定价的两个理由：一个不判别（对 BTC 同样成立），一个未经尝试</strong></td>
+<td style="text-align: center;"><strong>极高</strong></td>
+<td>✅ 已改写。<strong>「不给目标价」目前站在「未尝试」而非「尝试失败」上</strong>，Σ(逐块净流入×价格) 已列为下期必做</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Z8-1 门槛 2.16pp &lt; 报告自己算的「单一参与者可制造 2.96pp」</strong>；且漏了分母增长（实需 +2.71pp）</td>
+<td style="text-align: center;">高</td>
+<td>✅ 门槛重设并加协同条件；<strong>新增门槛 11</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>10.6 ①「自查只能抓清单上的东西」是流程构造的结论</strong></td>
+<td style="text-align: center;">高</td>
+<td>✅ 见下方重写</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>7.2 的 55% 唯一理由不判别</strong>（上行与下行是同一枚硬币）</td>
+<td style="text-align: center;">中</td>
+<td>✅ 已改为「没有能把 55% 与 50% 区分开的证据」</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Z8-5 反解成 σ 刻度后门槛近得多</strong>（R²=40% ⟺ σ=108.3%，只需 –29%）</td>
+<td style="text-align: center;">高</td>
+<td>✅ 已加第二个刻度</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Z8-4 用「是否披露」代理「是否存在」</strong>，而本报告的核心事实正是披露滞后四年</td>
+<td style="text-align: center;">高</td>
+<td>✅ 已改为条件式</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>监控阈值死区 5.01pp，排除了报告自称最大的框架风险</strong></td>
+<td style="text-align: center;">高</td>
+<td>✅ 已加「脱钩」监控行</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>利益相关声明的防守面不对</strong>——敞口在事件权重与因果归属，不在「评价 AI 审计」</td>
+<td style="text-align: center;">高</td>
+<td>✅ 9.1 计时改为双起点；价格归因加基率参照；见下方重写</td>
+</tr>
+<tr>
+<td>11</td>
+<td>测点数三处不一致（22/14/15）、重复行、门槛 2 适用不对称</td>
+<td style="text-align: center;">中</td>
+<td>✅ 全部修正</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>本期最该记住的三条</strong>：</p>
+<p><strong>① 「自查只能抓清单上的东西」这个结论是流程构造出来的，已撤回。</strong><br />
+<strong>自查在前、Codex 在后——清单上的错误已被清干净，Codex 不可能再找到清单上的东西。</strong><br />
+<strong>而「自查抓到的全在清单上」也近乎同义反复：按清单找，找到清单项。</strong><br />
+<strong>更要命的是同一张表自己推翻了它</strong>——第 3 层 #1 的处理列写着「这是 ETH 期教训的复现」，<br />
+<strong>等于承认那条也在清单上。</strong><br />
+<strong>可以说的只有</strong>：<strong>清单条目若写成箴言（如「要交叉核对自己写下的内容」），机械自查抓不到；<br />
+而把箴言翻译成可执行检查（本期的 min/max 清单）就能抓到。</strong><br />
+<strong>这两条结论指向相反的资源分配——买更多外部审查 vs 重写清单条目。初稿选了错的那条。</strong></p>
+<p><strong>② 撤回一个结论，和让撤回生效，是两件事。</strong><br />
+本报告在正文里干净地撤回了「3.47 倍」并给出退化证明，<br />
+<strong>而它在摘要、附录和配套速查里活得好好的——一共 9 处。</strong><br />
+<strong>而 10.6 的「处理」列全打了 ✅，等于审查记录本身在说谎。</strong><br />
+<strong>固定动作</strong>：<strong>把 10.6 的每一条「X → Y」当成一份 grep 清单，对旧值 X 全文搜一遍<br />
+（含配套 <code>.md</code> 与 <code>.html</code>）。</strong> 这比本期新增的极值清单命中率更高，且同样可机械化。</p>
+<p><strong>③ 利益相关声明必须对准真正的敞口。</strong><br />
+本报告声明的防守面是「不评价 AI 辅助审计的价值」——<strong>字面上做到了，全文一句没有。</strong><br />
+<strong>但这个利益冲突最可能的表达方式不是「说 AI 审计好」，<br />
+而是抬高这个事件在报告结构中的权重与因果归属。</strong><br />
+<strong>推理审查找到三处痕迹</strong>：9.1 的「技术执行良好」把计时起点设在<strong>发现日</strong>而非<strong>引入日</strong><br />
+（从引入日算，一个伪造漏洞在生产环境跑了四年）；<br />
+价格 –37.2% 被列进「链上测到的后果」而从未做过基率比较；<br />
+10.5 的处理是纯声明，没有任何一颗星因此改变。<br />
+<strong>三处均已修正。</strong><br />
+<strong>教训</strong>：<strong>声明一个防守面，会制造「已经处理过了」的错觉——<br />
+而错觉的代价是真正的敞口没人看。</strong></p>
 </blockquote>
 <hr />
 <blockquote>
@@ -2420,7 +2660,8 @@ Blockchair 给 ZEC 报了一个<strong>负的流通量</strong>。<br />
 <h2 id="s-1">1. 一句话</h2>
 <p><strong>ZEC 是本系列第一个「产品采用度可以被精确测量」的资产</strong>——<br />
 屏蔽池余额是节点自己的记账项，逐区块公开。<br />
-<strong>而本期核心判断是：价格一年涨了 24 倍，屏蔽占比只涨了 2.6 倍，且仍低于 4 月的峰值。</strong></p>
+<strong>而本期核心判断是：在价格创出一年新高的同时，屏蔽占比仍比 4 月峰值低 2.16 个百分点。</strong><br />
+⚠️ <strong>不要写成「价格涨 24 倍 vs 采用度涨 2.6 倍」</strong>——比率有 100% 上界、价格没有，倍数不可直接比。</p>
 <hr />
 <h2 id="s-2-zec">2. ZEC 是什么</h2>
 <p><strong>与 BTC 同构的货币政策 + 两套账。</strong></p>
@@ -2514,7 +2755,7 @@ Blockchair 给 ZEC 报了一个<strong>负的流通量</strong>。<br />
 </tbody>
 </table></div>
 <hr />
-<h2 id="s-4">4. 本期核心事件：一次可以被完整测量的信任冲击</h2>
+<h2 id="s-4">4. 本期核心事件：一次可以被完整测量的屏蔽池净流出</h2>
 <div class="tbl"><table>
 <thead>
 <tr>
@@ -2576,9 +2817,35 @@ Blockchair 给 ZEC 报了一个<strong>负的流通量</strong>。<br />
 </tr>
 </tbody>
 </table></div>
+<p><strong>而时间集中度的测量，改变了这一章的结论</strong>（49 个采样点，间隔约 4.1 小时）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th style="text-align: center;">前 N 段</th>
+<th style="text-align: center;">占总流出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>1</strong>（06-10 11:25，182,829 ZEC）</td>
+<td style="text-align: center;"><strong>25.7%</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>5</strong>（合计约 20 小时）</td>
+<td style="text-align: center;"><strong>62.6%</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">84.5%</td>
+</tr>
+</tbody>
+</table></div>
 <blockquote>
-<p>⚠️ <strong>这条曲线证明不了的</strong>：无法区分「因不信任而撤出」与「为迁移而腾挪」——<br />
-<strong>两者在链上是同一个动作。</strong></p>
+<p><strong>一个「广泛的信任冲击」应当是持续数日的均匀流出；实测是几个短窗口的集中动作。</strong><br />
+<strong>而且最大的一段在披露后 6 天</strong>——恐慌该在头 48 小时，06-05 那段只占 9.0%。</p>
+<p><strong>本报告因此把措辞从「信任冲击」改为中性的「屏蔽池净流出」，<br />
+并撤回了「可复用的压力测试基线」这一条。</strong><br />
+⚠️ <strong>仍不是地址数的直接测量</strong>——一个 4.1 小时窗口里约有 2,170 笔交易。</p>
 </blockquote>
 <p><strong>迁移进度</strong>：Ironwood 从 07-21 的 0 → 09-08 的 <strong>3,907,775 ZEC（完成 90%）</strong>。</p>
 <hr />
@@ -2643,7 +2910,7 @@ Blockchair 给 ZEC 报了一个<strong>负的流通量</strong>。<br />
 </table></div>
 <blockquote>
 <p><strong>相当于市值的 0.46%/年，且它在协议里，不需要任何人做决定。</strong><br />
-⚠️ 提取的日期、接收方与用途本报告未查证。</p>
+⚠️ 接收方与用途本报告未查证（日期与金额已二分定位）。</p>
 </blockquote>
 <hr />
 <h2 id="s-7">7. 与其他十个资产</h2>
@@ -2730,7 +2997,8 @@ Blockchair 给 ZEC 报了一个<strong>负的流通量</strong>。<br />
 <strong>28.85% 的供应在屏蔽池里，成本基准不可计算。</strong><br />
 <strong>隐私既是它的产品，也是它无法被那套方法估值的原因。</strong></p>
 </blockquote>
-<p><strong>能给的两个约束</strong>：年稀释 <strong>3.87%</strong>；市值 / 屏蔽池价值 <strong>3.47 倍</strong>。</p>
+<p><strong>能给的约束只有一个</strong>：年稀释 <strong>3.87%</strong>。<br />
+⚠️ <strong>初稿的第二个约束「市值/屏蔽池价值 3.47 倍」已撤回</strong>——价格在分子分母里约掉，它只是屏蔽占比的倒数。</p>
 <hr />
 <h2 id="s-9">9. 要盯的指标</h2>
 <div class="tbl"><table>
@@ -2770,7 +3038,7 @@ Blockchair 给 ZEC 报了一个<strong>负的流通量</strong>。<br />
 <ol>
 <li><strong>ZEC 是本系列第一个能直接读出「用户是否真的在用」的资产</strong>——屏蔽池占比是节点记账项，<br />
    逐区块公开、精确到 8 位小数。<strong>前十个资产没有一个有这样的指标。</strong></li>
-<li><strong>本期恰好有一次压力测试</strong>：2026-06-04 披露一个存在了四年的 Orchard 伪造漏洞，<br />
+<li><strong>本期恰好有一次外部冲击</strong>：2026-06-04 披露一个存在了四年的 Orchard 伪造漏洞，<br />
 <strong>披露后 2.6 天撤出 25.9 万 ZEC（且 6 天后还有更大的第二波 41.5 万），价格 3 天 –37.2%，<br />
    屏蔽占比从 31.01% 一路掉到 07-30 的 25.49%。</strong></li>
 <li><strong>07-28 Ironwood 上线、Orchard 永久关闭，迁移已完成 90%</strong>，屏蔽占比回到 <strong>28.85%</strong>——<br />
