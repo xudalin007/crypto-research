@@ -140,7 +140,32 @@ class Report:
         if old and len(old) > 6:
             self.warn('新鲜度', f'引用了较多早于 {y-1} 年的年份 {old[:8]}…（历史章节属正常）')
 
-    # ── 7. 数字清单（供人工抽查）────────────────────────────
+    # ── 7. 极值断言清单（ZEC 期新增，只列不判）──────────────
+    def extreme_claims(self):
+        """列出全文所有「峰值/谷底/最高/最低」+ 数字的断言，供人工用 min/max 复核。
+
+        起因：ZEC 期把屏蔽占比的「谷底」写成 26.09%，而 25.49% 就在同一列往下两行。
+        这类错误不需要外部知识就能发现，却同时逃过了作者和本脚本。
+
+        ⚠️ 本项**只列不判**。试过三种自动判定（同段/同表/同列），假阳性都压不下去——
+        根因是报告里既有「资产做行」也有「指标做行」的转置表，通用解析器分辨不了。
+        而假阳性会训练人忽略告警，比没有检查更糟。
+        """
+        md = self.read(self.md_path)
+        pat = re.compile(r'[^\n。|]{0,24}(峰值|谷底|最高|最低|最大|最小)[^\n。|]{0,24}')
+        out, seen = [], set()
+        for m in pat.finditer(md):
+            frag = m.group(0).strip().strip('*# >')
+            if not re.search(r'\d', frag):
+                continue
+            key = re.sub(r'\s+', '', frag)
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(frag)
+        return out[:14]
+
+    # ── 8. 数字清单（供人工抽查）────────────────────────────    # ── 8. 数字清单（供人工抽查）────────────────────────────
     def number_inventory(self):
         md = self.read(self.md_path)
         big = sorted({n for n in norm_nums(md) if n > 1000}, reverse=True)[:12]
@@ -176,6 +201,12 @@ def main():
 
     big = r.number_inventory()
     print(f'\n{C_DIM}供人工抽查的大数（前 12）：{big}{C_END}')
+
+    ext = r.extreme_claims()
+    if ext:
+        print(f'\n{C_DIM}极值断言（请回到对应数据表用 min/max 复算一次）：{C_END}')
+        for e in ext:
+            print(f'{C_DIM}  · {e}{C_END}')
     print('─' * 62)
     print(f'结果：{len(fails)} FAIL / {len(warns)} WARN')
     if fails:
