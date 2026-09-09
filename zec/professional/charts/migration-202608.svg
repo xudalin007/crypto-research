@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="340" viewBox="0 0 720 340" font-family='-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB",sans-serif'>
+<rect width="720" height="340" fill="#fff"/>
+<text x="70" y="26" font-size="14" font-weight="700" fill="#1c1917">Orchard → Ironwood 的 turnstile 迁移，8 月完成大部分</text>
+<text x="70" y="44" font-size="11" fill="#57534e">单位：ZEC。Orchard 池于 2026-07-28 区块 3,428,143 永久关闭，资金经 turnstile 迁往 Ironwood</text>
+<text x="70" y="62" font-size="11" fill="#57534e">数据：节点 valuePools 一手</text>
+<line x1="70" y1="111.5" x2="690" y2="111.5" stroke="#e7e5e4" stroke-width="1"/>
+<line x1="70" y1="117.0" x2="690" y2="117.0" stroke="#e7e5e4" stroke-width="1"/>
+<rect x="88.8" y="117.0" width="42.2" height="165.0" fill="#eb6834" rx="2"/>
+<rect x="133.0" y="282.0" width="42.2" height="0.0" fill="#1baf7a" rx="2"/>
+<text x="132.0" y="300.0" font-size="9.5" fill="#57534e" text-anchor="middle">07-21</text>
+<rect x="212.8" y="134.9" width="42.2" height="147.1" fill="#eb6834" rx="2"/>
+<rect x="257.0" y="268.0" width="42.2" height="14.0" fill="#1baf7a" rx="2"/>
+<text x="256.0" y="300.0" font-size="9.5" fill="#57534e" text-anchor="middle">07-30</text>
+<rect x="336.8" y="193.5" width="42.2" height="88.5" fill="#eb6834" rx="2"/>
+<rect x="381.0" y="205.1" width="42.2" height="76.9" fill="#1baf7a" rx="2"/>
+<text x="380.0" y="300.0" font-size="9.5" fill="#57534e" text-anchor="middle">08-07</text>
+<rect x="460.8" y="246.0" width="42.2" height="36.0" fill="#eb6834" rx="2"/>
+<rect x="505.0" y="150.7" width="42.2" height="131.3" fill="#1baf7a" rx="2"/>
+<text x="504.0" y="300.0" font-size="9.5" fill="#57534e" text-anchor="middle">08-16</text>
+<rect x="584.8" y="263.1" width="42.2" height="18.9" fill="#eb6834" rx="2"/>
+<rect x="629.0" y="111.5" width="42.2" height="170.5" fill="#1baf7a" rx="2"/>
+<text x="628.0" y="300.0" font-size="9.5" fill="#57534e" text-anchor="middle">09-08</text>
+<text x="109.9" y="110.0" font-size="10" font-weight="700" fill="#eb6834" text-anchor="middle">3,780,594</text>
+<text x="650.1" y="104.5" font-size="10" font-weight="700" fill="#1baf7a" text-anchor="middle">3,907,775</text>
+<rect x="70" y="314" width="10" height="10" fill="#eb6834" rx="2"/><text x="86" y="323" font-size="10" fill="#57534e">Orchard（已关闭）</text>
+<rect x="210" y="314" width="10" height="10" fill="#1baf7a" rx="2"/><text x="226" y="323" font-size="10" fill="#57534e">Ironwood（新池）</text>
+</svg>

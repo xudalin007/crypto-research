@@ -1,0 +1,2802 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ZEC / Zcash 完整调研与分析报告 — 2026年8月</title>
+<style>
+:root{--accent:#ecb244;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">ⓩ ZEC 调研报告 (2026.8)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>ⓩ ZEC 调研报告 2026.8</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-zcash">1. Zcash 是什么</a>
+<a href="#2-zec">2. ZEC 的发展阶段划分</a>
+<a href="#3-zec">3. ZEC 当前现状</a>
+<a href="#4">4. 一次可以被完整测量的隐私事件</a>
+<a href="#5-btc">5. 发行与供应</a>
+<a href="#6-zec">6. ZEC 与其他十个资产的比较</a>
+<a href="#7">7. 价格与采用度的背离</a>
+<a href="#8">8. 核心价值逻辑与估值</a>
+<a href="#9">9. 投资与风险启示</a>
+<a href="#10">10. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-0">0. 一处必须先读的利益相关声明</a>
+<a href="#s-1">1. 一句话</a>
+<a href="#s-2-zec">2. ZEC 是什么</a>
+<a href="#s-3-valuepools2026-09-08">3. 六个池</a>
+<a href="#s-4">4. 本期核心事件</a>
+<a href="#s-5">5. 价格与采用度的背离</a>
+<a href="#s-6">6. 开发基金</a>
+<a href="#s-7">7. 与其他十个资产</a>
+<a href="#s-8">8. 估值</a>
+<a href="#s-9">9. 要盯的指标</a>
+<a href="#s-3-5">如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 8 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>ⓩ ZEC / Zcash<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">ⓩ Zcash</span><span class="badge badge-date">2026 年 8 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="zec-zcash">ZEC / Zcash 完整调研与分析报告</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 9 月 9 日<br />
+<strong>数据截止</strong>：2026 年 9 月 8 日（8 月完整月度数据已闭合）<br />
+<strong>研究方法</strong>：沿用本系列前十期框架（BTC / ETH / SOL / ADA / BNB / HYPE / UNI / TRX / XIN / DOT）。<br />
+<strong>本期的独特之处</strong>：ZEC 是本系列第十一个资产，也是<strong>第一个「产品的采用度可以被精确测量」的资产</strong>。<br />
+前十个资产里，「有多少人真的在用这个功能」始终是个估计；<br />
+<strong>而 Zcash 的屏蔽池余额是节点自己的记账项，逐区块公开、精确到 8 位小数。</strong><br />
+<strong>本期为 ZEC 首期报告。</strong></p>
+<p>⚠️ <strong>一处必须写在最前面的利益相关声明</strong>：<br />
+<strong>本期报告的核心事件——Orchard 电路漏洞——是 2026-05-29 由安全研究员 Taylor Hornby<br />
+使用 AI 辅助审计框架发现的，所用模型是 Anthropic 的 Opus 4.8。</strong><br />
+<strong>而撰写本报告的也是 Anthropic 的模型。</strong><br />
+<strong>本报告在涉及该事件的评价时可能存在有利于该结论的倾向，读者应据此调整信任度。</strong><br />
+<strong>本报告的处理方式是：只陈述链上可测量的事实与时间线，不对「AI 辅助审计」的价值做任何评价。</strong></p>
+<p><strong>本期核心发现</strong>：<br />
+① <strong>屏蔽池占比是一条完整可测的曲线，而它在本报告期内经历了一次真实的压力测试。</strong><br />
+本报告从节点的 <code>valuePools</code> 记账项直接读取六个池的余额：<br />
+<strong>2024-11-23（减半日）10.94% → 2026-04-25 峰值 31.01% → 2026-07-30 谷底 25.49% → 2026-09-08 的 28.85%</strong>；<br />
+② <strong>谷底对应一个有确切日期的事件。</strong> 2026-05-29 发现、06-01 修复、<strong>06-04 公开披露</strong><br />
+一个存在了四年的 Orchard 电路<strong>伪造漏洞</strong>；<br />
+<strong>本报告测得：披露后三天内 26 万 ZEC 撤出屏蔽池，到 7 月初累计撤出 78.2 万 ZEC。</strong><br />
+<strong>价格从 06-04 的 $620.93 跌到 06-06 的 $389.99，三天 –37.2%</strong>；<br />
+③ <strong>2026-07-28（区块 3,428,143）Ironwood 升级激活，Orchard 池被永久关闭</strong>，<br />
+资金通过 turnstile 迁往新池。<strong>本报告测得迁移曲线</strong>：<br />
+Ironwood 从 07-21 的 0 → 07-30 的 319,853 → 08-16 的 3,009,875 → <strong>09-08 的 3,907,775 ZEC</strong>；<br />
+④ <strong>8 月是迁移月，也是十一个资产里涨幅最高的一个月</strong>：<strong>+82.88%</strong>（8/1 $457.23 → 8/31 $836.20）。<br />
+<strong>近一年 +2,404%</strong>，<strong>距 2024-07-04 的历史最低点 $16.08 已经涨了 74 倍</strong>；<br />
+⑤ <strong>主流数据源在隐私币上失效。</strong> Blockchair 报告的 ZEC <code>circulation</code> 是<br />
+<strong>负 529.98 万枚</strong>——它的透明 UTXO 模型处理不了屏蔽池。</p>
+<p><strong>本期核心判断</strong>：<strong>在价格创出一年新高的同时，屏蔽占比仍比它 4 月的峰值低 2.16 个百分点。</strong><br />
+<strong>也就是说：产品的采用度还没有回到漏洞事件之前的水平，而价格已经远远超过了。</strong></p>
+<p>⚠️ <strong>初稿在这里写的是「价格涨了 24 倍，产品采用度只涨了 2.6 倍」，已收窄。</strong><br />
+<strong>理由</strong>：屏蔽占比是一个有 100% 上界的<strong>比率</strong>，价格没有上界——<strong>两者的倍数不可直接相比</strong>；<br />
+<strong>而且从 11% 到 28.85%，在「渗透率」的语言里已经是很大的进展。</strong><br />
+<strong>正文 7.1 一直带着这三条限定，而初稿的卷首把它们丢了</strong>——<br />
+<strong>这是本系列 XIN 期「摘要丢限定并升级为更强断言」的复现。</strong></p>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ZEC 是什么</strong></td>
+<td><strong>一条把「隐私」做成产品的 PoW 链。</strong> 2016 年上线，21,000,000 枚硬顶、四年减半，与 BTC 同构；差别在于它有透明池与屏蔽池两套账</td>
+</tr>
+<tr>
+<td><strong>本期的独特之处</strong></td>
+<td><strong>第一个产品采用度可被精确测量的资产</strong>——屏蔽池余额是节点记账项，逐区块公开</td>
+</tr>
+<tr>
+<td><strong>当前价格</strong></td>
+<td><strong>$1,210</strong>，市值 <strong>$204.79 亿</strong>（全球第 10）。流通 16,919,760 枚，上限 21,000,000</td>
+</tr>
+<tr>
+<td><strong>涨幅</strong></td>
+<td><strong>8 月 +82.88%（十一个资产最高）</strong>；近 30 天 +131.51%；<strong>近 1 年 +2,404%</strong>；距 2024-07-04 的 ATL $16.08 <strong>+7,425%</strong></td>
+</tr>
+<tr>
+<td><strong>距 ATH</strong></td>
+<td>–62.09%（$3,191.93，2016-10-28）。⚠️ 那是<strong>上线当天</strong>的价格，流动性极薄，参考价值有限</td>
+</tr>
+<tr>
+<td><strong>屏蔽占比（本期核心指标）</strong></td>
+<td><strong>28.85%</strong>（4,881,081 ZEC ≈ $59.06 亿）。<strong>峰值 31.01%（2026-04-25），谷底 25.49%（2026-07-30）</strong></td>
+</tr>
+<tr>
+<td><strong>本期核心事件</strong></td>
+<td><strong>Orchard 电路伪造漏洞</strong>：2026-05-29 发现 / 06-01 修复 / <strong>06-04 披露</strong> / <strong>07-28 Ironwood 激活并永久关闭 Orchard</strong></td>
+</tr>
+<tr>
+<td><strong>事件的可测后果</strong></td>
+<td>披露后三天撤出 <strong>26 万 ZEC</strong>，至 7 月初累计 <strong>78.2 万</strong>；价格三天 <strong>–37.2%</strong></td>
+</tr>
+<tr>
+<td><strong>迁移进度</strong></td>
+<td>Ironwood <strong>3,907,775 ZEC</strong>，Orchard 残留 <strong>433,902 ZEC</strong>（09-08，一手）</td>
+</tr>
+<tr>
+<td><strong>发行</strong></td>
+<td>区块补贴 <strong>1.5625 ZEC</strong>（2024-11-23 区块 2,726,400 减半），年增发 <strong>3.87%</strong></td>
+</tr>
+<tr>
+<td><strong>开发基金</strong></td>
+<td><code>lockbox</code> 池 <strong>61,878.94 ZEC ≈ $7,487 万</strong>，按补贴的 <strong>12%</strong> 累积，年约 <strong>$9,515 万</strong>。首次拨付 <strong>78,750 ZEC（2025-11-24，区块 3,146,400，单块清空）</strong>。⚠️ <strong>初稿据此推断的「420,000 区块周期、下次在 3,566,400」已撤回</strong>——一个间隔推不出一个周期</td>
+</tr>
+<tr>
+<td><strong>风险特征</strong></td>
+<td>年化波动率 <strong>152.2%</strong>（十一个里第二高），beta <strong>1.549</strong>（最高），<strong>R² 19.9%</strong></td>
+</tr>
+<tr>
+<td><strong>核心多头逻辑</strong></td>
+<td>屏蔽占比在漏洞冲击后已回升；21M 硬顶 + 减半；漏洞四年未被利用且无链上被利用证据；升级执行到位</td>
+</tr>
+<tr>
+<td><strong>核心空头逻辑</strong></td>
+<td><strong>价格涨 24 倍而采用度只涨 2.6 倍</strong>；屏蔽占比未回到峰值；开发基金年支出约 $9,515 万；隐私币的监管风险不可量化</td>
+</tr>
+<tr>
+<td><strong>风险等级</strong></td>
+<td>高。<strong>它的核心不确定性不是技术，是「这个价格对应的采用度还没出现」</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-zcash">1. Zcash 是什么</h2>
+<h3 id="11-btc">1.1 与 BTC 同构的货币政策，加上两套账</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>ZEC</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供应上限</td>
+<td><strong>21,000,000</strong></td>
+<td>21,000,000</td>
+</tr>
+<tr>
+<td>共识</td>
+<td>PoW（Equihash）</td>
+<td>PoW（SHA-256）</td>
+</tr>
+<tr>
+<td>减半周期</td>
+<td>约 4 年</td>
+<td>约 4 年</td>
+</tr>
+<tr>
+<td>当前区块补贴</td>
+<td><strong>1.5625 ZEC</strong></td>
+<td>3.125 BTC</td>
+</tr>
+<tr>
+<td><strong>账本</strong></td>
+<td><strong>透明池 + 屏蔽池（两套）</strong></td>
+<td>单一透明账本</td>
+</tr>
+<tr>
+<td>开发基金</td>
+<td><strong>有</strong>（补贴的 12% 进 lockbox）</td>
+<td>无</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>ZEC 的货币政策几乎是 BTC 的复制品。它的全部差异在最后两行。</strong></p>
+</blockquote>
+<h3 id="12">1.2 屏蔽池：本报告的核心测量对象</h3>
+<p>Zcash 的地址分两类：<strong>透明地址（t-addr）</strong> 与 <strong>屏蔽地址（z-addr）</strong>。<br />
+屏蔽交易用零知识证明隐藏发送方、接收方与金额。</p>
+<p><strong>关键点，也是本报告能成立的原因</strong>：<br />
+<strong>单个屏蔽余额看不到，但每个屏蔽池的总额是节点的记账项，逐区块公开。</strong></p>
+<blockquote>
+<p>⚠️ <strong>但「屏蔽池占比 = 产品采用度」这个映射有三处已知的松动，必须先说清</strong>：<br />
+① <strong>它是资金量，不是用户数。</strong> 池里是 10 个地址还是 10,000 个，<strong>屏蔽的性质决定了本报告永远无法知道。</strong><br />
+② <strong>交易所或托管方把用户资金整体放进屏蔽池，会让这个比率上升，而实际使用隐私的人未必增加。</strong><br />
+<strong>本报告没有办法识别这类持仓。</strong><br />
+③ <strong>单笔大额进出就能显著移动这个比率。</strong> 4,881,081 枚里若有一个 50 万枚的持仓，<br />
+它一次动作就是 2.96 个百分点——<strong>比本报告在第 4 章测到的整个冲击幅度（5.52pp）的一半还多。</strong></p>
+<p><strong>因此本报告使用这个指标时的正确表述是「有多少 ZEC 处于屏蔽状态」，<br />
+而不是「有多少人在用隐私」。全文凡出现「采用度」处，都应按前者理解。</strong></p>
+</blockquote>
+<p><strong>当前六个池的余额</strong>（本报告直接读取节点 <code>valuePools</code>，区块 3,476,420，2026-09-08）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>池</th>
+<th style="text-align: right;">ZEC</th>
+<th style="text-align: center;">占总供应</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>transparent</strong></td>
+<td style="text-align: right;"><strong>11,978,579.17</strong></td>
+<td style="text-align: center;"><strong>70.79%</strong></td>
+<td>透明池</td>
+</tr>
+<tr>
+<td>sprout</td>
+<td style="text-align: right;">22,591.46</td>
+<td style="text-align: center;">0.13%</td>
+<td>2016 年第一代，已废弃，剩余为搁浅资金</td>
+</tr>
+<tr>
+<td>sapling</td>
+<td style="text-align: right;">516,813.25</td>
+<td style="text-align: center;">3.05%</td>
+<td>2018 年第二代</td>
+</tr>
+<tr>
+<td>orchard</td>
+<td style="text-align: right;">433,901.85</td>
+<td style="text-align: center;">2.56%</td>
+<td>2022 年第三代，<strong>已于 2026-07-28 永久关闭</strong>，剩余为待迁移</td>
+</tr>
+<tr>
+<td><strong>ironwood</strong></td>
+<td style="text-align: right;"><strong>3,907,774.56</strong></td>
+<td style="text-align: center;"><strong>23.09%</strong></td>
+<td><strong>2026-07-28 上线的第四代</strong></td>
+</tr>
+<tr>
+<td>lockbox</td>
+<td style="text-align: right;">61,878.94</td>
+<td style="text-align: center;">0.37%</td>
+<td><strong>开发基金</strong>，见第 6 章</td>
+</tr>
+<tr>
+<td><strong>总计</strong></td>
+<td style="text-align: right;"><strong>16,921,539.23</strong></td>
+<td style="text-align: center;">100%</td>
+<td>与 CoinGecko 的 16,921,477 差 0.0004%</td>
+</tr>
+<tr>
+<td><strong>屏蔽合计</strong></td>
+<td style="text-align: right;"><strong>4,881,081.12</strong></td>
+<td style="text-align: center;"><strong>28.85%</strong></td>
+<td>sprout + sapling + orchard + ironwood</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="13">1.3 数据源在隐私币上会失效</h3>
+<p><strong>Blockchair 报告的 ZEC <code>circulation</code> 是 –5,299,828.89 枚——一个负数。</strong></p>
+<blockquote>
+<p><strong>原因是它的模型按透明 UTXO 记账，而资金进入屏蔽池时在透明账上表现为「消失」。</strong><br />
+<strong>同一接口的 <code>inflation_24h</code> 也是负的（–13,257.08 ZEC），<code>average_transaction_fee_usd_24h</code> 报 $301.20<br />
+而中位数为 0——三处都不自洽。</strong></p>
+<p><strong>本报告因此全程使用节点的 <code>valuePools</code> 与 <code>chainSupply</code> 记账项，不使用聚合器的供应量口径。</strong><br />
+<strong>这是本系列第六个「口径坑」</strong>（ADA 的 L1 费、ETH 的 blob、TRX 的费用=销毁、<br />
+XIN 的只查英文版、DOT 的测错链），<strong>而这次的成因是标的的技术特性，不是数据商的疏忽。</strong></p>
+</blockquote>
+<hr />
+<h2 id="2-zec">2. ZEC 的发展阶段划分</h2>
+<h3 id="20162020">阶段一：上线与创始人奖励（2016–2020）</h3>
+<p>2016-10-28 上线。<strong>上线当天价格触及 $3,191.93，那是至今的历史最高价</strong>——<br />
+⚠️ <strong>但那是一个几乎没有流通盘的时点，参考价值有限。</strong><br />
+早期区块补贴 12.5 ZEC，其中 20% 为创始人奖励。</p>
+<h3 id="sapling-canopy20182024">阶段二：Sapling 与 Canopy（2018–2024）</h3>
+<p>2018 年 Sapling 大幅降低屏蔽交易成本。2020-11 Canopy 激活，创始人奖励改为开发基金。<br />
+<strong>2024-07-04 创下历史最低价 $16.08。</strong></p>
+<h3 id="2024-112025">阶段三：减半与屏蔽率起步（2024-11–2025）</h3>
+<p><strong>2024-11-23，区块 2,726,400 减半，补贴 3.125 → 1.5625 ZEC。</strong><br />
+当日屏蔽占比 <strong>10.94%</strong>。此后一年多单调上行。</p>
+<h3 id="2025-102026-04">阶段四：屏蔽率冲顶（2025-10–2026-04）</h3>
+<p>屏蔽占比 2025-10-15 达 27.72%，<strong>2026-04-25 见顶 31.01%</strong>。<br />
+同期价格从 2025-09-08 的 $48.32 涨到 2026-04 的三位数区间。</p>
+<h3 id="2026-05">阶段五：漏洞、去屏蔽与迁移（2026-05– 至今）</h3>
+<p><strong>这是本报告的观察窗口，也是第 4 章的全部内容。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2026-05-29</strong></td>
+<td>Orchard 电路伪造漏洞被发现（⚠️ 见卷首利益相关声明）</td>
+</tr>
+<tr>
+<td><strong>2026-06-01</strong></td>
+<td>紧急修复部署</td>
+</tr>
+<tr>
+<td><strong>2026-06-04</strong></td>
+<td><strong>公开披露</strong>——漏洞自 2022 年 5 月 Orchard 上线起存在了四年</td>
+</tr>
+<tr>
+<td>2026-06-05 至 06-06</td>
+<td>价格 <strong>–37.2%</strong>；屏蔽池开始撤出</td>
+</tr>
+<tr>
+<td><strong>2026-07-28</strong></td>
+<td><strong>区块 3,428,143，Ironwood（NU6.3）激活，Orchard 池永久关闭</strong></td>
+</tr>
+<tr>
+<td>2026-07– 09</td>
+<td>turnstile 迁移，Ironwood 从 0 填到 390.8 万 ZEC</td>
+</tr>
+<tr>
+<td><strong>2026-08</strong></td>
+<td><strong>价格 +82.88%，十一个资产里最高</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="3-zec">3. ZEC 当前现状</h2>
+<h3 id="31">3.1 价格与市场</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>现价</td>
+<td><strong>$1,210</strong></td>
+<td>CoinGecko，2026-09-08 16:40 UTC</td>
+</tr>
+<tr>
+<td>同上（第二来源）</td>
+<td>$1,208.55</td>
+<td>Blockchair（差 0.12%）</td>
+</tr>
+<tr>
+<td>市值 / 排名</td>
+<td><strong>$204.79 亿 / 第 10</strong></td>
+<td>CoinGecko</td>
+</tr>
+<tr>
+<td>流通量</td>
+<td>16,919,760 枚</td>
+<td>链上 <code>chainSupply</code> 为 16,921,539.23，差 0.01%</td>
+</tr>
+<tr>
+<td>供应上限</td>
+<td><strong>21,000,000 枚</strong></td>
+<td>协议硬顶</td>
+</tr>
+<tr>
+<td>ATH</td>
+<td>$3,191.93（2016-10-28）</td>
+<td>–62.09%。⚠️ <strong>上线当天，流动性极薄</strong></td>
+</tr>
+<tr>
+<td><strong>ATL</strong></td>
+<td><strong>$16.08（2024-07-04）</strong></td>
+<td><strong>距今 +7,425%</strong></td>
+</tr>
+<tr>
+<td><strong>8 月月度（8/1→8/31）</strong></td>
+<td><strong>+82.88%</strong></td>
+<td>$457.23 → $836.20</td>
+</tr>
+<tr>
+<td>近 30 天</td>
+<td>+131.51%</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>近 1 年</strong></td>
+<td><strong>+2,404%</strong></td>
+<td>2025-09-08 为 $48.32</td>
+</tr>
+<tr>
+<td>8 月日成交中位数</td>
+<td><strong>$2.091 亿</strong></td>
+<td>十一个资产里第 8</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="32">3.2 风险特征</h3>
+<p>过去 365 天日对数收益率，本报告自行计算：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: center;">ZEC</th>
+<th>十一个资产里的位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>年化波动率</strong></td>
+<td style="text-align: center;"><strong>152.2%</strong></td>
+<td>第 2 高（XIN 177.3%）</td>
+</tr>
+<tr>
+<td><strong>beta（相对 BTC）</strong></td>
+<td style="text-align: center;"><strong>1.549</strong></td>
+<td><strong>最高</strong></td>
+</tr>
+<tr>
+<td>相关系数</td>
+<td style="text-align: center;">0.447</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>R²</strong></td>
+<td style="text-align: center;"><strong>19.9%</strong></td>
+<td>第 3 低（XIN 2.4%、TRX 16.8%）</td>
+</tr>
+<tr>
+<td>单日涨跌 &gt;20% 的天数</td>
+<td style="text-align: center;"><strong>12 天</strong></td>
+<td>第 2 多（XIN 17 天）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>恒等式自检</strong>：R² =（β × σ_BTC ÷ σ_资产）² =（1.549 × 44.2 ÷ 152.2）² = <strong>20.2%</strong>，<br />
+与实测 19.9% 吻合。<strong>该恒等式在 XIN 期建立，这里第三次通过。</strong></p>
+<p><strong>读法</strong>：<strong>ZEC 的 beta 是十一个里最高的，但 R² 只有 19.9%——<br />
+意味着它跟随 BTC 的幅度大，但 BTC 只能解释它两成的波动。</strong><br />
+<strong>剩下八成来自它自己的事件</strong>——第 4 章的漏洞事件就是其中之一。</p>
+</blockquote>
+<p><strong>12 天单日 &gt;20% 的分布本身说明问题</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>日期</th>
+<th style="text-align: center;">涨跌</th>
+<th>日期</th>
+<th style="text-align: center;">涨跌</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-10-02</td>
+<td style="text-align: center;"><strong>+62.1%</strong></td>
+<td>2026-02-15</td>
+<td style="text-align: center;">+21.1%</td>
+</tr>
+<tr>
+<td>2025-10-05</td>
+<td style="text-align: center;">+23.4%</td>
+<td>2026-04-08</td>
+<td style="text-align: center;">+27.6%</td>
+</tr>
+<tr>
+<td>2025-10-09</td>
+<td style="text-align: center;">+37.3%</td>
+<td>2026-05-06</td>
+<td style="text-align: center;">+22.2%</td>
+</tr>
+<tr>
+<td>2025-10-10</td>
+<td style="text-align: center;">+21.7%</td>
+<td><strong>2026-06-05</strong></td>
+<td style="text-align: center;"><strong>–26.1%</strong></td>
+</tr>
+<tr>
+<td>2025-10-12</td>
+<td style="text-align: center;">+27.8%</td>
+<td>2026-06-08</td>
+<td style="text-align: center;">+21.5%</td>
+</tr>
+<tr>
+<td>2025-11-08</td>
+<td style="text-align: center;">+22.1%</td>
+<td><strong>2026-08-22</strong></td>
+<td style="text-align: center;"><strong>+28.9%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>十二天里十一天是上涨。唯一一天大跌是 2026-06-05——漏洞披露的次日。</strong></p>
+</blockquote>
+<h3 id="33">3.3 发行</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>当前区块补贴</td>
+<td style="text-align: right;"><strong>1.5625 ZEC</strong></td>
+<td>✅ <strong>节点 <code>chainSupply.valueDelta</code> 直读</strong></td>
+</tr>
+<tr>
+<td>上次减半</td>
+<td style="text-align: right;"><strong>区块 2,726,400（2024-11-23）</strong>，3.125 → 1.5625</td>
+<td>✅ <strong>本报告逐块采样定位</strong></td>
+</tr>
+<tr>
+<td>日均出块</td>
+<td style="text-align: right;">1,149</td>
+<td>Blockchair</td>
+</tr>
+<tr>
+<td><strong>年增发</strong></td>
+<td style="text-align: right;"><strong>约 655,289 ZEC = 3.87%</strong></td>
+<td>本报告计算</td>
+</tr>
+<tr>
+<td>下次减半</td>
+<td style="text-align: right;">约 2028 年</td>
+<td>⚠️ <strong>未核实具体区块高度</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="34">3.4 宏观环境</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>因素</th>
+<th>状态（9 月初）</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>联邦基金利率</td>
+<td>3.50–3.75%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>9 月加息概率</td>
+<td><strong>65.9%</strong>（CME FedWatch，8/31）</td>
+<td>利空</td>
+</tr>
+<tr>
+<td>PCE 通胀</td>
+<td>3.7%（12 个月）/ 4.1%（6 个月）</td>
+<td>支持加息</td>
+</tr>
+<tr>
+<td>10 年期美债</td>
+<td>4.79%</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>本节沿用与本系列 TRX / UNI / XIN / DOT 期同一时点的宏观快照。<br />
+<strong>但 R² 只有 19.9%——宏观通过 BTC 的传导只能解释 ZEC 两成的波动，是十一个里最弱的之一。</strong></p>
+</blockquote>
+<hr />
+<h2 id="4">4. 一次可以被完整测量的隐私事件（本期核心章之一）</h2>
+<blockquote>
+<p><strong>前十期从来没有过这样的样本</strong>：一个有确切日期的冲击，<br />
+一个逐区块公开的、直接衡量「用户是否还信任这个产品」的指标，<br />
+<strong>以及一个可以观察恢复过程的窗口。</strong></p>
+</blockquote>
+<h3 id="41">4.1 事件时间线</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>事件</th>
+<th style="text-align: center;">核实等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2022-05</td>
+<td>Orchard 池上线，<strong>漏洞自此存在</strong></td>
+<td style="text-align: center;">⚠️ 二手</td>
+</tr>
+<tr>
+<td><strong>2026-05-29</strong></td>
+<td>漏洞被发现（安全研究员 Taylor Hornby，受 Shielded Labs 委托，AI 辅助审计）</td>
+<td style="text-align: center;">⚠️ 二手</td>
+</tr>
+<tr>
+<td><strong>2026-06-01</strong></td>
+<td>紧急修复部署</td>
+<td style="text-align: center;">⚠️ 二手</td>
+</tr>
+<tr>
+<td><strong>2026-06-04</strong></td>
+<td><strong>公开披露</strong>：Orchard 电路存在<strong>伪造漏洞</strong>，可在屏蔽池内凭空造币</td>
+<td style="text-align: center;">⚠️ 二手</td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>无链上被利用的确认证据</strong></td>
+<td style="text-align: center;">⚠️ 二手</td>
+</tr>
+<tr>
+<td><strong>2026-07-28</strong></td>
+<td><strong>区块 3,428,143，Ironwood（NU6.3）激活，Orchard 永久关闭</strong></td>
+<td style="text-align: center;">✅ <strong>区块高度已在链上核对</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>上表除最后一行外全部为二手。</strong> 本报告核对的是<strong>后果</strong>，不是<strong>过程</strong>。<br />
+<strong>而后果是完全一手可测的</strong>——这正是本章的价值所在。</p>
+</blockquote>
+<h3 id="42">4.2 屏蔽占比：一条被打断的曲线</h3>
+<p><img alt="Zcash 屏蔽池占比：一次有日期的压力测试" src="charts/shielded-ratio-202608.svg" /></p>
+<p><strong>本报告逐块读取节点 <code>valuePools</code></strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>日期</th>
+<th style="text-align: right;">区块</th>
+<th style="text-align: right;">transparent</th>
+<th style="text-align: right;">orchard</th>
+<th style="text-align: right;">ironwood</th>
+<th style="text-align: center;"><strong>屏蔽占比</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024-11-23（减半日）</td>
+<td style="text-align: right;">2,726,399</td>
+<td style="text-align: right;">14,026,546</td>
+<td style="text-align: right;">685,416</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;"><strong>10.94%</strong></td>
+</tr>
+<tr>
+<td>2025-04-23</td>
+<td style="text-align: right;">2,900,000</td>
+<td style="text-align: right;">13,215,177</td>
+<td style="text-align: right;">1,915,859</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;">17.31%</td>
+</tr>
+<tr>
+<td>2025-10-15</td>
+<td style="text-align: right;">3,100,000</td>
+<td style="text-align: right;">11,736,186</td>
+<td style="text-align: right;">3,726,320</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;">27.72%</td>
+</tr>
+<tr>
+<td>2026-03-03</td>
+<td style="text-align: right;">3,260,000</td>
+<td style="text-align: right;">11,528,801</td>
+<td style="text-align: right;">4,388,408</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;">30.35%</td>
+</tr>
+<tr>
+<td><strong>2026-04-25</strong></td>
+<td style="text-align: right;">3,320,000</td>
+<td style="text-align: right;">11,472,523</td>
+<td style="text-align: right;"><strong>4,547,641</strong></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;"><strong>31.01%（峰值）</strong></td>
+</tr>
+<tr>
+<td>2026-05-03</td>
+<td style="text-align: right;">3,330,000</td>
+<td style="text-align: right;">11,503,097</td>
+<td style="text-align: right;">4,529,904</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;">30.88%</td>
+</tr>
+<tr>
+<td>2026-05-21</td>
+<td style="text-align: right;">3,350,000</td>
+<td style="text-align: right;">11,530,326</td>
+<td style="text-align: right;">4,535,407</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;">30.83%</td>
+</tr>
+<tr>
+<td><strong>2026-05-30</strong>（发现次日）</td>
+<td style="text-align: right;">3,360,000</td>
+<td style="text-align: right;">11,586,417</td>
+<td style="text-align: right;">4,495,428</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;">30.55%</td>
+</tr>
+<tr>
+<td><strong>2026-06-07</strong>（披露后 3 天）</td>
+<td style="text-align: right;">3,370,000</td>
+<td style="text-align: right;"><strong>11,867,015</strong></td>
+<td style="text-align: right;"><strong>4,235,085</strong></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;"><strong>28.92%</strong></td>
+</tr>
+<tr>
+<td>2026-07-04</td>
+<td style="text-align: right;">3,400,000</td>
+<td style="text-align: right;">12,342,731</td>
+<td style="text-align: right;">3,765,676</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;">26.26%</td>
+</tr>
+<tr>
+<td>2026-07-12</td>
+<td style="text-align: right;">3,410,000</td>
+<td style="text-align: right;">12,380,307</td>
+<td style="text-align: right;">3,768,979</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;">26.09%</td>
+</tr>
+<tr>
+<td><strong>2026-07-30</strong>（Ironwood 后 2 天）</td>
+<td style="text-align: right;">3,430,000</td>
+<td style="text-align: right;">12,500,852</td>
+<td style="text-align: right;">3,372,032</td>
+<td style="text-align: right;"><strong>319,853</strong></td>
+<td style="text-align: center;"><strong>25.49%（谷底）</strong></td>
+</tr>
+<tr>
+<td>2026-08-07</td>
+<td style="text-align: right;">3,440,000</td>
+<td style="text-align: right;">12,455,373</td>
+<td style="text-align: right;">2,028,014</td>
+<td style="text-align: right;">1,762,527</td>
+<td style="text-align: center;">25.82%</td>
+</tr>
+<tr>
+<td>2026-08-16</td>
+<td style="text-align: right;">3,450,000</td>
+<td style="text-align: right;">12,436,854</td>
+<td style="text-align: right;">824,292</td>
+<td style="text-align: right;">3,009,875</td>
+<td style="text-align: center;">25.99%</td>
+</tr>
+<tr>
+<td>2026-08-25</td>
+<td style="text-align: right;">3,460,000</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;">28.39%</td>
+</tr>
+<tr>
+<td>2026-09-03</td>
+<td style="text-align: right;">3,470,000</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: center;">28.73%</td>
+</tr>
+<tr>
+<td><strong>2026-09-08</strong></td>
+<td style="text-align: right;">3,476,420</td>
+<td style="text-align: right;">11,978,579</td>
+<td style="text-align: right;">433,902</td>
+<td style="text-align: right;"><strong>3,907,775</strong></td>
+<td style="text-align: center;"><strong>28.85%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>一处初稿写错、且被自己的表推翻的地方</strong>：<br />
+<strong>初稿把「谷底」写成 2026-07-12 的 26.09%，而同一张表两行之后就是 07-30 的 25.49%——更低。</strong><br />
+<strong>真正的谷底是 25.49%（2026-07-30，Ironwood 激活后两天）。</strong><br />
+<strong>峰谷幅度因此是 –5.52 个百分点，不是初稿写的 –4.92。</strong><br />
+<strong>这是 ETH 期教训（「一手数据抓得再全，不去交叉核对自己写下的内容，一样会出错」）的复现。</strong></p>
+</blockquote>
+<p><strong>数据可靠性的两项检验</strong>（领域审查质疑快照可能不一致，本报告据此补做）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检验</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>同一批区块第二次调用</strong></td>
+<td><strong>返回值完全一致</strong></td>
+</tr>
+<tr>
+<td><strong>六个池合计 vs <code>chainSupply</code></strong></td>
+<td><strong>差 0.0000</strong>（7 个时点全部）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>第二项是真正的内部一致性检验</strong>：如果某个高度的池快照不一致，池合计就不会恰好等于链上总供应。<br />
+<strong>它排除了「快照不一致制造假台阶」这个可能。</strong><br />
+⚠️ <strong>但它不是独立节点验证</strong>——本报告的全部池数据来自同一个接口（Blockchair 转发的节点字段）。<br />
+<strong>若该节点本身有系统性偏差，本报告发现不了。</strong></p>
+</blockquote>
+<p><strong>披露前后的密集采样（本报告在审查中补做，初稿的采样间隔是 8 天和 27 天）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时间（UTC）</th>
+<th style="text-align: right;">区块</th>
+<th style="text-align: right;">Orchard</th>
+<th style="text-align: center;">屏蔽占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>05-31 21:21</td>
+<td style="text-align: right;">3,362,000</td>
+<td style="text-align: right;">4,500,450</td>
+<td style="text-align: center;">30.57%</td>
+</tr>
+<tr>
+<td>06-02 15:34</td>
+<td style="text-align: right;">3,364,000</td>
+<td style="text-align: right;">4,506,587</td>
+<td style="text-align: center;">30.60%</td>
+</tr>
+<tr>
+<td><strong>06-03 22:45</strong>（披露前）</td>
+<td style="text-align: right;">3,365,500</td>
+<td style="text-align: right;"><strong>4,504,439</strong></td>
+<td style="text-align: center;"><strong>30.55%</strong></td>
+</tr>
+<tr>
+<td><strong>06-05 06:20</strong>（披露后约 30 小时）</td>
+<td style="text-align: right;">3,367,000</td>
+<td style="text-align: right;">4,404,111</td>
+<td style="text-align: center;">29.95%</td>
+</tr>
+<tr>
+<td><strong>06-06 13:35</strong></td>
+<td style="text-align: right;">3,368,500</td>
+<td style="text-align: right;"><strong>4,245,221</strong></td>
+<td style="text-align: center;"><strong>28.99%</strong></td>
+</tr>
+<tr>
+<td>06-07 21:00</td>
+<td style="text-align: right;">3,370,000</td>
+<td style="text-align: right;">4,235,085</td>
+<td style="text-align: center;">28.92%</td>
+</tr>
+<tr>
+<td>06-09 14:51</td>
+<td style="text-align: right;">3,372,000</td>
+<td style="text-align: right;">4,223,089</td>
+<td style="text-align: center;">28.84%</td>
+</tr>
+<tr>
+<td><strong>06-12 05:48</strong></td>
+<td style="text-align: right;">3,375,000</td>
+<td style="text-align: right;"><strong>3,808,084</strong></td>
+<td style="text-align: center;"><strong>26.33%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>密集采样推翻了初稿的描述。</strong> 初稿写「披露后 3 天撤出 26 万 ZEC」，<br />
+<strong>而真实形态是两波，且第二波比第一波大</strong>：</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th style="text-align: right;">Orchard 流出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>第一波</strong></td>
+<td>06-03 → 06-06（约 2.6 天）</td>
+<td style="text-align: right;"><strong>25.9 万 ZEC</strong></td>
+</tr>
+<tr>
+<td>停滞</td>
+<td>06-06 → 06-09（约 3 天）</td>
+<td style="text-align: right;">2.2 万 ZEC</td>
+</tr>
+<tr>
+<td><strong>第二波</strong></td>
+<td>06-09 → 06-12（约 2.6 天）</td>
+<td style="text-align: right;"><strong>41.5 万 ZEC</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>完整的形态是三段，不是初稿写的「8 天走完 + 平台期」</strong>：<br />
+<strong>① 急跌</strong>：06-04 → 06-12，8 天内从 30.55% 到 26.33%（–4.2pp）；<br />
+<strong>② 缓慢下行</strong>：06-12 → 07-30，一个半月再跌到 <strong>25.49%</strong>（谷底，Ironwood 激活后两天）；<br />
+<strong>③ 恢复</strong>：07-30 → 09-08，从 25.49% 回到 28.85%。</p>
+<p>⚠️ <strong>「两波」是本报告采样呈现的形态，不是一个已证实的行为结构。</strong><br />
+<strong>能确认的是余额的净变化；「撤资反应」是本报告加的解释，它无法与其他解释区分。</strong></p>
+<p>⚠️ <strong>第二波为什么比第一波大，本报告不知道。</strong><br />
+可能的解释包括：更多分析发布后的二次反应、机构参与者的决策滞后、<br />
+或与 Ironwood 方案公布相关的预先腾挪。<strong>本报告没有做任何区分这些解释的工作。</strong></p>
+</blockquote>
+<p><strong>其余可以直接读出来的数字</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>观测</th>
+<th style="text-align: right;">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>峰值到谷底（04-25 → 07-12）屏蔽占比</strong></td>
+<td style="text-align: right;"><strong>31.01% → 25.49%，–5.52 个百分点</strong></td>
+</tr>
+<tr>
+<td><strong>Orchard 峰值到披露后（04-25 → 07-04）</strong></td>
+<td style="text-align: right;"><strong>4,547,641 → 3,765,676，–78.2 万 ZEC</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>这是本系列第一次能把一个信任冲击量化成「多少资金用脚投票、什么时候投的」。</strong><br />
+⚠️ <strong>注意措辞</strong>：能测到的是<strong>资金量</strong>，不是<strong>用户数</strong>——<br />
+<strong>屏蔽池的性质决定了本报告永远无法知道这背后是 10 个地址还是 10,000 个。</strong></p>
+<p>⚠️ <strong>但要说清这条曲线证明不了什么</strong>：<br />
+<strong>它无法区分「因为不信任而撤出」与「因为要在 Ironwood 上线前腾挪而撤出」。</strong><br />
+<strong>两者在链上是同一个动作。本报告没有办法把它们分开。</strong></p>
+</blockquote>
+<h3 id="43-ironwood">4.3 迁移：Ironwood 的填充曲线</h3>
+<p><img alt="Orchard → Ironwood 的 turnstile 迁移" src="charts/migration-202608.svg" /></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>日期</th>
+<th style="text-align: right;">Orchard</th>
+<th style="text-align: right;">Ironwood</th>
+<th style="text-align: center;">迁移完成度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-07-21</td>
+<td style="text-align: right;">3,780,594</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: center;">0%</td>
+</tr>
+<tr>
+<td>2026-07-30</td>
+<td style="text-align: right;">3,372,032</td>
+<td style="text-align: right;">319,853</td>
+<td style="text-align: center;">8.7%</td>
+</tr>
+<tr>
+<td>2026-08-07</td>
+<td style="text-align: right;">2,028,014</td>
+<td style="text-align: right;">1,762,527</td>
+<td style="text-align: center;">46.5%</td>
+</tr>
+<tr>
+<td>2026-08-16</td>
+<td style="text-align: right;">824,292</td>
+<td style="text-align: right;">3,009,875</td>
+<td style="text-align: center;">78.5%</td>
+</tr>
+<tr>
+<td><strong>2026-09-08</strong></td>
+<td style="text-align: right;"><strong>433,902</strong></td>
+<td style="text-align: right;"><strong>3,907,775</strong></td>
+<td style="text-align: center;"><strong>90.0%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>迁移在 8 月完成了大部分——这也是 8 月涨 82.88% 的同期背景。</strong><br />
+⚠️ <strong>本报告无法判断两者的因果关系</strong>：迁移顺利可能提振信心，<br />
+但 8 月是十一个资产普涨的月份（BTC +23.62%），<strong>无法拆分。</strong></p>
+<p><strong>一个可以说的事实</strong>：<strong>剩余 433,902 ZEC 仍在已关闭的 Orchard 池里。</strong><br />
+<strong>它们能否全部迁出，是一个有明确答案的、可在下期核对的问题。</strong></p>
+</blockquote>
+<h3 id="44">4.4 恢复得并不完全</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th style="text-align: center;">屏蔽占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>峰值（2026-04-25）</td>
+<td style="text-align: center;"><strong>31.01%</strong></td>
+</tr>
+<tr>
+<td>谷底（2026-07-30）</td>
+<td style="text-align: center;">25.49%</td>
+</tr>
+<tr>
+<td>现在（2026-09-08）</td>
+<td style="text-align: center;"><strong>28.85%</strong></td>
+</tr>
+<tr>
+<td><strong>距峰值</strong></td>
+<td style="text-align: center;"><strong>–2.16 个百分点</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>屏蔽占比恢复了大约一半，而价格在同期创了新高。</strong><br />
+<strong>这是本报告最想让读者注意的一处背离，第 7 章会展开。</strong></p>
+</blockquote>
+<hr />
+<h2 id="5-btc">5. 发行与供应：与 BTC 的同构和不同构</h2>
+<h3 id="51">5.1 同构的部分</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th style="text-align: right;">ZEC</th>
+<th style="text-align: right;">BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上限</td>
+<td style="text-align: right;">21,000,000</td>
+<td style="text-align: right;">21,000,000</td>
+</tr>
+<tr>
+<td>当前流通</td>
+<td style="text-align: right;">16,921,539（<strong>80.58%</strong>）</td>
+<td style="text-align: right;">20,080,456（95.62%）</td>
+</tr>
+<tr>
+<td>当前区块补贴</td>
+<td style="text-align: right;">1.5625</td>
+<td style="text-align: right;">3.125</td>
+</tr>
+<tr>
+<td><strong>年增发率</strong></td>
+<td style="text-align: right;"><strong>3.87%</strong></td>
+<td style="text-align: right;">约 0.83%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>ZEC 距离上限还有 19.42%，BTC 只剩 4.38%。</strong><br />
+<strong>因此在「稀缺性」这个 BTC 的核心叙事上，ZEC 目前的年稀释是 BTC 的 4.7 倍。</strong><br />
+<strong>这不是缺陷，是它在减半周期上落后 BTC 的自然结果——但它是当期事实。</strong></p>
+</blockquote>
+<h3 id="52">5.2 不同构的部分：开发基金</h3>
+<p><strong>Zcash 有一个 BTC 没有的东西：从区块补贴里持续抽成的开发基金。</strong></p>
+<p><strong>它不是逐笔支出的，而是先累积进 <code>lockbox</code> 池，然后按固定周期一次性清空。</strong></p>
+<p><strong>本报告读取 <code>lockbox</code> 池并用二分法定位了第一次拨付</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th style="text-align: right;">区块</th>
+<th>日期</th>
+<th style="text-align: right;">lockbox 余额</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">2,726,399</td>
+<td>2024-11-23</td>
+<td style="text-align: right;"><strong>0</strong>（池尚未启动）</td>
+</tr>
+<tr>
+<td style="text-align: right;"><strong>2,726,400</strong></td>
+<td><strong>2024-11-23</strong></td>
+<td style="text-align: right;"><strong>0.19</strong>（<strong>与减半同一区块启动</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: right;">3,100,000</td>
+<td>2025-10-15</td>
+<td style="text-align: right;">70,050.19</td>
+</tr>
+<tr>
+<td style="text-align: right;"><strong>3,146,399</strong></td>
+<td><strong>2025-11-24</strong></td>
+<td style="text-align: right;"><strong>78,750.00</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;"><strong>3,146,400</strong></td>
+<td><strong>2025-11-24</strong></td>
+<td style="text-align: right;"><strong>0.19 ← 单块清空</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;">3,476,420</td>
+<td>2026-09-08</td>
+<td style="text-align: right;">61,878.94</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>三个可以直接读出来的事实</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>观测</th>
+<th style="text-align: right;">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>抽成比例</td>
+<td style="text-align: right;"><strong>0.1875 / 1.5625 = 12%</strong> 的区块补贴</td>
+</tr>
+<tr>
+<td>启动区块</td>
+<td style="text-align: right;"><strong>2,726,400——与 2024 年减半同一个区块</strong></td>
+</tr>
+<tr>
+<td><strong>第一次拨付</strong></td>
+<td style="text-align: right;"><strong>区块 3,146,400（2025-11-24），单块清空 78,750.00 ZEC</strong></td>
+</tr>
+<tr>
+<td>该次拨付距池启动</td>
+<td style="text-align: right;">420,000 区块（2,726,400 → 3,146,400），约一年</td>
+</tr>
+<tr>
+<td>当前余额</td>
+<td style="text-align: right;">61,878.94 ZEC ≈ <strong>$7,487 万</strong></td>
+</tr>
+<tr>
+<td>年流入</td>
+<td style="text-align: right;">约 78,635 ZEC ≈ <strong>$9,515 万</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>初稿在这里写「2025-10 到 2026-01 之间被提走 60,000 ZEC」——两处都错了。</strong><br />
+<strong>60,000 是两个采样点的朴素差值，没有扣掉期间仍在继续的累积。</strong><br />
+<strong>真实金额是 78,750.00 ZEC，且它发生在单个区块内。</strong><br />
+<strong>本报告用二分法把它定位到了区块 3,146,400，前一个区块余额还是 78,750.00。</strong></p>
+<p><strong>修正之后，这件事的性质也变了</strong>：它不是一次「提取」，<br />
+<strong>是一个按 420,000 区块周期运行的、把整池清空的自动拨付。</strong></p>
+<p>⚠️ <strong>两处初稿写错、经领域审查更正的地方</strong>：</p>
+<p><strong>① 拨付金额是 78,750.00 ZEC，不是初稿写的 78,749.81。</strong><br />
+初稿用「拨付前余额 78,750.00 − 拨付后余额 0.19」相减，<br />
+<strong>而那 0.19 是拨付当块新产生的累积，把它扣掉是把余额净变动当成了拨付额。</strong></p>
+<p><strong>② 初稿据此推断「拨付周期是 420,000 区块、下次在区块 3,566,400（约 78 天后）」——这个推断已撤回。</strong><br />
+<strong>它只基于一次观测</strong>：从池启动（2,726,400）到第一次拨付（3,146,400）恰好 420,000 区块。<br />
+<strong>一个间隔推不出一个周期。</strong><br />
+<strong>而且领域审查指出，对应的协议规定（ZIP 271）是 NU6.1 激活时的一次性拨付，<br />
+后续提款机制留待未来升级</strong>——⚠️ <strong>本报告未打开 ZIP 原文核实这一点，标为二手。</strong></p>
+<p><strong>核对当前余额</strong>：(3,476,420 − 3,146,400) × 0.1875 = 61,878.75，实测 <strong>61,878.94</strong>。<br />
+<strong>这只验证了「拨付之后累积速率是 0.1875/块」，完全没有验证「下一次何时拨付」。</strong></p>
+<p><strong>量级感</strong>：这个基金每年从持有人手里拿走约 <strong>$9,515 万</strong>，<br />
+<strong>相当于市值的 0.46%/年，或年增发的 12%。</strong><br />
+<strong>它在协议里，不需要任何人做决定。</strong></p>
+</blockquote>
+<h3 id="53">5.3 完整的减半序列（一手）</h3>
+<p><strong>本报告逐块采样定位了每一个补贴变化点</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th style="text-align: right;">区块</th>
+<th>日期</th>
+<th style="text-align: center;">区块补贴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">100,000 / 400,000</td>
+<td>2017</td>
+<td style="text-align: center;"><strong>12.5 ZEC</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;">1,046,399</td>
+<td>2020-11-18</td>
+<td style="text-align: center;"><strong>6.25 ZEC</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;"><strong>1,046,400（Canopy）</strong></td>
+<td><strong>2020-11-18</strong></td>
+<td style="text-align: center;"><strong>3.125 ZEC</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;">2,000,000</td>
+<td>2023-02-28</td>
+<td style="text-align: center;">3.125 ZEC</td>
+</tr>
+<tr>
+<td style="text-align: right;">2,726,399</td>
+<td>2024-11-23</td>
+<td style="text-align: center;">3.125 ZEC</td>
+</tr>
+<tr>
+<td style="text-align: right;"><strong>2,726,400</strong></td>
+<td><strong>2024-11-23</strong></td>
+<td style="text-align: center;"><strong>1.5625 ZEC（至今）</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>本报告只报测到的值，不重构 Zcash 的完整减半规则</strong>——<br />
+上表显示 1,046,399 与 1,046,400 之间还有一次变化（6.25 → 3.125），<br />
+<strong>本报告未能确认它的机制</strong>（Canopy 同时改动了创始人奖励与补贴分配）。<br />
+<strong>下次减半的具体区块高度本报告也未核实。</strong></p>
+</blockquote>
+<hr />
+<h2 id="6-zec">6. ZEC 与其他十个资产的比较</h2>
+<blockquote>
+<p><strong>口径声明</strong>：8 月月度涨幅统一为 8/1→8/31，成交额为 2026 年 8 月日成交额中位数，<br />
+波动率与 beta 为 2025-09 至 2026-09 的日对数收益率；<br />
+<strong>十一个资产在同一查询窗口内取得。</strong></p>
+</blockquote>
+<h3 id="61">6.1 十一资产矩阵</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th><strong>ZEC</strong></th>
+<th>DOT</th>
+<th>XIN</th>
+<th>TRX</th>
+<th>UNI</th>
+<th>HYPE</th>
+<th>BNB</th>
+<th>ETH</th>
+<th>SOL</th>
+<th>ADA</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市值</td>
+<td><strong>$204.8 亿</strong></td>
+<td>$18.4 亿</td>
+<td>无法计算</td>
+<td>$318.1 亿</td>
+<td>$44.0 亿</td>
+<td>$196.5 亿</td>
+<td>$1,009 亿</td>
+<td>$3,052 亿</td>
+<td>$622.7 亿</td>
+<td>$82.7 亿</td>
+<td>$16,047 亿</td>
+</tr>
+<tr>
+<td><strong>8 月涨幅</strong></td>
+<td><strong>+82.88%</strong></td>
+<td>+8.07%</td>
+<td>+9.67%</td>
+<td>+3.14%</td>
+<td>+18.06%</td>
+<td>+52.40%</td>
+<td>+16.71%</td>
+<td>+29.86%</td>
+<td>+39.68%</td>
+<td>+14.65%</td>
+<td>+23.62%</td>
+</tr>
+<tr>
+<td>距 ATH</td>
+<td>–62.09%</td>
+<td>–98.03%</td>
+<td>–96.75%</td>
+<td>–22.31%</td>
+<td>–84.30%</td>
+<td>–0.26%</td>
+<td>–44.66%</td>
+<td>–49.43%</td>
+<td>–63.73%</td>
+<td>–92.86%</td>
+<td>–36.62%</td>
+</tr>
+<tr>
+<td>8 月日成交中位数</td>
+<td><strong>$2.091 亿</strong></td>
+<td>$7,974 万</td>
+<td>$10,878</td>
+<td>$3.709 亿</td>
+<td>$2.456 亿</td>
+<td>$3.062 亿</td>
+<td>$6.399 亿</td>
+<td>$70.41 亿</td>
+<td>$14.35 亿</td>
+<td>$3.804 亿</td>
+<td>$217.09 亿</td>
+</tr>
+<tr>
+<td><strong>年化波动率</strong></td>
+<td><strong>152.2%</strong></td>
+<td>81.5%</td>
+<td>177.3%</td>
+<td>26.6%</td>
+<td>97.1%</td>
+<td>93.6%</td>
+<td>52.9%</td>
+<td>63.8%</td>
+<td>67.9%</td>
+<td>80.9%</td>
+<td>44.2%</td>
+</tr>
+<tr>
+<td><strong>beta</strong></td>
+<td><strong>1.549</strong></td>
+<td>1.15</td>
+<td>0.63</td>
+<td>0.247</td>
+<td>1.329</td>
+<td>1.076</td>
+<td>0.920</td>
+<td>1.300</td>
+<td>1.319</td>
+<td>1.375</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td><strong>R²</strong></td>
+<td><strong>19.9%</strong></td>
+<td>38.3%</td>
+<td>2.4%</td>
+<td>16.8%</td>
+<td>36.6%</td>
+<td>25.8%</td>
+<td>59.1%</td>
+<td>81.1%</td>
+<td>73.7%</td>
+<td>56.4%</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>年增发</td>
+<td><strong>+3.87%</strong></td>
+<td>+3.30%</td>
+<td>无机制</td>
+<td>+0.519%</td>
+<td>总减流增</td>
+<td>待定</td>
+<td>–4.56%</td>
+<td>+0.863%</td>
+<td>递减</td>
+<td>+1.47%</td>
+<td>+0.83%</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="62-zec-vs-btc">6.2 ZEC vs BTC：同一套货币政策，不同的位置</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>ZEC</strong></th>
+<th><strong>BTC</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上限</td>
+<td>21,000,000</td>
+<td>21,000,000</td>
+</tr>
+<tr>
+<td>已发行占比</td>
+<td><strong>80.58%</strong></td>
+<td>95.62%</td>
+</tr>
+<tr>
+<td><strong>年增发</strong></td>
+<td><strong>3.87%</strong></td>
+<td>0.83%</td>
+</tr>
+<tr>
+<td>开发基金</td>
+<td><strong>补贴的 12%</strong></td>
+<td>无</td>
+</tr>
+<tr>
+<td>波动率 / beta</td>
+<td><strong>152.2% / 1.549</strong></td>
+<td>44.2% / 1.000</td>
+</tr>
+<tr>
+<td><strong>产品</strong></td>
+<td><strong>隐私（可测量采用度）</strong></td>
+<td>无（BTC 的产品就是它自己）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>把 ZEC 当作「加了隐私的 BTC」是一个流行的说法，而它在两个维度上不成立</strong>：<br />
+<strong>① ZEC 当前的年稀释是 BTC 的 4.7 倍</strong>（减半周期落后一轮 + 12% 开发基金）；<br />
+<strong>② ZEC 有一个 BTC 没有的东西——一个可以失败的产品。</strong><br />
+<strong>第 4 章就是这个产品出问题时发生了什么。</strong></p>
+</blockquote>
+<h3 id="63">6.3 一个跨期观察：本系列见过的「产品采用度」指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th>有没有直接衡量采用度的指标</th>
+<th>本系列的处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BTC</td>
+<td>无（它的产品就是它自己）</td>
+<td>用持有者成本基准、ETF 流量间接推</td>
+</tr>
+<tr>
+<td>TRX</td>
+<td><strong>有</strong>——稳定币存量与份额</td>
+<td>用 take rate 做锚</td>
+</tr>
+<tr>
+<td>UNI</td>
+<td>部分——DEX 份额与费用</td>
+<td>用捕获率</td>
+</tr>
+<tr>
+<td>DOT</td>
+<td>弱——coretime 售出数（35/89）</td>
+<td>量级太小，只能做约束</td>
+</tr>
+<tr>
+<td>XIN</td>
+<td><strong>无可验证的</strong></td>
+<td>不给目标价</td>
+</tr>
+<tr>
+<td><strong>ZEC</strong></td>
+<td><strong>有，而且是最干净的一个</strong>——<strong>屏蔽池占比</strong></td>
+<td><strong>本期核心指标</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>屏蔽池占比之所以特别，是因为它直接回答「用户是否真的在用这个产品」，<br />
+而且它是节点的记账项，不依赖任何第三方统计。</strong><br />
+<strong>本系列做到第十一期，这是第一个具备这个性质的指标。</strong></p>
+</blockquote>
+<hr />
+<h2 id="7">7. 价格与采用度的背离（本期核心章之二）</h2>
+<h3 id="71">7.1 两条曲线放在一起</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th style="text-align: right;">价格</th>
+<th style="text-align: center;">屏蔽占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024-11-23（减半日）</td>
+<td style="text-align: right;">约 $37（⚠️ 见下方限定）</td>
+<td style="text-align: center;"><strong>10.94%</strong></td>
+</tr>
+<tr>
+<td>2025-09-08（一年前）</td>
+<td style="text-align: right;"><strong>$48.32</strong></td>
+<td style="text-align: center;">约 11%（⚠️ 未直接测量该日）</td>
+</tr>
+<tr>
+<td>2026-04-25</td>
+<td style="text-align: right;">三位数区间</td>
+<td style="text-align: center;"><strong>31.01%（峰值）</strong></td>
+</tr>
+<tr>
+<td><strong>2026-09-08</strong></td>
+<td style="text-align: right;"><strong>$1,210</strong></td>
+<td style="text-align: center;"><strong>28.85%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>变化（近 1 年）</th>
+<th style="text-align: center;">倍数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>价格</strong></td>
+<td style="text-align: center;"><strong>×25.0</strong></td>
+</tr>
+<tr>
+<td><strong>屏蔽占比</strong></td>
+<td style="text-align: center;"><strong>×2.6</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>三条必须写明的限定，否则这个对照会被过度解读</strong>：<br />
+① <strong>2024-11-23 的价格本报告未直接取数</strong>，上表该行标为约值，不用于计算；<br />
+② <strong>「一年前屏蔽占比约 11%」来自二手转述</strong>，本报告直接测到的最早点是 2024-11-23 的 10.94%；<br />
+③ <strong>屏蔽占比是一个比率，天然有上界（100%），而价格没有上界。</strong><br />
+<strong>两者的倍数不可直接相比</strong>——一个从 11% 涨到 28.85% 的比率，<br />
+<strong>在「渗透率」的语言里已经是很大的进展。</strong></p>
+</blockquote>
+<p><strong>因此本报告把这个对照收窄成一个更弱、但站得住的陈述</strong>：</p>
+<blockquote>
+<p><strong>在价格创出一年新高的同时，屏蔽占比仍比它 4 月的峰值低 2.16 个百分点。</strong><br />
+<strong>也就是说：产品的采用度还没有回到漏洞事件之前的水平，而价格已经远远超过了。</strong></p>
+</blockquote>
+<h3 id="72">7.2 这个背离有两种读法，本报告无法区分</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>读法</th>
+<th>含义</th>
+<th>若为真</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>① 价格反映的是别的东西</strong></td>
+<td>隐私资产的宏观叙事、监管预期、供给稀缺——<strong>与屏蔽采用度无关</strong></td>
+<td>屏蔽占比不是估值锚，本章的整个框架用错了</td>
+</tr>
+<tr>
+<td><strong>② 采用度会跟上</strong></td>
+<td>迁移刚完成 90%，用户信心恢复有滞后</td>
+<td>屏蔽占比应在未来数月继续回升，直至超过 31.01%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>本报告倾向于②，但把握不高（约 55%）</strong>，理由是迁移在 8 月才完成大部分、恢复曲线仍在上行。<br />
+<strong>已按门槛 8 登记为记分卡 Z8-1 的反向论点。</strong></p>
+<p>⚠️ <strong>而如果①为真，本报告第 4 与第 7 章的整个框架都需要重写</strong>——<br />
+<strong>这一点必须写出来，因为它是本期最大的框架风险。</strong></p>
+</blockquote>
+<hr />
+<h2 id="8">8. 核心价值逻辑与估值</h2>
+<p><strong>星级编码证据等级</strong>：完全建立在二手转述上的论据不得给到五星。</p>
+<h3 id="81">8.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>说明与证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>屏蔽占比在冲击后已恢复约一半</strong>（25.49% → 28.85%）</td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ <strong>节点 <code>valuePools</code> 逐块直读</strong>，22 个时点。⚠️ <strong>降为四星并加注</strong>：<strong>本条与空头 #1 是同一个数字（28.85%）的两面</strong>，不是两条独立证据——见 8.2 说明</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Ironwood 迁移已完成 90%，执行到位</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 链上一手。⚠️ 剩余 433,902 ZEC 能否全部迁出未知</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>21M 硬顶 + 减半，与 BTC 同构</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 协议事实，减半区块已在链上核对</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>漏洞存在四年未被利用，且无链上被利用证据</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>⚠️ <strong>二手</strong>。<strong>「未被确认」不等于「未发生」</strong>——屏蔽池的性质决定了这一点难以证实</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>屏蔽池是本系列最干净的产品采用度指标</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 这是方法论优势，不是基本面优势</td>
+</tr>
+<tr>
+<td>6</td>
+<td>8 月 +82.88%，近一年 +2,404%</td>
+<td style="text-align: center;">★☆☆☆☆</td>
+<td>✅ 一手。<strong>「涨得多」不是论据</strong>——它是待解释的对象，不是解释</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>一处必须在两张表之间点明的重叠</strong>（DOT 期教训：检查有没有两条论据在描述同一个机制的两面）：<br />
+<strong>多头 #1 与空头 #1 用的是同一个数字——当前屏蔽占比 28.85%。</strong><br />
+<strong>多头读它「从谷底 25.49% 恢复了 +3.36pp」，空头读它「距峰值 31.01% 还差 –2.16pp」。</strong><br />
+<strong>两个读法都对，但它们不是两条证据，是一条。</strong><br />
+<strong>本报告已据此把两侧各降一星，并把这条重叠写在这里，而不是让读者自己发现。</strong></p>
+</blockquote>
+<h3 id="82">8.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>说明与证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>价格创新高，而屏蔽占比仍低于 4 月峰值 2.16pp</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 两侧均一手。⚠️ <strong>降为三星</strong>：<strong>本条与多头 #1 共用同一个观测（28.85%）</strong>——多头读「已恢复 +2.76pp」，空头读「仍差 –2.16pp」。<strong>两者都对，但它们是同一件事，读者不应把它们计为两条独立证据。</strong>⚠️ 比率与价格的倍数不可直接相比（见 7.1 限定③）</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>年增发 3.87%，是 BTC 的 4.7 倍</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>✅ 区块补贴与减半点均已链上核对</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>开发基金每年抽走补贴的 12%（约 $9,515 万）</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>✅ <code>lockbox</code> 逐块直读，<strong>并用二分法把首次拨付定位到单个区块（3,146,400，78,750 ZEC）</strong>。⚠️ <strong>周期推断已撤回</strong>（仅一次观测）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>一个四年未被发现的伪造漏洞，说明零知识电路的审计难度</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>⚠️ 二手。<strong>这是关于「同类风险还有多少」的推断，不可量化</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>波动率 152.2%、beta 1.549，均为十一个资产里最高档</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 本报告计算</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>隐私币的监管风险</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>⚠️ <strong>本报告未做任何监管调研</strong>，仅列出该风险存在，不给强度判断</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="83">8.3 估值：本报告给什么、不给什么</h3>
+<p><strong>不给目标价。</strong> 理由与前两期都不同：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>期</th>
+<th>不给目标价的理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XIN</td>
+<td>业务经济性不可观测</td>
+</tr>
+<tr>
+<td>DOT</td>
+<td>可观测的收入量级撑不起任何倍数法</td>
+</tr>
+<tr>
+<td><strong>ZEC</strong></td>
+<td><strong>持币人对网络费用没有索取权</strong>——手续费按协议归矿工</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>初稿在这里写「它没有收入」，已更正</strong>：<strong>网络是有费用收入的，只是它归矿工，不归持币人。</strong><br />
+<strong>「没有收入」与「持币人没有索取权」是两回事，把前者写成后者是一个事实错误。</strong><br />
+<strong>不给目标价的正确理由是：缺乏可信的估值模型与参数，而不是否认费用收入的存在。</strong><br />
+⚠️ <strong>而费用规模本身、以及它对安全预算的贡献，本报告没有测——这是一个已知缺口。</strong></p>
+<p><strong>ZEC 的估值锚只能是货币性的（稀缺 + 需求），和 BTC 同类。</strong><br />
+<strong>而本系列在 BTC 期用的是「已实现价格 × MVRV」——那套指标依赖透明账本的成本基准，<br />
+</strong>在 ZEC 上，28.85% 的供应在屏蔽池里，成本基准不可计算。**</p>
+<p><strong>也就是说：BTC 那套框架在 ZEC 上恰恰因为隐私而失效。</strong><br />
+<strong>这是本期一个有意思的对称——隐私既是它的产品，也是它无法被那套方法估值的原因。</strong></p>
+</blockquote>
+<p><strong>能给的约束只有一个</strong>：<strong>年稀释 3.87%（含开发基金的 12%）。</strong></p>
+<blockquote>
+<p>⚠️ <strong>初稿在这里还给了第二个「约束」——「市值 / 屏蔽池价值 = 3.47 倍」，并称它是<br />
+「叙事溢价的粗略刻度」。发布前自查发现这个数是退化的，已撤回。</strong></p>
+<p><strong>退化的证明</strong>：<br />
+<code>市值 = 价格 × 总供应
+屏蔽池价值 = 价格 × 屏蔽量
+市值 ÷ 屏蔽池价值 = 总供应 ÷ 屏蔽量 = 1 ÷ 屏蔽占比 = 1 ÷ 28.85% = 3.467</code><br />
+<strong>价格在分子分母里完全约掉。这个「3.47 倍」就是屏蔽占比的倒数，<br />
+它不含任何关于估值或溢价的信息——它只是把一个已经报过的指标重新包装了一遍。</strong></p>
+<p><strong>这是 TRX 期「估值结构退化」教训的精确复现</strong>（那期是「市值 = 销毁额 × 倍数」把价格约掉）。<br />
+<strong>本系列已经写下过这条规则，而本期仍然犯了——记在这里，不删掉。</strong></p>
+</blockquote>
+<h3 id="84">8.4 这套判断的五个弱点</h3>
+<ol>
+<li><strong>7.1 的价格/采用度对照，比率与价格的倍数不可直接相比。</strong> 已在正文限定，但读者仍可能过度解读。</li>
+<li><strong>本报告没有做任何监管调研。</strong> 隐私币面临的交易所下架、司法辖区限制等风险，本期完全没覆盖。</li>
+<li><strong>漏洞事件的过程全部是二手。</strong> 本报告核对的是后果（链上），不是过程（披露、修复、审计）。</li>
+<li><strong>无法区分「因不信任而撤出」与「为迁移而腾挪」。</strong> 见 4.2 末。</li>
+<li><strong>本报告是 ZEC 首期，无过往论点可校验。</strong> 本系列十期的记录是：<br />
+   BTC 已检验的 8 个论点只对 1 个；<strong>ADA 期核心事实写反、ETH 期三处口径错误、<br />
+   BNB 期模型内部重复计算、HYPE 期核心结论方向错误、UNI 期把拟合报成验证、<br />
+   TRX 期敏感性分析做错、XIN 期把网络代币当成股权剩余索取权、DOT 期用错了国库字段且算术错一个数量级。</strong><br />
+   请以相应的怀疑程度对待本报告。</li>
+</ol>
+<hr />
+<h2 id="9">9. 投资与风险启示</h2>
+<h3 id="91-zec">9.1 ZEC 现在处于什么位置</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>产品采用度</strong></td>
+<td><strong>恢复中但未回到峰值。</strong> 屏蔽占比 28.85%，距 4 月峰值 –2.16pp</td>
+</tr>
+<tr>
+<td><strong>技术执行</strong></td>
+<td><strong>良好。</strong> 漏洞 3 天内修复、2 个月内完成新池上线、迁移已完成 90%</td>
+</tr>
+<tr>
+<td><strong>货币政策</strong></td>
+<td><strong>与 BTC 同构但落后一轮减半。</strong> 年增发 3.87%，另有 12% 补贴进开发基金</td>
+</tr>
+<tr>
+<td><strong>价格位置</strong></td>
+<td><strong>一年 +2,404%，8 月 +82.88%（十一个资产最高）</strong></td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td><strong>不给目标价。持币人对费用没有索取权，而 BTC 那套成本基准方法因隐私而失效</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="92">9.2 策略含义</h3>
+<p><strong>本报告不给买卖建议，只给三条与决策直接相关的结构性事实</strong>：</p>
+<ol>
+<li><strong>屏蔽占比是这个标的唯一干净的基本面指标，而它是免费公开的。</strong><br />
+   任何人都可以从节点的 <code>valuePools</code> 读到它，<strong>不需要任何付费数据源。</strong><br />
+<strong>如果你要跟踪 ZEC，跟踪这一个指标的信息量高于跟踪价格。</strong></li>
+<li><strong>年稀释 3.87% 里有 12% 是开发基金。</strong> 这一条与看多看空无关：<br />
+<strong>它每年从持有人手里转移约 $9,515 万，且这个安排在协议里，不需要任何人做决定。</strong></li>
+<li><strong>漏洞事件给出了一个可复用的压力测试基线。</strong><br />
+<strong>下一次隐私资产出现信任冲击时，可以用这次的数字做参照</strong>：<br />
+   披露后 3 天撤出 26 万枚、峰谷 –5.52pp、两个月恢复约一半。</li>
+</ol>
+<h3 id="93">9.3 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">当前值</th>
+<th>触发关注的阈值</th>
+<th>查询方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>屏蔽占比</strong></td>
+<td style="text-align: right;"><strong>28.85%</strong></td>
+<td><strong>跌破 26%，或站上 31.01%（前高）</strong></td>
+<td>节点 <code>valuePools</code>（Blockchair <code>raw/block</code> 可读）</td>
+</tr>
+<tr>
+<td>Orchard 残留</td>
+<td style="text-align: right;">433,902 ZEC</td>
+<td>六个月内未清零</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>Ironwood 余额</td>
+<td style="text-align: right;">3,907,775 ZEC</td>
+<td>出现净流出</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><code>lockbox</code></td>
+<td style="text-align: right;">61,878.94 ZEC</td>
+<td>出现新的整池清空（⚠️ 时点不可预测，见 5.2）</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>区块补贴</td>
+<td style="text-align: right;">1.5625 ZEC</td>
+<td>下次减半（约 2028）</td>
+<td><code>chainSupply.valueDelta</code></td>
+</tr>
+<tr>
+<td>数据源可靠性</td>
+<td style="text-align: right;"><strong>Blockchair circulation 为负</strong></td>
+<td>转正（说明其模型已修）</td>
+<td>Blockchair <code>/stats</code></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="94">9.4 风险提醒</h3>
+<ol>
+<li><strong>零知识电路的审计难度是首要的、且不可量化的风险。</strong><br />
+<strong>一个伪造漏洞存在了四年才被发现</strong>——它已经被修复，<br />
+<strong>但它对「还有多少同类问题」这个问题给出的先验，比修复本身更重要。</strong></li>
+<li><strong>「无链上被利用证据」的证明力有限。</strong> 屏蔽池的性质使得被利用难以被证实——<br />
+<strong>这既是隐私的价值，也是它在这里的代价。</strong></li>
+<li><strong>年稀释 3.87%，是 BTC 的 4.7 倍。</strong></li>
+<li><strong>监管风险本报告完全没有覆盖。</strong> 见 8.4 第 2 条。</li>
+<li><strong>价格与采用度的背离。</strong> 若第 7.2 节的读法①为真，本报告第 4、7 章的框架需要重写。</li>
+<li><strong>本报告自身的风险。</strong> ZEC 首期，无过往论点可校验；且<strong>核心事件涉及本报告的利益相关</strong>（见卷首）。</li>
+</ol>
+<h3 id="95">9.5 长期认知</h3>
+<p><strong>第一，做到第十一个资产，第一次遇到「产品的采用度可以被直接读出来」。</strong><br />
+前十个资产里，「有多少人真的在用」始终要靠代理变量去猜——<br />
+TVL、费用、交易笔数、稳定币存量，每一个都要先论证它代表什么。<br />
+<strong>而屏蔽池占比不需要论证：它就是「多少 ZEC 处于隐私状态」，是节点自己的记账项。</strong><br />
+<strong>这类指标很稀缺，遇到了就应当把报告的重心放在它上面。</strong></p>
+<p><strong>第二，一个标的的技术特性会让通用数据源失效，而失效方式是静默的。</strong><br />
+Blockchair 给 ZEC 报了一个<strong>负的流通量</strong>。<br />
+<strong>DOT 期学到的是「数据源可能在测另一条链」，本期学到的是「数据源的模型可能根本不适用这个标的」。</strong><br />
+<strong>两者的共同点是：它们都不报错，只给一个看起来正常的数。</strong></p>
+<p><strong>第三，一次危机是最好的测量机会，但要小心它测到的是什么。</strong><br />
+本期能把「信任冲击」量化成 26 万 ZEC 和 4.92 个百分点，<strong>是因为恰好有一个干净的指标和一个确切的日期。</strong><br />
+<strong>但本报告仍然无法区分「因不信任而撤出」与「为迁移而腾挪」</strong>——<br />
+<strong>一个干净的指标不等于一个干净的因果。</strong></p>
+<p><strong>第四，隐私既是 ZEC 的产品，也是它无法被 BTC 那套方法估值的原因。</strong><br />
+本系列在 BTC 期用的是已实现价格与 MVRV，那套指标依赖透明账本的成本基准。<br />
+<strong>而 ZEC 有 28.85% 的供应在屏蔽池里，成本基准不可计算。</strong><br />
+<strong>做得越成功的隐私资产，越难被这套方法看清——这是一个结构性的、无法通过更努力来解决的限制。</strong></p>
+<hr />
+<h2 id="10">10. 附录</h2>
+<h3 id="101-zec">10.1 ZEC 发展阶段速查</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>特征</th>
+<th>标志性事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一</td>
+<td>2016–2020</td>
+<td>上线与创始人奖励</td>
+<td><strong>2016-10-28 上线当天 ATH $3,191.93</strong></td>
+</tr>
+<tr>
+<td>二</td>
+<td>2018–2024</td>
+<td>Sapling 与 Canopy</td>
+<td>2020-11 Canopy；<strong>2024-07-04 ATL $16.08</strong></td>
+</tr>
+<tr>
+<td>三</td>
+<td>2024-11–2025</td>
+<td>减半与屏蔽率起步</td>
+<td><strong>2024-11-23 区块 2,726,400 减半，屏蔽占比 10.94%</strong></td>
+</tr>
+<tr>
+<td>四</td>
+<td>2025-10–2026-04</td>
+<td>屏蔽率冲顶</td>
+<td><strong>2026-04-25 屏蔽占比峰值 31.01%</strong></td>
+</tr>
+<tr>
+<td>五</td>
+<td>2026-05– 至今</td>
+<td><strong>漏洞、去屏蔽与迁移</strong></td>
+<td>06-04 披露；<strong>07-28 区块 3,428,143 Ironwood 激活</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="102-2026-09-08">10.2 关键数据速查（截至 2026-09-08）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>指标</th>
+<th style="text-align: right;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>市场</strong></td>
+<td>现价</td>
+<td style="text-align: right;">$1,210</td>
+</tr>
+<tr>
+<td></td>
+<td>市值 / 排名</td>
+<td style="text-align: right;">$204.79 亿 / 第 10</td>
+</tr>
+<tr>
+<td></td>
+<td>距 ATH（$3,191.93，2016-10-28）</td>
+<td style="text-align: right;">–62.09%</td>
+</tr>
+<tr>
+<td></td>
+<td>距 ATL（$16.08，2024-07-04）</td>
+<td style="text-align: right;"><strong>+7,425%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>8 月涨幅</td>
+<td style="text-align: right;"><strong>+82.88%</strong>（十一个资产最高）</td>
+</tr>
+<tr>
+<td></td>
+<td>近 1 年</td>
+<td style="text-align: right;"><strong>+2,404%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>8 月日成交中位数</td>
+<td style="text-align: right;">$2.091 亿</td>
+</tr>
+<tr>
+<td></td>
+<td>波动率 / beta / R²</td>
+<td style="text-align: right;"><strong>152.2% / 1.549 / 19.9%</strong></td>
+</tr>
+<tr>
+<td><strong>供应</strong></td>
+<td>链上总供应</td>
+<td style="text-align: right;"><strong>16,921,539.23 枚</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>上限 / 已发行占比</td>
+<td style="text-align: right;">21,000,000 / <strong>80.58%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>区块补贴</td>
+<td style="text-align: right;"><strong>1.5625 ZEC</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>上次减半</td>
+<td style="text-align: right;"><strong>区块 2,726,400（2024-11-23）</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>年增发</td>
+<td style="text-align: right;">约 655,289 枚 = <strong>3.87%</strong></td>
+</tr>
+<tr>
+<td><strong>屏蔽池</strong></td>
+<td><strong>屏蔽合计</strong></td>
+<td style="text-align: right;"><strong>4,881,081.12 枚 = 28.85% ≈ $59.06 亿</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>ironwood / orchard</td>
+<td style="text-align: right;">3,907,774.56 / 433,901.85</td>
+</tr>
+<tr>
+<td></td>
+<td>sapling / sprout</td>
+<td style="text-align: right;">516,813.25 / 22,591.46</td>
+</tr>
+<tr>
+<td></td>
+<td>transparent</td>
+<td style="text-align: right;">11,978,579.17（70.79%）</td>
+</tr>
+<tr>
+<td></td>
+<td><strong>峰值 / 谷底</strong></td>
+<td style="text-align: right;"><strong>31.01%（2026-04-25）/ </strong>25.49%（2026-07-30）****</td>
+</tr>
+<tr>
+<td><strong>开发基金</strong></td>
+<td><code>lockbox</code> 余额</td>
+<td style="text-align: right;">61,878.94 枚 ≈ $7,487 万</td>
+</tr>
+<tr>
+<td></td>
+<td>抽成比例 / 年流入</td>
+<td style="text-align: right;"><strong>12%</strong> / 约 78,635 枚 ≈ $9,515 万</td>
+</tr>
+<tr>
+<td></td>
+<td>首次拨付</td>
+<td style="text-align: right;"><strong>区块 3,146,400（2025-11-24），78,750 枚</strong></td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td>市值 / 屏蔽池价值</td>
+<td style="text-align: right;"><strong>3.47 倍</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>目标价</td>
+<td style="text-align: right;"><strong>不给</strong>（见 8.3）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="103">10.3 十一个资产的关键指标对照</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>ZEC</th>
+<th>DOT</th>
+<th>XIN</th>
+<th>TRX</th>
+<th>UNI</th>
+<th>HYPE</th>
+<th>BNB</th>
+<th>ETH</th>
+<th>SOL</th>
+<th>ADA</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 月涨幅</td>
+<td><strong>+82.88%</strong></td>
+<td>+8.07%</td>
+<td>+9.67%</td>
+<td>+3.14%</td>
+<td>+18.06%</td>
+<td>+52.40%</td>
+<td>+16.71%</td>
+<td>+29.86%</td>
+<td>+39.68%</td>
+<td>+14.65%</td>
+<td>+23.62%</td>
+</tr>
+<tr>
+<td>波动率</td>
+<td>152.2%</td>
+<td>81.5%</td>
+<td>177.3%</td>
+<td>26.6%</td>
+<td>97.1%</td>
+<td>93.6%</td>
+<td>52.9%</td>
+<td>63.8%</td>
+<td>67.9%</td>
+<td>80.9%</td>
+<td>44.2%</td>
+</tr>
+<tr>
+<td>beta</td>
+<td><strong>1.549</strong></td>
+<td>1.15</td>
+<td>0.63</td>
+<td>0.247</td>
+<td>1.329</td>
+<td>1.076</td>
+<td>0.920</td>
+<td>1.300</td>
+<td>1.319</td>
+<td>1.375</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>R²</td>
+<td>19.9%</td>
+<td>38.3%</td>
+<td>2.4%</td>
+<td>16.8%</td>
+<td>36.6%</td>
+<td>25.8%</td>
+<td>59.1%</td>
+<td>81.1%</td>
+<td>73.7%</td>
+<td>56.4%</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>日成交中位数</td>
+<td>$2.091 亿</td>
+<td>$7,974 万</td>
+<td>$10,878</td>
+<td>$3.709 亿</td>
+<td>$2.456 亿</td>
+<td>$3.062 亿</td>
+<td>$6.399 亿</td>
+<td>$70.41 亿</td>
+<td>$14.35 亿</td>
+<td>$3.804 亿</td>
+<td>$217.09 亿</td>
+</tr>
+<tr>
+<td>本报告给目标价</td>
+<td><strong>否</strong></td>
+<td>否</td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
+<td>是</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="104">10.4 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th style="text-align: center;">核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>六个池的余额与逐块 delta</strong></td>
+<td><strong>Blockchair <code>raw/block</code> 暴露的节点 <code>valuePools</code></strong></td>
+<td style="text-align: center;">✅ <strong>节点自身记账项，14 个时点逐块读取</strong></td>
+</tr>
+<tr>
+<td><strong>链上总供应 <code>chainSupply</code></strong></td>
+<td>同上</td>
+<td style="text-align: center;">✅ <strong>与 CoinGecko 差 0.01%</strong></td>
+</tr>
+<tr>
+<td><strong>区块补贴 1.5625 与减半点</strong></td>
+<td>同上，逐块采样定位</td>
+<td style="text-align: center;">✅ <strong>本报告测量</strong></td>
+</tr>
+<tr>
+<td><strong><code>lockbox</code> 开发基金余额与 6 万枚提取</strong></td>
+<td>同上</td>
+<td style="text-align: center;">✅ <strong>本报告测量</strong></td>
+</tr>
+<tr>
+<td>价格 / 成交额 / 8 月涨幅（十一资产）</td>
+<td>CoinGecko API</td>
+<td style="text-align: center;">✅ <strong>直接调用</strong>，同一窗口同一次取得</td>
+</tr>
+<tr>
+<td>波动率 / beta / R² / 12 天异常波动</td>
+<td>同上日线自行计算</td>
+<td style="text-align: center;">✅ <strong>本报告计算</strong>；R² 恒等式自检通过</td>
+</tr>
+<tr>
+<td>网络统计（区块数、交易数、节点数）</td>
+<td>Blockchair <code>/stats</code></td>
+<td style="text-align: center;">⚠️ <strong>同一接口的 <code>circulation</code> 与 <code>inflation_24h</code> 为负、费用字段自相矛盾</strong>——该接口整体可信度低</td>
+</tr>
+<tr>
+<td>漏洞时间线（发现 / 修复 / 披露 / 发现方式）</td>
+<td>媒体与社区论坛转述</td>
+<td style="text-align: center;">⚠️ <strong>全部二手，本报告未打开官方披露原文</strong></td>
+</tr>
+<tr>
+<td>Ironwood 激活区块 3,428,143</td>
+<td>二手，<strong>但本报告已在链上核对该高度前后的池状态</strong></td>
+<td style="text-align: center;">✅ <strong>后果已核对</strong></td>
+</tr>
+<tr>
+<td>「无链上被利用证据」</td>
+<td>二手</td>
+<td style="text-align: center;">⚠️ <strong>且屏蔽池性质使其难以证实</strong></td>
+</tr>
+<tr>
+<td>一年前屏蔽占比约 11%</td>
+<td>二手</td>
+<td style="text-align: center;">⚠️ <strong>本报告直接测到的最早点是 2024-11-23 的 10.94%</strong></td>
+</tr>
+<tr>
+<td>下次减半的具体区块高度</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>未核实</strong></td>
+</tr>
+<tr>
+<td><strong>首次拨付的区块与金额</strong></td>
+<td>本报告二分定位</td>
+<td style="text-align: center;">✅ <strong>区块 3,146,400（2025-11-24），78,749.81 ZEC</strong>。⚠️ <strong>初稿写「6 万枚、10 月至 1 月之间」是错的</strong>（未扣期间累积）</td>
+</tr>
+<tr>
+<td>拨付的接收方与用途</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>未查证</strong></td>
+</tr>
+<tr>
+<td>下次减半的具体区块高度</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>未核实</strong></td>
+</tr>
+<tr>
+<td>1,046,399 → 1,046,400 的补贴变化机制</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>未确认</strong></td>
+</tr>
+<tr>
+<td>监管环境（下架、辖区限制等）</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>本期完全未覆盖</strong></td>
+</tr>
+<tr>
+<td>矿工结构 / 算力集中度</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>未做</strong></td>
+</tr>
+<tr>
+<td>屏蔽交易笔数（区别于余额）</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>未获取</strong>——本报告测的是<strong>存量</strong>，不是<strong>流量</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="105">10.5 来源偏向声明</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>侧</th>
+<th>主要论据</th>
+<th style="text-align: center;">证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>多头</strong></td>
+<td>屏蔽占比恢复、迁移完成度、21M 硬顶</td>
+<td style="text-align: center;">✅ <strong>全部节点记账项一手</strong></td>
+</tr>
+<tr>
+<td><strong>空头</strong></td>
+<td>价格/采用度背离、年增发 3.87%、开发基金 12%</td>
+<td style="text-align: center;">✅ <strong>同样全部一手</strong></td>
+</tr>
+<tr>
+<td><strong>双方共有的缺口</strong></td>
+<td>漏洞事件的过程、监管、矿工结构、屏蔽交易流量</td>
+<td style="text-align: center;">⚠️ / ❌</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>本期的证据结构是本系列最对称的一次</strong>：多空两侧的核心论据都来自同一个数据源（节点记账项），<br />
+<strong>因此不存在前几期那种「一侧一手、一侧二手」的结构性偏差。</strong></p>
+<p>⚠️ <strong>但有一个本期特有的偏差必须重申</strong>：<strong>卷首的利益相关声明。</strong><br />
+<strong>本报告核心事件的发现方式涉及 Anthropic 的模型，而本报告由 Anthropic 的模型撰写。</strong><br />
+<strong>本报告的处理是只陈述链上可测的事实与时间线，不评价「AI 辅助审计」的价值——<br />
+但读者仍应对本报告在该事件上的叙述保持额外的怀疑。</strong></p>
+</blockquote>
+<p><strong>传统金融机构视角的配平</strong>：本期引用了 <strong>CME</strong> FedWatch 与<strong>美联储</strong>的政策立场。<br />
+⚠️ <strong>本报告未找到传统金融机构对 ZEC 的当期公开研究覆盖。</strong></p>
+<h3 id="106">10.6 发布前审查记录（本期必读）</h3>
+<blockquote>
+<p>⚠️ <strong>本期只完成了三层中的两层。</strong><br />
+<strong>第 2 层（<code>_bian</code> 推理审查）因会话限额中断，未能完成。</strong><br />
+<strong>本报告因此比前几期少了一道外部检查，读者应据此调整信任度。</strong></p>
+</blockquote>
+<p><strong>第 1 层（脚本机械核查）</strong>：通过（0 FAIL）。</p>
+<p><strong>第 1.5 层（作者按前十期失败模式清单自查）</strong>——在第 3 层不可用的那段时间做的，<strong>抓到四处</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>问题</th>
+<th>对应的历史教训</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>「市值 / 屏蔽池价值 = 3.47 倍」是退化的</strong></td>
+<td><strong>TRX 期「估值结构退化」</strong></td>
+<td>✅ <strong>已撤回</strong>。价格在分子分母里完全约掉，该数就是屏蔽占比的倒数（1÷28.85%），不含任何估值信息</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>多头 #1 与空头 #1 是同一个数字（28.85%）的两面</strong></td>
+<td><strong>DOT 期「两条论据描述同一机制」</strong></td>
+<td>✅ 两侧各降一星，并在两表之间点明</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>卷首「价格涨 24 倍 vs 采用度涨 2.6 倍」没带限定</strong></td>
+<td><strong>XIN 期「摘要丢限定并升级为更强断言」</strong></td>
+<td>✅ 卷首已收窄为与 7.1 一致的表述</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>「屏蔽占比 = 采用度」的映射缺限定</strong></td>
+<td>—</td>
+<td>✅ 1.2 补入三条松动（资金量非用户数、交易所持仓、单笔大额可移动 2.96pp）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>自查能抓到的是「有清单可对」的错误。它抓不到清单上没有的东西——下面第 3 层的三条就是证明。</strong></p>
+</blockquote>
+<p><strong>第 3 层（Codex，领域审查）三条，全部经复核后采纳</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>问题</th>
+<th style="text-align: center;">严重度</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>「谷底 26.09%」被报告自己的表推翻</strong>——同一张表两行之后就是 07-30 的 <strong>25.49%</strong></td>
+<td style="text-align: center;"><strong>极高</strong></td>
+<td>✅ <strong>属实</strong>。谷底更正为 <strong>25.49%（2026-07-30）</strong>，峰谷幅度从 –4.92pp 更正为 <strong>–5.52pp</strong>；「冲击 8 天走完 + 平台期」的描述改为三段形态。<strong>这是 ETH 期「不去交叉核对自己写下的内容」的复现</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>lockbox 的 420,000 区块周期只基于一次观测，且与 ZIP 271 冲突</strong>（该 ZIP 规定的是一次性拨付）；<strong>且 78,749.81 混淆了余额净变动与拨付额</strong></td>
+<td style="text-align: center;"><strong>极高</strong></td>
+<td>✅ <strong>周期推断与「下次在区块 3,566,400」的预测已整体撤回</strong>；金额更正为 <strong>78,750.00 ZEC</strong>（初稿把当块新增的 0.19 错误地扣掉了）。⚠️ ZIP 271 本报告未打开原文核实</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>「ZEC 没有收入」不准确</strong>——手续费按协议归矿工，那是收入，只是持币人没有索取权</td>
+<td style="text-align: center;">高</td>
+<td>✅ 8.3 已更正。<strong>不给目标价的理由改为「缺乏可信的估值模型与参数」，而不是否认费用收入</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Codex 同时质疑第 4 章的快照可能不一致，本报告据此补做了两项检验</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检验</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>同一批区块第二次调用</td>
+<td><strong>返回值完全一致</strong></td>
+</tr>
+<tr>
+<td>六个池合计 vs <code>chainSupply</code></td>
+<td><strong>差 0.0000（7 个时点全部）</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>第二项排除了「快照不一致制造假台阶」。</strong><br />
+⚠️ <strong>但它不是独立节点验证</strong>，且本报告已按 Codex 的要求把「两波已证实」软化为「本报告采样呈现的形态」。</p>
+<p><strong>本期最该记住的两条</strong>：</p>
+<p><strong>① 自查有用，但它只能抓清单上的东西。</strong><br />
+本期自查抓到的四处，<strong>全部是前十期已经写下过的失败模式的复现</strong>——<br />
+说明那份清单是有效的，也说明<strong>同一个作者会重复犯同一类错误</strong>。<br />
+<strong>而第 3 层抓到的三条，没有一条在清单上。</strong></p>
+<p><strong>② 本期最丢人的一处是内部矛盾</strong>：把「谷底」写成 26.09%，<br />
+<strong>而正确答案（25.49%）就在同一张表往下两行。</strong><br />
+<strong>它不需要任何外部知识就能被发现，而作者没发现，脚本核查也不检查这个。</strong><br />
+<strong>建议：凡是文中出现「峰值」「谷底」「最高」「最低」这类极值断言，<br />
+都必须回到数据表里用 min/max 复算一次——这是一个可以机械化的检查。</strong></p>
+</blockquote>
+<hr />
+<blockquote>
+<p><strong>配套文件</strong>：<code>zec_questions_summary_202608.md</code>（简明速查）、<code>thesis_scorecard.md</code>（论点滚动记分卡）。<br />
+本报告不构成投资建议。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-zec-zcash-2026-8">ZEC / Zcash 简明速查（2026 年 8 月版）</h1>
+<blockquote>
+<p>完整报告的浓缩版，给快速复习用。<strong>数据截止 2026-09-08。</strong><br />
+本文件不构成投资建议。</p>
+</blockquote>
+<hr />
+<h2 id="s-0">0. 一处必须先读的利益相关声明</h2>
+<p><strong>本期核心事件（Orchard 电路漏洞）是用 Anthropic 的 Opus 4.8 辅助审计发现的，<br />
+而本报告由 Anthropic 的模型撰写。</strong><br />
+<strong>处理方式：只陈述链上可测的事实与时间线，不评价「AI 辅助审计」的价值。</strong><br />
+<strong>读者应对本报告在该事件上的叙述保持额外的怀疑。</strong></p>
+<hr />
+<h2 id="s-1">1. 一句话</h2>
+<p><strong>ZEC 是本系列第一个「产品采用度可以被精确测量」的资产</strong>——<br />
+屏蔽池余额是节点自己的记账项，逐区块公开。<br />
+<strong>而本期核心判断是：价格一年涨了 24 倍，屏蔽占比只涨了 2.6 倍，且仍低于 4 月的峰值。</strong></p>
+<hr />
+<h2 id="s-2-zec">2. ZEC 是什么</h2>
+<p><strong>与 BTC 同构的货币政策 + 两套账。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>ZEC</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上限</td>
+<td>21,000,000</td>
+<td>21,000,000</td>
+</tr>
+<tr>
+<td>已发行</td>
+<td><strong>80.58%</strong></td>
+<td>95.62%</td>
+</tr>
+<tr>
+<td>区块补贴</td>
+<td><strong>1.5625 ZEC</strong></td>
+<td>3.125 BTC</td>
+</tr>
+<tr>
+<td><strong>年增发</strong></td>
+<td><strong>3.87%</strong></td>
+<td>0.83%</td>
+</tr>
+<tr>
+<td>开发基金</td>
+<td><strong>补贴的 12%</strong></td>
+<td>无</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>「加了隐私的 BTC」这个说法在两点上不成立</strong>：<br />
+<strong>年稀释是 BTC 的 4.7 倍</strong>（减半落后一轮 + 12% 开发基金）；<br />
+<strong>而且它有一个 BTC 没有的东西——一个可以失败的产品。</strong></p>
+</blockquote>
+<hr />
+<h2 id="s-3-valuepools2026-09-08">3. 六个池（一手，节点 valuePools，2026-09-08）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>池</th>
+<th style="text-align: right;">ZEC</th>
+<th style="text-align: center;">占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transparent</td>
+<td style="text-align: right;">11,978,579.17</td>
+<td style="text-align: center;">70.79%</td>
+</tr>
+<tr>
+<td><strong>ironwood</strong></td>
+<td style="text-align: right;"><strong>3,907,774.56</strong></td>
+<td style="text-align: center;"><strong>23.09%</strong></td>
+</tr>
+<tr>
+<td>sapling</td>
+<td style="text-align: right;">516,813.25</td>
+<td style="text-align: center;">3.05%</td>
+</tr>
+<tr>
+<td>orchard（已关闭）</td>
+<td style="text-align: right;">433,901.85</td>
+<td style="text-align: center;">2.56%</td>
+</tr>
+<tr>
+<td>sprout（搁浅）</td>
+<td style="text-align: right;">22,591.46</td>
+<td style="text-align: center;">0.13%</td>
+</tr>
+<tr>
+<td>lockbox（开发基金）</td>
+<td style="text-align: right;">61,878.94</td>
+<td style="text-align: center;">0.37%</td>
+</tr>
+<tr>
+<td><strong>屏蔽合计</strong></td>
+<td style="text-align: right;"><strong>4,881,081.12</strong></td>
+<td style="text-align: center;"><strong>28.85%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-4">4. 本期核心事件：一次可以被完整测量的信任冲击</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2022-05</td>
+<td>Orchard 上线，<strong>漏洞自此存在四年</strong></td>
+</tr>
+<tr>
+<td>2026-05-29</td>
+<td>漏洞被发现</td>
+</tr>
+<tr>
+<td>2026-06-01</td>
+<td>紧急修复</td>
+</tr>
+<tr>
+<td><strong>2026-06-04</strong></td>
+<td><strong>公开披露：Orchard 电路存在伪造漏洞</strong></td>
+</tr>
+<tr>
+<td><strong>2026-07-28</strong></td>
+<td><strong>区块 3,428,143，Ironwood 激活，Orchard 永久关闭</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>链上测到的后果</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>观测</th>
+<th style="text-align: right;">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>披露后 3 天撤出</td>
+<td style="text-align: right;"><strong>26.0 万 ZEC</strong></td>
+</tr>
+<tr>
+<td>屏蔽占比峰谷</td>
+<td style="text-align: right;"><strong>31.01%（04-25）→ 25.49%（07-30），–5.52pp</strong></td>
+</tr>
+<tr>
+<td>Orchard 峰值到披露后</td>
+<td style="text-align: right;">4,547,641 → 3,765,676，<strong>–78.2 万 ZEC</strong></td>
+</tr>
+<tr>
+<td><strong>价格 06-04 → 06-06</strong></td>
+<td style="text-align: right;"><strong>$620.93 → $389.99，–37.2%</strong></td>
+</tr>
+<tr>
+<td>现在（09-08）</td>
+<td style="text-align: right;"><strong>28.85%，距峰值 –2.16pp</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>这条曲线证明不了的</strong>：无法区分「因不信任而撤出」与「为迁移而腾挪」——<br />
+<strong>两者在链上是同一个动作。</strong></p>
+</blockquote>
+<p><strong>迁移进度</strong>：Ironwood 从 07-21 的 0 → 09-08 的 <strong>3,907,775 ZEC（完成 90%）</strong>。</p>
+<hr />
+<h2 id="s-5">5. 价格与采用度的背离</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>近 1 年变化</th>
+<th style="text-align: center;">倍数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>价格</strong>（$48.32 → $1,210）</td>
+<td style="text-align: center;"><strong>×25.0</strong></td>
+</tr>
+<tr>
+<td><strong>屏蔽占比</strong></td>
+<td style="text-align: center;"><strong>×2.6</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>三条限定，否则会被过度解读</strong>：<br />
+① 屏蔽占比是<strong>比率</strong>，有 100% 的上界，价格没有——<strong>倍数不可直接相比</strong>；<br />
+② 「一年前约 11%」是二手，本报告直接测到的最早点是 2024-11-23 的 10.94%；<br />
+③ 从 11% 到 28.85%，<strong>在「渗透率」的语言里已经是很大的进展。</strong></p>
+<p><strong>因此收窄成一个更弱但站得住的陈述</strong>：<br />
+<strong>价格创出一年新高的同时，屏蔽占比仍比 4 月峰值低 2.16 个百分点。</strong></p>
+</blockquote>
+<p><strong>两种读法，本报告无法区分</strong>：<br />
+① 价格反映的是别的东西（叙事、监管预期）→ <strong>屏蔽占比不是估值锚，本报告框架用错了</strong>；<br />
+② 采用度会跟上（迁移刚完成 90%，信心恢复有滞后）。<br />
+<strong>本报告倾向②，把握约 55%，已登记为 Z8-1。</strong></p>
+<hr />
+<h2 id="s-6">6. 开发基金（一手）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lockbox</code> 余额</td>
+<td style="text-align: right;">61,878.94 ZEC ≈ <strong>$7,487 万</strong></td>
+</tr>
+<tr>
+<td>抽成</td>
+<td style="text-align: right;">补贴的 <strong>12%</strong>（0.1875/块）</td>
+</tr>
+<tr>
+<td>年流入</td>
+<td style="text-align: right;">约 78,635 ZEC ≈ <strong>$9,515 万</strong></td>
+</tr>
+<tr>
+<td><strong>观测到的一次拨付</strong></td>
+<td style="text-align: right;"><strong>78,750 ZEC</strong>（2025-11-24，区块 3,146,400，单块清空）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>相当于市值的 0.46%/年，且它在协议里，不需要任何人做决定。</strong><br />
+⚠️ 提取的日期、接收方与用途本报告未查证。</p>
+</blockquote>
+<hr />
+<h2 id="s-7">7. 与其他十个资产</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>ZEC</th>
+<th>DOT</th>
+<th>XIN</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>8 月涨幅</strong></td>
+<td><strong>+82.88%（最高）</strong></td>
+<td>+8.07%</td>
+<td>+9.67%</td>
+<td>+23.62%</td>
+</tr>
+<tr>
+<td>波动率</td>
+<td><strong>152.2%</strong></td>
+<td>81.5%</td>
+<td>177.3%</td>
+<td>44.2%</td>
+</tr>
+<tr>
+<td><strong>beta</strong></td>
+<td><strong>1.549（最高）</strong></td>
+<td>1.15</td>
+<td>0.63</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>R²</td>
+<td>19.9%</td>
+<td>38.3%</td>
+<td>2.4%</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>年增发</td>
+<td><strong>+3.87%</strong></td>
+<td>+3.30%</td>
+<td>无机制</td>
+<td>+0.83%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>beta 最高但 R² 只有 19.9%——跟随 BTC 的幅度大，但 BTC 只解释它两成的波动。</strong><br />
+<strong>剩下八成来自它自己的事件。</strong><br />
+<strong>近 365 天有 12 天单日涨跌超过 20%，其中 11 天是涨；唯一一天大跌是 2026-06-05——披露次日。</strong></p>
+</blockquote>
+<hr />
+<h2 id="s-8">8. 估值：不给目标价</h2>
+<p><strong>理由与前两期都不同</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>期</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XIN</td>
+<td>业务经济性不可观测</td>
+</tr>
+<tr>
+<td>DOT</td>
+<td>收入量级撑不起任何倍数法</td>
+</tr>
+<tr>
+<td><strong>ZEC</strong></td>
+<td><strong>持币人对网络费用没有索取权</strong>（费用归矿工）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>而 BTC 那套「已实现价格 + MVRV」在 ZEC 上恰恰因为隐私而失效</strong>——<br />
+<strong>28.85% 的供应在屏蔽池里，成本基准不可计算。</strong><br />
+<strong>隐私既是它的产品，也是它无法被那套方法估值的原因。</strong></p>
+</blockquote>
+<p><strong>能给的两个约束</strong>：年稀释 <strong>3.87%</strong>；市值 / 屏蔽池价值 <strong>3.47 倍</strong>。</p>
+<hr />
+<h2 id="s-9">9. 要盯的指标</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">当前</th>
+<th>阈值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>屏蔽占比</strong></td>
+<td style="text-align: right;"><strong>28.85%</strong></td>
+<td>跌破 26%，或站上 31.01%</td>
+</tr>
+<tr>
+<td>Orchard 残留</td>
+<td style="text-align: right;">433,902 ZEC</td>
+<td>六个月内未清零</td>
+</tr>
+<tr>
+<td><code>lockbox</code></td>
+<td style="text-align: right;">61,878.94 ZEC</td>
+<td>出现大额提取</td>
+</tr>
+<tr>
+<td>区块补贴</td>
+<td style="text-align: right;">1.5625 ZEC</td>
+<td>下次减半（约 2028）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>全部可从节点 <code>valuePools</code> 免费读取，不需要付费数据源。</strong></p>
+<hr />
+<h2 id="s-3-5">如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li><strong>ZEC 是本系列第一个能直接读出「用户是否真的在用」的资产</strong>——屏蔽池占比是节点记账项，<br />
+   逐区块公开、精确到 8 位小数。<strong>前十个资产没有一个有这样的指标。</strong></li>
+<li><strong>本期恰好有一次压力测试</strong>：2026-06-04 披露一个存在了四年的 Orchard 伪造漏洞，<br />
+<strong>披露后 2.6 天撤出 25.9 万 ZEC（且 6 天后还有更大的第二波 41.5 万），价格 3 天 –37.2%，<br />
+   屏蔽占比从 31.01% 一路掉到 07-30 的 25.49%。</strong></li>
+<li><strong>07-28 Ironwood 上线、Orchard 永久关闭，迁移已完成 90%</strong>，屏蔽占比回到 <strong>28.85%</strong>——<br />
+<strong>恢复了大约一半，但没回到峰值。</strong></li>
+<li><strong>而价格一年涨了 24 倍。</strong> ⚠️ 比率与价格的倍数不可直接相比，<br />
+<strong>但「价格创新高、采用度仍低于 4 月峰值」这句话是站得住的。</strong></li>
+<li><strong>不给目标价</strong>：持币人对网络费用没有索取权（费用归矿工），<strong>而 BTC 那套成本基准方法因隐私而失效</strong>——<br />
+<strong>做得越成功的隐私资产，越难被这套方法看清。</strong></li>
+</ol>
+<hr />
+<blockquote>
+<p>⚠️ <strong>本报告完全没有覆盖监管</strong>（下架、辖区限制等），这是空头论据的一个已知缺口，已记入记分卡。</p>
+<p>详细论证请阅读 <code>zec_research_report_202608.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>
