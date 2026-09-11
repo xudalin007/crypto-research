@@ -1,0 +1,2756 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>GRAM / TON 完整调研与分析报告 — 2026年8月</title>
+<style>
+:root{--accent:#0098ea;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">◇ GRAM 调研报告 (2026.8)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>◇ GRAM 调研报告 2026.8</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-gram">1. GRAM 是什么</a>
+<a href="#2-gram">2. GRAM 的发展阶段划分</a>
+<a href="#3-gram">3. GRAM 当前现状</a>
+<a href="#4-585">4. 一次把发行量放大 5.85 倍的性能…</a>
+<a href="#5">5. 八月的链上协议变更</a>
+<a href="#6">6. 质押、验证者与安全预算</a>
+<a href="#7">7. 网络使用</a>
+<a href="#8-gram">8. GRAM 与其他十二个资产的比较</a>
+<a href="#9">9. 核心价值逻辑</a>
+<a href="#10">10. 估值</a>
+<a href="#11_1">11. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-0">0. 先说代号</a>
+<a href="#s-1">1. 本期最重要的发现</a>
+<a href="#s-2">2. 机制</a>
+<a href="#s-3-config-14">3. config 14 真的没变——而且…</a>
+<a href="#s-4">4. 三条路核对同一个数</a>
+<a href="#s-5">5. 总供应量可以从链上加总，并与外部口径…</a>
+<a href="#s-6-btc-gram">6. 八月</a>
+<a href="#s-7">7. 谁在承担，谁在收取</a>
+<a href="#s-8-37">8. 八月的链上协议变更</a>
+<a href="#s-9">9. 网络使用</a>
+<a href="#s-10-3-5">10. 如果你只有 3 分钟，记住这 5 …</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 8 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>◇ GRAM / TON<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">◇ TON</span><span class="badge badge-date">2026 年 8 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="gram-ton">GRAM / TON 完整调研与分析报告</h1>
+<blockquote>
+<p><strong>版本</strong>：2026 年 8 月（首期）<br />
+<strong>完成日期</strong>：2026-09-11<br />
+<strong>本系列第十三个资产</strong>（BTC / SOL / ADA / ETH / BNB / HYPE / UNI / TRX / XIN / DOT / ZEC / CKB / <strong>GRAM</strong>）</p>
+<p><strong>代号说明</strong>：本报告的标的是 The Open Network（TON）的原生代币。<br />
+<strong>它在 2026 年 6 月从 Toncoin（TON）更名为 Gram（GRAM）</strong>，仅改名称、代号与图标，<br />
+<strong>没有换币、没有迁移合约</strong>。本报告统一用 <strong>GRAM</strong> 指代该代币，用 <strong>TON</strong> 指代区块链本身。</p>
+<p><strong>本版更新要点（首期）</strong>：</p>
+<ol>
+<li><strong>本期最重要的发现：TON 在 2026-04-09 把出块速率提高了约 5.9 倍，<br />
+   而按块发放的区块奖励一个字没改，于是年化发行量从约 3,500 万 GRAM 跳到约 2.07 亿 GRAM。</strong><br />
+<strong>它走的是配置参数变更的治理程序（<code>config 30</code>，需验证者按质押加权 3/4 多数通过），<br />
+   但没有以货币政策的形式被讨论过——没有任何一方把它作为发行量变更提出。</strong></li>
+<li><strong>切换时点精确到小时</strong>：2026-04-09 <strong>07:00–08:00 UTC</strong>，masterchain 出块速率从 0.423 块/秒<br />
+   跳到 2.070 → 2.502 块/秒。前一天（2026-04-08）发布了节点版本 <strong>v2026.04</strong>，<br />
+   其发版说明自己写着「<strong>anti-spam measures that could affect block rate</strong>」。</li>
+<li><strong>发行机制已用两条路径量化并闭合</strong>：区块数 × 配置常量 = 17,619,762 GRAM（八月毛发行），<br />
+   链上逐块余额加总实测净增 17,549,235 GRAM，<strong>残差 70,527 GRAM（毛发行的 0.40%）</strong>。<br />
+   ⚠️ <strong>这个残差不能简单称为「销毁」</strong>，它同时含在途消息、验证者费用项与分片轮次计数误差（见 4.6）。</li>
+<li><strong>总供应量可以从链上直接加总并与外部口径对上</strong>：<br />
+   masterchain 余额 + basechain 余额 = <strong>5,246,916,594 GRAM</strong>，<br />
+   CoinGecko 报告的总供应量 <strong>5,247,067,410</strong>，<strong>相差 0.0029%</strong>。</li>
+<li><strong>八月的价格表现是本期十二个资产里最负的特质成分</strong>（BTC 为基准，本身无残差）：BTC +24.95%（2017 年以来最好的八月），<br />
+<strong>GRAM −1.35%</strong>，beta 0.967 对应的预期是 +24.13%，<strong>特质残差 −25.48 个百分点</strong>。</li>
+<li><strong>实测质押池 APY 13.29%–17.72%</strong>（Tonstakers 13.52%，TF 池 17.72%），与发行量跳升<strong>量级相容</strong>。<br />
+   ⚠️ <strong>初稿称它为「独立证实」，已按领域审查降级为一致性检查</strong>——这些 APY 并非 1,082 份独立测量，<br />
+   且其分母与发行率的分母不是同一个口径（见 4.7）。</li>
+</ol>
+<hr />
+<p><strong>利益冲突声明</strong>：作者未持有 GRAM，与 TON 基金会、Telegram 及任何 TON 生态项目无雇佣、<br />
+顾问或投资关系。本报告的链上数据全部由作者从 TON 公开节点 API（toncenter / tonapi）<br />
+与 GitHub 一手仓库直接抓取。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>观测</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>价格（8/31）</strong></td>
+<td>$1.3870，<strong>八月 −1.35%</strong>（BTC <strong>+24.95%</strong>）</td>
+<td><strong>特质残差 −25.48pp（币安口径）/ −27.78pp（CoinGecko 口径，8.2 排名用此口径）</strong>，<strong>十二个资产里最负</strong></td>
+</tr>
+<tr>
+<td>距 ATH</td>
+<td><strong>−83.59%</strong>（$8.25，2024-06-14）</td>
+<td></td>
+</tr>
+<tr>
+<td>近一年</td>
+<td><strong>−57.30%</strong>（BTC −32.15%）</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>发行速率</strong></td>
+<td><strong>2026-04-09 起年化约 2.07 亿 GRAM，此前约 3,500 万</strong></td>
+<td><strong>5.9 倍，且无配置变更、无治理投票</strong></td>
+</tr>
+<tr>
+<td><strong>年化发行率</strong></td>
+<td><strong>约 0.68% → 约 3.97%</strong></td>
+<td>对总供应量 52.2 亿</td>
+</tr>
+<tr>
+<td><strong>八月净增发</strong></td>
+<td><strong>+17,549,235 GRAM（+0.3360%）</strong></td>
+<td>链上逐块余额加总实测</td>
+</tr>
+<tr>
+<td><strong>两路核对的残差</strong></td>
+<td><strong>70,527 GRAM = 毛发行的 0.40%</strong></td>
+<td>⚠️ 含销毁、在途资金、分片计数误差，未分离</td>
+</tr>
+<tr>
+<td><strong>质押</strong></td>
+<td>Elector 余额 <strong>13.38 亿 GRAM（流通量 48.0%）</strong></td>
+<td>当前轮有效质押 6.59 亿（23.7%）</td>
+</tr>
+<tr>
+<td><strong>质押 APY（实测）</strong></td>
+<td><strong>13.29%–17.72%</strong></td>
+<td>与发行跳升<strong>量级相容</strong>（非独立验证，见 4.7）</td>
+</tr>
+<tr>
+<td><strong>验证者</strong></td>
+<td><strong>390 个</strong>（masterchain 100 个）</td>
+<td>前 10 名仅占质押的 3.99%</td>
+</tr>
+<tr>
+<td><strong>网络使用</strong></td>
+<td>八月 basechain 交易约 <strong>1.059 亿笔</strong>（95% 区间 7,461 万–1.371 亿）</td>
+<td>日均约 341 万笔</td>
+</tr>
+<tr>
+<td><strong>USDT on TON</strong></td>
+<td><strong>14.30 亿枚</strong>，持有人 <strong>342 万</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>八月最大事件</strong></td>
+<td><strong>2026-08-31 Telegram 开始向部分用户推送原生自托管 Gram Wallet</strong></td>
+<td>⚠️ 该条为搜索摘要，本报告未取得一手确认</td>
+</tr>
+<tr>
+<td><strong>本报告给目标价</strong></td>
+<td><strong>否</strong></td>
+<td>理由见第 10 章</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>一句话</strong>：<strong>TON 把出块目标间隔从协议默认的 2,400 毫秒改成 400 毫秒，<br />
+而它的区块奖励是按「块」发的、两年半没改过——于是发行量也涨了 5.85 倍。<br />
+这次修改本身走了配置变更的治理程序（验证者 3/4 加权投票），<br />
+但它从未被作为一次货币政策变更来讨论：官方文档把两个参数分别写得很清楚，从不把它们相乘。</strong></p>
+<p>⚠️ <strong>而市场没有把它当坏消息</strong>：提速后一周 GRAM/BTC 比价 <strong>+9.80%</strong>，一个月 <strong>+80.62%</strong>（见 4.9）。</p>
+</blockquote>
+<hr />
+<h2 id="1-gram">1. GRAM 是什么</h2>
+<h3 id="11">1.1 一个代币，两个名字</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>区块链</td>
+<td><strong>The Open Network（TON）</strong>，2018 年由 Telegram 立项，2020 年社区接手</td>
+</tr>
+<tr>
+<td>原生代币</td>
+<td><strong>Gram（GRAM）</strong>，2026 年 6 月由 Toncoin（TON）更名而来</td>
+</tr>
+<tr>
+<td>共识</td>
+<td>PoS，Simplex 共识（2026 年引入），<strong>390 个验证者</strong></td>
+</tr>
+<tr>
+<td>结构</td>
+<td>masterchain（wc = −1）+ basechain（wc = 0），支持动态分片</td>
+</tr>
+<tr>
+<td>初始分发</td>
+<td>PoW 挖矿（2020–2022），<strong>非 ICO</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>更名的核实状态</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>事实</th>
+<th>核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>更名已完成、仅改名称/代号/图标</td>
+<td>✅ <strong>一手</strong>：ton.org 官网现称 "Gram is the native coin of the TON blockchain"</td>
+</tr>
+<tr>
+<td>币安已完成迁移</td>
+<td>✅ <strong>一手</strong>：<code>exchangeInfo</code> 显示 <strong>8 个 TON* 交易对全部 <code>status=BREAK</code>，7 个 GRAM* 全部 <code>TRADING</code></strong></td>
+</tr>
+<tr>
+<td>无换币、价格连续</td>
+<td>✅ <strong>一手</strong>：TONUSDT 最后一根日线 2026-06-30 收 <strong>$1.6000</strong>，GRAMUSDT 首根 2026-07-02 开 <strong>$1.6000</strong></td>
+</tr>
+<tr>
+<td>更名生效日 2026-06-15</td>
+<td>⚠️ <strong>仅搜索摘要</strong>，本报告未打开一手公告</td>
+</tr>
+<tr>
+<td>「社区投票以 <strong>81.22%</strong> 通过」</td>
+<td>❌ <strong>未核实，本报告不使用</strong>。见下</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>关于那个 81.22%</strong>：多篇报道引用这个数字，<strong>但没有一篇给出一手来源</strong><br />
+（本报告打开了其中一篇完整核对，它「引用推文但不提供任何官方公告、治理文档或链接」）。<br />
+本报告另行检索了 TON 的链上治理平台 <code>api.ton.vote</code>，<strong>其 104 个 DAO 中没有任何官方治理实体</strong>。<br />
+<strong>按本系列 ADA 期确立的规则——治理类得票率必须查最终状态、不得采信报道——本条不予使用。</strong></p>
+</blockquote>
+<h3 id="12">1.2 发行机制：两个常量，一个乘数</h3>
+<p>TON 的新币发行<strong>完全</strong>由网络配置参数 14 决定。官方文档（<code>content/foundations/config.mdx</code> 第 233 行）原文：</p>
+<blockquote>
+<p><strong>Param 14: block reward</strong> — This parameter controls the Gram rewards for producing blocks.<br />
+The <code>masterchain_block_fee</code> is applied to each masterchain block, while the <code>basechain_block_fee</code><br />
+applies to a workchain. If there is a split in the workchain, the <code>basechain_block_fee</code> is<br />
+distributed among its shard blocks based on their depth.</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>masterchain_block_fee</code></td>
+<td><strong>1.7 GRAM / 每个 masterchain 区块</strong></td>
+</tr>
+<tr>
+<td><code>basechain_block_fee</code></td>
+<td><strong>1.0 GRAM / 每个 basechain 区块</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>关键结构</strong>：<strong>奖励是按「区块」发的，不是按「时间」发的。</strong><br />
+因此<strong>发行速率 = 每块奖励 × 出块速率</strong>。<strong>出块变快多少倍，发行就变快多少倍。</strong></p>
+<blockquote>
+<p><strong>这不是一个隐藏机制，它写在公开文档里。</strong><br />
+<strong>但文档里没有任何一句话提到「出块速率变化会等比例改变发行量」</strong>——<br />
+第 4 章要说的就是这件事在 2026 年 4 月真的发生了。</p>
+</blockquote>
+<h3 id="13">1.3 总供应量可以从链上直接加总</h3>
+<p>TON 没有一个「总供应量」字段。但每个区块的 <code>ValueFlow</code> 结构里有 <code>from_prev_blk</code>，<br />
+<strong>它是该链上全部账户余额的合计</strong>。<br />
+<strong>basechain 会动态分片</strong>（本报告实测 2026-08-08 至 08-13 就分过），<br />
+<strong>但下表取的五个快照时点经逐一核实全部为单一分片</strong><br />
+（2026-03-01 / 04-01 / 08-01 / 09-01 / 09-11），因此两条链相加即可：</p>
+<div class="codehilite"><pre><span></span><code>总供应量 = masterchain 的 from_prev_blk + basechain 的 from_prev_blk
+</code></pre></div>
+
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>值（2026-09-11）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>masterchain 余额</td>
+<td>2,464,048,218.30 GRAM</td>
+</tr>
+<tr>
+<td>basechain 余额</td>
+<td>2,782,868,375.67 GRAM</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>5,246,916,593.97 GRAM</strong></td>
+</tr>
+<tr>
+<td><strong>对照：CoinGecko 报告的总供应量</strong></td>
+<td><strong>5,247,067,410</strong></td>
+</tr>
+<tr>
+<td><strong>差</strong></td>
+<td><strong>0.0029%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>这个等式不是 TON 协议定义的总供应量，初稿把它当成了，已更正。</strong></p>
+<p><strong>协议自己的总供应量在 <code>McStateExtra</code> 的 <code>global_balance</code> 字段里</strong>（<code>block.tlb</code> 第 583 行），<br />
+而 <code>from_prev_blk</code> 只是<strong>该链上账户余额的合计</strong>，<strong>不含</strong>：<br />
+① 已离开账户、尚未入账的在途消息价值；② 单独记账的 <code>total_validator_fees</code>；<br />
+③ 分片时必须覆盖同一 masterchain 确认边界下的<strong>全部</strong>分片。<br />
+<strong>另外 <code>CurrencyCollection</code> 里的 extra currencies 应按币种分开，不能并入原生币。</strong></p>
+<p><strong>本报告已尝试读取 <code>global_balance</code> 并失败</strong>：它在 ShardState 而非 Block 里，<br />
+toncenter 与 tonapi 的区块接口都不提供，读它需要完整的 TON lite-client。<strong>下期补。</strong></p>
+<p><strong>因此这一行的正确表述是</strong>：<strong>本报告的加总值与 CoinGecko 的口径相差 0.0029%，<br />
+这是一个经验上的吻合，不是对等式的证明。</strong> 上述三项遗漏在当前规模下显然很小<br />
+（否则不会只差 15 万枚），<strong>但它们的大小本报告没有测量。</strong></p>
+</blockquote>
+<hr />
+<h2 id="2-gram">2. GRAM 的发展阶段划分</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>标志</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一 · Telegram 立项与 SEC 叫停</td>
+<td>2018 – 2020</td>
+<td>代币原名 <strong>Gram</strong>；SEC 执法后 Telegram 退出</td>
+</tr>
+<tr>
+<td>二 · 社区接手与 PoW 分发</td>
+<td>2020 – 2022</td>
+<td>社区以 The Open Network 重启，代币更名 Toncoin；<strong>通过 PoW 挖矿分发，非 ICO</strong></td>
+</tr>
+<tr>
+<td>三 · Telegram 生态回归</td>
+<td>2023 – 2024-06</td>
+<td>小程序/钱包生态爆发，<strong>2024-06-14 见 ATH $8.25</strong></td>
+</tr>
+<tr>
+<td>四 · 回落与 Simplex 共识开发</td>
+<td>2024-07 – 2026-03</td>
+<td>价格从 ATH 回落逾八成；共识协议重写（Catchain → Simplex）</td>
+</tr>
+<tr>
+<td><strong>五 · 提速、更名与钱包推送</strong></td>
+<td><strong>2026-04 – 至今</strong></td>
+<td><strong>2026-04-09 出块提速 6 倍（发行随之 5.9 倍）</strong>；2026-06 更名 Gram；<strong>2026-08-31 Telegram 开始推送原生钱包</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>第五阶段的三件事都发生在 2026 年，而其中第一件——出块提速——没有被当作货币政策事件讨论过。</strong><br />
+<strong>本报告第 4 章就是在做这件事。</strong></p>
+</blockquote>
+<hr />
+<h2 id="3-gram">3. GRAM 当前现状</h2>
+<h3 id="31">3.1 价格与市场</h3>
+<blockquote>
+<p><strong>口径</strong>：GRAM 与 BTC 均取<strong>币安 UTC 日收盘价</strong>，八月定义为 2026-07-31 收盘 → 2026-08-31 收盘。<br />
+<strong>代号迁移的拼接</strong>：2025-09-10 至 2026-06-30 用 TONUSDT，2026-07-02 起用 GRAMUSDT。<br />
+<strong>两段无重叠日，且 TON 最后一根收 $1.6000、GRAM 首根开 $1.6000，为 1:1 连续，中间缺 2026-07-01 一天。</strong></p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格（2026-09-11）</td>
+<td><strong>$1.3540</strong></td>
+</tr>
+<tr>
+<td>市值 / 排名</td>
+<td><strong>$37.73 亿</strong> / <strong>第 28 位</strong></td>
+</tr>
+<tr>
+<td>流通量 / 总供应量</td>
+<td>2,786,316,316 / <strong>5,247,067,410</strong>（<strong>无上限</strong>，发行永续）</td>
+</tr>
+<tr>
+<td><strong>八月涨幅</strong></td>
+<td><strong>−1.35%</strong>（BTC <strong>+24.95%</strong>）</td>
+</tr>
+<tr>
+<td>八月盘中区间</td>
+<td><strong>$1.2940（8/18）– $1.5600（8/22）</strong>，振幅 20.6%</td>
+</tr>
+<tr>
+<td>距 ATH</td>
+<td><strong>−83.59%</strong>（$8.25，2024-06-14）</td>
+</tr>
+<tr>
+<td>近一年 / 年初至今</td>
+<td><strong>−57.30%</strong> / <strong>−20.07%</strong>（BTC −32.15% / −12.96%）</td>
+</tr>
+<tr>
+<td>八月币安日成交额（中位 / 均值）</td>
+<td><strong>$512.7 万</strong> / $712.8 万</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="32-btc-gram">3.2 八月：BTC 最好的八月，GRAM 反而跌了</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BTC 八月涨幅</td>
+<td><strong>+24.95%</strong>（2017 年以来最好的八月）</td>
+</tr>
+<tr>
+<td>GRAM 的 beta（对 BTC，365 天）</td>
+<td><strong>0.967</strong></td>
+</tr>
+<tr>
+<td><strong>beta 预期涨幅</strong></td>
+<td><strong>+24.13%</strong></td>
+</tr>
+<tr>
+<td>GRAM 实际涨幅</td>
+<td><strong>−1.35%</strong></td>
+</tr>
+<tr>
+<td><strong>特质（残差）成分</strong></td>
+<td><strong>约 −25.48 个百分点</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>用 CoinGecko 口径（GRAM −4.94% / BTC +23.62%）算，残差约 −28.1pp，方向相同、幅度更大。</strong></p>
+<blockquote>
+<p><strong>在 2026 年 8 月的十三个资产里，这是最负的特质成分（见 8.2 的完整对照）。</strong><br />
+⚠️ <strong>本报告没有计算过往各月的残差，因此不声称它是「本系列历史最大」。</strong><br />
+<strong>不要用 R² 来论证这件事</strong>——GRAM 的 R² 是 29.2%，字面含义是「70.8% 的日波动不由 BTC 解释」，<br />
+拿它当「没有自身信息」的依据是把反证当证据（<strong>本系列 CKB 期犯过这个错，已固化为规则</strong>）。<br />
+<strong>正确的统计量是 beta 残差，而它给出的结论比「没有自身信息」强得多：八月 GRAM 自己的贡献是显著为负的。</strong></p>
+</blockquote>
+<h3 id="33">3.3 风险特征</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>GRAM</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年化波动率（365 天）</td>
+<td><strong>79.6%</strong></td>
+<td>44.4%</td>
+</tr>
+<tr>
+<td>beta</td>
+<td><strong>0.967</strong></td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>相关系数 / R²</td>
+<td>0.540 / <strong>29.2%</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>数据源一致性检查（CKB 期教训的例行项）</strong>：逐月对照 CoinGecko 与币安的 GRAM 序列，<br />
+<strong>13 个月全部一致</strong>（波动率比值 &lt; 1.5 倍、月均价偏差 &lt; 5%），<strong>本期无 CKB 那类数据源污染问题。</strong></p>
+</blockquote>
+<h3 id="34">3.4 宏观环境</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>因素</th>
+<th>状态（9 月初）</th>
+<th>影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>联邦基金利率</td>
+<td>3.50–3.75%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>9 月加息概率</td>
+<td><strong>65.9%</strong>（CME FedWatch，8/31）</td>
+<td>利空</td>
+</tr>
+<tr>
+<td>PCE 通胀</td>
+<td>3.7%（12 个月）/ 4.1%（6 个月）</td>
+<td>支持加息</td>
+</tr>
+<tr>
+<td>10 年期美债</td>
+<td>4.79%</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>本节沿用与本系列 TRX / UNI / XIN / DOT / ZEC / CKB 期同一时点的宏观快照。<br />
+<strong>但八月 GRAM 与宏观完全脱钩</strong>——BTC 在同样的宏观环境下涨了 24.95%。</p>
+</blockquote>
+<hr />
+<h2 id="4-585">4. 一次把发行量放大 5.85 倍的性能升级（本期核心章之一）</h2>
+<h3 id="41">4.1 出块速率的历史</h3>
+<p>按 masterchain 区块序号在各时点相减：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th>masterchain 块/秒</th>
+<th>出块间隔</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-09-01 → 2025-12-01</td>
+<td>0.388</td>
+<td><strong>2.58 秒</strong></td>
+</tr>
+<tr>
+<td>2025-12-01 → 2026-02-01</td>
+<td>0.417</td>
+<td>2.39 秒</td>
+</tr>
+<tr>
+<td>2026-02-01 → 2026-03-01</td>
+<td>0.421</td>
+<td>2.38 秒</td>
+</tr>
+<tr>
+<td>2026-03-01 → 2026-04-01</td>
+<td>0.426</td>
+<td>2.35 秒</td>
+</tr>
+<tr>
+<td><strong>2026-04-01 → 2026-05-01</strong></td>
+<td><strong>1.894</strong></td>
+<td><strong>（过渡）</strong></td>
+</tr>
+<tr>
+<td>2026-05-01 → 2026-06-01</td>
+<td>2.454</td>
+<td><strong>0.41 秒</strong></td>
+</tr>
+<tr>
+<td>2026-06-01 → 2026-07-01</td>
+<td>2.441</td>
+<td>0.41 秒</td>
+</tr>
+<tr>
+<td>2026-07-01 → 2026-08-01</td>
+<td>2.417</td>
+<td>0.41 秒</td>
+</tr>
+<tr>
+<td><strong>2026-08-01 → 2026-09-01</strong></td>
+<td><strong>2.457</strong></td>
+<td><strong>0.41 秒</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="42">4.2 切换时点：精确到一小时</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点（UTC）</th>
+<th>masterchain seqno</th>
+<th>前一小时的块/秒</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-04-09 04:00</td>
+<td>59,233,192</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2026-04-09 05:00</td>
+<td>59,234,722</td>
+<td>0.425</td>
+</tr>
+<tr>
+<td>2026-04-09 06:00</td>
+<td>59,236,243</td>
+<td>0.422</td>
+</tr>
+<tr>
+<td><strong>2026-04-09 07:00</strong></td>
+<td><strong>59,237,767</strong></td>
+<td><strong>0.423</strong></td>
+</tr>
+<tr>
+<td><strong>2026-04-09 08:00</strong></td>
+<td><strong>59,245,220</strong></td>
+<td><strong>2.070</strong> ← 切换</td>
+</tr>
+<tr>
+<td>2026-04-09 09:00</td>
+<td>59,254,229</td>
+<td>2.502</td>
+</tr>
+<tr>
+<td>2026-04-09 12:00</td>
+<td>59,281,200</td>
+<td>2.501</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>切换发生在 2026-04-09 07:00–08:00 UTC 之间。</strong></p>
+<h3 id="43-config-30">4.3 是什么把它切过去的：<code>config 30</code></h3>
+<p><strong>初稿在这里判断错了一次，值得记录</strong>：本报告最初查了 config 28 / 29 / 20 / 21 / 8 在切换前后是否变化，<br />
+结果都没变，于是写下「这次提速没有任何配置参数变更」。<br />
+<strong>读官方文档时才发现漏查了 <code>config 30</code>——而它恰恰就是那个参数。</strong></p>
+<p>官方文档（<code>content/foundations/config.mdx</code>，Param 30 段）原文标注：</p>
+<blockquote>
+<ul>
+<li><strong>TON v2026.03</strong>: <code>ConfigParam 30</code> introduced on testnet.</li>
+<li><strong>TON v2026.04</strong>: <code>ConfigParam 30</code> <strong>enabled on mainnet</strong>.</li>
+</ul>
+</blockquote>
+<p><strong>实测 <code>config 30</code> 的出现与变化：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点（UTC）</th>
+<th><code>config 30</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-03-01</td>
+<td><strong>不存在</strong></td>
+</tr>
+<tr>
+<td>2026-04-01</td>
+<td><strong>不存在</strong></td>
+</tr>
+<tr>
+<td>2026-04-08</td>
+<td><strong>出现</strong>，49 字节（根 <code>10 60</code>：仅 masterchain）</td>
+</tr>
+<tr>
+<td>2026-04-09 07:00</td>
+<td>49 字节</td>
+</tr>
+<tr>
+<td><strong>2026-04-09 08:00</strong></td>
+<td><strong>62 字节</strong>（根 <code>10 e0</code>：<strong>masterchain + 分片链</strong>）</td>
+</tr>
+<tr>
+<td>2026-04-15</td>
+<td>62 字节</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong><code>config 30</code> 是 Simplex（Catchain 2.0）共识的配置，其中带一张可调参数表 <code>noncritical_params</code>。<br />
+官方文档给出该表的键定义：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>键</th>
+<th>名称</th>
+<th>默认值</th>
+<th>含义（官方原文译）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>0</code></strong></td>
+<td><strong><code>target_rate</code></strong></td>
+<td><strong><code>2400 ms</code></strong></td>
+<td><strong>目标出块/时隙间隔；用于领导者节奏、出块时机与跳过调度</strong></td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td><code>first_block_timeout</code></td>
+<td><code>1000 ms</code></td>
+<td>领导者窗口内首个缺失区块开始跳过投票前的基础超时</td>
+</tr>
+<tr>
+<td><code>13</code></td>
+<td><code>min_block_interval</code></td>
+<td><code>0 ms</code></td>
+<td>父区块时间与下一个本地生成区块之间的最小间隔</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>主网当前实测值</strong>（tonapi 解码）：</p>
+<div class="codehilite"><pre><span></span><code><span class="err">mc</span><span class="p">:</span><span class="w">    </span><span class="p">{</span><span class="nt">&quot;use_quic&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;slots_per_leader_window&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">  </span><span class="nt">&quot;noncritical_params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;0&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;1&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;13&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">}}</span>
+<span class="err">shard</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;use_quic&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;slots_per_leader_window&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;noncritical_params&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;0&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;1&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;10&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;13&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">}}</span>
+</code></pre></div>
+
+<p><strong>即 <code>target_rate</code> 被从默认的 2,400 毫秒改为 400 毫秒。</strong></p>
+<p><img alt="masterchain 出块间隔：2,400 毫秒到 400 毫秒" src="charts/blocktime-202608.svg" /></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>设定值</th>
+<th>实测出块间隔</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>提速前</td>
+<td>默认 <strong>2,400 ms</strong></td>
+<td><strong>2.35 – 2.58 秒</strong> ✓</td>
+</tr>
+<tr>
+<td>提速后</td>
+<td><strong>400 ms</strong></td>
+<td><strong>0.41 秒</strong> ✓</td>
+</tr>
+<tr>
+<td><strong>比率</strong></td>
+<td><strong>6.00 倍</strong></td>
+<td><strong>约 5.9 倍</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="44">4.4 而区块奖励一个字没改</h3>
+<p>TON 的新币发行由 <code>config 14</code> 的两个常量决定（见 1.2）。<strong>本报告查了它在六个历史时点的值：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th><code>config 14</code> 原始字节</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024-01-01</td>
+<td><code>…6b46553f10043b9aca00…</code></td>
+</tr>
+<tr>
+<td>2024-09-01</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>2025-03-01</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>2025-09-01</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>2025-12-01</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>2026-03-01</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>2026-06-01</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>2026-08-01</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>当前</strong></td>
+<td><strong>同上</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>解码：<code>6b</code>（tag）+ <code>4</code>+<code>6553f100</code> = <strong>1,700,000,000 nanoton = 1.7 GRAM</strong> + <code>4</code>+<code>3b9aca00</code> = <strong>1,000,000,000 = 1.0 GRAM</strong>。<br />
+与 tonapi 的 JSON 解码一致（两路互证）。</p>
+<blockquote>
+<p>⚠️ <strong>一个必须做的对照实验</strong>：toncenter 的 <code>getConfigParam</code> 接受 <code>seqno</code> 参数，<br />
+<strong>但「六个时点返回相同字节」也可能是接口忽略了 <code>seqno</code>。</strong><br />
+本报告因此拿一个<strong>每 18 小时必变</strong>的参数（<code>config 34</code> 验证者集）做对照：<br />
+<strong>当前值与 2025-12-01 的值确实不同</strong>，证明 <code>seqno</code> 被真正使用。<br />
+<strong>「config 14 从未改变」这个结论因此成立。</strong></p>
+</blockquote>
+<h3 id="45">4.5 结果：发行量跟着出块速率走</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th>masterchain 块/秒</th>
+<th>basechain 逻辑轮/秒</th>
+<th><strong>年化毛发行（GRAM）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-09-01 → 2025-12-01</td>
+<td>0.388</td>
+<td>0.369</td>
+<td><strong>32,425,696</strong></td>
+</tr>
+<tr>
+<td>2025-12-01 → 2026-02-01</td>
+<td>0.417</td>
+<td>0.390</td>
+<td>34,690,019</td>
+</tr>
+<tr>
+<td>2026-02-01 → 2026-03-01</td>
+<td>0.421</td>
+<td>0.395</td>
+<td>35,002,804</td>
+</tr>
+<tr>
+<td>2026-03-01 → 2026-04-01</td>
+<td>0.426</td>
+<td>0.400</td>
+<td><strong>35,446,834</strong></td>
+</tr>
+<tr>
+<td>2026-04-01 → 2026-05-01</td>
+<td>1.894</td>
+<td>1.984</td>
+<td>164,116,235</td>
+</tr>
+<tr>
+<td>2026-05-01 → 2026-06-01</td>
+<td>2.454</td>
+<td>2.434</td>
+<td>208,290,601</td>
+</tr>
+<tr>
+<td>2026-06-01 → 2026-07-01</td>
+<td>2.441</td>
+<td>2.407</td>
+<td>206,762,970</td>
+</tr>
+<tr>
+<td>2026-07-01 → 2026-08-01</td>
+<td>2.417</td>
+<td>2.334</td>
+<td>203,158,223</td>
+</tr>
+<tr>
+<td><strong>2026-08-01 → 2026-09-01</strong></td>
+<td><strong>2.457</strong></td>
+<td><strong>2.401</strong></td>
+<td><strong>207,458,489</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>basechain 的计数需要一个额外说明（领域审查指出，本报告据此补做了实证检验）。</strong></p>
+<p>官方文档写的是「<code>basechain_block_fee</code> <strong>applies to a workchain</strong>；分片时按深度在各分片块之间分摊」，<br />
+共识代码里每个分片块的奖励是 <code>basechain_create_fee &gt;&gt; shard_prefix_length</code>，即除以 2^深度。<br />
+<strong>因此「分片块数 × 1.0」只有在区间内始终未分片时才成立，而本报告实测八月并非如此</strong>：<br />
+<strong>2026-08-08 至 08-13 之间，basechain 多次分裂为 2–3 个分片</strong>（6 小时粒度采样中，24 个时点有 13 个处于分片状态）。</p>
+<p><strong>本报告因此直接去分片期读了各分片块的 <code>created</code> 字段：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>2026-08-09 06:00 UTC</th>
+<th>深度</th>
+<th><code>created</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shard <code>4000000000000000</code></td>
+<td>1</td>
+<td><strong>0.500000000 GRAM</strong></td>
+</tr>
+<tr>
+<td>shard <code>C000000000000000</code></td>
+<td>1</td>
+<td><strong>0.500000000 GRAM</strong></td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td></td>
+<td><strong>1.000000000 GRAM</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>即每个「逻辑轮」的 basechain 发行恒为 1.0 GRAM，与分片数无关。</strong><br />
+<strong>而本报告用的 seqno 差正是逻辑轮数</strong>（TON 的分裂/合并规则使合并后的 seqno 承接子分片的最大值）。<br />
+⚠️ <strong>这仍是一个近似</strong>：子分片的 seqno 会互相漂移（实测同一时刻两个子分片相差 7），<br />
+<strong>跨分裂/合并边界的轮数计数因此有小幅误差。4.6 的 0.40% 残差给出了这个误差的上界。</strong></p>
+</blockquote>
+<p><img alt="TON 年化毛发行量的阶跃" src="charts/issuance-step-202608.svg" /></p>
+<p><strong>提速前（2026-03 → 04）年化 3,544 万 GRAM，提速后（2026-08）年化 2.075 亿 GRAM——5.85 倍。</strong></p>
+<p>对各自时点的总供应量：<strong>年化发行率从 0.687%（2026-04-01 的 5,158,349,660 GRAM）<br />
+升到 3.972%（2026-08-01 的 5,223,622,160 GRAM）——5.78 倍。</strong></p>
+<p><strong>一个额外的独立佐证</strong>：提速前的 2026 年 3 月，实测总供应量从 5,155,462,700 增至 5,158,349,660，<br />
+<strong>净增 2,886,960 GRAM</strong>；而按区块数 × 常量的模型预测是 <strong>2,953,903 GRAM</strong>，<strong>两者差 2.3%</strong>。<br />
+<strong>模型在提速前后都成立。</strong></p>
+<h3 id="46">4.6 八月发行量的两路核对</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>路径</th>
+<th>计算</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>① 区块数 × 配置常量</strong></td>
+<td>masterchain 6,581,263 块 × 1.7 + basechain 6,431,615 <strong>逻辑轮</strong> × 1.0</td>
+<td><strong>17,619,762 GRAM</strong>（毛发行）</td>
+</tr>
+<tr>
+<td><strong>② 链上余额加总实测</strong></td>
+<td>（masterchain + basechain 余额）9/1 − 8/1</td>
+<td><strong>+17,549,235 GRAM</strong>（净增）</td>
+</tr>
+<tr>
+<td><strong>差额</strong></td>
+<td></td>
+<td><strong>70,527 GRAM = 毛发行的 0.40%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>「差额即手续费销毁」是初稿的说法，已按领域审查撤回。</strong><br />
+<strong>这 70,527 GRAM 是一个残差项，它里面至少混着四样东西</strong>：<br />
+① 手续费销毁（<code>burned</code>）；② 路径 ② 遗漏的在途消息价值与 <code>total_validator_fees</code> 的变化；<br />
+③ 跨分裂/合并边界的逻辑轮计数误差；④ 两个时点的区块边界不完全对齐。<br />
+<strong>本报告没有把它们分开，因此只能说「残差占毛发行 0.40%」，不能说「销毁了 70,527 枚」。</strong></p>
+<p>⚠️ <strong>这两条路径的独立性也要说清楚，不能重复 CKB 期的错误。</strong><br />
+<strong>路径 ② 的余额与路径 ① 的单价 <code>created</code> 在同一个 <code>ValueFlow</code> 结构里，由块内会计恒等式相连</strong>——<br />
+<strong>这不是两次完全独立的测量。</strong><br />
+<strong>但它仍有约束力</strong>：路径 ① 的<strong>区块数</strong>是独立输入（序号相减），单价来自 <code>config 14</code>。<br />
+<strong>若区块数错了 20%，残差会是 7.3% 而不是 0.40%。</strong><br />
+<strong>因此 0.40% 的残差主要证明的是「区块计数是对的」，<br />
+而不是「净发行全部来自 <code>config 14</code>」——后者需要直接累加 <code>created</code> 与 <code>burned</code> 才能证明，本期未做。</strong></p>
+</blockquote>
+<h3 id="47">4.7 第三条路：质押收益率</h3>
+<p><strong>如果发行量真的涨了近 6 倍，质押收益率应当同步跳升。这条检验不经过本报告的任何模型。</strong></p>
+<p>实测质押池 APY（tonapi <code>/v2/staking/pools</code>，1,082 个池）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>池 / 类型</th>
+<th>规模（GRAM）</th>
+<th>APY</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tonstakers</strong>（最大流动性质押池）</td>
+<td>131,263,562</td>
+<td><strong>13.52%</strong></td>
+</tr>
+<tr>
+<td>Whales Club 队列</td>
+<td>6,766,963 – 7,150,649</td>
+<td>14.53%</td>
+</tr>
+<tr>
+<td>Tonkeeper 队列</td>
+<td>6,807,945</td>
+<td>13.29%</td>
+</tr>
+<tr>
+<td>TF 提名池（1,075 个）</td>
+<td>合计 211,098,478</td>
+<td><strong>17.72%</strong></td>
+</tr>
+<tr>
+<td><strong>全部池合计</strong></td>
+<td><strong>372,344,234</strong>（占 Elector 余额 27.8%）</td>
+<td><strong>区间 13.29% – 17.72%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>当前实测 13–18%。</strong></p>
+<blockquote>
+<p>⚠️ <strong>初稿把这一条称为「唯一完全独立的验证」，并写「TON 历史质押收益率在 3–5% 量级」。<br />
+领域审查指出两处问题，本报告接受并降级这条证据：</strong></p>
+<p><strong>① 这 1,082 个数不是 1,082 份独立测量。</strong> 审查读了 <code>tonkeeper/opentonapi</code> 的实现：<br />
+<strong>TF 池与 Whales 池共用同一个 <code>GetAPY()</code>，其取值来自同一个上游接口</strong>；<br />
+Tonstakers 走另一条统计路径并乘费用系数。<strong>实质上只有两到三个独立来源。</strong><br />
+<strong>⚠️ 本报告未独立复核该源码，此处采信领域审查的结论。</strong></p>
+<p><strong>② 分母口径不配平。</strong> APY 的分母是投入质押的本金（且受双轮资金占用、费用、复利影响），<br />
+而发行率的分母是全网供应量。<strong>用本报告自己的数</strong>：年发行 2.075 亿 ÷ Elector 余额 13.38 亿 = <strong>15.5%</strong>，<br />
+÷ 单轮有效质押 6.59 亿 = <strong>31.5%</strong>。<strong>实测的 13–18% 落在这两个口径之间，<br />
+只能说「量级相容」，不能说「确认了 5.85 倍」。</strong></p>
+<p><strong>③ 「历史 3–5%」这个对照值本报告没有一手来源，已从正文结论中移除。</strong></p>
+<p><strong>结论</strong>：这条证据<strong>不是独立验证，是一致性检查</strong>。<strong>它能排除「发行其实没变」，<br />
+不能单独支撑「涨了 5.85 倍」。真正支撑 5.85 倍的是 4.5 与 4.6。</strong></p>
+</blockquote>
+<h3 id="48">4.8 这件事的性质</h3>
+<blockquote>
+<p>⚠️ <strong>本节经过一次实质更正。</strong> 初稿写的是「这次变更没有经过任何治理程序」。<br />
+<strong>推理审查指出这与本报告自己在记分卡里给 G8-1 写的豁免理由（「配置变更需验证者多数同意」）互斥。<br />
+复核官方文档后确认：初稿错了。</strong></p>
+</blockquote>
+<p><strong>TON 有配置变更的链上治理机制，写在 <code>config 11</code> 里。官方文档原文：</strong></p>
+<blockquote>
+<p><strong>Param 11: config params</strong> — This parameter indicates under what conditions <strong>proposals to change<br />
+the TON configuration are accepted</strong>……<code>min_wins</code>: <strong>3/4 of validators by the sum of the pledges<br />
+must vote in favor</strong>.</p>
+</blockquote>
+<p>实测当前值：普通参数 <code>min_wins = 2</code>、<code>max_tot_rounds = 6</code>；关键参数 <code>min_wins = 3</code>、<code>max_tot_rounds = 7</code>。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>答案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有没有改货币参数？</td>
+<td><strong>没有。<code>config 14</code> 自 2024-01 起未动。</strong></td>
+</tr>
+<tr>
+<td>有没有改配置参数？</td>
+<td><strong>改了。<code>config 30</code> 在 2026-04-09 07:00–08:00 那一小时里变更。</strong></td>
+</tr>
+<tr>
+<td><strong>有没有治理程序？</strong></td>
+<td><strong>有。</strong> 配置变更需通过 <code>config 11</code> 定义的验证者投票（按质押加权 3/4 多数）</td>
+</tr>
+<tr>
+<td><strong>本报告找到那次提案的记录了吗？</strong></td>
+<td><strong>没有。</strong> 配置合约（<code>-1:5555…</code>）的 <code>list_proposals</code> 当前返回空——<strong>它只保存活跃提案，历史提案已过期。本报告无法取得 2026-04-09 那次变更的提案与投票记录。</strong></td>
+</tr>
+<tr>
+<td>是不是「意外」？</td>
+<td><strong>不是。</strong> <code>target_rate</code> 被从默认 2,400 ms 显式设为 400 ms，这是一次刻意的参数设置</td>
+</tr>
+<tr>
+<td>官方文档有没有提到发行量影响？</td>
+<td><strong>没有。</strong> Param 14 段只描述机制，Param 30 段只描述共识；<strong>两段都不提两者相乘的后果</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>因此本报告的正确表述是</strong>：<br />
+<strong>这次变更走了「配置参数变更」的治理程序，但没有走「货币政策变更」的讨论程序。</strong><br />
+<strong>验证者们批准的是一个共识节奏参数；没有任何公开材料显示，有人在批准时把它作为<br />
+「把年化发行率从 0.687% 提到 3.972%」的决定来讨论。</strong></p>
+<p><strong>一个把出块速率当作工程参数、把区块奖励当作货币参数的治理结构，<br />
+在这两者相乘的地方没有设岗。</strong><br />
+<strong>⚠️ 但「没有设岗」是本报告在公开材料范围内的判断</strong>——<br />
+验证者的内部讨论、基金会的事前沟通，本报告都没有渠道核实。</p>
+</blockquote>
+<h3 id="49">4.9 市场有没有把它当回事？（推理审查指出本报告漏了这个检验）</h3>
+<p><strong>初稿把「发行量放大 5.85 倍」登记为空头论据，却从未检验它是否已经反映在价格里。<br />
+而检验所需的数据本报告一直拿在手上。</strong></p>
+<p><strong>GRAM/BTC 比价在提速前后（币安 UTC 日收盘）：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>窗口</th>
+<th>比价变化</th>
+<th>GRAM</th>
+<th>BTC</th>
+<th>z 值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>04-08 → 04-09（当日）</td>
+<td><strong>−0.04%</strong></td>
+<td>+0.97%</td>
+<td>+1.01%</td>
+<td><strong>−0.02</strong></td>
+</tr>
+<tr>
+<td>04-08 → 04-16（+1 周）</td>
+<td><strong>+9.80%</strong></td>
+<td>+16.11%</td>
+<td>+5.75%</td>
+<td>+1.32</td>
+</tr>
+<tr>
+<td>04-08 → 04-23（+2 周）</td>
+<td>−2.05%</td>
+<td>+7.85%</td>
+<td>+10.11%</td>
+<td>−0.21</td>
+</tr>
+<tr>
+<td><strong>04-08 → 05-08（+1 月）</strong></td>
+<td><strong>+80.62%</strong></td>
+<td><strong>+103.81%</strong></td>
+<td>+12.84%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>04-08 → 2026-09-11（至今）</td>
+<td>+0.77%</td>
+<td>+9.64%</td>
+<td>+8.80%</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>z 值以提速前 90 天的比价日对数变动标准差（2.51%）为尺度。</p>
+</blockquote>
+<p><strong>结论：市场对这次发行量变更没有可观测的负面反应，提速后一个月 GRAM 相对 BTC 反而大涨 80.62%。</strong></p>
+<p><strong>这个结果对本报告的两个方向都有影响：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>读法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A：市场没注意到</strong></td>
+<td>支持本报告「它没有被当作货币政策事件讨论」的判断，<strong>但同时说明「发行量涨了 5.85 倍」是一条尚未被定价的信息，而不是已经兑现的利空</strong></td>
+</tr>
+<tr>
+<td><strong>B：市场注意到了但不在意</strong></td>
+<td>则「发行量涨了 5.85 倍」已在四个月前被定价，<strong>空头论据 #1 就是历史事实而非前瞻判断</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>本报告无法区分 A 与 B，也不主张其中任何一个。</strong><br />
+<strong>但必须明确一件事：本报告没有把八月 −25.48pp 的负特质归因于四个月前的发行变更。</strong><br />
+<strong>两者相隔四个多月，中间 GRAM 还大幅跑赢过 BTC，任何因果连接都需要本报告没有的证据。</strong></p>
+<p><strong>这个检验是推理审查提出的，初稿完全没有做。</strong><br />
+<strong>它把空头 #1 的性质从「前瞻风险」改成了「已发生但定价状态不明的事实」——这是一个实质降级。</strong></p>
+</blockquote>
+<hr />
+<h2 id="5">5. 八月的链上协议变更（本期核心章之二）</h2>
+<p>本报告逐项比对了 <strong>37 个网络配置参数</strong>在 2026-08-01 与 2026-09-01 的取值：<br />
+<strong>31 项未变</strong>，6 项变化，其中 3 项（<code>config 32/34/36</code>）是每轮必换的验证者集，属预期内。<br />
+<strong>真正的协议变更有三次</strong>，时点用二分法收敛到小时：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点（UTC）</th>
+<th>参数</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2026-08-04 21:00</strong></td>
+<td><code>config 30</code>（Simplex 共识）</td>
+<td>62 → 72 字节</td>
+</tr>
+<tr>
+<td><strong>2026-08-20 01:00</strong></td>
+<td><code>config 31</code>（基础合约白名单）</td>
+<td><strong>304 → 344 字节：新增 1 个合约</strong></td>
+</tr>
+<tr>
+<td><strong>2026-08-20 01:00</strong></td>
+<td><code>config 29</code>（共识配置）</td>
+<td>同时变更，长度不变</td>
+</tr>
+<tr>
+<td><strong>2026-08-28 09:00</strong></td>
+<td><code>config 30</code></td>
+<td>72 → 96 字节</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="51">5.1 八月新增的那个基础合约</h3>
+<p><code>config 31</code> 是「免收 gas 与存储费、可发起 tick-tock 交易」的合约白名单。<br />
+官方文档：<strong>「验证者把位于 masterchain 且地址出现在本参数中的账户归类为 special……<br />
+只有 special 账户享有相关协议特权，包括修改公共库的权限。」</strong></p>
+<p>当前白名单有 <strong>9 个合约</strong>。本报告逐个查了它们的最早交易时间：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>地址（前 20 位）</th>
+<th>最早交易</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0000000000000000…</code></td>
+<td>2019-11-15</td>
+<td>配置合约</td>
+</tr>
+<tr>
+<td><code>3333333333333333…</code></td>
+<td>2019-11-15</td>
+<td><strong>Elector（选举/质押）</strong></td>
+</tr>
+<tr>
+<td><code>dd24c4a1f2b88f8b…</code></td>
+<td>2021-08-16</td>
+<td>ETH Bridge</td>
+</tr>
+<tr>
+<td><code>4d5c0210b35dadda…</code></td>
+<td>2021-09-30</td>
+<td>BSC Bridge</td>
+</tr>
+<tr>
+<td><code>ead7da389bde317c…</code></td>
+<td>2025-06-30</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>c50f890366c81f5c…</code></td>
+<td>2026-05-25</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>b74dd9593f9bd8ea…</code></td>
+<td>2026-05-25</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>a8ce6c36aa8ba536…</code></td>
+<td>2026-05-25</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong><code>9234809b5b02186e…</code></strong></td>
+<td><strong>2026-08-18 10:47</strong></td>
+<td><strong>唯一在八月出现的</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>该合约的链上时间线：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点（UTC）</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2026-08-18 10:47</strong></td>
+<td>合约首笔交易（部署）</td>
+</tr>
+<tr>
+<td><strong>2026-08-20 00:59</strong></td>
+<td>收到 op <code>0x32b85a9b</code>，随后连续多笔 op <code>0xcdb9d286</code></td>
+</tr>
+<tr>
+<td><strong>2026-08-20 01:00</strong></td>
+<td><strong>被写入 <code>config 31</code>；<code>config 29</code> 同时变更</strong></td>
+</tr>
+<tr>
+<td>2026-09-11 00:44</td>
+<td>仍有活动；当前余额 0.995 GRAM</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="52-telegram">5.2 与 Telegram 原生钱包的关系：本报告能说什么、不能说什么</h3>
+<p><strong>能说的（一手）</strong>：</p>
+<ol>
+<li>TON 官方文档的「负数参数」表中明确列有：<br />
+<strong><code>-123</code> | Telegram wallet contract bytecode used by the Telegram's native Gram wallet.</strong><br />
+<strong>即 TON 协议里确实有一个专门存放 Telegram 原生钱包合约字节码的配置槽位。</strong></li>
+<li>上述 <code>9234809b…</code> 合约于 2026-08-18 部署、08-20 获得 special 特权（含<strong>修改公共库的权限</strong>）。</li>
+<li>八月的三次协议变更中，两次集中在 08-20 与 08-28。</li>
+</ol>
+<p><strong>不能说的</strong>：</p>
+<ul>
+<li>❌ <strong>本报告没有读到 <code>config -123</code> 的值，因此无法确认它何时被写入、写的是什么。</strong><br />
+<strong>已尝试且失败</strong>：toncenter 的 <code>getConfigParam</code> 明确拒绝负数索引<br />
+  （返回 <code>param should be non-negative</code>）；tonapi 的解码结果只含非负键；<br />
+  原始配置 BoC 需要自行实现 Hashmap 解析器，本期未做。<strong>下期补。</strong></li>
+<li>❌ <strong>本报告无法证明 <code>9234809b…</code> 就是 Telegram 钱包相关合约。</strong><br />
+  证据只有「八月唯一新增」与「时间邻近」，<strong>这两条都不具排他性。</strong></li>
+<li>⚠️ <strong>「2026-08-31 Telegram 开始向部分用户推送原生自托管 Gram Wallet」这条为搜索摘要，<br />
+  本报告未取得一手确认。</strong> 它若为真，是本期最重要的基本面事件；<br />
+<strong>但本报告的价格分析（3.2）不依赖它。</strong></li>
+</ul>
+<blockquote>
+<p><strong>第 5 章的意义在于：它给出了一条可以在下期被证实或证伪的链上线索。</strong><br />
+<strong>如果 Telegram 钱包确实在推进，<code>config -123</code> 与 <code>9234809b…</code> 的后续变化会记录下来；<br />
+如果没有，它们会停在那里。</strong></p>
+</blockquote>
+<hr />
+<h2 id="6">6. 质押、验证者与安全预算</h2>
+<h3 id="61">6.1 质押的两个口径</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>数量</th>
+<th>占流通量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Elector 合约余额</strong></td>
+<td><strong>1,337,746,378 GRAM</strong></td>
+<td><strong>48.0%</strong></td>
+</tr>
+<tr>
+<td>当前验证轮的有效质押（<code>total_stake</code>）</td>
+<td><strong>659,467,380 GRAM</strong></td>
+<td><strong>23.7%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>两者差约 2.03 倍。</strong> 机制解释：验证轮长 <code>validators_elected_for</code> = <strong>65,536 秒（18.2 小时）</strong>，<br />
+质押在轮次结束后还要锁 <code>stake_held_for</code> = <strong>32,768 秒（9.1 小时）</strong>，<br />
+且下一轮的质押在本轮结束前就已提交。<strong>因此 Elector 在任意时刻大致持有两轮的质押。</strong></p>
+<blockquote>
+<p>⚠️ <strong>上述分解是本报告的推断，未逐项验证。</strong><br />
+<strong>本报告在讲「锁仓比例」时用 Elector 口径，在讲「当前在保护网络的质押」时用 <code>total_stake</code> 口径，<br />
+两个数不可互换。</strong></p>
+</blockquote>
+<h3 id="62">6.2 验证者结构</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>验证者总数</td>
+<td><strong>390</strong>（<code>config 34</code>，上一轮 386）</td>
+</tr>
+<tr>
+<td>其中 masterchain 验证者</td>
+<td><strong>100</strong></td>
+</tr>
+<tr>
+<td>最小 / 最大质押（<code>config 17</code>）</td>
+<td>300,000 / 10,000,000 GRAM</td>
+</tr>
+<tr>
+<td>单个验证者实际质押 最大 / 中位 / 最小</td>
+<td>2,680,089 / 1,613,334 / 686,401</td>
+</tr>
+<tr>
+<td><strong>前 10 名占总质押</strong></td>
+<td><strong>3.99%</strong></td>
+</tr>
+<tr>
+<td><strong>前 50 名占总质押</strong></td>
+<td><strong>19.70%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>按质押集中度衡量，TON 的验证者集是本系列见过最分散的之一</strong>——<br />
+前 10 名不到 4%，且协议用 <code>max_stake = 1,000 万 GRAM</code> 设了硬上限。</p>
+</blockquote>
+<h3 id="63">6.3 质押的委托层</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>规模（GRAM）</th>
+<th>池数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tf</code>（TON Foundation 提名池）</td>
+<td>211,098,478</td>
+<td>1,075</td>
+</tr>
+<tr>
+<td><code>liquidTF</code>（Tonstakers）</td>
+<td>131,263,562</td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>whales</code>（Whales / Tonkeeper）</td>
+<td>29,982,194</td>
+<td>6</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>372,344,234</strong></td>
+<td><strong>1,082</strong></td>
+</tr>
+<tr>
+<td><strong>占 Elector 余额</strong></td>
+<td><strong>27.8%</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>即约 72% 的质押是验证者自有资金或未通过公开池委托。</strong></p>
+<h3 id="64">6.4 安全预算与财富转移</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>八月发行给验证者的区块奖励</td>
+<td><strong>17,619,762 GRAM</strong></td>
+</tr>
+<tr>
+<td>按八月均价 $1.3809 折美元</td>
+<td><strong>$2,433 万</strong></td>
+</tr>
+<tr>
+<td>年化</td>
+<td><strong>$2.865 亿</strong></td>
+</tr>
+<tr>
+<td>年化安全预算 / 市值</td>
+<td><strong>7.59%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>这笔钱的来源是全体持有人的稀释，去向是质押者。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>年化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总供应量增长</td>
+<td><strong>+3.97%</strong></td>
+</tr>
+<tr>
+<td>质押者名义收益（实测 APY 区间）</td>
+<td><strong>13.29% – 17.72%</strong></td>
+</tr>
+<tr>
+<td><strong>未质押者的份额变化</strong></td>
+<td><strong>−3.97%</strong></td>
+</tr>
+<tr>
+<td><strong>质押者的份额变化</strong>（取 TF 池 17.72%）</td>
+<td><strong>+13.22%</strong></td>
+</tr>
+<tr>
+<td><strong>质押者的份额变化</strong>（取 Tonstakers 13.52%）</td>
+<td><strong>+9.18%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>初稿在这里写「这是本系列见过的最大的一笔质押者 vs 非质押者财富转移」，已撤回——那是一个未复算的最高级断言。</strong></p>
+<p><strong>按「年增发率 × 未参与分配的比例」这个口径复算：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th>年增发</th>
+<th>质押/参与率</th>
+<th><strong>年度转移规模</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GRAM</strong></td>
+<td>3.97%</td>
+<td>48.0%</td>
+<td><strong>2.06%</strong></td>
+</tr>
+<tr>
+<td>DOT</td>
+<td>3.30%</td>
+<td>53.73%</td>
+<td><strong>1.53%</strong></td>
+</tr>
+<tr>
+<td>ADA</td>
+<td>1.47%</td>
+<td>约 56.5%</td>
+<td>0.64%</td>
+</tr>
+<tr>
+<td>ETH</td>
+<td>0.863%</td>
+<td>35.08%</td>
+<td>0.56%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>GRAM 在这四个可比的 PoS 资产里确实最高，但与 DOT 的差距只有 0.53 个百分点，不是数量级差异。</strong><br />
+<strong>⚠️ 更重要的是：这个口径无法跨机制比较。</strong> CKB 的 NervosDAO 只补偿二次发行、SOL 的通胀递减、<br />
+ZEC 是 PoW 无质押——<strong>本报告没有为它们建立同构的口径，因此不做十三资产的排名。</strong></p>
+<p><strong>本节能说的是</strong>：<strong>GRAM 的这笔转移在 2026-04-09 那一小时里放大了约 6 倍，<br />
+而 Elector 口径下 48.0% 的流通量在质押，非质押的 52.0% 承担全部稀释。</strong></p>
+</blockquote>
+<hr />
+<h2 id="7">7. 网络使用</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>值</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>八月 basechain 交易数</strong></td>
+<td><strong>约 1.059 亿笔</strong></td>
+<td><strong>抽样估计</strong>，120 个随机区块</td>
+</tr>
+<tr>
+<td><strong>95% 置信区间</strong></td>
+<td><strong>[7,461 万, 1.371 亿]</strong></td>
+<td>分布高度右偏（均值 16.46，标准差 27.15）</td>
+</tr>
+<tr>
+<td>日均</td>
+<td>约 <strong>341 万笔</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>对照：ton.org 官网称「24h 330 万笔」</td>
+<td><strong>差 3%</strong></td>
+<td>✅ 独立吻合</td>
+</tr>
+<tr>
+<td><strong>USDT on TON 流通量</strong></td>
+<td><strong>1,429,976,003 USD₮</strong></td>
+<td>✅ 一手（jetton master 合约）</td>
+</tr>
+<tr>
+<td>USDT 持有人数</td>
+<td><strong>3,423,842</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>对照：ton.org 官网称「约 14 亿 USDt」</td>
+<td><strong>吻合</strong></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>智能合约数（官网）</td>
+<td>1.808 亿</td>
+<td>⚠️ 未独立验证</td>
+</tr>
+<tr>
+<td>月活钱包（官网）</td>
+<td>230 万</td>
+<td>⚠️ <strong>链下指标，本报告无法验证</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>交易数的置信区间很宽（±30%），报告中不应把 1.059 亿当作精确值使用。</strong><br />
+它足以支撑「日均在三百万笔量级」这个量级判断，不足以支撑任何逐月比较。</p>
+</blockquote>
+<h3 id="71-github-api">7.1 开发活跃度（一手，GitHub API）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>仓库</th>
+<th>2026-07</th>
+<th>2026-08</th>
+<th>2026-09（至 11 日）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ton-blockchain/ton</code>（L1 核心）</td>
+<td>147</td>
+<td><strong>62</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ton-blockchain/acton</code>（合约工具链）</td>
+<td>—</td>
+<td><strong>184</strong></td>
+<td><strong>216</strong></td>
+</tr>
+<tr>
+<td><code>ton-blockchain/docs</code></td>
+<td>25</td>
+<td>26</td>
+<td>7</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>八月发版</strong>：<code>v2026.07</code>（08-03，QUIC 性能）、<strong><code>v2026.08</code>（08-17，<br />
+「Added collators to Simplex protocol, allowing offloading block generation to specialized nodes」）</strong>。</p>
+<blockquote>
+<p><strong>v2026.08 把出块生成拆分给专门的 collator 节点</strong>——<strong>这是继续提高出块能力的方向。</strong><br />
+<strong>按第 4 章的机制，出块能力的任何进一步提升都会等比例提高发行量，除非同时下调 <code>config 14</code>。</strong><br />
+<strong>这是本报告认为下期最需要盯的一件事。</strong></p>
+</blockquote>
+<hr />
+<h2 id="8-gram">8. GRAM 与其他十二个资产的比较</h2>
+<blockquote>
+<p><strong>口径声明</strong>：8 月涨幅统一为 CoinGecko 口径的 8/1→8/31，日成交额为 2026 年 8 月的日成交额中位数，<br />
+波动率与 beta 为 2025-09 至 2026-09 的日对数收益率。<br />
+<strong>GRAM 一行的波动率 / beta / R² 用币安拼接序列（TONUSDT + GRAMUSDT）</strong>，<br />
+已验证 CoinGecko 与币安逐月一致，<strong>口径差异不影响结论</strong>。</p>
+</blockquote>
+<h3 id="81">8.1 十三资产矩阵</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th><strong>GRAM</strong></th>
+<th>CKB</th>
+<th>ZEC</th>
+<th>DOT</th>
+<th>XIN</th>
+<th>TRX</th>
+<th>UNI</th>
+<th>HYPE</th>
+<th>BNB</th>
+<th>ETH</th>
+<th>SOL</th>
+<th>ADA</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市值</td>
+<td><strong>$37.73 亿</strong></td>
+<td>$0.563 亿</td>
+<td>$204.8 亿</td>
+<td>$18.4 亿</td>
+<td>无法计算</td>
+<td>$318.1 亿</td>
+<td>$44.0 亿</td>
+<td>$196.5 亿</td>
+<td>$1,009 亿</td>
+<td>$3,052 亿</td>
+<td>$622.7 亿</td>
+<td>$82.7 亿</td>
+<td>$16,047 亿</td>
+</tr>
+<tr>
+<td><strong>8 月涨幅</strong></td>
+<td><strong>−4.94%</strong></td>
+<td>+20.15%</td>
+<td>+82.88%</td>
+<td>+8.07%</td>
+<td>+9.67%</td>
+<td>+3.14%</td>
+<td>+18.06%</td>
+<td>+52.40%</td>
+<td>+16.71%</td>
+<td>+29.86%</td>
+<td>+39.68%</td>
+<td>+14.65%</td>
+<td>+23.62%</td>
+</tr>
+<tr>
+<td>距 ATH</td>
+<td>−83.59%</td>
+<td>−97.40%</td>
+<td>−62.09%</td>
+<td>−98.03%</td>
+<td>−96.75%</td>
+<td>−22.31%</td>
+<td>−84.30%</td>
+<td>−0.26%</td>
+<td>−44.66%</td>
+<td>−49.43%</td>
+<td>−63.73%</td>
+<td>−92.86%</td>
+<td>−36.62%</td>
+</tr>
+<tr>
+<td>8 月日成交中位数</td>
+<td><strong>$512.7 万</strong></td>
+<td>$146.5 万</td>
+<td>$2.091 亿</td>
+<td>$7,974 万</td>
+<td>$10,878</td>
+<td>$3.709 亿</td>
+<td>$2.456 亿</td>
+<td>$3.062 亿</td>
+<td>$6.399 亿</td>
+<td>$70.41 亿</td>
+<td>$14.35 亿</td>
+<td>$3.804 亿</td>
+<td>$217.09 亿</td>
+</tr>
+<tr>
+<td>年化波动率</td>
+<td><strong>79.6%</strong></td>
+<td>80.3%</td>
+<td>152.2%</td>
+<td>81.5%</td>
+<td>177.3%</td>
+<td>26.6%</td>
+<td>97.1%</td>
+<td>93.6%</td>
+<td>52.9%</td>
+<td>63.8%</td>
+<td>67.9%</td>
+<td>80.9%</td>
+<td>44.2%</td>
+</tr>
+<tr>
+<td>beta</td>
+<td><strong>0.967</strong></td>
+<td>1.231</td>
+<td>1.549</td>
+<td>1.15</td>
+<td>0.63</td>
+<td>0.247</td>
+<td>1.329</td>
+<td>1.076</td>
+<td>0.920</td>
+<td>1.300</td>
+<td>1.319</td>
+<td>1.375</td>
+<td>1.000</td>
+</tr>
+<tr>
+<td>R²</td>
+<td><strong>29.2%</strong></td>
+<td>46.2%</td>
+<td>19.9%</td>
+<td>38.3%</td>
+<td>2.4%</td>
+<td>16.8%</td>
+<td>36.6%</td>
+<td>25.8%</td>
+<td>59.1%</td>
+<td>81.1%</td>
+<td>73.7%</td>
+<td>56.4%</td>
+<td>100%</td>
+</tr>
+<tr>
+<td><strong>年增发</strong></td>
+<td><strong>+3.97%</strong></td>
+<td>+4.69%</td>
+<td>+3.87%</td>
+<td>+3.30%</td>
+<td>无机制</td>
+<td>+0.519%</td>
+<td>总减流增</td>
+<td>待定</td>
+<td>−4.56%</td>
+<td>+0.863%</td>
+<td>递减</td>
+<td>+1.47%</td>
+<td>+0.83%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>两个位次值得单独指出</strong>：<br />
+① <strong>GRAM 是十三个资产里八月唯一下跌的</strong>（−4.94%，CoinGecko 口径；币安口径 −1.35%），<br />
+<strong>而同月 BTC +23.62%</strong>；<br />
+② <strong>年增发 3.97% 在已给出数值的九个里排第三</strong>，仅次于 CKB 的 4.69% 与 ZEC 的 3.87%。<br />
+<strong>⚠️ 另外四个（XIN / UNI / HYPE / SOL）本系列未给出可比数值，不能断言全局位次。</strong></p>
+</blockquote>
+<h3 id="82-beta">8.2 八月的 beta 残差：十二个资产的横向对照</h3>
+<p><strong>同一个月、同一个 BTC（+23.62%，CoinGecko 口径），除 BTC 自身（基准，残差恒为 0）外十二个资产的特质成分：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th style="text-align: right;">八月实际</th>
+<th style="text-align: right;">beta</th>
+<th style="text-align: right;">beta 预期</th>
+<th style="text-align: right;"><strong>残差（百分点）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GRAM</strong></td>
+<td style="text-align: right;"><strong>−4.94%</strong></td>
+<td style="text-align: right;">0.967</td>
+<td style="text-align: right;">+22.84%</td>
+<td style="text-align: right;"><strong>−27.78</strong></td>
+</tr>
+<tr>
+<td>DOT</td>
+<td style="text-align: right;">+8.07%</td>
+<td style="text-align: right;">1.150</td>
+<td style="text-align: right;">+27.16%</td>
+<td style="text-align: right;">−19.09</td>
+</tr>
+<tr>
+<td>ADA</td>
+<td style="text-align: right;">+14.65%</td>
+<td style="text-align: right;">1.375</td>
+<td style="text-align: right;">+32.48%</td>
+<td style="text-align: right;">−17.83</td>
+</tr>
+<tr>
+<td>UNI</td>
+<td style="text-align: right;">+18.06%</td>
+<td style="text-align: right;">1.329</td>
+<td style="text-align: right;">+31.39%</td>
+<td style="text-align: right;">−13.33</td>
+</tr>
+<tr>
+<td>CKB</td>
+<td style="text-align: right;">+20.15%</td>
+<td style="text-align: right;">1.231</td>
+<td style="text-align: right;">+29.08%</td>
+<td style="text-align: right;">−8.93</td>
+</tr>
+<tr>
+<td>XIN</td>
+<td style="text-align: right;">+9.67%</td>
+<td style="text-align: right;">0.630</td>
+<td style="text-align: right;">+14.88%</td>
+<td style="text-align: right;">−5.21</td>
+</tr>
+<tr>
+<td>BNB</td>
+<td style="text-align: right;">+16.71%</td>
+<td style="text-align: right;">0.920</td>
+<td style="text-align: right;">+21.73%</td>
+<td style="text-align: right;">−5.02</td>
+</tr>
+<tr>
+<td>TRX</td>
+<td style="text-align: right;">+3.14%</td>
+<td style="text-align: right;">0.247</td>
+<td style="text-align: right;">+5.83%</td>
+<td style="text-align: right;">−2.69</td>
+</tr>
+<tr>
+<td>ETH</td>
+<td style="text-align: right;">+29.86%</td>
+<td style="text-align: right;">1.300</td>
+<td style="text-align: right;">+30.71%</td>
+<td style="text-align: right;">−0.85</td>
+</tr>
+<tr>
+<td>SOL</td>
+<td style="text-align: right;">+39.68%</td>
+<td style="text-align: right;">1.319</td>
+<td style="text-align: right;">+31.15%</td>
+<td style="text-align: right;">+8.53</td>
+</tr>
+<tr>
+<td>HYPE</td>
+<td style="text-align: right;">+52.40%</td>
+<td style="text-align: right;">1.076</td>
+<td style="text-align: right;">+25.42%</td>
+<td style="text-align: right;">+26.98</td>
+</tr>
+<tr>
+<td>ZEC</td>
+<td style="text-align: right;">+82.88%</td>
+<td style="text-align: right;">1.549</td>
+<td style="text-align: right;">+36.59%</td>
+<td style="text-align: right;">+46.29</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="2026 年 8 月十二个资产的 beta 残差" src="charts/beta-residual-202608.svg" /></p>
+<blockquote>
+<p><strong>口径提醒</strong>：各资产的 beta 取自其所在期报告（2025-09 至 2026-09 的日对数收益率）。<br />
+<strong>本表只比较「同一个月内的横向位置」，不构成对任何资产的时序判断。</strong></p>
+</blockquote>
+<h3 id="83">8.3 一个跨期观察：本系列见过的「发行量变更」</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th>发行量的变更方式</th>
+<th>是否经过治理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BTC</td>
+<td>减半，写死在代码里</td>
+<td>不需要</td>
+</tr>
+<tr>
+<td>ETH</td>
+<td>EIP-1559 / 合并</td>
+<td><strong>经过 EIP 流程与长期公开讨论</strong></td>
+</tr>
+<tr>
+<td>BNB</td>
+<td>季度销毁，按公式</td>
+<td>公司决定</td>
+</tr>
+<tr>
+<td>TRX</td>
+<td><strong>治理提案 #104 调能量单价</strong>，间接使净供应转正</td>
+<td><strong>✅ 有提案、有投票</strong></td>
+</tr>
+<tr>
+<td>DOT</td>
+<td>通胀曲线阶梯下调</td>
+<td><strong>✅ 有公投</strong></td>
+</tr>
+<tr>
+<td>CKB</td>
+<td>二次发行分配比例随 U/C 漂移</td>
+<td>无需治理（机制内生）</td>
+</tr>
+<tr>
+<td><strong>GRAM</strong></td>
+<td><strong>出块速率 ×6 → 发行量 ×5.85</strong></td>
+<td><strong>❌ 本报告未发现任何治理记录</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>CKB 期与本期的对照很有意思</strong>：<br />
+<strong>CKB 的发行分配比例也在无人决策的情况下漂移，但那是机制内生的、缓慢的；<br />
+GRAM 是一次性的、6 倍的、由一个可调参数在一小时内完成的。</strong><br />
+<strong>两者都说明同一件事：当货币参数被表述成工程参数时，它就不在治理的视野里。</strong></p>
+</blockquote>
+<hr />
+<h2 id="9">9. 核心价值逻辑</h2>
+<blockquote>
+<p><strong>评分规则</strong>：星级编码<strong>证据等级</strong>（不是后果量级），二者分列。<br />
+全部建立在二手转述上的论据不得给到五星。<strong>同源论据必须标注。</strong></p>
+</blockquote>
+<h3 id="91">9.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">证据等级</th>
+<th style="text-align: center;">后果量级</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Telegram 分发渠道是真实且独一无二的</strong>：原生自托管钱包面向 10 亿+ 用户推送</td>
+<td style="text-align: center;">★★</td>
+<td style="text-align: center;"><strong>大（若成真）</strong></td>
+<td>⚠️ <strong>推送一事为搜索摘要，未取得一手确认。</strong> 官方文档确有 <code>config -123</code>（Telegram 钱包合约字节码槽位）<strong>这一条是一手的</strong>；但 08-18/08-20 的新基础合约登记，<strong>本报告在 5.2 已明确声明「不具排他性、无法证明与 Telegram 钱包有关」，因此不作为本条的支撑</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>稳定币规模真实</strong>：TON 上 USD₮ <strong>14.30 亿枚、342 万持有人</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td style="text-align: center;"><strong>中</strong></td>
+<td><strong>一手</strong>：jetton master 合约直读，与官网数字独立吻合</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>验证者集分散</strong>：390 个验证者，前 10 名仅占质押 3.99%，协议设 1,000 万 GRAM 硬上限</td>
+<td style="text-align: center;">★★★★★</td>
+<td style="text-align: center;"><strong>中</strong></td>
+<td><strong>一手</strong>：<code>config 34</code> + <code>config 17</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>技术路线在真实推进</strong>：Simplex 共识落地，出块间隔 2.4 秒 → 0.4 秒，八月又上线 collator 分离</td>
+<td style="text-align: center;">★★★★★</td>
+<td style="text-align: center;"><strong>大</strong></td>
+<td><strong>一手</strong>：链上实测 + 发版记录。<strong>⚠️ 与空头 #1 是同一件事的两面，后果量级已对齐为「大」</strong>——本报告在 9.3 声明「不在其间下注」，就不能给同一事实的两面赋不同的量级</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>质押收益率 13.29%–17.72%</strong>，远高于稀释率 3.97%</td>
+<td style="text-align: center;">★★★</td>
+<td style="text-align: center;"><strong>中</strong></td>
+<td><strong>一手 API</strong>，<strong>但已按领域审查下调</strong>：这 1,082 个数并非 1,082 份独立测量（TF 与 Whales 共用同一上游取值）。<strong>⚠️ 这不是「凭空的收益」，来源就是非质押者的稀释（见 6.4），与空头 #1 同源</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td>交易量真实：日均约 341 万笔，与官网口径独立吻合到 3%</td>
+<td style="text-align: center;">★★★</td>
+<td style="text-align: center;"><strong>中</strong></td>
+<td><strong>一手抽样</strong>，但 95% 区间 ±30%，精度有限</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="92">9.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">证据等级</th>
+<th style="text-align: center;">后果量级</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>发行量在 2026-04-09 一小时内放大 5.85 倍</strong>（年化 3,545 万 → 2.075 亿 GRAM），<strong>年化发行率 0.687% → 3.972%</strong></td>
+<td style="text-align: center;">★★★★</td>
+<td style="text-align: center;"><strong>大</strong></td>
+<td><strong>一手</strong>：区块数（seqno 相减，独立）× <code>config 14</code> 常量（经对照实验确认自 2024-01 未变），与链上余额加总的残差 0.40%。<strong>⚠️ 已按领域审查从五星下调</strong>：余额加总与 <code>created</code> 由块内恒等式相连、质押 APY 不是独立测量（见 4.6/4.7）。<strong>未做的是直接累加 <code>created</code> 与 <code>burned</code>，下期补</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>这次变更走了配置变更的程序，但没有走货币政策的讨论程序</strong>；官方文档不提两个参数相乘的后果</td>
+<td style="text-align: center;">★★★</td>
+<td style="text-align: center;"><strong>中</strong></td>
+<td><strong>一手</strong>：<code>config 11</code> 原文（验证者 3/4 加权投票）+ Param 14/30 文档原文。<strong>⚠️ 星级已从四星下调</strong>：本条的后半段是一个否定性结论，而本报告<strong>没能取到那次变更的提案与投票记录</strong>（配置合约只保存活跃提案），<strong>证据等级不可能是四星</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>八月是十二个资产里最负的特质成分</strong>：BTC +24.95%，GRAM −1.35%，<strong>残差 −25.48pp</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td style="text-align: center;"><strong>大</strong></td>
+<td><strong>一手</strong>：币安日线 + beta 实测。<strong>⚠️ 仅限本期横向比较（BTC 为基准无残差），未与历史各月比较</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>非质押者承担全部稀释</strong>：流通量的 52.0% 未质押，年化被稀释 3.97%</td>
+<td style="text-align: center;">★★★★</td>
+<td style="text-align: center;"><strong>大</strong></td>
+<td><strong>一手</strong>：Elector 余额 / 流通量</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>继续提速的方向已经确定</strong>：<code>v2026.08</code> 上线 collator 分离；<strong>按现有机制，出块能力每提高一分，发行量等比例提高</strong></td>
+<td style="text-align: center;">★★★★</td>
+<td style="text-align: center;"><strong>大（前瞻）</strong></td>
+<td><strong>一手</strong>：发版说明 + 机制推导。<strong>这是推论不是观测</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>距 ATH −83.59%，近一年 −57.30%</strong>，跑输 BTC 25 个百分点</td>
+<td style="text-align: center;">★★★★★</td>
+<td style="text-align: center;"><strong>中</strong></td>
+<td><strong>一手</strong></td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>本报告未能读取 <code>config -123</code></strong>，因此 Telegram 钱包的链上进展无法独立核实</td>
+<td style="text-align: center;">★★★</td>
+<td style="text-align: center;"><strong>中</strong></td>
+<td>这是本报告的能力缺口，不是网络的缺陷</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="93">9.3 多空之间真正的分歧点</h3>
+<p><strong>多空双方对第 4 章的事实没有分歧。分歧在这里：</strong></p>
+<blockquote>
+<p><strong>「发行量涨了 6 倍」是一个货币政策问题，还是一个会被增长掩盖的会计细节？</strong></p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>多头读法</th>
+<th>空头读法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年化 2.07 亿 GRAM 的发行，若换来 10 亿 Telegram 用户的分发渠道，是极便宜的获客成本</td>
+<td>这笔钱<strong>不是花在获客上，是发给验证者的</strong>。它买到的是出块速度，不是用户</td>
+</tr>
+<tr>
+<td>质押率 48% 意味着大部分持有人已经在接收这笔发行，净稀释有限</td>
+<td><strong>52% 没有质押，他们承担全部稀释</strong>；且质押需要锁仓与技术门槛</td>
+</tr>
+<tr>
+<td>出块提速是实打实的性能提升，对支付场景有价值</td>
+<td><strong>0.4 秒与 2.4 秒对支付体验的差别，值不值每年多发 1.7 亿 GRAM？这个问题从未被问过</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>本报告的立场</strong>：<strong>「值不值」无法用 2026 年 8 月的数据判定，本报告不在其间下注。</strong><br />
+<strong>但要指出一个不对称：多头读法依赖一个尚未发生（或本报告未能核实）的事件——Telegram 钱包的实际采用；<br />
+空头读法只需要现状延续。</strong></p>
+</blockquote>
+<hr />
+<h2 id="10">10. 估值：本报告给什么、不给什么</h2>
+<h3 id="101">10.1 本报告不给目标价</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>本期最大的变量（Telegram 钱包推送）本报告未能一手核实。</strong> 它若成真，是数量级的基本面变化；本报告不做没有证据的假设。</td>
+</tr>
+<tr>
+<td><strong>1b</strong></td>
+<td><strong>⚠️ 而本期最响的那个发现（发行量 ×5.85）已经发生四个月，市场无负面反应（见 4.9）。</strong> 这意味着它是「已发生但定价状态不明」，<strong>不是一条可以直接折进目标价的前瞻利空。</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>发行端刚刚发生 6 倍变化，且变化机制是可被再次调整的一个参数。</strong> 任何折现模型都需要一个发行路径假设，<strong>而这个路径现在由一个非货币性质的工程参数决定，不可预测。</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>持有人对网络收入没有索取权，除非质押。</strong> 手续费与区块奖励全部归验证者（<code>ValueFlow</code> 的 <code>recovered</code> 即 <code>fees_collected</code>）。<strong>质押收益是可得的，但它是稀释的再分配，不是外部现金流。</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>⚠️ 但必须声明：理由 3 本身不判别。</strong> BTC 持有人同样对区块奖励无索取权，而本系列给了 BTC 目标价（用「已实现价格 × MVRV」这类不依赖持有人现金流的成本基准法）。<strong>真正承重的是理由 1 与 2。</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>⚠️ 一条本报告没有尝试的路径</strong>：TON 是完全透明的账本，成本基准法原理上可做。<strong>本期未做，因此「不给目标价」站在「未尝试」而非「尝试失败」上。下期第一优先。</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="102">10.2 改给反解式约束</h3>
+<p><strong>初稿写了三条，其中 C 在推理审查后被撤回，实际留下两条。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>约束</th>
+<th>计算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td><strong>要让当前的发行回到提速前的稀释水平</strong></td>
+<td>需 <code>config 14</code> 的 <code>masterchain_block_fee</code> 从 1.7 降到约 <strong>0.29 GRAM</strong>、<code>basechain_block_fee</code> 从 1.0 降到约 <strong>0.17 GRAM</strong>（即除以 5.85）。<strong>这是一次单参数修改，技术上是最简单的动作。</strong></td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td><strong>要让新增发行被使用量「买单」</strong></td>
+<td>八月发行 17,619,762 GRAM（$2,433 万）。若由交易费承担，<strong>按八月约 1.059 亿笔交易计，需每笔约 $0.23</strong>。<strong>而本报告按区块 <code>ValueFlow</code> 的 <code>fees_collected − created</code> 推算，TON 的单笔手续费在 $0.0003 量级——相差约 767 倍，即近三个数量级。</strong> ⚠️ <strong>$0.0003 是量级推算，不是月度累计实测</strong>（下期第三优先），但它足以说明这条约束的距离有多远</td>
+</tr>
+<tr>
+<td>~~<strong>C</strong>~~</td>
+<td>~~<strong>要让 Telegram 钱包的分发「值回」发行</strong>~~</td>
+<td><strong>本条已撤回，不作为约束。</strong> 理由见下</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>约束 C 已撤回（推理审查指出，本报告接受）。</strong> 初稿写的是：<br />
+「年化发行 $2.865 亿，按 Telegram 的 10 亿用户计为每用户 $0.29/年，按 342 万 USD₮ 持有人计为每人 $83.7/年，<br />
+两个分母差 292 倍」。<strong>三个问题</strong>：<br />
+<strong>① 它的前提被本报告自己否定</strong>——9.3 的空头读法明写「这笔钱不是花在获客上，是发给验证者的」；<br />
+<strong>② 两个分母不是同一个量的区间两端</strong>（10 亿是 Telegram 全球用户，342 万是 USD₮ 持有人，定义不同构）；<br />
+<strong>③ 本报告自己第 7 节列的「月活钱包 230 万」落在声明区间之外</strong>（对应每用户 $124.6/年，高于所谓上沿）。<br />
+<strong>一个不排除任何取值的比较不是约束，是修辞。</strong> 相关讨论保留在 9.3 的多空分歧里。</p>
+<p><strong>约束 A 是两个里唯一「一次参数修改就能完成」的。</strong><br />
+<strong>它之所以重要，不是因为本报告建议这么做，而是因为：<br />
+既然把发行量放大 6 倍只需要改一个参数，把它调回去也只需要改一个参数。<br />
+这件事有没有被讨论过，是观察 TON 治理成熟度的一个直接指标。</strong></p>
+</blockquote>
+<h3 id="103">10.3 这套判断的七个弱点</h3>
+<ol>
+<li><strong>八月最重要的事件（Telegram 钱包推送）没有一手确认</strong>，它若为真会改变第 9.3 节的不对称判断。</li>
+<li><strong><code>config -123</code> 未能读取</strong>，Telegram 钱包的链上进展缺一条关键证据。</li>
+<li><strong>交易数是抽样估计，95% 区间 ±30%</strong>，不足以支撑逐月比较。</li>
+<li><strong>质押的两个口径（Elector 1.338 亿 vs 当前轮 6.59 亿）的分解是推断，未逐项验证。</strong></li>
+<li><strong>手续费只有量级推算（$0.0003/笔），没有月度累计实测</strong>，因此约束 B 的对照分母精度有限。<br />
+   ⚠️ <strong>且这里有一处本报告自己的数对不上</strong>：4.6 的残差 70,527 GRAM ≈ <strong>$97,381</strong>，<br />
+   而按 $0.0003/笔 × 1.059 亿笔推算的手续费约 <strong>$31,770</strong>，<strong>相差约 3 倍</strong>。<br />
+   4.6 已说明残差含四项（销毁、在途资金、分片轮次误差、边界对齐），<strong>但本报告没有把它们分开，这个 3 倍差距未获解释。</strong></li>
+<li><strong>配置变更的治理记录未能取得</strong>。本报告确认了 <code>config 11</code> 定义的验证者投票机制存在，<br />
+<strong>但配置合约只保存活跃提案，2026-04-09 那次变更的提案与投票记录已过期、取不到。</strong><br />
+<strong>因此「没有以货币政策形式讨论」是在公开材料范围内的判断。</strong></li>
+<li><strong>提速对价格的影响本报告只做了事件窗检验，没有做归因</strong>。4.9 的结论是「市场无负面反应」，<br />
+<strong>本报告不主张它意味着「已定价」或「未定价」中的任何一个。</strong></li>
+</ol>
+<hr />
+<h2 id="11_1">11. 附录</h2>
+<h3 id="111-gram-ton">11.1 GRAM / TON 发展阶段速查</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>标志</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一 · Telegram 立项与 SEC 叫停</td>
+<td>2018 – 2020</td>
+<td>代币原名 Gram</td>
+</tr>
+<tr>
+<td>二 · 社区接手与 PoW 分发</td>
+<td>2020 – 2022</td>
+<td>更名 Toncoin，PoW 挖矿分发</td>
+</tr>
+<tr>
+<td>三 · 生态爆发</td>
+<td>2023 – 2024-06</td>
+<td>2024-06-14 ATH $8.25</td>
+</tr>
+<tr>
+<td>四 · 回落与共识重写</td>
+<td>2024-07 – 2026-03</td>
+<td>Catchain → Simplex</td>
+</tr>
+<tr>
+<td>五 · 提速、更名与钱包</td>
+<td>2026-04 – 至今</td>
+<td><strong>04-09 出块提速 6 倍</strong>；06 月更名 Gram；08-31 钱包推送</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112-2026-09-11">11.2 关键数据速查（截至 2026-09-11）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格 / 市值 / 排名</td>
+<td>$1.3540 / $37.73 亿 / 28</td>
+<td>CoinGecko + 币安</td>
+</tr>
+<tr>
+<td>ATH</td>
+<td>$8.25（2024-06-14），<strong>−83.59%</strong></td>
+<td>CoinGecko</td>
+</tr>
+<tr>
+<td>总供应量（本报告加总口径）</td>
+<td>5,246,916,594 GRAM</td>
+<td>masterchain + basechain 的 <code>from_prev_blk</code>。⚠️ <strong>不是协议定义的总供应量</strong>（那是 <code>McStateExtra.global_balance</code>，本期未能读取），见 1.3</td>
+</tr>
+<tr>
+<td>对照：CoinGecko 总供应量</td>
+<td>5,247,067,410（差 <strong>0.0029%</strong>）</td>
+<td></td>
+</tr>
+<tr>
+<td>流通量</td>
+<td>2,786,316,316</td>
+<td>CoinGecko</td>
+</tr>
+<tr>
+<td><strong>八月净增发</strong></td>
+<td><strong>+17,549,235 GRAM（+0.3360%）</strong></td>
+<td>链上余额加总</td>
+</tr>
+<tr>
+<td><strong>年化发行率</strong></td>
+<td><strong>3.972%</strong>（提速前 0.687%）</td>
+<td></td>
+</tr>
+<tr>
+<td><code>masterchain_block_fee</code> / <code>basechain_block_fee</code></td>
+<td><strong>1.7 / 1.0 GRAM</strong>，自 2024-01 未变</td>
+<td><code>config 14</code></td>
+</tr>
+<tr>
+<td><strong><code>target_rate</code></strong></td>
+<td><strong>400 ms</strong>（默认 2,400 ms）</td>
+<td><code>config 30</code>, <code>noncritical_params[0]</code></td>
+</tr>
+<tr>
+<td>实测出块间隔</td>
+<td><strong>0.41 秒</strong>（提速前 2.35–2.58 秒）</td>
+<td>masterchain seqno</td>
+</tr>
+<tr>
+<td>Elector 余额</td>
+<td>1,337,746,378 GRAM（流通量 48.0%）</td>
+<td>链上</td>
+</tr>
+<tr>
+<td>当前轮有效质押</td>
+<td>659,467,380 GRAM（23.7%）</td>
+<td><code>config 34</code></td>
+</tr>
+<tr>
+<td>验证者数</td>
+<td>390（masterchain 100）</td>
+<td><code>config 34</code></td>
+</tr>
+<tr>
+<td><strong>质押池 APY 实测</strong></td>
+<td><strong>13.29% – 17.72%</strong></td>
+<td>tonapi，1,082 个池</td>
+</tr>
+<tr>
+<td>USD₮ on TON</td>
+<td>1,429,976,003 枚 / 342 万持有人</td>
+<td>jetton master</td>
+</tr>
+<tr>
+<td>八月 basechain 交易</td>
+<td>约 1.059 亿 [7,461 万, 1.371 亿]</td>
+<td>抽样 120 块</td>
+</tr>
+<tr>
+<td>基础合约白名单</td>
+<td>9 个（八月新增 1 个）</td>
+<td><code>config 31</code></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113">11.3 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th>核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>区块 <code>ValueFlow</code>（余额 / <code>created</code> / <code>burned</code>）</td>
+<td>tonapi <code>blockchain/blocks</code></td>
+<td>✅ <strong>一手直读</strong></td>
+</tr>
+<tr>
+<td>masterchain / basechain 区块序号与时间</td>
+<td>toncenter v3 <code>blocks</code></td>
+<td>✅ <strong>一手</strong></td>
+</tr>
+<tr>
+<td><code>config 14</code> 的历史值</td>
+<td>toncenter v2 <code>getConfigParam</code> + seqno</td>
+<td>✅ <strong>一手</strong>，且做了 <code>config 34</code> 对照实验证明 seqno 生效</td>
+</tr>
+<tr>
+<td><code>config 30</code> 的出现与变化</td>
+<td>同上</td>
+<td>✅ <strong>一手</strong></td>
+</tr>
+<tr>
+<td><code>config 29 / 30 / 31</code> 的八月变更时点</td>
+<td>同上，二分法收敛到小时</td>
+<td>✅ <strong>一手</strong></td>
+</tr>
+<tr>
+<td><code>noncritical_params</code> 键定义与默认值</td>
+<td><code>ton-blockchain/docs</code> 的 <code>config.mdx</code></td>
+<td>✅ <strong>一手</strong>，打开了原文件</td>
+</tr>
+<tr>
+<td>Param 14 的官方描述</td>
+<td>同上，第 233–235 行</td>
+<td>✅ <strong>一手</strong></td>
+</tr>
+<tr>
+<td><code>config -123</code> 的用途（Telegram 钱包字节码）</td>
+<td>同上，Negative parameters 表第 884 行</td>
+<td>✅ <strong>一手（用途）</strong></td>
+</tr>
+<tr>
+<td><strong><code>config -123</code> 的取值与写入时点</strong></td>
+<td>—</td>
+<td>❌ <strong>已尝试失败</strong>：toncenter 拒绝负数索引（<code>param should be non-negative</code>）；tonapi 解码只含非负键；原始 BoC 需自建 Hashmap 解析器。<strong>下期补</strong></td>
+</tr>
+<tr>
+<td>验证者集与质押</td>
+<td>tonapi <code>blockchain/validators</code> + <code>config 17/34</code></td>
+<td>✅ <strong>一手</strong></td>
+</tr>
+<tr>
+<td>质押池 APY</td>
+<td>tonapi <code>staking/pools</code></td>
+<td>✅ <strong>一手 API</strong>（APY 由池自行计算，独立于本报告模型）</td>
+</tr>
+<tr>
+<td>基础合约的最早交易时间</td>
+<td>toncenter v3 <code>transactions?sort=asc</code></td>
+<td>✅ <strong>一手</strong></td>
+</tr>
+<tr>
+<td>USD₮ on TON</td>
+<td>tonapi <code>jettons/{master}</code></td>
+<td>✅ <strong>一手</strong></td>
+</tr>
+<tr>
+<td>八月交易数</td>
+<td>toncenter v3，随机抽 120 个 basechain 区块</td>
+<td>⚠️ <strong>一手抽样</strong>，95% 区间 ±30%</td>
+</tr>
+<tr>
+<td>价格 / 波动率 / beta</td>
+<td>币安 <code>api/v3/klines</code>（TONUSDT + GRAMUSDT 拼接）</td>
+<td>✅ <strong>一手交易所</strong></td>
+</tr>
+<tr>
+<td>代号迁移状态</td>
+<td>币安 <code>api/v3/exchangeInfo</code></td>
+<td>✅ <strong>一手</strong></td>
+</tr>
+<tr>
+<td>市值 / 排名 / ATH / 流通量</td>
+<td>CoinGecko API</td>
+<td>✅ 一手 API</td>
+</tr>
+<tr>
+<td>发版记录与提交数</td>
+<td>GitHub REST API</td>
+<td>✅ <strong>一手</strong></td>
+</tr>
+<tr>
+<td>更名生效日 2026-06-15</td>
+<td>搜索摘要</td>
+<td>⚠️ <strong>未打开一手公告</strong></td>
+</tr>
+<tr>
+<td><strong>「社区投票 81.22% 通过」</strong></td>
+<td>搜索摘要</td>
+<td>❌ <strong>无一手来源，本报告不使用</strong>（已打开其中一篇报道逐项核对，其不提供任何官方链接）</td>
+</tr>
+<tr>
+<td><strong>2026-08-31 Telegram 钱包推送</strong></td>
+<td>搜索摘要</td>
+<td>❌ <strong>未取得一手确认</strong>；本报告的价格与发行分析不依赖它</td>
+</tr>
+<tr>
+<td>ton.org 的「2.3M 月活钱包」「1.808 亿智能合约」</td>
+<td>官网营销页</td>
+<td>⚠️ <strong>未独立验证</strong>（同页的「390 验证者」「330 万笔/24h」「~14 亿 USDt」<strong>已独立验证通过</strong>）</td>
+</tr>
+<tr>
+<td>宏观快照</td>
+<td>沿用本系列同期数据</td>
+<td>⚠️ 未在本期重新核实</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="114">11.4 来源偏向声明</h3>
+<ol>
+<li><strong>本期绝大多数结论来自 TON 自己的节点与官方文档</strong>，这类来源没有立场，但<strong>本报告对测什么有立场</strong>：<br />
+   本报告主动去测的三个量（发行速率、出块速率、稀释分配）<strong>都指向空头方向</strong>。<br />
+<strong>一个同样诚实的多头分析可以去测本报告没测的量</strong>：Telegram 钱包的实际安装量、<br />
+   小程序的日活、TON Connect 的调用量、手续费收入的绝对规模。<strong>本报告都没有测。</strong></li>
+<li><strong>传统金融机构对 GRAM 的覆盖</strong>：本报告未做针对性检索，<strong>因此不声称「无覆盖」。</strong><br />
+   本报告用 CME FedWatch 与美联储数据做宏观配平，<strong>未引用任何机构的资产层观点。</strong></li>
+<li><strong>本报告未联系 TON 基金会或 Telegram 求证。</strong> 所有「未发现治理记录」的判断<br />
+   基于公开可查的链上与仓库状态，<strong>不排除存在未公开的决策过程。</strong></li>
+<li><strong>本期有一处需要特别声明的偏向风险</strong>：第 4 章的叙述框架（「一次没有治理的 6 倍增发」）<br />
+<strong>本身带有价值判断</strong>。同样的事实可以被表述为「一次把出块延迟降低 83% 的性能升级，<br />
+   其成本是每年多发 1.7 亿 GRAM」。<strong>本报告认为后一种表述同样准确，读者应当两种都读一遍。</strong></li>
+</ol>
+<h3 id="115">11.5 发布前审查记录</h3>
+<p>见本期 <code>thesis_scorecard.md</code>。</p>
+<hr />
+<blockquote>
+<p><strong>免责声明</strong>：本报告是研究记录，不是投资建议。<br />
+本报告最重要的基本面变量（Telegram 原生钱包的推送与采用）<strong>未能取得一手确认</strong>，<br />
+这意味着本报告对 GRAM 的整体判断可能因为一条本报告没看到的证据而完全改变。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-gram-ton-2026-8">GRAM / TON 简明速查（2026 年 8 月）</h1>
+<blockquote>
+<p>完整论证见 <code>gram_research_report_202608.md</code>。本文件是浓缩版，供快速复习。<br />
+<strong>本系列第十三个资产。本报告不给目标价。</strong></p>
+</blockquote>
+<hr />
+<h2 id="s-0">0. 先说代号</h2>
+<p>标的是 The Open Network（TON）的原生代币。<strong>2026 年 6 月从 Toncoin（TON）更名为 Gram（GRAM）</strong>，<br />
+<strong>只改名称、代号、图标，没有换币、没有迁移合约。</strong></p>
+<p><strong>一手证据</strong>：币安的 8 个 <code>TON*</code> 交易对全部 <code>status=BREAK</code>，7 个 <code>GRAM*</code> 全部 <code>TRADING</code>；<br />
+TONUSDT 最后一根日线（2026-06-30）收 <strong>$1.6000</strong>，GRAMUSDT 首根（2026-07-02）开 <strong>$1.6000</strong>。</p>
+<p>⚠️ <strong>广泛流传的「社区投票以 81.22% 通过」本报告不使用</strong>——打开报道逐条核对，<strong>它不提供任何官方链接</strong>；<br />
+另检索 <code>api.ton.vote</code> 的 104 个 DAO，<strong>没有官方治理实体</strong>。</p>
+<h2 id="s-1">1. 本期最重要的发现</h2>
+<p><strong>TON 在 2026-04-09 把出块速率提高了约 6 倍，而按块发放的区块奖励一个字没改。<br />
+于是发行量也涨了 5.85 倍。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>提速前</th>
+<th>提速后</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>masterchain 出块间隔</td>
+<td><strong>2.35 – 2.58 秒</strong></td>
+<td><strong>0.41 秒</strong></td>
+</tr>
+<tr>
+<td><code>target_rate</code>（config 30）</td>
+<td>协议默认 <strong>2,400 ms</strong></td>
+<td>设定 <strong>400 ms</strong></td>
+</tr>
+<tr>
+<td><code>masterchain_block_fee</code>（config 14）</td>
+<td><strong>1.7 GRAM</strong></td>
+<td><strong>1.7 GRAM（未变）</strong></td>
+</tr>
+<tr>
+<td><strong>年化毛发行</strong></td>
+<td><strong>35,446,834 GRAM</strong></td>
+<td><strong>207,458,489 GRAM</strong></td>
+</tr>
+<tr>
+<td><strong>年化发行率</strong></td>
+<td><strong>0.687%</strong></td>
+<td><strong>3.972%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>切换时点精确到一小时：2026-04-09 07:00–08:00 UTC</strong>（前一小时 0.423 块/秒，后一小时 2.070，再后 2.502）。</p>
+<h2 id="s-2">2. 机制：发行 = 每块奖励 × 出块速率</h2>
+<p>官方文档 Param 14 原文：奖励<strong>按每个区块</strong>发放（masterchain 1.7 GRAM，basechain 1.0 GRAM）。</p>
+<p><strong>因为是按「块」而不是按「时间」发，出块变快多少倍，发行就变快多少倍。</strong></p>
+<p><strong>这不是隐藏机制，两个参数都公开可查。但官方文档里没有任何一句话把它们相乘。</strong></p>
+<h2 id="s-3-config-14">3. <code>config 14</code> 真的没变——而且做了对照实验</h2>
+<p>本报告查了 <code>config 14</code> 在 <strong>2024-01-01 至今九个时点</strong>的原始字节，<strong>完全相同</strong>。</p>
+<p>⚠️ <strong>但「返回值相同」也可能是接口忽略了 <code>seqno</code> 参数。</strong><br />
+本报告因此用一个<strong>每 18 小时必变</strong>的参数（<code>config 34</code> 验证者集）做对照：<br />
+<strong>当前值与 2025-12-01 的值确实不同</strong>，证明 <code>seqno</code> 生效，结论成立。</p>
+<h2 id="s-4">4. 三条路核对同一个数</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>路径</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 区块数 × 配置常量</td>
+<td>八月毛发行 <strong>17,619,762 GRAM</strong></td>
+</tr>
+<tr>
+<td>② 链上余额加总（masterchain + basechain 的 <code>from_prev_blk</code>）</td>
+<td>八月净增 <strong>+17,549,235 GRAM</strong></td>
+</tr>
+<tr>
+<td>残差</td>
+<td><strong>70,527 GRAM，占毛发行 0.40%</strong> ⚠️ 含销毁 + 在途资金 + 分片计数误差，未分离</td>
+</tr>
+<tr>
+<td>③ 实测质押池 APY（1,082 个池）</td>
+<td><strong>13.29% – 17.72%</strong>，与发行跳升量级相容</td>
+</tr>
+</tbody>
+</table></div>
+<p>⚠️ <strong>三条都不是完全独立的验证，完整报告已按领域审查降级：</strong><br />
+①② 由块内会计恒等式相连；<strong>③ 的 1,082 个 APY 并非 1,082 份独立测量</strong><br />
+（TF 与 Whales 池共用同一个上游取值），<strong>且分母口径与发行率不同</strong><br />
+（年发行 ÷ Elector 余额 = 15.5%，÷ 单轮质押 = 31.5%，实测 13–18% 落在两者之间）。<br />
+<strong>0.40% 的残差主要证明「区块计数是对的」，不证明「净发行全部来自 config 14」。</strong></p>
+<p><strong>另一个佐证</strong>：提速前的 2026 年 3 月，实测供应量净增 <strong>2,886,960</strong>，模型预测 <strong>2,953,903</strong>，<strong>差 2.3%</strong>。</p>
+<h2 id="s-5">5. 总供应量可以从链上加总，并与外部口径对上</h2>
+<p>masterchain 余额 2,464,048,218 + basechain 余额 2,782,868,376 = <strong>5,246,916,594 GRAM</strong>，<br />
+CoinGecko 报的总供应量 <strong>5,247,067,410</strong>，<strong>差 0.0029%</strong>。</p>
+<p>⚠️ <strong>但这不是协议定义的总供应量。</strong> 协议的那个在 <code>McStateExtra.global_balance</code> 里，<br />
+<strong>本报告已尝试读取并失败</strong>（它在 ShardState 而非 Block，两个公开 API 都不提供）。<br />
+本报告的加总<strong>不含在途消息价值与 <code>total_validator_fees</code></strong>，<br />
+<strong>因此 0.0029% 是经验吻合，不是对等式的证明。</strong></p>
+<h2 id="s-6-btc-gram">6. 八月：BTC 最好的八月，GRAM 反而跌了</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BTC 八月</td>
+<td><strong>+24.95%</strong>（2017 年以来最好的八月）</td>
+</tr>
+<tr>
+<td>GRAM 的 beta</td>
+<td>0.967 → <strong>预期 +24.13%</strong></td>
+</tr>
+<tr>
+<td>GRAM 实际</td>
+<td><strong>−1.35%</strong></td>
+</tr>
+<tr>
+<td><strong>特质残差</strong></td>
+<td><strong>−25.48 个百分点</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>在 2026 年 8 月的十二个资产里（BTC 为基准，本身无残差），GRAM 的残差是最负的</strong><br />
+（口径统一为 CoinGecko 的 −27.78pp，次之是 DOT −19.09、ADA −17.83；<br />
+上表的 −25.48pp 是币安口径，两者不可混用）。<br />
+⚠️ <strong>不要用 R² 论证这件事</strong>——GRAM 的 R² 是 29.2%，它的字面含义是「70.8% 的波动不由 BTC 解释」。</p>
+<h2 id="s-7">7. 谁在承担，谁在收取</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>年化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总供应量增长</td>
+<td><strong>+3.97%</strong></td>
+</tr>
+<tr>
+<td>质押者名义收益（实测）</td>
+<td><strong>13.29% – 17.72%</strong></td>
+</tr>
+<tr>
+<td><strong>未质押者份额变化</strong></td>
+<td><strong>−3.97%</strong></td>
+</tr>
+<tr>
+<td><strong>质押者份额变化</strong></td>
+<td><strong>+9.18%（Tonstakers）至 +13.22%（TF 池）</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Elector 合约锁着流通量的 48.0%（13.38 亿 GRAM），另外 52.0% 承担全部稀释。</strong></p>
+<p>年化安全预算约 <strong>$2.865 亿</strong>，占市值 <strong>7.59%</strong>。</p>
+<h2 id="s-8-37">8. 八月的链上协议变更（37 个参数逐项比对）</h2>
+<p><strong>31 项未变。真正的变更三次</strong>（时点用二分法收敛到小时）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点（UTC）</th>
+<th>参数</th>
+<th>变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08-04 21:00</td>
+<td><code>config 30</code></td>
+<td>62 → 72 字节</td>
+</tr>
+<tr>
+<td><strong>2026-08-20 01:00</strong></td>
+<td><strong><code>config 31</code></strong></td>
+<td><strong>304 → 344 字节：新增 1 个基础合约</strong></td>
+</tr>
+<tr>
+<td>2026-08-20 01:00</td>
+<td><code>config 29</code></td>
+<td>同时变更</td>
+</tr>
+<tr>
+<td>2026-08-28 09:00</td>
+<td><code>config 30</code></td>
+<td>72 → 96 字节</td>
+</tr>
+</tbody>
+</table></div>
+<p>新增的那个合约 <code>9234809b…</code> 是白名单 9 个里<strong>唯一在八月才出现的</strong>（首笔交易 2026-08-18 10:47），<br />
+<strong>08-20 00:59 收到一组激活消息，一分钟后被写入 <code>config 31</code></strong>——获得「免 gas/存储费 + 可改公共库」的特权。</p>
+<p><strong>TON 官方文档确实有一个 <code>config -123</code> 槽位，用途是「Telegram 原生 Gram 钱包的合约字节码」。</strong><br />
+⚠️ <strong>但本报告读不到它的值</strong>（toncenter 拒绝负数索引、tonapi 只返回非负键），<br />
+<strong>因此无法证明 <code>9234809b…</code> 与 Telegram 钱包有关。</strong></p>
+<h2 id="s-9">9. 网络使用</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>八月 basechain 交易</td>
+<td>约 <strong>1.059 亿笔</strong>，95% 区间 <strong>[7,461 万, 1.371 亿]</strong></td>
+</tr>
+<tr>
+<td>日均</td>
+<td>约 341 万笔（官网称 330 万/24h，<strong>差 3%</strong> ✅）</td>
+</tr>
+<tr>
+<td><strong>USD₮ on TON</strong></td>
+<td><strong>14.30 亿枚，342 万持有人</strong> ✅ 一手</td>
+</tr>
+<tr>
+<td>验证者</td>
+<td><strong>390 个</strong>，前 10 名仅占质押 <strong>3.99%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-10-3-5">10. 如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li><strong>TON 的发行 = 每块奖励 × 出块速率。2026-04-09 <code>target_rate</code> 从默认 2,400 ms 改成 400 ms，<br />
+   每块奖励没动，于是年化发行从 0.687% 变成 3.972%。</strong></li>
+<li><strong>它走了配置变更的治理程序</strong>（<code>config 11</code>：验证者按质押加权 3/4 多数投票），<br />
+<strong>但没有走货币政策的讨论程序</strong>——官方文档把两个参数分别写清楚了，从不把它们相乘。<br />
+   ⚠️ 本报告<strong>未能取到那次变更的提案与投票记录</strong>（配置合约只存活跃提案）。</li>
+<li><strong>八月 BTC 涨 24.95%，GRAM 跌 1.35%，特质残差 −25.48pp，是十二个资产里最负的。</strong></li>
+<li><strong>稀释由未质押的 52% 承担，收益归质押的 48%</strong>——按「年增发 × 未参与比例」口径为 <strong>2.06%/年</strong>，<br />
+   在 GRAM / DOT / ADA / ETH 四个可比 PoS 资产里最高（DOT 1.53%），<strong>但不是数量级差异，也不做跨机制排名</strong>。</li>
+<li><strong>⚠️ 市场没有把发行量跳升当坏消息</strong>：提速后一周 GRAM/BTC 比价 <strong>+9.80%</strong>、一个月 <strong>+80.62%</strong>。<br />
+<strong>因此「发行量 ×5.85」是一条已发生、定价状态不明的事实，不是一条前瞻利空。</strong><br />
+   而本期最重要的基本面变量（2026-08-31 Telegram 原生钱包推送）<strong>本报告没能一手确认</strong>。</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>gram_research_report_202608.md</code>。<br />
+本期登记的可证伪论点见 <code>thesis_scorecard.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>

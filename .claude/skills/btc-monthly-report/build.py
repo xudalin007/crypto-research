@@ -50,6 +50,8 @@ PROFILES = {
                 accent='#ecb244', badge='ⓩ Zcash'),
     'ckb': dict(symbol='▣', name='CKB / Nervos', short='CKB',
                 accent='#3cc68a', badge='▣ Nervos'),
+    'gram': dict(symbol='◇', name='GRAM / TON', short='GRAM',
+                 accent='#0098ea', badge='◇ TON'),
 }
 
 
