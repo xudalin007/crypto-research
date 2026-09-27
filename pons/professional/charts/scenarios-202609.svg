@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 330" width="100%" role="img" aria-label="四档收入情景：12 个月价格参考区间与主观概率">
+<style>.t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}</style>
+<rect width="620" height="330" fill="none"/><text x="0" y="16" class="t">四档收入情景：12 个月价格参考区间与主观概率</text><text x="0" y="34" class="s">区间 = 月收入 × 回购比例 60–80% × 12 × PUMP 真实回购倍数 ÷ 流通量；以回购持续为条件，见第 9 章</text>
+<line x1="110" y1="62" x2="110" y2="270" class="ax"/><text x="110" y="287" class="l" text-anchor="middle">$0.00</text>
+<line x1="250" y1="62" x2="250" y2="270" class="ax"/><text x="250" y="287" class="l" text-anchor="middle">$0.50</text>
+<line x1="390" y1="62" x2="390" y2="270" class="ax"/><text x="390" y="287" class="l" text-anchor="middle">$1.00</text>
+<line x1="530" y1="62" x2="530" y2="270" class="ax"/><text x="530" y="287" class="l" text-anchor="middle">$1.50</text>
+<line x1="281" y1="62" x2="281" y2="270" stroke="#57534e" stroke-width="1.5" stroke-dasharray="4 3"/><text x="286" y="58" class="l">现价 $0.61</text>
+<text x="96" y="91" class="v" text-anchor="end">回升</text><text x="96" y="105" class="l" text-anchor="end">主观概率 10%</text>
+<rect x="270" y="76" width="246" height="24" rx="4" fill="#2a78d6"/>
+<text x="525" y="92" class="v" style="paint-order:stroke;stroke:#fff;stroke-width:5px">$0.57 – $1.45</text>
+<text x="96" y="141" class="v" text-anchor="end">现状延续</text><text x="96" y="155" class="l" text-anchor="end">主观概率 25%</text>
+<rect x="183" y="126" width="140" height="24" rx="4" fill="#2a78d6"/>
+<text x="332" y="142" class="v" style="paint-order:stroke;stroke:#fff;stroke-width:5px">$0.26 – $0.76</text>
+<text x="96" y="191" class="v" text-anchor="end">下滑后企稳</text><text x="96" y="205" class="l" text-anchor="end">主观概率 45%</text>
+<rect x="135" y="176" width="104" height="24" rx="4" fill="#2a78d6"/>
+<text x="248" y="192" class="v" style="paint-order:stroke;stroke:#fff;stroke-width:5px">$0.09 – $0.46</text>
+<text x="96" y="241" class="v" text-anchor="end">退潮</text><text x="96" y="255" class="l" text-anchor="end">主观概率 20%</text>
+<rect x="113" y="226" width="31" height="24" rx="4" fill="#2a78d6"/>
+<text x="153" y="242" class="v" style="paint-order:stroke;stroke:#fff;stroke-width:5px">$0.01 – $0.12</text>
+<text x="0" y="322" class="s">作者的基准预期落在「下滑后企稳」：隐含 $0.18–$0.46，低于现价。回购中止不在四档之内，另列为叠加风险。</text></svg>

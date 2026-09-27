@@ -1,0 +1,2270 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>PONS / Pons 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#1a2740;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">◐ PONS 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>◐ PONS 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-pons">1. PONS 是什么</a>
+<a href="#2-11">2. 发展阶段划分</a>
+<a href="#3-pons">3. PONS 当前现状</a>
+<a href="#4">4. 价值捕获</a>
+<a href="#5">5. 平台经济</a>
+<a href="#6">6. 核心价值逻辑</a>
+<a href="#7">7. 与其他资产的比较</a>
+<a href="#8">8. 未来关键变量</a>
+<a href="#9">9. 估值</a>
+<a href="#10">10. 投资与风险启示</a>
+<a href="#11_1">11. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-pons">一、PONS 是什么</a>
+<a href="#s-11">二、11 周四阶段</a>
+<a href="#s-_1">三、本期最重要的一张表</a>
+<a href="#s-3165">四、「31.65% 已销毁」要拆开看</a>
+<a href="#s-_2">五、回购</a>
+<a href="#s-_3">六、收入质量</a>
+<a href="#s-30">七、成交量</a>
+<a href="#s-pump">八、估值</a>
+<a href="#s-12">九、四档收入情景</a>
+<a href="#s-_4">十、接下来看什么</a>
+<a href="#s-3-5">十一、如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>◐ PONS / Pons<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">◐ Pons</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="pons-pons">PONS / Pons 完整调研与分析报告</h1>
+<blockquote>
+<p><strong>版本</strong>：2026 年 9 月（首期）<br />
+<strong>完成日期</strong>：2026-09-27<br />
+<strong>数据截止</strong>：2026-09-27。<strong>9 月尚未闭合</strong>，本期覆盖 9/1–9/27；收入类日度数据截至 9/26（最后完整日）。<br />
+<strong>本系列第十四个资产</strong>（BTC / SOL / ADA / ETH / BNB / HYPE / UNI / TRX / XIN / DOT / ZEC / CKB / GRAM / <strong>PONS</strong>）</p>
+<p><strong>本版更新要点（首期）</strong>：</p>
+<ol>
+<li><strong>PONS 是一个发射台（launchpad）的代币，而且它自己就是在这个发射台上发行的。</strong><br />
+   2026-07-13 在 Robinhood Chain 上一笔交易铸造 10 亿枚、全部注入流动性池，无团队分配、无解锁表。<br />
+   上线约 11 周，从历史最低价 $0.00331678 涨到 $0.6098，约 184 倍。</li>
+<li><strong>本期最重要的发现：收入与价格在 9 月初之后脱钩——收入周均跌了约 80%，价格从 9/6 收盘跌了 33%。</strong><br />
+   协议周日均收入从 9/1–9/7 的 <strong>$146.5 万</strong>跌到 9/22–9/26 的 <strong>$29.7 万</strong>（–79.8%；单日峰值口径 –87.8%）；<br />
+   价格从 9/6 收盘 $0.9146 跌到 9/27 的 $0.6147（–32.8%；距盘中高点 –37.2%）。两者都在跌，<strong>收入跌得快得多</strong>。</li>
+<li><strong>「31.65% 的供应已被销毁」这个数字需要拆开看。</strong> 由协议回购驱动的只有 <strong>20.19%</strong>；<br />
+<strong>7.16%</strong> 是创建者钱包在上线头三天自己烧掉的，<strong>4.29%</strong> 来自 89 个其他地址。<br />
+   而且全部销毁量的 74% 发生在 7 月、币价只有几美分时——按当日价格只值 $364 万。</li>
+<li><strong>回购是一项由单把私钥控制、可升级、没有文件约束 V2 收入的政策，不是持有人的权利。</strong><br />
+   V1 文档写「协议手续费的 80%」用于回购；V2 文档对 PONS 回购只字未提——而 V2 贡献了 79% 的累计收入。<br />
+<strong>「是否低于承诺」取决于 80% 覆盖哪个分母</strong>：只算 V1 收入，实际回购是承诺的 3.44 倍；算全部收入，实际是 58.9%。<br />
+   回购合约的升级权限已用模拟调用确认<strong>只在一个普通钱包手里</strong>。已读的 4 份官方文件均未赋予持有人权利；第 5 份（MiCA 白皮书）未能读取。</li>
+<li><strong>估值结论在审查后翻转</strong>：初稿以「PUMP 倍数 3.0–6.6 倍」判定现价「不贵不便宜」，但那个区间是用 PUMP <strong>当前</strong>市值除以<strong>历史</strong>收入得到的假想值。<br />
+   改用 PUMP 各月月末的真实市值后，PUMP 的收入倍数只有 <strong>1.91–2.54 倍</strong>（近 30 天 3.28 倍），<br />
+<strong>按收入口径 PONS（3.85–4.56 倍）比 PUMP 的每一个真实观测都贵</strong>；按回购口径，是否落在区间内取决于集中回购能否持续（见 9.3）。</li>
+<li><strong>三个数据源的成交量差了约 30 倍，已用链上 Swap 事件解决。</strong><br />
+   HoodScan 只统计了发行池（$74.28 万/日），链上 5 个 V3 类池的真实成交约 <strong>$1,503 万/日</strong>；<br />
+   发行池里 JIT 套利者加入的流动性是真实成交的 <strong>182 倍</strong>。</li>
+<li><strong>9 月 16 日 FOMC 加息 25 基点至 3.75%–4.00%</strong>（三年来首次）。<br />
+<strong>9 月 29 日 Robinhood Chain 的 gas 补贴到期</strong>（多家媒体一致，未找到官方原文）。</li>
+</ol>
+<hr />
+<p><strong>利益冲突声明</strong>：作者未持有 PONS，与 Pons Labs, LLC、Robinhood 及 Robinhood Chain 生态项目<br />
+无雇佣、顾问或投资关系。本报告的链上数据全部由作者通过 Robinhood Chain 公开 RPC 节点直接读取，<br />
+收入数据取自 DefiLlama 公开 API，价格取自 CoinGecko API。</p>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。PONS 上线不足三个月，是本系列迄今历史最短、波动最大的资产。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PONS 是什么</strong></td>
+<td>Robinhood Chain 上 Pons 发射台的代币。发射台按交易收取 1% 手续费（V1），V1 文档写明协议手续费的 80% 用于回购销毁 PONS。<strong>已读 4/5 份官方文件均未赋予持有人对收入的权利</strong>，回购是运营方的自主政策</td>
+</tr>
+<tr>
+<td><strong>价格位置</strong></td>
+<td>$0.6098，市值 $4.17 亿（CoinGecko 第 126 位）。距 9/5 盘中高点 $0.971034 回撤 <strong>37.2%</strong>，距 9/6 收盘 <strong>–32.8%</strong>；8 月 <strong>+891.3%</strong>，9 月至今 <strong>+89.1%</strong></td>
+</tr>
+<tr>
+<td><strong>本期最重要的事实</strong></td>
+<td><strong>收入与价格脱钩</strong>：收入周均从 9 月第一周跌去约 80%，价格从 9/6 收盘跌去 33%。按收入口径，PONS 市值约为当前年化收入的 <strong>3.85–4.56 倍</strong>，<strong>高于 PUMP 各月真实倍数（1.91–2.54 倍）和近 30 天（3.28 倍）</strong>——<strong>按收入口径，PONS 比 PUMP 贵</strong></td>
+</tr>
+<tr>
+<td><strong>价值捕获</strong></td>
+<td>协议回购 2.019 亿枚（<strong>20.19%</strong> 的供应，按当日价 <strong>$1,971 万</strong>）。回购/收入累计 <strong>58.9%</strong>（含 8 月手动期的 26.8%）；9/2 自动化以来 <strong>72.1%</strong>。<strong>平日回购额几乎恒定（约 $12–14 万/日），比例高低主要由几笔集中回购决定</strong></td>
+</tr>
+<tr>
+<td><strong>控制权</strong></td>
+<td>回购由一个可升级代理合约执行；模拟调用确认<strong>只有 owner——单签钱包 <code>0xda4b…3968</code>——能升级它</strong>；该钱包本身只持有 22 万枚 PONS（0.03%）</td>
+</tr>
+<tr>
+<td><strong>收入质量</strong></td>
+<td>95.9% 的 9 月收入来自 V2（其他代币的交易），PONS 自身交易的自我循环部分约 <strong>3.0%</strong>——<strong>收入不是 PONS 自己的交易产生的</strong>；但付费者是否独立、交易能否持续，<strong>本期未验证</strong></td>
+</tr>
+<tr>
+<td><strong>近期最大变量</strong></td>
+<td>① 9/29 gas 补贴到期；② 收入下滑是否止步；③ 回购政策是否被维持</td>
+</tr>
+<tr>
+<td><strong>估值立场</strong></td>
+<td><strong>以回购为估值基础</strong>（持有人只通过回购连接到收入）。现价要求月回购 <strong>$470 万–$835 万</strong>（PUMP 真实回购倍数 7.39–4.16 倍）；PONS 平日回购节奏约 <strong>$390 万/月，低于区间</strong>，计入集中回购后约 $660–764 万/月，落在区间内。<strong>本报告的基准预期（10 月收入 $400–600 万）下，隐含价格 $0.18–$0.46，低于现价</strong></td>
+</tr>
+<tr>
+<td><strong>风险等级</strong></td>
+<td><strong>极高</strong>。年化波动率 392%（BTC 41%），与 BTC 的 R² 仅 0.046——BTC 只能解释约 5% 的日波动，<strong>真正的驱动因素本期未能识别</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-pons">1. PONS 是什么</h2>
+<h3 id="11">1.1 一个发射台的代币，发射在自己的发射台上</h3>
+<p>Pons 是一个<strong>代币发射台（launchpad）</strong>：任何人付 0.0005 ETH，就能在 Robinhood Chain 上一键发行一个固定供应的代币，<br />
+合约自动把全部供应注入 Uniswap 流动性池并锁定流动性，此后所有买卖都在池子里进行。</p>
+<p>发射台的收入来自<strong>这些代币的交易手续费</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>版本</th>
+<th>机制</th>
+<th>手续费</th>
+<th>分配（按官方文档）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>V1</strong>（2026-07 起）</td>
+<td>发行即进 Uniswap V3 池，流动性锁定</td>
+<td>每笔交易 1%</td>
+<td>创建者 70% / 协议 30%（区块 8,991,118 之后；此前 90/10）</td>
+</tr>
+<tr>
+<td><strong>V2</strong>（DefiLlama 数据自 2026-08-04 起）</td>
+<td>先走联合曲线（bonding curve），达标后「毕业」进入 Uniswap V4</td>
+<td>曲线费 + 钩子费，上限合计 20%</td>
+<td>协议先取一份，创建者可选开启回购，余下归创建者</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>PONS 代币本身就是 V1 发射台上发行的一个代币</strong>（发行池 <code>0x10cc…26ba</code>，WETH/PONS，1% 费率）。<br />
+V1 文档写明：<strong>协议手续费的 80% 以 TWAP（时间加权均价，即分批小额执行）方式回购并销毁 PONS，20% 用于基础设施与团队运营。</strong></p>
+<blockquote>
+<p><strong>注意 V2 与 PONS 的关系</strong>：V2 的官方 README 明确写着 V2 的回购是<strong>针对被发行的代币</strong>、<br />
+买回后<strong>进入五年线性释放的金库，「不销毁」</strong>。<strong>V2 的协议收入流向 PONS 回购这一步，<br />
+没有写在任何合约或文档里</strong>——链上数据显示它确实在发生（见 4.3），但它是运营方的决定。</p>
+</blockquote>
+<h3 id="12-robinhood-chain">1.2 Robinhood Chain：它生长的土壤</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>事实</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主网上线</td>
+<td><strong>2026-07-01</strong>（Robinhood 官方与 Arbitrum 公告，多源一致）</td>
+</tr>
+<tr>
+<td>技术栈</td>
+<td>Arbitrum Orbit，以太坊二层，gas 以 ETH 支付，出块约 100 毫秒</td>
+</tr>
+<tr>
+<td>定位</td>
+<td>为代币化股票而建</td>
+</tr>
+<tr>
+<td>实际主力</td>
+<td><strong>memecoin</strong>。媒体援引数据称 memecoin 占早期成交的 93.5%（未取得原始数据）</td>
+</tr>
+<tr>
+<td>全链 TVL</td>
+<td><strong>$10.3 亿</strong>（DefiLlama <code>v2/chains</code>，2026-09-27）</td>
+</tr>
+<tr>
+<td>全链 30 天费用</td>
+<td><strong>$3.75 亿</strong>（DefiLlama，含所有协议）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Pons 在主网上线 12 天后（7/13）出现。</strong> 它的全部历史都发生在这条链的第一个季度里——<br />
+这意味着 Pons 的任何增长数据，都同时混杂着「这条链本身在冷启动」的效应。</p>
+<h3 id="13">1.3 发行：一笔交易铸造全部供应</h3>
+<p>从 Robinhood Chain 公开 RPC 直读合约 <code>0x39dbed3a2bd333467115de45665cc57f813c4571</code>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>事实</th>
+<th>链上读数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>totalSupply()</code></td>
+<td><strong>1,000,000,000</strong>（不可升级：非代理合约、无 <code>owner()</code>）</td>
+</tr>
+<tr>
+<td>铸造</td>
+<td>区块 <strong>8,963,150</strong>（<strong>2026-07-13 20:42 UTC</strong>），唯一一笔 mint，10 亿枚铸给发射台工厂 <code>0x0c37…77a4</code></td>
+</tr>
+<tr>
+<td>同一分钟</td>
+<td>工厂把 10 亿枚全部转入发行池 <code>0x10cc…26ba</code></td>
+</tr>
+<tr>
+<td>发行池当前余额</td>
+<td>376 万枚（初始池已卖出 99.6%）</td>
+</tr>
+<tr>
+<td><strong>同一区块的首购</strong></td>
+<td><code>0xf89f…892a</code> 买入 <strong>68,057,245</strong> 枚（6.81%）——文档规定发行后头两个区块<strong>只允许创建者首购</strong>成交，<strong>因此该钱包就是创建者</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>无团队分配、无投资人、无解锁表。</strong> Tokenomist 的记录是「一笔 Launchpool 分配，发行时全部释放」（经 unlocks.app 转述）。</p>
+<p><strong>所有权的来历</strong>：创始人 Ozzy（@MEADGod）2026-07-13 公开称：<br />
+「$PONS 的部署者把所有权和手续费转给了我的钱包，今后我会用 WETH 手续费回购 $PONS，并销毁我收到的所有 $PONS 手续费。」<br />
+（引自 unlocks.app 2026-09-08 文章；<strong>原推文未直接打开</strong>。）创始人为化名。</p>
+<h3 id="14-xin">1.4 三个默认是否成立（XIN 期检查）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th>结果</th>
+<th>依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>流通量已知吗</strong></td>
+<td>✅ <strong>已知且可链上复算</strong></td>
+<td>10 亿 − 黑洞地址 316,509,721 = <strong>683,490,279</strong>；CoinGecko 报 683,553,425，<strong>相差 0.009%</strong></td>
+</tr>
+<tr>
+<td><strong>价格是可用的测量吗</strong></td>
+<td>⚠️ <strong>可用但噪声极大</strong></td>
+<td>日成交额中位数 <strong>$1,449 万</strong>（足够）；但上线以来 73 个交易日里有 <strong>26 天</strong>单日涨跌超过 20%；链上流动性约 <strong>$430 万</strong>，约为市值的 1%</td>
+</tr>
+<tr>
+<td><strong>代币持有人是剩余索取权人吗</strong></td>
+<td>❌ <strong>没有找到赋权文件</strong></td>
+<td>已读 4 份官方文件：V1 文档、V2 文档、GitHub README、使用条款（Pons Labs, LLC，适用特拉华州法律，2026-07-16 生效）——<strong>均未赋予 PONS 持有人任何权利</strong>，也<strong>没有一份把回购写成义务</strong>。第 5 份 MiCA 白皮书页面的正文由客户端动态加载，<strong>未能读取</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>这里有一个本期差点犯的错误</strong>：链上 <code>totalSupply()</code> 恒为 10 亿，而 CoinGecko 显示 6.84 亿，<br />
+我一度认为 CoinGecko 少算了 3.16 亿、FDV 应为 $6.23 亿。<strong>这是错的</strong>——该合约的销毁方式是<br />
+<strong>转入黑洞地址 <code>0x…dEaD</code></strong>，而不是调用 <code>burn</code> 减少总量，所以 <code>totalSupply()</code> 永远不变。<br />
+<strong>CoinGecko 的口径是对的。</strong> 这是 DOT 期「供应量要链上对账」的检查，方向反过来的一次：<br />
+<strong>链上直读的字段也需要理解它的语义才能用。</strong></p>
+</blockquote>
+<hr />
+<h2 id="2-11">2. 发展阶段划分（11 周，四阶段）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>价格（日收盘）</th>
+<th>协议月收入</th>
+<th>标志事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>一、公平发行与创建者自烧</strong></td>
+<td>7/13–7/31</td>
+<td>$0.0113 → $0.0414（7/17 盘中最低 $0.00331678）</td>
+<td>7 月 $405 万</td>
+<td>7/13 发行；创建者钱包 7/13–7/15 烧掉 7,165 万枚；<strong>7 月销毁 2.34 亿枚，占全部销毁 74%</strong></td>
+</tr>
+<tr>
+<td><strong>二、沉寂</strong></td>
+<td>8/1–8/23</td>
+<td>在 $0.017–$0.047 之间震荡</td>
+<td>—</td>
+<td>8/4 起 V2 开始产生收入；8 月回购/收入仅 <strong>26.8%</strong></td>
+</tr>
+<tr>
+<td><strong>三、爆发</strong></td>
+<td>8/24–9/5</td>
+<td><strong>$0.0619 → $0.7042（9/5 收盘），13 天约 11.4 倍</strong>；次日 9/6 收盘 $0.9146 为日收盘最高</td>
+<td>9/5 单日收入峰值 <strong>$206 万</strong></td>
+<td>9/2 Binance Alpha 上线；9/2 回购改由合约 <code>0x5795</code> 自动执行；9/5 盘中历史高点 $0.971034</td>
+</tr>
+<tr>
+<td><strong>四、收入回落、价格回撤</strong></td>
+<td>9/6–9/27</td>
+<td><strong>$0.9146 → $0.6147，–32.8%</strong>；后三周在 $0.55–$0.71 震荡</td>
+<td>周日均收入 $106 万 → $47 万 → $30 万</td>
+<td>9/15 OKX 现货上线；9/16 FOMC 加息；收入跌去 87.8%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>一个区分</strong>：阶段三的上涨与收入上涨<strong>同步</strong>（见第 5 章的图），阶段四则<strong>脱钩</strong>。<br />
+本报告不把阶段三解读为「收入驱动」——两者同时受 Robinhood Chain 链上 memecoin 热度这一共同因素推动，<br />
+<strong>本期没有能区分「收入推高价格」与「共同因素同时推高两者」的检验</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="3-pons">3. PONS 当前现状</h2>
+<h3 id="31">3.1 价格与市场</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值（2026-09-27）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格</td>
+<td><strong>$0.6098</strong></td>
+</tr>
+<tr>
+<td>市值</td>
+<td><strong>$4.17 亿</strong>（CoinGecko 第 126 位）</td>
+</tr>
+<tr>
+<td>流通量</td>
+<td>683,490,279（链上复算）</td>
+</tr>
+<tr>
+<td>历史高点</td>
+<td>$0.971034（2026-09-05 盘中）；日收盘最高 $0.9146（9/6）</td>
+</tr>
+<tr>
+<td>历史低点</td>
+<td>$0.00331678（2026-07-17）</td>
+</tr>
+<tr>
+<td>8 月</td>
+<td>8/1 收盘 $0.0328 → 8/31 <strong>$0.3251</strong>，<strong>+891.3%</strong></td>
+</tr>
+<tr>
+<td>9 月至今</td>
+<td>8/31 $0.3251 → 9/27 <strong>$0.6147</strong>，<strong>+89.1%</strong></td>
+</tr>
+<tr>
+<td>24 小时成交（CoinGecko 总计）</td>
+<td>约 $4,008 万</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>交易场所</strong>（CoinGecko tickers API，一手）：链上有 Ramses V3、Uniswap V3/V4、GIGA V3 等 Robinhood Chain DEX；<br />
+中心化交易所有 <strong>Gate、OKX、Bybit、MEXC、Kraken、Crypto.com、BTSE、BloFin、KCEX</strong>。<br />
+Binance 目前只在 <strong>Binance Alpha</strong>（9/2 上线，经 Binance Wallet 官方 X 帖子的搜索摘要转述），<strong>未上 Binance 现货</strong>。</p>
+<h3 id="32-30">3.2 成交量：三个数据源差了约 30 倍——链上解析的结果</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>来源</th>
+<th>口径</th>
+<th>PONS 24 小时成交</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HoodScan</td>
+<td>链上 DEX</td>
+<td><strong>$73.65 万</strong></td>
+</tr>
+<tr>
+<td>CoinGecko 列出的 DEX 交易对合计</td>
+<td>链上 DEX</td>
+<td>约 $2,500 万（含 Uniswap V4）</td>
+</tr>
+<tr>
+<td>CoinGecko 总计</td>
+<td>含中心化所</td>
+<td>约 $4,008 万</td>
+</tr>
+</tbody>
+</table></div>
+<p>同样是链上 DEX，前两者差了约 30 倍。本报告<strong>不在两个二手口径之间挑一个</strong>，而是直接解析最近 24 小时<br />
+（区块 73,109,126–73,964,829）内 5 个 V3 类池子的 <strong>Swap 事件</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>池子</th>
+<th>交易对 / 费率</th>
+<th>Swap 笔数</th>
+<th>真实成交（PONS）</th>
+<th>≈ 美元（×$0.62）</th>
+<th>同期<strong>加入</strong>的流动性（PONS）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0x10cc</code>（<strong>发行池</strong>）</td>
+<td>WETH / 1%</td>
+<td>1,744</td>
+<td>1,197,988</td>
+<td><strong>$74.28 万</strong></td>
+<td><strong>217,870,117</strong></td>
+</tr>
+<tr>
+<td><code>0xed50</code></td>
+<td>WETH / 0.3%</td>
+<td>6,150</td>
+<td>7,331,695</td>
+<td>$454.57 万</td>
+<td>3,420,313</td>
+</tr>
+<tr>
+<td><code>0xf2a0</code></td>
+<td>USDG / 动态</td>
+<td>12,249</td>
+<td>12,462,163</td>
+<td>$772.65 万</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>0x2f39</code></td>
+<td>USDG / 动态</td>
+<td>3,943</td>
+<td>3,118,669</td>
+<td>$193.36 万</td>
+<td>1,287,547</td>
+</tr>
+<tr>
+<td><code>0x25c9</code></td>
+<td>WETH / 1%</td>
+<td>335</td>
+<td>130,816</td>
+<td>$8.11 万</td>
+<td>10,039,234</td>
+</tr>
+<tr>
+<td><strong>合计（不含 Uniswap V4）</strong></td>
+<td></td>
+<td>24,421</td>
+<td><strong>24,241,332</strong></td>
+<td><strong>约 $1,503 万</strong></td>
+<td>232,617,211</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>三个结论：</strong></p>
+<ol>
+<li><strong>HoodScan 的 $73.65 万与发行池单池的 $74.28 万几乎一致</strong>——它只统计了发行池。</li>
+<li><strong>链上真实成交约 $1,503 万/日</strong>（不含 V4），与 CoinGecko 的 DEX 合计同一量级。</li>
+<li><strong>发行池里被加入的流动性是真实成交的 182 倍</strong>（217,870,117 ÷ 1,197,988）。<br />
+   同一笔交易内先加入、再撤出流动性的次数：发行池 117 次、<code>0x25c9</code> 592 次——这是 <strong>JIT（即时流动性）</strong>：<br />
+   套利者在大额买单成交前一刻挤进池子、吃掉手续费、随即撤出（见 4.6）。<br />
+<strong>因此按转账量统计 PONS 的「流量」会被严重注水</strong>：同一 24 小时内 PONS 共发生 141,519 笔转账、<br />
+   转账总量 8.03 亿枚，超过流通量本身。</li>
+</ol>
+<h3 id="33">3.3 风险特征</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>PONS</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年化波动率（7/18–9/27 日收益）</td>
+<td><strong>392%</strong></td>
+<td>41%</td>
+</tr>
+<tr>
+<td>年化波动率（9 月）</td>
+<td>266%</td>
+<td>44%</td>
+</tr>
+<tr>
+<td>对 BTC 的 beta（7/18–9/27，n=71）</td>
+<td>2.08</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>R²</strong></td>
+<td><strong>0.046</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>9 月 beta / R²（n=26）</td>
+<td>1.98 / 0.108</td>
+<td>—</td>
+</tr>
+<tr>
+<td>单日 |涨跌| &gt; 20% 的天数</td>
+<td>26 / 73</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>按 XIN 期规则，beta 必须和 R² 一起读</strong>：2.08 的 beta 看起来像「BTC 的两倍杠杆」，但 R² 只有 0.046——<br />
+<strong>BTC 只能解释 PONS 约 5% 的日波动</strong>。9 月 BTC 上涨 9.2%，对 PONS 的解释力依然很弱。</p>
+<p><strong>但按 CKB 期规则，低 R² 不能反过来证明驱动因素是什么</strong>——它只说明「不是 BTC」，<br />
+<strong>不能据此推断是「收入」「回购」或「上币」在驱动</strong>，本期没有做能区分这些的检验。</p>
+<h3 id="34">3.4 宏观环境</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9/16 FOMC</strong></td>
+<td><strong>加息 25 基点至 3.75%–4.00%，12:0 全票</strong>，三年多来首次加息；点阵图中位数指向年内再加一次（CNBC、Schwab、KPMG 等多源一致，未打开美联储原文）</td>
+</tr>
+<tr>
+<td>BTC</td>
+<td>8/31 $77,658 → 9/27 $84,836，<strong>+9.2%</strong></td>
+</tr>
+<tr>
+<td>ETH</td>
+<td>$2,706.8（Robinhood Chain 的 gas 与 Pons 大部分手续费以 ETH 计价）</td>
+</tr>
+</tbody>
+</table></div>
+<p>宏观对 PONS 的直接解释力很弱（R² 0.046），但<strong>利率上升对投机性 memecoin 交易热度的压制</strong><br />
+是影响 Pons 收入的一条间接渠道——本期无法量化这条渠道的强度。</p>
+<hr />
+<h2 id="4">4. 价值捕获：承诺的、执行的、可被强制的（本期核心章之一）</h2>
+<h3 id="41-3165">4.1 31.65% 被销毁——但这个数字由最便宜的那段时间主导</h3>
+<p>黑洞地址 <code>0x…dEaD</code> 在区块 73,956,501 时持有 <strong>316,505,371 枚</strong>（10 亿的 <strong>31.65%</strong>），共 19,857 笔转入、92 个来源地址。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th>销毁枚数</th>
+<th>按当日收盘价折美元</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7 月</td>
+<td>234,119,401（占全部销毁 <strong>74%</strong>）</td>
+<td><strong>$364 万</strong></td>
+</tr>
+<tr>
+<td>8 月</td>
+<td>57,081,509</td>
+<td>$231 万</td>
+</tr>
+<tr>
+<td>9 月（至 9/27）</td>
+<td>25,304,461</td>
+<td><strong>$1,645 万</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>以枚数计的「销毁比例」被 7 月币价只有几美分时的销毁主导。</strong> 按美元计，9 月一个月的销毁额是 7 月的 4.5 倍，<br />
+但烧掉的枚数只有 7 月的 11%。<strong>读到「近三分之一供应已销毁」时，应当同时读到「其中四分之三只花了 $364 万」。</strong></p>
+<p><img alt="10 亿枚 PONS 的去向" src="charts/burn-composition-202609.svg" /></p>
+<p>10 亿枚中：<strong>仍在流通 68.35%</strong>（683,494,629 枚，区块 73,956,501 快照），协议回购 20.19%，创建者钱包自烧 7.16%，其他地址约 4,295 万枚（4.29%）。</p>
+<h3 id="42">4.2 销毁的三种来源</h3>
+<p>逐个追踪每个销毁地址的 PONS 从哪里来：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>地址</th>
+<th>销毁枚数</th>
+<th>占 10 亿</th>
+<th>按当日价</th>
+<th>币从哪里来</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>协议回购</strong></td>
+<td><code>0xda4b…3968</code>（EOA，7/13–9/2，1,532 笔）+ <code>0x5795…c324</code>（合约，9/2–9/27，11,855 笔）</td>
+<td>201,909,213</td>
+<td><strong>20.19%</strong></td>
+<td><strong>$1,971 万</strong></td>
+<td><code>0xda4b</code> 转入的 PONS：75.0% 是在发行池的 <strong>1,668 笔买入</strong>（Swap 事件收款人即 <code>0xda4b</code>）；<strong>22.4%（4,031 万枚）来自 <code>0x31ca…54b5</code></strong>——它是发行池流动性头寸的<strong>手续费领取地址</strong>（池子 Collect 事件的收款人，共领走 5,208 万枚 PONS 与 161 ETH），即 <strong>PONS 计价的手续费、收到即烧</strong>（见 5.3）；<code>0x5795</code> 每笔都是「用 WETH 在发行池买入 → 转入黑洞」</td>
+</tr>
+<tr>
+<td><strong>创建者钱包自烧</strong></td>
+<td><code>0xf89f…892a</code>（EIP-7702 委托钱包，3 笔）</td>
+<td>71,648,377</td>
+<td><strong>7.16%</strong></td>
+<td>$81 万</td>
+<td>其中 <strong>6,806 万枚是铸造区块内的首购</strong>，其余 359 万枚为后续买入</td>
+</tr>
+<tr>
+<td><strong>其他地址</strong></td>
+<td>89 个地址</td>
+<td>42,947,782</td>
+<td><strong>4.29%</strong></td>
+<td>$187 万</td>
+<td>49 个地址只烧过一次</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>只有第一类与「协议收入回馈持有人」有关。</strong> 创建者自烧是一次性的承诺性动作，不代表收入；<br />
+其他地址的销毁是个人行为。<strong>把 31.65% 全部归功于「收入驱动的通缩」是错的</strong>——对应收入的是 20.19%。</p>
+<p><strong>交叉核对</strong>：DefiLlama 记录的 PONS 回购（<code>dailyHoldersRevenue</code>）累计 <strong>$1,936 万</strong>，<br />
+本报告按日收盘价折算的协议回购 <strong>$1,971 万</strong>，相差 1.8%（来自日线价格粒度）。<br />
+<strong>按 CKB 期规则说明</strong>：两者读的是同一批链上事件，一致只证明本报告的解析没有算错，<strong>不构成对回购事实的独立验证</strong>——<br />
+回购本身是链上事实，不需要独立验证。</p>
+<h3 id="43">4.3 回购的资金链：链上看到的</h3>
+<p>解码 <code>0x5795</code> 的交易，每一笔回购都是同一个模式：</p>
+<div class="codehilite"><pre><span></span><code>收取各发行代币池的协议手续费（代币 + WETH）
+  → 把收到的发行代币换成 WETH
+  → 用 WETH 在 PONS 发行池 0x10cc 买入 PONS
+  → 转入 0x…dEaD
+</code></pre></div>
+
+<p>合约存储里记着每次买入的切片大小 <strong>0.5 ETH</strong>——与交易里观察到的每笔买入量一致，这就是文档说的 TWAP。</p>
+<p><strong>这说明 V2 的收入确实在流向 PONS 回购</strong>：9 月 V1 协议收入只有 $92 万，而 9 月回购 $1,571 万——<br />
+<strong>回购额是 V1 收入的 17 倍，只能来自 V2</strong>。但如 1.1 所述，<strong>没有任何文件规定这一步</strong>。</p>
+<h3 id="44-80">4.4 承诺 80%：分母是什么，决定了「高于」还是「低于」</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>7 月</th>
+<th>8 月</th>
+<th>9 月（至 9/27）</th>
+<th>累计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>协议收入（V1+V2，DefiLlama）</td>
+<td>$404.9 万</td>
+<td>$619.0 万</td>
+<td>$2,264.7 万</td>
+<td><strong>$3,288.6 万</strong></td>
+</tr>
+<tr>
+<td>其中 V1 收入</td>
+<td>$404.9 万</td>
+<td>$205.7 万</td>
+<td>$92.5 万</td>
+<td><strong>$703.1 万</strong></td>
+</tr>
+<tr>
+<td>其中 V2 占比</td>
+<td>0%</td>
+<td>66.8%</td>
+<td><strong>95.9%</strong></td>
+<td>78.6%</td>
+</tr>
+<tr>
+<td>PONS 回购（DefiLlama）</td>
+<td>$199.2 万</td>
+<td>$165.7 万</td>
+<td>$1,570.7 万</td>
+<td><strong>$1,935.7 万</strong></td>
+</tr>
+<tr>
+<td><strong>回购 / 全部收入</strong></td>
+<td>49.2%</td>
+<td><strong>26.8%</strong></td>
+<td>69.4%</td>
+<td><strong>58.9%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>V1 文档的原话</strong>（docs.ponsfamily.com，本期直接抓取）：手动回购「via an automated TWAP using <strong>80% of protocol fees</strong>」<br />
+（用协议手续费的 80% 以 TWAP 方式执行），并注明「This amount is <strong>not immutable yet</strong>」（这个比例尚未不可变）。<br />
+<strong>V2 文档对 PONS 回购只字未提</strong>——V2 的「buyback」指的是被发行代币的回购，买回后进五年释放金库、不销毁。</p>
+<p>所以「80%」有两种读法，<strong>两种都说得通，本报告不替运营方选</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>读法</th>
+<th>应回购</th>
+<th>实际 $1,935.7 万是它的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>只覆盖 V1 收入</strong>（文档写在 V1 页面，V2 文档未提）</td>
+<td>$703.1 万 × 80% = <strong>$562.5 万</strong></td>
+<td><strong>3.44 倍</strong></td>
+</tr>
+<tr>
+<td><strong>覆盖全部协议收入</strong>（「protocol fees」按字面泛指）</td>
+<td>$3,288.6 万 × 80% = <strong>$2,630.9 万</strong></td>
+<td><strong>73.6%</strong>（少 $695.2 万）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>能确定的只有</strong>：V2 收入流向 PONS 回购这一步<strong>没有任何文件约定</strong>（见 4.3），回购强度是运营方的选择。<br />
+回购合约 <code>0x5795</code> 当前还持有 <strong>286.01 ETH</strong>（约 $77 万）待用；另有一个 2/3 多签 <code>0x29b7…15bc</code> 持有 <strong>742.61 ETH</strong>（约 $201 万），<br />
+<strong>但这个多签的角色本期未能确认</strong>，它只是出现在回购合约的存储槽 0 里。</p>
+<p><strong>比例本身也不稳定——而且主要由几笔集中回购决定：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>窗口</th>
+<th>回购 / 收入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>累计（含 8 月手动期）</td>
+<td>58.9%</td>
+</tr>
+<tr>
+<td>9/2 自动化以来</td>
+<td>72.1%</td>
+</tr>
+<tr>
+<td>9/8–9/26</td>
+<td>87.5%</td>
+</tr>
+<tr>
+<td>9/23–9/26（无集中回购的 4 天）</td>
+<td><strong>45.8%</strong>（日回购 $12.2 万–$13.2 万）</td>
+</tr>
+</tbody>
+</table></div>
+<p>9/19–9/26 里，除 9/22 一天回购 $75.0 万外，<strong>每天的回购额都落在 $12.2 万–$14.0 万之间，几乎不随当天收入变化</strong>。<br />
+这更像一个<strong>按固定节奏执行的 TWAP</strong>，外加不定期的集中回购，而不是「每天按收入的固定比例」。<br />
+（这是从日度数据推断的执行形态，<strong>合约的节奏参数本期未解码，未验证</strong>。）</p>
+<p><strong>准确的说法是</strong>：<strong>回购强度由运营方的节奏和集中回购的时点决定；按不同窗口可以是 46% 也可以是 87.5%；没有机制把它固定在任何比例上。</strong></p>
+<h3 id="45">4.5 一把私钥：回购由谁控制</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>事实</th>
+<th>链上读数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>回购合约 <code>0x5795</code> 的类型</td>
+<td><strong>ERC-1967 代理合约</strong>，自身 130 字节，逻辑在 <code>0x1c65…1748</code>（22,999 字节）；逻辑合约含 <code>upgradeToAndCall</code> 与 <code>proxiableUUID</code>（返回 ERC-1967 实现槽）→ <strong>UUPS 模式</strong>（升级函数写在逻辑合约里）</td>
+</tr>
+<tr>
+<td><strong>谁能升级（模拟调用）</strong></td>
+<td>以 <code>0xda4b</code> 身份 <code>eth_call</code> 模拟 <code>upgradeToAndCall(当前逻辑地址, 空)</code>：<strong>成功</strong>；以任意其他地址模拟：<strong>回滚</strong>，错误码 <code>0x118cdaa7</code> = <code>OwnableUnauthorizedAccount</code>（「调用者不是授权账户」）→ <strong>升级权限由 <code>owner()</code> 独占</strong></td>
+</tr>
+<tr>
+<td><code>owner()</code></td>
+<td><strong><code>0xda4b…3968</code>——一个普通钱包（EOA）</strong></td>
+</tr>
+<tr>
+<td>该钱包的历史</td>
+<td>7/13–9/2 手动执行了全部 1.786 亿枚回购销毁；9/2 起为回购合约的 owner；按创始人 7/13 的公开表述，它应是接收 PONS 发行池手续费的钱包</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>含义</strong>：回购的执行逻辑可以被一把私钥<strong>整体替换</strong>（升级即可改参数或停止）。持有人没有任何机制阻止这件事。</p>
+<blockquote>
+<p><strong>但承重的不是这把私钥，而是资金路由</strong>：即使回购合约不可升级，运营方照样可以不再把 V2 收入送进来（4.3）——<br />
+迁入多签或时间锁之后，持有人拿到的<strong>依然是承诺而不是权利</strong>。单私钥额外带来的是一个<strong>独立的安全风险</strong>：<br />
+私钥一旦被盗，攻击者可以升级合约、转走合约里的 286 ETH，并改写回购逻辑。</p>
+<p><strong>这不是一个关于「会不会被滥用」的判断</strong>——本报告没有任何证据表明运营方有此意图，<br />
+截至 9/27 回购每天都在执行。<strong>这是一个关于「持有人拿到的是什么」的描述</strong>：<br />
+他们拿到的是<strong>一个人正在履行的公开承诺</strong>，而不是<strong>一项可以被执行的权利</strong>。<br />
+两者在运营方意愿不变时表现完全相同，<strong>区别只在意愿改变的那一天才显现。</strong></p>
+</blockquote>
+<h3 id="46-jit">4.6 回购被套利者包裹（JIT）</h3>
+<p>回购合约<strong>任何人都可以触发</strong>。链上观察到套利者（如 <code>0x9f76…</code> 通过 <code>0x147c…</code>、<code>0x2737…</code> 通过 <code>0x0c63…</code>）<br />
+把「向发行池加入大额流动性 → 触发多笔回购买入 → 撤出流动性并收走手续费」打包在同一笔交易里执行。</p>
+<p><strong>经济影响很小</strong>：回购买入的 1% 池费本应部分归入锁定的流动性头寸（创建者与协议），<br />
+现在被 JIT 流动性分走一部分，<strong>损耗上限约为回购额的 1%</strong>。<br />
+<strong>但它对「成交量」统计的影响很大</strong>——见 3.2，发行池加入的流动性是真实成交的 182 倍。</p>
+<h3 id="47-pons">4.7 团队几乎不持有 PONS</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>钱包</th>
+<th>PONS 余额</th>
+<th>占流通量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0xda4b</code>（回购 owner / 创始人手续费钱包）</td>
+<td>221,540</td>
+<td>0.03%</td>
+</tr>
+<tr>
+<td><code>0xf89f</code>（创建者）</td>
+<td>126,835</td>
+<td>0.02%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>已识别的两个团队钱包合计持有约 0.05% 的流通量。</strong>（团队可能有其他钱包，<strong>本期无法识别，未验证</strong>。）</p>
+<p><strong>这对持有人意味着两面</strong>：好的一面是没有团队解锁抛压；<br />
+坏的一面是<strong>团队的经济利益主要来自手续费（创建者分成 + 协议 20%），而不是 PONS 的价格</strong>——<br />
+回购是团队把自己的一部分收入让渡给持有人，<strong>这种让渡在团队自身利益上没有强制理由</strong>。</p>
+<h3 id="48">4.8 这件事的性质</h3>
+<p><strong>本报告能说的：</strong><br />
+- PONS 的回购是<strong>真实发生、链上可复现</strong>的，资金来自其他代币的交易手续费；<br />
+- 回购强度<strong>没有被任何文件约束到 V2 收入上</strong>，按窗口在 46%–87.5% 之间，<strong>由运营方的节奏决定</strong>；<br />
+- 回购的存续<strong>依赖运营方的意愿</strong>，升级权限在单个私钥手里；已读 4/5 份官方文件均未赋予持有人权利。</p>
+<p><strong>本报告不能说的：</strong><br />
+- 不能说「回购会停止」——没有任何证据；<br />
+- 不能说「运营方违约」——没有约束性文件；<br />
+- 不能说「PONS 的价值由回购决定」——3.3 已说明本期无法区分价格驱动因素。</p>
+<hr />
+<h2 id="5">5. 平台经济：收入的峰值与衰减（本期核心章之二）</h2>
+<h3 id="51-pons-robinhood-chain">5.1 Pons 是 Robinhood Chain 上费用最高的协议</h3>
+<p>DefiLlama <code>overview/fees/robinhood chain</code>（30 天，2026-09-27）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>协议</th>
+<th>类别</th>
+<th>24 小时费用</th>
+<th>30 天费用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pons V2</strong></td>
+<td>发射台</td>
+<td>$154.4 万</td>
+<td><strong>$1.407 亿</strong></td>
+</tr>
+<tr>
+<td>Uniswap V4</td>
+<td>DEX</td>
+<td>$141.9 万</td>
+<td>$1.091 亿</td>
+</tr>
+<tr>
+<td>Robinhood Chain（链本身）</td>
+<td>链</td>
+<td>$9.1 万</td>
+<td>$3,952 万</td>
+</tr>
+<tr>
+<td>Uniswap V3</td>
+<td>DEX</td>
+<td>$24.3 万</td>
+<td>$3,569 万</td>
+</tr>
+<tr>
+<td>GMGN</td>
+<td>交易应用</td>
+<td>$18.6 万</td>
+<td>$3,112 万</td>
+</tr>
+<tr>
+<td><strong>Pons V1</strong></td>
+<td>发射台</td>
+<td>$3.6 万</td>
+<td>$624 万</td>
+</tr>
+<tr>
+<td>NOXA Fun</td>
+<td>发射台</td>
+<td>$1.7 万</td>
+<td>$316 万</td>
+</tr>
+<tr>
+<td>o1 Launchpad</td>
+<td>发射台</td>
+<td>$0.2 万</td>
+<td>$313 万</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Pons V1+V2 占 Robinhood Chain 全链 30 天费用的 39.2%。</strong> 在同链发射台里没有接近的对手。</p>
+<blockquote>
+<p>⚠️ <strong>本报告在调研中曾错误地写下「Pons 不在 DefiLlama 上」</strong>——第一次查询只打印了前 25 条，<br />
+Pons 排在后面。<strong>这是「否定性结论必须检查搜索范围」的教训的一次险些复现</strong>，已在成稿前更正。</p>
+</blockquote>
+<h3 id="52-878">5.2 收入从峰值下跌 87.8%</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>周（不重叠）</th>
+<th>用户支付的费用</th>
+<th>协议收入</th>
+<th>日均协议收入</th>
+<th>较上周</th>
+<th>回购</th>
+<th>回购/收入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/1–9/7</td>
+<td>$5,470 万</td>
+<td>$1,025.8 万</td>
+<td><strong>$146.5 万</strong></td>
+<td>—</td>
+<td>$506.7 万</td>
+<td>49%</td>
+</tr>
+<tr>
+<td>9/8–9/14</td>
+<td>$4,507 万</td>
+<td>$741.5 万</td>
+<td>$105.9 万</td>
+<td><strong>–28%</strong></td>
+<td>$685.5 万</td>
+<td>92%</td>
+</tr>
+<tr>
+<td>9/15–9/21</td>
+<td>$2,107 万</td>
+<td>$326.6 万</td>
+<td>$46.7 万</td>
+<td><strong>–56%</strong></td>
+<td>$252.9 万</td>
+<td>77%</td>
+</tr>
+<tr>
+<td>9/22–9/26（5 天）</td>
+<td>$1,013 万</td>
+<td>$148.3 万</td>
+<td><strong>$29.7 万</strong></td>
+<td><strong>–36%</strong></td>
+<td>$125.6 万</td>
+<td>85%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>单日协议收入峰值是 9/5 的 $2,056,973，9/24–9/26 日均 $250,251——跌去 87.8%。</strong></p>
+<p><img alt="协议日收入 vs PONS 价格" src="charts/divergence-202609.svg" /></p>
+<p>以 9/5 = 100 指数化：9/26 <strong>收入指数 12.1，价格指数 93.9</strong>。价格指数最高 129.9（9/6）。</p>
+<blockquote>
+<p>⚠️ <strong>基期选择会放大观感</strong>：9/5 是收入的单日峰值，却不是价格的峰值（价格次日才见顶）。<br />
+按各自的峰值算，收入周均 –80%（单日 –87.8%），价格 –33% 到 –37%。<strong>脱钩依然明显，但价格不是「没动」。</strong></p>
+</blockquote>
+<p><strong>两条线在 8/24–9/5 几乎同步上升，9/5 之后分道扬镳。</strong> 这是本报告估值章（第 9 章）要回答的核心问题：<br />
+<strong>收入跌去约八成而价格只跌三成，有三种解释</strong>：① 市场在看穿短期波动；② 价格还没跟上；③ <strong>PONS 的价格本来就不由收入定价</strong>——<br />
+而是由上币（9/2 Binance Alpha、9/15 OKX）、渠道和链上热度决定。<strong>本期数据无法区分这三者。</strong><br />
+第三种如果成立，会削弱第 9 章整个收入/回购型估值框架——这一点在 9.6 列为弱点。</p>
+<h3 id="53-pons">5.3 收入的构成：不是 PONS 自己的交易产生的</h3>
+<p><strong>三个担心，前两个基本不成立，第三个本期无法回答：</strong></p>
+<ol>
+<li><strong>「PONS 交易产生的手续费又去买 PONS」的自我循环有多大？</strong><br />
+   PONS 发行池 24 小时真实成交 $74.28 万 × 1% ≈ <strong>$7,428/日</strong>，相对当前协议日收入约 $25 万，<br />
+<strong>当前最多约 3.0%</strong>（且这 1% 里还有一部分被 JIT 流动性分走）。<strong>当前的回购资金主体来自其他代币的交易。</strong><br />
+<strong>7 月不是这样</strong>：见 4.2，<code>0xda4b</code> 销毁的 1.786 亿枚里有 <strong>4,031 万枚（22.6%）是直接从 PONS 发行池收取的 PONS 计价手续费</strong>，<br />
+   收到即烧——这部分就是 PONS 自己的交易产生的。按到账当日价约 <strong>$65 万</strong>（7/13–7/14 到账的 2,990 万枚按 7/15 价格近似），<br />
+   只占累计回购美元额的约 3%，但<strong>占协议回购枚数的约五分之一</strong>。</li>
+<li><strong>收入是否以 PONS 计价（TRX/BNB/HYPE 期的退化陷阱）？</strong> 当前不是。V2 的费用<strong>始终以报价资产（ETH 或 USDG）收取</strong>，<br />
+   9/2 以后回购合约把收到的发行代币换成 WETH 再买 PONS。<strong>收入以美元/ETH 计，不含 PONS 价格。</strong>（例外即上一条的 7 月实物手续费。）</li>
+<li><strong>付费者是不是独立的、交易能不能持续？</strong> <strong>本期未验证。</strong> 排除「PONS 自己的交易」只排除了一条很窄的自循环；<br />
+   V2 其他代币的手续费仍可能来自同一批地址的反复交易、创建者刷量（1:1 成本，见记分卡门槛 11 说明）或回购激励。<br />
+   要回答它需要对 V2 前几大费用来源代币做地址聚类、资金来源和留存分析，本期没有做。<br />
+<strong>所以本报告只说「收入不是 PONS 自己的交易产生的」，不说「收入是外生的」。</strong></li>
+</ol>
+<h3 id="54-929gas">5.4 9/29：gas 补贴到期</h3>
+<p>多家媒体（KuCoin、crypto.news、cryptoticker、cryptonews）一致报道：Robinhood 随主网推出的 <strong>90 天 gas 补贴在 2026-09-29 到期</strong>，<br />
+8 月中旬起已从单笔 $5.00 下调到 $0.50。<strong>未找到 Robinhood 官方原文，按硬规则标为多源一致但非一手。</strong></p>
+<p><strong>一个关键限定</strong>：补贴只覆盖<strong>通过 Robinhood Wallet 执行的交易</strong>，不是全链。<br />
+<strong>Pons 用户中有多少比例走 Robinhood Wallet，本报告没有数据</strong>，因此<strong>无法估计补贴到期对 Pons 收入的冲击幅度</strong>。</p>
+<p><strong>时间顺序值得注意</strong>：Pons 收入的 87.8% 下跌<strong>发生在补贴到期之前</strong>。补贴到期是「还没发生的下行风险」，<br />
+不是「已发生下跌的解释」——<strong>已发生的下跌需要另外的解释，本期没有找到能区分原因的数据。</strong></p>
+<h3 id="55-pumpfun">5.5 可比：Pump.fun 的收入曲线</h3>
+<p>Pump.fun（Solana 上最大的发射台，代币 PUMP）是最直接的参照：同一业务、同样用收入回购、历史长得多。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>PUMP</th>
+<th>PONS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市值</td>
+<td>$21.06 亿</td>
+<td>$4.17 亿</td>
+</tr>
+<tr>
+<td>近 30 天协议收入</td>
+<td>$5,271.7 万</td>
+<td>$2,537.1 万（8/28–9/26）</td>
+</tr>
+<tr>
+<td>近 30 天回购</td>
+<td>$2,341.6 万（占收入 44%）</td>
+<td>$1,594.0 万（占收入 63%）</td>
+</tr>
+<tr>
+<td>协议月收入（2026 年）</td>
+<td>6 月 $2,662 万、7 月 $3,371 万、8 月 $5,811 万</td>
+<td>7 月 $405 万、8 月 $619 万、9 月 $2,265 万</td>
+</tr>
+<tr>
+<td>可用的收入历史</td>
+<td>18 个月以上</td>
+<td><strong>11 周</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>PUMP 2026 年的协议月收入</strong>（DefiLlama）：5 月 $3,439 万、6 月 $2,662 万、7 月 $3,371 万、8 月 $5,811 万、9 月（至 9/27）$4,347 万——<br />
+<strong>在 $2,600 万–$5,800 万之间起伏，没有归零。</strong> 这是本报告「收入回落后企稳」情景的唯一历史参照，<br />
+但要注意两点：<strong>它是 N=1</strong>，而且 PUMP 是这类发射台里<strong>活下来的那一个</strong>（幸存者偏差）；<br />
+这几个月展示的是「起伏」，<strong>并没有给出「峰值后跌多少才企稳」的量化锚点</strong>。</p>
+<hr />
+<h2 id="6">6. 核心价值逻辑</h2>
+<h3 id="61">6.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>逻辑</th>
+<th>强度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>收入真实，且不是 PONS 自己的交易产生的</strong></td>
+<td>★★★☆☆</td>
+<td>上线 11 周累计协议收入 $3,289 万；9 月 95.9% 来自 V2（其他代币交易）；当前自我循环约 3.0%。<strong>付费者独立性未验证</strong>（见 5.3 第 3 条），故不给四星</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>同链份额领先</strong></td>
+<td>★★★★☆</td>
+<td>占 Robinhood Chain 30 天全链费用 39.2%，同链发射台无接近对手</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>回购真实执行</strong></td>
+<td>★★★☆☆</td>
+<td>协议回购 2.019 亿枚（20.19%），链上可逐笔复现。<strong>但见空头 2、3</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>无解锁抛压</strong></td>
+<td>★★★☆☆</td>
+<td>公平发行、无团队分配；已识别团队钱包只持有约 0.05%</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>按回购口径，估值可以落在 PUMP 的真实区间内</strong></td>
+<td>★★☆☆☆</td>
+<td>计入集中回购时，PONS 市值/年化回购 4.55–5.24 倍，PUMP 各月真实值 4.16–5.44 倍、当前 7.39 倍。<strong>但只看平日回购节奏则为 8.91 倍，高于 PUMP 所有观测</strong>（见 9.3）</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>交易场所快速扩张</strong></td>
+<td>★★☆☆☆</td>
+<td>11 周内上了 Gate、OKX、Bybit、MEXC、Kraken 等及 Binance Alpha</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="62">6.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>逻辑</th>
+<th>强度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>收入三周跌去 87.8%，且仍在下降</strong></td>
+<td>★★★★★</td>
+<td>周日均 $146.5 万 → $29.7 万；最近一周 –36%。<strong>现价需要的是止跌，而趋势还没给出止跌信号</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>回购是自主政策，不是权利</strong></td>
+<td>★★★★☆</td>
+<td>已读 4/5 份官方文件均未赋权；V2 收入流向回购无文件约定；强度按窗口 46%–87.5%，文档自称「尚未不可变」</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>单私钥的密钥安全风险</strong></td>
+<td>★★★☆☆</td>
+<td>模拟调用确认升级权限由 EOA <code>owner()</code> 独占；私钥被盗即可升级合约、转走 286 ETH。<strong>与空头 2 不同</strong>：空头 2 是意愿风险，这条是安全风险</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>按收入口径，比 PUMP 所有真实观测都贵</strong></td>
+<td>★★★☆☆</td>
+<td>市值/当前年化收入 3.85–4.56 倍，PUMP 6–8 月月末 1.91–2.54 倍、近 30 天 3.28 倍（见 9.3）</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>依附于一条三个月大的链的一个热点</strong></td>
+<td>★★★★☆</td>
+<td>Robinhood Chain 上线 88 天；成交主力是 memecoin；9/29 gas 补贴到期</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>历史极短，统计推断能力极弱</strong></td>
+<td>★★★☆☆</td>
+<td>11 周数据，所有倍数、比率都可能只是一个冷启动季度的特征</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>流动性薄、波动极大</strong></td>
+<td>★★★☆☆</td>
+<td>链上流动性约 $430 万（市值 1%）；年化波动 392%</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>化名团队 + V2 未经审计</strong></td>
+<td>★★★☆☆</td>
+<td>V2 文档原话：「没有任何审计已完成，请把 V2 视为未经审计」</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>按 ZEC 期「声明了偏向，就要在评分里执行」</strong>：空头 1 是 ★★★★★，因为它是本期唯一<strong>已发生且仍在持续</strong>的负面事实；<br />
+空头 2 是 ★★★★☆ 而非 ★★★★★，因为它描述的是「持有人拿到的是什么」，<strong>本期没有任何它已造成损失的证据</strong>；<br />
+空头 3 是 ★★★☆☆，因为它是尾部安全风险，发生概率本期无法估计。</p>
+</blockquote>
+<h3 id="63">6.3 传统机构视角</h3>
+<p><strong>本期没有找到任何传统金融机构对 PONS 本身的覆盖。</strong> 能找到的都是对 Robinhood（HOOD）与 Robinhood Chain 的评论：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>机构</th>
+<th>观点（经媒体转述，未打开原报告）</th>
+<th>与 PONS 的关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bernstein</strong></td>
+<td>重申 HOOD 买入评级、目标价 $160；指出 Robinhood Chain 早期成交由 memecoin 主导</td>
+<td>间接：确认 Pons 所在生态的主力是 memecoin</td>
+</tr>
+<tr>
+<td><strong>StoneX</strong>（Mark Palmer）</td>
+<td>Robinhood Chain 增长来自四个因素：品牌、无需许可、<strong>补贴的 gas 费</strong>、memecoin 与代币化股票的飞轮</td>
+<td><strong>直接相关</strong>：把 gas 补贴列为增长驱动之一——而它 9/29 到期</td>
+</tr>
+<tr>
+<td><strong>Morgan Stanley</strong></td>
+<td>上调 HOOD 评级，理由是公司整体产品线增长，<strong>与链无关</strong></td>
+<td>无</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>配平说明</strong>：这些机构评论的对象是 Robinhood 公司，它们看多 HOOD <strong>不等于</strong>看多 PONS。<br />
+StoneX 把 gas 补贴列为驱动因素之一，是本报告找到的唯一一条与 PONS 近期风险直接相关的机构观点。</p>
+<hr />
+<h2 id="7">7. 与其他资产的比较</h2>
+<h3 id="71-pumpfunpump">7.1 与 Pump.fun（PUMP）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>PUMP</th>
+<th>PONS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>业务</td>
+<td>Solana 发射台</td>
+<td>Robinhood Chain 发射台</td>
+</tr>
+<tr>
+<td>市值 / 近 30 天年化收入</td>
+<td>3.28 倍</td>
+<td>1.35 倍（含峰值的 30 天窗口）</td>
+</tr>
+<tr>
+<td>市值 / 年化月收入（<strong>月末真实市值</strong>）</td>
+<td>6 月 1.91 倍、7 月 1.95 倍、8 月 2.54 倍</td>
+<td>—</td>
+</tr>
+<tr>
+<td>市值 / 当前运行速率年化收入</td>
+<td>—</td>
+<td><strong>3.85 倍</strong>（9/22–9/26）/ <strong>4.56 倍</strong>（9/24–9/26）</td>
+</tr>
+<tr>
+<td>回购 / 收入（近 30 天）</td>
+<td>44%</td>
+<td>63%</td>
+</tr>
+<tr>
+<td>市值 / 年化回购</td>
+<td>当前 7.39 倍；6 月 4.16、7 月 4.17、8 月 5.44 倍</td>
+<td>4.55 倍（5 天）/ 5.24 倍（7 天）/ <strong>8.91 倍（3 天，无集中回购）</strong></td>
+</tr>
+<tr>
+<td>收入历史</td>
+<td>18 个月以上</td>
+<td>11 周</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>用哪个窗口、哪个分子，结论都不同</strong>（见 9.2、9.3）。按含峰值的 30 天窗口，PONS 看起来只有 PUMP 倍数的四成；<br />
+按当前运行速率的收入，PONS 比 PUMP 每一个真实观测都贵；按回购，结论取决于是否计入集中回购。</p>
+<h3 id="72-robinhood-chain">7.2 在 Robinhood Chain 发射台中</h3>
+<p>同链发射台 30 天费用：Pons V2 $1.407 亿、Pons V1 $624 万、NOXA Fun $316 万、o1 Launchpad $313 万。<br />
+<strong>Pons 合计是其余发射台之和的 23 倍以上。</strong> Flap sh、clanker 等多链发射台也已部署到 Robinhood Chain，<br />
+但 DefiLlama 未单列它们在该链的费用。</p>
+<h3 id="73-btc">7.3 与 BTC</h3>
+<p>beta 2.08、R² 0.046（见 3.3）。<strong>PONS 与 BTC 的关系弱到不适合用 BTC 做它的对冲或参照。</strong></p>
+<hr />
+<h2 id="8">8. 未来关键变量（催化剂日历）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+<th>可能影响</th>
+<th>方向</th>
+<th>置信度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2026-09-29</strong></td>
+<td><strong>Robinhood Chain gas 补贴到期</strong></td>
+<td>交易成本上升可能压低发射台活跃度；冲击幅度取决于 Pons 用户中 Robinhood Wallet 的占比（<strong>未知</strong>）</td>
+<td>↓</td>
+<td>中（日期多源一致，影响幅度未知）</td>
+</tr>
+<tr>
+<td><strong>10 月</strong></td>
+<td><strong>收入是否止跌、回购是否跟上</strong></td>
+<td>第 9 章的反解门槛：月回购 <strong>$639 万</strong>（PUMP 8 月回购倍数 5.44 倍）；按 80% 比例约等于月收入 $800 万</td>
+<td>决定性</td>
+<td>高（可观测）</td>
+</tr>
+<tr>
+<td>持续</td>
+<td>回购/收入比与回购合约 owner</td>
+<td>回购强度可调；owner 若迁入多签或时间锁，是控制权风险的实质改善</td>
+<td>↑/↓</td>
+<td>中</td>
+</tr>
+<tr>
+<td>待定</td>
+<td><strong>V2 审计报告发布</strong></td>
+<td>V2 贡献 95.9% 的收入却未经审计</td>
+<td>↑</td>
+<td>低（无时间表）</td>
+</tr>
+<tr>
+<td>待定</td>
+<td>更多中心化交易所上市（如 Binance 现货）</td>
+<td>本期<strong>没有任何迹象</strong>，仅列为可能性</td>
+<td>↑</td>
+<td>低</td>
+</tr>
+<tr>
+<td>年内</td>
+<td>美联储是否再次加息</td>
+<td>点阵图指向年内再加一次</td>
+<td>↓</td>
+<td>中</td>
+</tr>
+<tr>
+<td>持续</td>
+<td>Robinhood Chain 代币化股票与 memecoin 的结构变化</td>
+<td>若链上活跃度从 memecoin 转向股票代币，发射台收入可能结构性下降</td>
+<td>↓</td>
+<td>低</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="9">9. 估值：反解与情景</h2>
+<blockquote>
+<p><strong>本章在发布前审查后重写</strong>（见 11.6）。初稿以收入为分子、以一个假想的 PUMP 倍数区间（3.0–6.6 倍）为参照，<br />
+得出「不贵也不便宜」。两处都被推翻：分子应是回购（持有人只通过回购连接到收入，第 4 章），参照应是 PUMP 的<strong>真实</strong>历史倍数。</p>
+</blockquote>
+<h3 id="91-trx">9.1 估值结构的退化检验（TRX 期规则）</h3>
+<p>本章用「稳态月回购 × 12 × 倍数 ÷ 流通量」。<strong>回购额以 ETH 计、换算为美元，不含 PONS 价格</strong>；<br />
+流通量用链上复算的 683,490,279（<strong>不预估未来回购带来的缩减</strong>，按公允价格回购对每枚价值中性）。<br />
+<strong>价格不会在等式两边约掉。</strong> ✅</p>
+<p><strong>为什么用回购而不用收入</strong>：第 4 章的结论是持有人与收入之间唯一的连接是回购——收入里没有进入回购的部分（按窗口 13%–54%），<br />
+持有人一分也拿不到。<strong>用收入做分子，等于把平台的收入当成 PONS 的现金流。</strong> 收入口径保留为对照（9.3 下半）。</p>
+<h3 id="92-xin">9.2 窗口选择决定倍数（XIN 期「查询窗口长度会改变返回值」）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>年化值</th>
+<th>市值 / 年化值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>收入，近 30 天（8/28–9/26，含峰值）</td>
+<td>$3.087 亿</td>
+<td>1.35 倍</td>
+</tr>
+<tr>
+<td>收入，9/22–9/26 日均 × 365</td>
+<td>$1.082 亿</td>
+<td><strong>3.85 倍</strong></td>
+</tr>
+<tr>
+<td>收入，9/24–9/26 日均 × 365</td>
+<td>$0.913 亿</td>
+<td><strong>4.56 倍</strong></td>
+</tr>
+<tr>
+<td><strong>回购，9/20–9/26 日均 × 365</strong>（含 9/22 集中回购）</td>
+<td>$7,957 万</td>
+<td><strong>5.24 倍</strong></td>
+</tr>
+<tr>
+<td><strong>回购，9/22–9/26 日均 × 365</strong>（含 9/22 集中回购）</td>
+<td>$9,168 万</td>
+<td><strong>4.55 倍</strong></td>
+</tr>
+<tr>
+<td><strong>回购，9/24–9/26 日均 × 365</strong>（平日节奏）</td>
+<td>$4,677 万</td>
+<td><strong>8.91 倍</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>同一天，倍数从 1.35 到 8.91——全部来自口径和窗口。</strong> 本报告不采用含峰值的 30 天窗口（CKB 期规则）；<br />
+回购口径下，<strong>是否计入 9/22 那笔 $75 万的集中回购</strong>，让倍数相差近一倍。</p>
+<h3 id="93">9.3 反解：当前价格要求什么</h3>
+<p><strong>参照：PUMP 各月月末的真实倍数</strong>（CoinGecko 月末市值 ÷ DefiLlama 当月协议收入/回购 × 12）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>6 月</th>
+<th>7 月</th>
+<th>8 月</th>
+<th>当前（近 30 天）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PUMP 月末市值</td>
+<td>$6.09 亿</td>
+<td>$7.87 亿</td>
+<td>$17.71 亿</td>
+<td>$21.06 亿</td>
+</tr>
+<tr>
+<td><strong>市值 / 年化回购</strong></td>
+<td><strong>4.16 倍</strong></td>
+<td><strong>4.17 倍</strong></td>
+<td><strong>5.44 倍</strong></td>
+<td><strong>7.39 倍</strong></td>
+</tr>
+<tr>
+<td>市值 / 年化收入</td>
+<td>1.91 倍</td>
+<td>1.95 倍</td>
+<td>2.54 倍</td>
+<td>3.28 倍</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>PONS 现价（市值 $4.1686 亿）要求的稳态月回购：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>若市场给的回购倍数是</th>
+<th>所需月回购</th>
+<th>PONS 当前</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7.39 倍（PUMP 当前）</td>
+<td><strong>$470 万</strong></td>
+<td>平日节奏 <strong>$390 万/月</strong>（9/24–9/26）</td>
+</tr>
+<tr>
+<td>5.44 倍（PUMP 8 月）</td>
+<td><strong>$639 万</strong></td>
+<td>计入集中回购 <strong>$663 万–$764 万/月</strong>（7 天 / 5 天）</td>
+</tr>
+<tr>
+<td>4.16 倍（PUMP 6–7 月）</td>
+<td><strong>$835 万</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>收入口径对照</strong>：按 PUMP 真实收入倍数 3.28 / 2.54 / 1.91 倍，现价要求月收入 <strong>$1,059 万 / $1,368 万 / $1,819 万</strong>；<br />
+PONS 当前运行速率 $761 万–$902 万/月，<strong>低于所有三个要求</strong>。</p>
+<p><strong>结论（两句，不合成一句）：</strong></p>
+<ol>
+<li><strong>按收入口径，PONS 比 PUMP 的每一个真实观测都贵。</strong> 这一条不依赖窗口选择——即使用最有利的 5 天窗口也是 3.85 倍，高于 PUMP 的 3.28 倍。</li>
+<li><strong>按回购口径，现价是否落在 PUMP 区间内，取决于集中回购能否持续。</strong> 只算平日节奏（$390 万/月），低于区间下沿；<br />
+   计入 9/22 那样的集中回购（$663–764 万/月），落在 PUMP 8 月倍数附近。<strong>PONS 回购口径比收入口径便宜，是因为它最近把更高比例的收入送进了回购（63% 对 PUMP 的 44%）——而这个比例是运营方随时可调的。</strong></li>
+</ol>
+<p><strong>本报告的基准预期</strong>：10 月协议收入 <strong>$400 万–$600 万</strong>（延续 9 月后三周的下降但减速），回购比例 60%–80%，<br />
+即月回购 $240 万–$480 万。按 PUMP 6–8 月的回购倍数（4.16–5.44 倍），隐含价格 <strong>$0.18–$0.46，低于现价 25%–71%</strong>。<br />
+<strong>这是作者的判断，不是模型输出</strong>；它已登记为记分卡 P9-5。</p>
+<h3 id="94-12">9.4 四档收入情景（12 个月）</h3>
+<p><strong>推导方式</strong>：价格 = 假设稳态月收入 × 回购比例 × 12 × 假设回购倍数 ÷ 683,490,279。回购比例统一取 60%–80%（9/2 以来 72.1%）。<br />
+四档收入<strong>首尾相接，覆盖 $50 万以上的全部区间</strong>（低于 $50 万并入「退潮」）。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>情景</th>
+<th>稳态月收入</th>
+<th>月回购</th>
+<th>回购倍数</th>
+<th>推出市值</th>
+<th><strong>推出价格</strong></th>
+<th>主观概率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>回升</strong></td>
+<td>≥ $1,000 万（取 $1,000–1,400 万）</td>
+<td>$600–1,120 万</td>
+<td>5.44–7.39 倍（PUMP 8 月至当前）</td>
+<td>$3.92 亿–$9.93 亿</td>
+<td><strong>$0.57–$1.45</strong></td>
+<td><strong>10%</strong></td>
+</tr>
+<tr>
+<td><strong>现状延续</strong></td>
+<td>$600 万–$1,000 万</td>
+<td>$360–800 万</td>
+<td>4.16–5.44 倍（PUMP 6–8 月）</td>
+<td>$1.80 亿–$5.22 亿</td>
+<td><strong>$0.26–$0.76</strong></td>
+<td><strong>25%</strong></td>
+</tr>
+<tr>
+<td><strong>下滑后企稳</strong></td>
+<td>$200 万–$600 万</td>
+<td>$120–480 万</td>
+<td>4.16–5.44 倍</td>
+<td>$0.60 亿–$3.13 亿</td>
+<td><strong>$0.09–$0.46</strong></td>
+<td><strong>45%</strong></td>
+</tr>
+<tr>
+<td><strong>退潮</strong></td>
+<td>$50 万–$200 万</td>
+<td>$30–160 万</td>
+<td>2.0–4.16 倍</td>
+<td>$720 万–$7,990 万</td>
+<td><strong>$0.01–$0.12</strong></td>
+<td><strong>20%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="四档情景：12 个月价格参考区间" src="charts/scenarios-202609.svg" /></p>
+<p>图中横轴刻度 $0.00 / $0.50 / $1.00 / $1.50。现价 <strong>$0.61</strong> 落在「现状延续」区间内、「回升」区间下沿之上。</p>
+<p><strong>这四个百分比是作者的主观概率</strong>（不是校准过的，但作者按它们下注——见记分卡 P9-1、P9-5）。每一档需要什么：</p>
+<ul>
+<li><strong>回升 10%</strong>：收入在 9/29 gas 补贴到期后<strong>反转回升</strong>，日均回到约 $33 万以上（9/22–9/26 为 $29.7 万，9 月第三周为 $46.7 万）。需要一个新的需求来源，本期没有看到。</li>
+<li><strong>现状延续 25%</strong>：收入停在 9/22–9/26 的水平附近（$761–902 万/月）。需要过去三周 –28%、–56%、–36% 的周环比<strong>立即归零</strong>。</li>
+<li><strong>下滑后企稳 45%</strong>：收入从当前运行速率再降约 30%–75% 后停住。<strong>作者的基准预期落在这一档</strong>：它不需要任何反趋势事件，只需要下降减速。</li>
+<li><strong>退潮 20%</strong>：Robinhood Chain 的 memecoin 热度大幅退潮（一条上线 88 天、成交主力是 memecoin 的链），收入回到 V1 单独运行时的量级（7 月 $405 万的一半以下）。<br />
+  倍数下沿 2.0 倍<strong>是判断，不是测量</strong>——PUMP 没有给出过这个收入水平上的倍数。</li>
+</ul>
+<p><strong>不在四档之内的叠加风险：回购中止或大幅下调。</strong> 它与收入是两个维度——任何一档里都可能发生，一旦发生，本框架失去锚<br />
+（持有人与收入之间唯一的连接断开）。<strong>本报告不给它概率</strong>：没有证据表明运营方有此意图（4.5），也没有可比样本。<br />
+上表的概率是<strong>以回购持续为条件</strong>的。</p>
+<h3 id="95-trx">9.5 敏感性（每个输入推到区间两端，TRX 期规则）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月回购 \ 回购倍数</th>
+<th>4.16 倍（下端）</th>
+<th>5.44 倍（上端）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>$240 万</strong>（基准预期下端）</td>
+<td>$0.175</td>
+<td>$0.229</td>
+</tr>
+<tr>
+<td><strong>$800 万</strong>（现状延续上端）</td>
+<td>$0.584</td>
+<td>$0.764</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>月回购从 $240 万推到 $800 万（倍数固定）：价格变为 <strong>3.33 倍</strong>；</li>
+<li>倍数从 4.16 推到 5.44（回购固定）：价格变为 <strong>1.31 倍</strong>。</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>按 TRX 期教训，这两个数字的比值反映的是作者选的扰动宽度之比</strong>，不能据此说「回购比倍数重要 2.5 倍」。<br />
+能说的只是：<strong>在本报告选定的范围内，回购额（也就是收入 × 运营方选择的比例）是价格区间最宽的来源。</strong></p>
+</blockquote>
+<h3 id="96">9.6 这套方法的弱点</h3>
+<ol>
+<li><strong>11 周的历史不足以定义「稳态」。</strong> 所有「稳态月收入」都是在一个冷启动季度上的外推。</li>
+<li><strong>PUMP 是唯一的可比对象，N=1，且是幸存者。</strong> 它的倍数反映的是 Solana 发射台龙头的市场待遇，不一定适用于一条 88 天的链上的发射台。</li>
+<li><strong>没有纳入收入与价格的反身性</strong>：若价格下跌引发 memecoin 热度下降，收入会继续下降——情景之间不独立。</li>
+<li><strong>没有纳入回购带来的流通量缩减</strong>（假设按公允价格回购对价值中性）。</li>
+<li><strong>主观概率没有校准依据</strong>，只给出了每档需要的条件。</li>
+<li><strong>gas 补贴到期的冲击幅度未知</strong>，没有进入任何情景的参数。</li>
+<li><strong>如果 PONS 的价格本来就不由收入/回购定价</strong>（5.2 第三种解释），整个第 9 章的框架失效——价格可以长期停在任何回购倍数上。</li>
+<li><strong>回购比例 60%–80% 是假设</strong>：平日节奏只有约 46%，集中回购的时点无法预测。</li>
+</ol>
+<hr />
+<h2 id="10">10. 投资与风险启示</h2>
+<h3 id="101-pons">10.1 PONS 现在处于什么位置</h3>
+<p><strong>一个收入真实、同链领先的业务，正在经历第一次大幅回落；一个从高点回撤了三成、但按收入口径仍比 PUMP 贵的代币；<br />
+以及两者之间一条由单个私钥维持的连接。</strong></p>
+<h3 id="102">10.2 本报告的立场</h3>
+<p><strong>不给目标价。给出的是：</strong></p>
+<ul>
+<li><strong>观察门槛</strong>：10 月月回购能否达到 <strong>$639 万</strong>（PUMP 8 月回购倍数 5.44 倍对应的现价要求；平日节奏只有约 $390 万）；</li>
+<li><strong>控制权门槛</strong>：回购合约 owner 是否迁入多签或时间锁；</li>
+<li><strong>承诺门槛</strong>：运营方是否把回购比例（对全部收入）写成文件或合约约束。</li>
+</ul>
+<p><strong>本报告的判断</strong>：按收入口径 PONS 比 PUMP 贵；按回购口径，现价需要集中回购成为常态。作者的基准预期（10 月收入 $400–600 万）下，隐含价格 $0.18–$0.46，低于现价。<br />
+<strong>控制权与承诺两个门槛不进入估值模型</strong>——它们改变的是「回购持续」这个条件的可信度，而不是倍数。</p>
+<h3 id="103">10.3 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>当前值</th>
+<th>来源（全部可复算）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>协议日收入（V1+V2）</td>
+<td>9/24–9/26 日均 $250,251</td>
+<td>DefiLlama <code>summary/fees/pons-v1</code>、<code>pons-v2</code>，<code>dataType=dailyRevenue</code></td>
+</tr>
+<tr>
+<td>回购 / 收入；平日回购额</td>
+<td>累计 58.9%，9/2 以来 72.1%；平日约 $12–14 万/日</td>
+<td>DefiLlama <code>dailyHoldersRevenue</code></td>
+</tr>
+<tr>
+<td>黑洞地址余额</td>
+<td>316,509,721</td>
+<td>RPC <code>balanceOf(0x…dEaD)</code></td>
+</tr>
+<tr>
+<td>回购合约 owner 类型</td>
+<td>EOA</td>
+<td>RPC <code>owner()</code> + <code>eth_getCode</code></td>
+</tr>
+<tr>
+<td>回购合约 ETH 余额</td>
+<td>286.01 ETH</td>
+<td>RPC <code>eth_getBalance</code></td>
+</tr>
+<tr>
+<td>Pons 在 Robinhood Chain 费用份额</td>
+<td>39.2%（30 天）</td>
+<td>DefiLlama <code>overview/fees/robinhood chain</code></td>
+</tr>
+<tr>
+<td><strong>不要用</strong>：转账量、发行池流量</td>
+<td>—</td>
+<td>JIT 严重注水（见 3.2）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="104">10.4 风险提醒</h3>
+<ol>
+<li><strong>这是本系列历史最短的资产。</strong> 11 周的数据，任何统计结论都可能只是冷启动的特征。</li>
+<li><strong>持有人拿到的是一个承诺，不是一项权利。</strong> 在运营方意愿不变时两者无差别，差别只在意愿改变的那一天显现。</li>
+<li><strong>价格与收入已经脱钩。</strong> 这可以是市场在看穿短期波动、价格尚未跟上，或价格本来就不由收入定价——本期数据无法区分。</li>
+<li><strong>9/29 之后的数据是第一次「无补贴」的测试。</strong></li>
+</ol>
+<h3 id="105">10.5 本期新增的认知</h3>
+<p><strong>「已销毁 X%」这类以枚数计的指标，会被代币最便宜的那段时间主导。</strong><br />
+PONS 74% 的销毁发生在 7 月、只花了 $364 万。<strong>读销毁比例时要同时读它的美元成本，并按来源拆开</strong>——<br />
+只有协议回购那一部分才与收入回馈有关。</p>
+<hr />
+<h2 id="11_1">11. 附录</h2>
+<h3 id="111">11.1 发展阶段速查</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>起点 → 终点（日收盘）</th>
+<th>核心叙事</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公平发行</td>
+<td>7/13–7/31</td>
+<td>$0.0113 → $0.0414</td>
+<td>创建者自烧、7 月烧掉全部销毁量的 74%</td>
+</tr>
+<tr>
+<td>沉寂</td>
+<td>8/1–8/23</td>
+<td>$0.0328 → $0.0394</td>
+<td>V2 上线，回购/收入仅 26.8%</td>
+</tr>
+<tr>
+<td>爆发</td>
+<td>8/24–9/5</td>
+<td>$0.0619 → $0.7042</td>
+<td>收入与价格同步冲高，Binance Alpha 上线</td>
+</tr>
+<tr>
+<td>脱钩</td>
+<td>9/6–9/27</td>
+<td>$0.9146 → $0.6147</td>
+<td>收入周均跌去约 80%，价格跌去 32.8%</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112-2026-09-27">11.2 关键数据速查（截至 2026-09-27）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格 / 市值</td>
+<td>$0.6098 / $4.17 亿</td>
+</tr>
+<tr>
+<td>流通量</td>
+<td>683,490,279（10 亿 − 黑洞 316,509,721）</td>
+</tr>
+<tr>
+<td>黑洞地址（区块 73,956,501 快照）</td>
+<td>316,505,371（31.65%），19,857 笔，92 个来源</td>
+</tr>
+<tr>
+<td>协议回购 / 创建者自烧 / 其他</td>
+<td>20.19% / 7.16% / 4.29%</td>
+</tr>
+<tr>
+<td>累计协议收入 / 累计回购</td>
+<td>$3,288.6 万 / $1,935.7 万（58.9%）</td>
+</tr>
+<tr>
+<td>收入峰值日 / 最近三日日均</td>
+<td>$2,056,973（9/5）/ $250,251</td>
+</tr>
+<tr>
+<td>回购合约</td>
+<td><code>0x5795…c324</code>，ERC-1967 代理，owner <code>0xda4b…3968</code>（EOA），持 286.01 ETH</td>
+</tr>
+<tr>
+<td>24 小时链上真实成交（5 池，不含 V4）</td>
+<td>24,241,332 枚 ≈ $1,503 万</td>
+</tr>
+<tr>
+<td>与 BTC：beta / R²</td>
+<td>2.08 / 0.046</td>
+</tr>
+<tr>
+<td>年化波动率</td>
+<td>392%</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113">11.3 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th>核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总供应、铸造区块、黑洞余额、各钱包余额</td>
+<td>Robinhood Chain 公开 RPC（<code>rpc.mainnet.chain.robinhood.com</code>）</td>
+<td>✅ <strong>链上直读</strong></td>
+</tr>
+<tr>
+<td>全部 19,857 笔销毁及来源追踪</td>
+<td>同上，<code>eth_getLogs</code></td>
+<td>✅ <strong>链上直读</strong></td>
+</tr>
+<tr>
+<td>回购合约结构、owner、参数、多签</td>
+<td>同上，<code>eth_getCode</code> / <code>eth_getStorageAt</code> / <code>eth_call</code></td>
+<td>✅ <strong>链上直读</strong>；多签角色 ❌ <strong>未确认</strong></td>
+</tr>
+<tr>
+<td>24 小时 Swap / Mint / Burn 事件</td>
+<td>同上</td>
+<td>✅ <strong>链上直读</strong>（Uniswap V4 未解析）</td>
+</tr>
+<tr>
+<td>协议费用 / 收入 / 回购（日度）</td>
+<td>DefiLlama API <code>summary/fees/pons-v1</code>、<code>pons-v2</code></td>
+<td>✅ <strong>一手 API</strong>（适配器读取同一链上事件，见 4.2 说明）</td>
+</tr>
+<tr>
+<td>Robinhood Chain 费用分布、TVL</td>
+<td>DefiLlama API</td>
+<td>✅ <strong>一手 API</strong></td>
+</tr>
+<tr>
+<td>价格、市值、成交、交易场所</td>
+<td>CoinGecko API（MCP）</td>
+<td>✅ <strong>一手 API</strong></td>
+</tr>
+<tr>
+<td>PUMP 市值与收入</td>
+<td>CoinGecko API、DefiLlama API <code>summary/fees/pump</code></td>
+<td>✅ <strong>一手 API</strong></td>
+</tr>
+<tr>
+<td>发射台机制与费用分配</td>
+<td>docs.ponsfamily.com（V1、V2）</td>
+<td>✅ <strong>已抓取官方文档</strong></td>
+</tr>
+<tr>
+<td>合约架构</td>
+<td>GitHub <code>ponsdotdev/pons-labs</code> README</td>
+<td>✅ <strong>已读官方仓库</strong></td>
+</tr>
+<tr>
+<td>使用条款、法律主体</td>
+<td>ponsfamily.com/terms</td>
+<td>✅ <strong>已抓取</strong></td>
+</tr>
+<tr>
+<td><strong>MiCA 白皮书</strong></td>
+<td>ponsfamily.com/mica</td>
+<td>❌ <strong>正文未能读取</strong>（客户端动态加载，前端包中未找到正文）</td>
+</tr>
+<tr>
+<td>创始人 7/13 声明、Tokenomist 分配记录</td>
+<td>unlocks.app（2026-09-08）</td>
+<td>⚠️ <strong>二手转述</strong>，原推文未直接打开</td>
+</tr>
+<tr>
+<td>V1 文档「80% of protocol fees」「not immutable yet」原文</td>
+<td>docs.ponsfamily.com</td>
+<td>✅ <strong>发布前审查阶段直接抓取</strong></td>
+</tr>
+<tr>
+<td>PUMP 6–8 月月末市值</td>
+<td>CoinGecko API <code>coins/pump-fun/market_chart</code></td>
+<td>✅ <strong>一手 API</strong></td>
+</tr>
+<tr>
+<td>回购合约升级权限</td>
+<td>RPC <code>eth_call</code> 模拟 <code>upgradeToAndCall</code>（owner 与非 owner 各一次）</td>
+<td>✅ <strong>链上模拟</strong></td>
+</tr>
+<tr>
+<td>Binance Alpha 9/2 上线、OKX 9/15 上线</td>
+<td>搜索摘要（Binance Wallet X 帖、OKX 公告页）</td>
+<td>⚠️ 搜索摘要，未打开原页；<strong>当前上市场所已由 CoinGecko API 确认</strong></td>
+</tr>
+<tr>
+<td>HoodScan 成交与流动性</td>
+<td>hoodscan.co（Markdown 接口）</td>
+<td>✅ 已抓取；<strong>其口径只含发行池</strong>（见 3.2）</td>
+</tr>
+<tr>
+<td>Robinhood Chain 主网日期、gas 补贴到期</td>
+<td>多家媒体</td>
+<td>⚠️ <strong>多源一致，未找到 Robinhood 官方原文</strong></td>
+</tr>
+<tr>
+<td>9/16 FOMC</td>
+<td>CNBC、Schwab、KPMG 等</td>
+<td>⚠️ 多源一致，未打开美联储原文</td>
+</tr>
+<tr>
+<td>机构观点（Bernstein、StoneX、Morgan Stanley）</td>
+<td>媒体转述</td>
+<td>⚠️ 未打开原报告</td>
+</tr>
+<tr>
+<td><strong>持有人集中度（前 N 大持有人、持有人数）</strong></td>
+<td>—</td>
+<td>❌ <strong>未获取</strong>。已尝试：Blockscout API（Cloudflare 拦截）、robinscan（404）、hoodscan（无持有人接口）、全量 Transfer 重建（到区块 1,450 万时已 42.6 万条、按密度估算需数小时，放弃）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="114">11.4 来源偏向声明</h3>
+<ul>
+<li><strong>收入与回购数据只有一个来源体系</strong>（DefiLlama 的适配器读取链上事件）。本报告用自己的链上解析做了计算核对，<br />
+  但<strong>两者读的是同一批事件</strong>——没有第二个独立来源。</li>
+<li><strong>所有关于 Pons 的叙事性文章都来自加密原生媒体</strong>，结构上偏多；本期没有找到任何传统机构对 PONS 本身的覆盖。</li>
+<li><strong>项目方文档是唯一的机制描述来源</strong>，本报告对其关键承诺（80% 回购）用链上数据做了执行层面的核对。</li>
+<li><strong>持有人集中度缺失</strong>意味着本报告无法评估「少数大户可以制造多大的价格变动」——这是一个已知的盲区。</li>
+</ul>
+<h3 id="115">11.5 成稿前的自我更正记录</h3>
+<p>本期在调研过程中写下过、后被数据推翻的判断，全部列出：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>初始判断</th>
+<th>更正</th>
+<th>发现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>「CoinGecko 少算了 3.16 亿，FDV 应为 $6.23 亿」</td>
+<td><strong>错</strong>。销毁方式是转入黑洞，<code>totalSupply()</code> 不变；CoinGecko 口径正确</td>
+<td>查黑洞地址余额</td>
+</tr>
+<tr>
+<td>2</td>
+<td>「Pons 不在 DefiLlama 上，没有独立收入口径」</td>
+<td><strong>错</strong>。列为 Pons V1 / Pons V2，第一次查询只打印了前 25 条</td>
+<td>查询 Robinhood Chain 链内费用分布</td>
+</tr>
+<tr>
+<td>3</td>
+<td>「PONS 只有 1.4 倍收入、不到 PUMP 一半，市场在定价衰减所以便宜」</td>
+<td><strong>方向反了</strong>。那是含峰值的 30 天窗口；按当前运行速率为 3.85–4.56 倍。<strong>但这条更正本身又错了一半</strong>：初稿接着写「与 PUMP 3.0–6.6 倍同一区间」，而那个区间是假想值——见 11.6</td>
+<td>拉日度收入；发布前审查</td>
+</tr>
+<tr>
+<td>4</td>
+<td>「发行池 JIT 流动性是真实成交的约 290 倍」</td>
+<td><strong>算错了</strong>。217,870,117 ÷ 1,197,988 = <strong>182 倍</strong></td>
+<td>成稿前复算</td>
+</tr>
+<tr>
+<td>5</td>
+<td>「9 月每周收入环比」用了重叠窗口（9/15–21 与 9/20–26 重叠两天）</td>
+<td>改为不重叠的四段</td>
+<td>成稿前复算</td>
+</tr>
+<tr>
+<td>6</td>
+<td>图表脚注「90 个其他地址」</td>
+<td><strong>错</strong>。92 个来源 − 协议 2 − 创建者 1 = <strong>89</strong></td>
+<td>成稿前复算</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="116">11.6 发布前审查记录</h3>
+<p>本期走完四层审查中的两层外部审查：<strong>第二层 <code>_bian</code>（推理审查）</strong> 与 <strong>第三层 Codex（独立模型）</strong>。<br />
+每条发现都由作者对照一手来源复核后才采纳；下表分开记录出处。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>发现</th>
+<th>出处</th>
+<th>作者复核</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>「PUMP 经验倍数 3.0–6.6」不是经验值</strong>：用 PUMP 当前市值除以历史收入，6.6 倍的含义是「假如 PUMP 收入跌回 6 月而价格不动」——正是要在 PONS 身上检验的现象</td>
+<td><code>_bian</code>（F2）</td>
+<td>✅ <strong>成立，且比 <code>_bian</code> 估计的更严重</strong>：用 CoinGecko 月末市值重算，PUMP 真实收入倍数只有 1.91–2.54 倍</td>
+<td>第 9 章重写；「不贵也不便宜」撤回；$526 万门槛撤回</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>估值把平台收入当成 PONS 的现金流</strong>，应以回购为基础</td>
+<td>Codex（#1）；<code>_bian</code>（F10）独立提出同一方向</td>
+<td>✅ 成立：第 4 章自己的结论就是持有人只通过回购连接到收入</td>
+<td>第 9 章改为回购口径，收入口径保留为对照</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>「管理员槽为空 → UUPS」推得太快</strong>，也不能证明 owner 能升级</td>
+<td>Codex（#3）</td>
+<td>✅ 推理缺口成立；<strong>结论经补测后成立</strong>：逻辑合约含 <code>upgradeToAndCall</code>/<code>proxiableUUID</code>，模拟调用 owner 成功、非 owner 回滚（<code>OwnableUnauthorizedAccount</code>）</td>
+<td>4.5 补上模拟调用证据</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>「收入外生」证据不足</strong>：只排除了 PONS 自身交易这一条窄的自循环</td>
+<td>Codex（#2）；<code>_bian</code> 列为措辞分歧</td>
+<td>✅ 成立</td>
+<td>改为「不是 PONS 自己的交易产生的」；付费者独立性列为未验证；多头 1 降为 ★★★</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>80% 承诺的分母前后矛盾</strong>：同一节既用全口径算「少 $695 万」，又以「80% 只写在 V1」为由说不是违约</td>
+<td><code>_bian</code>（F1）</td>
+<td>✅ 成立。直接抓取 V1 文档原文；V1 收入 $703.1 万，按 V1 口径实际回购是承诺的 <strong>3.44 倍</strong>（<code>_bian</code> 估算为 2.76 倍，算术有误）</td>
+<td>4.4 重写为两种读法并列，不替运营方选</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>情景表不穷尽</strong>：当前运行速率与现价都落在情景空档里；悲观情景标签写「或」、数字按「且」算；「通路数」不是概率理由</td>
+<td><code>_bian</code>（F3）</td>
+<td>✅ 成立</td>
+<td>改为首尾相接的四档收入情景；回购中止作为不计权重的叠加风险单列</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>「价格只跌约 6% / 横盘」锚定在收入的单日峰值</strong></td>
+<td><code>_bian</code>（F4）</td>
+<td>✅ 成立：价格从 9/6 收盘 –32.8%</td>
+<td>卷首、摘要、第 2 章、11.1 改写</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>自我限制「无法区分驱动因素」被摘要和 10.2 的方向性措辞违反</strong>；基准预期只藏在记分卡里</td>
+<td><code>_bian</code>（F5）</td>
+<td>✅ 成立</td>
+<td>基准预期写进 9.3 与 10.2，并登记为 P9-5</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>「看穿 vs 没跟上」是虚假二分</strong>，漏了「价格本来就不由收入定价」</td>
+<td><code>_bian</code>（F6）</td>
+<td>✅ 成立</td>
+<td>5.2、10.4、9.6 改为三种解释</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>「无任何法定权利」超出搜索范围</strong>；空头 2、3、4 是同一事实计三次</td>
+<td><code>_bian</code>（F7）</td>
+<td>✅ 成立</td>
+<td>改为「已读 4/5 份」；空头 3 改写为密钥安全风险，空头 4 并入空头 2</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>「58.9% 低于承诺」被当作当前状态</strong>，最近比例在另一边（9/8 以来 87.5%）</td>
+<td><code>_bian</code>（F8）</td>
+<td>⚠️ <strong>部分成立</strong>：87.5% 复核无误，但作者补查日度数据发现<strong>平日回购几乎恒定、只有约 46%</strong>，高比例来自几笔集中回购</td>
+<td>4.4 改为按窗口列出，并记录集中回购现象</td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>记分卡 P9-1 有灰区、门槛 11 贴反、与 P9-x1 双重标准</strong>；P9-3 构念不同构；P9-4 论点与检验不同构</td>
+<td><code>_bian</code>（F9）</td>
+<td>✅ 成立</td>
+<td>记分卡按单向可操纵规则重写，见记分卡审查记录</td>
+</tr>
+<tr>
+<td>13</td>
+<td><strong>需核实：<code>0xda4b</code> 销毁的币里有多少是 PONS 计价手续费</strong></td>
+<td><code>_bian</code>（需要核实 #1）</td>
+<td>✅ <strong>核实后成立</strong>：4,031 万枚（22.6%）来自发行池手续费领取地址 <code>0x31ca</code>，收到即烧；按美元约 $65 万，占累计回购约 3%</td>
+<td>4.2、5.3 补充</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>分歧</strong>：<code>_bian</code> 认为情景权重若不是概率就应改为排序；作者选择<strong>明写为主观概率并在记分卡上下注</strong>（P9-1、P9-5），而不是去掉百分号。<br />
+Codex 建议「做不到付费者聚类就把收入质量列为未验证」——采纳；Codex 未对情景表、记分卡提出意见。</p>
+<p><strong>本期仍未做</strong>：V2 付费者地址聚类；持有人集中度；MiCA 白皮书正文；回购合约节奏参数解码。</p></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-pons-pons">PONS / Pons 调研分析 — 核心问题与简明总结</h1>
+<blockquote>
+<p>配套 <code>pons_research_report_202609.md</code> 使用。Date: 2026-09-27（首期；9 月未闭合，覆盖 9/1–9/27）</p>
+</blockquote>
+<hr />
+<h2 id="s-pons">一、PONS 是什么</h2>
+<p>Robinhood Chain 上 <strong>Pons 发射台</strong>的代币。发射台让任何人一键发行代币，按交易收取 1% 手续费（V1），<br />
+<strong>V1 文档写明协议手续费的 80% 用于回购并销毁 PONS</strong>（V2 文档对 PONS 回购只字未提）。</p>
+<p><strong>PONS 自己就是在这个发射台上发行的</strong>：2026-07-13 一笔交易铸造 10 亿枚、全部进池，无团队分配、无解锁表。</p>
+<p><strong>三个默认</strong>：流通量 ✅ 可链上复算（683,490,279）；价格 ⚠️ 可用但噪声极大；<br />
+<strong>持有人是剩余索取权人 ❌——已读的 4 份官方文件均未赋予任何权利，第 5 份（MiCA 白皮书）未能读取。</strong></p>
+<hr />
+<h2 id="s-11">二、11 周四阶段</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>价格（日收盘）</th>
+<th>标志</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公平发行</td>
+<td>7/13–7/31</td>
+<td>$0.0113 → $0.0414</td>
+<td>创建者自烧；7 月烧掉全部销毁量的 74%</td>
+</tr>
+<tr>
+<td>沉寂</td>
+<td>8/1–8/23</td>
+<td>$0.017–$0.047 震荡</td>
+<td>V2 上线；回购/收入仅 26.8%</td>
+</tr>
+<tr>
+<td>爆发</td>
+<td>8/24–9/5</td>
+<td>$0.0619 → $0.7042</td>
+<td>收入与价格同步冲高；9/2 Binance Alpha</td>
+</tr>
+<tr>
+<td>脱钩</td>
+<td>9/6–9/27</td>
+<td>$0.9146 → $0.6147（–32.8%）</td>
+<td><strong>收入周均跌去约 80%，价格跌去三成</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-_1">三、本期最重要的一张表</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>周</th>
+<th>日均协议收入</th>
+<th>较上周</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/1–9/7</td>
+<td>$146.5 万</td>
+<td>—</td>
+</tr>
+<tr>
+<td>9/8–9/14</td>
+<td>$105.9 万</td>
+<td>–28%</td>
+</tr>
+<tr>
+<td>9/15–9/21</td>
+<td>$46.7 万</td>
+<td>–56%</td>
+</tr>
+<tr>
+<td>9/22–9/26</td>
+<td><strong>$29.7 万</strong></td>
+<td>–36%</td>
+</tr>
+</tbody>
+</table></div>
+<p>以 9/5 = 100：9/26 <strong>收入 12.1、价格 93.9</strong>。但 9/5 是收入的峰值、不是价格的峰值；<strong>按各自的峰值算，收入 –80%，价格 –33% 到 –37%。两者都在跌，收入跌得快得多。</strong></p>
+<hr />
+<h2 id="s-3165">四、「31.65% 已销毁」要拆开看</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>来源</th>
+<th>占 10 亿</th>
+<th>按当日价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>协议回购</strong></td>
+<td><strong>20.19%</strong></td>
+<td>$1,971 万</td>
+</tr>
+<tr>
+<td>创建者钱包自烧</td>
+<td>7.16%</td>
+<td>$81 万</td>
+</tr>
+<tr>
+<td>89 个其他地址</td>
+<td>4.29%</td>
+<td>$187 万</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>只有协议回购与收入回馈有关。</strong> 且全部销毁量的 74% 发生在 7 月、只花了 $364 万——<br />
+<strong>以枚数计的销毁比例被最便宜的那段时间主导。</strong></p>
+<p>另外，协议回购的 2.019 亿枚里有 <strong>4,031 万枚是 7 月直接收取的 PONS 计价手续费、收到即烧</strong>（约 $65 万）——那部分是 PONS 自己的交易产生的。</p>
+<hr />
+<h2 id="s-_2">五、回购：一个承诺，不是一项权利</h2>
+<ul>
+<li><strong>「80%」的分母不清</strong>：只算 V1 收入（$703.1 万），实际回购 $1,935.7 万是承诺的 <strong>3.44 倍</strong>；算全部收入（$3,288.6 万），实际是 <strong>58.9%</strong>。本报告不替运营方选</li>
+<li><strong>比例由节奏决定，不由收入决定</strong>：平日回购几乎恒定（约 $12–14 万/日，约为收入的 46%），比例高低取决于几笔集中回购；9/2 以来 72.1%</li>
+<li><strong>回购合约的升级权限只在一个普通钱包手里</strong>——已用模拟调用确认：owner 调用成功，任何其他地址被拒绝</li>
+<li>已识别的两个团队钱包合计只持有约 <strong>0.05%</strong> 的流通量——团队的利益在手续费，不在币价</li>
+</ul>
+<hr />
+<h2 id="s-_3">六、收入质量：真实，但不能叫「外生」</h2>
+<ul>
+<li><strong>Pons 占 Robinhood Chain 全链 30 天费用的 39.2%</strong>，超过 Uniswap V4，同链发射台无对手</li>
+<li><strong>收入不是 PONS 自己的交易产生的</strong>：当前自我循环部分约 <strong>3.0%</strong></li>
+<li><strong>但付费者是否独立、交易能否持续，本期未验证</strong>——其他代币的手续费仍可能来自同一批地址反复交易或创建者刷量</li>
+<li><strong>收入以 ETH/USDG 计价</strong>，估值时价格不会在等式两边约掉</li>
+</ul>
+<hr />
+<h2 id="s-30">七、成交量：三个数据源差 30 倍，链上解决</h2>
+<ul>
+<li>HoodScan 只统计发行池：$74.28 万/日</li>
+<li>链上 5 个 V3 类池真实成交：<strong>约 $1,503 万/日</strong>（不含 V4）</li>
+<li>发行池里 JIT 套利者加入的流动性是真实成交的 <strong>182 倍</strong>——<strong>不要用转账量或池流量衡量 PONS 的活跃度</strong></li>
+</ul>
+<hr />
+<h2 id="s-pump">八、估值：用回购，不用收入；参照 PUMP 的真实倍数</h2>
+<p><strong>持有人只通过回购连接到收入</strong>，所以估值的分子是回购。参照是 PUMP 各月月末的<strong>真实</strong>倍数：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>PUMP 6 月</th>
+<th>7 月</th>
+<th>8 月</th>
+<th>当前</th>
+<th>PONS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市值 / 年化收入</td>
+<td>1.91</td>
+<td>1.95</td>
+<td>2.54</td>
+<td>3.28</td>
+<td><strong>3.85–4.56</strong></td>
+</tr>
+<tr>
+<td>市值 / 年化回购</td>
+<td>4.16</td>
+<td>4.17</td>
+<td>5.44</td>
+<td>7.39</td>
+<td>4.55–5.24（含集中回购）/ <strong>8.91（平日节奏）</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>按收入口径，PONS 比 PUMP 的每一个真实观测都贵。</strong></li>
+<li><strong>按回购口径</strong>，现价要求月回购 $470 万–$835 万；PONS 平日节奏约 $390 万/月（低于区间），计入集中回购约 $663–764 万/月（区间内）。</li>
+<li><strong>作者的基准预期</strong>：10 月收入 $400–600 万 → 隐含价格 <strong>$0.18–$0.46，低于现价</strong>。</li>
+</ul>
+<blockquote>
+<p>初稿曾写「PUMP 倍数 3.0–6.6 倍，现价不贵也不便宜」——那个区间是用 PUMP <strong>当前</strong>市值除以<strong>历史</strong>收入得到的假想值，审查后撤回。</p>
+</blockquote>
+<hr />
+<h2 id="s-12">九、四档收入情景（12 个月，以回购持续为条件）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>回升</th>
+<th>现状延续</th>
+<th>下滑后企稳</th>
+<th>退潮</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>稳态月收入</td>
+<td>≥ $1,000 万</td>
+<td>$600–1,000 万</td>
+<td>$200–600 万</td>
+<td>$50–200 万</td>
+</tr>
+<tr>
+<td>回购倍数</td>
+<td>5.44–7.39</td>
+<td>4.16–5.44</td>
+<td>4.16–5.44</td>
+<td>2.0–4.16</td>
+</tr>
+<tr>
+<td><strong>价格</strong></td>
+<td><strong>$0.57–$1.45</strong></td>
+<td><strong>$0.26–$0.76</strong></td>
+<td><strong>$0.09–$0.46</strong></td>
+<td><strong>$0.01–$0.12</strong></td>
+</tr>
+<tr>
+<td>主观概率</td>
+<td>10%</td>
+<td>25%</td>
+<td><strong>45%</strong></td>
+<td>20%</td>
+</tr>
+</tbody>
+</table></div>
+<p>回购比例统一取 60%–80%。<strong>回购中止不在四档之内</strong>：它在任一档都可能发生，一旦发生本框架失去锚；本报告不给它概率。</p>
+<hr />
+<h2 id="s-_4">十、接下来看什么</h2>
+<ol>
+<li><strong>9/29 gas 补贴到期</strong>——第一次「无补贴」测试（冲击幅度未知：只覆盖 Robinhood Wallet 交易）</li>
+<li><strong>10 月月回购能否达到 $639 万</strong>（PUMP 8 月倍数下现价的要求；平日节奏只有约 $390 万）</li>
+<li><strong>10 月收入是否低于 $600 万</strong>（作者的基准预期，已登记为 P9-5）</li>
+<li><strong>回购合约 owner 是否迁入多签（阈值 ≥2）或时间锁</strong></li>
+</ol>
+<hr />
+<h2 id="s-3-5">十一、如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>PONS 是一个真实、领先的业务的代币</strong>——Pons 占 Robinhood Chain 全链费用的 39%，收入不是 PONS 自己的交易产生的；但付费者是否独立，本期未验证。</p>
+</li>
+<li>
+<p><strong>9 月初之后收入与价格脱钩：收入周均跌了约 80%，价格从 9/6 跌了 33%。</strong> 按收入口径，PONS 比 PUMP 的每一个真实观测都贵。</p>
+</li>
+<li>
+<p><strong>「近三分之一供应已销毁」要拆开看</strong>：协议回购只占 20.19%，而全部销毁的四分之三发生在币价几美分时、只花了 $364 万。</p>
+</li>
+<li>
+<p><strong>持有人拿到的是一个承诺，不是一项权利。</strong> 升级权限在一个普通钱包手里；V2 收入流向回购没有任何文件约定；回购比例按窗口在 46%–87.5% 之间，由运营方的节奏决定。</p>
+</li>
+<li>
+<p><strong>这是本系列历史最短的资产（11 周）。</strong> 年化波动 392%，与 BTC 的 R² 只有 0.046。作者的基准预期是 10 月收入 $400–600 万，对应价格低于现价——但这只是一个冷启动季度上的判断。</p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证、数据来源与核实状态请阅读 <code>pons_research_report_202609.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>

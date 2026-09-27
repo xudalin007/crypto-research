@@ -52,6 +52,8 @@ PROFILES = {
                 accent='#3cc68a', badge='▣ Nervos'),
     'gram': dict(symbol='◇', name='GRAM / TON', short='GRAM',
                  accent='#0098ea', badge='◇ TON'),
+    'pons': dict(symbol='◐', name='PONS / Pons', short='PONS',
+                accent='#1a2740', badge='◐ Pons'),
 }
 
 

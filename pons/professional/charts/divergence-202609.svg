@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 320" width="100%" role="img" aria-label="协议日收入 vs PONS 价格（均以 9/5 = 100 指数化）">
+<style>.t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}</style>
+<rect width="620" height="320" fill="none"/><text x="0" y="16" class="t">协议日收入 vs PONS 价格（均以 9/5 = 100 指数化）</text><text x="0" y="34" class="s">单一纵轴：指数。收入来自 DefiLlama（Pons V1+V2 dailyRevenue），价格来自 CoinGecko 日收盘</text>
+<line x1="44" y1="258.0" x2="584" y2="258.0" class="ax"/><text x="36" y="262.0" class="l" text-anchor="end">0</text>
+<line x1="44" y1="191.3" x2="584" y2="191.3" class="ax"/><text x="36" y="195.3" class="l" text-anchor="end">50</text>
+<line x1="44" y1="124.7" x2="584" y2="124.7" class="ax"/><text x="36" y="128.7" class="l" text-anchor="end">100</text>
+<line x1="44" y1="58.0" x2="584" y2="58.0" class="ax"/><text x="36" y="62.0" class="l" text-anchor="end">150</text>
+<text x="44" y="276" class="l" text-anchor="middle">08/24</text>
+<text x="240" y="276" class="l" text-anchor="middle">09/05</text>
+<text x="584" y="276" class="l" text-anchor="middle">09/26</text>
+<polyline points="44.0,249.2 60.4,244.9 76.7,239.3 93.1,232.4 109.5,236.5 125.8,217.0 142.2,192.5 158.5,194.8 174.9,199.0 191.3,185.6 207.6,176.5 224.0,138.4 240.4,124.7 256.7,154.4 273.1,162.6 289.5,172.1 305.8,184.0 322.2,191.9 338.5,187.5 354.9,201.0 371.3,188.9 387.6,199.9 404.0,214.9 420.4,234.1 436.7,227.3 453.1,229.0 469.5,227.5 485.8,238.3 502.2,223.3 518.5,233.6 534.9,235.0 551.3,241.4 567.6,242.1 584.0,241.8" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="44.0,246.3 60.4,243.1 76.7,239.5 93.1,234.2 109.5,236.0 125.8,229.0 142.2,211.4 158.5,196.4 174.9,182.3 191.3,174.2 207.6,171.3 224.0,127.0 240.4,124.7 256.7,84.8 273.1,97.9 289.5,121.6 305.8,109.3 322.2,129.2 338.5,150.8 354.9,147.0 371.3,144.7 387.6,154.8 404.0,135.5 420.4,138.1 436.7,149.3 453.1,128.4 469.5,132.8 485.8,147.4 502.2,143.5 518.5,143.1 534.9,123.5 551.3,138.4 567.6,141.7 584.0,132.8" fill="none" stroke="#eb6834" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="584.0" cy="241.8" r="4" fill="#2a78d6" stroke="#fff" stroke-width="2"/><circle cx="584.0" cy="132.8" r="4" fill="#eb6834" stroke="#fff" stroke-width="2"/>
+<text x="576" y="234" class="v" text-anchor="end">收入 12.1</text>
+<text x="576" y="125" class="v" text-anchor="end">价格 93.9</text>
+<rect x="44" y="290" width="14" height="3" fill="#2a78d6"/><text x="64" y="294" class="l">协议日收入</text><rect x="154" y="290" width="14" height="3" fill="#eb6834"/><text x="174" y="294" class="l">PONS 价格</text>
+<text x="0" y="312" class="s">9/5 之后收入跌到峰值的约八分之一；价格次日冲高后回落，9/26 比 9/6 的峰值低约 28%——收入跌得快得多。</text></svg>

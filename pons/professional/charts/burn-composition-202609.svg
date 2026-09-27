@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 170" width="100%" role="img" aria-label="10 亿枚 PONS 的去向（截至区块 73,956,501）">
+<style>.t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}</style>
+<rect width="620" height="170" fill="none"/><text x="0" y="16" class="t">10 亿枚 PONS 的去向（截至区块 73,956,501）</text><text x="0" y="34" class="s">黑洞地址合计 31.65%，但按来源拆开后只有 20.19% 由协议回购驱动</text>
+<rect x="0.0" y="62" width="421.8" height="34" fill="#d6d3d1"/>
+<text x="211" y="84" class="v" text-anchor="middle" fill="#1c1917" style="fill:#1c1917">68.35%</text>
+<rect x="423.8" y="62" width="123.2" height="34" fill="#2a78d6"/>
+<text x="485" y="84" class="v" text-anchor="middle" fill="#fff" style="fill:#fff">20.19%</text>
+<rect x="548.9" y="62" width="42.4" height="34" fill="#eb6834"/>
+<rect x="593.3" y="62" width="26.6" height="34" fill="#1baf7a"/>
+<rect x="0" y="113" width="10" height="10" fill="#d6d3d1"/><text x="15" y="122" class="l">仍在流通 68.35%</text>
+<rect x="114" y="113" width="10" height="10" fill="#2a78d6"/><text x="129" y="122" class="l">协议回购销毁 20.19%</text>
+<rect x="250" y="113" width="10" height="10" fill="#eb6834"/><text x="265" y="122" class="l">创建者钱包自烧 7.16%</text>
+<rect x="397" y="113" width="10" height="10" fill="#1baf7a"/><text x="412" y="122" class="l">其他地址销毁 4.29%</text>
+<text x="0" y="162" class="s">创建者钱包 7,165 万枚（含首购 6,806 万枚）于 7/13–7/15 自烧；其余 4,295 万枚来自 89 个其他地址</text>
+</svg>
