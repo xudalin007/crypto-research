@@ -9,9 +9,10 @@ HTML 仍保留 @media print 样式，需要时可从浏览器自行打印。
     python3 .claude/skills/btc-monthly-report/build.py 202608          # 默认 btc
     python3 .claude/skills/btc-monthly-report/build.py 202608 --asset btc
 
-会读取 <asset>/professional/<asset>_research_report_<YYYYMM>.md
-       <asset>/professional/<asset>_questions_summary_<YYYYMM>.md
-输出   <asset>/professional/<asset>_research_report_<YYYYMM>.html
+会读取 <asset>/professional/<YYYYMM>/<asset>_research_report_<YYYYMM>.md
+       <asset>/professional/<YYYYMM>/<asset>_questions_summary_<YYYYMM>.md
+输出   <asset>/professional/<YYYYMM>/<asset>_research_report_<YYYYMM>.html
+（2026-09 之前的月份没有月份文件夹，仍读写 <asset>/professional/ 下的平铺文件）
 
 导航 ID 全自动探测，无需手工映射（消除拼音 slug 坑）。
 """
@@ -143,6 +144,9 @@ def main():
         sys.exit(f"未知资产 '{asset}'，请先在 build.py 的 PROFILES 里登记")
 
     base = os.path.join(asset, 'professional')
+    # 2026-09 起每月一个文件夹：<asset>/professional/<YYYYMM>/；更早的月份仍平铺在 professional/ 下
+    if os.path.isdir(os.path.join(base, ym)):
+        base = os.path.join(base, ym)
     rp_md = os.path.join(base, f'{asset}_research_report_{ym}.md')
     sm_md = os.path.join(base, f'{asset}_questions_summary_{ym}.md')
     out = os.path.join(base, f'{asset}_research_report_{ym}.html')

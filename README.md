@@ -14,11 +14,12 @@
 ```
 btc/                            比特币
   professional/                 专业版（面向分析师 / 从业者）
-    btc_research_report_YYYYMM.md      完整报告，11 章
-    btc_research_report_YYYYMM.html    网页版（侧边导航 + 移动适配）
-    btc_questions_summary_YYYYMM.md    简明速查
-    charts/*-YYYYMM.svg                图表
-    thesis_scorecard.md                跨期论点记分卡（不带月份，持续追加）
+    YYYYMM/                            每月一个文件夹（2026-09 起；更早的月份仍平铺在 professional/ 下）
+      btc_research_report_YYYYMM.md      完整报告，11 章
+      btc_research_report_YYYYMM.html    网页版（侧边导航 + 移动适配）
+      btc_questions_summary_YYYYMM.md    简明速查
+      charts/*-YYYYMM.svg                图表
+    thesis_scorecard.md                跨期论点记分卡（不带月份，持续追加，不进月份文件夹）
   general/                      通俗版（面向普通人，不进仓库）
 
 sol/                            Solana
@@ -148,6 +149,7 @@ ZEC 是持币人对费用没有索取权，CKB 是「唯一的需求锚（状态
 | 2026-06 | ✅ | ✅ | Warsh 就任、市场定价零降息；首次纳入上市公司储备与 AI 两章 |
 | 2026-07 | ✅ | — | ETF 创史上最大单月流出 $45 亿；Strategy 单日抛售 $2.16 亿，最大买方转为卖方 |
 | 2026-08 | ✅ | — | BTC +25.1% 收 $78,548；ETF 单月流入 $35.2 亿创年内最佳；7 月偏空判断被证伪。新增图表、情景推导方法、机构空方观点、滚动记分卡 |
+| **2026-09（兼 Q3）** | ✅ | — | **首个按月份文件夹存放的版本**（`btc/professional/202609/`）。9 月 +6.42% 收 $83,623.60，**Q3 +42.64%，2024 年 Q4 以来最好的季度**；同期美联储加息 25bp（12:0）、10 年期升至 5.29%、CLARITY 参议院 49–50 失败。**撤回 8 月版「BTC 定价锚是长端美债」**（8 月 10 年期月度变化 0bp；12 个月日度相关 −0.04），但不走到反面。价格、ETF、宏观、链上首次全部改用一手 API（币安 / Farside / 美国财政部 / Coin Metrics / SEC 8-K）。更正 8 月版三处数据错误（STH/LTH-MVRV 是 8/8 读数而非月底；Strategy 8 月下旬实际买入 4,603 枚）。⚠️ **两层审查改动很大**：`_bian` 指出 Q4 概率调整的归因错了——**补算随机游走基线后，本版 20/55/25 与基线几乎重合**；「已实现价格一年没涨」不能削弱 2030 假设（**往期见顶后 12 个月同样横盘或下跌：+1.7% / −12.2%**）；Codex 撤回了「约 7 周用完 USD Cash」的机械外推。记分卡升级到 11 条门槛并统一复核，**累计正确率 11%（1/9）** |
 
 ### UNI
 
@@ -205,7 +207,7 @@ ZEC 是持币人对费用没有索取权，CKB 是「唯一的需求锚（状态
 
 ## 论点记分卡
 
-每个资产各有一份记分卡（`btc/professional/thesis_scorecard.md`、`sol/professional/thesis_scorecard.md`），记录历次判断的对错。**截至 2026-08，已检验的 8 个论点里只说对 1 个（13%）**，
+每个资产各有一份记分卡（`btc/professional/thesis_scorecard.md`、`sol/professional/thesis_scorecard.md`），记录历次判断的对错。**BTC 记分卡截至 2026-09 期核对，已检验的 9 个论点里只说对 1 个（11%）**，
 主要失误模式是把「结构性脆弱」误判为「即将断裂」。
 
 **TRX 期（2026-09）新增三条检验条件门槛**，其中第 8 条最重要：

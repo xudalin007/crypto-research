@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 270" width="100%" role="img" aria-label="Q4 情景：2026 年末价格区间与主观概率">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}
+</style>
+<rect width="620" height="270" fill="none"/>
+<text x="0" y="16" class="t">Q4 情景：2026 年末价格区间与主观概率</text><text x="0" y="34" class="s">区间 = 年末已实现价格 $53,500 × 年末 MVRV 档位；三档首尾相接；推导与弱点见第 9 章</text>
+<line x1="120" y1="62" x2="120" y2="226" class="ax"/><text x="120" y="243" class="l" text-anchor="middle">$40K</text>
+<line x1="204" y1="62" x2="204" y2="226" class="ax"/><text x="204" y="243" class="l" text-anchor="middle">$60K</text>
+<line x1="288" y1="62" x2="288" y2="226" class="ax"/><text x="288" y="243" class="l" text-anchor="middle">$80K</text>
+<line x1="372" y1="62" x2="372" y2="226" class="ax"/><text x="372" y="243" class="l" text-anchor="middle">$100K</text>
+<line x1="456" y1="62" x2="456" y2="226" class="ax"/><text x="456" y="243" class="l" text-anchor="middle">$120K</text>
+<line x1="540" y1="62" x2="540" y2="226" class="ax"/><text x="540" y="243" class="l" text-anchor="middle">$140K</text>
+<line x1="303" y1="56" x2="303" y2="226" stroke="#57534e" stroke-width="1.5" stroke-dasharray="4 3"/><text x="308" y="52" class="l">9/30 收盘 $83.6K</text>
+<text x="106" y="89" class="v" text-anchor="end">乐观 25%</text><text x="106" y="103" class="l" text-anchor="end">突破派发区</text>
+<rect x="347" y="76" width="134" height="24" rx="4" fill="#1baf7a"/>
+<text x="489" y="92" class="v" style="paint-order:stroke;stroke:#fff;stroke-width:5px">$94K – $126K</text>
+<text x="106" y="141" class="v" text-anchor="end">中性 55%</text><text x="106" y="155" class="l" text-anchor="end">现状延续</text>
+<rect x="221" y="128" width="126" height="24" rx="4" fill="#2a78d6"/>
+<text x="355" y="144" class="v" style="paint-order:stroke;stroke:#fff;stroke-width:5px">$64K – $94K</text>
+<text x="106" y="193" class="v" text-anchor="end">悲观 20%</text><text x="106" y="207" class="l" text-anchor="end">派发压垮需求</text>
+<rect x="154" y="180" width="67" height="24" rx="4" fill="#eb6834"/>
+<text x="229" y="196" class="v" style="paint-order:stroke;stroke:#fff;stroke-width:5px">$48K – $64K</text>
+<text x="0" y="262" class="s">作者的基准预期落在中性档（MVRV 1.20–1.75），已登记为记分卡 B9-1。</text></svg>

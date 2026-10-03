@@ -1,0 +1,2716 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BTC / Bitcoin 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#f7931a;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">₿ BTC 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>₿ BTC 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-btc">1. BTC 的起源与历史背景</a>
+<a href="#2-btc">2. BTC 的发展阶段划分</a>
+<a href="#3-btc">3. BTC 当前现状分析</a>
+<a href="#36-q3">3.6 Q3 季度回顾</a>
+<a href="#4">4. 上市公司比特币储备</a>
+<a href="#5-ai-btc">5. AI 科技对 BTC 的多维影响</a>
+<a href="#6-btc">6. BTC 的核心价值逻辑</a>
+<a href="#7-btc">7. BTC 与其他资产的比较</a>
+<a href="#8-btc-15">8. BTC 未来 1–5 年的关键变量</a>
+<a href="#9-btc">9. BTC 未来的情景推演</a>
+<a href="#10">10. 投资与风险启示</a>
+<a href="#11">11. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-9-q3">一、9 月和 Q3 发生了什么</a>
+<a href="#s-_1">二、本季最重要的发现</a>
+<a href="#s-8">三、8 月版的三处数据错误</a>
+<a href="#s-etf">四、ETF</a>
+<a href="#s-mvrv">五、链上</a>
+<a href="#s-strategy">六、Strategy</a>
+<a href="#s-_2">七、宏观与监管</a>
+<a href="#s-q4-mvrv">八、Q4 情景</a>
+<a href="#s-_3">九、记分卡</a>
+<a href="#s-_4">十、接下来看什么</a>
+<a href="#s-3-5">十一、如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>₿ BTC / Bitcoin<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">₿ Bitcoin</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="btc-bitcoin">BTC / Bitcoin 完整调研与分析报告</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 10 月 3 日<br />
+<strong>数据截止</strong>：2026 年 9 月 30 日（9 月与 Q3 完整数据已闭合）；10/1–10/2 的个别数据仅作参考<br />
+<strong>版本</strong>：2026 年 9 月版 <strong>兼 2026 年 Q3 季度报告</strong><br />
+<strong>研究方法</strong>：基于 <code>anthropics/financial-services</code> 插件的行业概览（sector-overview）、投资论点追踪（thesis-tracker）、催化日历（catalyst-calendar）、竞争分析（competitive-analysis）四个框架。</p>
+<p><strong>本版更新要点</strong>：</p>
+<ol>
+<li><strong>9 月 +6.42%，Q3 +42.64%</strong>——收于 $83,623.60（币安日线），Q3 是 2024 年 Q4 以来最好的季度，终结了连续三个季度的下跌。</li>
+<li><strong>本季最重要的发现：BTC 在宏观收紧中上涨。</strong> 9/16 美联储加息 25 基点（三年来首次），10 年期美债从 4.75% 升到 <strong>5.29%（年内最高）</strong>，美元指数走强、黄金跌 6.6%——<strong>BTC 却涨了 6.4%</strong>。<br />
+   Q3 全季 10 年期收益率上行 85 基点，BTC 上涨 42.6%。</li>
+<li><strong>因此撤回 8 月版的长期认知「BTC 最直接的定价锚是长端美债收益率」。</strong> 过去 12 个月 BTC 日收益与 10 年期收益率日变化的相关系数是 <strong>−0.04</strong>；8 月 BTC +25% 那个月，10 年期收益率月度变化是 <strong>0 基点</strong>（见 3.1）。</li>
+<li><strong>8 月版的三处数据错误</strong>，本版更正：<br />
+   ① 把 8/8 的 STH-MVRV 0.96、LTH-MVRV 1.32 写成「8 月底」——8/31 实际是 <strong>1.12 / 1.61</strong>，「短期持有者整体浮亏」的结论不成立；<br />
+   ② 写 Strategy「8 月未买卖任何比特币」——8-K 显示它 <strong>8/24–8/30 买入了 4,603 枚</strong>；<br />
+   ③ 8 月版自己表里的 845,050 &gt; 840,447 本应暴露第 ② 条。</li>
+<li><strong>CLARITY 法案 9/15 参议院程序性投票 49–50 失败</strong>（需 60 票），2026 年通过的可能性基本消失。</li>
+<li><strong>Strategy 9 月恢复买币（2,615 枚），同时回购自家 STRC 优先股 $6.41 亿</strong>——按 9 月窗口是买币额的 2.9 倍，按 8/24–9/27 窗口是 1.09 倍；美元储备与现金合计一个月减少 $6.9 亿。</li>
+<li><strong>ETF 9 月净流入 $26.5 亿，Q3 合计 $63.6 亿，2026 年累计由负转正（+$9.7 亿）</strong>——本版起 ETF 流量改用 Farside 日度一手数据。</li>
+</ol>
+<p><strong>本版方法论改进</strong>：<br />
+⑧ 价格改用币安日线（UTC 收盘），ETF 改用 Farside 日度表，链上指标改用 Coin Metrics 与 bitcoin-data.com 两家数据商的 API，宏观收益率改用美国财政部官方数据——<strong>此前这四类全是搜索摘要</strong>；<br />
+⑨ 情景推演新增 <strong>Q4 价格区间</strong>（比 2030 区间更可检验），三档按 MVRV 首尾相接，覆盖「现状延续」；<br />
+⑩ BTC 记分卡升级到本系列的 <strong>11 条检验门槛</strong>，按统一标准复核全表（累计正确率改为 <strong>11%</strong>），并补登作者的基准预期。</p>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BTC 是什么</strong></td>
+<td>数字黄金 + 去中心化结算网络 + 货币实验 + 宏观风险资产，四重属性并存</td>
+</tr>
+<tr>
+<td><strong>当前所处阶段</strong></td>
+<td>第四个减半周期第 29 个月。9/30 收于 <strong>$83,623.60</strong>，距 ATH $126,199.63（币安，2025-10-06 盘中）回撤 <strong>33.7%</strong></td>
+</tr>
+<tr>
+<td><strong>Q3 发生了什么</strong></td>
+<td><strong>+42.64%</strong>：7 月 +7.27%、8 月 +24.95%、9 月 +6.42%。同期出现的是 <strong>ETF 资金回流（Q3 +$63.6 亿）与空头回补</strong>，起点是深度低估区（6/30 MVRV 1.10）——<strong>不是宏观放松</strong>：同期美联储加息、10 年期收益率 +85 基点。这些是相关，<strong>不是已证明的原因</strong></td>
+</tr>
+<tr>
+<td><strong>9 月发生了什么</strong></td>
+<td>前半月下跌（9/15 低点 $74,968，当天 CLARITY 投票失败、ETF 流出 $4.5 亿），后半月反弹（9/18 +5.85%、9/21 +6.70%，9/21 ETF 单日流入 <strong>$9.99 亿</strong>，为 2025 年 10 月以来最大）</td>
+</tr>
+<tr>
+<td><strong>最重要的认知变化</strong></td>
+<td><strong>撤回 8 月版「BTC 定价锚是长端美债」</strong>——它唯一的论据（8 月回购压低收益率）经不起端点检验（8 月 10 年期月度变化 0bp）。<strong>但 Q3 的数据也无法证明利率不重要</strong>：同期有更大的力量在起作用，日度上 7、9 月仍有约 −0.4 的相关</td>
+</tr>
+<tr>
+<td><strong>核心多头逻辑</strong></td>
+<td>绝对稀缺；ETF 在加息月仍净流入 $26.5 亿；Strategy 恢复买币且 mNAV（EV）回到 1.15；算力回升到峰值的 85%</td>
+</tr>
+<tr>
+<td><strong>核心空头逻辑</strong></td>
+<td>价格已回到长期持有者的派发区（Glassnode 标注 $81K–$86K，转述）；CLARITY 年内无望；点阵图中位数指向年内再加息一次；10 年期 5.29%；<strong>已实现价格一年没涨</strong>（但见顶后一年横盘是历史常态，见 9.3）</td>
+</tr>
+<tr>
+<td><strong>短期催化剂</strong></td>
+<td>10/27–28 FOMC；10/28 Strategy 股东特别会议（优先股改为每日派息）；12/8–9 FOMC（含点阵图）</td>
+</tr>
+<tr>
+<td><strong>估值立场</strong></td>
+<td>MVRV 1.56，处于 2022-10 以来的 <strong>44% 分位</strong>——不便宜也不贵。<strong>作者的基准预期：Q4 末（12/25–12/31 七日均价）落在 $64K–$94K（MVRV 1.2–1.75），概率 55%</strong>，已登记为记分卡 B9-1。<strong>这组概率（20/55/25）几乎等于随机游走的机械基线</strong>，作者的增量判断很小</td>
+</tr>
+<tr>
+<td><strong>风险等级</strong></td>
+<td>极高——建议作为资产组合中 1–5% 的「非对称回报」配置</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-btc">1. BTC 的起源与历史背景</h2>
+<h3 id="11-1980s2007">1.1 密码朋克的思想遗产（1980s–2007）</h3>
+<p>比特币不是凭空出现的，而是<strong>密码朋克运动（Cypherpunk Movement，1980 年代末兴起的密码学家与自由意志主义者社群）</strong> 数十年积累的产物。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>年份</th>
+<th>里程碑</th>
+<th>对比特币的影响</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1982</strong></td>
+<td>David Chaum 发表"盲签名"论文</td>
+<td>匿名数字现金的概念奠基</td>
+</tr>
+<tr>
+<td><strong>1997</strong></td>
+<td>Adam Back 发明 Hashcash（工作量证明）</td>
+<td>直接成为比特币的挖矿机制</td>
+</tr>
+<tr>
+<td><strong>1998</strong></td>
+<td>Wei Dai 提出 b-money</td>
+<td>匿名分布式电子现金的蓝图</td>
+</tr>
+<tr>
+<td><strong>1998</strong></td>
+<td>Nick Szabo 提出 Bit Gold</td>
+<td>比特币最直接的概念前身</td>
+</tr>
+<tr>
+<td><strong>2004</strong></td>
+<td>Hal Finney 创建 RPoW（可复用工作量证明）</td>
+<td>首次实现可复用的 PoW 系统</td>
+</tr>
+</tbody>
+</table></div>
+<p>这些探索都卡在同一个难题上：<strong>如何在没有可信第三方的条件下解决双重支付（Double-Spending）</strong>——即防止同一笔钱被花两次。</p>
+<h3 id="12-2008">1.2 2008 年金融危机：催化剂</h3>
+<p>2008 年 9 月 15 日雷曼兄弟破产。10 月 31 日，化名 <strong>Satoshi Nakamoto（中本聪）</strong> 的匿名作者在密码学邮件列表发表了 9 页白皮书《Bitcoin: A Peer-to-Peer Electronic Cash System》。</p>
+<h3 id="13-2009">1.3 比特币网络的诞生（2009）</h3>
+<ul>
+<li><strong>1 月 3 日</strong>：创世区块诞生，Coinbase 字段嵌入当日《泰晤士报》头条 "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks"（财政大臣濒临对银行的第二轮救助）</li>
+<li><strong>1 月 12 日</strong>：中本聪向 Hal Finney 发送 10 BTC——人类第一笔比特币交易</li>
+</ul>
+<h3 id="14">1.4 最初要解决的四个问题</h3>
+<ol>
+<li><strong>信任</strong>：无需信任中介即可转移价值</li>
+<li><strong>通胀</strong>：央行可无限印钞 vs 比特币硬顶 2100 万枚</li>
+<li><strong>审查</strong>：任何人无需许可即可收发</li>
+<li><strong>双重支付</strong>：通过 PoW + 最长链共识首次在去中心化网络中解决</li>
+</ol>
+<h3 id="15">1.5 与传统货币、银行、黄金的关系</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>法定货币（美元）</th>
+<th>黄金</th>
+<th>比特币</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>发行机制</strong></td>
+<td>央行酌情印钞</td>
+<td>开采（年增 1–2%）</td>
+<td>算法固定，每 4 年减半</td>
+</tr>
+<tr>
+<td><strong>总供应量</strong></td>
+<td>无限</td>
+<td>有限但总量未知</td>
+<td>硬顶 2100 万枚</td>
+</tr>
+<tr>
+<td><strong>保管</strong></td>
+<td>银行存款</td>
+<td>实物 / ETF</td>
+<td>自托管 / 托管</td>
+</tr>
+<tr>
+<td><strong>转移</strong></td>
+<td>银行系统（慢、可审查）</td>
+<td>物理运输</td>
+<td>互联网（快、无需许可）</td>
+</tr>
+<tr>
+<td><strong>对手方风险</strong></td>
+<td>银行破产、政府违约</td>
+<td>低</td>
+<td>自托管时为 0</td>
+</tr>
+<tr>
+<td><strong>历史</strong></td>
+<td>50 余年（后布雷顿森林）</td>
+<td>5000 年</td>
+<td>17 年</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-btc">2. BTC 的发展阶段划分</h2>
+<h3 id="20082012">阶段一：诞生与极早期实验（2008–2012）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2008.10.31</td>
+<td>白皮书发布</td>
+</tr>
+<tr>
+<td>2009.1.3</td>
+<td>创世区块</td>
+</tr>
+<tr>
+<td>2010.5.22</td>
+<td>"比特币披萨日"——1 万 BTC 换两块披萨</td>
+</tr>
+<tr>
+<td>2010.8.15</td>
+<td>1840 亿 BTC 溢出漏洞被利用并紧急修复（史上唯一一次重大协议事故）</td>
+</tr>
+<tr>
+<td>2010.12</td>
+<td>中本聪最后一次公开留言后消失</td>
+</tr>
+<tr>
+<td>2011.6</td>
+<td>首次泡沫破裂：$30 → $0.01（Mt. Gox 被黑）</td>
+</tr>
+<tr>
+<td>2012.11.28</td>
+<td>第一次减半：50 → 25 BTC</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="20132016">阶段二：交易所、矿业与投机市场成形（2013–2016）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2013.4</td>
+<td>塞浦路斯银行危机，BTC 一个月内 $30 → $260</td>
+</tr>
+<tr>
+<td>2013.11</td>
+<td>首破 $1,000</td>
+</tr>
+<tr>
+<td>2014.2</td>
+<td><strong>Mt. Gox 倒闭</strong>，85 万 BTC 失踪</td>
+</tr>
+<tr>
+<td>2015.7</td>
+<td>Ethereum 主网上线</td>
+</tr>
+<tr>
+<td>2016.7.9</td>
+<td>第二次减半：25 → 12.5 BTC</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="20172020">阶段三：牛熊周期与扩容内战（2017–2020）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017</td>
+<td>ICO 泡沫，12 月见顶 $19,783</td>
+</tr>
+<tr>
+<td>2017.8</td>
+<td><strong>Bitcoin Cash 硬分叉</strong>；SegWit（隔离见证）激活</td>
+</tr>
+<tr>
+<td>2017.12</td>
+<td>CME、Cboe 推出比特币期货</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>加密寒冬，跌至 $3,200</td>
+</tr>
+<tr>
+<td>2020.3.12</td>
+<td>"黑色星期四"，单日腰斩至 $3,800</td>
+</tr>
+<tr>
+<td>2020.5.11</td>
+<td>第三次减半：12.5 → 6.25 BTC</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="etf-20202024">阶段四：机构入场与 ETF 推进（2020–2024）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2020.8–12</td>
+<td>MicroStrategy（现 Strategy）大规模购入，<strong>上市公司储备时代开端</strong></td>
+</tr>
+<tr>
+<td>2021.5</td>
+<td>中国全面禁止挖矿，算力"大迁移"</td>
+</tr>
+<tr>
+<td>2021.11</td>
+<td>ATH $69,000</td>
+</tr>
+<tr>
+<td>2022.11</td>
+<td><strong>FTX 崩溃</strong>——行业的"雷曼时刻"</td>
+</tr>
+<tr>
+<td>2024.1.10</td>
+<td><strong>美国 SEC 批准 11 支现货比特币 ETF</strong></td>
+</tr>
+<tr>
+<td>2024.4.20</td>
+<td>第四次减半：6.25 → 3.125 BTC</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="etf-ai-2024">阶段五：ETF 后周期、主权叙事与 AI 冲击（2024–至今）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025.3</td>
+<td>特朗普签署行政令建立美国战略比特币储备（SBR）</td>
+</tr>
+<tr>
+<td>2025.7</td>
+<td>GENIUS 法案（稳定币框架）签署；CLARITY 法案众议院通过 294–134</td>
+</tr>
+<tr>
+<td>2025.10.6</td>
+<td><strong>ATH</strong>（币安盘中 $126,199.63）——减半后 18 个月，符合历史节奏</td>
+</tr>
+<tr>
+<td>2025.Q4–2026.Q2</td>
+<td>连续三个季度下跌（−23.1% / −22.1% / −14.1%）</td>
+</tr>
+<tr>
+<td>2026.5</td>
+<td>Kevin Warsh 就任美联储主席（鹰派）</td>
+</tr>
+<tr>
+<td>2026.6</td>
+<td>ETF 单月流出 $45.1 亿（Farside），BTC 6/30 收于 $58,624.71</td>
+</tr>
+<tr>
+<td>2026.7.29</td>
+<td>FOMC 维持 3.50–3.75%，三人主张加息</td>
+</tr>
+<tr>
+<td>2026.8</td>
+<td>BTC +24.95%；ETF 净流入 $35.4 亿</td>
+</tr>
+<tr>
+<td><strong>2026.9.15</strong></td>
+<td><strong>CLARITY 法案参议院程序性投票 49–50 失败</strong>；BTC 当日 −3.25%，收于 $75,644</td>
+</tr>
+<tr>
+<td><strong>2026.9.16</strong></td>
+<td><strong>FOMC 加息 25 基点至 3.75%–4.00%，12:0 全票</strong>——2023 年 7 月以来首次加息</td>
+</tr>
+<tr>
+<td><strong>2026.9.21</strong></td>
+<td>ETF 单日净流入 $9.99 亿，BTC 单日 +6.70%，盘中高点 $87,395.67</td>
+</tr>
+<tr>
+<td><strong>2026.Q3</strong></td>
+<td><strong>+42.64%</strong>，2024 年 Q4 以来最好的季度</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="3-btc">3. BTC 当前现状分析</h2>
+<h3 id="30-8">3.0 论点校验：8 月版哪里对了、哪里错了</h3>
+<blockquote>
+<p>逐条核对 8 月版登记在 <code>thesis_scorecard.md</code> 的 5 个论点。完整判定见记分卡。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>8 月版论点</th>
+<th>检验条件</th>
+<th>9 月实际</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8-1</td>
+<td>8 月涨势为流动性驱动，缺乏基本面地板</td>
+<td>若 9 月在无宏观利好下继续上涨 &gt;10%，则存疑</td>
+<td>9 月在宏观利空下上涨 <strong>6.42%</strong>，同样伴随 ETF 流入与空头强平</td>
+<td>⊘ <strong>检验失效</strong>：未触发证伪，价格也没跌到能检验「地板」的位置</td>
+</tr>
+<tr>
+<td>8-2</td>
+<td>9 月加息是首要风险</td>
+<td>若 9 月 FOMC 未加息，则本条高估</td>
+<td><strong>加息兑现</strong>；会后两周 BTC <strong>+9.73%</strong>（会前 8/31→9/15 为 −3.7%，可能部分提前定价）</td>
+<td>⚠️ <strong>事件对，后果未兑现</strong></td>
+</tr>
+<tr>
+<td>8-3</td>
+<td>「被迫卖出」不应作为基准情景</td>
+<td>若 Strategy 在 Q4 前净减持 &gt;2 万 BTC，则错</td>
+<td>Strategy <strong>净买入</strong>（8/24–9/27 共 7,218 枚）</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>8-4</td>
+<td>AI Agent 支付对 BTC 的利好被高估</td>
+<td>年内出现比特币原生 Agent 支付规模化落地则错</td>
+<td>未见</td>
+<td>⏳ 年底核</td>
+</tr>
+<tr>
+<td>8-5</td>
+<td>算力下滑是趋势而非噪音</td>
+<td>9–10 月算力回升至峰值 95% 以上则错</td>
+<td>9/30 七日均值为峰值的 <strong>85.1%</strong>，较 8 月底回升 6 个百分点</td>
+<td>⏳ 10 月核（方向已转为回升）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>8-1 与 8-2 的共同问题</strong>：两条的检验条件都没有测论点真正承重的前提——「宏观收紧 → BTC 下跌」。<br />
+8-1 只在「上涨超过 10%」时判错，9 月在利空下涨 6.42% 落在了检验盲区里（违反门槛 5）；8-2 只测了事件、没测价格后果（违反门槛 4）。<br />
+<strong>BTC 记分卡在 8 月时还没有采用这些门槛，本版起补上</strong>，并按统一标准复核了全表：6-1 改回待验、7-1 改判 ❌，<strong>累计正确率由此变为 11%（1/9）</strong>。</p>
+<h3 id="31">3.1 资产属性：「利率锚」的检验</h3>
+<p>8 月版的长期认知第 4 条写道：「<strong>BTC 现在最直接的定价锚是长端美债收益率。</strong> 8 月财政部回购压低 30 年期收益率 → BTC 涨 25%。」<br />
+本版用美国财政部的官方收益率与币安日线，做了一次能区分对错的检验：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th>BTC</th>
+<th>10 年期收益率变化</th>
+<th>30 年期收益率变化</th>
+<th>纳斯达克</th>
+<th>黄金</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 月（7/31→8/31）</td>
+<td><strong>+24.95%</strong></td>
+<td><strong>+0bp</strong>（4.75%→4.75%）</td>
+<td>−2bp</td>
+<td>+3.93%</td>
+<td>+9.12%</td>
+</tr>
+<tr>
+<td>9 月（8/31→9/30）</td>
+<td><strong>+6.42%</strong></td>
+<td><strong>+54bp</strong>（4.75%→5.29%）</td>
+<td>+39bp</td>
+<td>+1.86%</td>
+<td><strong>−6.58%</strong></td>
+</tr>
+<tr>
+<td>Q3（6/30→9/30）</td>
+<td><strong>+42.64%</strong></td>
+<td><strong>+85bp</strong>（4.44%→5.29%）</td>
+<td>+73bp</td>
+<td>+2.47%</td>
+<td>+3.67%</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>日度统计（BTC 对数收益 vs 10 年期收益率日变化）</th>
+<th>相关系数</th>
+<th>交易日</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>过去 12 个月（2025-10 至 2026-09）</td>
+<td><strong>−0.04</strong></td>
+<td>248</td>
+</tr>
+<tr>
+<td>7 月</td>
+<td>−0.40</td>
+<td>21</td>
+</tr>
+<tr>
+<td>8 月</td>
+<td>−0.09</td>
+<td>20</td>
+</tr>
+<tr>
+<td>9 月</td>
+<td>−0.39</td>
+<td>20</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>口径：美国财政部每日收益率曲线（一手）；BTC 用币安 UTC 收盘，与美国收益率的取值时点不同步（相差约数小时，<strong>未精确核实</strong>）。<br />
+<strong>这种不同步对月度结论无影响，但会把日度相关系数压向零</strong>——所以 12 个月的 −0.04 应读作「测不出稳定的线性关系」，而不是「没有关系」。</p>
+</blockquote>
+<p><strong>能得出的结论</strong>：</p>
+<ol>
+<li><strong>在月度和季度尺度上，长端收益率没有表现出锚定作用。</strong> 8 月 BTC +25% 时 10 年期收益率月度没动；Q3 收益率上行 85 基点，BTC 上涨 42.6%。</li>
+<li><strong>在日度尺度上有影响，但不稳定。</strong> 7 月、9 月日度相关约 −0.4（收益率上升的日子 BTC 偏弱），8 月几乎为零，12 个月合计接近零。</li>
+<li><strong>8 月版那句话的错误在于把一个月内的叙事（「回购压低了收益率」）当成了月度因果</strong>——而那个月的月末收益率与月初相同。</li>
+</ol>
+<p><strong>本版撤回「定价锚」的说法</strong>，但<strong>不走到反面</strong>：12 个月相关 −0.04 只否定了一个简单、稳定的线性关系；7 月与 9 月约 −0.4 的日度相关说明利率仍有影响，<strong>只是在月度和季度上被其他因素盖过了</strong>。<br />
+准确的表述是：<strong>8 月版的因果说法没有得到数据支持；「利率无关」同样没有被证明。</strong><br />
+Q3 的方向由什么决定，本报告只能给出相关而非因果的描述——ETF 资金流与价格同向（Q3 +$63.6 亿），但 ETF 流量本身是同步指标（记分卡模式二），不能当作原因。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>属性</th>
+<th>本季证据</th>
+<th>反证</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>宏观流动性资产</strong></td>
+<td>日度上对收益率仍敏感（9 月相关 −0.39）</td>
+<td><strong>季度上与收益率反向运动 42.6% vs +85bp</strong></td>
+</tr>
+<tr>
+<td><strong>数字黄金</strong></td>
+<td>9 月黄金 −6.58% 时 BTC +6.42%</td>
+<td>两者 Q3 都涨，且 8 月黄金也涨了 9%</td>
+</tr>
+<tr>
+<td><strong>高 beta 科技股</strong></td>
+<td>9 月对纳斯达克 beta 2.09、R² 0.51</td>
+<td>8 月 R² 只有 0.003；12 个月 R² 0.24</td>
+</tr>
+<tr>
+<td><strong>商品</strong></td>
+<td>CLARITY 拟归类为「数字商品」</td>
+<td><strong>法案 9/15 在参议院失败</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>按 XIN 期规则 beta 与 R² 一起报</strong>：9 月 BTC 对纳斯达克的 beta 2.09、R² 0.51——一半的日波动可以用纳斯达克解释；<br />
+但 8 月 R² 只有 0.003。<strong>单月的 beta 不稳定到不能当作资产属性。</strong></p>
+</blockquote>
+<h3 id="32-etf">3.2 市场结构：ETF</h3>
+<blockquote>
+<p><strong>本版起使用 Farside 的日度一手数据</strong>（farside.co.uk，直接抓取并逐日加总）。8 月版用的 $35.2 亿来自媒体转述，Farside 口径为 $35.4 亿。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9 月净流入</strong></td>
+<td><strong>+$26.48 亿</strong>（21 个交易日中 13 日净流入）</td>
+</tr>
+<tr>
+<td>其中 IBIT / FBTC / GBTC</td>
+<td>+$18.08 亿 / +$6.82 亿 / −$2.59 亿</td>
+</tr>
+<tr>
+<td>最大单日</td>
+<td><strong>9/21 +$9.99 亿</strong>（2025 年 10 月以来最大）</td>
+</tr>
+<tr>
+<td>最大流出日</td>
+<td>9/15 −$4.50 亿、9/16 −$2.96 亿（CLARITY 失败与加息两日）</td>
+</tr>
+<tr>
+<td><strong>Q3 合计</strong></td>
+<td><strong>+$63.60 亿</strong>（7 月 +$1.73 亿、8 月 +$35.39 亿、9 月 +$26.48 亿）</td>
+</tr>
+<tr>
+<td><strong>2026 年累计（至 9/30）</strong></td>
+<td><strong>+$9.70 亿</strong>——年内首次由负转正</td>
+</tr>
+<tr>
+<td>自上市累计净流入</td>
+<td>$575.6 亿</td>
+</tr>
+<tr>
+<td>总资产规模</td>
+<td>约 $1,084 亿（9/26，The Block 转述，<strong>未取得一手</strong>）</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="2026 年 4–9 月 ETF 月度净流量" src="charts/etf-flows-202609.svg" /></p>
+<p><strong>9 月最值得注意的不是流入总量，而是流入的时点</strong>：9/15–9/16 两天（CLARITY 失败 + 加息）合计流出 $7.46 亿，<br />
+<strong>之后 9/17–9/29 连续 9 个交易日净流入，合计 $30.75 亿。</strong> 资金在两个利空落地后立刻回流。</p>
+<p>可以有两种读法，<strong>本报告无法区分</strong>：<br />
+① 利空出尽（「卖预期、买事实」）；② 与利空无关的配置性资金在月中后段集中进场（例如季末调仓）。<br />
+两者都与「加息压制 BTC 需求」的 8 月版前提不符。</p>
+<p><strong>市场参与者变化</strong>（链上数据来自媒体转述 Glassnode / CryptoQuant，<strong>未取得一手</strong>）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>参与者</th>
+<th>9 月行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ETF</strong></td>
+<td>净流入 $26.5 亿，是边际买家</td>
+</tr>
+<tr>
+<td><strong>长期持有者（LTH）</strong></td>
+<td>约一个月内派发约 26 万枚后，9 月中旬净头寸转为中性（Glassnode 转述）</td>
+</tr>
+<tr>
+<td><strong>交易所余额</strong></td>
+<td>9/17–9/23 净流出 12,153 枚（CryptoQuant 转述）</td>
+</tr>
+<tr>
+<td><strong>上市公司</strong></td>
+<td>Strategy 买入 2,615 枚；见第 4 章</td>
+</tr>
+<tr>
+<td><strong>衍生品</strong></td>
+<td>9/21 突破 $84K–$85K 时以空头强平为主；永续合约未平仓量接近 2025 年 10 月水平（转述）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="33">3.3 链上数据</h3>
+<blockquote>
+<p><strong>本版起用两家数据商的 API</strong>：Coin Metrics 社区版（MVRV、市值、供应、算力）与 bitcoin-data.com（MVRV、已实现价格、STH/LTH-MVRV、Z-Score；免费版延迟 7 天，最新为 9/26）。<br />
+<strong>两家各自计算 MVRV，相差约 1%</strong>——它们读同一条链，所以这只是实现层面的一致，不是独立测量。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>6/30</th>
+<th>8/31</th>
+<th>9/26</th>
+<th>9/30</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MVRV</strong></td>
+<td>1.10</td>
+<td>1.48</td>
+<td>1.58</td>
+<td><strong>1.56</strong></td>
+<td>Coin Metrics</td>
+</tr>
+<tr>
+<td>MVRV（对照）</td>
+<td>1.11</td>
+<td>1.49</td>
+<td>1.59</td>
+<td>—</td>
+<td>bitcoin-data</td>
+</tr>
+<tr>
+<td><strong>已实现价格</strong></td>
+<td>$53,070</td>
+<td>$53,076</td>
+<td>$53,536</td>
+<td><strong>$53,612</strong></td>
+<td>Coin Metrics 推算（市值 ÷ MVRV ÷ 供应）</td>
+</tr>
+<tr>
+<td><strong>STH-MVRV</strong></td>
+<td>0.84</td>
+<td><strong>1.12</strong></td>
+<td><strong>1.15</strong></td>
+<td>—</td>
+<td>bitcoin-data</td>
+</tr>
+<tr>
+<td><strong>LTH-MVRV</strong></td>
+<td>1.19</td>
+<td><strong>1.61</strong></td>
+<td><strong>1.73</strong></td>
+<td>—</td>
+<td>bitcoin-data</td>
+</tr>
+<tr>
+<td><strong>MVRV Z-Score</strong></td>
+<td>0.25</td>
+<td>0.85</td>
+<td><strong>1.02</strong></td>
+<td>—</td>
+<td>bitcoin-data</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>8 月版的更正</strong>：8 月版把 STH-MVRV <strong>0.96</strong>、LTH-MVRV <strong>1.32</strong> 标为「8 月底」。bitcoin-data 的序列显示这是 <strong>8/8</strong> 的读数，8/31 实际为 <strong>1.12 / 1.61</strong>。<br />
+因此 8 月版「短期持有者整体浮亏」「STH 成本 $81,821」都不成立——<strong>8/31 时短期持有者整体浮盈约 12%</strong>，成本约 $70,200。</p>
+</blockquote>
+<p><strong>三个读数，按重要性排</strong>：</p>
+<ol>
+<li><strong>MVRV 1.56 处于 2022-10 以来日度序列的 44% 分位</strong>（1,455 天；中位数 1.75；最低 0.76，2022-11；最高 2.78，2024-03）。<strong>不是低估区，也不是过热区。</strong> 6/30 的 1.10 才是低估区。<strong>注意这不是 Q3 上涨的原因</strong>：已实现价格几乎不动时，价格上涨与 MVRV 上升是同一件事的两种说法。</li>
+<li><strong>已实现价格一年几乎没动</strong>：2025-09-30 $53,943 → 2026-09-26 $53,124（bitcoin-data），<strong>−1.5%</strong>。<br />
+   全市场的平均持币成本停滞了一年。<strong>但这在见顶后一年是常态</strong>（2017 周期 +1.7%、2021 周期 −12.2%），不能据此削弱 8 月版的长期假设，见 9.3。</li>
+<li><strong>STH-MVRV 1.15</strong>：短期持有者平均浮盈 15%，成本基准约 <strong>$73,400</strong>（9/26 价格 ÷ 1.15）。9/15 回调低点 $74,968 在当日短期持有者成本（约 $71,400，按当日 STH-MVRV 1.06 反推）上方约 5%——<strong>回调没有触及这条线</strong>。</li>
+</ol>
+<p><img alt="持有者成本基准 vs 现价（9/26）" src="charts/cost-basis-202609.svg" /></p>
+<blockquote>
+<p>上图的成本基准由 MVRV 比值反推（现价 ÷ MVRV），<strong>不是链上直接观测值</strong>；STH/LTH 是按币龄（155 天）划分的群组估算成本，<strong>不是真实持仓成本，也不是止损线</strong>。具体数值（均为 9/26）：<br />
+现价 <strong>$84,433</strong>；短期持有者成本 <strong>$73,420</strong>（÷1.15）；全市场已实现价格 <strong>$53,124</strong>；长期持有者成本 <strong>$48,805</strong>（÷1.73）。</p>
+</blockquote>
+<h3 id="34">3.4 宏观环境</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>因素</th>
+<th>8/31</th>
+<th>9/30</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>联邦基金利率</strong></td>
+<td>3.50–3.75%</td>
+<td><strong>3.75–4.00%</strong>（9/16 加息 25bp，12:0）</td>
+<td>federalreserve.gov ✅</td>
+</tr>
+<tr>
+<td>2 年期美债</td>
+<td>4.34%</td>
+<td><strong>4.88%</strong></td>
+<td>美国财政部 ✅</td>
+</tr>
+<tr>
+<td><strong>10 年期美债</strong></td>
+<td>4.75%</td>
+<td><strong>5.29%</strong>（2026 年最高）</td>
+<td>美国财政部 ✅</td>
+</tr>
+<tr>
+<td>30 年期美债</td>
+<td>5.25%</td>
+<td><strong>5.64%</strong>（2026 年最高）</td>
+<td>美国财政部 ✅</td>
+</tr>
+<tr>
+<td>美元指数 DXY</td>
+<td>99.43</td>
+<td><strong>101.45</strong></td>
+<td>Yahoo Finance</td>
+</tr>
+<tr>
+<td>黄金（期货）</td>
+<td>$4,481.5</td>
+<td><strong>$4,186.7</strong>（−6.58%）</td>
+<td>Yahoo Finance</td>
+</tr>
+<tr>
+<td>WTI 原油</td>
+<td>$85.76</td>
+<td><strong>$90.42</strong></td>
+<td>Yahoo Finance；布伦特 9/14 一度接近 $110（Motley Fool 转述）</td>
+</tr>
+<tr>
+<td>标普 500</td>
+<td>7,686</td>
+<td>7,652（−0.45%）</td>
+<td>Yahoo Finance</td>
+</tr>
+<tr>
+<td>8 月 CPI（9/11 公布）</td>
+<td>—</td>
+<td>同比 <strong>3.4%</strong>，环比 0.4%</td>
+<td>CNBC / Morningstar 转述，<strong>未打开 bls.gov 原文</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>9/16 FOMC 声明原文</strong>（federalreserve.gov，一手）：「通胀仍然偏高（Inflation remains elevated）。今天的政策行动将支持更及时地回到委员会 2% 的目标。<strong>委员会将实现价格稳定</strong>（The Committee will deliver price stability）。」</p>
+<p><strong>9 月经济预测摘要</strong>（SEP，federalreserve.gov，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>中位数</th>
+<th>2026</th>
+<th>2027</th>
+<th>2028</th>
+<th>长期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>联邦基金利率（年末）</td>
+<td><strong>4.1%</strong>（6 月预测 3.8%）</td>
+<td>4.1%</td>
+<td>3.9%</td>
+<td>3.2%</td>
+</tr>
+<tr>
+<td>PCE 通胀</td>
+<td>3.7%</td>
+<td>2.3%</td>
+<td>2.1%</td>
+<td>2.0%</td>
+</tr>
+<tr>
+<td>核心 PCE</td>
+<td>3.4%</td>
+<td>2.5%</td>
+<td>2.2%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>失业率</td>
+<td>4.1%</td>
+<td>4.1%</td>
+<td>4.1%</td>
+<td>4.2%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>2026 年末利率中位数 4.1%（即区间中点 4.125%）比当前中点 3.875% 高 25 基点——中位数委员认为年内还要再加一次。</strong><br />
+剩下两次会议：10/27–28、12/8–9。</p>
+<blockquote>
+<p><strong>宏观对 BTC 的读法要和 3.1 一起看</strong>：这些读数全部偏鹰，而 BTC 9 月上涨。<br />
+<strong>本报告不再把「宏观偏鹰」直接翻译成「BTC 偏空」</strong>——Q3 的数据不支持这个翻译。</p>
+</blockquote>
+<h3 id="35">3.5 技术与生态</h3>
+<p><strong>算力：从熊市中回升</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数据</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7 日均算力（9/30）</td>
+<td><strong>979.5 EH/s</strong>，为峰值的 <strong>85.1%</strong></td>
+<td>Coin Metrics</td>
+</tr>
+<tr>
+<td>历史峰值（7 日均）</td>
+<td>1,151.5 EH/s（2025-10-18）</td>
+<td>Coin Metrics</td>
+</tr>
+<tr>
+<td>8 月底 7 日均</td>
+<td>922.9 EH/s（峰值的 80.2%）</td>
+<td>Coin Metrics</td>
+</tr>
+<tr>
+<td>难度</td>
+<td><strong>132.76T</strong>（9/19 上调 4.16%）</td>
+<td>mempool.space ✅</td>
+</tr>
+<tr>
+<td>近 30 天手续费占矿工收入</td>
+<td><strong>0.65%</strong>（88.1 BTC / 13,588 BTC）</td>
+<td>mempool.space ✅</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>8 月版写「约 932 EH/s，较峰值 −17%（推算峰值约 1,120）」，来自媒体。按 Coin Metrics 的 7 日均口径，8 月底是峰值的 80.2%（−19.8%）。<br />
+<strong>两者口径不同，本版起统一用 Coin Metrics 7 日均。</strong></p>
+</blockquote>
+<p><strong>手续费占矿工收入只有 0.65%</strong>——矿工收入的 99% 以上来自区块补贴。这是 BTC 长期安全预算问题的当前读数：<br />
+每次减半补贴减半，而手续费目前不足以补位。<strong>这不是本月新出现的问题，但本版第一次用一手数据量化它。</strong></p>
+<p><strong>量子抗性：BIP-360（P2MR）仍在修订</strong></p>
+<p>GitHub <code>bitcoin/bips</code> 仓库显示，BIP-360 的修订 PR 在 9/21 仍在合并（#2273，限定 Merkle 深度并替换参考实现中的断言）。<br />
+<strong>它是一份进入 BIPs 仓库的草案，不是已激活的软分叉。</strong> 媒体称约 651 万枚 BTC 位于对量子攻击脆弱的地址（转述，未核实）。</p>
+<p><strong>AI Agent 支付</strong>：9 月未见比特币原生 Agent 支付的规模化落地新证据，维持 8 月版判断（见 5.2）。</p>
+<hr />
+<h2 id="36-q3">3.6 Q3 季度回顾（本版新增）</h2>
+<h3 id="_2">季度表现</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>Q4 2025</th>
+<th>Q1 2026</th>
+<th>Q2 2026</th>
+<th><strong>Q3 2026</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BTC 季度涨跌</td>
+<td>−23.1%</td>
+<td>−22.1%</td>
+<td>−14.1%</td>
+<td><strong>+42.6%</strong></td>
+</tr>
+<tr>
+<td>ETF 季度净流量（Farside）</td>
+<td>−$11.3 亿</td>
+<td>−$5.0 亿</td>
+<td>−$48.9 亿</td>
+<td><strong>+$63.6 亿</strong></td>
+</tr>
+<tr>
+<td>季末 MVRV（Coin Metrics）</td>
+<td>—</td>
+<td>—</td>
+<td>1.10</td>
+<td><strong>1.56</strong></td>
+</tr>
+<tr>
+<td>季末 10 年期美债</td>
+<td>—</td>
+<td>—</td>
+<td>4.44%</td>
+<td><strong>5.29%</strong></td>
+</tr>
+<tr>
+<td>季末联邦基金利率上限</td>
+<td>—</td>
+<td>—</td>
+<td>3.75%</td>
+<td><strong>4.00%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>季度涨跌按币安月线开盘/收盘计算；ETF 季度净流量为 Farside 日度数据按月加总后合并。</p>
+</blockquote>
+<p><strong>Q3 是 2024 年 Q4（+47.8%）以来最好的季度</strong>，终结了连续三个季度的下跌。季内高点 $87,395.67（9/21），低点 $57,800.19（7/1）。</p>
+<h3 id="q3">Q3 的三段</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>价格</th>
+<th>特征</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>底部</td>
+<td>7/1–7/31</td>
+<td>$58.6K → $62.9K（+7.3%）</td>
+<td>MVRV 1.10–1.20，深度低估区；ETF 基本持平（+$1.7 亿）；FOMC 三票主张加息</td>
+</tr>
+<tr>
+<td>修复</td>
+<td>8/1–8/31</td>
+<td>$62.9K → $78.6K（+25.0%）</td>
+<td>ETF +$35.4 亿；空头强平；Strategy 8 月下旬买入 4,603 枚</td>
+</tr>
+<tr>
+<td>拉锯</td>
+<td>9/1–9/30</td>
+<td>$78.6K → $83.6K（+6.4%）</td>
+<td>加息 + CLARITY 失败 + 收益率新高，前半月跌至 $75K，后半月反弹至 $87K</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="q3_1">Q3 对本系列判断的检验</h3>
+<p><strong>Q2 末（7 月版）的三情景是：乐观 15–20% / 中性 55–60% / 悲观 25–30%，中性区间预判 2026 下半年 $58K–$72K。</strong><br />
+<strong>Q3 末 $83,624 高于中性区间上沿 16%，落在 7 月版的乐观情景里。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>7 月版的判断</th>
+<th>Q3 结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「宏观为 2022 年以来最不利」</td>
+<td>宏观确实继续收紧（加息兑现、收益率新高）——<strong>但 BTC 涨了 42.6%</strong></td>
+</tr>
+<tr>
+<td>「ETF 持续失血」</td>
+<td>Q3 净流入 $63.6 亿</td>
+</tr>
+<tr>
+<td>「被迫卖出螺旋已启动」</td>
+<td>Strategy Q3 净买入</td>
+</tr>
+<tr>
+<td>「CLARITY 可能推迟到 2027」</td>
+<td><strong>9/15 参议院失败，事实上兑现了</strong>——7 月版这条在 8 月被判错，现在看是时点错、方向对</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>一个季度的结论</strong>：本系列在 Q2 末对 Q3 的判断整体偏空且错了，错的根源不是数据，而是<strong>把「宏观收紧」当成了 BTC 下跌的充分条件</strong>。<br />
+Q3 的宏观比 Q2 末预期的还要紧，BTC 却走出了两年来最好的一个季度之一。</p>
+<hr />
+<h2 id="4">4. 上市公司比特币储备</h2>
+<h3 id="41">4.1 整体规模</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>数据</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上市公司合计持仓</td>
+<td><strong>1,275,684 BTC</strong>（$1,079.5 亿，197 家）</td>
+<td>bitcointreasuries.net（10/3 抓取，价格 $84,623）</td>
+</tr>
+<tr>
+<td>Strategy 持仓</td>
+<td><strong>847,666 BTC</strong>（9/27），占总供应约 4.04%</td>
+<td>SEC 8-K ✅</td>
+</tr>
+<tr>
+<td>Strategy 总成本 / 均价</td>
+<td>$639.5 亿 / <strong>$75,437</strong></td>
+<td>SEC 8-K ✅</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="42-strategy">4.2 Strategy：恢复买币，同时大额回购自家优先股</h3>
+<p><strong>全部来自 Strategy 向 SEC 提交的每周 8-K（一手）：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>期间</th>
+<th>买入 BTC</th>
+<th>均价</th>
+<th>资金来源</th>
+<th>回购 STRC 优先股</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8/24–8/30</td>
+<td><strong>4,603</strong></td>
+<td>$80,318</td>
+<td>MSTR 普通股 ATM</td>
+<td>—</td>
+</tr>
+<tr>
+<td>8/31–9/7</td>
+<td>0</td>
+<td>—</td>
+<td>—</td>
+<td>$1.763 亿</td>
+</tr>
+<tr>
+<td>9/8–9/13</td>
+<td>0</td>
+<td>—</td>
+<td>—</td>
+<td>$1.393 亿</td>
+</tr>
+<tr>
+<td>9/14–9/20</td>
+<td><strong>950</strong></td>
+<td>$79,670</td>
+<td>USD Cash（美元现金）</td>
+<td>$1.740 亿</td>
+</tr>
+<tr>
+<td>9/21–9/27</td>
+<td><strong>1,665</strong></td>
+<td>$85,681</td>
+<td>MSTR 普通股 ATM</td>
+<td>$1.517 亿</td>
+</tr>
+<tr>
+<td><strong>9 月合计（8/31–9/27）</strong></td>
+<td><strong>2,615 枚，约 $2.18 亿</strong></td>
+<td></td>
+<td></td>
+<td><strong>$6.413 亿</strong></td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>美元储备</th>
+<th>8/30</th>
+<th>9/13</th>
+<th>9/20</th>
+<th>9/27</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>USD Reserve（用于优先股股息与债息）</td>
+<td>$51.0 亿</td>
+<td>$51.0 亿</td>
+<td>$50.4 亿</td>
+<td><strong>$50.2 亿</strong></td>
+</tr>
+<tr>
+<td>USD Cash（一般用途）</td>
+<td>$16.1 亿</td>
+<td>$13.0 亿</td>
+<td>$10.5 亿</td>
+<td><strong>$10.0 亿</strong></td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>$67.1 亿</strong></td>
+<td>$64.0 亿</td>
+<td>$60.9 亿</td>
+<td><strong>$60.2 亿</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>8 月版的更正</strong>：8 月版 4.2 写 Strategy「8 月未买卖任何比特币」。8-K 显示它 <strong>8/24–8/30 用 ATM 募资买入了 4,603 枚</strong>。<br />
+8 月版同一节写的「9 月初持仓 845,050，<strong>高于</strong> 8/16 的 840,447」恰好就是这 4,603 枚——<strong>报告自己的表已经包含了反证。</strong></p>
+</blockquote>
+<p><strong>这张表说明了什么</strong>：</p>
+<ol>
+<li><strong>9 月（8/31–9/27）Strategy 回购 STRC 的钱是买币的 2.9 倍；但把窗口放到 8/24–9/27（与记分卡 8-3 相同），买币 $5.88 亿、回购 $6.41 亿，只有 1.09 倍。</strong> 这个比值对窗口很敏感。 STRC 股息率维持在 12%，公司声明「在 STRC 持续健康地交易在 $100 附近之前」维持这个利率——<br />
+<strong>这意味着 STRC 目前交易在面值以下</strong>（推断，本报告未取得 STRC 行情）。在面值以下回购 12% 股息的优先股，<strong>既可以读作托底，也可以读作退掉高成本资金</strong>。</li>
+<li><strong>USD Cash 一个月从 $16.1 亿降到 $10.0 亿。</strong> 但不能机械外推成「几周后耗尽」：回购是可随时调整的主动决策，而且 9/21–9/27 那周的 $1.517 亿回购里<strong>只有 $4,810 万来自 USD Cash，$1.035 亿来自卖 MSTR 普通股</strong>——公司已经在用发股而不是现金托底。</li>
+<li><strong>数字信用证券回购授权从 $10 亿提高到 $20 亿</strong>（9/8 8-K），9/27 剩余 $7.235 亿。</li>
+<li><strong>10/28 股东特别会议</strong>表决把四种优先股改为<strong>每日派息</strong>（9/24 8-K）——意在提高优先股对收益型投资者的吸引力。</li>
+</ol>
+<p><strong>判断</strong>：Strategy 的融资飞轮没有断；9 月的资金<strong>主要流向了回购优先股而不是买币</strong>。这是一个月的数据——<strong>它是资本配置的主动选择还是承压信号，本报告无法区分</strong>，列为监控项。<br />
+它 9 月买币 2,615 枚，按 8 月版的语言是「恢复增持」，<strong>但规模只有 2024–2025 年单周常见买入量的零头</strong>（本句为定性比较，未逐周核对历史数据）。</p>
+<h3 id="43-mnav">4.3 mNAV：三个口径都修复了</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>8 月版（8/31–9/3）</th>
+<th><strong>本版（10/3，BTC $84,623）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>企业价值基准（EV）</td>
+<td>1.00×</td>
+<td><strong>1.15×</strong></td>
+</tr>
+<tr>
+<td>基本（市值 / BTC NAV）</td>
+<td>0.72×</td>
+<td><strong>0.94×</strong></td>
+</tr>
+<tr>
+<td>摊薄</td>
+<td>0.73×</td>
+<td><strong>0.96×</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>来源：bitcointreasuries.net（两次均直接抓取）。MSTR 股价 9 月 +15.2%（$132.94 → $153.09，Yahoo Finance），高于 BTC 的 +6.4%。</p>
+</blockquote>
+<p><strong>普通股折价从 28% 收窄到 6%</strong>。这让卖普通股募资重新变得不那么稀释——也解释了为什么 9 月下旬 Strategy 重新用 ATM 买币。</p>
+<h3 id="44">4.4 其他头部公司</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>排名</th>
+<th>公司</th>
+<th>持有 BTC</th>
+<th>mNAV</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>Twenty One Capital（XXI）</td>
+<td>43,514</td>
+<td>0.72×</td>
+<td>bitcointreasuries.net</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Metaplanet（3350.T）</td>
+<td>43,000</td>
+<td>0.78×</td>
+<td>同上；9/30 董事会为争议性的第 10 期认股权证辩护（新闻标题）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>MARA Holdings</td>
+<td>35,577</td>
+<td>—</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Strive（ASST）</td>
+<td>27,462</td>
+<td>1.64×</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>除 Strategy 与 Strive 外，头部储备公司的 mNAV 仍低于 1</strong>——它们发股买币会稀释股东，增持能力受限。</p>
+<hr />
+<h2 id="5-ai-btc">5. AI 科技对 BTC 的多维影响</h2>
+<h3 id="51">5.1 矿业迁移：算力回升，但产业转向没有停</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数据</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>算力</td>
+<td>7 日均 979.5 EH/s，峰值的 85.1%（8 月底 80.2%）</td>
+<td>Coin Metrics</td>
+</tr>
+<tr>
+<td>上市矿企已披露 AI/HPC 合同</td>
+<td>超过 $700 亿（9 月初）</td>
+<td>媒体转述</td>
+</tr>
+<tr>
+<td>JPMorgan 估算的挖矿成本</td>
+<td>约 <strong>$84,948</strong>（9/23 报告）</td>
+<td>The Block 转述</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>JPMorgan 9/23 的报告把挖矿成本称为「软地板」</strong>：BTC 在成本以下待了约 280 天，矿工被迫卖币或转产 AI；<br />
+9 月下旬价格回到成本附近（$85,795 vs $84,948），卖压可能缓解。<strong>这是一个机构给出的、可检验的价格锚</strong>——但本报告未取得原报告。</p>
+<p><strong>9 月算力回升 6 个百分点</strong>与价格回升同步，<strong>不足以说明矿工回流</strong>：难度调整与币价回升本身就会让边际矿机重新开机。<br />
+8 月版 8-5「算力下滑是趋势」的检验窗口到 10 月底。</p>
+<h3 id="52-ai-agent">5.2 AI Agent 支付：维持下调</h3>
+<p>9 月没有新证据。维持 8 月版判断：方向成立、兑现遥远，主导协议 x402 结算的是稳定币而非比特币。</p>
+<h3 id="53-ai">5.3 AI 影响汇总</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>方向</th>
+<th>强度</th>
+<th>相比 8 月版</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>矿业转 AI / 算力</td>
+<td>负</td>
+<td>★★★☆☆</td>
+<td><strong>↓ 下调</strong>（算力回升至峰值 85%）</td>
+</tr>
+<tr>
+<td>AI Agent 支付</td>
+<td>正</td>
+<td>★★☆☆☆</td>
+<td>不变</td>
+</tr>
+<tr>
+<td>能源竞争</td>
+<td>负</td>
+<td>★★★☆☆</td>
+<td>不变</td>
+</tr>
+<tr>
+<td>加速量子威胁</td>
+<td>负（尾部）</td>
+<td>★★★☆☆</td>
+<td>不变（BIP-360 仍为草案）</td>
+</tr>
+<tr>
+<td>AI 诈骗</td>
+<td>负（用户层）</td>
+<td>★★★☆☆</td>
+<td>不变</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="6-btc">6. BTC 的核心价值逻辑</h2>
+<h3 id="61">6.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>逻辑</th>
+<th>强度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>绝对稀缺</strong></td>
+<td>★★★★★</td>
+<td>2100 万硬顶，年通胀约 0.85%，低于黄金</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>在宏观收紧中录得两年来最好的季度之一</strong></td>
+<td>★★☆☆☆</td>
+<td><strong>本月新增</strong>。加息 + 收益率新高 + CLARITY 失败，Q3 仍 +42.6%。<strong>与空头 4、5 同源——同一个「BTC 对紧缩有韧性」的推断已在那里通过降星计入</strong>，这里只给两星，避免重复计分；且这是一次观测（10.4）</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>ETF 在利空落地后立刻回流</strong></td>
+<td>★★★★☆</td>
+<td>9/15–16 流出 $7.5 亿后，连续 9 日流入 $30.8 亿；2026 年累计转正（Farside 一手）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>储备公司 mNAV 修复，Strategy 恢复买币</strong></td>
+<td>★★★☆☆</td>
+<td>EV mNAV 1.15、基本 0.94；<strong>但 9 月买币规模小，回购优先股的钱是买币的 2.9 倍（8/24 起算为 1.09 倍）</strong>（见空头 6）</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>去中心化与抗审查</strong></td>
+<td>★★★★☆</td>
+<td>17 年不间断运行</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>网络效应</strong></td>
+<td>★★★★★</td>
+<td>最大、最安全的区块链，品牌不可复制</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>对抗法币贬值</strong></td>
+<td>★★★★☆</td>
+<td>全球债务不可持续；JPMorgan 9/17 报告称「贬值交易」在 7 月 FOMC 后回归（转述）</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>算力回升</strong></td>
+<td>★★☆☆☆</td>
+<td><strong>本月新增</strong>。峰值的 85%，但与币价同步，不足以说明矿工回流</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="62">6.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>逻辑</th>
+<th>强度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>价格进入长期持有者的派发区</strong></td>
+<td>★★★★☆</td>
+<td>Glassnode 标注 $81K–$86K 为 LTH 供应密集区（转述）；8 月中至 9 月中 LTH 派发约 26 万枚（转述）。<strong>链上来源均为二手</strong>，故不给五星</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>已实现价格一年没涨</strong></td>
+<td>★★☆☆☆</td>
+<td><strong>本月新增</strong>。−0.6%（Coin Metrics）。全市场平均持币成本没有抬升。<strong>但见顶后一年横盘是历史常态</strong>（见 9.3），对长期假设判别力很弱，故两星</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>CLARITY 年内无望</strong></td>
+<td>★★★★☆</td>
+<td><strong>本月升级</strong>。9/15 程序性投票 49–50 失败（多源转述；senate.gov 返回 403 未能核实原文）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>年内大概率再加息一次</strong></td>
+<td>★★★☆☆</td>
+<td><strong>本月降级</strong>（从 ★★★★★）。点阵图中位数指向年末 4.125%；但 9 月的加息并未压制 BTC（见 3.1），这条的后果量级要下调</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>长端收益率 5.29%</strong></td>
+<td>★★★☆☆</td>
+<td><strong>本月降级</strong>（从 ★★★★☆）。无风险收益率创年内新高，对零息资产不利；但 Q3 的数据显示它不是季度方向锚</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Strategy 的资金更多流向回购优先股而非买币</strong></td>
+<td>★★☆☆☆</td>
+<td><strong>本月新增</strong>。9 月回购 STRC $6.41 亿、买币 $2.18 亿；USD Cash $16.1 亿 → $10.0 亿。<strong>可能是理性的资本配置</strong>（退掉 12% 股息的高成本资金），只有一个月数据，故两星</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>手续费只占矿工收入 0.65%</strong></td>
+<td>★★☆☆☆</td>
+<td><strong>本月新增</strong>。长期安全预算问题，与本季价格无关</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>高波动</strong></td>
+<td>★★★☆☆</td>
+<td>9 月年化波动 41.2%（币安日线）；对纳斯达克 beta 2.09</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>多空同源检查（DOT 期规则）</strong>：多头 2「宏观收紧中仍上涨」与空头 4/5「加息 / 收益率新高」是<strong>同一组事实的两面</strong>——<br />
+本版据此把空头 4、5 各降一星：<strong>一个已经发生、且没有造成预期后果的利空，不能按前瞻风险的满额计分。</strong><br />
+多头 4 与空头 6 同样同源（都是 Strategy 9 月的资金动作），<strong>本版把多头 4 控制在三星、空头 6 控制在两星</strong>。</p>
+</blockquote>
+<h3 id="63">6.3 机构观点分布</h3>
+<blockquote>
+<p>前几版的数据高度依赖加密原生媒体，这类媒体<strong>在结构上是看多的</strong>。本节固定纳入传统金融机构的判断作为配平。<br />
+<strong>本月所有机构观点均经媒体转述，本报告未取得任何一份原报告。</strong></p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>机构</th>
+<th>9 月立场 / 动作</th>
+<th>关键论据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>JPMorgan</strong>（Panigirtzoglou 团队）</td>
+<td>对 2026 年加密市场「保持正面」</td>
+<td>9/23：挖矿成本约 $84,948 是「软地板」；9/17：IBIT 的做空与对冲仓位接近年内高点，说明投资者对 BTC 仍比对黄金谨慎——<strong>若对冲减少，BTC 可能获得更多支撑</strong></td>
+</tr>
+<tr>
+<td><strong>Deutsche Bank</strong></td>
+<td><strong>动作而非观点</strong>：9/16 宣布 2026 年底前为欧洲机构客户提供 BTC、ETH 与稳定币托管（尚需监管审查）</td>
+<td>8 月版引用其「2026 年加息两次」的宏观预期——<strong>9 月已兑现第一次</strong></td>
+</tr>
+<tr>
+<td><strong>Standard Chartered</strong></td>
+<td>年末目标 $100,000（2026 年内第二次下调后）</td>
+<td>转述，下调日期为 2 月</td>
+</tr>
+<tr>
+<td><strong>Citi</strong></td>
+<td>年末目标 $143,000</td>
+<td>搜索摘要，<strong>日期未核实</strong></td>
+</tr>
+<tr>
+<td><strong>Morgan Stanley / Bernstein</strong></td>
+<td>本月未找到新观点</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>配平说明</strong>：四条里<strong>只有 JPMorgan 是 9 月的观点</strong>，Deutsche Bank 是动作而非观点，Standard Chartered 的下调在 2 月、Citi 日期未核实——<strong>这组样本不足以判断机构观点的重心是否相对 8 月移动</strong>，本报告不下这个结论。<br />
+但要注意两点：① JPMorgan 的「软地板」是一个<strong>有条件的</strong>支撑（以挖矿成本为锚，而该成本会随难度上升而上升）；<br />
+② Standard Chartered 的 $100,000 年末目标意味着 Q4 要再涨约 20%，<strong>它在 2026 年已下调过两次</strong>。</p>
+<hr />
+<h2 id="7-btc">7. BTC 与其他资产的比较</h2>
+<h3 id="71">7.1 横向对比</h3>
+<blockquote>
+<p>口径：统一按月末收盘（8/31→9/30、6/30→9/30）。BTC 用币安日线；其余用 Yahoo Finance 日收盘；收益率用美国财政部数据。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th>9 月</th>
+<th>Q3</th>
+<th>年化波动（9 月）</th>
+<th>主要风险</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BTC</strong></td>
+<td><strong>+6.42%</strong></td>
+<td><strong>+42.64%</strong></td>
+<td>41.2%</td>
+<td>派发压力、监管停滞</td>
+</tr>
+<tr>
+<td><strong>黄金（期货）</strong></td>
+<td>−6.58%</td>
+<td>+3.67%</td>
+<td>—</td>
+<td>实际利率上行</td>
+</tr>
+<tr>
+<td><strong>标普 500</strong></td>
+<td>−0.45%</td>
+<td>+2.03%</td>
+<td>—</td>
+<td>估值、利率</td>
+</tr>
+<tr>
+<td><strong>纳斯达克</strong></td>
+<td>+1.86%</td>
+<td>+2.47%</td>
+<td>—</td>
+<td>估值、利率</td>
+</tr>
+<tr>
+<td><strong>美元指数</strong></td>
+<td>+2.03%</td>
+<td>+0.26%</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>10 年期美债</strong></td>
+<td>收益率 +54bp（价格下跌）</td>
+<td>收益率 +85bp</td>
+<td>—</td>
+<td>通胀、供给</td>
+</tr>
+<tr>
+<td><strong>WTI 原油</strong></td>
+<td>+5.43%</td>
+<td>+30.10%</td>
+<td>—</td>
+<td>地缘冲突</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="72-btc-vs">7.2 BTC vs 黄金</h3>
+<p><strong>9 月出现了本系列观察以来最清楚的一次分化：黄金 −6.58%、BTC +6.42%。</strong><br />
+8 月版写过「BTC 的利率敏感度远大于黄金」——<strong>9 月的观测与这句话不符</strong>：收益率上行 54 基点时，下跌的是黄金。但单月涨跌不能度量敏感度，黄金同月下跌还有美元走强这个共同原因，<strong>一个月不足以更正它</strong>。</p>
+<p><strong>但不能据此说 BTC 重获「数字黄金」地位</strong>：同一个季度里两者都涨（BTC +42.6%、黄金 +3.7%），8 月黄金也涨了 9%。<br />
+<strong>一个月的反向运动是一次观测，不是一个属性。</strong></p>
+<h3 id="73">7.3 资产组合建议</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>投资者类型</th>
+<th>建议配置</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>保守型</strong></td>
+<td>0–1%</td>
+<td>波动仍然过大</td>
+</tr>
+<tr>
+<td><strong>平衡型</strong></td>
+<td>1–3%</td>
+<td>法币体系尾部对冲</td>
+</tr>
+<tr>
+<td><strong>成长型</strong></td>
+<td>3–5%</td>
+<td>非对称回报</td>
+</tr>
+<tr>
+<td><strong>激进型</strong></td>
+<td>≤10%</td>
+<td>需要严格纪律</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="8-btc-15">8. BTC 未来 1–5 年的关键变量（催化剂日历）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>催化剂</th>
+<th>影响</th>
+<th>方向</th>
+<th>置信度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2026.10.27–28</strong></td>
+<td><strong>FOMC</strong>（无点阵图）</td>
+<td>点阵图中位数指向年内再加一次；10 月或 12 月</td>
+<td>↓（但见 3.1：后果量级不确定）</td>
+<td>高（日程已定）</td>
+</tr>
+<tr>
+<td><strong>2026.10.28</strong></td>
+<td><strong>Strategy 股东特别会议</strong>：优先股改为每日派息</td>
+<td>若通过，STRC 首次每日派息在 11/2；影响 STRC 对收益型投资者的吸引力，从而影响公司继续回购它的必要性</td>
+<td>↑/↓</td>
+<td>高（日程已定）</td>
+</tr>
+<tr>
+<td><strong>持续</strong></td>
+<td><strong>Strategy 的回购资金来源</strong>（9/27 USD Cash $10.0 亿）</td>
+<td>回购继续时，资金来自 USD Cash 还是卖 MSTR 普通股；后者在 mNAV 回落时会更稀释</td>
+<td>关键变量</td>
+<td>高（每周 8-K 可观测）</td>
+</tr>
+<tr>
+<td><strong>持续</strong></td>
+<td><strong>$81K–$86K 的 LTH 派发区能否被消化</strong></td>
+<td>9/21 一度突破至 $87.4K，月末回到 $83.6K</td>
+<td>关键变量</td>
+<td>中（链上数据为二手）</td>
+</tr>
+<tr>
+<td><strong>2026.12.8–9</strong></td>
+<td><strong>FOMC + 点阵图</strong></td>
+<td>年末利率与 2027 年路径</td>
+<td>关键变量</td>
+<td>高</td>
+</tr>
+<tr>
+<td><strong>2026 年底</strong></td>
+<td>Deutsche Bank 托管上线</td>
+<td>欧洲机构通道</td>
+<td>↑</td>
+<td>中（需监管审查）</td>
+</tr>
+<tr>
+<td><strong>2027</strong></td>
+<td>CLARITY 是否在新一届国会重启</td>
+<td>9/15 失败后需重新走程序</td>
+<td>↑</td>
+<td>低</td>
+</tr>
+<tr>
+<td><strong>2028</strong></td>
+<td>第五次减半</td>
+<td>补贴再减半，而手续费只占矿工收入 0.65%</td>
+<td>↑（供给）/ ↓（安全预算）</td>
+<td>低</td>
+</tr>
+<tr>
+<td><strong>2028–2033</strong></td>
+<td>量子威胁时间窗</td>
+<td>BIP-360 仍为草案</td>
+<td>↓</td>
+<td>中</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="9-btc">9. BTC 未来的情景推演</h2>
+<h3 id="91">9.1 本版的两个改动</h3>
+<ol>
+<li><strong>新增 Q4 末（2026-12-31）的价格区间</strong>。2030 年的区间无法在可见的时间内被检验；Q4 的区间三个月后就能对账。</li>
+<li><strong>三档按 MVRV 首尾相接，覆盖全部取值</strong>（PONS 期规则）——上一版的三档在 2026 Q4 上有重叠（中性 $65K–$85K 与悲观 $50K–$68K），且没有明说「现状延续」属于哪一档。</li>
+</ol>
+<h3 id="92-q4">9.2 Q4 情景：推导方式</h3>
+<p><strong>价格 = 年末已实现价格 × 年末 MVRV。</strong></p>
+<blockquote>
+<p>⚠️ <strong>这不是一个预测模型</strong>（Codex 审查指出）：MVRV 本来就是市值 ÷ 已实现市值，这个公式只是把价格区间翻译成 MVRV 区间，<strong>方便和历史分布对照</strong>。<br />
+它不产生方向判断；<strong>下面的概率是作者的判断</strong>，依据是每一档需要什么条件，而不是这个公式。</p>
+</blockquote>
+<ul>
+<li><strong>年末已实现价格取 $53,500</strong>：过去 12 个月已实现价格在 $52,644–$56,463 之间横盘（Coin Metrics 推算），9/30 为 $53,612。<strong>这是本推导里最稳的一个输入。</strong></li>
+<li><strong>MVRV 分三档，以 2022-10 至今 1,455 个交易日的分布定标</strong>（10% 分位 1.16、25% 分位 1.33、中位数 1.75、75% 分位 2.16、最高 2.78）：</li>
+</ul>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>情景</th>
+<th style="text-align: center;">年末 MVRV</th>
+<th>依据</th>
+<th><strong>推出价格</strong></th>
+<th>主观概率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>悲观：派发压垮需求</strong></td>
+<td style="text-align: center;">0.90–1.20</td>
+<td>回到 2026 年 6 月（1.10）附近；下沿 0.90 接近 2022 年熊市底部（0.76）之上</td>
+<td><strong>$48K–$64K</strong></td>
+<td><strong>20%</strong></td>
+</tr>
+<tr>
+<td><strong>中性：现状延续 / 区间震荡</strong></td>
+<td style="text-align: center;">1.20–1.75</td>
+<td>覆盖当前 1.56；上沿 1.75 是 2022-10 以来的中位数</td>
+<td><strong>$64K–$94K</strong></td>
+<td><strong>55%</strong></td>
+</tr>
+<tr>
+<td><strong>乐观：突破派发区</strong></td>
+<td style="text-align: center;">1.75–2.35</td>
+<td>2025 年 MVRV 在 1.53–2.52 之间；上沿对应约 ATH</td>
+<td><strong>$94K–$126K</strong></td>
+<td><strong>25%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="Q4 情景：2026 年末价格区间与主观概率" src="charts/scenarios-202609.svg" /></p>
+<p><strong>三档首尾相接，覆盖 MVRV 0.90–2.35</strong>；低于 0.90 或高于 2.35 的尾部并入相邻档。现价 $83,624（MVRV 1.56）落在中性档内。</p>
+<p><strong>先给一个机械基线</strong>（_bian 审查后新增）：假设价格是无漂移的随机游走、年化波动 41%–60%（9 月实测 41.2%，过去一年 45.0%），从 9/30 的 $83,624 出发 92 天，三档的机械概率是：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>悲观（&lt; $64K）</th>
+<th>中性（$64K–$94K）</th>
+<th>乐观（&gt; $94K）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>机械基线（波动 41% / 45% / 60%）</td>
+<td>11.6% / 14.2% / 23.0%</td>
+<td>63.3% / 59.4% / 47.5%</td>
+<td>25.1% / 26.4% / 29.5%</td>
+</tr>
+<tr>
+<td><strong>本版主观概率</strong></td>
+<td><strong>20%</strong></td>
+<td><strong>55%</strong></td>
+<td><strong>25%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>本版的概率与机械基线几乎重合</strong>——作者在基线之上的主观调整很小，<strong>方向上略偏空</strong>（悲观 20% 高于 41%–45% 波动下的 12%–14%）。<br />
+<strong>这意味着「作者的基准预期在中性档」在信息量上接近「价格大致随机游走」。</strong> 本报告不假装它比这更多。</p>
+<p><strong>每一档需要什么条件</strong>（概率已在记分卡下注——见 B9-1）：</p>
+<ul>
+<li><strong>中性 55%</strong>：不需要任何新事件。价格在 LTH 派发区与短期持有者估算成本（约 $73K）之间来回，ETF 流量正负摆动。<strong>作者的基准预期在这一档。</strong></li>
+<li><strong>乐观 25%</strong>：需要 MVRV 越过 2022-10 以来的中位数 1.75，即 ETF 延续 9 月下旬的流入速度、LTH 派发结束（9 月中旬已有转为中性的迹象，转述）。</li>
+<li><strong>悲观 20%</strong>：需要 ETF 持续流出、价格跌破短期持有者的估算成本（约 $73K）。<strong>作者把它放在基线之上</strong>，理由是价格正处在 LTH 派发区（转述）、CLARITY 年内无望、点阵图指向再加息一次。</li>
+</ul>
+<blockquote>
+<p><strong>相比 8 月版的调整说明</strong>：悲观 28% → 20%，乐观 20% → 25%，中性 52% → 55%。<strong>这个变化主要是机械的，不是证据更新</strong>：</p>
+<ol>
+<li><strong>机械部分</strong>：现价从 $78.6K 升到 $83.6K、悲观上沿从 $68K 降到 $64K、期限从约 4 个月缩到 3 个月。按同一基线，8 月版的「悲观 &lt; $68K」约为 31%–40%，本版的「悲观 &lt; $64K」约为 12%–23%——<strong>单是机械变化就足以让悲观档下降 12–17 个百分点，比本版实际下调的 8 个百分点还多。</strong></li>
+<li><strong>两版不能逐档相减</strong>：8 月版的三档在 2026 Q4 上有重叠（中性 $65K–$85K 与悲观 $50K–$68K），本来就不是一组互斥事件的概率。</li>
+<li><strong>8 月版悲观情景的五个触发条件里，约四条在 9 月已发生或部分发生</strong>（加息并释放继续紧缩信号、油价一度逼近 $110、CLARITY 失败、LTH 派发），<strong>价格却上涨了</strong>。这说明 8 月版的情景映射本身错了，不只是「一个利空没起作用」。</li>
+</ol>
+<p><strong>初稿写的是「把一个被证伪的利空从悲观权重里拿掉」——这是错的</strong>：加息只是一次没有产生预期后果的观测（见 10.4），它仍在空头表里（空头 4），记分卡也仍在押下一次加息（B9-2）。</p>
+</blockquote>
+<h3 id="93-2030">9.3 长期情景（2030）：区间保留，但「已实现价格一年没涨」不能用来削弱它</h3>
+<p>8 月版的 2030 区间（乐观 $250K–$450K / 中性 $140K–$230K / 悲观 $40K–$90K）建立在<strong>「已实现价格每年抬升 15%–25%」</strong>这个假设上。过去 12 个月的实测是 −0.6%（Coin Metrics，9/30 对 9/30）。</p>
+<p><strong>初稿据此写「核心假设被削弱」。补做历史对照后，这个推理不成立</strong>（Coin Metrics 推算，一手 API）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>周期</th>
+<th>见顶日</th>
+<th>见顶后 12 个月已实现价格</th>
+<th>同期价格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017 周期</td>
+<td>2017-12-17</td>
+<td><strong>+1.7%</strong>（$4,527 → $4,606）</td>
+<td>−81.8%</td>
+</tr>
+<tr>
+<td>2021 周期</td>
+<td>2021-11-10</td>
+<td><strong>−12.2%</strong>（$23,798 → $20,885）</td>
+<td>−72.9%</td>
+</tr>
+<tr>
+<td><strong>本轮</strong></td>
+<td>2025-10-06</td>
+<td><strong>−1.7%</strong>（$54,577 → $53,637，至 10/1）</td>
+<td>−32.1%</td>
+</tr>
+<tr>
+<td>顶到顶年化增速</td>
+<td>2017-12 → 2021-11</td>
+<td><strong>53.0%/年</strong></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>2021-11 → 2025-10</td>
+<td><strong>23.7%/年</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>见顶后一年已实现价格横盘或下跌是历史常态</strong>，而前两个周期的顶到顶年化增速（53%、24%）正是包含了这样的熊市年份算出来的。<br />
+<strong>所以「本轮一年没涨」对「15%–25% 的周期均值假设」几乎没有判别力</strong>（ZEC 期规则：在两个假设下都会出现的证据，不能用来表态）。</p>
+<p><strong>能说的只是</strong>：顶到顶增速从 53% 降到 24%，<strong>在递减</strong>；8 月版的 15%–25% 已经低于上一个周期，<strong>与这个递减趋势一致</strong>。</p>
+<h3 id="94-2030">9.4 敏感性：已实现价格增速决定 2030 中性区间的一切</h3>
+<p>按 TRX 期规则，把最主观的输入推到它合理区间的两端（中性情景 MVRV 固定为 1.5–1.8，起点为 9/30 的 $53,500，到 2030 年底约 4.25 年）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>已实现价格年化增速</th>
+<th>2030 年末已实现价格</th>
+<th><strong>2030 中性区间</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0%（把一个熊市年份外推 4.25 年——基本等于假设价格四年不动）</td>
+<td>$53,500</td>
+<td>$80K–$96K</td>
+</tr>
+<tr>
+<td>10%</td>
+<td>$80,200</td>
+<td>$120K–$144K</td>
+</tr>
+<tr>
+<td>20%（8 月版假设的中段）</td>
+<td>$116,100</td>
+<td>$174K–$209K</td>
+</tr>
+<tr>
+<td>23.7%（上一个周期的顶到顶增速）</td>
+<td>$132,100</td>
+<td>$198K–$238K</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>同一个 MVRV、只改增速假设，2030 中性区间从 $80K 移到 $238K。</strong> 8 月版的 $140K–$230K 对应约 15%–25% 的增速。</p>
+<blockquote>
+<p>⚠️ 按 TRX 期教训：这张表的摆幅反映的是作者给增速选的区间宽度，<strong>不能据此说「增速比 MVRV 重要几倍」</strong>。<br />
+能说的只是：<strong>2030 区间的数字几乎完全由增速假设决定，而增速只有两个周期的样本，且在递减。</strong></p>
+</blockquote>
+<p><strong>本版处理</strong>：保留 8 月版 2030 区间作为参考，<strong>不放进摘要</strong>；摘要只给可在三个月内检验的 Q4 区间。</p>
+<h3 id="95">9.5 这套方法的弱点</h3>
+<ol>
+<li><strong>MVRV 的分布只有约 4 年（2022-10 起）</strong>，覆盖一个完整的熊转牛，但只有一个 ETF 时代的周期。</li>
+<li><strong>已实现价格横盘一年，不保证继续横盘</strong>——大幅上涨会抬高已实现价格，使上沿的价格高于表中数字。</li>
+<li><strong>Q4 只有三个月，MVRV 跨越 0.35（约 22% 价格）就能换档</strong>；9 月一个月的价格振幅（$74,968–$87,396）就有 16.6%。</li>
+<li><strong>完全没有考虑外生冲击</strong>——监管、量子、重大安全事件。</li>
+<li><strong>主观概率几乎等于机械基线</strong>（见 9.2），作者的增量判断很小。截至本期，BTC 记分卡已检验论点的正确率是 <strong>11%（1/9）</strong>——<strong>本版没有据此再做系统性折扣，这是已知缺陷</strong>。</li>
+</ol>
+<hr />
+<h2 id="10">10. 投资与风险启示</h2>
+<h3 id="101">10.1 当前周期位置</h3>
+<p>第四个减半周期第 29 个月。6 月末的深度低估区（MVRV 1.10）已在 Q3 修复到 1.56（44% 分位）。<br />
+<strong>价格回到了长期持有者的派发区和机构估算的挖矿成本附近（约 $85K）</strong>——上方有供给，下方有 STH 成本（约 $73K）。</p>
+<h3 id="102">10.2 策略建议</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>策略</th>
+<th>适合人群</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>定投（DCA）</strong></td>
+<td>普通投资者</td>
+<td>估值处于中位附近，分批优于择时</td>
+</tr>
+<tr>
+<td><strong>长期持有</strong></td>
+<td>能承受 50%+ 回撤者</td>
+<td>历史上持有 4 年以上未有亏损记录</td>
+</tr>
+<tr>
+<td><strong>战略配置</strong></td>
+<td>机构 / 高净值</td>
+<td>1–5%，作为非对称回报敞口</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>当前阶段的具体提醒</strong>：<strong>不要用「宏观偏鹰」作为卖出理由，也不要用「Q3 涨了 42%」作为追高理由。</strong><br />
+前者在 Q3 没有得到支持；后者的起点是低估区，<strong>而 MVRV 已经回到 2022-10 以来的中位附近</strong>（1.10 → 1.56，44% 分位）。</p>
+<h3 id="103">10.3 关键监控指标</h3>
+<p><strong>周期位置</strong>：<br />
+- <strong>MVRV</strong>（9/30 1.56；三档边界 1.20 / 1.75）<br />
+- <strong>STH-MVRV</strong>（9/26 1.15；跌破 1.0 意味着短期持有者整体浮亏）<br />
+- 已实现价格是否恢复增长（9/30 $53,612）</p>
+<p><strong>本月重点新增监控</strong>：<br />
+- <strong>Strategy 每周 8-K 的 USD Cash 余额</strong>（9/27 $10.0 亿）与 STRC 回购金额<br />
+- <strong>ETF 日度流量</strong>（Farside；10/1 +$1.03 亿、10/2 +$0.32 亿）<br />
+- <strong>10/27–28 FOMC 是否再加息</strong>——以及<strong>加息后 BTC 的反应是否再次与 9 月相同</strong>（记分卡 B9-5：会后第 10 日跌幅 ≥ 10% 即判错）<br />
+- 算力是否达到峰值的 95%（1,094 EH/s，记分卡 8-5 的门槛）</p>
+<h3 id="104">10.4 风险提醒</h3>
+<ol>
+<li><strong>9 月的「加息中上涨」是一次观测，不是规律。</strong> 本版撤回了「利率锚」，但同样不能反过来断言「BTC 对利率免疫」。</li>
+<li><strong>MVRV 已回到中位附近</strong>；若已实现价格继续不动，再上涨就意味着 MVRV 进入上半区，这在 2022-10 以来只有约一半的时间出现过。</li>
+<li><strong>Strategy 9 月回购优先股的金额是买币的 2.9 倍（8/24 起算为 1.09 倍）</strong>。这可以是理性的资本配置（在面值以下回购 12% 股息的优先股，等于退掉高成本资金），也可以是融资工具承压的信号——<strong>本报告无法区分</strong>，只把它列为监控项，不当作结构性结论（模式一）。</li>
+<li><strong>本系列在 Q2 末对 Q3 的判断整体错了</strong>——记分卡正确率 11%（1/9）。</li>
+</ol>
+<h3 id="105">10.5 长期认知</h3>
+<ol>
+<li><strong>BTC 是对法币体系尾部风险的非对称赌注。</strong> 法币体系运转良好时它表现平庸甚至糟糕。</li>
+<li><strong>持有周期决定结果。</strong> 4 年以上历史无亏损，但中途需承受 50–80% 的账面回撤。</li>
+<li><strong>仓位管理重于方向判断。</strong> 1–5% 才是可持续的配置。</li>
+<li>~~BTC 现在最直接的定价锚是长端美债收益率~~ —— <strong>本版撤回</strong>。Q3 收益率 +85 基点、BTC +42.6%；12 个月日度相关 −0.04。<br />
+<strong>替换为：8 月版的因果说法没有得到数据支持；利率在日度上仍有影响（7、9 月相关约 −0.4），在月度和季度上被其他因素盖过。「利率无关」同样没有被证明。BTC 的季度方向，本系列目前没有找到一个可靠的单一锚。</strong></li>
+<li><strong>本月新增的认知：已实现价格是比 MVRV 更慢、也更重要的变量。</strong> MVRV 告诉你现在贵不贵，已实现价格告诉你有没有新钱进来；过去一年它没涨。</li>
+</ol>
+<hr />
+<h2 id="11">11. 附录</h2>
+<h3 id="111">11.1 关键阶段速查</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>起点</th>
+<th>高点</th>
+<th>核心叙事</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>极早期</td>
+<td>2008–2012</td>
+<td>$0</td>
+<td>$30</td>
+<td>密码朋克实验</td>
+</tr>
+<tr>
+<td>市场形成</td>
+<td>2013–2016</td>
+<td>$13</td>
+<td>$1,100</td>
+<td>数字黄金雏形</td>
+</tr>
+<tr>
+<td>主流冲击</td>
+<td>2017–2020</td>
+<td>$1,000</td>
+<td>$19,783</td>
+<td>投机 + 扩容内战</td>
+</tr>
+<tr>
+<td>机构化</td>
+<td>2020–2024</td>
+<td>$7,200</td>
+<td>$73,000</td>
+<td>机构 + 宏观资产</td>
+</tr>
+<tr>
+<td>ETF 时代</td>
+<td>2024–至今</td>
+<td>$45,000</td>
+<td>$126,200</td>
+<td>ETF + 主权 + AI</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112">11.2 减半周期对比</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>减半年份</th>
+<th>减半时价格</th>
+<th>周期顶部</th>
+<th>顶部涨幅</th>
+<th>见顶后最大回撤</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2012</td>
+<td>$12.35</td>
+<td>$1,100</td>
+<td>~8,900%</td>
+<td>−85%</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>$650</td>
+<td>$19,783</td>
+<td>~2,950%</td>
+<td>−84%</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>$8,800</td>
+<td>$69,000</td>
+<td>~680%</td>
+<td>−77%</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>$63,000</td>
+<td>$126,200</td>
+<td>~100%</td>
+<td>−54%（币安 2026 年 6 月日线低点，以盘中高点计）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113-2026">11.3 2026 年月度回顾</h3>
+<blockquote>
+<p>口径：BTC 月末收盘（币安日线，UTC）；ETF 净流量为 Farside 日度数据按月加总。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th>BTC 月末收盘</th>
+<th>月涨跌</th>
+<th>ETF 净流（Farside）</th>
+<th>关键事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 月</td>
+<td>$78,741.09</td>
+<td>−10.16%</td>
+<td>−$16.0 亿</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2 月</td>
+<td>$66,973.26</td>
+<td>−14.94%</td>
+<td>−$2.1 亿</td>
+<td>—</td>
+</tr>
+<tr>
+<td>3 月</td>
+<td>$68,284.48</td>
+<td>+1.96%</td>
+<td>+$13.2 亿</td>
+<td>—</td>
+</tr>
+<tr>
+<td>4 月</td>
+<td>$76,346.57</td>
+<td>+11.81%</td>
+<td>+$20.2 亿</td>
+<td>—</td>
+</tr>
+<tr>
+<td>5 月</td>
+<td>$73,674.39</td>
+<td>−3.50%</td>
+<td>−$24.1 亿</td>
+<td>Warsh 就任</td>
+</tr>
+<tr>
+<td>6 月</td>
+<td>$58,624.71</td>
+<td>−20.43%</td>
+<td>−$45.1 亿</td>
+<td>史上最大单月流出</td>
+</tr>
+<tr>
+<td>7 月</td>
+<td>$62,887.88</td>
+<td>+7.27%</td>
+<td>+$1.7 亿</td>
+<td>FOMC 三票主张加息</td>
+</tr>
+<tr>
+<td>8 月</td>
+<td>$78,581.29</td>
+<td>+24.95%</td>
+<td>+$35.4 亿</td>
+<td>空头强平；Strategy 买入 4,603 枚</td>
+</tr>
+<tr>
+<td><strong>9 月</strong></td>
+<td><strong>$83,623.60</strong></td>
+<td><strong>+6.42%</strong></td>
+<td><strong>+$26.5 亿</strong></td>
+<td><strong>加息 25bp；CLARITY 失败；ETF 单日 $9.99 亿</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>8 月版用的 8 月收盘 $78,548.63 来自 Fortune / StatMuse 的搜索摘要；本版改用币安日线 $78,581.29，相差 0.04%。</p>
+</blockquote>
+<h3 id="114">11.4 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th>核实方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BTC 价格、月/季涨跌、波动率</td>
+<td>币安 API <code>klines</code>（BTCUSDT，日线 / 月线）</td>
+<td>✅ <strong>一手 API</strong></td>
+</tr>
+<tr>
+<td>ETF 日度净流量</td>
+<td>farside.co.uk 全量数据页</td>
+<td>✅ <strong>一手抓取，逐日加总</strong></td>
+</tr>
+<tr>
+<td>ETF 总资产规模 $1,084 亿</td>
+<td>The Block 转述</td>
+<td>⚠️ 搜索摘要</td>
+</tr>
+<tr>
+<td>FOMC 声明、投票、SEP 点阵图、会议日历</td>
+<td>federalreserve.gov</td>
+<td>✅ <strong>已直接抓取原文</strong></td>
+</tr>
+<tr>
+<td>Warsh 记者会表述</td>
+<td>The Block / Yahoo Finance 转述</td>
+<td>⚠️ 原文 PDF 已下载但未能解析文字</td>
+</tr>
+<tr>
+<td>美债收益率</td>
+<td>美国财政部每日收益率曲线 CSV</td>
+<td>✅ <strong>一手</strong></td>
+</tr>
+<tr>
+<td>美元指数、黄金、股指、原油、IBIT、MSTR</td>
+<td>Yahoo Finance chart API</td>
+<td>✅ API（非官方发布方）</td>
+</tr>
+<tr>
+<td>8 月 CPI</td>
+<td>CNBC / Morningstar 转述</td>
+<td>⚠️ 未打开 bls.gov 原文</td>
+</tr>
+<tr>
+<td>MVRV、市值、供应、算力、活跃地址</td>
+<td>Coin Metrics 社区 API</td>
+<td>✅ <strong>一手 API</strong></td>
+</tr>
+<tr>
+<td>MVRV、已实现价格、STH/LTH-MVRV、Z-Score</td>
+<td>bitcoin-data.com API（免费版延迟 7 天）</td>
+<td>✅ API；<strong>SOPR、Puell 等返回 429 限流，未取得</strong></td>
+</tr>
+<tr>
+<td>难度、手续费、矿工收入</td>
+<td>mempool.space API</td>
+<td>✅ <strong>一手 API</strong></td>
+</tr>
+<tr>
+<td>LTH 派发、交易所余额、LTH 供应密集区</td>
+<td>Glassnode / CryptoQuant 经媒体转述</td>
+<td>⚠️ <strong>二手</strong></td>
+</tr>
+<tr>
+<td>Strategy 持仓、买入、回购、美元储备</td>
+<td>SEC EDGAR 8-K（8/31–10/1 共 8 份）</td>
+<td>✅ <strong>一手</strong></td>
+</tr>
+<tr>
+<td>上市公司合计、mNAV</td>
+<td>bitcointreasuries.net</td>
+<td>✅ 直接抓取</td>
+</tr>
+<tr>
+<td>CLARITY 9/15 投票 49–50</td>
+<td>多家媒体（Coinpedia、cryptotimes 等）</td>
+<td>⚠️ <strong>senate.gov 返回 403，未能核实原文</strong></td>
+</tr>
+<tr>
+<td>9/18、9/21 上涨原因</td>
+<td>Motley Fool、cryptotimes 转述</td>
+<td>⚠️ 搜索摘要 / 单篇文章</td>
+</tr>
+<tr>
+<td>BIP-360 修订状态</td>
+<td>GitHub <code>bitcoin/bips</code> API</td>
+<td>✅ <strong>一手</strong></td>
+</tr>
+<tr>
+<td>机构观点（JPMorgan、Deutsche Bank、Standard Chartered、Citi）</td>
+<td>The Block、cryptonomist 等转述</td>
+<td>⚠️ <strong>未取得任何原报告</strong></td>
+</tr>
+<tr>
+<td>恐惧贪婪指数</td>
+<td>—</td>
+<td>各家方法论不同，<strong>未采用</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>关于来源偏向的说明</strong>：本版的价格、ETF、宏观、链上核心指标均已改为一手数据，<strong>这是本系列 BTC 报告第一次做到</strong>。<br />
+仍为二手的部分集中在三处：链上行为分析（Glassnode / CryptoQuant）、事件归因（9/18、9/21 为何上涨）、机构观点。<br />
+<strong>其中事件归因来自加密原生媒体，结构上偏多</strong>；机构观点本月偏中性到偏多，但全部未见原文。</p>
+</blockquote>
+<h3 id="115-8">11.5 本版对 8 月版的更正</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>8 月版写法</th>
+<th>更正</th>
+<th>发现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>STH-MVRV 0.96、LTH-MVRV 1.32 为「8 月底」读数；「短期持有者整体浮亏」</td>
+<td><strong>8/8 的读数</strong>；8/31 为 1.12 / 1.61，短期持有者整体浮盈约 12%</td>
+<td>拉 bitcoin-data 完整序列</td>
+</tr>
+<tr>
+<td>2</td>
+<td>图表成本基准 STH $81,821 / LTH $59,506</td>
+<td>按 8/31 读数应为约 $70,200 / $48,800</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Strategy「8 月未买卖任何比特币」</td>
+<td><strong>8/24–8/30 买入 4,603 枚</strong>（$3.697 亿，均价 $80,318）</td>
+<td>SEC 8-K</td>
+</tr>
+<tr>
+<td>4</td>
+<td>「BTC 最直接的定价锚是长端美债收益率」；「8 月财政部回购压低 30 年期收益率 → BTC 涨 25%」</td>
+<td>8 月 30 年期收益率月度变化 −2bp、10 年期 0bp；12 个月日度相关 −0.04</td>
+<td>美国财政部收益率 + 币安日线</td>
+</tr>
+<tr>
+<td>5</td>
+<td>「BTC 的利率敏感度远大于黄金」</td>
+<td><strong>不更正，只标注</strong>：9 月收益率 +54bp 时黄金 −6.58%、BTC +6.42%，与该说法不符，但单月不足以更正</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>6</td>
+<td>ETF 8 月 +$35.2 亿</td>
+<td>Farside 口径 +$35.4 亿</td>
+<td>Farside 日度数据</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="116">11.6 发布前审查记录</h3>
+<p>本期走了四层审查中的三层：<strong>第 1 层脚本</strong>（<code>verify_report.py</code>，0 FAIL / 0 WARN）、<strong>第 2 层 <code>_bian</code>（推理审查，15 条）</strong>、<strong>第 3 层 Codex（领域审查，3 条）</strong>。<br />
+每条发现都由作者对照一手数据复核后才采纳。<strong>下表分开记录出处</strong>。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>发现</th>
+<th>出处</th>
+<th>作者复核</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Q4 概率调整的理由归因错了</strong>：8 月与 9 月的区间定义不同、不能逐档相减；价格上移和期限缩短本身就会让悲观档下降</td>
+<td><code>_bian</code>（第 2 条）</td>
+<td>✅ <strong>成立，且比审查估计的更彻底</strong>：作者补算无漂移基线，<strong>本版 20/55/25 与基线（12–23 / 48–63 / 25–30）几乎重合</strong>，8 个百分点的下调全部可由机械变化解释</td>
+<td>9.2 重写：先给基线，再给主观偏离；删除「被证伪的利空」</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>「已实现价格一年没涨」不能用来削弱 2030 假设</strong>：熊市年份横盘可能是常态，似然比约为 1</td>
+<td><code>_bian</code>（第 12 条）</td>
+<td>✅ <strong>成立</strong>：补算 Coin Metrics 历史，<strong>2017 周期见顶后 12 个月 +1.7%、2021 周期 −12.2%</strong></td>
+<td>9.3 撤回「削弱」；空头 2 从四星降到两星；摘要与速查同步</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>撤回「利率锚」成立，但「推翻」和替换说法「利率只是噪声 / 不是季度锚」犯了同类错误</strong>：Q3 有更大的力量同时起作用；7、9 月日度相关约 −0.4</td>
+<td>Codex（第 2 条）与 <code>_bian</code>（第 3 条）<strong>独立提出</strong></td>
+<td>✅ 成立；<code>_bian</code> 另指出收盘时点不同步会把日度相关压向零</td>
+<td>3.1、10.5、摘要、速查统一为「原因果说法没有得到支持；利率无关同样没被证明」；口径注释补上不同步的影响</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Strategy「约 7 周用完 USD Cash」是机械外推</strong>：9/21–27 那周的回购里 $1.035 亿来自卖普通股，只有 $4,810 万来自 USD Cash</td>
+<td>Codex（第 3 条）</td>
+<td>✅ <strong>核对 8-K 后成立</strong></td>
+<td>删除「7 周」；第 8 章催化剂改为「回购资金来源」</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>「2.9 倍 → 托底者 → 结构性变化」对窗口敏感</strong>：用记分卡 8-3 的窗口（8/24–9/27）只有 1.09 倍；且回购折价优先股可以是理性配置</td>
+<td><code>_bian</code>（第 4 条）与 Codex（第 3 条）</td>
+<td>✅ 成立（1.09 倍为作者按 8-K 复算）</td>
+<td>两个窗口并列；删除「结构性」「托底者」的定性；空头 6 降为两星</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>MVRV 修复不是上涨的原因</strong>：已实现价格不动时，价格涨与 MVRV 涨是同一件事；STH/LTH 成本是币龄群组估算，不是止损线；情景公式不是预测模型</td>
+<td>Codex（第 1 条）</td>
+<td>✅ 成立</td>
+<td>摘要、3.3、9.2 补上这三处限定</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>同一次观测（加息后上涨）在多头 2、空头 4/5、情景概率里计了三次</strong></td>
+<td><code>_bian</code>（第 6 条）</td>
+<td>✅ 成立</td>
+<td>保留空头降星，多头 2 降为两星并注明同源</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>摘要写因果（「驱动是…」），正文只给相关</strong></td>
+<td><code>_bian</code>（第 7 条）</td>
+<td>✅ 成立</td>
+<td>摘要改为「同期出现…相关，不是已证明的原因」</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>记分卡判定标准不一致</strong>：8-1 判 ⚠️ 不符合 ⚠️ 的定义；6-1 早于窗口结束就判 ✅；7-1 与模式四矛盾</td>
+<td><code>_bian</code>（第 8 条）</td>
+<td>✅ 成立</td>
+<td>新增 ⊘「检验失效」；6-1 → ⏳、7-1 → ❌、8-1 → ⊘；<strong>正确率由 18% 改为 11%（1/9）</strong></td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>B9-3 统计量与论点不同构</strong>（买币、付息、ATM 补充都会移动美元储备合计）</td>
+<td><code>_bian</code>（第 10 条）</td>
+<td>✅ 成立</td>
+<td>改为「Q4 STRC 回购累计 &lt; $10 亿则错」，先验 40%</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>B9-4 的排查规则无法操作；门槛可及性用了另一家数据商的区间</strong></td>
+<td><code>_bian</code>（第 11 条）</td>
+<td>✅ 成立：<strong>Coin Metrics 口径 12 个月最高 $56,463，原门槛 $56,000 在区间之内</strong></td>
+<td>门槛改为 $57,000；排查规则写死为「单日已实现市值增幅 &gt; 0.5%」</td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>本期核心认知（利率与 BTC）没进记分卡；B9-2 违反同页刚写的「事件与后果同时登记」</strong></td>
+<td><code>_bian</code>（第 5 条）</td>
+<td>✅ 成立</td>
+<td>新增 B9-5：若 Q4 加息，会后第 10 日跌幅 ≥ 10% 则错</td>
+</tr>
+<tr>
+<td>13</td>
+<td><strong>B9-1 的门槛 11 靠断言通过，拒绝 ETF 条目也靠断言</strong></td>
+<td><code>_bian</code>（第 9 条）</td>
+<td>✅ 成立</td>
+<td>B9-1 / B9-5 标为「⚠️ 未量化通过」，并写明两者用的不是同一个统计量</td>
+</tr>
+<tr>
+<td>14</td>
+<td><strong>7.2 同段双重标准</strong>（用一个月更正 A，又说一个月不足以支持 B）</td>
+<td><code>_bian</code>（第 13 条）</td>
+<td>✅ 成立</td>
+<td>11.5 第 5 条改为「不更正，只标注」</td>
+</tr>
+<tr>
+<td>15</td>
+<td><strong>6.3 机构观点时效混杂，「与 8 月版不同」缺乏依据</strong></td>
+<td><code>_bian</code>（第 14 条）</td>
+<td>✅ 成立</td>
+<td>删除该结论</td>
+</tr>
+<tr>
+<td>16</td>
+<td><strong>9.5「读者应据此折扣」又把修正动作交给读者</strong></td>
+<td><code>_bian</code>（第 15 条）</td>
+<td>✅ 成立</td>
+<td>改为明说本版没有做系统性折扣，这是已知缺陷</td>
+</tr>
+<tr>
+<td>17</td>
+<td>速查第 3 句「继续上涨需要已实现价格增长」与乐观档（已实现价格不变、MVRV 扩张）矛盾</td>
+<td><code>_bian</code>（第 1 条）</td>
+<td>✅ 成立</td>
+<td>正文 10.4 与速查第 3 句改写</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>分歧</strong>：<code>_bian</code> 认为门槛 11 的单向规则（排查做不到判「不可判」）只在输的一侧开了出口；作者保留该规则（它来自 PONS 期、已写进技能文件），<strong>但把 B9-4 的排查改成了可计算的、且排查后仍超门槛就判 ❌</strong>。<br />
+<strong>超出本期范围、未处理</strong>：<code>_bian</code> 提示 SOL / ADA 的 8 月版仍把 8 月上涨归因于财政部回购，与本版撤回的机制不一致。</p>
+<hr />
+<blockquote>
+<p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不构成投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-btc">BTC 调研分析 — 核心问题与简明总结</h1>
+<blockquote>
+<p>配套 <code>btc_research_report_202609.md</code> 使用。Date: 2026-10-03（9 月版兼 Q3 季报；数据截至 9/30）</p>
+</blockquote>
+<hr />
+<h2 id="s-9-q3">一、9 月和 Q3 发生了什么</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>9 月</th>
+<th>Q3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BTC（币安日线）</td>
+<td><strong>+6.42%</strong>，收 $83,623.60</td>
+<td><strong>+42.64%</strong>（$58,624.71 → $83,623.60）</td>
+</tr>
+<tr>
+<td>ETF 净流量（Farside）</td>
+<td>+$26.5 亿</td>
+<td>+$63.6 亿</td>
+</tr>
+<tr>
+<td>10 年期美债</td>
+<td>4.75% → <strong>5.29%</strong>（年内最高）</td>
+<td>+85bp</td>
+</tr>
+<tr>
+<td>联邦基金利率</td>
+<td><strong>9/16 加息 25bp 至 3.75%–4.00%</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Q3 是 2024 年 Q4 以来最好的季度</strong>，终结连续三个季度下跌。距 ATH 回撤 33.7%。</p>
+<hr />
+<h2 id="s-_1">二、本季最重要的发现</h2>
+<p><strong>BTC 在宏观收紧中上涨。</strong> 加息、收益率新高、美元走强、黄金跌 6.6%——BTC 9 月仍 +6.4%，Q3 +42.6%。</p>
+<p><strong>因此撤回 8 月版的「BTC 定价锚是长端美债收益率」：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检验</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 月 BTC +25% 时 10 年期收益率月度变化</td>
+<td><strong>0bp</strong></td>
+</tr>
+<tr>
+<td>Q3 收益率 +85bp 时 BTC</td>
+<td><strong>+42.6%</strong></td>
+</tr>
+<tr>
+<td>过去 12 个月日度相关系数</td>
+<td><strong>−0.04</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>改为：<strong>8 月版的因果说法没有得到支持；利率日度上仍有影响（7、9 月相关约 −0.4），月度和季度上被其他因素盖过。但「利率无关」同样没被证明。</strong></p>
+<hr />
+<h2 id="s-8">三、8 月版的三处数据错误</h2>
+<ol>
+<li><strong>STH-MVRV 0.96 / LTH-MVRV 1.32 是 8/8 的读数，不是 8 月底</strong>——8/31 实际 1.12 / 1.61，「短期持有者浮亏」不成立</li>
+<li><strong>Strategy 8 月不是「未买卖」</strong>——8/24–8/30 买入 4,603 枚（SEC 8-K）</li>
+<li>8 月版自己表里 845,050 &gt; 840,447 本应暴露第 2 条</li>
+</ol>
+<hr />
+<h2 id="s-etf">四、ETF：利空落地后立刻回流</h2>
+<ul>
+<li>9/15（CLARITY 失败）、9/16（加息）两天流出 <strong>$7.46 亿</strong></li>
+<li>之后连续 9 个交易日流入 <strong>$30.75 亿</strong>；9/21 单日 <strong>$9.99 亿</strong>，2025 年 10 月以来最大</li>
+<li>2026 年累计（至 9/30）<strong>由负转正：+$9.7 亿</strong></li>
+</ul>
+<hr />
+<h2 id="s-mvrv">五、链上：MVRV 回到中位附近</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>6/30</th>
+<th>9/30</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MVRV（Coin Metrics）</td>
+<td>1.10</td>
+<td><strong>1.56</strong>（2022-10 以来 44% 分位）</td>
+</tr>
+<tr>
+<td>已实现价格</td>
+<td>$53,070</td>
+<td>$53,612</td>
+</tr>
+<tr>
+<td>STH 成本（9/26）</td>
+<td>—</td>
+<td>约 $73,400</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>已实现价格一年几乎没动</strong>（−1.5%）——链上转手的盈亏大致抵消，全市场平均成本没有抬升。</p>
+<hr />
+<h2 id="s-strategy">六、Strategy：恢复买币，但更多钱在托底优先股</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>9 月</th>
+<th>金额</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>买入 BTC</td>
+<td><strong>2,615 枚，约 $2.18 亿</strong></td>
+</tr>
+<tr>
+<td>回购 STRC 优先股</td>
+<td><strong>$6.41 亿</strong>（买币的 2.9 倍；8/24 起算为 1.09 倍）</td>
+</tr>
+<tr>
+<td>USD Cash</td>
+<td>$16.1 亿 → <strong>$10.0 亿</strong></td>
+</tr>
+<tr>
+<td>mNAV（EV / 基本）</td>
+<td>1.15× / 0.94×（8 月为 1.00× / 0.72×）</td>
+</tr>
+</tbody>
+</table></div>
+<p>10/28 股东特别会议表决优先股改为每日派息。</p>
+<hr />
+<h2 id="s-_2">七、宏观与监管</h2>
+<ul>
+<li><strong>9/16 FOMC 加息 25bp，12:0</strong>；点阵图中位数指向<strong>年内再加一次</strong>（年末 4.125%）</li>
+<li><strong>CLARITY 法案 9/15 参议院程序性投票 49–50 失败</strong>，2026 年基本无望</li>
+<li>8 月 CPI 同比 3.4%（转述）</li>
+</ul>
+<hr />
+<h2 id="s-q4-mvrv">八、Q4 情景（年末，按 MVRV 首尾相接）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>悲观</th>
+<th>中性</th>
+<th>乐观</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年末 MVRV</td>
+<td>0.90–1.20</td>
+<td>1.20–1.75</td>
+<td>1.75–2.35</td>
+</tr>
+<tr>
+<td><strong>价格</strong></td>
+<td><strong>$48K–$64K</strong></td>
+<td><strong>$64K–$94K</strong></td>
+<td><strong>$94K–$126K</strong></td>
+</tr>
+<tr>
+<td>主观概率</td>
+<td>20%</td>
+<td><strong>55%</strong></td>
+<td>25%</td>
+</tr>
+<tr>
+<td>随机游走基线（波动 41%–60%）</td>
+<td>12%–23%</td>
+<td>48%–63%</td>
+<td>25%–30%</td>
+</tr>
+</tbody>
+</table></div>
+<p>推导：年末已实现价格 $53,500 × MVRV。<strong>作者的基准预期在中性档</strong>（记分卡 B9-1，按 12/25–12/31 七日均价检验）。<br />
+<strong>相对 8 月版（28/52/20）的变化主要是机械的</strong>：现价上移、区间重画、期限缩短，单是这些就让悲观档在基线下掉 12–17 个百分点。两版的区间定义不同，不能逐档相减。</p>
+<p><strong>已实现价格一年没涨，但这不削弱 2030 区间</strong>：见顶后一年横盘是历史常态（2017 周期 +1.7%、2021 周期 −12.2%）。能说的是顶到顶增速在递减（53% → 24%/年）。</p>
+<hr />
+<h2 id="s-_3">九、记分卡</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>8 月论点</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8-1 流动性驱动、无地板</td>
+<td>⊘ 检验失效（条件只在大涨时判错）</td>
+</tr>
+<tr>
+<td>8-2 加息是首要风险</td>
+<td>⚠️ 事件对，后果未兑现</td>
+</tr>
+<tr>
+<td>8-3 被迫卖出不是基准</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>8-4 AI 支付被高估</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>8-5 算力下滑是趋势</td>
+<td>⏳（9 月回升至峰值 85%）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>累计正确率 11%（1/9）</strong>——本期起 6-1 改回待验、7-1 按 Q3 结果改判 ❌、8-1 记为「检验条件失效」。</p>
+<hr />
+<h2 id="s-_4">十、接下来看什么</h2>
+<ol>
+<li><strong>10/27–28 FOMC</strong> 是否再加息，以及加息后 BTC 的反应</li>
+<li><strong>Strategy 每周 8-K</strong>：回购优先股的钱来自 USD Cash（$10.0 亿）还是卖普通股</li>
+<li><strong>$81K–$86K 的 LTH 派发区</strong>能否被消化</li>
+<li><strong>已实现价格是否恢复增长</strong></li>
+</ol>
+<hr />
+<h2 id="s-3-5">十一、如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>Q3 +42.6%，是两年来最好的季度之一，而且发生在美联储加息、10 年期收益率升到 5.29% 的同时。</strong></p>
+</li>
+<li>
+<p><strong>8 月版说「BTC 的定价锚是长端美债」——它的论据经不起检验，撤回。</strong> 但 Q3 的数据也证明不了利率不重要：同期有更大的力量在起作用。</p>
+</li>
+<li>
+<p><strong>Q3 的起点是低估区（MVRV 1.10），现在 MVRV 回到 1.56、中位附近。</strong> 已实现价格一年没动——若它继续不动，再涨就意味着 MVRV 进入上半区。</p>
+</li>
+<li>
+<p><strong>Strategy 恢复买币，9 月回购自家优先股的钱是买币的 2.9 倍（8/24 起算为 1.09 倍，比值对窗口敏感）。</strong> 这可能是理性的资本配置，也可能是融资工具承压——本报告无法区分，只列为监控项。</p>
+</li>
+<li>
+<p><strong>本系列在 Q2 末对 Q3 的判断整体错了，记分卡正确率 11%。</strong> 本版的 Q4 概率（20/55/25）几乎等于随机游走的机械基线——作者的增量判断很小，三个月后对账。</p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>btc_research_report_202609.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>

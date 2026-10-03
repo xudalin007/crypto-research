@@ -46,10 +46,12 @@ class Report:
         self.asset, self.ym = asset, ym
         base = os.path.join(asset, 'professional')
         self.base = base
-        self.md_path = os.path.join(base, f'{asset}_research_report_{ym}.md')
-        self.sm_path = os.path.join(base, f'{asset}_questions_summary_{ym}.md')
-        self.sc_path = os.path.join(base, 'thesis_scorecard.md')
-        self.charts_dir = os.path.join(base, 'charts')
+        # 2026-09 起每月一个文件夹：<asset>/professional/<YYYYMM>/；更早的月份仍平铺在 professional/ 下
+        month = os.path.join(base, ym) if os.path.isdir(os.path.join(base, ym)) else base
+        self.md_path = os.path.join(month, f'{asset}_research_report_{ym}.md')
+        self.sm_path = os.path.join(month, f'{asset}_questions_summary_{ym}.md')
+        self.sc_path = os.path.join(base, 'thesis_scorecard.md')  # 记分卡跨期，始终在 professional/ 根目录
+        self.charts_dir = os.path.join(month, 'charts')
         self.fails, self.warns = [], []
 
     def read(self, p):

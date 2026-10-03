@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 300" width="100%" role="img" aria-label="持有者成本基准 vs 现价（2026-09-26）">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}
+</style>
+<rect width="620" height="300" fill="none"/>
+<text x="0" y="16" class="t">持有者成本基准 vs 现价（2026-09-26）</text><text x="0" y="34" class="s">单位：美元 · 由 MVRV 比值反推，非直接观测 · 数据源：bitcoin-data.com API</text>
+<line x1="200" y1="58" x2="200" y2="248" class="ax"/><text x="200" y="265" class="l" text-anchor="middle">$0K</text>
+<line x1="310" y1="58" x2="310" y2="248" class="ax"/><text x="310" y="265" class="l" text-anchor="middle">$30K</text>
+<line x1="420" y1="58" x2="420" y2="248" class="ax"/><text x="420" y="265" class="l" text-anchor="middle">$60K</text>
+<line x1="530" y1="58" x2="530" y2="248" class="ax"/><text x="530" y="265" class="l" text-anchor="middle">$90K</text>
+<text x="188" y="85" class="l" text-anchor="end">现价（9/26）</text><text x="188" y="99" class="l" text-anchor="end" opacity=".7">币安日线收盘</text>
+<path d="M200,72 L505.6,72 Q509.6,72 509.6,76 L509.6,88 Q509.6,92 505.6,92 L200,92 Z" fill="#eb6834"/>
+<text x="518" y="87" class="v">$84,433</text>
+<text x="188" y="131" class="l" text-anchor="end">短期持有者成本基准</text><text x="188" y="145" class="l" text-anchor="end" opacity=".7">STH-MVRV 1.15 → 浮盈 15%</text>
+<path d="M200,118 L465.2,118 Q469.2,118 469.2,122 L469.2,134 Q469.2,138 465.2,138 L200,138 Z" fill="#2a78d6"/>
+<text x="477" y="133" class="v">$73,420</text>
+<text x="188" y="177" class="l" text-anchor="end">全市场已实现价格</text><text x="188" y="191" class="l" text-anchor="end" opacity=".7">一年几乎没动</text>
+<path d="M200,164 L390.8,164 Q394.8,164 394.8,168 L394.8,180 Q394.8,184 390.8,184 L200,184 Z" fill="#1baf7a"/>
+<text x="403" y="179" class="v">$53,124</text>
+<text x="188" y="223" class="l" text-anchor="end">长期持有者成本基准</text><text x="188" y="237" class="l" text-anchor="end" opacity=".7">LTH-MVRV 1.73 → 浮盈 73%</text>
+<path d="M200,210 L375.0,210 Q379.0,210 379.0,214 L379.0,226 Q379.0,230 375.0,230 L200,230 Z" fill="#7d6bd6"/>
+<text x="387" y="225" class="v">$48,805</text>
+<text x="0" y="290" class="s">短期与长期持有者都在盈利；9/15 回调低点 $74,968 在当日短期持有者成本（约 $71,400）上方约 5%。</text></svg>
