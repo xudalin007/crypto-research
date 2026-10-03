@@ -9,10 +9,10 @@ HTML 仍保留 @media print 样式，需要时可从浏览器自行打印。
     python3 .claude/skills/btc-monthly-report/build.py 202608          # 默认 btc
     python3 .claude/skills/btc-monthly-report/build.py 202608 --asset btc
 
-会读取 <asset>/professional/<YYYY>Q<n>/<YYYYMM>/<asset>_research_report_<YYYYMM>.md
-       <asset>/professional/<YYYY>Q<n>/<YYYYMM>/<asset>_questions_summary_<YYYYMM>.md
-输出   <asset>/professional/<YYYY>Q<n>/<YYYYMM>/<asset>_research_report_<YYYYMM>.html
-（找不到季度文件夹时，依次退回 <asset>/professional/<YYYYMM>/ 与平铺的 <asset>/professional/）
+会读取 <asset>/professional/<YYYY>Q<n>/<asset>_research_report_<YYYYMM>.md
+       <asset>/professional/<YYYY>Q<n>/<asset>_questions_summary_<YYYYMM>.md
+输出   <asset>/professional/<YYYY>Q<n>/<asset>_research_report_<YYYYMM>.html
+（季度文件夹里找不到该月报告时，退回平铺的 <asset>/professional/）
 
 导航 ID 全自动探测，无需手工映射（消除拼音 slug 坑）。
 """
@@ -144,13 +144,11 @@ def main():
         sys.exit(f"未知资产 '{asset}'，请先在 build.py 的 PROFILES 里登记")
 
     base = os.path.join(asset, 'professional')
-    # 报告目录：<asset>/professional/<YYYY>Q<n>/<YYYYMM>/（按季度、再按月）；
-    # 兼容只有月份文件夹 <YYYYMM>/ 与最早的平铺布局
-    quarter = f"{ym[:4]}Q{(int(ym[4:]) - 1) // 3 + 1}"
-    for cand in (os.path.join(base, quarter, ym), os.path.join(base, ym)):
-        if os.path.isdir(cand):
-            base = cand
-            break
+    # 报告目录：<asset>/professional/<YYYY>Q<n>/（按季度，当季各月文件平铺其中）；
+    # 找不到时退回最早的平铺布局 <asset>/professional/
+    quarter = os.path.join(base, f"{ym[:4]}Q{(int(ym[4:]) - 1) // 3 + 1}")
+    if os.path.exists(os.path.join(quarter, f'{asset}_research_report_{ym}.md')):
+        base = quarter
     rp_md = os.path.join(base, f'{asset}_research_report_{ym}.md')
     sm_md = os.path.join(base, f'{asset}_questions_summary_{ym}.md')
     out = os.path.join(base, f'{asset}_research_report_{ym}.html')

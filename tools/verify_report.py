@@ -46,10 +46,9 @@ class Report:
         self.asset, self.ym = asset, ym
         base = os.path.join(asset, 'professional')
         self.base = base
-        # 报告目录：<asset>/professional/<YYYY>Q<n>/<YYYYMM>/；兼容 <YYYYMM>/ 与平铺布局
-        quarter = f"{ym[:4]}Q{(int(ym[4:]) - 1) // 3 + 1}"
-        month = next((c for c in (os.path.join(base, quarter, ym), os.path.join(base, ym))
-                      if os.path.isdir(c)), base)
+        # 报告目录：<asset>/professional/<YYYY>Q<n>/（当季各月平铺）；找不到时退回平铺的 professional/
+        quarter = os.path.join(base, f"{ym[:4]}Q{(int(ym[4:]) - 1) // 3 + 1}")
+        month = quarter if os.path.exists(os.path.join(quarter, f'{asset}_research_report_{ym}.md')) else base
         self.md_path = os.path.join(month, f'{asset}_research_report_{ym}.md')
         self.sm_path = os.path.join(month, f'{asset}_questions_summary_{ym}.md')
         self.sc_path = os.path.join(base, 'thesis_scorecard.md')  # 记分卡跨期，始终在 professional/ 根目录
