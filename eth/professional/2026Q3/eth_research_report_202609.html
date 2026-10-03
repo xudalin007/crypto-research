@@ -1,0 +1,2578 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ETH / Ethereum 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#627EEA;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">Ξ ETH 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>Ξ ETH 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-ethereum">1. Ethereum 的起源与设计取舍</a>
+<a href="#2-eth">2. ETH 的发展阶段划分</a>
+<a href="#3-eth">3. ETH 当前现状分析</a>
+<a href="#4">4. 发行与销毁</a>
+<a href="#5-l2">5. L2 与价值捕获</a>
+<a href="#6">6. 机构通道与持有者结构</a>
+<a href="#7-eth">7. ETH 的核心价值逻辑</a>
+<a href="#8-eth">8. ETH 与其他资产的比较</a>
+<a href="#9">9. 关键变量与情景推演</a>
+<a href="#10">10. 投资与风险启示</a>
+<a href="#11">11. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-9-q3">一、9 月和 Q3 发生了什么</a>
+<a href="#s-blob">二、本期最重要的发现</a>
+<a href="#s-_1">三、发行与销毁</a>
+<a href="#s-l1-26">四、L1 费用</a>
+<a href="#s-_2">五、质押</a>
+<a href="#s-_3">六、机构</a>
+<a href="#s-glamsterdam">七、Glamsterdam</a>
+<a href="#s-2029">八、三情景</a>
+<a href="#s-_4">九、记分卡</a>
+<a href="#s-_5">十、接下来看什么</a>
+<a href="#s-3-5">十一、如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>Ξ ETH / Ethereum<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">Ξ Ethereum</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="eth-ethereum">ETH / Ethereum 完整调研与分析报告</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 10 月 3 日<br />
+<strong>数据截止</strong>：2026 年 9 月 30 日（9 月与 Q3 完整数据已闭合）；链上滚动窗口取到 10/3<br />
+<strong>版本</strong>：2026 年 9 月版（第二期）<strong>兼 Q3 季度回顾</strong><br />
+<strong>研究方法</strong>：沿用 8 月首期框架。本期第一次有上期论点可核对（E8-1 至 E8-6，见 3.0）。</p>
+<p><strong>本版更新要点</strong>：</p>
+<ol>
+<li><strong>9 月 +8.85%，Q3 +70.86%</strong>——收于 $2,686.01（币安日线）。Q3 是 ETH 在本系列 BTC / ETH / SOL / ADA 四个资产里涨幅最大的（与 ADA +70.78% 并列），ETH/BTC 比价 Q3 <strong>+19.8%</strong>。</li>
+<li><strong>本期最重要的发现：8 月版留下的「blob 收入塌陷是需求侧还是供给侧」有答案了——是供给侧。</strong><br />
+   逐块读取链上数据：每块 blob 用量从 2025-04 的 2.73 个升到 2026-09 的 <strong>5.56 个（翻倍）</strong>，而供给目标从 3 个上调到 <strong>14 个（4.7 倍）</strong>。<br />
+<strong>需求在增长，只是供给扩得更快</strong>，价格因此跌到地板。Fusaka 的 <strong>EIP-7918</strong> 把这个地板从 1 wei 抬到了执行层 base fee 的 1/16——2026 年 blob 价格一直贴着这条线，<strong>blob 销毁 ≈ 下限价格 × 用量</strong>。</li>
+<li><strong>L1 费用 9 月回升到 $1,591 万</strong>（环比 +53%），真年同比 <strong>−55.4%</strong>；销毁抵消发行的比例从 1.34% 升到 <strong>2.27%</strong>——<strong>方向改善，量级仍可忽略</strong>。年通胀 <strong>+0.862%</strong>，与 8 月几乎相同。</li>
+<li><strong>机构侧首次取得一手数据</strong>：ETF 改用 Farside 日度表——9 月净流入 <strong>$8.31 亿</strong>，Q3 <strong>$30.5 亿</strong>；质押型 ETF <strong>ETHB</strong> 9 月流入 $1.91 亿，占当月流入的 <strong>23%</strong>。<br />
+   BitMine 每周 8-K：ETH 持仓从 590.1 万枚升到 <strong>600.1 万枚</strong>（约 4.9% 供应量），其中 <strong>84% 已质押</strong>。</li>
+<li><strong>Glamsterdam</strong>：以太坊基金会 9/17 公告测试网 Sepolia 于 <strong>10/6</strong> 激活，<strong>主网日期未定</strong>。</li>
+<li><strong>8 月版的四处更正</strong>（见 11.5）：base fee「0.3115 gwei」是单点快照，8 月月均为 <strong>0.173 gwei</strong>；ETF 8 月净流入按 Farside 全月为 <strong>$18.5 亿</strong>；8 月涨幅改按币安 UTC 收盘为 <strong>+32.48%</strong>（原 CoinGecko 零点快照口径 +29.86%）；情景区间之间的空档补齐。</li>
+</ol>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ETH 是什么</strong></td>
+<td>一条<strong>可编程结算层</strong>：把执行外包给 L2，自己保留结算与数据可用性</td>
+</tr>
+<tr>
+<td><strong>当前价格位置</strong></td>
+<td>$2,686.01（9/30 币安收盘），市值约 <strong>$3,279 亿</strong>（全球第 2）。距 ATH（$4,956.78，币安 2025-08-24 盘中）<strong>−45.8%</strong>；YTD −9.61%</td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3 表现</strong></td>
+<td><strong>9 月 +8.85%、Q3 +70.86%</strong>。Q3 比 BTC beta 预期高约 17–19pp，<strong>约 1–1.5 个标准差，不能排除噪声</strong>；9 月的 +2.6pp 在噪声范围内</td>
+</tr>
+<tr>
+<td><strong>本期最重要的发现</strong></td>
+<td><strong>blob 收入塌陷是供给侧原因</strong>：每块 blob 用量一年半翻倍（2.73 → 5.56），供给目标涨 4.7 倍（3 → 14），价格跌到地板。<strong>EIP-7918 把地板从 1 wei 抬到执行层 base fee 的 1/16</strong>；用量低于目标期间，<strong>blob 销毁 ≈ 下限价格 × 用量，L2 增长通过用量线性传导，但不推高单价</strong>。用量要再涨约 2.5 倍，blob 才会重新进入市场定价</td>
+</tr>
+<tr>
+<td><strong>发行与销毁</strong></td>
+<td>30 天销毁 2,010.7 ETH vs 总发行 88,512 ETH，<strong>抵消 2.27%</strong>（8 月 1.34%）；年通胀 <strong>+0.862%</strong>。「超声波货币」仍然失效</td>
+</tr>
+<tr>
+<td><strong>L1 费用</strong></td>
+<td>9 月 <strong>$1,591 万</strong>，环比 +53%、真年同比 −55.4%。月均 base fee 0.173 → <strong>0.289 gwei</strong>。<strong>回升，但仍在 8 月版登记的 $2,000 万门槛之下</strong></td>
+</tr>
+<tr>
+<td><strong>机构通道</strong></td>
+<td>ETF 9 月 +$8.31 亿（Farside 一手），<strong>放缓到 8 月的 45%</strong>；质押型 ETF ETHB 9 月流入 $1.91 亿、资产 $11.76 亿（BlackRock 一手）。BitMine 9 月增持 10.0 万枚，持有约 4.9% 供应量</td>
+</tr>
+<tr>
+<td><strong>核心多头逻辑</strong></td>
+<td>抵押品层地位（L1 TVL $533 亿，第二名的 8.0 倍）；质押型 ETF 规模在增长；BitMine 84% 持仓已质押、持续增持；Q3 跑赢 BTC 19.8%</td>
+</tr>
+<tr>
+<td><strong>核心空头逻辑</strong></td>
+<td>销毁只抵消发行的 2.27%；L1 费用真年同比 −55.4%；<strong>blob 供给目标（14 个/块）远高于用量（5.56），blob 价格贴地板、销毁很少</strong>；BitMine 单一实体约 4.9% 供应量；ETF 流入放缓</td>
+</tr>
+<tr>
+<td><strong>估值立场</strong></td>
+<td>现金流（50 倍市盈率）只能解释市值的 <strong>约 3%</strong>。情景框架沿用 8 月版，补齐区间空档后概率<strong>机械调整为 33/40/27</strong>（不是观点变化，见 9.4）；<strong>作者的基准预期是中性情景</strong>（2026 年实际交易区间内震荡）</td>
+</tr>
+<tr>
+<td><strong>风险等级</strong></td>
+<td>低于 SOL 与 ADA，高于 BTC。年化波动 9 月 43.6%、过去一年 63.7%</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-ethereum">1. Ethereum 的起源与设计取舍</h2>
+<blockquote>
+<p>本章与 8 月首期相同，此处只保留理解本期内容必需的部分。完整内容见 <code>eth_research_report_202608.md</code> 第 1 章。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>Bitcoin</th>
+<th>Ethereum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目标</td>
+<td>点对点电子现金</td>
+<td><strong>可编程的世界状态机</strong></td>
+</tr>
+<tr>
+<td>代币角色</td>
+<td>就是资产本身</td>
+<td><strong>是资产，也是使用网络的燃料</strong></td>
+</tr>
+<tr>
+<td>供应规则</td>
+<td>硬编码 2,100 万</td>
+<td><strong>没有硬上限</strong>，发行规则随共识升级变化</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>改变 ETH 资产性质的升级</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>升级</th>
+<th>时间</th>
+<th>改变了什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EIP-1559</td>
+<td>2021-08-05</td>
+<td>base fee 销毁——「ETH 可能通缩」叙事的起点</td>
+</tr>
+<tr>
+<td>The Merge</td>
+<td>2022-09-15</td>
+<td>PoW → PoS，发行降约 90%，ETH 成为有收益的资产</td>
+</tr>
+<tr>
+<td>EIP-4844（Dencun）</td>
+<td>2024-03</td>
+<td>blob——给 L2 的廉价数据通道</td>
+</tr>
+<tr>
+<td><strong>Fusaka</strong></td>
+<td><strong>2025-12-03</strong></td>
+<td>gas limit 默认 60M（EIP-7935）、PeerDAS（EIP-7594）、<strong>blob 价格下限（EIP-7918）</strong>、BPO 分叉机制（EIP-7892，单独上调 blob 容量）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>本期新增的一行理解</strong>：Fusaka 不只是扩容。它的 <strong>EIP-7918 改变了 blob 的定价规则</strong>——<br />
+在需求不足时，blob 价格不再跌到 1 wei，而是停在执行层 base fee 的 1/16。<strong>第 5 章会说明这对价值捕获意味着什么。</strong><br />
+（Fusaka 包含的 EIP 清单取自 GitHub <code>ethereum/EIPs</code> 的元 EIP-7607 原文。）</p>
+</blockquote>
+<hr />
+<h2 id="2-eth">2. ETH 的发展阶段划分</h2>
+<blockquote>
+<p>阶段一至四见 8 月首期。阶段五追加本期事件。</p>
+</blockquote>
+<h3 id="202512">阶段五：叙事切换与机构接管（2025.12– 至今）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-12-03</td>
+<td><strong>Fusaka 激活</strong>：gas limit 60M、PeerDAS、blob 价格下限（EIP-7918）</td>
+</tr>
+<tr>
+<td>2026-01-15</td>
+<td>年内最高市值 <strong>$4,045 亿</strong>（CoinGecko）</td>
+</tr>
+<tr>
+<td>2026-03</td>
+<td><strong>BlackRock ETHB（质押型 ETF）上线</strong>；Farside 显示 3 月流入 $3.06 亿</td>
+</tr>
+<tr>
+<td>2026-06-26</td>
+<td>年内最低市值 <strong>$1,890 亿</strong></td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td>ETF 净流入 $3.67 亿，<strong>高于同期 BTC ETF 的 $1.73 亿</strong>（Farside 一手核实了 8 月版的这条说法）</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td><strong>+32.48%</strong>（币安 UTC 收盘口径）；ETF 净流入 $18.5 亿</td>
+</tr>
+<tr>
+<td><strong>2026-09-04</strong></td>
+<td>BitMine 终止与 Ethereum Tower 的质押管理协议（8-K Item 1.02）</td>
+</tr>
+<tr>
+<td><strong>2026-09-15/16</strong></td>
+<td>CLARITY 法案参议院程序性投票失败、美联储加息 25bp；<strong>两日 ETF 合计流出 $3.66 亿</strong>，ETH 9/15 单日 −4.67%</td>
+</tr>
+<tr>
+<td><strong>2026-09-17</strong></td>
+<td>以太坊基金会公告 <strong>Glamsterdam 测试网（Sepolia）10/6 激活</strong>，主网未定</td>
+</tr>
+<tr>
+<td><strong>2026-09-21</strong></td>
+<td>ETH 盘中高点 <strong>$2,807.34</strong>；ETF 单日流入 $2.70 亿</td>
+</tr>
+<tr>
+<td><strong>2026-09-28</strong></td>
+<td>BitMine 持仓<strong>突破 600 万枚</strong>（6,001,302）</td>
+</tr>
+<tr>
+<td><strong>2026-Q3</strong></td>
+<td><strong>+70.86%</strong>；ETH/BTC +19.8%</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="3-eth">3. ETH 当前现状分析</h2>
+<h3 id="30-8-6">3.0 论点校验：8 月版登记的 6 条</h3>
+<blockquote>
+<p>8 月首期登记的 E8-1 至 E8-6 中，<strong>没有一条在 9 月到达检验窗口</strong>——它们的截止日在 2026-12 至 2027-06。<br />
+下表记录 9 月的中期读数，<strong>不做判定</strong>。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th>检验条件（摘要）</th>
+<th>9 月读数</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E8-1</td>
+<td>销毁不再能有意义地抵消发行</td>
+<td>年底前任一月 销毁 ÷ 总发行 &gt;15% 则错</td>
+<td><strong>2.27%</strong>（30 天窗口，9/3–10/3）</td>
+<td>⏳ 距门槛约 6.6 倍</td>
+</tr>
+<tr>
+<td>E8-2</td>
+<td>Glamsterdam 会压低 L1 单位费用</td>
+<td>上线后满一月，月均 base fee 高于上线前一月则错</td>
+<td><strong>主网未上线</strong>（Sepolia 10/6）</td>
+<td>⏳ 未到窗口</td>
+</tr>
+<tr>
+<td>E8-3</td>
+<td>blob 销毁塌陷不会自行恢复</td>
+<td>2027-03-31 前任一 30 天 blob 销毁 &gt;80 ETH 则错</td>
+<td><strong>2.98 ETH</strong></td>
+<td>⏳ 距门槛约 27 倍；<strong>本期查清塌陷是供给侧原因</strong>：用量翻倍、目标涨 4.7 倍（见 5.1）</td>
+</tr>
+<tr>
+<td>E8-4</td>
+<td>L1 费用下行是结构性的</td>
+<td>9–12 月任一月 L1 费用 &gt;$2,000 万则错</td>
+<td><strong>9 月 $1,591 万</strong>，环比 +53%</td>
+<td>⏳ <strong>9 月未触发，但已走到门槛的 80%</strong></td>
+</tr>
+<tr>
+<td>E8-5</td>
+<td>中性情景是最可能的单一结果</td>
+<td>2026 年 12 月月均市值落在 $2,055 亿–$3,727 亿之外则错（区间按登记时 1–8 月月均的最低、最高月写死，见记分卡）</td>
+<td>9 月月均市值 $3,115 亿</td>
+<td>⏳ 在区间内</td>
+</tr>
+<tr>
+<td>E8-6</td>
+<td>企业储备集中度会以可观测方式兑现风险</td>
+<td>BitMine/SharpLink 单次减持 &gt;5%、mNAV 连续一月 &lt;1、或被迫融资，任一发生则成立</td>
+<td>BitMine <strong>增持</strong> 10.0 万枚；mNAV 只能算出下限 0.97（见 6.2）</td>
+<td>⏳ 未见触发事件</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>最需要注意的是 E8-4</strong>：9 月 L1 费用已到 $1,591 万，<strong>距 $2,000 万门槛只差 26%</strong>，而 2026 年 4 月曾到过 $2,443 万。<br />
+<strong>Q4 任一月触发，本条就判错</strong>——这是 8 月版两个核心章（L1 费用、价值捕获）里最可能先被证伪的一条。</p>
+<h3 id="31">3.1 价格与市场</h3>
+<blockquote>
+<p><strong>口径变更</strong>：8 月首期用 CoinGecko 的「日期值」（实为当日 00:00 UTC 快照）。本期起改用<strong>币安日线 UTC 收盘</strong>，与 BTC 报告统一，便于横向对照。<br />
+8 月涨幅按新口径为 <strong>+32.48%</strong>（7/31 收 $1,862.60 → 8/31 收 $2,467.65），原口径为 +29.86%。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9/30 收盘</strong></td>
+<td><strong>$2,686.01</strong></td>
+<td>币安 ETHUSDT 日线</td>
+</tr>
+<tr>
+<td>市值</td>
+<td><strong>约 $3,279 亿</strong>（全球第 2）</td>
+<td>收盘价 × 流通量 1.2209 亿（ultrasound.money）</td>
+</tr>
+<tr>
+<td>历史最高价</td>
+<td>$4,956.78（2025-08-24 盘中，币安）；CoinGecko 口径 $4,946.05</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>距 ATH</strong></td>
+<td><strong>−45.8%</strong></td>
+<td>币安</td>
+</tr>
+<tr>
+<td>9 月区间</td>
+<td>低 <strong>$2,356.41</strong>（9/2）/ 高 <strong>$2,807.34</strong>（9/21）</td>
+<td>币安日线盘中</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th>ETH</th>
+<th>BTC</th>
+<th>ETH/BTC 比价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9 月</strong>（8/31→9/30）</td>
+<td><strong>+8.85%</strong></td>
+<td>+6.42%</td>
+<td>0.03140 → 0.03212（<strong>+2.29%</strong>）</td>
+</tr>
+<tr>
+<td><strong>Q3</strong>（6/30→9/30）</td>
+<td><strong>+70.86%</strong></td>
+<td>+42.64%</td>
+<td>0.02681 → 0.03212（<strong>+19.81%</strong>）</td>
+</tr>
+<tr>
+<td>YTD</td>
+<td>−9.61%</td>
+<td>−4.59%</td>
+<td>−5.25%</td>
+</tr>
+<tr>
+<td>近 1 年（2025-09-30 起）</td>
+<td>−35.20%</td>
+<td>−26.68%</td>
+<td>−11.64%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>beta 与 R² 一起读</strong>（XIN 期规则），以及 beta 残差（CKB 期规则）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>窗口</th>
+<th>年化波动</th>
+<th>对 BTC 的 beta</th>
+<th>R²</th>
+<th>beta 预期涨幅</th>
+<th>实际</th>
+<th><strong>自身成分</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月</td>
+<td>43.6%</td>
+<td>0.98</td>
+<td>0.86</td>
+<td>+6.30%</td>
+<td>+8.85%</td>
+<td><strong>+2.55pp</strong></td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>52.6%</td>
+<td>1.21</td>
+<td>0.77</td>
+<td>+51.69%</td>
+<td>+70.86%</td>
+<td><strong>+19.17pp</strong></td>
+</tr>
+<tr>
+<td>近 1 年</td>
+<td>63.7%</td>
+<td>1.28</td>
+<td>0.82</td>
+<td>−34.22%</td>
+<td>−35.20%</td>
+<td>−0.98pp</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Q3 的自身成分有多大把握</strong>（<code>_bian</code> 审查后补算）：残差年化波动 = 52.6% × √(1 − 0.77) ≈ 25%，一个季度的 1 个标准差约 <strong>12.7pp</strong>——+19.2pp 约 <strong>1.5 个标准差</strong>；改用对数收益计算约 0.8 个标准差。<strong>9 月的 +2.55pp 约 0.55 个标准差，在噪声范围内。</strong><br />
+<strong>所以只能说 Q3 高于 beta 预期约 17–19pp，不能排除噪声，不能说「ETH 不只是跟涨」。</strong><br />
+<strong>同期的 ETH 专属事件</strong>：ETF 流入 $30.5 亿、BitMine 持续增持、L1 TVL 从 $374 亿升到 $533 亿。<br />
+<strong>这些是相关，不是已证明的原因</strong>——ETF 流量与价格同步（BTC 记分卡模式二），BitMine 的买入量相对日成交额有多大，本报告没有测。</p>
+</blockquote>
+<p><strong>9 月的两个大涨日</strong>：9/18 <strong>+6.74%</strong>、9/21 <strong>+4.95%</strong>——与 BTC 同一天（BTC +5.85%、+6.70%），对应 9/18 原油回落与 SEC 对代币化股票交易的有限放行、9/21 ETF 大额流入（事件归因见 BTC 9 月版，为媒体转述）。<br />
+<strong>9/15 −4.67%</strong>——CLARITY 法案程序性投票失败当日。</p>
+<h3 id="32-l1">3.2 L1 活动与费用</h3>
+<p><strong>L1 月度费用序列</strong>（DefiLlama API 日度数据按月聚合，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th>L1 费用</th>
+<th>月份</th>
+<th>L1 费用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-07</td>
+<td>$49,497,182</td>
+<td>2026-02</td>
+<td>$15,187,083</td>
+</tr>
+<tr>
+<td>2025-08</td>
+<td>$39,587,105</td>
+<td>2026-03</td>
+<td>$10,580,034</td>
+</tr>
+<tr>
+<td><strong>2025-09</strong></td>
+<td><strong>$35,661,007</strong></td>
+<td>2026-04</td>
+<td>$24,425,831</td>
+</tr>
+<tr>
+<td>2025-10</td>
+<td>$41,181,773</td>
+<td>2026-05</td>
+<td>$16,579,471</td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td>$23,438,885</td>
+<td>2026-06</td>
+<td>$10,777,326</td>
+</tr>
+<tr>
+<td>2025-12</td>
+<td>$11,470,440</td>
+<td>2026-07</td>
+<td>$8,314,396</td>
+</tr>
+<tr>
+<td>2026-01</td>
+<td>$13,960,819</td>
+<td>2026-08</td>
+<td>$10,382,162</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><strong>2026-09</strong></td>
+<td><strong>$15,905,378</strong></td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>比较</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>真年同比（2026-09 vs 2025-09）</strong></td>
+<td><strong>−55.4%</strong>（8 月为 −73.8%）</td>
+</tr>
+<tr>
+<td>环比（vs 2026-08）</td>
+<td><strong>+53.2%</strong></td>
+</tr>
+<tr>
+<td>过去 12 个月合计（2025-10 至 2026-09）</td>
+<td><strong>$2.022 亿</strong></td>
+</tr>
+<tr>
+<td>其中归入「收入」（即销毁部分，DefiLlama <code>dailyRevenue</code>）</td>
+<td>9 月 <strong>$487.9 万</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>月均 base fee</strong>（ultrasound.money 日度序列取月均，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th>月均 base fee</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-08</td>
+<td>0.646 gwei</td>
+</tr>
+<tr>
+<td>2026-06</td>
+<td>0.278 gwei</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td>0.168 gwei</td>
+</tr>
+<tr>
+<td><strong>2026-08</strong></td>
+<td><strong>0.173 gwei</strong></td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td><strong>0.289 gwei</strong>（+67%）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>8 月版的更正</strong>：8 月版写「当前 base fee 0.3115 gwei」，那是一个单点快照；<strong>8 月的月均是 0.173 gwei</strong>。<br />
+本期起统一用月均——<strong>base fee 一天之内可以相差数倍</strong>（10/3 快照为 0.062 gwei），单点不适合做月度对比。</p>
+</blockquote>
+<p><strong>9 月费用回升的读法</strong>：费用以美元计，<strong>同时受 ETH 价格（+8.85%）和 gas 单价（+67%）影响</strong>。<br />
+按 EIP-1559，base fee 只在区块使用率高于 50% 目标时上升——<strong>月均 base fee 上升是需求相对容量上升的间接信号</strong>，不是交易量的直接测量（Codex）。<strong>而且 $1,591 万仍是一年前同月的 45%</strong>。</p>
+<p><strong>生态合计费用</strong>（DefiLlama <code>overview/fees/ethereum</code>，30 天）：<strong>$3.507 亿</strong>。前列为 Lido $5,141 万、Aave V3 $2,831 万、Sky Lending $2,686 万、Ethena USDe $2,353 万、Binance staked ETH $1,786 万；<strong>L1 链本身（DefiLlama 记为「Ethereum」）$1,652 万，占 4.7%</strong>。</p>
+<blockquote>
+<p><strong>口径纪律</strong>（ADA 期）：L1 费衡量 ETH 代币的价值捕获，生态合计衡量生态活跃度，不能混用。</p>
+</blockquote>
+<h3 id="33">3.3 质押</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>质押总量</td>
+<td><strong>4,370 万 ETH</strong></td>
+<td>validatorqueue.com（数据来自 beaconcha.in）</td>
+</tr>
+<tr>
+<td><strong>质押率</strong></td>
+<td><strong>35.78%</strong>（8 月 35.08%）</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>年化 APR</td>
+<td><strong>2.63%</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>活跃验证者</td>
+<td>873,849</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>进入队列</strong></td>
+<td><strong>154.5 万 ETH</strong>，等待约 26 天 20 小时</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>退出队列</td>
+<td>80.5 万 ETH，等待约 14 天</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>验证者数量不能和 8 月版直接比</strong>：8 月版的 795,000（StakingRewards）与约 903,000（Beacon Chain）两个口径本就有分歧；<br />
+且 Pectra 升级后单个验证者的有效余额上限提高到 2,048 ETH，<strong>合并验证者会让数量下降而质押量不变</strong>。本期只用质押量。</p>
+</blockquote>
+<p><strong>进入队列是退出队列的约 1.9 倍</strong>：净排队约 74 万 ETH 等待进入质押。若全部完成，质押率将升到约 36.4%——<strong>而质押越多，发行越多</strong>（见 4.3）。</p>
+<h3 id="34-tvl-l2">3.4 生态数据：TVL 与 L2</h3>
+<p><strong>TVL</strong>（DefiLlama API，一手，10/3 快照）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>链</th>
+<th>TVL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ethereum（L1）</strong></td>
+<td><strong>$534.5 亿</strong>（9/30 $532.9 亿；8/31 $487.7 亿；6/30 $373.5 亿）</td>
+</tr>
+<tr>
+<td>Solana</td>
+<td>$66.4 亿</td>
+</tr>
+<tr>
+<td>Base</td>
+<td>$63.5 亿</td>
+</tr>
+<tr>
+<td>BSC</td>
+<td>$57.2 亿</td>
+</tr>
+<tr>
+<td>Tron</td>
+<td>$56.4 亿</td>
+</tr>
+<tr>
+<td>Arbitrum</td>
+<td>$14.1 亿</td>
+</tr>
+<tr>
+<td>OP Mainnet</td>
+<td>$4.9 亿</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>L1 TVL 是第二名（Solana）的 8.0 倍</strong>（8 月版为 8.5 倍）。L1 TVL Q3 增长 42.7%，<strong>低于 ETH 价格的 70.9%</strong>——TVL 以美元计，主要随价格变动，不应把它的增长读成独立的需求证据。</p>
+<p><strong>主要 L2 的 9 月费用</strong>（DefiLlama API）：Base <strong>$470 万</strong>（8 月 $303 万）、Arbitrum $61 万（8 月 $37 万）。</p>
+<h3 id="35">3.5 宏观环境</h3>
+<blockquote>
+<p>ETH 与 BTC 共享宏观驱动，详细数据见 BTC 9 月版 3.4。以下只列对 ETH 有特别含义的几项。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>因素</th>
+<th>9 月末</th>
+<th>对 ETH 的含义</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>联邦基金利率</td>
+<td><strong>3.75–4.00%</strong>（9/16 加息 25bp，12:0）</td>
+<td>点阵图中位数指向年内再加一次</td>
+<td>federalreserve.gov ✅</td>
+</tr>
+<tr>
+<td><strong>10 年期美债</strong></td>
+<td><strong>5.29%</strong>（年内最高）</td>
+<td><strong>是 ETH 质押 APR 2.63% 的约 2 倍</strong>——买 ETH 的人不是为了质押收益</td>
+<td>美国财政部 ✅</td>
+</tr>
+<tr>
+<td>美元指数</td>
+<td>101.45</td>
+<td>—</td>
+<td>Yahoo Finance</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>与 BTC 9 月版同一个观察</strong>：9 月宏观全面偏鹰，ETH 仍涨 8.85%、Q3 涨 70.9%。<br />
+<strong>本报告不把「宏观偏鹰」直接翻译成「ETH 偏空」</strong>——Q3 的数据不支持这个翻译；但也不反过来说利率无关（见 BTC 9 月版 3.1）。</p>
+</blockquote>
+<h3 id="36-q3">3.6 Q3 季度回顾（本版新增）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>Q2 2026</th>
+<th><strong>Q3 2026</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ETH 季度涨跌（币安）</td>
+<td><strong>−25.34%</strong>（3/31 收 $2,105.43 → 6/30 收 $1,572.01）</td>
+<td><strong>+70.86%</strong></td>
+</tr>
+<tr>
+<td>ETH/BTC</td>
+<td>0.02681（6/30）</td>
+<td><strong>0.03212（+19.8%）</strong></td>
+</tr>
+<tr>
+<td>ETF 季度净流量（Farside）</td>
+<td><strong>−$7.16 亿</strong>（4 月 +3.56、5 月 −5.41、6 月 −5.30）</td>
+<td><strong>+$30.50 亿</strong></td>
+</tr>
+<tr>
+<td>L1 季度费用（DefiLlama）</td>
+<td>$5,178 万</td>
+<td><strong>$3,460 万</strong></td>
+</tr>
+<tr>
+<td>季末 L1 TVL</td>
+<td>$373.5 亿</td>
+<td><strong>$532.9 亿</strong></td>
+</tr>
+<tr>
+<td>季末质押率</td>
+<td>—</td>
+<td>35.78%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Q3 最突出的一组对照</strong>：<strong>价格 +70.9%、ETF +$30.5 亿、TVL +42.7%——而 L1 费用比 Q2 低 33%。</strong><br />
+<strong>这正是 8 月版 9.6 弱点 6 预先指出的那种情景</strong>：「ETH 价格上涨，同时 L1 价值捕获继续恶化」——完全由金融配置驱动、与网络费用脱钩。<br />
+<strong>Q3 把它从一个弱点变成了已发生的事实</strong>，见 9.3 对情景集的处理。</p>
+<blockquote>
+<p>Q2 的 L1 季度费用为 4–6 月合计（$2,443 万 + $1,658 万 + $1,078 万）；Q3 为 7–9 月合计（$831 万 + $1,038 万 + $1,591 万）。</p>
+</blockquote>
+<hr />
+<h2 id="4">4. 发行与销毁</h2>
+<blockquote>
+<p>本章全部数据来自 ultrasound.money 公开 API（一手直接调用）。</p>
+</blockquote>
+<h3 id="41-9">4.1 9 月的供应变化</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>30 天窗口（9/3 06:00 → 10/3 06:11 UTC）</th>
+<th style="text-align: right;">ETH</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>起点供应</td>
+<td style="text-align: right;">122,008,832.71</td>
+</tr>
+<tr>
+<td>终点供应</td>
+<td style="text-align: right;">122,095,334.29</td>
+</tr>
+<tr>
+<td><strong>净增</strong></td>
+<td style="text-align: right;"><strong>+86,501.58</strong></td>
+</tr>
+<tr>
+<td>销毁</td>
+<td style="text-align: right;"><strong>2,010.68</strong>（≈ $531 万）</td>
+</tr>
+<tr>
+<td><strong>推算总发行（= 净增 + 销毁）</strong></td>
+<td style="text-align: right;"><strong>88,512.26</strong>（含罚没等调整，量级可忽略；严格说是「净发行 + 销毁」）</td>
+</tr>
+<tr>
+<td><strong>销毁 ÷ 总发行</strong></td>
+<td style="text-align: right;"><strong>2.27%</strong>（8 月 1.34%）</td>
+</tr>
+<tr>
+<td><strong>年通胀率</strong></td>
+<td style="text-align: right;"><strong>+0.862%</strong>（8 月 +0.863%）</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="ETH 30 天发行与销毁：8 月 vs 9 月" src="charts/issuance-vs-burn-202609.svg" /></p>
+<blockquote>
+<p>图中数字（ETH，取整）：8 月总发行 87,701、销毁 1,178（取自 8 月版）；9 月总发行 88,512、销毁 2,011。</p>
+</blockquote>
+<p><strong>交叉核对</strong>：ultrasound.money 的 <code>issuance-estimate</code> 接口给出当前每个 slot 发行 0.40996 ETH，折合 30 天 <strong>88,551 ETH</strong>，与上表的 88,512 ETH 相差 0.04%。<br />
+<strong>这两个数来自同一个数据源</strong>，一致只说明内部自洽，<strong>不构成独立验证</strong>（CKB 期规则）。</p>
+<p><strong>长周期视角</strong>：合并以来（2022-09-15）总供应 120,521,140.92 → 122,095,334.29，<strong>+1.31%</strong>（约四年）。</p>
+<blockquote>
+<p><strong>「超声波货币」仍然失效</strong>：销毁抵消发行的比例从 1.34% 升到 2.27%，<strong>方向改善但量级仍可忽略</strong>。<br />
+要回到 2021–2023 年的净通缩，销毁需要再涨约 44 倍。</p>
+</blockquote>
+<h3 id="42">4.2 质押收益的来源</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>计算</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年化总发行</td>
+<td>0.40996 ETH/slot × 7,200 × 365</td>
+<td><strong>约 1,077,400 ETH</strong></td>
+</tr>
+<tr>
+<td>质押总量</td>
+<td>validatorqueue.com</td>
+<td>4,370 万 ETH</td>
+</tr>
+<tr>
+<td><strong>仅由发行贡献的收益率</strong></td>
+<td>1,077,400 ÷ 43,700,000</td>
+<td><strong>约 2.47%</strong></td>
+</tr>
+<tr>
+<td>报告的实际 APR</td>
+<td>validatorqueue.com</td>
+<td><strong>2.63%</strong></td>
+</tr>
+<tr>
+<td>差额（隐含执行层收益：优先费 + MEV）</td>
+<td>2.63% − 2.47%</td>
+<td><strong>约 0.17pp</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>8 月版指出的三处方法缺陷仍然存在</strong>（两个口径不同、MEV-Boost 的 builder→proposer 支付不在链上 gas 里、质押数据为二手），<br />
+<strong>所以本期同样只给方向：质押收益的绝大部分来自新发行。</strong> 差额 0.17pp 比 8 月的 0.10pp 大，与 9 月 base fee 回升方向一致，但精度不足以下结论。</p>
+</blockquote>
+<p><strong>对不质押的持有者</strong>：每年被稀释约 <strong>0.862%</strong>，无补偿（含所有非质押型 ETF 的持有人）。</p>
+<hr />
+<h2 id="5-l2">5. L2 与价值捕获（本期核心章）</h2>
+<h3 id="51-blob-8">5.1 blob 收入为什么塌了——8 月版问题的答案</h3>
+<p>8 月版 5.1 留下了一个问题：blob 销毁从历史月均 158.6 ETH 塌到 1.81 ETH，是<strong>需求侧</strong>（L2 用得少了）还是<strong>供给侧</strong>（blob 供给目标上调、价格触及地板）？<strong>两种解释的政策含义相反——前者是结构性的，后者是可逆的价格现象。</strong></p>
+<blockquote>
+<p><strong>本节在发布前审查后重写</strong>（见 11.6）。初稿只用价格数据就宣布了答案，<strong>而价格贴地板这个状态，两种解释都会产生</strong>——它区分不了两者（<code>_bian</code>）。<br />
+初稿还把 EIP-7918 写成了塌陷的原因，<strong>方向反了</strong>：它是把地板抬高的那个机制。重写后补上了能真正区分两种解释的数据：<strong>每个区块实际用了多少 blob</strong>。</p>
+</blockquote>
+<p><strong>第 1 步 · 供给目标被上调了三次</strong>（GitHub <code>ethereum/EIPs</code> 原文，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>升级</th>
+<th>每块 blob 目标 / 上限</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024-03</td>
+<td>Dencun（EIP-4844）</td>
+<td>3 / 6</td>
+<td>EIP-4844</td>
+</tr>
+<tr>
+<td><strong>2025-05-07</strong></td>
+<td>Pectra（EIP-7691）</td>
+<td><strong>6</strong> / 9</td>
+<td>元 EIP-7600 激活表、EIP-7691 常数</td>
+</tr>
+<tr>
+<td><strong>2025-12-09</strong></td>
+<td>BPO1</td>
+<td><strong>10</strong> / 15</td>
+<td>元 EIP-7607 激活表；目标值取自 EIP-7892 的配置示例</td>
+</tr>
+<tr>
+<td><strong>2026-01-07</strong></td>
+<td>BPO2</td>
+<td><strong>14</strong> / 21</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>BPO1、BPO2 的激活时间来自 EIP-7607 的激活表（一手）；<strong>10 / 15、14 / 21 这组参数取自 EIP-7892 原文的配置示例，本报告未在客户端配置里逐一核对</strong>，但它与下面测到的「上限 21」一致（2026-02 抽样中出现过 21 个 blob 的区块）。</p>
+</blockquote>
+<p><strong>第 2 步 · 实际用量翻了一倍，目标涨了 4.7 倍</strong>（以太坊公共 RPC 节点，逐块读取 <code>blobGasUsed ÷ 131,072</code>，每月均匀抽样 240 个区块，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th>每块平均 blob 数</th>
+<th>中位数</th>
+<th>当时的目标</th>
+<th><strong>用量 ÷ 目标</strong></th>
+<th>blob 价格状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-04（Pectra 前）</td>
+<td>2.73</td>
+<td>3</td>
+<td>3</td>
+<td><strong>91%</strong></td>
+<td>市场定价（月均 54.8 亿 wei）</td>
+</tr>
+<tr>
+<td>2025-06（Pectra 后）</td>
+<td>3.76</td>
+<td>3</td>
+<td>6</td>
+<td><strong>63%</strong></td>
+<td><strong>跌到 1 wei</strong></td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td>5.68</td>
+<td>6</td>
+<td>6</td>
+<td><strong>95%</strong></td>
+<td>回升（4,710 万 wei）</td>
+</tr>
+<tr>
+<td>2026-02（BPO2 后）</td>
+<td>4.52</td>
+<td>4</td>
+<td>14</td>
+<td><strong>32%</strong></td>
+<td>贴在下限</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td><strong>5.56</strong></td>
+<td>5</td>
+<td>14</td>
+<td><strong>40%</strong></td>
+<td>贴在下限</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>答案：是供给侧，不是需求侧。</strong> 从 2025-04 到 2026-09，每块 blob 用量从 2.73 升到 5.56（<strong>+104%</strong>），而供给目标从 3 升到 14（<strong>4.7 倍</strong>）。<br />
+<strong>需求在增长，供给增长得更快</strong>——每次目标上调后，用量落到目标之下，价格就跌到地板：<br />
+2025-06（Pectra 后一个月）用量只有目标的 63%，价格跌到 1 wei；2025-11 用量追到目标的 95%，价格回升；BPO1、BPO2 之后又落到 32%–40%。</p>
+<blockquote>
+<p>⚠️ <strong>限度</strong>：每月只抽 240 个区块、只用一个 RPC 节点，用量是抽样估计，不是全量；但需求翻倍与目标 4.7 倍之间的差距远大于抽样误差。<br />
+<strong>初稿用 Base 的 L2 手续费（9 月 $470 万）来论证「L2 活动没减少」——那是 L2 向用户收的钱，不是 blob 用量，已删除这条论据。</strong></p>
+</blockquote>
+<p><strong>第 3 步 · EIP-7918 做了什么：把地板从 1 wei 抬到执行费的 1/16</strong>（GitHub <code>ethereum/EIPs</code> 原文，一手）：</p>
+<ul>
+<li>Fusaka（元 EIP-7607）包含 <strong>EIP-7918「Blob base fee bounded by execution cost」</strong>，状态 Final。</li>
+<li>原文规则：当 <code>BLOB_BASE_COST × 执行层 base fee</code> 高于 <code>GAS_PER_BLOB × blob base fee</code> 时，<strong><code>excess_blob_gas</code> 停止下调</strong>（<code>BLOB_BASE_COST = 2^13</code>，<code>GAS_PER_BLOB = 2^17</code>，原文称「这个比例是 1/16」）。</li>
+<li><strong>它是一条「停止下调」的软规则，不是把价格直接设为 1/16</strong>（Codex 指出）：价格低于这条线时，<code>excess_blob_gas</code> 按实际用量上升，价格被推回线上；高于这条线且用量低于目标时，价格回落。<strong>均衡结果是价格围绕这条线波动</strong>。</li>
+<li>原文动机：旧机制下价格「可能反复下调，直到最终停在 1 wei」——<strong>2024-07 至 09、2025-06 至 08 正是这种情况</strong>。</li>
+</ul>
+<p><strong>数据</strong>（ultrasound.money <code>base-fee-over-time</code>，日度均值按月平均后相除，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时期</th>
+<th>blob base fee 月均</th>
+<th>blob ÷ 执行层 base fee</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024-03</td>
+<td>69.4 亿 wei</td>
+<td>0.158</td>
+</tr>
+<tr>
+<td>2024-07 至 09</td>
+<td>1–41 wei</td>
+<td>≈ 0（1 wei 地板）</td>
+</tr>
+<tr>
+<td>2024-11 至 2025-04</td>
+<td>15.7 亿–131 亿 wei</td>
+<td>0.43–4.61（用量高于目标，市场定价）</td>
+</tr>
+<tr>
+<td>2025-06 至 08</td>
+<td>1 wei</td>
+<td>≈ 0（1 wei 地板）</td>
+</tr>
+<tr>
+<td><strong>2026-01 至 09</strong></td>
+<td>680 万–3,170 万 wei</td>
+<td><strong>0.053–0.067</strong>（围绕 1/16 = 0.0625）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>比值是「月均 blob 价 ÷ 月均执行价」，不是逐日比值的平均；比值略低于 0.0625 与软规则的波动一致。<strong>月均看不到月内的短时脱离</strong>，所以只能说「平均而言」贴着下限。</p>
+</blockquote>
+<p><strong>第 4 步 · 这对价值捕获意味着什么</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>Fusaka 之前（2025 年中）</th>
+<th><strong>Fusaka 之后（2026 年）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用量低于目标时的 blob 价格</td>
+<td>1 wei</td>
+<td><strong>约为执行层 base fee 的 1/16</strong></td>
+</tr>
+<tr>
+<td>blob 销毁</td>
+<td>≈ 0</td>
+<td><strong>≈ 下限价格 × 用量</strong>——随用量<strong>线性</strong>增长</td>
+</tr>
+<tr>
+<td>用量超过目标时</td>
+<td>价格被推高（市场定价）</td>
+<td>同左，EIP-7918 不改变这一段</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>需求低于目标时，单价不随 L2 用量上涨——这是 EIP-4844 以来 blob 市场的性质，不是 EIP-7918 造成的。</strong></li>
+<li><strong>EIP-7918 让销毁至少随用量线性增长</strong>，而在它之前，同样的状态下销毁约等于零。<strong>相对 Fusaka 之前，它恢复了一部分传导，而不是切断。</strong></li>
+<li><strong>当前离「价格脱离下限」有多远</strong>：9 月用量 5.56 个/块，目标 14——<strong>用量要再涨约 2.5 倍，blob 才会重新进入市场定价</strong>。在那之前，blob 销毁 ≈ 执行层 base fee ÷ 16 × 用量。</li>
+</ul>
+<p><strong>本期 blob 销毁</strong>（ultrasound.money <code>fees/all</code>，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>周期</th>
+<th>blob 销毁</th>
+<th>折美元</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>24 小时</td>
+<td>0.068 ETH</td>
+<td>$183</td>
+</tr>
+<tr>
+<td>7 天</td>
+<td>1.18 ETH</td>
+<td>$3,174</td>
+</tr>
+<tr>
+<td><strong>30 天</strong></td>
+<td><strong>2.98 ETH</strong></td>
+<td><strong>$7,848</strong>（8 月 1.81 ETH / $4,436）</td>
+</tr>
+<tr>
+<td>EIP-4844 以来累计</td>
+<td>4,722.06 ETH</td>
+<td>$1,485 万</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>对 E8-3（2027-03 前 blob 销毁回到 80 ETH/30 天）的含义</strong>：要从 2.98 ETH 到 80 ETH，<strong>要么执行层 base fee 涨约 27 倍（约 7.8 gwei，接近 2025-01 的月均 10.1 gwei），要么用量涨约 2.5 倍、让 blob 重新进入市场定价</strong>。</p>
+<h3 id="52">5.2 这是不是设计意图？</h3>
+<p><strong>是，而且是两个独立的设计选择。</strong></p>
+<ol>
+<li><strong>上调 blob 目标（Pectra、BPO1、BPO2）</strong>：明确目标是降低 L2 成本、为 L2 扩容。<strong>供给跑在需求前面是这一路线的预期结果</strong>——EIP-7892 原文说 BPO 是为了「根据真实需求和网络条件」快速扩容。</li>
+<li><strong>EIP-7918</strong>：原文目标是让 blob 的「费用更新机制能正常运作」，并让 blob 使用者「至少支付节点计算成本的一部分」。<strong>它不是为提高 ETH 的价值捕获设计的</strong>——原文还讨论了下限「过高」的情形，认为在当前路线上不会发生。</li>
+</ol>
+<blockquote>
+<p><strong>本报告的立场</strong>：ETH 用 L1 收入换取了 L2 成本下降与生态规模，这是战略选择，8 月版的判断不变。<br />
+<strong>本期更正的一点</strong>：blob 收入塌陷<strong>不是「L2 不用 ETH 了」</strong>——L2 对 blob 的用量一年多翻了一倍。<strong>是供给扩得比需求快</strong>，这在需求追上目标之后是可逆的（2025-11 就短暂发生过）。</p>
+</blockquote>
+<h3 id="53-glamsterdam">5.3 供给侧：Glamsterdam</h3>
+<ul>
+<li><strong>Glamsterdam</strong>（以太坊基金会 9/17 公告，一手）：Sepolia 于 <strong>2026-10-06 13:53:36 UTC</strong> 激活；「Hoodi 与主网的激活时间将由客户端团队决定……本公告不安排主网升级」。<br />
+  包含 ePBS（EIP-7732）、区块级访问列表（BALs，EIP-7928）、状态相关 gas 重新定价（EIP-8037/8038）等。<br />
+  公告提到客户端激活后默认 60M gas limit、<strong>需显式配置才是 200M</strong>——<strong>「200M」不是一个已确定的网络目标</strong>。</li>
+<li><strong>联动</strong>：执行层 base fee 若被压低，<strong>blob 下限也会同比例降低</strong>——两条销毁路径会一起变薄（E8-2 检验的就是执行层这一半）。</li>
+</ul>
+<hr />
+<h2 id="6">6. 机构通道与持有者结构</h2>
+<h3 id="61-etf9">6.1 ETF：9 月放缓，质押型产品占比上升</h3>
+<blockquote>
+<p><strong>本期起使用 Farside 的日度一手数据</strong>（farside.co.uk，直接抓取并逐日加总）。8 月版这一项全部来自媒体转述，是多头论据证据等级偏低的主因。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th>净流量</th>
+<th>净流入天数</th>
+<th>其中 ETHB（质押型）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-04</td>
+<td>+$3.56 亿</td>
+<td>12/21</td>
+<td>+$1.89 亿</td>
+</tr>
+<tr>
+<td>2026-05</td>
+<td>−$5.41 亿</td>
+<td>5/20</td>
+<td>+$0.36 亿</td>
+</tr>
+<tr>
+<td>2026-06</td>
+<td>−$5.30 亿</td>
+<td>4/21</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td>+$3.67 亿</td>
+<td>17/22</td>
+<td>+$0.24 亿</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td><strong>+$18.52 亿</strong></td>
+<td>17/21</td>
+<td>+$1.49 亿</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td><strong>+$8.31 亿</strong></td>
+<td>13/21</td>
+<td><strong>+$1.91 亿</strong></td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月分项</td>
+<td>ETHA +$4.93 亿、<strong>ETHB +$1.91 亿</strong>、FETH +$1.06 亿、ETH（迷你）+$0.96 亿、ETHE −$0.74 亿</td>
+</tr>
+<tr>
+<td><strong>ETHB 占 9 月净流入</strong></td>
+<td><strong>23.0%</strong>；占「当月净流入为正的基金」合计（$9.09 亿）的 <strong>21.1%</strong></td>
+</tr>
+<tr>
+<td><strong>ETHB 资产规模 / 费率</strong>（BlackRock 官网，一手）</td>
+<td><strong>$11.76 亿</strong>（10/2）；费率 0.25%，上线首 12 个月对前 $25 亿资产减至 <strong>0.12%</strong>；10/2 质押收益率 <strong>1.32%</strong></td>
+</tr>
+<tr>
+<td>ETHB 自上市累计净流入（至 10/2）</td>
+<td><strong>$8.85 亿</strong>，占全部现货 ETH ETF 累计净流入（$138.5 亿）的 6.4%</td>
+</tr>
+<tr>
+<td><strong>Q3 合计</strong></td>
+<td><strong>+$30.50 亿</strong></td>
+</tr>
+<tr>
+<td>2026 年累计（至 9/30）</td>
+<td>+$15.76 亿</td>
+</tr>
+<tr>
+<td>9/15–9/16</td>
+<td>−$1.42 亿、−$2.24 亿（CLARITY 失败与加息两日）</td>
+</tr>
+<tr>
+<td>总资产规模</td>
+<td>约 $176 亿、占市值 5.37%（9/30，KuCoin 转述，<strong>未取得一手</strong>）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ 搜索中还出现一个「$240.9 亿、591 万 ETH」的总资产数字。<strong>591 万 ETH × $2,686 ≈ $159 亿，与它自报的 $240.9 亿对不上</strong>，本报告不采用。</p>
+</blockquote>
+<p><strong>9 月读法</strong>：<br />
+1. <strong>流入放缓到 8 月的 45%</strong>，但仍为正，Q3 三个月全部净流入。<br />
+2. <strong>质押型 ETF 有迁移迹象，但「占比」会被分母放大</strong>（<code>_bian</code>）：ETHB 绝对流入 8 月 $1.49 亿 → 9 月 $1.91 亿（+28%）；它占净流入的比例从 8% 升到 23%，<strong>其中约 10 个百分点来自总流入减半</strong>（若 ETHB 维持 8 月的 $1.49 亿，9 月占比也有 17.9%）。<br />
+<strong>ETHB 的资产 $11.76 亿约占现货 ETH ETF 总资产（约 $176 亿，二手）的 6.7%</strong>。<br />
+<strong>ETHB 对持有人意味着什么</strong>：质押收益率 1.32% − 优惠期费率 0.12% ≈ 1.2%，高于 0.862% 的稀释——<strong>净正约 0.34pp</strong>；非质押型 ETF 则是 −0.862% 再减去费率。ETHB 的 1.32% 约为全网 APR 2.63% 的一半，说明它只质押了部分持仓（推断，未逐项核实）。</p>
+<h3 id="62-bitmine">6.2 企业储备：BitMine 的一手数据</h3>
+<p><strong>全部来自 BitMine 向 SEC 提交的每周 8-K 附件（Exhibit 99.1，即公司新闻稿）</strong>。⚠️ <strong>这是公司自述，SEC 不核验其内容</strong>（Codex）；它是一手来源，但不是独立审计：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>8-K 日期</th>
+<th>ETH 持仓</th>
+<th>周增量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8/31</td>
+<td>5,901,112</td>
+<td>—</td>
+</tr>
+<tr>
+<td>9/8</td>
+<td>5,929,198</td>
+<td>+28,086</td>
+</tr>
+<tr>
+<td>9/14</td>
+<td>5,956,378</td>
+<td>+27,180</td>
+</tr>
+<tr>
+<td>9/21</td>
+<td>5,983,940</td>
+<td>+27,562</td>
+</tr>
+<tr>
+<td><strong>9/28</strong></td>
+<td><strong>6,001,302</strong></td>
+<td>+17,362</td>
+</tr>
+<tr>
+<td><strong>9 月合计</strong></td>
+<td></td>
+<td><strong>+100,190</strong></td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>占 ETH 供应量</td>
+<td>约 <strong>4.9%</strong>（公司口径，按 1.221 亿枚）</td>
+</tr>
+<tr>
+<td><strong>已质押</strong></td>
+<td><strong>5,067,309 ETH（持仓的 84.4%）</strong>——原文：「一部分」质押在自建的 MAVAN 平台上，其余通过质押合作方</td>
+</tr>
+<tr>
+<td>加密资产 + 现金 + 有价证券合计</td>
+<td><strong>$172 亿</strong>（9/28 口径，ETH 按 $2,698）</td>
+</tr>
+<tr>
+<td>「Alchemy of 5%」进度</td>
+<td>公司称 98%</td>
+</tr>
+<tr>
+<td>9/4</td>
+<td><strong>终止与 Ethereum Tower 的质押管理服务协议</strong>（8-K Item 1.02）。原协议 2026-03-24 签订、为期十年，对方按质押净收入抽成</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>mNAV：只能给出一个下限</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>输入</th>
+<th>数值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>流通股数</td>
+<td>603,226,394 股（<strong>截至 2026-07-09</strong>）</td>
+<td>SEC XBRL（10-Q 封面）</td>
+</tr>
+<tr>
+<td>股价</td>
+<td>$27.56（9/25）</td>
+<td>Yahoo Finance</td>
+</tr>
+<tr>
+<td>市值下限</td>
+<td>≥ $166.2 亿</td>
+<td>相乘</td>
+</tr>
+<tr>
+<td>资产</td>
+<td>$172 亿</td>
+<td>9/28 8-K</td>
+</tr>
+<tr>
+<td><strong>mNAV 下限</strong></td>
+<td><strong>≥ 0.97 倍</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>为什么只能给下限</strong>：BitMine 7 月以来一直在通过 ATM 发行新股买 ETH，<strong>股数只会比 7/9 更多</strong>，所以真实市值和 mNAV 都只会更高。<br />
+这是一个<strong>界</strong>，不是点估计（XIN 期规则：两端结论不同时不能丢弃区间，但也不能当点用）。<br />
+<strong>对 E8-6 的含义</strong>：「mNAV 连续一月低于 1」<strong>无法用这个下限判断</strong>——它只排除了 mNAV 远低于 1 的情形。</p>
+</blockquote>
+<p><strong>集中度</strong>：BitMine 一家约 4.9% 供应量，仍是本系列所有资产中单一实体持仓占比最高的。<br />
+<strong>它的买入在放缓</strong>：9 月最后一周只增加 1.7 万枚，此前三周每周约 2.8 万枚。<strong>它离自己宣称的 5% 目标只差约 10 万枚</strong>——目标达成之后是否继续买，公司没有说明。</p>
+<h3 id="63">6.3 持有者结构小结</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>规模</th>
+<th>占流通量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>质押锁定</td>
+<td>4,370 万 ETH</td>
+<td>35.78%</td>
+</tr>
+<tr>
+<td>ETF 持有</td>
+<td>约 $176 亿（二手）</td>
+<td>约 5.4%</td>
+</tr>
+<tr>
+<td>BitMine</td>
+<td>600.1 万 ETH</td>
+<td>约 4.9%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>三者部分重叠（BitMine 的 507 万已质押 ETH 计入质押总量），不可简单相加。</p>
+</blockquote>
+<hr />
+<h2 id="7-eth">7. ETH 的核心价值逻辑</h2>
+<h3 id="71">7.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th style="text-align: center;">强度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>机构通道持续净流入</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>Farside 一手，Q3 +$30.5 亿、三个月全部净流入。<strong>但 9 月放缓到 8 月的 45%；且记分卡自己写明「单一大型配置者就能决定一个季度的符号」</strong>（拒登 ETF 条目的理由）——<strong>流入不能直接读成「多主体的广泛需求」</strong>，故三星</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>质押型 ETF 有迁移迹象</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>ETHB 绝对流入 9 月 +28%，资产 $11.76 亿、优惠期费率 0.12%，<strong>扣费后质押收益仍高于稀释约 0.34pp</strong>（BlackRock、Farside 一手）。<strong>占比上升有一部分是分母缩小造成的</strong>，故三星</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>抵押品层地位稳固</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>L1 TVL $533 亿，第二名的 8.0 倍。<strong>TVL 主要随价格变动</strong>，不是独立的需求证据</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Q3 跑赢 BTC</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td><strong>本月新增</strong>。ETH/BTC Q3 +19.8%；高于 beta 预期约 17–19pp，<strong>但只有约 1–1.5 个标准差，不能排除噪声</strong>，原因也未能确定，故两星</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>企业储备在质押、产生真实收入</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td><strong>本期升为三星</strong>：BitMine 持仓与质押量改为其提交给 SEC 的 8-K 附件（公司自述；8 月版为二手追踪站）；84% 已质押</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>供应纪律仍远好于多数 PoS</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>合并以来约四年净增 1.31%</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>L1 费用 9 月回升 53%</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td><strong>本月新增</strong>。月均 base fee +67%。<strong>但只有一个月，且仍是一年前的 45%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="72">7.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th style="text-align: center;">强度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>稀缺性叙事仍被链上数据证伪</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>销毁抵消发行 2.27%；年通胀 +0.862%</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>blob 供给远超需求，blob 销毁很少</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td><strong>本月改写，替代 8 月的「blob 几乎不产生销毁」</strong>。用量 5.56 个/块 vs 目标 14（RPC 抽样 + EIP 原文，一手）。<strong>但这是可逆的</strong>——需求翻倍的趋势若延续，用量追上目标后 blob 会重新进入市场定价（2025-11 发生过），故三星</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>L1 费用真年同比 −55.4%</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td><strong>本月降为四星</strong>（8 月五星）：9 月环比 +53%，且距 E8-4 的 $2,000 万门槛只差 26%——<strong>结构性下行的判断正面临第一次实际检验</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>质押收益的绝大部分来自增发</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>发行贡献约 2.47pp / APR 2.63%。MEV 未能独立测量，精度不足，故四星</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>单一实体集中度最高</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>BitMine 约 4.9%，mNAV 下限 0.97，<strong>且买入在放缓、接近其 5% 目标</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>ETF 流入放缓</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td><strong>本月新增</strong>。9 月为 8 月的 45%。<strong>一个月的放缓不是趋势</strong>（BTC 记分卡模式二：ETF 流量是同步指标）</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>质押收益不敌无风险利率</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>APR 2.63% vs 10 年期 5.29%（差距从 8 月的 2.2pp 扩大到 2.7pp）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>多空同源检查（DOT 期规则）</strong>：<br />
+- 多头 7（费用回升）与空头 3（费用真年同比 −55.4%）是同一条序列的两个读法——<strong>已据此把空头 3 从五星降为四星、多头 7 只给两星</strong>。<br />
+- 多头 1（ETF 持续流入）与空头 6（ETF 放缓）同源——<strong>两者合起来的含义是「仍在流入、速度减半」</strong>，空头 6 只给两星。<br />
+- 空头 2（blob 由下限决定）与 8 月版的「blob 几乎不产生销毁」是同一件事的机制解释与现象描述，<strong>本期用前者替代后者，不重复计分</strong>。</p>
+</blockquote>
+<h3 id="73">7.3 一句话总结</h3>
+<blockquote>
+<p><strong>ETH 的金融资产身份在 Q3 跑赢了它的使用型代币身份</strong>：价格 +70.9%、ETF +$30.5 亿，而 L1 季度费用比 Q2 低 33%、blob 供给远超需求、价格贴地板。<br />
+<strong>9 月的费用回升是这一季里唯一一个反向信号，它还需要至少再一个月才能说明什么。</strong></p>
+</blockquote>
+<hr />
+<h2 id="8-eth">8. ETH 与其他资产的比较</h2>
+<blockquote>
+<p><strong>口径</strong>：涨幅统一按币安日线 UTC 收盘（8/31→9/30、6/30→9/30）；TVL 与费用为 DefiLlama 同一批 API 快照。</p>
+</blockquote>
+<h3 id="81">8.1 四个资产的横向矩阵</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th><strong>ETH</strong></th>
+<th>BTC</th>
+<th>SOL</th>
+<th>ADA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9 月</strong></td>
+<td><strong>+8.85%</strong></td>
+<td>+6.42%</td>
+<td>+14.61%</td>
+<td><strong>+24.67%</strong></td>
+</tr>
+<tr>
+<td><strong>Q3</strong></td>
+<td><strong>+70.86%</strong></td>
+<td>+42.64%</td>
+<td>+60.34%</td>
+<td>+70.78%</td>
+</tr>
+<tr>
+<td>YTD</td>
+<td>−9.61%</td>
+<td>−4.59%</td>
+<td>−5.24%</td>
+<td>−26.06%</td>
+</tr>
+<tr>
+<td>DeFi TVL</td>
+<td><strong>$534.5 亿</strong></td>
+<td>—</td>
+<td>$66.4 亿</td>
+<td>—</td>
+</tr>
+<tr>
+<td>L1 9 月费用</td>
+<td><strong>$1,591 万</strong></td>
+<td>—（手续费占矿工收入 0.65%）</td>
+<td>$2,498 万</td>
+<td>—</td>
+</tr>
+<tr>
+<td>年通胀</td>
+<td>+0.862%</td>
+<td>约 0.8%</td>
+<td>约 3.8%（沿用 8 月）</td>
+<td>1.47%（沿用 8 月）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>9 月的排序与 8 月不同</strong>：8 月（同口径）SOL +41.43% &gt; ETH +32.48% &gt; BTC +24.95% &gt; ADA +17.60%，大致按 beta 排序；<br />
+<strong>9 月 ADA 第一（+24.67%）、ETH 只排第三</strong>。<strong>Q3 合计 ETH 与 ADA 并列第一</strong>——两个月的排序不同，说明不能用一个月的排名推断相对偏好（8 月版 3.1 的教训）。<br />
+<strong>另一个横向事实</strong>：SOL 9 月 L1 费用 $2,498 万，<strong>高于 ETH 的 $1,591 万</strong>，而 SOL 市值约为 ETH 的五分之一（SOL 市值本期未重新核实）。</p>
+</blockquote>
+<h3 id="82-eth-vs-btc">8.2 ETH vs BTC：收益率与相对强弱</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>BTC</th>
+<th><strong>ETH</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年通胀</td>
+<td>约 0.8%（硬编码递减）</td>
+<td>+0.862%（随质押量上升）</td>
+</tr>
+<tr>
+<td>收益属性</td>
+<td>无</td>
+<td>质押 APR 2.63%（绝大部分来自增发）</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>+42.64%</td>
+<td><strong>+70.86%</strong></td>
+</tr>
+<tr>
+<td>ETH/BTC</td>
+<td>—</td>
+<td>Q3 +19.8%，<strong>但近 1 年仍 −11.6%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>Q3 的 ETH/BTC 反弹，<strong>只收复了过去一年跌幅的一部分</strong>：0.03635（2025-09-30）→ 0.02681（6/30）→ 0.03212（9/30）。</p>
+</blockquote>
+<hr />
+<h2 id="9">9. 关键变量与情景推演</h2>
+<h3 id="91-312">9.1 未来 3–12 个月的催化剂日历</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th>事件</th>
+<th style="text-align: center;">方向</th>
+<th style="text-align: center;">重要性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2026-10-06</strong></td>
+<td><strong>Glamsterdam 在 Sepolia 激活</strong>（一手公告）</td>
+<td style="text-align: center;">观察</td>
+<td style="text-align: center;">★★★☆☆</td>
+</tr>
+<tr>
+<td><strong>未定（路线图 Q4）</strong></td>
+<td><strong>Glamsterdam 主网</strong>——检验 E8-2，并通过 EIP-7918 联动 blob 下限</td>
+<td style="text-align: center;"><strong>双向</strong></td>
+<td style="text-align: center;">★★★★★</td>
+</tr>
+<tr>
+<td><strong>10/27–28、12/8–9</strong></td>
+<td>FOMC；点阵图中位数指向年内再加一次</td>
+<td style="text-align: center;">双向（9 月加息后 ETH 上涨）</td>
+<td style="text-align: center;">★★★☆☆</td>
+</tr>
+<tr>
+<td><strong>持续</strong></td>
+<td><strong>L1 月度费用是否突破 $2,000 万</strong>（E8-4 门槛；9 月 $1,591 万）</td>
+<td style="text-align: center;"><strong>关键</strong></td>
+<td style="text-align: center;">★★★★★</td>
+</tr>
+<tr>
+<td><strong>持续</strong></td>
+<td><strong>blob ÷ 执行层 base fee 是否脱离 1/16</strong>（脱离 = blob 需求超过目标）</td>
+<td style="text-align: center;">关键</td>
+<td style="text-align: center;">★★★★☆</td>
+</tr>
+<tr>
+<td><strong>持续</strong></td>
+<td>BitMine 达到 5% 后是否继续买入（距目标约 10 万枚）</td>
+<td style="text-align: center;">风险</td>
+<td style="text-align: center;">★★★★☆</td>
+</tr>
+<tr>
+<td><strong>持续</strong></td>
+<td>ETHB 等质押型 ETF 的流入占比（9 月 23%）</td>
+<td style="text-align: center;">观察</td>
+<td style="text-align: center;">★★★☆☆</td>
+</tr>
+<tr>
+<td><strong>持续</strong></td>
+<td>质押进入队列 154.5 万 ETH 完成后质押率升至约 36.4%——<strong>发行随之上升</strong></td>
+<td style="text-align: center;">观察</td>
+<td style="text-align: center;">★★☆☆☆</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="92">9.2 估值：现金流能解释多少</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>年化</th>
+<th>给 <strong>50 倍</strong></th>
+<th style="text-align: right;">占市值 $3,279 亿</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L1 费用（过去 12 个月实际）</td>
+<td>$2.022 亿</td>
+<td>$101.1 亿</td>
+<td style="text-align: right;"><strong>3.1%</strong></td>
+</tr>
+<tr>
+<td>L1 费用（9 月 × 12）</td>
+<td>$1.909 亿</td>
+<td>$95.4 亿</td>
+<td style="text-align: right;"><strong>2.9%</strong></td>
+</tr>
+<tr>
+<td><strong>仅销毁部分</strong>（30 天 × 365/30）</td>
+<td>$6,460 万</td>
+<td>$32.3 亿</td>
+<td style="text-align: right;"><strong>1.0%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>哪一行才算持有人现金流</strong>（Codex）：L1 用户付的总费用里，只有被销毁的部分回馈全体持有人；优先费与 MEV 归验证者。<strong>所以「仅销毁部分」那一行（约 1%）才是对全体持有人的直接价值捕获</strong>，前两行是上限。<br />
+<strong>结论与 8 月版相同</strong>：市值的 97%–99% 无法用 L1 现金流解释。<strong>这不代表高估</strong>——市场买的主要不是现金流。</p>
+</blockquote>
+<h3 id="93-2029">9.3 三种情景（2029 年）</h3>
+<p><strong>本期对 8 月版框架的一处修正</strong>：8 月版的乐观区间从 $4,500 亿起，与中性上沿 $4,045 亿之间<strong>留了一个 $455 亿的空档</strong>——ETH 落在 $4,045 亿–$4,500 亿时不属于任何情景。<br />
+<strong>按 PONS 期规则（情景区间首尾相接），本期把乐观下沿改为 $4,045 亿。</strong> 其余区间不变。</p>
+<p><strong>推导方式</strong>（与 8 月版相同）：参照市值全部取自 ETH 自身实际交易过的水平（CoinGecko 2022-01 至今日线），按年通胀 0.862% 推算 <strong>2029 年流通量约 1.2528 亿枚</strong>，折算为每 ETH 价格。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>情景</th>
+<th style="text-align: center;">概率</th>
+<th>参照市值</th>
+<th>目标价（<strong>2029 年</strong>）</th>
+<th>相对现价（$2,686）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>乐观</strong>：金融资产叙事完全接管</td>
+<td style="text-align: center;"><strong>33%</strong></td>
+<td>$4,045 亿 – $5,829 亿（上限为 2025-08 市值历史最高）</td>
+<td><strong>$3,229 – $4,653</strong></td>
+<td>+20% ~ +73%</td>
+</tr>
+<tr>
+<td><strong>中性</strong>：维持现状、随宏观 beta 波动</td>
+<td style="text-align: center;"><strong>40%</strong></td>
+<td>$1,890 亿 – $4,045 亿（2026 年实际交易区间）</td>
+<td><strong>$1,509 – $3,229</strong></td>
+<td>−44% ~ +20%</td>
+</tr>
+<tr>
+<td><strong>悲观</strong>：叙事切换失败</td>
+<td style="text-align: center;"><strong>27%</strong></td>
+<td>$1,207 亿 – $1,890 亿（下限为 2022-06 五年最低）</td>
+<td><strong>$963 – $1,509</strong></td>
+<td>−64% ~ −44%</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="ETH 三情景 2029 年目标价区间" src="charts/scenarios-202609.svg" /></p>
+<blockquote>
+<p>图中横轴刻度为 $1,000 / $2,000 / $3,000 / $4,000 / $5,000；虚线为 9/30 收盘价。</p>
+<p>⏱️ <strong>时间范围是 2029 年，不是 12 个月目标价。</strong> 三档首尾相接，覆盖 $1,207 亿–$5,829 亿；低于或高于这个范围的尾部并入相邻档。<br />
+当前市值 $3,279 亿落在中性区间内。</p>
+</blockquote>
+<h3 id="94-254530-334027">9.4 概率为什么从 25/45/30 变成 33/40/27——这是机械调整，不是观点变化</h3>
+<blockquote>
+<p><strong>本节在发布前审查后重写</strong>（<code>_bian</code>）。初稿保留 25/45/30，理由是「一个月的数据不应该移动 2029 年的情景」——<br />
+<strong>但乐观档的事件已经从「≥ $4,500 亿」变成「≥ $4,045 亿」，概率仍写 25%，等于暗中把「≥ $4,500 亿」的概率下调了约 9 个百分点</strong>，恰好违反了「不该移动」这条理由。</p>
+</blockquote>
+<p><strong>本期的做法</strong>：保持 8 月版对每一段市值的判断不变，只把空档补进来。</p>
+<ol>
+<li>8 月版给 $4,500 亿–$5,829 亿（宽 $1,329 亿）赋了 25%，密度约每 $100 亿 1.9 个百分点；</li>
+<li>把同一密度延伸到空档 $4,045 亿–$4,500 亿（宽 $455 亿），<strong>约值 8.6 个百分点</strong>；</li>
+<li>三档合计变成 108.6%，按比例从中性、悲观两档扣除（保持两者 45:30 的比例）：<strong>33.6 / 39.9 / 26.6，取整 33 / 40 / 27</strong>。</li>
+</ol>
+<p><strong>这个调整没有使用任何 9 月的新信息</strong>——9 月的变化（价格 +8.85%、ETF 流入减半、费用回升 53%、blob 成因查清）方向互相抵消，且都是单月读数，<strong>本报告认为它们不足以移动 2029 年的情景</strong>。</p>
+<p><strong>期望市值</strong>（各档取区间中值）：0.33 × $4,937 亿 + 0.40 × $2,967.5 亿 + 0.27 × $1,548.5 亿 = <strong>$3,234 亿</strong>，相对当前 $3,279 亿 <strong>−1.4%</strong>——落在框架误差之内（8 月版 9.6 弱点 3：仅调整概率就能移动 −9% 到 +15%），<strong>本报告不据此给方向性判断</strong>。</p>
+<p><strong>Q3 的「价格涨、费用跌」</strong>：8 月版 9.6 弱点 6 指出框架缺少「价格涨、价值捕获继续恶化」这种情景。<strong>Q3 说明这种状态可以持续一整个季度。</strong><br />
+情景按市值划分、与费用无关，所以它在本框架里是中性或乐观情景的一个允许状态，<strong>不新增一档</strong>。</p>
+<p><strong>作者的基准预期</strong>：<strong>中性情景</strong>（40%，三档中最高）——2029 年 ETH 市值仍在 2026 年实际交易区间内。<br />
+<strong>近端检验是 E8-5</strong>，但要注意它检验的是 <strong>2026 年末</strong>（12 月月均市值是否在 $2,055 亿–$3,727 亿），<strong>不是 2029 年</strong>。</p>
+<h3 id="95">9.5 这套推导方法的弱点</h3>
+<ol>
+<li><strong>参照区间的选择主导结论</strong>（悲观下限是 2022-06 PoS 合并前、ETF 前的市场结构）。</li>
+<li><strong>50 倍市盈率门槛是主观的</strong>；改用 200 倍，可解释比例升至约 12%，结论方向不变。</li>
+<li><strong>概率是主观赋值</strong>：8 月版已做过敏感性（15/45/40 → −8.8%，35/45/20 → +15.3%），本期未重算；本期的 33/40/27 是补齐空档的机械结果。</li>
+<li><strong>通胀外推未刻画反馈</strong>：质押进入队列 154.5 万 ETH 完成后，发行会上升。</li>
+<li><strong>路径依赖未刻画</strong>——对杠杆持有者，路径比终点重要。</li>
+<li><strong>情景按市值划分，与价值捕获无关</strong>——Q3 证明价格与费用可以长时间背离（见 9.4 第 2 条）。</li>
+</ol>
+<hr />
+<h2 id="10">10. 投资与风险启示</h2>
+<h3 id="101-eth">10.1 ETH 现在处于什么位置</h3>
+<p><strong>一句话：金融资产身份在 Q3 明显占了上风，使用型代币身份在 9 月出现了第一个反向信号。</strong></p>
+<ul>
+<li>金融资产侧：价格 +70.9%、ETF +$30.5 亿、BitMine 增持并质押 84%、质押型 ETF 占比上升。</li>
+<li>使用型代币侧：L1 季度费用比 Q2 低 33%、销毁只抵消发行的 2.27%、blob 供给远超需求——<strong>但 9 月费用环比 +53%，月均 base fee +67%；blob 用量一年半翻倍</strong>。</li>
+</ul>
+<h3 id="102">10.2 策略框架</h3>
+<blockquote>
+<p>以下为研究性质的框架整理，<strong>不构成投资建议</strong>。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>持有者类型</th>
+<th>框架</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>未持有者</strong></td>
+<td>本报告不给方向性判断。配置理由应当是「认同 ETH 会成为机构抵押品层」，<strong>而不是「它会通缩」</strong></td>
+</tr>
+<tr>
+<td><strong>已持有且未质押</strong></td>
+<td>每年被稀释约 <strong>0.862%</strong>、无补偿。质押 APR 2.63%，<strong>毛利差约 1.77pp</strong>；扣除流动性质押服务商约一成抽成后约 1.5pp。<strong>质押仍是占优选择</strong>，但质押进入队列 154.5 万 ETH 完成后，APR 会被摊薄</td>
+</tr>
+<tr>
+<td><strong>通过 ETF 持有</strong></td>
+<td>非质押型 ETF 让持有人承担全部 0.862% 的稀释再加费率；<strong>ETHB 扣除优惠期费率（0.12%）后质押收益约 1.2%，净正约 0.34pp</strong>（BlackRock 官网）。优惠期为上线首 12 个月，之后费率 0.25%</td>
+</tr>
+<tr>
+<td><strong>杠杆</strong></td>
+<td>9/15 单日 −4.67%、9/18 单日 +6.74%——<strong>双向波动都很剧烈</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="103">10.3 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>指标</th>
+<th>当前值</th>
+<th>改变结论的阈值</th>
+<th>观测方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>L1 月度费用</strong></td>
+<td><strong>$1,591 万</strong>（9 月）</td>
+<td><strong>任一月 &gt;$2,000 万</strong> → E8-4 判错，「结构性下行」需修正</td>
+<td>DefiLlama API</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>销毁 ÷ 总发行（30 天）</strong></td>
+<td><strong>2.27%</strong></td>
+<td>&gt;15% → E8-1 判错</td>
+<td>ultrasound.money API</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>blob ÷ 执行层 base fee（月均）</strong></td>
+<td><strong>约 0.063</strong></td>
+<td><strong>明显高于 0.0625（如 &gt;0.10）</strong> → blob 需求超过目标，价格脱离下限</td>
+<td>ultrasound.money API</td>
+</tr>
+<tr>
+<td>4</td>
+<td>月均 base fee</td>
+<td>0.289 gwei</td>
+<td>Glamsterdam 上线后月均低于上线前一月 → E8-2 成立</td>
+<td>ultrasound.money API</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>ETF 月度净流量</strong></td>
+<td>+$8.31 亿</td>
+<td>连续两个月净流出 → 金融资产叙事受挫（<strong>注意：单一大型配置者就可能决定一个月的符号</strong>）</td>
+<td><strong>Farside</strong>（一手）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>ETHB 绝对流入 / 资产</td>
+<td>+$1.91 亿 / $11.76 亿</td>
+<td>—</td>
+<td>Farside / BlackRock</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>BitMine 周增量</strong></td>
+<td>9 月最后一周 1.7 万枚</td>
+<td>达到 5% 后停止增持，或出现减持（记分卡 E9-4）</td>
+<td>BitMine 8-K 附件</td>
+</tr>
+<tr>
+<td>8</td>
+<td>质押率 / 进入队列</td>
+<td>35.78% / 154.5 万 ETH</td>
+<td>质押率上升 → 发行上升（负反馈）</td>
+<td>validatorqueue.com</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="104">10.4 风险提醒</h3>
+<ol>
+<li><strong>「超声波货币」仍然失效</strong>——销毁只抵消发行的 2.27%。</li>
+<li><strong>blob 用量低于目标期间，blob 单价由 L1 执行费决定</strong>：若 Glamsterdam 压低执行层 base fee，blob 下限会同比例降低，两条销毁路径一起变薄。</li>
+<li><strong>单一实体集中度</strong>：BitMine 约 4.9% 供应量，mNAV 下限 0.97，买入在放缓。</li>
+<li><strong>ETF 流入放缓</strong>——一个月不是趋势。Q3 高于 beta 预期的部分（约 1–1.5 个标准差，可能是噪声）与 ETF 流入、BitMine 增持同步出现，<strong>若这两股资金同时减速，这部分可能反转</strong>（推断，未验证）。</li>
+<li><strong>本报告自身的风险</strong>：ETH 记分卡尚无已判定的论点；本系列 BTC 记分卡已检验论点的正确率为 11%（1/9）。</li>
+</ol>
+<h3 id="105">10.5 长期认知</h3>
+<p><strong>第一，收入塌陷时，先分清是需求变了还是供给变了。</strong><br />
+8 月版看到 blob 收入塌了 88 倍，留下「需求侧还是供给侧」的问题；本期初稿只看价格就下了结论，<strong>而价格贴地板这个状态，两种解释都会产生</strong>。<br />
+<strong>真正能区分的是用量</strong>：需求一年半翻倍，供给目标涨了 4.7 倍。<strong>一个看起来像「没人用了」的数字，实际是「供给扩得太快」。</strong><br />
+<strong>另一半教训</strong>：协议规则（EIP-7918）决定了地板在哪里，<strong>但它抬高了地板，不是造成了塌陷</strong>——初稿把因果写反了。</p>
+<p><strong>第二，金融资产身份与使用型代币身份可以长期背离。</strong><br />
+Q3 价格 +70.9%、L1 费用比 Q2 低 33%。<strong>8 月版把这种情形列为框架的弱点，Q3 把它变成了事实。</strong></p>
+<p><strong>第三，一手数据会改变论据的证据等级，进而改变星级。</strong><br />
+本期 ETF 与 BitMine 改用一手数据后，多头 5 从两星升到三星；而 8 月版在一手 API 上给五星的空头 3（L1 费用），因为 9 月的反向读数降到四星。<strong>星级跟着证据走，不跟着立场走。</strong></p>
+<hr />
+<h2 id="11">11. 附录</h2>
+<h3 id="111-2026-09-30">11.1 关键数据速查（截至 2026-09-30）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>市场</strong></td>
+<td>9/30 收盘 / 市值</td>
+<td>$2,686.01 / 约 $3,279 亿（第 2）</td>
+</tr>
+<tr>
+<td></td>
+<td>9 月 / Q3 / YTD</td>
+<td><strong>+8.85% / +70.86% / −9.61%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>ETH/BTC</td>
+<td>0.03212（Q3 +19.8%）</td>
+</tr>
+<tr>
+<td></td>
+<td>距 ATH</td>
+<td>−45.8%（币安）</td>
+</tr>
+<tr>
+<td><strong>发行与销毁</strong>（30 天）</td>
+<td>净增 / 销毁 / 总发行</td>
+<td>+86,501.58 / 2,010.68 / 88,512.26 ETH</td>
+</tr>
+<tr>
+<td></td>
+<td>销毁 ÷ 总发行</td>
+<td><strong>2.27%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>年通胀</td>
+<td><strong>+0.862%</strong></td>
+</tr>
+<tr>
+<td><strong>费用</strong></td>
+<td>L1 9 月</td>
+<td><strong>$1,591 万</strong>（真年同比 −55.4%，环比 +53.2%）</td>
+</tr>
+<tr>
+<td></td>
+<td>月均 base fee</td>
+<td>0.289 gwei（8 月 0.173）</td>
+</tr>
+<tr>
+<td></td>
+<td>blob 30 天</td>
+<td>2.98 ETH（$7,848）</td>
+</tr>
+<tr>
+<td></td>
+<td>blob ÷ 执行层 base fee</td>
+<td>2026 年各月 0.053–0.067（EIP-7918 下限 0.0625）</td>
+</tr>
+<tr>
+<td></td>
+<td>每块 blob 用量 / 目标</td>
+<td>5.56 / 14（2025-04 为 2.73 / 3）</td>
+</tr>
+<tr>
+<td><strong>质押</strong></td>
+<td>质押量 / 质押率 / APR</td>
+<td>4,370 万 ETH / 35.78% / 2.63%</td>
+</tr>
+<tr>
+<td></td>
+<td>进入 / 退出队列</td>
+<td>154.5 万 / 80.5 万 ETH</td>
+</tr>
+<tr>
+<td><strong>生态</strong></td>
+<td>L1 TVL</td>
+<td>$534.5 亿（第二名的 8.0 倍）</td>
+</tr>
+<tr>
+<td><strong>机构</strong></td>
+<td>ETF 9 月 / Q3</td>
+<td>+$8.31 亿 / +$30.50 亿（Farside）</td>
+</tr>
+<tr>
+<td></td>
+<td>ETHB 占 9 月流入</td>
+<td>23.0%</td>
+</tr>
+<tr>
+<td></td>
+<td>BitMine</td>
+<td>6,001,302 ETH（约 4.9%），质押 84.4%，mNAV ≥ 0.97</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112">11.2 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th style="text-align: center;">核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格、月/季涨跌、波动率、beta</td>
+<td>币安 API <code>klines</code>（ETHUSDT、ETHBTC、BTCUSDT、SOLUSDT、ADAUSDT）</td>
+<td style="text-align: center;">✅ 一手 API</td>
+</tr>
+<tr>
+<td>市值排名、ATH（CoinGecko 口径）、2022 年以来市值高低点</td>
+<td>CoinGecko API</td>
+<td style="text-align: center;">✅ 一手 API</td>
+</tr>
+<tr>
+<td>供应量、销毁、发行估计、base fee 与 blob base fee 日度序列、blob 销毁</td>
+<td>ultrasound.money API</td>
+<td style="text-align: center;">✅ 一手 API</td>
+</tr>
+<tr>
+<td><strong>EIP-7918 原文（1/16 下限）、Fusaka 包含的 EIP 清单</strong></td>
+<td>GitHub <code>ethereum/EIPs</code>（<code>eip-7918.md</code>、<code>eip-7607.md</code>）</td>
+<td style="text-align: center;">✅ <strong>一手</strong></td>
+</tr>
+<tr>
+<td>L1 / L2 费用月度序列、生态合计、TVL</td>
+<td>DefiLlama API</td>
+<td style="text-align: center;">✅ 一手 API</td>
+</tr>
+<tr>
+<td><strong>ETF 日度净流量（含 ETHB 分项）</strong></td>
+<td>farside.co.uk 全量数据页</td>
+<td style="text-align: center;">✅ <strong>一手抓取，逐日加总</strong>（8 月版为二手）</td>
+</tr>
+<tr>
+<td>ETF 总资产 $176 亿 / 5.37%</td>
+<td>KuCoin 转述</td>
+<td style="text-align: center;">⚠️ 搜索摘要</td>
+</tr>
+<tr>
+<td><strong>BitMine 持仓、质押量、资产合计、协议终止</strong></td>
+<td>SEC EDGAR 8-K（8/31 至 9/30 共 6 份，含 Exhibit 99.1）</td>
+<td style="text-align: center;">✅ 一手文件，<strong>但附件是公司新闻稿，SEC 不核验内容</strong></td>
+</tr>
+<tr>
+<td>BitMine 流通股数</td>
+<td>SEC XBRL <code>dei:EntityCommonStockSharesOutstanding</code></td>
+<td style="text-align: center;">✅ 一手（但截至 7/9，偏旧）</td>
+</tr>
+<tr>
+<td>BitMine 股价</td>
+<td>Yahoo Finance</td>
+<td style="text-align: center;">✅ API</td>
+</tr>
+<tr>
+<td>质押量、质押率、APR、验证者数、进入/退出队列</td>
+<td>validatorqueue.com（标注数据来自 beaconcha.in）</td>
+<td style="text-align: center;">⚠️ 聚合站（beaconcha.in 自身 API 需付费密钥，返回 401）</td>
+</tr>
+<tr>
+<td>Glamsterdam 测试网日期、包含的 EIP</td>
+<td>blog.ethereum.org（2026-09-17）</td>
+<td style="text-align: center;">✅ <strong>一手</strong></td>
+</tr>
+<tr>
+<td>宏观（FOMC、收益率）</td>
+<td>见 BTC 9 月版</td>
+<td style="text-align: center;">✅ 一手（federalreserve.gov、美国财政部）</td>
+</tr>
+<tr>
+<td>9/18、9/21 上涨归因</td>
+<td>见 BTC 9 月版</td>
+<td style="text-align: center;">⚠️ 媒体转述</td>
+</tr>
+<tr>
+<td>SharpLink 持仓</td>
+<td>SEC 提交记录中未找到 8 月下旬以来的 8-K</td>
+<td style="text-align: center;">❌ <strong>未获取</strong></td>
+</tr>
+<tr>
+<td><strong>ETHB 资产规模、费率、质押收益率</strong></td>
+<td>BlackRock 官网基金页</td>
+<td style="text-align: center;">✅ <strong>一手</strong>（初稿误标为未获取）</td>
+</tr>
+<tr>
+<td><strong>每块 blob 用量（五个月份各抽样 240 块）</strong></td>
+<td>以太坊公共 RPC 节点 <code>eth_getBlockByNumber</code> 的 <code>blobGasUsed</code></td>
+<td style="text-align: center;">✅ <strong>一手</strong>（抽样，非全量）</td>
+</tr>
+<tr>
+<td><strong>blob 目标的三次上调（Pectra、BPO1、BPO2）</strong></td>
+<td>GitHub <code>ethereum/EIPs</code>（EIP-7600、7607、7691、7892）</td>
+<td style="text-align: center;">✅ 一手；BPO 参数取自 EIP-7892 配置示例</td>
+</tr>
+<tr>
+<td>质押运营方集中度</td>
+<td>—</td>
+<td style="text-align: center;">❌ 未获取（与 8 月相同）</td>
+</tr>
+<tr>
+<td>机构观点（Standard Chartered、Citi）</td>
+<td>搜索摘要，日期混杂</td>
+<td style="text-align: center;">⚠️ <strong>本期未采用</strong>：找到的 ETH 目标价均非 9 月发布，无法作为本月机构观点</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113">11.3 来源偏向声明</h3>
+<ul>
+<li><strong>本期多头论据的证据等级明显提高</strong>：ETF（Farside）、ETHB（BlackRock）与 BitMine（8-K 附件，公司自述）改为一手。8 月版声明的「空头一手、多头二手」不对称<strong>已大部分消除</strong>，多头 5 据此升星。</li>
+<li><strong>仍为二手的</strong>：ETF 总资产规模、质押数据（聚合站）、事件归因。</li>
+<li><strong>传统金融机构观点</strong>：本期搜索到的 Standard Chartered（年末目标经多次下调）与 Citi 的 ETH 目标价<strong>均不是 9 月发布的</strong>，本报告不把它们当作本月机构观点使用。<strong>本期没有找到一份 9 月发布的传统机构 ETH 研究</strong>——这是一处配平缺口，读者应意识到本报告的事件归因来自加密原生媒体。<br />
+  传统机构的<strong>动作</strong>（而非观点）本期有两条一手可查：BlackRock 的 ETHB 资金流（Farside）、Deutsche Bank 9/16 宣布将为欧洲机构客户提供 ETH 托管（见 BTC 9 月版 6.3，转述）。</li>
+</ul>
+<h3 id="114-btc-eth">11.4 BTC / ETH 共用的口径</h3>
+<p>本期 ETH 报告的宏观数据、事件归因与 BTC 9 月版共用同一批抓取。<strong>两份报告的价格均为币安 UTC 收盘</strong>，可直接对照。</p>
+<h3 id="115-8">11.5 本版对 8 月版的更正</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>8 月版写法</th>
+<th>更正</th>
+<th>发现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>「当前 base fee 0.3115 gwei」，并在 E8-2、10.3 中当作基准</td>
+<td>单点快照；<strong>8 月月均 0.173 gwei</strong>。本期起用月均</td>
+<td>ultrasound.money 日度序列</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ETF「8/17 起 9–10 个交易日 $14.2 亿」</td>
+<td>Farside 全月 <strong>+$18.52 亿</strong></td>
+<td>Farside 一手</td>
+</tr>
+<tr>
+<td>3</td>
+<td>8 月涨幅 +29.86%（CoinGecko「8/1→8/31」）</td>
+<td>该口径实为 7/31 零点 → 8/30 零点快照；<strong>币安 UTC 收盘 7/31→8/31 为 +32.48%</strong></td>
+<td>币安日线</td>
+</tr>
+<tr>
+<td>4</td>
+<td>乐观情景参照市值 $4,500 亿–$5,829 亿，概率 25/45/30</td>
+<td>与中性上沿 $4,045 亿之间有空档；<strong>下沿改为 $4,045 亿</strong>（目标价下沿 $3,594 → $3,229），概率按原密度机械调整为 <strong>33/40/27</strong></td>
+<td>PONS 期规则；<code>_bian</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td>blob 塌陷「原因本报告未能确定」</td>
+<td><strong>供给侧</strong>：每块用量 2.73 → 5.56（翻倍），目标 3 → 14（4.7 倍）；价格贴地板（2025 年中 1 wei，Fusaka 后为执行层 base fee 的 1/16）</td>
+<td>RPC 逐块抽样 + EIP 原文（初稿只用了价格，审查后补测用量）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>「7 月 ETH ETF 净流入首次超过 BTC ETF」（二手）</td>
+<td><strong>一手核实成立</strong>：ETH +$3.67 亿 vs BTC +$1.73 亿（Farside）</td>
+<td>Farside</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="116">11.6 发布前审查记录</h3>
+<p>本期走了三层审查：<strong>第 1 层脚本</strong>（<code>verify_report.py</code>，0 FAIL / 0 WARN）、<strong>第 2 层 <code>_bian</code>（推理审查，11 条）</strong>、<strong>第 3 层 Codex（领域审查，3 条）</strong>。<br />
+每条发现都由作者对照一手数据复核后才采纳。<strong>本期核心发现在审查中被改写了两次</strong>——这一节值得读。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>发现</th>
+<th>出处</th>
+<th>作者复核</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>把缓解问题的机制写成了问题的原因</strong>：EIP-7918 是把 blob 地板从 1 wei 抬高的机制，初稿却写成「塌陷是协议规定的」「传导被切断了一半」</td>
+<td><code>_bian</code>（第 1 条）</td>
+<td>✅ 成立，报告自己的数据（1 wei → 1,000 万–3,000 万 wei）就是反证</td>
+<td>5.1–5.2 重写；删除「切断」「钉住」「一半」；摘要、速查、10.5 同步</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>「答案是需求低于目标」对两个假设都成立</strong>：价格贴地板既可能是需求降、也可能是供给升，初稿用的判别证据（Base 的 L2 手续费）不是 blob 用量</td>
+<td><code>_bian</code>（第 2 条）</td>
+<td>✅ 成立。<strong>作者补做判别性测量</strong>：RPC 逐块读 <code>blobGasUsed</code>，五个月份各抽样 240 块——<strong>用量 2.73 → 5.56（翻倍），目标 3 → 14（4.7 倍）</strong>；并从 EIP 原文取得三次目标上调的时间</td>
+<td><strong>结论确定为「供给侧」</strong>；删除 Base 那条论据；11.5 第 5 条改写</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>EIP-7918 的 1/16 是「停止下调」的触发条件，不是把价格直接设为 1/16</strong>；月均比值不能排除短时高峰</td>
+<td>Codex（第 1 条）；<code>_bian</code>「需要核实」第 1 条</td>
+<td>✅ 成立（读 EIP-7918 原文的 <code>calc_excess_blob_gas</code>）</td>
+<td>5.1 改为「软规则，价格围绕这条线波动」，注明月均的局限</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>摘要删掉了正文公式里的「用量」因子</strong>：「blob 销毁不反映 L2 需求」与正文「销毁 = 执行费 × 1/16 × 用量」矛盾</td>
+<td><code>_bian</code>（第 3 条）</td>
+<td>✅ 成立</td>
+<td>摘要、空头 2、10.4 改为「L2 增长通过用量线性传导，但不推高单价」</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>估值把 L1 全部费用当成持有人现金流</strong>；「净增 + 销毁」严格说不是总发行；base fee 上升不是交易量的直接证据</td>
+<td>Codex（第 2 条）</td>
+<td>✅ 成立</td>
+<td>9.2 注明只有销毁那一行是对全体持有人的直接捕获；4.1 改称「推算总发行」；3.2 改为「需求相对容量的间接信号」</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>ETHB 的费率与规模 BlackRock 已公布</strong>，报告却写「未取得」；BitMine 8-K 附件是公司新闻稿、SEC 不核验；原文说只有「一部分」ETH 在 MAVAN 上</td>
+<td>Codex（第 3 条）</td>
+<td>✅ <strong>全部成立</strong>：BlackRock 官网显示资产 $11.76 亿、优惠期费率 0.12%、质押收益率 1.32%；BitMine 原文核对无误</td>
+<td>6.1、6.2、7.1、10.2、11.2 改写；新增「ETHB 扣费后净正约 0.34pp」</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>「ETHB 占比 8% → 23%」被分母放大</strong>：约 10 个百分点来自总流入减半</td>
+<td><code>_bian</code>（第 8 条）、Codex（第 3 条）<strong>独立提出</strong></td>
+<td>✅ 成立（作者另算：占「净流入为正的基金」为 21.1%）</td>
+<td>改报绝对流入并注明分母效应</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>「Q3 不只是跟涨」落在噪声带内</strong>：Q3 自身成分约 1.5 个标准差，9 月约 0.55 个</td>
+<td><code>_bian</code>（第 6 条）</td>
+<td>✅ 成立</td>
+<td>摘要、3.1、多头 4、速查改写；多头 4 降为两星</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>「概率不变」暗中改变了信念</strong>：乐观档事件变宽而概率仍写 25%，等于把「≥ $4,500 亿」下调约 9pp</td>
+<td><code>_bian</code>（第 7 条）</td>
+<td>✅ 成立</td>
+<td>按原密度补齐空档，<strong>机械调整为 33/40/27</strong>；9.4 重写并重算期望值</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>拒登 ETF 条目的理由（单一配置者可决定季度符号）没有执行到正文</strong></td>
+<td><code>_bian</code>（第 5 条）</td>
+<td>✅ 成立</td>
+<td>多头 1 从四星降为三星，监控 #5 加注</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>E8-5 证伪条件里有两个区间</strong></td>
+<td><code>_bian</code>（第 9 条）</td>
+<td>✅ 成立</td>
+<td>写死为 $2,055 亿–$3,727 亿（1–8 月月均），判定用 12 月月均</td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>E9-1 的「刷量排查」出口自相矛盾；可及性先例跨制度；成本算术差 1,000 倍</strong></td>
+<td><code>_bian</code>（第 4 条）</td>
+<td>✅ 成立</td>
+<td>删除出口；补用量 / 目标的可及性分析（Q4 大概率够不着，明说）；算术更正</td>
+</tr>
+<tr>
+<td>13</td>
+<td><strong>「BitMine 达到 5% 后是否继续买」是四星风险却没进记分卡</strong></td>
+<td><code>_bian</code>（第 10 条）</td>
+<td>✅ 成立</td>
+<td>新增 E9-4（50%）</td>
+</tr>
+<tr>
+<td>14</td>
+<td><strong>记分卡旧弱点一节与 9 月状态冲突</strong></td>
+<td><code>_bian</code>（第 11 条）</td>
+<td>✅ 成立</td>
+<td>标注期别、逐条写明 9 月状态</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>分歧</strong>：<code>_bian</code> 认为 E9-2（Glamsterdam 年内上主网）给 55% 还是 40% 是品味问题；作者保留 55%。</p>
+<p><strong>本期最该记住的一条</strong>：初稿拿一个<strong>两种解释都会产生的现象</strong>（价格贴地板）宣布了答案，又把<strong>抬高地板的机制</strong>写成了<strong>塌陷的原因</strong>。<br />
+<strong>能区分两种解释的数据（逐块用量）用公共 RPC 半小时就能取到，初稿没有去取</strong>——这是 ZEC 期「不判别的证据不能用来表态」的又一次复现。</p>
+<hr />
+<blockquote>
+<p><strong>配套文件</strong>：<code>eth_questions_summary_202609.md</code>（简明速查）、<code>../thesis_scorecard.md</code>（论点滚动记分卡）。<br />
+本报告不构成投资建议。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-eth">ETH 调研分析 — 核心问题与简明总结</h1>
+<blockquote>
+<p>配套 <code>eth_research_report_202609.md</code> 使用。Date: 2026-10-03（9 月版兼 Q3 回顾；数据截至 9/30）</p>
+</blockquote>
+<hr />
+<h2 id="s-9-q3">一、9 月和 Q3 发生了什么</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>9 月</th>
+<th>Q3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ETH（币安日线）</td>
+<td><strong>+8.85%</strong>，收 $2,686.01</td>
+<td><strong>+70.86%</strong></td>
+</tr>
+<tr>
+<td>ETH/BTC</td>
+<td>+2.29%</td>
+<td><strong>+19.81%</strong></td>
+</tr>
+<tr>
+<td>高于 BTC beta 预期</td>
+<td>+2.55pp（约 0.55 个标准差，噪声）</td>
+<td><strong>+17–19pp</strong>（约 1–1.5 个标准差，不能排除噪声）</td>
+</tr>
+<tr>
+<td>ETF 净流量（Farside）</td>
+<td>+$8.31 亿</td>
+<td>+$30.50 亿</td>
+</tr>
+<tr>
+<td>L1 费用（DefiLlama）</td>
+<td>$1,591 万（环比 +53%）</td>
+<td>$3,460 万（比 Q2 低 33%）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Q3 是本系列四个资产里涨幅最大的（与 ADA 并列）</strong>；高于 beta 预期的部分只有 1–1.5 个标准差，不能断言「不只是跟涨」。</p>
+<hr />
+<h2 id="s-blob">二、本期最重要的发现：blob 收入塌陷是供给侧原因</h2>
+<p>8 月版没回答的问题：blob 收入塌陷是需求侧（L2 用得少了）还是供给侧（供给目标上调太快）？</p>
+<p><strong>逐块读链上数据（每月抽样 240 个区块）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th>每块 blob 用量</th>
+<th>当时的目标</th>
+<th>用量 ÷ 目标</th>
+<th>blob 价格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-04（Pectra 前）</td>
+<td>2.73</td>
+<td>3</td>
+<td>91%</td>
+<td>市场定价</td>
+</tr>
+<tr>
+<td>2025-06（Pectra 后）</td>
+<td>3.76</td>
+<td>6</td>
+<td>63%</td>
+<td>跌到 1 wei</td>
+</tr>
+<tr>
+<td>2026-09（BPO2 后）</td>
+<td><strong>5.56</strong></td>
+<td><strong>14</strong></td>
+<td><strong>40%</strong></td>
+<td>贴着下限</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>需求翻倍，供给涨了 4.7 倍</strong>——是供给扩得比需求快，不是 L2 不用了。</p>
+<p><strong>EIP-7918 的作用</strong>：把地板从 1 wei 抬到执行层 base fee 的 1/16（Fusaka 包含，Final）。2026 年 blob 价格一直围绕这条线。<br />
+<strong>它是把地板抬高的机制，不是塌陷的原因</strong>——初稿把因果写反了，审查后更正。</p>
+<p><strong>含义</strong>：用量低于目标期间，blob 销毁 ≈ 下限价格 × 用量——L2 增长通过用量线性传导，但不推高单价。<strong>用量还要再涨约 2.5 倍，blob 才会回到市场定价</strong>——这是可逆的（2025-11 用量追到目标的 95% 时发生过）。</p>
+<blockquote>
+<p>限度：用量是抽样估计，不是全量。</p>
+</blockquote>
+<hr />
+<h2 id="s-_1">三、发行与销毁</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>30 天</th>
+<th>8 月</th>
+<th>9 月</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>推算总发行（净增 + 销毁）</td>
+<td>87,701 ETH</td>
+<td>88,512 ETH</td>
+</tr>
+<tr>
+<td>销毁</td>
+<td>1,178 ETH</td>
+<td><strong>2,011 ETH</strong></td>
+</tr>
+<tr>
+<td>销毁 ÷ 发行</td>
+<td>1.34%</td>
+<td><strong>2.27%</strong></td>
+</tr>
+<tr>
+<td>年通胀</td>
+<td>+0.863%</td>
+<td><strong>+0.862%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>方向改善，量级仍可忽略。「超声波货币」仍然失效。</strong></p>
+<hr />
+<h2 id="s-l1-26">四、L1 费用：回升了，但离门槛还差 26%</h2>
+<ul>
+<li>9 月 <strong>$1,591 万</strong>，环比 +53%，真年同比 −55.4%</li>
+<li>月均 base fee 0.173 → <strong>0.289 gwei</strong>（8 月版的「0.3115」是单点快照，已更正）</li>
+<li><strong>E8-4 的门槛是 $2,000 万</strong>：Q4 任一月超过，「L1 费用结构性下行」就判错——这是 8 月版最可能先被证伪的一条</li>
+</ul>
+<hr />
+<h2 id="s-_2">五、质押</h2>
+<ul>
+<li>质押 <strong>4,370 万 ETH（35.78%）</strong>，APR 2.63%</li>
+<li><strong>进入队列 154.5 万 ETH</strong>，是退出队列的 1.9 倍——质押率还会升，<strong>而质押越多，发行越多</strong></li>
+<li>APR 2.63% 里约 2.47pp 来自新发行；不质押的人每年被稀释 0.862%</li>
+</ul>
+<hr />
+<h2 id="s-_3">六、机构：首次取得一手数据</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>9 月</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ETF 净流入</td>
+<td>+$8.31 亿（8 月的 45%）</td>
+<td>Farside</td>
+</tr>
+<tr>
+<td>质押型 ETF ETHB 流入 / 资产</td>
+<td><strong>+$1.91 亿 / $11.76 亿</strong></td>
+<td>Farside / BlackRock 官网</td>
+</tr>
+<tr>
+<td>ETHB 费率 / 质押收益率</td>
+<td>优惠期 <strong>0.12%</strong> / <strong>1.32%</strong>——扣费后仍高于 0.862% 的稀释约 0.34pp</td>
+<td>BlackRock 官网</td>
+</tr>
+<tr>
+<td>BitMine 持仓</td>
+<td>590.1 万 → <strong>600.1 万枚</strong>（约 4.9% 供应量），84.4% 已质押</td>
+<td>8-K 附件（公司自述）</td>
+</tr>
+<tr>
+<td>BitMine mNAV</td>
+<td><strong>≥ 0.97 倍</strong>（只能给下限：股数用的是 7/9 的）</td>
+<td>SEC XBRL + 股价</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>ETHB 占净流入的比例从 8% 升到 23%，<strong>其中约 10 个百分点来自总流入减半</strong>——迁移有迹象，但幅度被分母放大了</li>
+<li><strong>单一大型配置者就能决定一个季度 ETF 流量的符号</strong>，所以流入不能直接读成「广泛的机构需求」</li>
+<li>BitMine 离 5% 目标只差约 10 万枚，9 月最后一周买入降到 1.7 万枚</li>
+</ul>
+<hr />
+<h2 id="s-glamsterdam">七、Glamsterdam</h2>
+<ul>
+<li>以太坊基金会 9/17 公告：<strong>Sepolia 测试网 10/6 激活，主网日期未定</strong></li>
+<li>「200M gas limit」需客户端显式配置，<strong>不是已确定的网络目标</strong></li>
+<li>联动：若执行层 base fee 被压低，<strong>blob 下限也会同比例降低</strong>——两条销毁路径一起变薄</li>
+</ul>
+<hr />
+<h2 id="s-2029">八、三情景（2029 年）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>悲观</th>
+<th>中性</th>
+<th>乐观</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参照市值</td>
+<td>$1,207–1,890 亿</td>
+<td>$1,890–4,045 亿</td>
+<td><strong>$4,045</strong>–5,829 亿</td>
+</tr>
+<tr>
+<td><strong>2029 年目标价</strong></td>
+<td>$963–$1,509</td>
+<td>$1,509–$3,229</td>
+<td><strong>$3,229</strong>–$4,653</td>
+</tr>
+<tr>
+<td>概率</td>
+<td><strong>27%</strong>（8 月 30%）</td>
+<td><strong>40%</strong>（8 月 45%）</td>
+<td><strong>33%</strong>（8 月 25%）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>乐观下沿从 $4,500 亿改为 $4,045 亿</strong>：8 月版两档之间有空档</li>
+<li><strong>概率变化是机械的，不是观点变化</strong>：把 8 月版乐观档的概率密度延伸到空档（约 8.6 个百分点），再按比例从另两档扣除</li>
+<li>期望市值约 $3,234 亿，相对当前 −1.4%，在框架误差之内</li>
+<li><strong>作者的基准预期是中性</strong>（40%，三档最高）</li>
+</ul>
+<hr />
+<h2 id="s-_4">九、记分卡</h2>
+<p>8 月登记的 6 条（E8-1 至 E8-6）<strong>没有一条到达检验窗口</strong>，全部待验。中期读数：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>读数</th>
+<th>距门槛</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E8-1 销毁/发行</td>
+<td>2.27%</td>
+<td>门槛 15%，差 6.6 倍</td>
+</tr>
+<tr>
+<td>E8-3 blob 销毁</td>
+<td>2.98 ETH</td>
+<td>门槛 80 ETH，差 27 倍</td>
+</tr>
+<tr>
+<td><strong>E8-4 L1 月费</strong></td>
+<td><strong>$1,591 万</strong></td>
+<td><strong>门槛 $2,000 万，差 26%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>本期起记分卡升级到 11 条门槛，新登记 E9-1 至 E9-4；E8-5 的区间写死为 $2,055 亿–$3,727 亿（12 月月均市值）。</p>
+<hr />
+<h2 id="s-_5">十、接下来看什么</h2>
+<ol>
+<li><strong>L1 月费是否突破 $2,000 万</strong>（E8-4）</li>
+<li><strong>blob ÷ 执行层 base fee 是否脱离 1/16</strong>——脱离意味着 blob 需求回到目标之上</li>
+<li><strong>Glamsterdam 主网是否年内上线</strong>（E9-2）</li>
+<li><strong>BitMine 达到 5% 后还买不买</strong>（E9-4）</li>
+</ol>
+<hr />
+<h2 id="s-3-5">十一、如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>Q3 ETH +70.9%，四个资产里并列第一</strong>——但 L1 季度费用比 Q2 低 33%，价格和网络收入在背离；高于 BTC beta 的部分只有 1–1.5 个标准差，不能排除噪声。</p>
+</li>
+<li>
+<p><strong>8 月版问「blob 收入为什么塌了」，答案是供给侧</strong>：blob 用量一年半翻倍，供给目标却涨了 4.7 倍，价格跌到地板——不是 L2 不用以太坊了。</p>
+</li>
+<li>
+<p><strong>Fusaka 的 EIP-7918 把这个地板从 1 wei 抬到了执行费的 1/16</strong>：现在 blob 销毁随用量线性增长；用量再涨约 2.5 倍，blob 才会回到市场定价。</p>
+</li>
+<li>
+<p><strong>L1 费用 9 月回升 53%，离 8 月版登记的 $2,000 万门槛只差 26%</strong>——「结构性下行」的判断正面临第一次实际检验。</p>
+</li>
+<li>
+<p><strong>机构侧改用一手数据</strong>：ETF Q3 +$30.5 亿、质押型 ETHB 扣费后仍跑赢稀释、BitMine 持有约 4.9% 且 84% 已质押——但 ETF 流入减半，BitMine 也接近目标。</p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>eth_research_report_202609.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 310" width="100%" role="img" aria-label="2026 年 4–9 月 美国现货 ETH ETF 月度净流量">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}
+</style>
+<rect width="620" height="310" fill="none"/>
+<text x="0" y="16" class="t">2026 年 4–9 月 美国现货 ETH ETF 月度净流量</text><text x="0" y="34" class="s">单位：亿美元 · 蓝＝净流入，红＝净流出 · 数据源：Farside 日度数据按月加总（一手）</text>
+<line x1="54" y1="62.0" x2="584" y2="62.0" class="ax"/><text x="46" y="66.0" class="l" text-anchor="end">20</text>
+<line x1="54" y1="106.5" x2="584" y2="106.5" class="ax"/><text x="46" y="110.5" class="l" text-anchor="end">10</text>
+<line x1="54" y1="151.0" x2="584" y2="151.0" class="ax"/><text x="46" y="155.0" class="l" text-anchor="end">0</text>
+<line x1="54" y1="195.5" x2="584" y2="195.5" class="ax"/><text x="46" y="199.5" class="l" text-anchor="end">-10</text>
+<line x1="54" y1="240.0" x2="584" y2="240.0" class="ax"/><text x="46" y="244.0" class="l" text-anchor="end">-20</text>
+<line x1="54" y1="151.0" x2="584" y2="151.0" stroke="#57534e" stroke-width="1.5"/>
+<path d="M70.2,151.0 L70.2,139.2 Q70.2,135.2 74.2,135.2 L122.2,135.2 Q126.2,135.2 126.2,139.2 L126.2,151.0 Z" fill="#2a78d6"/>
+<text x="98" y="128" class="v" text-anchor="middle">+3.56</text><text x="98" y="270" class="l" text-anchor="middle">4 月</text>
+<path d="M158.5,151.0 L158.5,171.1 Q158.5,175.1 162.5,175.1 L210.5,175.1 Q214.5,175.1 214.5,171.1 L214.5,151.0 Z" fill="#e34948"/>
+<text x="186" y="190" class="v" text-anchor="middle">-5.41</text><text x="186" y="270" class="l" text-anchor="middle">5 月</text>
+<path d="M246.8,151.0 L246.8,170.6 Q246.8,174.6 250.8,174.6 L298.8,174.6 Q302.8,174.6 302.8,170.6 L302.8,151.0 Z" fill="#e34948"/>
+<text x="275" y="190" class="v" text-anchor="middle">-5.30</text><text x="275" y="270" class="l" text-anchor="middle">6 月</text>
+<path d="M335.2,151.0 L335.2,138.7 Q335.2,134.7 339.2,134.7 L387.2,134.7 Q391.2,134.7 391.2,138.7 L391.2,151.0 Z" fill="#2a78d6"/>
+<text x="363" y="128" class="v" text-anchor="middle">+3.67</text><text x="363" y="270" class="l" text-anchor="middle">7 月</text>
+<path d="M423.5,151.0 L423.5,72.6 Q423.5,68.6 427.5,68.6 L475.5,68.6 Q479.5,68.6 479.5,72.6 L479.5,151.0 Z" fill="#2a78d6"/>
+<text x="452" y="62" class="v" text-anchor="middle">+18.52</text><text x="452" y="270" class="l" text-anchor="middle">8 月</text>
+<path d="M511.8,151.0 L511.8,118.0 Q511.8,114.0 515.8,114.0 L563.8,114.0 Q567.8,114.0 567.8,118.0 L567.8,151.0 Z" fill="#2a78d6"/>
+<text x="540" y="107" class="v" text-anchor="middle">+8.31</text><text x="540" y="270" class="l" text-anchor="middle">9 月</text>
+<text x="54" y="302" class="s">Q3 合计 +30.50 亿；9 月放缓到 8 月的 45%，其中质押型 ETHB 流入 1.91 亿。</text></svg>

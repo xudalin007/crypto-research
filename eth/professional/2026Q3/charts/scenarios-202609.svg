@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 270" width="100%" role="img" aria-label="ETH 三情景：2029 年目标价区间与主观概率">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}
+</style>
+<rect width="620" height="270" fill="none"/>
+<text x="0" y="16" class="t">ETH 三情景：2029 年目标价区间与主观概率</text><text x="0" y="34" class="s">区间 = 自身实际交易过的市值区间 ÷ 2029 年流通量 1.2528 亿；三档首尾相接；推导见第 9 章</text>
+<line x1="167" y1="62" x2="167" y2="226" class="ax"/><text x="167" y="243" class="l" text-anchor="middle">$1,000</text>
+<line x1="260" y1="62" x2="260" y2="226" class="ax"/><text x="260" y="243" class="l" text-anchor="middle">$2,000</text>
+<line x1="353" y1="62" x2="353" y2="226" class="ax"/><text x="353" y="243" class="l" text-anchor="middle">$3,000</text>
+<line x1="447" y1="62" x2="447" y2="226" class="ax"/><text x="447" y="243" class="l" text-anchor="middle">$4,000</text>
+<line x1="540" y1="62" x2="540" y2="226" class="ax"/><text x="540" y="243" class="l" text-anchor="middle">$5,000</text>
+<line x1="324" y1="56" x2="324" y2="226" stroke="#57534e" stroke-width="1.5" stroke-dasharray="4 3"/><text x="329" y="52" class="l">9/30 收盘 $2,686</text>
+<text x="106" y="89" class="v" text-anchor="end">乐观 33%</text><text x="106" y="103" class="l" text-anchor="end">金融资产叙事接管</text>
+<rect x="375" y="76" width="133" height="24" rx="4" fill="#1baf7a"/>
+<text x="516" y="92" class="v" style="paint-order:stroke;stroke:#fff;stroke-width:5px">$3,229 – $4,653</text>
+<text x="106" y="141" class="v" text-anchor="end">中性 40%</text><text x="106" y="155" class="l" text-anchor="end">维持现状</text>
+<rect x="214" y="128" width="161" height="24" rx="4" fill="#2a78d6"/>
+<text x="383" y="144" class="v" style="paint-order:stroke;stroke:#fff;stroke-width:5px">$1,509 – $3,229</text>
+<text x="106" y="193" class="v" text-anchor="end">悲观 27%</text><text x="106" y="207" class="l" text-anchor="end">叙事切换失败</text>
+<rect x="163" y="180" width="51" height="24" rx="4" fill="#eb6834"/>
+<text x="222" y="196" class="v" style="paint-order:stroke;stroke:#fff;stroke-width:5px">$963 – $1,509</text>
+<text x="0" y="262" class="s">时间范围是 2029 年，不是 12 个月目标价。补齐空档后乐观下沿 $3,594 → $3,229，概率按原密度机械调整。</text></svg>
