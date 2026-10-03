@@ -52,7 +52,7 @@ description: 生成或更新加密资产月度专业调研报告（Markdown + HT
 ## 接入新资产的步骤
 
 1. 在 `build.py` 的 `PROFILES` 加一条（symbol / name / short / accent / badge）
-2. 建 `<asset>/professional/<YYYYMM>/charts/` 目录（每月一个文件夹，见下）
+2. 建 `<asset>/professional/<YYYY>Q<n>/<YYYYMM>/charts/` 目录（按季度、再按月分文件夹，见下）
 3. 按上表调整章节框架
 4. 建该资产独立的 `thesis_scorecard.md`（**不与其他资产混记**）
 5. **找到该协议的治理仓库并翻一遍**（TRX 期教训——最关键的分项数据在 GitHub issues 里，不在浏览器和聚合器里）
@@ -68,16 +68,17 @@ description: 生成或更新加密资产月度专业调研报告（Markdown + HT
 
 # BTC 月度专业调研报告（以下流程通用）
 
-产出一套产物，放在 **`<asset>/professional/<YYYYMM>/`**（每月一个文件夹，_dalin 2026-10 决定；2026-09 起执行，更早的月份仍平铺在 `professional/` 下，不迁移）。**不含 PDF**。
-`build.py` 与 `verify_report.py` 会先找月份文件夹，找不到才读平铺位置。**`thesis_scorecard.md` 跨期，始终放在 `professional/` 根目录，不进月份文件夹。**
+产出一套产物，放在 **`<asset>/professional/<YYYY>Q<n>/<YYYYMM>/`**——先按季度、季度内再按月分文件夹（_dalin 2026-10 决定；例：`btc/professional/2026Q3/202609/`）。**不含 PDF**。
+BTC 的 2026-06 至 09 已全部迁入；其他资产 2026-08 及更早的报告仍平铺在 `professional/` 下，未迁移。
+`build.py` 与 `verify_report.py` 依次查找 `<YYYY>Q<n>/<YYYYMM>/` → `<YYYYMM>/` → 平铺位置。**`thesis_scorecard.md` 跨期，始终放在 `professional/` 根目录，不进月份文件夹。**
 
 | 文件 | 说明 |
 |------|------|
 | `btc_research_report_<YYYYMM>.md` | 完整报告，11 章 |
 | `btc_questions_summary_<YYYYMM>.md` | 简明速查，10-11 节 |
 | `btc_research_report_<YYYYMM>.html` | 网页版（脚本生成，勿手写） |
-| `charts/*-<YYYYMM>.svg` | 三张图表（在月份文件夹内） |
-| `thesis_scorecard.md` | **跨期滚动**，不带月份后缀，每期追加；**每个资产各一份，不混记**；放在 `professional/` 根目录 |
+| `charts/*-<YYYYMM>.svg` | 三张图表（在当月文件夹内） |
+| `thesis_scorecard.md` | **跨期滚动**，不带月份后缀，每期追加；**每个资产各一份，不混记**；放在 `professional/` 根目录，不进季度/月份文件夹 |
 
 通俗版是**另一条线**，放 `btc/general/`，不在本技能范围（且被 gitignore 排除）。
 
@@ -914,7 +915,7 @@ PONS 正文反复声明「本期无法区分价格驱动因素」「不判断现
 
 ## 第 2.5 步：出图表
 
-每期至少三张，放 `btc/professional/<YYYYMM>/charts/`，命名 `<主题>-<YYYYMM>.svg`，在 Markdown 里用相对路径引用：
+每期至少三张，放 `btc/professional/<YYYY>Q<n>/<YYYYMM>/charts/`，命名 `<主题>-<YYYYMM>.svg`，在 Markdown 里用相对路径引用：
 
 ```markdown
 ![2026 年 5–8 月 ETF 月度净流量](charts/etf-flows-202608.svg)
@@ -948,10 +949,10 @@ node $D/scripts/validate_palette.js "#2a78d6,#e34948" --mode light
 **画完必须实际渲染检查**（dataviz 规范第 7 步）——校验器只管颜色，不管排版：
 
 ```bash
-# 建一个临时预览页放在 btc/professional/<YYYYMM>/ 下（相对路径才解析得到 charts/）
+# 建一个临时预览页放在 btc/professional/<YYYY>Q<n>/<YYYYMM>/ 下（相对路径才解析得到 charts/）
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu \
   --screenshot=/tmp/charts.png --window-size=720,1030 --hide-scrollbars \
-  "file://$(pwd)/btc/professional/<YYYYMM>/_preview.html"
+  "file://$(pwd)/btc/professional/<YYYY>Q<n>/<YYYYMM>/_preview.html"
 ```
 
 然后用 Read 工具看图。**上次就是靠这一步抓到两个问题**：坐标轴标签与脚注重叠、窄条上的标签被裁切。检查完删掉临时预览页。
