@@ -68,9 +68,7 @@ description: 生成或更新加密资产月度专业调研报告（Markdown + HT
 
 # BTC 月度专业调研报告（以下流程通用）
 
-产出一套产物，放在 **`<asset>/professional/<YYYY>Q<n>/`**——按季度分文件夹，**当季各月的文件直接放在里面，不再按月分子文件夹**（_dalin 2026-10 决定：层级不要太多；例：`btc/professional/2026Q3/btc_research_report_202609.md`）。当季图表共用 `<YYYY>Q<n>/charts/`，文件名带年月所以不会重名。**不含 PDF**。
-BTC 的 2026-06 至 09 已全部迁入；其他资产 2026-08 及更早的报告仍平铺在 `professional/` 下，未迁移。
-`build.py` 与 `verify_report.py` 先在季度文件夹里找该月报告，找不到再读平铺位置。**`thesis_scorecard.md` 跨期，始终放在 `professional/` 根目录，不进月份文件夹。**
+产出一套产物，放在 **`<asset>/professional/<YYYY>Q<n>/`**（季度文件夹，见下方「目录结构」）。**不含 PDF**。
 
 | 文件 | 说明 |
 |------|------|
@@ -80,7 +78,44 @@ BTC 的 2026-06 至 09 已全部迁入；其他资产 2026-08 及更早的报告
 | `charts/*-<YYYYMM>.svg` | 三张图表（在季度文件夹的 `charts/` 内） |
 | `thesis_scorecard.md` | **跨期滚动**，不带月份后缀，每期追加；**每个资产各一份，不混记**；放在 `professional/` 根目录，不进季度文件夹 |
 
-通俗版是**另一条线**，放 `btc/general/`，不在本技能范围（且被 gitignore 排除）。
+通俗版是**另一条线**，放 `btc/general/<YYYY>Q<n>/`，不在本技能范围（且被 gitignore 排除）。
+
+## 目录结构（所有资产通用，_dalin 2026-10 定）
+
+```
+<asset>/professional/
+├── 2026Q2/                          季度文件夹：当季各月的文件直接放在里面
+│   ├── <asset>_research_report_202606.md
+│   ├── <asset>_research_report_202606.html
+│   ├── <asset>_questions_summary_202606.md
+│   └── charts/                      当季所有图表共用一个，文件名必须带 <YYYYMM>
+├── 2026Q3/
+│   └── …（7、8、9 月的文件 + charts/）
+└── thesis_scorecard.md              跨期记分卡，永远在 professional/ 根目录
+```
+
+**三条规则**：
+
+1. **只分到季度，不再按月分子文件夹。** 月份已经写在文件名里，再套一层月份文件夹只增加层级——_dalin 先要求「每月分开放」，
+   试过「季度/月份」两层后明确否决：「层级太多了」。**`professional/` 以下最多一层目录（季度），再加一个 `charts/`。**
+2. **图表文件名必须带年月**（`etf-flows-202609.svg`），这是同一季度三个月共用一个 `charts/` 而不撞名的前提。Markdown 里照旧用 `charts/xxx.svg` 相对路径。
+3. **跨期文件不进季度文件夹**：`thesis_scorecard.md` 记录的是跨期判断，放 `professional/` 根目录。
+
+季度算法：`Q = (月份 − 1) // 3 + 1`（1–3 月 Q1，4–6 月 Q2，7–9 月 Q3，10–12 月 Q4）。
+`build.py` 与 `verify_report.py` 已按这个规则找文件：先找 `<YYYY>Q<n>/<asset>_research_report_<YYYYMM>.md`，找不到再读平铺的 `professional/`。
+**截至 2026-10，全部 14 个资产的已有报告都已迁入季度文件夹**（BTC 2026Q2–Q3，其余 13 个资产 2026Q3）。
+
+### 迁移已有报告时的经验（2026-10 整理 14 个资产时踩到的）
+
+| # | 坑 | 正确做法 |
+|---|---|---|
+| 1 | **为了测试路径而重新生成历史网页版，会用当前模板覆盖旧 HTML**（BTC 6 月版从 88KB 变成 62KB，已用 `git restore` 恢复） | **迁移只搬文件，不重新生成历史 HTML**。验证路径用 `verify_report.py`（只读）；要测 `build.py`，只拿当期报告测 |
+| 2 | 用普通 `mv` 会让 Git 把它当成「删除 + 新增」，丢掉文件历史 | **用 `git mv`**；提交前看 `git status`，应全部显示为 `R`（改名） |
+| 3 | 搬到一半执行 `git stash` / `stash pop`，会把已暂存的改名拆成「未暂存的删除 + 已暂存的新增」 | 迁移过程中**不要用 stash**；真拆开了，用 `git add -A <目录>` 重新暂存，Git 会重新识别为改名 |
+| 4 | zsh 的 `for` 循环里，`"$var"` 不会按空格拆分（`set -- $a` 无效），脚本会把整串当成一个参数 | 循环变量只放单个值，或用 `${x%%:*}` / `${x##*:}` 拆分，或改用 Python |
+| 5 | 不知道搬家有没有引入问题 | **先跑一遍 `verify_report.py` 记下各资产的 FAIL/WARN 基线，搬完再跑一遍对比**；数字不变才算搬对。旧报告本来就有的 FAIL（如 BTC 6、7 月版早于核查脚本）不是搬家造成的 |
+| 6 | HTML 里的图表是相对路径，搬错层级会静默变成裂图 | 搬完扫一遍所有 HTML 的 `src="charts/…svg"`，逐个确认文件存在（2026-10 迁移时 40 处引用全部有效） |
+| 7 | 图表文件名不带年月时，三个月共用 `charts/` 会互相覆盖 | 搬之前先确认 `charts/` 里每个文件名都含 `<YYYYMM>`（`ls charts | grep -vc <YYYYMM>` 应为 0） |
 
 ---
 
