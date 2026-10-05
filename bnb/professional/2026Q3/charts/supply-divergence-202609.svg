@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 320" width="100%" role="img" aria-label="BNB 供应侧：季度销毁枚数与均价反向">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}
+</style>
+<rect width="620" height="320" fill="none"/>
+<text x="0" y="16" class="t">BNB 供应侧：季度销毁枚数与均价反向</text><text x="0" y="34" class="s">单位：万枚 · 柱下为对应季度币安日线均价 · 数据源：BNB Chain 官方博客 + 币安日线（估算方法见 4.2）</text>
+<line x1="54" y1="236.0" x2="584" y2="236.0" class="ax"/><text x="46" y="240.0" class="l" text-anchor="end">120</text>
+<line x1="54" y1="179.3" x2="584" y2="179.3" class="ax"/><text x="46" y="183.3" class="l" text-anchor="end">140</text>
+<line x1="54" y1="122.7" x2="584" y2="122.7" class="ax"/><text x="46" y="126.7" class="l" text-anchor="end">160</text>
+<line x1="54" y1="66.0" x2="584" y2="66.0" class="ax"/><text x="46" y="70.0" class="l" text-anchor="end">180</text>
+<line x1="54" y1="118.1" x2="584" y2="118.1" stroke="#e34948" stroke-width="1.2" stroke-dasharray="5 4"/><text x="58" y="74.5" class="l" fill="#e34948">红虚线 = B8-2 门槛（第 36 次的 161.6 万枚）</text>
+<path d="M68.9,236 L68.9,132.6 Q68.9,128.6 72.9,128.6 L110.9,128.6 Q114.9,128.6 114.9,132.6 L114.9,236 Z" fill="#2a78d6"/>
+<text x="92" y="122" class="v" text-anchor="middle" style="paint-order:stroke;stroke:#fff;stroke-width:5px">157.9</text><text x="92" y="252" class="l" text-anchor="middle">第 31 次</text><text x="92" y="267" class="l" text-anchor="middle">$644</text>
+<path d="M144.6,236 L144.6,128.1 Q144.6,124.1 148.6,124.1 L186.6,124.1 Q190.6,124.1 190.6,128.1 L190.6,236 Z" fill="#2a78d6"/>
+<text x="168" y="117" class="v" text-anchor="middle" style="paint-order:stroke;stroke:#fff;stroke-width:5px">159.5</text><text x="168" y="252" class="l" text-anchor="middle">第 32 次</text><text x="168" y="267" class="l" text-anchor="middle">$630</text>
+<path d="M220.3,236 L220.3,171.7 Q220.3,167.7 224.3,167.7 L262.3,167.7 Q266.3,167.7 266.3,171.7 L266.3,236 Z" fill="#2a78d6"/>
+<text x="243" y="161" class="v" text-anchor="middle" style="paint-order:stroke;stroke:#fff;stroke-width:5px">144.1</text><text x="243" y="252" class="l" text-anchor="middle">第 33 次</text><text x="243" y="267" class="l" text-anchor="middle">$829</text>
+<path d="M296.0,236 L296.0,191.3 Q296.0,187.3 300.0,187.3 L338.0,187.3 Q342.0,187.3 342.0,191.3 L342.0,236 Z" fill="#2a78d6"/>
+<text x="319" y="180" class="v" text-anchor="middle" style="paint-order:stroke;stroke:#fff;stroke-width:5px">137.2</text><text x="319" y="252" class="l" text-anchor="middle">第 34 次</text><text x="319" y="267" class="l" text-anchor="middle">$982</text>
+<path d="M371.7,236 L371.7,135.4 Q371.7,131.4 375.7,131.4 L413.7,131.4 Q417.7,131.4 417.7,135.4 L417.7,236 Z" fill="#2a78d6"/>
+<text x="395" y="124" class="v" text-anchor="middle" style="paint-order:stroke;stroke:#fff;stroke-width:5px">156.9</text><text x="395" y="252" class="l" text-anchor="middle">第 35 次</text><text x="395" y="267" class="l" text-anchor="middle">$727</text>
+<path d="M447.4,236 L447.4,122.1 Q447.4,118.1 451.4,118.1 L489.4,118.1 Q493.4,118.1 493.4,122.1 L493.4,236 Z" fill="#2a78d6"/>
+<text x="470" y="111" class="v" text-anchor="middle" style="paint-order:stroke;stroke:#fff;stroke-width:5px">161.6</text><text x="470" y="252" class="l" text-anchor="middle">第 36 次</text><text x="470" y="267" class="l" text-anchor="middle">$621</text>
+<rect x="523.1" y="100.6" width="46" height="24.4" rx="4" fill="#eb6834" opacity="0.35"/>
+<line x1="523.1" y1="121.0" x2="569.1" y2="121.0" stroke="#eb6834" stroke-width="3"/>
+<text x="546" y="94" class="v" text-anchor="middle">≈160.6</text><text x="546" y="252" class="l" text-anchor="middle">第 37 次（估）</text><text x="546" y="267" class="l" text-anchor="middle">$651</text>
+<text x="0" y="312" class="s">均价越高、枚数越少：Q3 均价 $651 高于 Q2 的 $621，估算中值略低于门槛（区间 159.2–167.8，未验证）。</text></svg>

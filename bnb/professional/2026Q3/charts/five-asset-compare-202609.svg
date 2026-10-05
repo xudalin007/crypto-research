@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 310" width="100%" role="img" aria-label="五个资产的 9 月与 Q3 涨幅（币安日线 UTC 收盘）">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}
+</style>
+<rect width="620" height="310" fill="none"/>
+<text x="0" y="16" class="t">五个资产的 9 月与 Q3 涨幅（币安日线 UTC 收盘）</text><text x="0" y="34" class="s">单位：% · 蓝＝9 月，橙＝Q3 · 同一数据源、同一时间点</text>
+<line x1="54" y1="236.0" x2="584" y2="236.0" class="ax"/><text x="46" y="240.0" class="l" text-anchor="end">0</text>
+<line x1="54" y1="192.5" x2="584" y2="192.5" class="ax"/><text x="46" y="196.5" class="l" text-anchor="end">20</text>
+<line x1="54" y1="149.0" x2="584" y2="149.0" class="ax"/><text x="46" y="153.0" class="l" text-anchor="end">40</text>
+<line x1="54" y1="105.5" x2="584" y2="105.5" class="ax"/><text x="46" y="109.5" class="l" text-anchor="end">60</text>
+<line x1="54" y1="62.0" x2="584" y2="62.0" class="ax"/><text x="46" y="66.0" class="l" text-anchor="end">80</text>
+<path d="M71.0,236 L71.0,186.3 Q71.0,182.3 75.0,182.3 L101.0,182.3 Q105.0,182.3 105.0,186.3 L105.0,236 Z" fill="#2a78d6"/>
+<path d="M109.0,236 L109.0,86.1 Q109.0,82.1 113.0,82.1 L139.0,82.1 Q143.0,82.1 143.0,86.1 L143.0,236 Z" fill="#eb6834"/>
+<text x="88" y="176" class="v" text-anchor="middle" style="font-size:10px">24.67</text><text x="126" y="76" class="v" text-anchor="middle" style="font-size:10px">70.78</text>
+<text x="107" y="253" class="l" text-anchor="middle" style="font-weight:400">ADA</text>
+<path d="M177.0,236 L177.0,208.2 Q177.0,204.2 181.0,204.2 L207.0,204.2 Q211.0,204.2 211.0,208.2 L211.0,236 Z" fill="#2a78d6"/>
+<path d="M215.0,236 L215.0,108.8 Q215.0,104.8 219.0,104.8 L245.0,104.8 Q249.0,104.8 249.0,108.8 L249.0,236 Z" fill="#eb6834"/>
+<text x="194" y="198" class="v" text-anchor="middle" style="font-size:10px">14.61</text><text x="232" y="99" class="v" text-anchor="middle" style="font-size:10px">60.34</text>
+<text x="213" y="253" class="l" text-anchor="middle" style="font-weight:400">SOL</text>
+<path d="M283.0,236 L283.0,215.5 Q283.0,211.5 287.0,211.5 L313.0,211.5 Q317.0,211.5 317.0,215.5 L317.0,236 Z" fill="#2a78d6"/>
+<path d="M321.0,236 L321.0,151.3 Q321.0,147.3 325.0,147.3 L351.0,147.3 Q355.0,147.3 355.0,151.3 L355.0,236 Z" fill="#eb6834"/>
+<text x="300" y="206" class="v" text-anchor="middle" style="font-size:10px">11.26</text><text x="338" y="141" class="v" text-anchor="middle" style="font-size:10px">40.76</text>
+<text x="319" y="253" class="l" text-anchor="middle" style="font-weight:700">BNB</text>
+<path d="M389.0,236 L389.0,220.8 Q389.0,216.8 393.0,216.8 L419.0,216.8 Q423.0,216.8 423.0,220.8 L423.0,236 Z" fill="#2a78d6"/>
+<path d="M427.0,236 L427.0,85.9 Q427.0,81.9 431.0,81.9 L457.0,81.9 Q461.0,81.9 461.0,85.9 L461.0,236 Z" fill="#eb6834"/>
+<text x="406" y="211" class="v" text-anchor="middle" style="font-size:10px">8.85</text><text x="444" y="76" class="v" text-anchor="middle" style="font-size:10px">70.86</text>
+<text x="425" y="253" class="l" text-anchor="middle" style="font-weight:400">ETH</text>
+<path d="M495.0,236 L495.0,226.0 Q495.0,222.0 499.0,222.0 L525.0,222.0 Q529.0,222.0 529.0,226.0 L529.0,236 Z" fill="#2a78d6"/>
+<path d="M533.0,236 L533.0,147.3 Q533.0,143.3 537.0,143.3 L563.0,143.3 Q567.0,143.3 567.0,147.3 L567.0,236 Z" fill="#eb6834"/>
+<text x="512" y="216" class="v" text-anchor="middle" style="font-size:10px">6.42</text><text x="550" y="137" class="v" text-anchor="middle" style="font-size:10px">42.64</text>
+<text x="531" y="253" class="l" text-anchor="middle" style="font-weight:400">BTC</text>
+<rect x="54" y="266" width="12" height="10" fill="#2a78d6"/><text x="71" y="275" class="l">9 月</text><rect x="124" y="266" width="12" height="10" fill="#eb6834"/><text x="141" y="275" class="l">Q3</text>
+<text x="0" y="302" class="s">Q3 BNB +40.76%，五个里最小；按 Q3 beta 0.63 推算的预期只有约 +26.7%。</text></svg>

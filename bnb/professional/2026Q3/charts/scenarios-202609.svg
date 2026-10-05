@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 270" width="100%" role="img" aria-label="BNB 三情景：2029-09-30 目标价区间与概率">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}
+</style>
+<rect width="620" height="270" fill="none"/>
+<text x="0" y="16" class="t">BNB 三情景：2029-09-30 目标价区间与概率</text><text x="0" y="34" class="s">市值区间 ÷ 2029 年推算流通量 1.1508 亿；两端开放；概率锚定随机游走基线；推导见第 9 章</text>
+<line x1="150" y1="62" x2="150" y2="226" class="ax"/><text x="150" y="243" class="l" text-anchor="middle">$200</text>
+<line x1="250" y1="62" x2="250" y2="226" class="ax"/><text x="250" y="243" class="l" text-anchor="middle">$600</text>
+<line x1="350" y1="62" x2="350" y2="226" class="ax"/><text x="350" y="243" class="l" text-anchor="middle">$1,000</text>
+<line x1="450" y1="62" x2="450" y2="226" class="ax"/><text x="450" y="243" class="l" text-anchor="middle">$1,400</text>
+<line x1="550" y1="62" x2="550" y2="226" class="ax"/><text x="550" y="243" class="l" text-anchor="middle">$1,800</text>
+<line x1="292" y1="56" x2="292" y2="226" stroke="#57534e" stroke-width="1.5" stroke-dasharray="4 3"/><text x="297" y="52" class="l">9/30 收盘 $769</text>
+<text x="136" y="89" class="v" text-anchor="end">乐观 24%</text><text x="136" y="103" class="l" text-anchor="end">开放区间</text>
+<rect x="384" y="76" width="166" height="24" rx="4" fill="#1baf7a"/>
+<text x="394" y="92" class="v" style="fill:#fff">$1,134 以上</text>
+<text x="136" y="141" class="v" text-anchor="end">中性 23%</text><text x="136" y="155" class="l" text-anchor="end">2026 年交易区间</text>
+<rect x="260" y="128" width="124" height="24" rx="4" fill="#2a78d6"/>
+<text x="392" y="144" class="v" style="paint-order:stroke;stroke:#fff;stroke-width:5px">$640 – $1,134</text>
+<text x="136" y="193" class="v" text-anchor="end">悲观 53%</text><text x="136" y="207" class="l" text-anchor="end">开放区间</text>
+<rect x="150" y="180" width="110" height="24" rx="4" fill="#eb6834"/>
+<text x="268" y="196" class="v" style="paint-order:stroke;stroke:#fff;stroke-width:5px">$640 以下</text>
+<text x="0" y="262" class="s">作者基准＝期望市值不变的基线：期望持平，但三年后价格低于现价的概率约 61%。</text></svg>

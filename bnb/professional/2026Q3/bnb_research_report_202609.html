@@ -1,0 +1,2406 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BNB / BNB Chain 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#F0B90B;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">◆ BNB 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>◆ BNB 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-bnb">1. BNB 的起源与设计取舍</a>
+<a href="#2-bnb">2. BNB 的发展阶段划分</a>
+<a href="#3-bnb">3. BNB 当前现状分析</a>
+<a href="#4">4. 销毁机制与「准回购」</a>
+<a href="#5-binance">5. 对 Binance 的依赖</a>
+<a href="#6">6. 机构通道与持有者结构</a>
+<a href="#7-bnb">7. BNB 的核心价值逻辑</a>
+<a href="#8-bnb">8. BNB 与其他资产的比较</a>
+<a href="#9">9. 关键变量与三种情景推演</a>
+<a href="#10">10. 投资与风险启示</a>
+<a href="#11">11. 附录</a>
+<a href="#zec-25bp-076252550mnav-061-grep">ZEC 期清扫</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-1-9-q3">1. 9 月和 Q3 发生了什么</a>
+<a href="#s-2-meme">2. 本期最重要的发现</a>
+<a href="#s-3-37-10-36">3. 第 37 次销毁</a>
+<a href="#s-4">4. 机构</a>
+<a href="#s-5">5. 欧洲监管</a>
+<a href="#s-6">6. 估值</a>
+<a href="#s-7-2029-09-30">7. 三情景</a>
+<a href="#s-8">8. 记分卡</a>
+<a href="#s-9">9. 该盯什么</a>
+<a href="#s-10-3-5">10. 如果你只有 3 分钟，记住这 5 …</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>◆ BNB / BNB Chain<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">◆ BNB</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="bnb-bnb-chain">BNB / BNB Chain 完整调研与分析报告</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 10 月 5 日<br />
+<strong>数据截止</strong>：2026 年 9 月 30 日（9 月与 Q3 完整数据已闭合）；供应量与生态 30 天窗口取到 10/4<br />
+<strong>版本</strong>：2026 年 9 月版（第二期）<strong>兼 Q3 季度回顾</strong><br />
+<strong>研究方法</strong>：沿用 8 月首期的准股权框架。本期第一次有上期论点可核对（B8-1 至 B8-6，见 3.0）。<br />
+<strong>口径</strong>：本期起价格统一用<strong>币安日线 UTC 收盘</strong>（BNBUSDT、BTCUSDT、ETHUSDT、SOLUSDT、ADAUSDT），与 BTC / ETH / SOL 9 月版相同；8 月首期用的是 CoinGecko 00:00 快照，两者不可混比。</p>
+<p><strong>本版更新要点</strong>：</p>
+<ol>
+<li><strong>9 月 +11.26%，Q3 +40.76%</strong>——收于 $769.27。<strong>Q3 BNB 是本系列五个资产里涨幅最小的</strong>（BTC +42.64%、SOL +60.34%、ADA +70.78%、ETH +70.86%）。这正是低 beta 资产在普涨季该有的样子：Q3 对 BTC 的 beta 只有 0.63。</li>
+<li><strong>本期最重要的发现：BSC 费用的回升几乎全部跟着 meme 协议走。</strong> Flap sh + GMGN 的月度费用从 6 月 $323 万涨到 9 月 <strong>$5,376 万（16.6 倍）</strong>，占生态费用比重从 <strong>10.0% 升到 48.4%</strong>；同期 BSC L1 费用从 $1,085 万涨到 $2,178 万。<strong>8 月版的「五个资产里唯一费用同比增长」在 9 月消失了</strong>：9 月 $2,178 万对 2025-09 的 $2,190 万，真年同比 <strong>−0.6%</strong>（8 月 +62.6% 是低基数）。</li>
+<li><strong>第 37 次 Auto-Burn（10 月）的枚数，按本报告的公式拟合，中值略低于第 36 次</strong>——约 160.6 万枚，低于 B8-2 的门槛 161.6 万枚；<strong>但门槛落在拟合区间内，把握有限</strong>。原因很机械：公式里价格在分母上，<strong>Q3 均价 $651 高于 Q2 的 $621</strong>。公式的确切形式<strong>未验证</strong>（见 4.2）。</li>
+<li><strong>机构通道远比 8 月版写的窄</strong>：VanEck VBNB 的 10-K（SEC 一手）显示 6/30 净资产只有 <strong>$214 万</strong>（3,887.70 BNB），<strong>约 40% 是 VanEck 自己的种子资金</strong>；8/31 份额从 10 万降到 9 万。最大上市公司持有者 BNB Standard Corp（原 CEA Industries，9/29 更名）持有 51.6 万枚，<strong>mNAV 约 0.78（计入名义行权价权证）、持仓浮亏约 11%</strong>。</li>
+<li><strong>8 月版的八处更正</strong>（见 11.5），影响最大的是<strong>三情景重构</strong>：两端开放、对照随机游走基线，概率由 25/50/25 改为 24/23/53；其余：8 月涨幅按币安口径为 <strong>+17.79%</strong>（原 +16.71%）；「机构通道已打开」过度表述；3 年期美债实际是 <strong>4.40%（8/31）→ 5.00%（9/30）</strong>，销毁带来的年化供应缩减约 5.0% 与之持平（在作者采用的锚下溢价约 0，见 9.4），不是 8 月版估计的 100–130bp；稳定币规模两个 DefiLlama 端点差 $31 亿，8 月版只报了其中一个；欧洲 MiCA「仍在进行中」不准确——据报道 Binance 已于 6 月撤回希腊申请。</li>
+</ol>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>BNB 是什么</strong></td>
+<td>交易所平台币 + BSC 的 gas 代币 + 持续季度销毁的准股权凭证。<strong>理解它从第一重身份开始</strong></td>
+</tr>
+<tr>
+<td><strong>当前价格位置</strong></td>
+<td>$769.27（9/30 币安收盘），市值约 <strong>$1,024.4 亿</strong>（CoinGecko 排名第 4）。距 ATH（$1,375.11，币安 2025-10-13 盘中）<strong>−44.1%</strong>；YTD <strong>−11.00%</strong></td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3 表现</strong></td>
+<td><strong>9 月 +11.26%、Q3 +40.76%</strong>。9 月高于 BTC beta 预期 +7.0pp（约 0.73 个标准差），Q3 高 +14.0pp（约 1.15 个标准差）——<strong>都不能排除噪声</strong></td>
+</tr>
+<tr>
+<td><strong>本期最重要的发现</strong></td>
+<td><strong>费用回升 = meme 回升</strong>。Flap sh + GMGN 占生态费用 6 月 10.0% → 9 月 <strong>48.4%</strong>；L1 费用 9 月真年同比 <strong>−0.6%</strong>，8 月版「唯一增长的链」的结论不再成立</td>
+</tr>
+<tr>
+<td><strong>销毁</strong></td>
+<td>第 37 次（10 月）按拟合公式估约 <strong>160.6 万枚（区间 159.2–167.8 万，未验证）</strong>，<strong>中值低于第 36 次的 161.6 万</strong>；BEP-95 实时销毁 9 月约 2,923 枚，Q3 约 7,392 枚——<strong>量级是季度销毁的 0.5%</strong></td>
+</tr>
+<tr>
+<td><strong>单币层回报</strong></td>
+<td>销毁带来的年化供应缩减 <strong>约 4.98%</strong>（三年 +15.7%），与 <strong>3 年期美债 5.00%</strong> 持平；在作者采用的「期望市值不变」锚下溢价约 0（<strong>换锚结论会变</strong>，见 9.4）。8 月版估计 100–130bp</td>
+</tr>
+<tr>
+<td><strong>机构通道</strong></td>
+<td>VBNB 净资产 <strong>$214 万</strong>（6/30），约占 BNB 市值的 0.002%；<strong>本期首次取得一手数据，结论是「通道开了，但几乎没人走」</strong>。VBNB 9/25 签约由 Figment 做质押验证者（费率 4%）</td>
+</tr>
+<tr>
+<td><strong>核心多头逻辑</strong></td>
+<td>唯一供应真实减少（年化约 4.53%）；beta 低（近 1 年 0.88、Q3 0.63）；FDV ≈ 市值、无解锁；L1 费用 Q3 比 Q2 高 57.7%</td>
+</tr>
+<tr>
+<td><strong>核心空头逻辑</strong></td>
+<td>费用回升由 meme 驱动；单一实体依赖；<strong>ECB 行长据报介入阻止 Binance 的 MiCA 牌照</strong>（WSJ 报道，二手）；储备公司折价；销毁带来的供应缩减与 3 年期美债持平</td>
+</tr>
+<tr>
+<td><strong>估值立场</strong></td>
+<td>情景<strong>两端改为开放</strong>；<strong>作者的基准预期 = 随机游走基线（期望市值不变）</strong>，概率 乐观 24 / 中性 23 / 悲观 53。期望市值持平，但<strong>三年后价格低于现价的概率约 61%</strong>。8 月版「中性概率最高」撤回</td>
+</tr>
+<tr>
+<td><strong>风险等级</strong></td>
+<td>风险结构不同于另外四个：市场风险较低（beta &lt;1），但承担单一实体与监管风险。<strong>近 1 年年化波动 51.6%，仍高于 BTC 的 44.9%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-bnb">1. BNB 的起源与设计取舍</h2>
+<blockquote>
+<p>本章与 8 月首期相同，此处只保留理解本期内容必需的部分。完整内容见 <code>bnb_research_report_202608.md</code> 第 1 章。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>身份</th>
+<th>内容</th>
+<th>本期相关性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>交易所平台币</td>
+<td>Binance 手续费折扣与生态权益</td>
+<td>第 5 章：欧洲牌照受阻直接影响这一身份</td>
+</tr>
+<tr>
+<td>BSC gas 代币</td>
+<td>PoSA 共识；VanEck 10-K 描述验证者集合为 <strong>45 个活跃验证者，其中 21 个出块（cabinet）、24 个候补</strong></td>
+<td>3.3：费用回升的来源</td>
+</tr>
+<tr>
+<td>准股权凭证</td>
+<td>季度 Auto-Burn + BEP-95 实时销毁 10% gas</td>
+<td>第 4 章：第 37 次销毁的估算</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-bnb">2. BNB 的发展阶段划分</h2>
+<blockquote>
+<p>阶段一至四见 8 月首期。</p>
+</blockquote>
+<h3 id="2026-9">阶段五：机构化与链上放量（2026 至今）——9 月的修订</h3>
+<p>8 月版把 2026 年定性为「机构化与链上放量」。<strong>9 月的一手数据要求把这两个词都打折扣</strong>：</p>
+<ul>
+<li><strong>「机构化」</strong>：VBNB 净资产 $214 万，其中约 40% 是发行商种子资金（6.1）。<strong>通道存在，资金几乎没有进来。</strong></li>
+<li><strong>「链上放量」</strong>：放量是真的，但 Q3 增量几乎全部来自两个 meme 协议（3.3）。<strong>这与 SOL 2024–2025 年的路径相似，而 SOL 后来经历了网络收入同比 −87% 的退潮。</strong></li>
+</ul>
+<hr />
+<h2 id="3-bnb">3. BNB 当前现状分析</h2>
+<h3 id="30-8-6">3.0 论点校验：8 月版登记的 6 条</h3>
+<blockquote>
+<p>8 月首期登记的 B8-1 至 B8-6 中，<strong>没有一条在 9 月到达检验窗口</strong>（B8-2 在 10 月第 37 次销毁时判定，其余截止 2026-12-31）。下表记录中期读数，<strong>不做判定</strong>。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th>检验条件（摘要）</th>
+<th>9 月读数</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B8-1</td>
+<td>8 月 $1,836 万是阶段性高点，不是新常态</td>
+<td>9–12 月中 ≥3 个月 L1 费用 ≥$1,500 万则错</td>
+<td><strong>9 月 $2,178 万</strong>（1/4 个月已 ≥$1,500 万）</td>
+<td>⏳ <strong>方向不利</strong>：9 月比 8 月更高</td>
+</tr>
+<tr>
+<td>B8-2</td>
+<td>销毁枚数会继续上升</td>
+<td>第 37 次 &lt;1,615,828 枚则错</td>
+<td>尚未执行；<strong>拟合估算中值约 160.6 万枚，低于门槛</strong>（4.2）</td>
+<td>⏳ <strong>倾向判错，把握有限</strong>（门槛落在拟合区间内），10 月中核</td>
+</tr>
+<tr>
+<td>B8-3</td>
+<td>meme 协议费用占比不会显著下降</td>
+<td>年底前任一 30 天窗口 Flap sh + GMGN 占比 &lt;35% 则错</td>
+<td><strong>48.2%</strong>（30 天至 10/4，与 8 月版同口径）</td>
+<td>⏳ 读数上升；但见下方提醒</td>
+</tr>
+<tr>
+<td>B8-4</td>
+<td>beta &lt;1 的特征会延续</td>
+<td>9/5–12/31 日收益率 beta ≥1.0 则错</td>
+<td><strong>0.593</strong>（9/5–9/30，25 个观测，R² 0.444）</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>B8-5</td>
+<td>单币层溢价不足 300bp</td>
+<td>12/31 重算溢价 ≥300bp 则错</td>
+<td>随方法与锚在约 −500bp 到 +1,490bp 之间（9.4）；<strong>8 月版自己的敏感性 35/50/15 即给出约 +363bp</strong></td>
+<td><strong>⊘ 检验失效</strong>：登记时没有指定重算方法与锚。<strong>注意：按 8 月版原方法，本条在展示的多数参数下会判 ✅——⊘ 放弃的是一个赢面，不是在回避一个要输的论点</strong></td>
+</tr>
+<tr>
+<td>B8-6</td>
+<td>单一实体风险四个月内不以可观测方式兑现</td>
+<td>新的 &gt;$1 亿处罚 / 主要辖区牌照吊销 / 销毁暂停或公式实质变更，任一发生则错</td>
+<td><strong>未触发</strong>。ECB 介入 MiCA 的报道（5.2）是<strong>申请被搁置后撤回</strong>，不是吊销，且撤回发生在 6 月</td>
+<td>⏳</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>两条需要特别提醒</strong>：</p>
+<ol>
+<li><strong>B8-2 倾向判错，但把握有限。</strong> 8 月版的论点是「枚数会继续上升」，依据是三次枚数 137.2 万 → 156.9 万 → 161.6 万的趋势。<strong>但这个趋势本身是价格下跌的结果</strong>：公式里价格在分母，34–36 次对应的季度均价是 $982 → $727 → $621。<strong>8 月版把一个价格效应读成了趋势。</strong> Q3 均价回升到 $651，枚数就该回落。<strong>但门槛 161.6 万枚落在本报告的拟合区间（159.2–167.8 万）之内</strong>，且官方用的价格采样（链上预言机）与本报告的币安日线均价不同、参数调整后未公布——见 4.2。</li>
+<li><strong>B8-3 的 43.0% 基准是一个刚起来的峰值，不是常态。</strong> 按自然月，Flap sh + GMGN 占比 6 月只有 10.0%、7 月 18.4%、8 月 38.1%、9 月 48.4%。<strong>8 月版没有看这条序列，就把 35% 设成「显著下降」的门槛</strong>——而三个月前的水平只有它的三分之一。读数现在在上升，但 meme 热度回落时，跌破 35% 是很现实的。</li>
+</ol>
+<h3 id="31">3.1 价格与市场</h3>
+<blockquote>
+<p><strong>口径变更</strong>：8 月首期用 CoinGecko 的 00:00 UTC 快照，本期起改用<strong>币安日线 UTC 收盘</strong>。8 月涨幅按新口径为 <strong>+17.79%</strong>（7/31 → 8/31），原口径为 +16.71%。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9/30 收盘</strong></td>
+<td><strong>$769.27</strong></td>
+<td>币安 BNBUSDT 日线</td>
+</tr>
+<tr>
+<td>市值</td>
+<td><strong>约 $1,024.4 亿</strong>（全球第 4）</td>
+<td>收盘价 × 9/30 总供应约 1.33159 亿（CoinGecko 10/4 总供应 133,159,089.69 加回 10/1–10/3 的 BEP-95 销毁）</td>
+</tr>
+<tr>
+<td>FDV / 市值</td>
+<td>≈ 1.0（CoinGecko 流通量 = 总供应）</td>
+<td>CoinGecko API</td>
+</tr>
+<tr>
+<td>历史最高价</td>
+<td>$1,375.11（2025-10-13 盘中，币安）；CoinGecko 口径 $1,369.99</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>距 ATH</strong></td>
+<td><strong>−44.1%</strong></td>
+<td>币安</td>
+</tr>
+<tr>
+<td>9 月区间</td>
+<td>低 $674.60（9/1）/ 高 <strong>$807.49</strong>（9/21）</td>
+<td>币安日线盘中</td>
+</tr>
+<tr>
+<td>2026 年收盘高 / 低</td>
+<td>$948.47（1/14）/ <strong>$546.52（6/30）</strong></td>
+<td>币安日线</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th>BNB</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9 月</strong>（8/31→9/30）</td>
+<td><strong>+11.26%</strong></td>
+<td>+6.42%</td>
+</tr>
+<tr>
+<td><strong>Q3</strong>（6/30→9/30）</td>
+<td><strong>+40.76%</strong></td>
+<td>+42.64%</td>
+</tr>
+<tr>
+<td>Q2（3/31→6/30）</td>
+<td>−11.48%</td>
+<td>−14.15%</td>
+</tr>
+<tr>
+<td>YTD</td>
+<td>−11.00%</td>
+<td>−4.59%</td>
+</tr>
+<tr>
+<td>近 1 年（2025-09-30 起）</td>
+<td><strong>−23.72%</strong></td>
+<td>−26.68%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>beta 与 R² 一起读，以及 beta 残差</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>窗口</th>
+<th>年化波动</th>
+<th>对 BTC 的 beta</th>
+<th>R²</th>
+<th>beta 预期涨幅</th>
+<th>实际</th>
+<th><strong>自身成分</strong></th>
+<th>1σ 噪声带</th>
+<th>标准差倍数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月</td>
+<td>43.6%</td>
+<td>0.66</td>
+<td>0.41</td>
+<td>+4.26%</td>
+<td>+11.26%</td>
+<td><strong>+7.0pp</strong></td>
+<td>9.6pp</td>
+<td>0.73</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>34.3%</td>
+<td>0.63</td>
+<td>0.50</td>
+<td>+26.74%</td>
+<td>+40.76%</td>
+<td><strong>+14.0pp</strong></td>
+<td>12.2pp</td>
+<td>1.15</td>
+</tr>
+<tr>
+<td>近 1 年</td>
+<td>51.6%</td>
+<td>0.88</td>
+<td>0.58</td>
+<td>−23.36%</td>
+<td>−23.72%</td>
+<td>−0.4pp</td>
+<td>33.4pp</td>
+<td>−0.01</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>噪声带算法</strong>：残差年化波动 = 年化波动 × √(1 − R²)，再乘 √(天数/365)。例：Q3 为 34.3% × √(1 − 0.50) × √(92/365) ≈ 12.2pp。改用对数收益，beta 与 R² 几乎不变（Q3 0.632 / 0.501）。<br />
+<strong>所以 9 月和 Q3 的「自身成分」都在 1.2 个标准差以内，不能说 BNB 有独立于 BTC 的行情。</strong><br />
+<strong>R² 只有 0.41–0.58</strong>，比 ETH（Q3 0.76）、SOL（0.69）低——<strong>BNB 的价格有较大一块不由 BTC 解释，但这一块在 9 月和 Q3 都没有显著地偏向一边。</strong></p>
+</blockquote>
+<p><strong>波动率的读法要和 8 月版一致</strong>：近 1 年 BNB 年化波动 51.6%，<strong>高于 BTC 的 44.9%</strong>；但 Q3 BNB 34.3% 低于 BTC 的 38.8%，9 月 43.6% 略高于 BTC 的 41.9%。<strong>「beta 低」与「波动低」仍是两个统计量。</strong></p>
+<p><strong>9 月最大的四个单日变动</strong>：9/5 <strong>+6.26%</strong>、9/3 +5.28%、9/9 −3.91%、9/21 +3.48%。<strong>本报告没有找到这四天的 BNB 专属原因的一手来源，不做归因。</strong></p>
+<h3 id="32">3.2 五个资产的横向对照（统一币安口径）</h3>
+<blockquote>
+<p>⚠️ <strong>口径声明</strong>：下表全部为<strong>币安日线 UTC 收盘</strong>，五个资产同一数据源、同一时间点。8 月版的五资产表是 CoinGecko 快照口径，<strong>两张表不可直接对照</strong>。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th style="text-align: right;"><strong>9 月</strong></th>
+<th style="text-align: right;"><strong>Q3</strong></th>
+<th style="text-align: right;">YTD</th>
+<th style="text-align: right;"><strong>近 1 年</strong></th>
+<th style="text-align: right;">近 1 年 beta</th>
+<th style="text-align: right;">近 1 年年化波动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ADA</td>
+<td style="text-align: right;"><strong>+24.67%</strong></td>
+<td style="text-align: right;">+70.78%</td>
+<td style="text-align: right;">−26.06%</td>
+<td style="text-align: right;">−69.45%</td>
+<td style="text-align: right;">1.42</td>
+<td style="text-align: right;">79.0%</td>
+</tr>
+<tr>
+<td>SOL</td>
+<td style="text-align: right;">+14.61%</td>
+<td style="text-align: right;">+60.34%</td>
+<td style="text-align: right;">−5.24%</td>
+<td style="text-align: right;">−43.40%</td>
+<td style="text-align: right;">1.31</td>
+<td style="text-align: right;">67.7%</td>
+</tr>
+<tr>
+<td><strong>BNB</strong></td>
+<td style="text-align: right;"><strong>+11.26%</strong></td>
+<td style="text-align: right;"><strong>+40.76%</strong></td>
+<td style="text-align: right;"><strong>−11.00%</strong></td>
+<td style="text-align: right;"><strong>−23.72%</strong></td>
+<td style="text-align: right;"><strong>0.88</strong></td>
+<td style="text-align: right;"><strong>51.6%</strong></td>
+</tr>
+<tr>
+<td>ETH</td>
+<td style="text-align: right;">+8.85%</td>
+<td style="text-align: right;"><strong>+70.86%</strong></td>
+<td style="text-align: right;">−9.61%</td>
+<td style="text-align: right;">−35.20%</td>
+<td style="text-align: right;">1.29</td>
+<td style="text-align: right;">63.8%</td>
+</tr>
+<tr>
+<td>BTC</td>
+<td style="text-align: right;">+6.42%</td>
+<td style="text-align: right;">+42.64%</td>
+<td style="text-align: right;">−4.59%</td>
+<td style="text-align: right;">−26.68%</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">44.9%</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Q3 BNB 涨幅五个里最小</strong>，比 BTC 还低 1.9pp。<strong>这不是坏消息，是低 beta 的直接后果</strong>：beta 0.63 × BTC 42.64% ≈ 26.7%，BNB 实际还多涨了 14pp。</li>
+<li><strong>「近 1 年最抗跌」在币安口径下仍成立</strong>：−23.72%，好于 BTC 的 −26.68%。但差距从 8 月版的近 19pp 缩到 <strong>3pp</strong>——8 月版的 CoinGecko 快照窗口（2025-09-05 → 2026-09-05）起点正好避开了 2025-10 的高点前段。</li>
+<li><strong>近 1 年 beta 0.88 仍是五个里唯一低于 1 的</strong>（8 月版 CoinGecko 口径为 0.921）。</li>
+</ul>
+<p><img alt="五个资产的 9 月与 Q3 涨幅" src="charts/five-asset-compare-202609.svg" /></p>
+<blockquote>
+<p>图中数字（%）：9 月 ADA 24.67 / SOL 14.61 / BNB 11.26 / ETH 8.85 / BTC 6.42；Q3 ADA 70.78 / SOL 60.34 / BNB 40.76 / ETH 70.86 / BTC 42.64。纵轴刻度 0、20、40、60、80；+26.7% 为 Q3 beta 预期涨幅（3.1 表中 +26.74%）。</p>
+</blockquote>
+<h3 id="33-meme">3.3 链上活动与费用：回升了，但跟着 meme 一起回升</h3>
+<p><strong>BSC 的 L1 费用月度序列</strong>（DefiLlama API 日度数据按月聚合，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th>L1 费用</th>
+<th>月份</th>
+<th>L1 费用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-07</td>
+<td>$10,875,150</td>
+<td>2026-02</td>
+<td>$8,331,844</td>
+</tr>
+<tr>
+<td>2025-08</td>
+<td>$11,292,440</td>
+<td>2026-03</td>
+<td>$10,588,119</td>
+</tr>
+<tr>
+<td><strong>2025-09</strong></td>
+<td><strong>$21,901,137</strong></td>
+<td>2026-04</td>
+<td>$10,149,492</td>
+</tr>
+<tr>
+<td>2025-10</td>
+<td>$70,688,146</td>
+<td>2026-05</td>
+<td>$10,171,792</td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td>$14,609,281</td>
+<td>2026-06</td>
+<td>$10,851,381</td>
+</tr>
+<tr>
+<td>2025-12</td>
+<td>$14,665,705</td>
+<td>2026-07</td>
+<td>$9,027,849</td>
+</tr>
+<tr>
+<td>2026-01</td>
+<td>$20,242,227</td>
+<td>2026-08</td>
+<td>$18,360,725</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><strong>2026-09</strong></td>
+<td><strong>$21,779,755</strong></td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>比较</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>真年同比（2026-09 vs 2025-09）</strong></td>
+<td><strong>−0.6%</strong>（8 月为 +62.6%）</td>
+</tr>
+<tr>
+<td>环比（vs 2026-08）</td>
+<td>+18.6%</td>
+</tr>
+<tr>
+<td>Q3 合计 vs Q2 合计</td>
+<td><strong>$4,917 万 vs $3,117 万，+57.7%</strong></td>
+</tr>
+<tr>
+<td>Q3 合计 vs 2025 Q3 合计（$4,407 万）</td>
+<td>+11.6%</td>
+</tr>
+<tr>
+<td>同期对照：ETH 9 月 L1 费用 $1,591 万</td>
+<td><strong>BSC 是 ETH 的 1.37 倍</strong>（8 月 1.77 倍）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>8 月版「五个资产里唯一 L1 费用同比增长」的结论，在 9 月不再成立。</strong> 8 月的 +62.6% 是因为 2025-08 本身是低点（$1,129 万）；<strong>2025-09 已经是 $2,190 万，9 月同比就变成了持平。</strong> 季度口径上 Q3 仍同比 +11.6%，所以准确的说法是「<strong>同比大致持平到小幅增长</strong>」，不是「增长六成」。</p>
+</blockquote>
+<p><strong>生态费用的构成</strong>（DefiLlama <code>overview/fees/bsc</code>，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>协议</th>
+<th>30 天费用（至 10/4）</th>
+<th>类别</th>
+<th style="text-align: right;">占生态合计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Flap sh</strong></td>
+<td><strong>$41,188,940</strong></td>
+<td>Launchpad（发币平台）</td>
+<td style="text-align: right;"><strong>36.5%</strong></td>
+</tr>
+<tr>
+<td>BSC 链本身</td>
+<td>$22,238,970</td>
+<td>Chain</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td>PancakeSwap AMM V3</td>
+<td>$15,556,336</td>
+<td>DEX</td>
+<td style="text-align: right;">13.8%</td>
+</tr>
+<tr>
+<td><strong>GMGN</strong></td>
+<td><strong>$13,211,253</strong></td>
+<td>Trading App（交易机器人）</td>
+<td style="text-align: right;"><strong>11.7%</strong></td>
+</tr>
+<tr>
+<td>Uniswap V4</td>
+<td>$6,858,749</td>
+<td>DEX</td>
+<td style="text-align: right;">6.1%</td>
+</tr>
+<tr>
+<td>Predict Fun</td>
+<td>$5,920,514</td>
+<td>预测市场</td>
+<td style="text-align: right;">5.2%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>口径</strong>：「生态合计」取 DefiLlama 该端点的 <code>total30d</code> = <strong>$1.129 亿</strong>，与 8 月版计算 43.0% 时的分母同口径。<strong>按自然月拆分（<code>totalDataChartBreakdown</code>）时，该口径不含 BSC 链本身那一行</strong>——表中链本身一行因此不给占比。<br />
+<strong>Flap sh + GMGN 30 天合计占 48.2%</strong>（8 月版 43.0%）。<strong>若分母加上链本身的费用</strong>，9 月自然月占比为 $5,376 万 ÷（$11,101 万 + $2,178 万）≈ <strong>40.5%</strong>——两个口径都写出，记分卡 B8-3 沿用不含链费的口径。</p>
+</blockquote>
+<p><strong>本期最重要的一张表——按自然月看 meme 协议与 L1 费用</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>2026 年</th>
+<th style="text-align: right;">BSC L1 费用</th>
+<th style="text-align: right;">Flap sh + GMGN</th>
+<th style="text-align: right;">生态合计（不含链本身）</th>
+<th style="text-align: right;"><strong>meme 占比</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6 月</td>
+<td style="text-align: right;">$1,085 万</td>
+<td style="text-align: right;">$323 万</td>
+<td style="text-align: right;">$3,237 万</td>
+<td style="text-align: right;"><strong>10.0%</strong></td>
+</tr>
+<tr>
+<td>7 月</td>
+<td style="text-align: right;">$903 万</td>
+<td style="text-align: right;">$617 万</td>
+<td style="text-align: right;">$3,364 万</td>
+<td style="text-align: right;"><strong>18.4%</strong></td>
+</tr>
+<tr>
+<td>8 月</td>
+<td style="text-align: right;">$1,836 万</td>
+<td style="text-align: right;">$2,551 万</td>
+<td style="text-align: right;">$6,695 万</td>
+<td style="text-align: right;"><strong>38.1%</strong></td>
+</tr>
+<tr>
+<td>9 月</td>
+<td style="text-align: right;">$2,178 万</td>
+<td style="text-align: right;">$5,376 万</td>
+<td style="text-align: right;">$11,101 万</td>
+<td style="text-align: right;"><strong>48.4%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>怎么读这张表</strong>：</p>
+<ul>
+<li><strong>生态合计从 6 月到 9 月增加了 $7,864 万，其中 $5,053 万（64%）来自 Flap sh 与 GMGN 两家。</strong> L1 费用同期翻倍。</li>
+<li><strong>这是同步，不是已证明的因果</strong>：meme 发币与交易机器人会产生大量链上交易，从而推高 gas 费，机制上说得通；但本报告没有做交易级别的拆分，<strong>不能说 L1 费用增量的百分之几来自 meme</strong>。</li>
+<li><strong>它改变的是 8 月版多头 #2 的性质</strong>：「费用增长」的需求来源，是本系列见过的最不稳定的那一类（SOL 8 月版：pump.fun 主导的网络收入同比 −87%）。</li>
+</ul>
+<blockquote>
+<p><strong>2025-10 的 $7,069 万异常仍未查明</strong>（8 月版遗留）。本期仍排除该月作为基准。</p>
+</blockquote>
+<h3 id="34-tvl">3.4 生态数据：TVL 与稳定币</h3>
+<p><strong>DeFi TVL</strong>（DefiLlama API，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th>TVL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>历史最高</td>
+<td>$217.8 亿（2021-05-05）</td>
+</tr>
+<tr>
+<td>2025-09-30</td>
+<td>$78.0 亿</td>
+</tr>
+<tr>
+<td>2026-06-30</td>
+<td>$48.4 亿</td>
+</tr>
+<tr>
+<td>2026-08-31</td>
+<td>$54.5 亿</td>
+</tr>
+<tr>
+<td><strong>2026-09-30</strong></td>
+<td><strong>$56.7 亿</strong></td>
+</tr>
+<tr>
+<td>2026-10-04</td>
+<td>$58.2 亿</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月 TVL 变动</td>
+<td>+3.9%</td>
+</tr>
+<tr>
+<td>Q3 TVL 变动</td>
+<td>+17.1%（同期价格 +40.8%）</td>
+</tr>
+<tr>
+<td><strong>真年同比</strong></td>
+<td><strong>−27.3%</strong></td>
+</tr>
+<tr>
+<td>距 2021 年高点</td>
+<td>−74.0%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>TVL 以美元计，主要随价格变动。</strong> Q3 TVL 只涨了价格的四成——<strong>按 BNB 计价，链上锁仓在 Q3 是减少的</strong>。8 月版「TVL 与价格同向」的多头论据在 Q3 尺度上不成立。</p>
+</blockquote>
+<p><strong>链上稳定币：两个 DefiLlama 端点给出不同的数字</strong>（均为一手 API 调用，10/4）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>端点</th>
+<th style="text-align: right;">BSC 稳定币</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>stablecoinchains</code></td>
+<td style="text-align: right;"><strong>$138.3 亿</strong></td>
+<td>8 月版用的是这个端点（当时 $133.1 亿）</td>
+</tr>
+<tr>
+<td><code>stablecoincharts/BSC</code>（<code>totalCirculatingUSD</code>）</td>
+<td style="text-align: right;"><strong>$169.3 亿</strong></td>
+<td>其中原生发行 $59.3 亿、跨链桥入 $110.0 亿</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>两者差 $31 亿，本报告没有查明原因</strong>（可能与跨链桥入资产的计入方式有关——<strong>未验证</strong>）。8 月版只报了一个端点，<strong>本期两者并列</strong>。<br />
+按后一个端点的序列：9/30 $168.8 亿，比 6/30 的 $177.8 亿<strong>下降 5.1%</strong>，比一年前的 $139.6 亿高 20.9%。<strong>Q3 稳定币在流出，与价格方向相反。</strong></p>
+</blockquote>
+<h3 id="35">3.5 宏观环境</h3>
+<blockquote>
+<p>BNB 与 BTC 共享宏观驱动，详细数据见 BTC 9 月版 3.4。以下只列对 BNB 有特别含义的几项。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>因素</th>
+<th>9 月末</th>
+<th>对 BNB 的含义</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>联邦基金利率</td>
+<td><strong>3.75–4.00%</strong>（9/16 加息 25bp）</td>
+<td>—</td>
+<td>美联储（federalreserve.gov）✅</td>
+</tr>
+<tr>
+<td><strong>3 年期美债</strong></td>
+<td><strong>5.00%</strong>（8/31 为 4.40%，6/30 为 4.15%）</td>
+<td><strong>第 9 章单币层回报的期限匹配基准</strong>。一个月上升 60bp，单币层溢价被压到约 0</td>
+<td>美国财政部 ✅</td>
+</tr>
+<tr>
+<td>10 年期美债</td>
+<td>5.29%</td>
+<td>已高于 BNB 的销毁收益率 4.33%–4.53%</td>
+<td>美国财政部 ✅</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>3 年期美债一个月涨 60bp，是第 9 章结论本月变化的主要来源</strong>——但这部分是方法的性质：第 9 章只对比供应缩减与美债，费用、meme、监管等基本面按构造进不了这个数字。 8 月版没有取得 3 年期数据，用「曲线中段」估计出 100–130bp 的溢价——<strong>实际 8/31 的 3 年期是 4.40%，按本期方法当时溢价约 60bp，到 9/30 降到约 0。</strong></p>
+</blockquote>
+<h3 id="36-q3">3.6 Q3 季度回顾（本版新增）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>Q2 2026</th>
+<th><strong>Q3 2026</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BNB 季度涨跌（币安）</td>
+<td>−11.48%</td>
+<td><strong>+40.76%</strong></td>
+</tr>
+<tr>
+<td>对 BTC 的超额</td>
+<td>+2.7pp</td>
+<td><strong>−1.9pp</strong>（但比 beta 预期高 14.0pp）</td>
+</tr>
+<tr>
+<td>L1 季度费用</td>
+<td>$3,117 万</td>
+<td><strong>$4,917 万（+57.7%）</strong></td>
+</tr>
+<tr>
+<td>meme 占比（季末月）</td>
+<td>10.0%（6 月）</td>
+<td><strong>48.4%</strong>（9 月）</td>
+</tr>
+<tr>
+<td>季末 TVL</td>
+<td>$48.4 亿</td>
+<td>$56.7 亿</td>
+</tr>
+<tr>
+<td>季末稳定币（charts 端点）</td>
+<td>$177.8 亿</td>
+<td>$168.8 亿</td>
+</tr>
+<tr>
+<td>季度销毁</td>
+<td>第 36 次 161.6 万枚（7/15 执行，对应 Q2）</td>
+<td><strong>第 37 次待 10 月执行</strong>；BEP-95 约 7,392 枚</td>
+</tr>
+<tr>
+<td>VBNB 净资产</td>
+<td>$214 万（6/30）</td>
+<td>份额 10 万 → 9 万（8/31）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Q3 最突出的一组对照</strong>：<strong>费用 +57.7%、价格 +40.8%——但费用增量来自 meme，TVL 按币计在减少，稳定币在流出，机构产品没有资金进来。</strong> 价格上涨主要可以用 beta 0.63 × BTC 解释，剩余 14pp 在 1.15 个标准差内。</p>
+<hr />
+<h2 id="4">4. 销毁机制与「准回购」</h2>
+<h3 id="41">4.1 两套并行的销毁机制</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>机制</th>
+<th>频率</th>
+<th>规模（本期）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Auto-Burn（季度销毁）</strong></td>
+<td>每季度中月执行（1/4/7/10 月），按<strong>上一季度</strong>的出块数与均价计算</td>
+<td>第 36 次 1,615,827.795 BNB（7/15）</td>
+</tr>
+<tr>
+<td><strong>BEP-95（实时销毁）</strong></td>
+<td>每个区块，10% gas 费</td>
+<td>9 月约 2,923 枚，Q3 约 7,392 枚</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>BEP-95 的数字怎么来的</strong>：DefiLlama 的 BSC 适配器源码（<code>dimension-adapters/fees/bsc.ts</code>，本报告已打开）把收入定义为 <code>dailyFees.clone(0.1)</code>——<strong>即 gas 费 × 10%，是按 BEP-95 规则推算的，不是逐块测量的销毁量</strong>。本报告再按币安日线逐日换算成 BNB。</p>
+<p><strong>交叉验证</strong>（两组独立来源）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th style="text-align: right;">总供应减少（官方 / CoinGecko）</th>
+<th style="text-align: right;">DefiLlama 推算的 BEP-95</th>
+<th style="text-align: right;">差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7/15（官方博客 133,166,127.91）→ 10/4（CoinGecko 133,159,089.69）</td>
+<td style="text-align: right;"><strong>7,038</strong></td>
+<td style="text-align: right;">6,929（7/15–10/3）</td>
+<td style="text-align: right;">1.5%</td>
+</tr>
+<tr>
+<td>9/5（8 月版 CoinGecko 133,161,962）→ 10/4</td>
+<td style="text-align: right;"><strong>2,872</strong></td>
+<td style="text-align: right;">2,856（9/5–10/3）</td>
+<td style="text-align: right;">0.6%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>两组都吻合到 2% 以内——这是量级检查，不是逐块验证</strong>：DefiLlama 的数字是「gas × 10%」的模型值；BEP-95 原文（GitHub 一手）规定的 <code>burnRatio</code> 初始为 10%、<strong>可由验证者投票修改</strong>，且部分 gas 会先转入 System Reward 合约（余额低于 100 BNB 时转 1/16）。<strong>当前 <code>burnRatio</code> 是否仍为 10%，本期未验证</strong>；两个供应量读数也来自不同口径（官方博客与 CoinGecko）。官方博客第 34、36 次累计 BEP-95 销毁「约 28.1 万」→「约 29.1 万」，半年约 1 万枚，也与 DefiLlama 推算的 2026 年 1–6 月合计 10,225 枚一致。<br />
+<strong>量级</strong>：Q3 的 7,392 枚只是一次季度销毁的约 0.5%。<strong>BNB 的通缩几乎全部来自 Auto-Burn，BSC 费用增长对供应的直接影响可以忽略。</strong></p>
+</blockquote>
+<h3 id="42-37">4.2 第 37 次销毁的估算：公式与它的不确定性</h3>
+<p><strong>官方博客（第 34–36 次）只说</strong>：销毁量「根据 BNB 价格与当季 BSC 出块数调整」；且因 Lorentz、Maxwell、Fermi 升级提高了出块频率，「<strong>公式中的参数已调整，以保持原意</strong>」——<strong>调整后的参数没有公布</strong>。</p>
+<p><strong>公式文本有两个版本，本报告无法一手确认哪个正确</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>来源</th>
+<th>公式</th>
+<th>能否复现实际销毁量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Binance Academy 页面（经网页抓取工具转述，原页面 curl 返回空）</td>
+<td>B = N / (100 × P) × K，K = 1,000</td>
+<td><strong>不能</strong>：按任何合理的出块数，量级都差一个数量级以上；且实际数据里 B × P 不稳定（见下）</td>
+</tr>
+<tr>
+<td>二手转述（多家摘要）及 bnbburn.info 的变量说明</td>
+<td>B = N × 1,000 / (P + K)，K = 1,000</td>
+<td><strong>能</strong>（见下表）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>本报告的做法：用六次一手销毁数据反推。</strong> 若 B = N' × 1,000 / (P + 1,000)，那么 <strong>B × (P + 1,000) ÷ 季度天数</strong> 应当是常数（等于每天的「等效出块数」）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>次序</th>
+<th>执行</th>
+<th style="text-align: right;">销毁量（官方博客）</th>
+<th style="text-align: right;">对应季度币安日线均价</th>
+<th style="text-align: right;">天数</th>
+<th style="text-align: right;"><strong>B×(P+1000)/天数</strong></th>
+<th style="text-align: right;">对照：B×P/天数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 31 次</td>
+<td>2025-04</td>
+<td style="text-align: right;">1,579,207.72</td>
+<td style="text-align: right;">$643.5</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;"><strong>28,838 千</strong></td>
+<td style="text-align: right;">11.29 百万</td>
+</tr>
+<tr>
+<td>第 32 次</td>
+<td>2025-07</td>
+<td style="text-align: right;">1,595,470.69</td>
+<td style="text-align: right;">$629.5</td>
+<td style="text-align: right;">91</td>
+<td style="text-align: right;"><strong>28,569 千</strong></td>
+<td style="text-align: right;">11.04 百万</td>
+</tr>
+<tr>
+<td>第 33 次</td>
+<td>2025-10</td>
+<td style="text-align: right;">1,441,281.41</td>
+<td style="text-align: right;">$828.8</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;"><strong>28,650 千</strong></td>
+<td style="text-align: right;">12.98 百万</td>
+</tr>
+<tr>
+<td>第 34 次</td>
+<td>2026-01</td>
+<td style="text-align: right;">1,371,703.67</td>
+<td style="text-align: right;">$981.9</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;"><strong>29,550 千</strong></td>
+<td style="text-align: right;">14.64 百万</td>
+</tr>
+<tr>
+<td>第 35 次</td>
+<td>2026-04</td>
+<td style="text-align: right;">1,569,307.34</td>
+<td style="text-align: right;">$727.3</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;"><strong>30,118 千</strong></td>
+<td style="text-align: right;">12.68 百万</td>
+</tr>
+<tr>
+<td>第 36 次</td>
+<td>2026-07</td>
+<td style="text-align: right;">1,615,827.80</td>
+<td style="text-align: right;">$621.1</td>
+<td style="text-align: right;">91</td>
+<td style="text-align: right;"><strong>28,785 千</strong></td>
+<td style="text-align: right;">11.03 百万</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>第 32、34 次为「实际销毁」部分（不含 Pioneer Burn 的 129.10 / 100.1 枚）。<br />
+<strong>P + K 形式的常数在 2.86–3.01 万之间（相差 5%）；纯 1/P 形式在 1,103–1,464 万之间（相差 33%）。</strong> 数据明显支持 P + K 形式。<br />
+一个旁证：28,800 恰好是 3 秒出块时一天的区块数（86,400 ÷ 3）——<strong>像是「把出块数换算回 3 秒等效」后代入原公式</strong>。这是推测，<strong>未验证</strong>。</p>
+</blockquote>
+<p><strong>第 37 次的估算</strong>（Q3 币安日线均价 <strong>$650.9</strong>，92 天）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>用哪个常数</th>
+<th style="text-align: right;">估算枚数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>六次中最低（第 32 次）</td>
+<td style="text-align: right;">1,592 千</td>
+</tr>
+<tr>
+<td>第 36 次（最近一次）</td>
+<td style="text-align: right;">1,604 千</td>
+</tr>
+<tr>
+<td><strong>六次中位数（28,810 千）</strong></td>
+<td style="text-align: right;"><strong>约 1,606 千</strong></td>
+</tr>
+<tr>
+<td>六次中最高（第 35 次）</td>
+<td style="text-align: right;">1,678 千</td>
+</tr>
+<tr>
+<td>对照：纯 1/P 形式按第 36 次外推</td>
+<td style="text-align: right;">1,559 千</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="BNB 供应侧：季度销毁枚数与均价反向" src="charts/supply-divergence-202609.svg" /></p>
+<blockquote>
+<p>图中单位为万枚：第 31–36 次 157.9 / 159.5 / 144.1 / 137.2 / 156.9 / 161.6；第 37 次估算 ≈160.6（区间 159.2–167.8）。柱下均价 $644 / $630 / $829 / $982 / $727 / $621 / $651 为四舍五入值。纵轴刻度 120、140、160、180。</p>
+</blockquote>
+<p><strong>结论</strong>：</p>
+<ul>
+<li><strong>要达到 B8-2 的门槛 1,615,828 枚，常数需要 ≥ 28,995 千。</strong> 六次里只有两次（第 34、35 次）达到。<strong>两种公式形式下中值都低于门槛。</strong></li>
+<li><strong>本报告对 B8-2 的判断：按六次常数的分布，约三分之二落在门槛下方——前提是参数未再调整、官方价格采样与币安日线均价一致。两个前提都未验证，所以只能说「倾向判错」。</strong> 官方原始说明用的是链上价格预言机采样，第 36 次公告明说「参数已调整」但未公布新值。 不确定性来自三处：① 公式形式未经一手确认；② 官方的「均价」用什么数据源、什么时段不清楚（本报告用币安日线收盘均价）；③ 出块参数在 Q3 是否又有调整。</li>
+<li><strong>以 $769.27 计，160.6 万枚约值 $12.4 亿</strong>——高于第 36 次的 $9.32 亿。<strong>美元额回升、枚数下降，这正是公式设计的反向调节</strong>：价格越高，烧得越少。</li>
+</ul>
+<h3 id="43">4.3 回购收益率：重算</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>计算</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>过去四次 Auto-Burn（第 33–36 次）合计</td>
+<td>1,441,281 + 1,371,804 + 1,569,307 + 1,615,828</td>
+<td><strong>5,998,220 BNB</strong></td>
+</tr>
+<tr>
+<td>加 BEP-95（Q3 × 4）</td>
+<td>7,392 × 4</td>
+<td>29,568 BNB</td>
+</tr>
+<tr>
+<td><strong>年化销毁量</strong></td>
+<td>—</td>
+<td><strong>约 602.7 万 BNB</strong></td>
+</tr>
+<tr>
+<td><strong>占 9/30 供应比例</strong></td>
+<td>602.7 万 ÷ 1.33159 亿</td>
+<td><strong>4.53%</strong></td>
+</tr>
+<tr>
+<td>过去四次 Auto-Burn 的执行时美元值</td>
+<td>$12.08 亿 + $12.77 亿 + $10.20 亿 + $9.32 亿</td>
+<td>$44.37 亿</td>
+</tr>
+<tr>
+<td><strong>相对市值 $1,024.4 亿</strong></td>
+<td>—</td>
+<td><strong>4.33%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>本期回购收益率区间：4.33%–4.53%</strong>（8 月版 4.20%–4.56%）。</p>
+<blockquote>
+<p><strong>方法改动</strong>：8 月版用「2026 年前三次 × 4/3」年化，本期改用<strong>过去四次实际值</strong>——不再需要外推，且自动覆盖一整年的价格周期。<br />
+<strong>与 10 年期美债的关系已经反转</strong>：8 月版写「4.20%–4.56% vs 10 年期 4.79%，大致相当」；<strong>9 月末 10 年期 5.29%、3 年期 5.00%，都已高于 BNB 的销毁收益率。</strong></p>
+</blockquote>
+<h3 id="44-8">4.4 这个收益率的三个限定条件（沿用 8 月版，状态更新）</h3>
+<ol>
+<li><strong>它是公式的产物，不是承诺。</strong> 本期新增的认识：<strong>公式让美元额与价格同向、枚数与价格反向</strong>，所以「回购收益率」按市值算相当稳定（4.33%–4.53%），这是设计使然，不是需求的证明。</li>
+<li><strong>它有终点。</strong> 距 1 亿枚目标还剩约 3,316 万枚，按每年约 603 万枚约 5.5 年。</li>
+<li><strong>执行依赖 Binance 的持续意愿。</strong> 参数调整不公开（4.2）——<strong>这本身就是 B8-6「公式被实质性变更」难以判定的原因</strong>：若参数再调，外部只能从结果反推。</li>
+</ol>
+<hr />
+<h2 id="5-binance">5. 对 Binance 的依赖</h2>
+<h3 id="51-8">5.1 依赖的四个环节（沿用 8 月版）</h3>
+<p>需求侧（手续费折扣）、供应侧（销毁公式与预留）、链（45 个验证者、21 个出块）、机构通道（ETF 底层市场）——<strong>四个环节共享同一个单点</strong>。本期没有改变这一结构判断。</p>
+<h3 id="52-binance-9">5.2 Binance 经营与监管：9 月的新信息</h3>
+<p><strong>欧洲 MiCA 牌照</strong>（<strong>二手</strong>：CoinDesk 9/18 转述《华尔街日报》报道，本报告未打开 WSJ 原文）：</p>
+<ul>
+<li>据 WSJ，<strong>欧洲央行（ECB）行长拉加德亲自介入</strong>，要求希腊监管机构推迟批准 Binance 的 MiCA 申请，理由是担心 Binance 的规模会加速美元稳定币在欧元区的使用、削弱数字欧元。<strong>ECB 在 MiCA 下没有正式的发牌权。</strong></li>
+<li><strong>Binance 已于 6 月中撤回希腊申请</strong>并开始收缩当地业务；Binance 欧洲负责人称申请「完整、无缺项」。WSJ 还报道 ESMA 私下建议各国监管机构拒绝 Binance 的申请。</li>
+<li>Binance 发言人：「不评论猜测」，仍在争取 MiCA 授权。<strong>拉加德、ECB 与希腊监管机构均未公开确认。</strong></li>
+</ul>
+<blockquote>
+<p><strong>对 8 月版的更正</strong>：8 月版写「MiCA 框架下的进展仍在进行中」。<strong>据报道希腊申请已撤回；Binance 在其他成员国是否有在审申请，本报告未核实。</strong> 若报道属实，阻力来自 ECB 层面而非合规缺项——<strong>这比「进展受阻」更结构性</strong>：问题不在 Binance 做得够不够，而在欧元区货币当局是否愿意放行一家美元稳定币分发渠道。<br />
+<strong>对 B8-6 的影响</strong>：撤回申请不是「牌照吊销」，且发生在 6 月（B8-6 登记之前），<strong>不触发</strong>。</p>
+</blockquote>
+<p><strong>市场份额</strong>：本期<strong>没有取得</strong> CoinGlass 原始季度报告。8 月版的衍生品 34.9%、现货 34% 仍是二手转述，<strong>本期不更新</strong>。</p>
+<h3 id="53">5.3 本章的定性（更新）</h3>
+<p>8 月版的定性「结构性依赖，不是即将断裂」<strong>不变</strong>。本期新增的一点是：<strong>Binance 的监管风险来源在变化</strong>——2023 年是美国执法（DOJ $43 亿和解），2026 年是<strong>欧元区货币主权</strong>层面的阻力。<strong>若报道属实，后者不会以罚款形式出现，也不会触发 B8-6 的任何一条，但它限制了 Binance 在全球第二大加密市场的增长空间。</strong></p>
+<hr />
+<h2 id="6">6. 机构通道与持有者结构</h2>
+<h3 id="61-vbnb">6.1 VBNB：一手数据显示规模极小</h3>
+<p><strong>VanEck BNB ETF 10-K</strong>（财年截至 2026-06-30，SEC EDGAR 一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>6/30 净资产</strong></td>
+<td><strong>$2,140,751</strong></td>
+</tr>
+<tr>
+<td>持有 BNB</td>
+<td><strong>3,887.70 枚</strong>（成本 $2,450,388，公允价值 $2,141,463，浮亏 12.6%）</td>
+</tr>
+<tr>
+<td>份额 / 每份净值</td>
+<td>100,000 份 / $21.41</td>
+</tr>
+<tr>
+<td><strong>8/31 份额</strong></td>
+<td><strong>90,000 份</strong>（较 6/30 减少 10%）</td>
+</tr>
+<tr>
+<td>种子资金</td>
+<td>VanEck 母公司的种子创设篮子 $100 万（换得 1,555.16 BNB），<strong>6/30 约占净资产 40%</strong></td>
+</tr>
+<tr>
+<td>赞助费</td>
+<td>0.39%</td>
+</tr>
+<tr>
+<td>托管</td>
+<td>Anchorage Digital Bank（第一托管人）；<strong>8/5 与 BitGo 签第二托管协议</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>VBNB 8-K（9/25 事件，SEC 一手）</strong>：与 BitGo 的托管协议修订，<strong>指定 Figment 为 BNB 质押的验证者，验证者费用为质押资产的 4%</strong>。10-K 写明信托目标包括「质押部分 BNB 的奖励」，前提是赞助人认为没有不当的法律或监管风险。</p>
+<blockquote>
+<p><strong>量级</strong>：3,887.70 BNB 约占 BNB 总供应的 <strong>0.003%</strong>；$214 万约占 BNB 市值的 <strong>0.002%</strong>。<strong>扣掉 40% 的种子资金，外部投资者的钱约 $130 万。</strong><br />
+<strong>8 月版写「机构通道已打开」，并把 VBNB 列为多头 #7（两星）——一手数据显示该表述过度。</strong> 准确的说法是：<strong>通道已建成，几乎没有外部资金通过。</strong></p>
+</blockquote>
+<h3 id="62-bnb-standard-corp-cea-industries-bnc">6.2 上市公司储备：BNB Standard Corp（原 CEA Industries，代码 BNC）</h3>
+<p><strong>10-Q（季度截至 2026-07-31）与 8-K（9/29），SEC EDGAR 一手</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>持有 BNB</td>
+<td><strong>515,544 枚</strong>（约占总供应 0.39%）</td>
+</tr>
+<tr>
+<td>买入加权均价 / 成本</td>
+<td><strong>$865.99</strong> / $4.465 亿</td>
+</tr>
+<tr>
+<td>7/31 公允价值</td>
+<td>$3.023 亿（$586.36/枚）</td>
+</tr>
+<tr>
+<td>质押借款</td>
+<td>44,198 BNB（$2,590 万）抵押换得 $1,500 万净借款</td>
+</tr>
+<tr>
+<td>普通股（7/31）</td>
+<td>41,173,850 股；5–7 月以均价 $2.63 回购 1,434,112 股</td>
+</tr>
+<tr>
+<td>更名</td>
+<td><strong>9/29 起由 CEA Industries 更名为 BNB Standard Corporation</strong>，代码仍为 BNC</td>
+</tr>
+<tr>
+<td>公司自述</td>
+<td>「全球最大的企业 BNB 储备」；仍有资产管理协议诉讼待决</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>按 9/30 计算</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>计算</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>持仓价值</td>
+<td>515,544 × $769.27</td>
+<td>$3.966 亿</td>
+</tr>
+<tr>
+<td>持仓相对成本</td>
+<td>$769.27 ÷ $865.99 − 1</td>
+<td><strong>−11.2%</strong></td>
+</tr>
+<tr>
+<td>股票市值</td>
+<td>41,173,850 股 × $5.89（Yahoo Finance，9/30 收盘）</td>
+<td>$2.425 亿</td>
+</tr>
+<tr>
+<td>mNAV（只算 BNB、只算普通股）</td>
+<td>$2.425 亿 ÷ $3.966 亿</td>
+<td>约 0.61（偏低）</td>
+</tr>
+<tr>
+<td><strong>mNAV（只算 BNB、计入名义行权价权证）</strong></td>
+<td>（41,173,850 + 预融资权证 7,750,510 + 顾问权证 3,564,362）× $5.89 ÷ $3.966 亿</td>
+<td><strong>约 0.78</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>初稿只报了 0.61，审查（Codex）指出漏了行权价仅 $0.00001 的两类权证</strong>：10-Q 的权证表（7/31 未行权）列有预融资权证 7,750,510 份、战略顾问权证 3,564,362 份，本期已打开原文核对。计入后约 <strong>0.78</strong>。完整 mNAV 还应计入 $1,500 万借款等负债与其他资产，本期未做；<strong>能说的是「mNAV 低于 1」</strong>。<br />
+<strong>与 SOL 的储备公司同一模式</strong>：持有人持仓浮亏、股票按净资产折价交易、公司在回购股票而不是买币。<strong>它们不是 BNB 的边际买家。</strong></p>
+</blockquote>
+<h3 id="63">6.3 持有者结构小结</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>流通量</td>
+<td>1.33159 亿枚，与总供应相等——无锁仓</td>
+</tr>
+<tr>
+<td>ETF</td>
+<td>VBNB 3,887.70 枚（6/30），<strong>约 0.003%</strong></td>
+</tr>
+<tr>
+<td>最大上市公司储备</td>
+<td>BNC 515,544 枚，<strong>约 0.39%</strong>，mNAV &lt;1</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>对照 ETH</strong>：BitMine 一家持有约 4.9% 供应量、ETF 一季流入 $30.5 亿。<strong>BNB 的机构持有比 ETH 低一到两个数量级。</strong> 这同时是风险（没有边际买家）和保护（没有单一大户抛压）。</p>
+</blockquote>
+<hr />
+<h2 id="7-bnb">7. BNB 的核心价值逻辑</h2>
+<h3 id="71">7.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th style="text-align: center;">强度</th>
+<th>说明（9 月更新）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>唯一实现真实通缩</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>年化销毁 4.53%（按枚数），无对应增发。<strong>从五星降为四星</strong>：与美债的对照见空头 #3，此处不重复计分</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>L1 费用 Q3 环比 +57.7%</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td><strong>从五星降为两星，标题改写</strong>：9 月真年同比 −0.6%，「唯一同比增长」不成立；增量与 meme 协议同步（3.3）</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>估值倍数最低</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>市值 / 过去 12 个月 L1 费用 <strong>467 倍</strong>；按 9 月年化 392 倍</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>beta &lt;1</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>近 1 年 0.88，Q3 0.63，9/5 以来 0.59（R² 0.44）。<strong>年化波动仍高于 BTC</strong>（51.6% vs 44.9%）</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>供应侧最干净</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>FDV ≈ 市值，无解锁</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>机构通道</strong></td>
+<td style="text-align: center;">★☆☆☆☆</td>
+<td><strong>从两星降为一星</strong>：VBNB 净资产 $214 万，40% 是种子资金（6.1）。删除「已打开」的表述</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>同源检验</strong>：多头 1、3、4 全部可归结到「Binance 持续运营、公式持续执行」这一个分母；多头 2 来自 meme 需求。<strong>六条里真正独立的证据源只有三个：公式、meme 需求、价格行为。</strong><br />
+8 月版多头 #5「8 月 TVL 与价格同向」<strong>已删除</strong>：Q3 TVL 只涨价格的四成，按币计在减少（3.4）。</p>
+</blockquote>
+<h3 id="72">7.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th style="text-align: center;">强度</th>
+<th>说明（9 月更新）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>价值链依赖单一实体</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>不变</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>费用回升由 meme 驱动</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>meme 占比 6 月 10.0% → 9 月 48.4%；生态费用增量 64% 来自两家 meme 协议。<strong>一手 API，证据等级高</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>销毁带来的供应缩减与美债持平</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td><strong>本期新增</strong>。年化供应缩减约 4.98% vs 3 年期美债 5.00%——两个可观测量的比较；「溢价约 0」则依赖作者采用的锚（9.4）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>欧元区监管阻力</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>ECB 行长据报介入 MiCA（<strong>二手</strong>，WSJ 经 CoinDesk 转述）。<strong>因证据为二手，不给四星</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>储备公司折价</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>BNC mNAV 约 0.78（计入名义行权价权证）、浮亏 11%；<strong>但它只持有 0.39% 供应，传导有限</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>TVL 与稳定币在 Q3 按实际量收缩</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>TVL 按币计减少；稳定币 Q3 −5.1%</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>回购收益率有终点</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>约 5.5 年；且价格越高枚数越少</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="73">7.3 一句话总结</h3>
+<blockquote>
+<p><strong>多头买的是「一个真实通缩、beta 低的资产」；空头指出「通缩收益率已低于美债，费用回升靠 meme，机构没有进来」。</strong><br />
+<strong>8 月版的问法仍然对——「这个回报率配不配得上这个风险」——9 月的变化是：销毁带来的回报没变，无风险利率涨了 60bp。</strong></p>
+</blockquote>
+<hr />
+<h2 id="8-bnb">8. BNB 与其他资产的比较</h2>
+<blockquote>
+<p>横向表见 3.2（统一币安口径）。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th style="text-align: right;">9 月</th>
+<th style="text-align: right;">Q3</th>
+<th style="text-align: right;">近 1 年 beta</th>
+<th>持有人回报来源</th>
+<th>本期核心发现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BTC</td>
+<td style="text-align: right;">+6.42%</td>
+<td style="text-align: right;">+42.64%</td>
+<td style="text-align: right;">1.00</td>
+<td>无</td>
+<td>—</td>
+</tr>
+<tr>
+<td>ETH</td>
+<td style="text-align: right;">+8.85%</td>
+<td style="text-align: right;">+70.86%</td>
+<td style="text-align: right;">1.29</td>
+<td>质押，绝大部分来自增发</td>
+<td>blob 塌陷是供给侧原因</td>
+</tr>
+<tr>
+<td>SOL</td>
+<td style="text-align: right;">+14.61%</td>
+<td style="text-align: right;">+60.34%</td>
+<td style="text-align: right;">1.31</td>
+<td>质押，来自增发</td>
+<td>「加倍减发」投票通过但未生效</td>
+</tr>
+<tr>
+<td>ADA</td>
+<td style="text-align: right;">+24.67%</td>
+<td style="text-align: right;">+70.78%</td>
+<td style="text-align: right;">1.42</td>
+<td>质押，来自增发</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>BNB</strong></td>
+<td style="text-align: right;"><strong>+11.26%</strong></td>
+<td style="text-align: right;"><strong>+40.76%</strong></td>
+<td style="text-align: right;"><strong>0.88</strong></td>
+<td><strong>销毁，供应真实减少</strong></td>
+<td><strong>费用回升与 meme 同步；第 37 次销毁倾向少于第 36 次</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>BNB vs SOL：同一种需求，不同的持有人捕获</strong>。两条链 Q3 的费用回升都跟着 meme 走（SOL 9 月版：pump.fun 收入 +58%、链上费用 +53%）。<strong>差别在于持有人拿到多少</strong>：SOL 的销毁只抵消增发的 1.41%；BNB 的 BEP-95 销毁 10% gas，但量级只有季度 Auto-Burn 的 0.5%——<strong>两者的持有人回报都几乎不来自 meme 费用</strong>，BNB 的回报来自一个与链上费用无关的公式。</p>
+<hr />
+<h2 id="9">9. 关键变量与三种情景推演</h2>
+<h3 id="91-312">9.1 未来 3–12 个月的催化剂日历</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th>事件</th>
+<th style="text-align: center;">重要性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2026-10 中</strong></td>
+<td><strong>第 37 次 Auto-Burn</strong>：枚数判定 B8-2（门槛 1,615,828）；登记 B9-1 区间</td>
+<td style="text-align: center;">★★★★★</td>
+</tr>
+<tr>
+<td>持续</td>
+<td><strong>meme 占比能否维持在 35% 以上</strong>（B8-3）</td>
+<td style="text-align: center;">★★★★☆</td>
+</tr>
+<tr>
+<td>持续</td>
+<td>10–12 月 L1 费用是否再有两个月 ≥$1,500 万（B8-1）</td>
+<td style="text-align: center;">★★★★☆</td>
+</tr>
+<tr>
+<td>未定</td>
+<td>Binance 新的 MiCA 申请或 ESMA 接管发牌权的立法进展</td>
+<td style="text-align: center;">★★★★☆</td>
+</tr>
+<tr>
+<td>未定</td>
+<td>VBNB 开始质押（Figment）后的资金流</td>
+<td style="text-align: center;">★★☆☆☆</td>
+</tr>
+<tr>
+<td>2026-12 FOMC</td>
+<td>点阵图指向年内再加一次</td>
+<td style="text-align: center;">★★★☆☆</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="92">9.2 估值方法：准股权框架（沿用）</h3>
+<p><strong>总回报只有一个口径：单币层 = 市值层 × 供应缩减（相乘，不相加）</strong>——这是 8 月版审查抓到的最重要的重复计算错误，本期继续执行。</p>
+<p><strong>第 1 步 · 2029 年流通量</strong>：9/30 供应 1.33159 亿 − 3 年 × 年化 602.7 万 = <strong>约 1.1508 亿枚</strong>。供应缩减因子 1.33159 ÷ 1.1508 = <strong>1.1571（+15.71%）</strong>。</p>
+<blockquote>
+<p><strong>这一步推导的方向性偏差</strong>：公式让枚数随价格上涨而减少。若乐观情景兑现（价格翻倍），三年的实际销毁会明显少于 1,808 万枚，乐观档目标价被高估；悲观档相反。<strong>本报告没有把这个反馈建进情景里</strong>（见 9.5 弱点 2）。</p>
+</blockquote>
+<p><strong>第 2 步 · 参照市值</strong>（CoinGecko 2022 年至今日线，沿用 8 月版）：2023 年低点 $315 亿（DOJ 和解期）、2026 年交易区间 $736 亿–$1,305 亿、2025-10-09 市值历史最高 $1,819 亿。</p>
+<h3 id="93-2029-09-30">9.3 三种情景（期限：2029-09-30，三年）</h3>
+<p><strong>本期的方法变更</strong>（不是证据变化，也不是价格变动带来的机械变化）：<br />
+1. <strong>两端改为开放</strong>：8 月版三档封闭在 $315 亿–$1,819 亿，等于默认三年后不会离开这个区间。按 BNB 近 1 年年化波动 51.6%，三年后落在区间之外的概率约 33%–35%。<strong>本期乐观档改为「$1,305 亿以上」、悲观档改为「$736 亿以下」</strong>，三档首尾相接、覆盖全部结果，当前市值 $1,024.4 亿落在中性档内。<br />
+2. <strong>概率对照随机游走基线</strong>：8 月版中性 50% 的依据（beta 低、2026 年在区间内往返）没有和基线对照。按 BNB 自己的波动，三年后仍在中性档的概率只有 23%–25%——<strong>beta 低已经体现在 51.6% 的波动里，不能再额外加分</strong>。<br />
+3. <strong>代价</strong>：三档改成纯价格带后，丢掉了 8 月版的情景叙事（如「悲观 = 单点风险兑现」）。本期悲观档只表示「市值低于 $736 亿」，不论原因。</p>
+<p><strong>随机游走基线</strong>（起点 $1,024.4 亿，年化波动 51.6%，三年；两列分别在不同统计量上「中性」）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>情景</th>
+<th>市值区间</th>
+<th>目标价（2029 年，÷ 1.1508 亿枚）</th>
+<th>相对现价 $769.27</th>
+<th style="text-align: center;">零对数漂移（<strong>中位数</strong>不变）</th>
+<th style="text-align: center;">期望市值不变（<strong>均值</strong>不变）</th>
+<th style="text-align: center;"><strong>本期采用</strong></th>
+<th style="text-align: center;">8 月版</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>乐观</td>
+<td><strong>$1,305 亿以上</strong>（参照 ATH $1,819 亿）</td>
+<td><strong>$1,134 以上</strong></td>
+<td>+47% 以上</td>
+<td style="text-align: center;">39.3%</td>
+<td style="text-align: center;">23.6%</td>
+<td style="text-align: center;"><strong>24%</strong></td>
+<td style="text-align: center;">25%</td>
+</tr>
+<tr>
+<td>中性</td>
+<td>$736 亿 – $1,305 亿（2026 年交易区间，CoinGecko 口径）</td>
+<td>$640 – $1,134</td>
+<td>−17% ~ +47%</td>
+<td style="text-align: center;">25.1%</td>
+<td style="text-align: center;">23.3%</td>
+<td style="text-align: center;"><strong>23%</strong></td>
+<td style="text-align: center;">50%</td>
+</tr>
+<tr>
+<td>悲观</td>
+<td><strong>$736 亿以下</strong>（参照 2023 年低点 $315 亿）</td>
+<td><strong>$640 以下</strong></td>
+<td>−17% 以下</td>
+<td style="text-align: center;">35.6%</td>
+<td style="text-align: center;">53.1%</td>
+<td style="text-align: center;"><strong>53%</strong></td>
+<td style="text-align: center;">25%</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="BNB 三情景目标价区间" src="charts/scenarios-202609.svg" /></p>
+<blockquote>
+<p>图中横轴刻度 $200、$600、$1,000、$1,400、$1,800；虚线为 9/30 收盘 $769（$769.27 四舍五入）；乐观、悲观两档为开放区间，图中画到 $1,800 与 $200 为止；概率 24% / 23% / 53%。<br />
+2026 年交易区间下沿 $736 亿是 CoinGecko 市值口径；按本期统一的币安收盘价，6/30 $546.52 对应约 $728 亿，略低于这个下沿。</p>
+</blockquote>
+<p><strong>作者的基准预期（明确写出）</strong>：<strong>采用「期望市值不变」那一列，不作偏离。</strong> 它的含义是：<br />
+- 三年后<strong>期望市值持平</strong>；<br />
+- 但<strong>中位数约低 33%</strong>（约 $687 亿），<strong>三年后价格低于现价的概率约 61%</strong>（价格低于 $769.27 ⇔ 市值低于约 $885 亿）；<br />
+- 悲观档 53% 是这个分布的直接结果。<strong>按「期望回报」的定义作者不看空；按「更可能下跌」的定义，这个基准是偏空的</strong>——两者都要告诉读者。</p>
+<p><strong>为什么不偏离基线</strong>：有利的（Q3 费用 +57.7%、真实通缩）与不利的（费用增量与 meme 同步、ETF 渠道几乎没有外部资金、欧元区阻力〔二手〕）方向相反，作者判断不足以移动一个三年的情景。<br />
+<strong>为什么选均值不变而不是中位数不变</strong>：零对数漂移意味着期望市值三年增长约 49%（年化约 14%），这本身是一个看多的观点；均值不变则对应「市场价格已反映全部信息」的通常假设。<strong>这是一个选择，不是推导</strong>——选另一列，结论会大幅改变（见 9.4）。<br />
+<strong>撤回</strong>：8 月版写「中性情景概率最高（50%）」，本期撤回。</p>
+<h3 id="94">9.4 回报拆解：销毁能带来多少</h3>
+<p><strong>本期不再报「期望市值 × 概率」的期望回报</strong>，原因：两端开放后，开放区间的代表值决定结果。按 24/23/53 与各档的条件均值，期望市值 = 当前（按构造）；只要把概率取整成 25/25/50，期望就变成 +3.7%；改用 8 月版的区间中点代表开放区间，则变成约 −13%。<strong>同一个分布，处理细节就能移动十几个百分点，这个数字没有信息量。</strong></p>
+<p><strong>能确定的只有供应这一侧</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>计算</th>
+<th style="text-align: right;">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年化销毁量（过去四次 Auto-Burn + BEP-95）</td>
+<td>4.3</td>
+<td style="text-align: right;">约 602.7 万枚</td>
+</tr>
+<tr>
+<td>三年供应缩减</td>
+<td>1.33159 亿 → 1.1508 亿</td>
+<td style="text-align: right;"><strong>+15.71%</strong></td>
+</tr>
+<tr>
+<td><strong>折合年化</strong></td>
+<td>1.1571^(1/3)</td>
+<td style="text-align: right;"><strong>约 4.98%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>含义：如果三年后 BNB 的市值不变，持有人每年得到约 5.0% 的价格回报，全部来自销毁。</strong> 这是一个条件回报，<strong>不是预期回报</strong>——销毁不向持有人支付现金，价格上涨仍需要市场维持市值；而且价格越高、每季烧得越少（4.2），这个 5.0% 本身也随价格变化。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>锚（对市值的假设）</th>
+<th style="text-align: right;">单币层年化</th>
+<th style="text-align: right;">相对 3 年期美债 5.00%</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>期望市值不变（作者采用）</td>
+<td style="text-align: right;">约 4.98%</td>
+<td style="text-align: right;"><strong>约 0</strong></td>
+</tr>
+<tr>
+<td>期望价格不变</td>
+<td style="text-align: right;">0%</td>
+<td style="text-align: right;">约 −500bp</td>
+</tr>
+<tr>
+<td>零对数漂移（中位数不变）</td>
+<td style="text-align: right;">约 19.9%</td>
+<td style="text-align: right;">约 +1,490bp</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>头条结论依赖锚的选择</strong>：「溢价约 0」只在作者采用的锚下成立。<strong>锚无关的部分</strong>是：<strong>销毁带来的年化供应缩减约 5.0%，与 3 年期美债 5.00% 持平</strong>——这是两个可观测量的比较。</p>
+</blockquote>
+<h3 id="95">9.5 这套推导方法的弱点</h3>
+<ol>
+<li><strong>销毁收益率不是契约性的</strong>，参数调整不公开（4.2）。</li>
+<li><strong>年化销毁量假设不变</strong>，未建入「价格高 → 枚数少」的反馈。</li>
+<li><strong>公式形式未经一手确认</strong>（4.2）。若 1/P 形式才对，枚数对价格更敏感，弱点 2 更严重。</li>
+<li><strong>基线对波动率的选择敏感</strong>：近 1 年 51.6%；若改用 Q3 的 34.3%，留在中性档的概率会升高。</li>
+<li><strong>结论依赖锚</strong>（9.4 表）：本期选了「期望市值不变」，这是一个选择。</li>
+<li><strong>情景失去了叙事</strong>：三档是纯价格带，「Binance 稳健但 BSC 生态萎缩」「单点风险兑现」等情形不再对应任何一档。</li>
+</ol>
+<h3 id="96">9.6 无风险利率对照</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">收益率</th>
+<th>期限</th>
+<th>风险</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3 年期美债</td>
+<td style="text-align: right;"><strong>5.00%</strong>（9/30）</td>
+<td>3 年</td>
+<td>无风险</td>
+</tr>
+<tr>
+<td><strong>BNB 销毁带来的年化供应缩减</strong>（市值不变时的价格回报）</td>
+<td style="text-align: right;"><strong>约 4.98%</strong></td>
+<td>3 年</td>
+<td>年化波动 51.6% + 单一实体风险 + 监管风险</td>
+</tr>
+<tr>
+<td><strong>差</strong></td>
+<td style="text-align: right;"><strong>约 0</strong></td>
+<td>—</td>
+<td>在作者采用的锚下</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="97">9.7 本报告的结论</h3>
+<blockquote>
+<p><strong>BNB 销毁带来的年化供应缩减约 5.0%，与 3 年期美债 5.00% 持平。</strong> 在作者采用的基准（期望市值不变）下，这就是持有 BNB 的全部期望超额来源——<strong>溢价约为零</strong>。<br />
+<strong>8 月版「溢价 100–130bp」有两处错误</strong>：① 3 年期美债是估的（实际 8/31 为 4.40%）；② 溢价来自 +0.7% 的期望市值，而 8 月版自己的敏感性就显示它随概率在 −9.4% 到 +10.8% 之间变动，没有信息量。</p>
+<p><strong>这仍然不是看空期望回报</strong>：买 BNB 的理由应当是「我认为它的市值会涨」，即对 Binance 与 BSC 的前景有正面观点。<strong>「它有收益」这个理由，在 3 年期美债 5.00% 时已经不成立</strong>——销毁带来的回报与无风险利率持平，承担的却是 51.6% 的波动与单一实体风险。<br />
+<strong>但读者应知道</strong>：作者采用的基准分布下，三年后价格低于现价的概率约 61%。</p>
+</blockquote>
+<hr />
+<h2 id="10">10. 投资与风险启示</h2>
+<h3 id="101-bnb">10.1 BNB 现在处于什么位置</h3>
+<p><strong>一句话</strong>：一个<strong>低 beta、真实通缩、但溢价已被美债吃掉</strong>的准股权资产；<strong>链上热度在回升，但回升来自最不稳定的那类需求</strong>。</p>
+<h3 id="102">10.2 策略框架</h3>
+<blockquote>
+<p>以下为研究性质的框架整理，<strong>不构成投资建议</strong>。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>持有者类型</th>
+<th>框架</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>未持有者</strong></td>
+<td>销毁带来的年化供应缩减约 4.98% vs 3 年期美债 5.00%。<strong>唯一成立的买入理由是「我认为 BNB 会涨」</strong>，不是「它便宜」或「它有收益」</td>
+</tr>
+<tr>
+<td><strong>已持有者</strong></td>
+<td>若持有理由是「BSC 生态增长」：增量 64% 来自两家 meme 协议。若是「机构会进来」：VBNB 外部资金约 $130 万。若是「通缩」：仍成立，但收益率已低于美债</td>
+</tr>
+<tr>
+<td><strong>仓位角色</strong></td>
+<td>beta 0.88（近 1 年），<strong>在加密内部提供相对分散</strong>；但年化波动 51.6% 高于 BTC</td>
+</tr>
+<tr>
+<td><strong>杠杆</strong></td>
+<td>单一实体风险的兑现通常是突发的（2023 年先例）；<strong>杠杆头寸没有反应时间</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="103">10.3 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>指标</th>
+<th>当前值</th>
+<th>改变结论的阈值</th>
+<th>观测方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>第 37 次销毁枚数</strong></td>
+<td>估约 160.6 万</td>
+<td>&lt;1,615,828 → B8-2 判错；<strong>落在 B9-1 区间外 → 本报告的公式拟合失效</strong></td>
+<td>BNB Chain 官方博客</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>meme 占比</strong>（Flap sh + GMGN）</td>
+<td>48.2%（30 天）</td>
+<td><strong>&lt;35% → B8-3 判错</strong>；&gt;60% → 需求质量继续恶化</td>
+<td>DefiLlama API</td>
+</tr>
+<tr>
+<td>3</td>
+<td>BSC 月度 L1 费用</td>
+<td>$2,178 万</td>
+<td>10–12 月中再有 ≥2 个月 ≥$1,500 万 → B8-1 判错</td>
+<td>DefiLlama API</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3 年期美债</td>
+<td>5.00%</td>
+<td>降回 4.40% 以下 → 溢价回到约 60bp 以上</td>
+<td>美国财政部</td>
+</tr>
+<tr>
+<td>5</td>
+<td>欧洲牌照</td>
+<td>希腊申请已撤回（二手）</td>
+<td>任一成员国批准 MiCA → 欧元区阻力消除</td>
+<td>官方公告</td>
+</tr>
+<tr>
+<td>6</td>
+<td>VBNB 份额</td>
+<td>9 万份（8/31）</td>
+<td><strong>&gt;100 万份（约 $2,000 万）→ 才值得重新讨论「机构需求」</strong></td>
+<td>SEC 10-Q / 发行商网站</td>
+</tr>
+<tr>
+<td>7</td>
+<td>BNC mNAV</td>
+<td>约 0.78</td>
+<td>回到 1 以上 → 储备公司重新具备买币能力</td>
+<td>SEC + 股价</td>
+</tr>
+<tr>
+<td>8</td>
+<td>稳定币（两个端点）</td>
+<td>$138.3 亿 / $169.3 亿</td>
+<td>查明端点差异</td>
+<td>DefiLlama</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="104">10.4 风险提醒</h3>
+<ol>
+<li><strong>单一实体风险</strong>：结构不变。</li>
+<li><strong>监管风险来源在变</strong>：从美国执法转向欧元区货币当局（二手）。</li>
+<li><strong>需求质量风险</strong>：meme 占比 48.2%，且三个月前只有 10%。</li>
+<li><strong>利率风险</strong>：3 年期美债一个月上升 60bp，单币层溢价约 0。</li>
+<li><strong>本报告自身的风险</strong>：8 月版八处需要更正（11.5），其中「机构通道已打开」与「溢价 100–130bp」是方向性错误；<strong>B8-2 倾向判错</strong>。本期公式形式与稳定币端点差异两处<strong>未解决</strong>。</li>
+</ol>
+<h3 id="105">10.5 长期认知</h3>
+<p><strong>第一，一个「趋势」可能只是公式对价格的反应。</strong> 8 月版看到三次销毁枚数上升，就登记「会继续上升」；实际上公式让枚数与价格反向，<strong>那三次上升是价格连续下跌（$982 → $727 → $621）的镜像</strong>。<strong>在下结论前，先问这个数是怎么算出来的。</strong></p>
+<p><strong>第二，一个只对利率敏感的结论，可能是方法造成的。</strong> 第 9 章把市值锚定为期望不变后，数字里只剩供应缩减和美债；本月结论变化几乎全部来自美债上升 60bp。<strong>这是方法的性质，不说明基本面不重要。</strong></p>
+<p><strong>第三，「通道打开」与「资金进来」是两件事。</strong> VBNB 上市是真的，但 10-K 显示外部资金约 $130 万。<strong>一个事件发生了，不等于它的预期后果发生了。</strong></p>
+<hr />
+<h2 id="11">11. 附录</h2>
+<h3 id="111-2026-09-30">11.1 关键数据速查（截至 2026-09-30）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>市场</strong></td>
+<td>9/30 收盘 / 市值</td>
+<td>$769.27 / 约 $1,024.4 亿（第 4）</td>
+</tr>
+<tr>
+<td></td>
+<td>9 月 / Q3 / YTD / 近 1 年</td>
+<td><strong>+11.26% / +40.76% / −11.00% / −23.72%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>beta（9 月 / Q3 / 近 1 年）</td>
+<td>0.66 / 0.63 / 0.88；R² 0.41 / 0.50 / 0.58</td>
+</tr>
+<tr>
+<td></td>
+<td>距 ATH</td>
+<td>−44.1%（币安）</td>
+</tr>
+<tr>
+<td><strong>费用</strong></td>
+<td>L1 9 月 / Q3</td>
+<td>$2,178 万（真年同比 −0.6%）/ $4,917 万（环比 +57.7%）</td>
+</tr>
+<tr>
+<td></td>
+<td>meme 占比</td>
+<td>48.2%（30 天）；自然月 10.0% → 18.4% → 38.1% → 48.4%</td>
+</tr>
+<tr>
+<td><strong>生态</strong></td>
+<td>TVL</td>
+<td>$56.7 亿（真年同比 −27.3%）</td>
+</tr>
+<tr>
+<td></td>
+<td>稳定币</td>
+<td>$138.3 亿（chains 端点）/ $169.3 亿（charts 端点）</td>
+</tr>
+<tr>
+<td><strong>销毁</strong></td>
+<td>第 37 次估算</td>
+<td>约 160.6 万枚（159.2–167.8 万，未验证）</td>
+</tr>
+<tr>
+<td></td>
+<td>BEP-95 9 月 / Q3</td>
+<td>约 2,923 / 7,392 枚</td>
+</tr>
+<tr>
+<td></td>
+<td>回购收益率</td>
+<td>4.33%–4.53%</td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td>销毁带来的年化供应缩减 / 3 年期美债</td>
+<td>约 4.98% / 5.00%</td>
+</tr>
+<tr>
+<td><strong>情景</strong></td>
+<td>乐观 / 中性 / 悲观（至 2029-09-30，两端开放）</td>
+<td>24% / 23% / 53%；三年后价格低于现价的概率约 61%</td>
+</tr>
+<tr>
+<td><strong>机构</strong></td>
+<td>VBNB 净资产（6/30）</td>
+<td>$214 万（3,887.70 BNB，约 40% 种子资金）</td>
+</tr>
+<tr>
+<td></td>
+<td>BNC</td>
+<td>515,544 BNB，mNAV 约 0.78（计入名义行权价权证），浮亏 11.2%</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112">11.2 数据来源与核实状态</h3>
+<p><strong>标注规则</strong>：✅ = 本报告直接抓取一手来源；⚠️ = 仅搜索摘要或二手转述；❌ = 核实失败。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th style="text-align: center;">核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格、月/季涨跌、波动率、beta、R²</td>
+<td>币安 API <code>klines</code>（BNB / BTC / ETH / SOL / ADA 兑 USDT）</td>
+<td style="text-align: center;">✅ 一手 API</td>
+</tr>
+<tr>
+<td>市值排名、总供应、ATH（CoinGecko 口径）</td>
+<td>CoinGecko API <code>coins/binancecoin</code>（10/4）</td>
+<td style="text-align: center;">✅ 一手 API</td>
+</tr>
+<tr>
+<td>BSC L1 费用月度序列、生态费用分项与自然月拆分</td>
+<td>DefiLlama API（<code>summary/fees/bsc</code>、<code>overview/fees/bsc</code>）</td>
+<td style="text-align: center;">✅ 一手 API</td>
+</tr>
+<tr>
+<td><strong>BEP-95 销毁 = gas 费 × 10% 的口径</strong></td>
+<td><strong>DefiLlama <code>dimension-adapters/fees/bsc.ts</code> 源码</strong></td>
+<td style="text-align: center;">✅ <strong>已打开源码</strong>（是推算，不是逐块测量）</td>
+</tr>
+<tr>
+<td>TVL、稳定币（两个端点）</td>
+<td>DefiLlama API</td>
+<td style="text-align: center;">✅ 一手 API（<strong>两端点差异未查明</strong>）</td>
+</tr>
+<tr>
+<td><strong>第 31–36 次销毁的枚数、美元值、销毁后供应</strong></td>
+<td><strong>BNB Chain 官方博客（6 篇原文）</strong></td>
+<td style="text-align: center;">✅ <strong>打开原文</strong>（8 月版第 34、35 次为摘要，本期补齐）</td>
+</tr>
+<tr>
+<td>第 37 次是否已执行</td>
+<td>BNB Chain 博客 <code>37th-bnb-burn</code>（10/4 访问为空页）</td>
+<td style="text-align: center;">✅ 尚未发布</td>
+</tr>
+<tr>
+<td><strong>Auto-Burn 公式的确切形式</strong></td>
+<td>Binance Academy（网页工具转述）与二手摘要两个版本冲突</td>
+<td style="text-align: center;">❌ <strong>未能一手确认</strong>；本报告用六次一手数据反推（4.2）</td>
+</tr>
+<tr>
+<td><strong>VBNB 净资产、持仓、份额、种子资金、托管</strong></td>
+<td><strong>SEC EDGAR：VanEck BNB ETF 10-K（财年至 2026-06-30）</strong></td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td><strong>VBNB 质押验证者 Figment、4% 费率</strong></td>
+<td><strong>SEC EDGAR：VBNB 8-K（9/25 事件）</strong></td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td><strong>BNC 持仓、成本、借款、股数、回购</strong></td>
+<td><strong>SEC EDGAR：BNC 10-Q（至 7/31）、8-K（9/29 更名）</strong></td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>BNC 股价</td>
+<td>Yahoo Finance API</td>
+<td style="text-align: center;">✅ API</td>
+</tr>
+<tr>
+<td>BSC 验证者 45 个 / 21 个出块</td>
+<td>VBNB 10-K 中赞助人的描述</td>
+<td style="text-align: center;">✅ 一手文件（<strong>但是发行商的描述，不是链上测量</strong>）</td>
+</tr>
+<tr>
+<td>宏观（FOMC、3 年期与 10 年期美债）</td>
+<td>美联储、美国财政部（见 BTC 9 月版）</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td><strong>ECB 行长介入 Binance 的 MiCA 申请、Binance 6 月撤回希腊申请</strong></td>
+<td>CoinDesk 9/18 文章（已打开）转述《华尔街日报》</td>
+<td style="text-align: center;">⚠️ <strong>二手</strong>（WSJ 原文未打开；当事方均未公开确认）</td>
+</tr>
+<tr>
+<td>Binance 市场份额</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>本期未取得 CoinGlass 原始报告</strong>；8 月版的二手数字不更新</td>
+</tr>
+<tr>
+<td>9 月大涨大跌日的 BNB 专属原因</td>
+<td>—</td>
+<td style="text-align: center;">❌ 未找到一手来源，不做归因</td>
+</tr>
+<tr>
+<td>2025-10 费用异常成因</td>
+<td>—</td>
+<td style="text-align: center;">❌ 仍未查明</td>
+</tr>
+<tr>
+<td>BSC 历史区块的黑洞地址余额</td>
+<td>BSC 公共 RPC <code>eth_getBalance</code></td>
+<td style="text-align: center;">❌ 历史状态被裁剪（「missing trie node」），改用供应量差额交叉验证</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113">11.3 来源偏向声明</h3>
+<ul>
+<li><strong>8 月版声明的「多头一手、空头二手」不对称，本期部分扭转</strong>：机构侧（VBNB、BNC）改为 SEC 一手，而一手数据<strong>削弱</strong>了多头（机构通道）；空头 #2（meme 依赖）是一手 API。<strong>本期证据等级大致对称。</strong></li>
+<li><strong>仍为二手的</strong>：欧洲监管（WSJ 经 CoinDesk）、市场份额（未更新）。空头 #4 因此限制在三星。</li>
+<li><strong>传统金融机构</strong>：本期引用了 <strong>VanEck</strong>（VBNB 的 SEC 文件）、<strong>美联储</strong>与美国财政部（利率）、BitGo 与 Figment（VBNB 托管与质押）、ECB 与 ESMA（经 WSJ 转述）。<strong>本期没有找到一份 9 月发布的传统机构 BNB 研究报告</strong>——这是配平缺口。</li>
+</ul>
+<h3 id="114-btc-eth-sol-9">11.4 与 BTC / ETH / SOL 9 月版共用的口径</h3>
+<p>价格统一用币安日线 UTC 收盘（五个资产同一数据源）；宏观数据与 BTC 9 月版共用同一批抓取。</p>
+<h3 id="115-8">11.5 本版对 8 月版的更正</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>8 月版写法</th>
+<th>更正</th>
+<th>发现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>8 月涨幅 +16.71%（CoinGecko 8/1→8/31）</td>
+<td>该口径为 00:00 快照；<strong>币安 UTC 收盘 7/31→8/31 为 +17.79%</strong></td>
+<td>币安日线</td>
+</tr>
+<tr>
+<td>2</td>
+<td>「机构通道已打开」；多头 #7 两星</td>
+<td><strong>VBNB 净资产 $214 万，约 40% 是种子资金</strong>；改为「通道已建成，几乎没有外部资金」，多头降为一星</td>
+<td>SEC 10-K 一手</td>
+</tr>
+<tr>
+<td>3</td>
+<td>单币层溢价「大致在 100–130bp」，3 年期用「曲线中段」估计</td>
+<td><strong>实际 3 年期 8/31 为 4.40%</strong>；按本期方法当时溢价约 60bp，9/30 约 0</td>
+<td>美国财政部</td>
+</tr>
+<tr>
+<td>4</td>
+<td>BSC 稳定币 $133.1 亿</td>
+<td>只是 <code>stablecoinchains</code> 端点；<code>stablecoincharts</code> 端点为 $169 亿量级，<strong>两者并列，差异未查明</strong></td>
+<td>DefiLlama 两端点</td>
+</tr>
+<tr>
+<td>5</td>
+<td>欧洲「MiCA 框架下的进展仍在进行中」</td>
+<td>据报道 Binance <strong>6 月已撤回希腊申请</strong>，阻力来自 ECB 层面（二手）</td>
+<td>CoinDesk 转述 WSJ</td>
+</tr>
+<tr>
+<td>6</td>
+<td>第 34、35 次销毁「多个二手来源一致，未打开官方原文」</td>
+<td><strong>已打开官方博客原文，数字一致</strong>；第 34 次「实际销毁」为 1,371,703.67（另含 Pioneer Burn 100.1）</td>
+<td>BNB Chain 博客</td>
+</tr>
+<tr>
+<td>7</td>
+<td>「近 1 年最抗跌」，领先第二名近 19pp</td>
+<td>币安口径下仍成立，<strong>但差距只有 3pp</strong>（−23.72% vs BTC −26.68%）；近 1 年 beta 0.88（原 0.921）</td>
+<td>币安日线</td>
+</tr>
+<tr>
+<td>8</td>
+<td>三情景区间封闭、中性 50% 未对照随机游走基线；期望市值 +0.7% 被当作有方向含义的数字；「中性概率最高」</td>
+<td>两端开放；作者基准 = 期望市值不变的随机游走基线，概率 24/23/53；不再报期望市值；「中性概率最高」撤回（9.3–9.4）</td>
+<td>本期作者自查 + 推理审查</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>B8-2 论点本身的问题</strong>（不是数据更正，是推理更正）：8 月版把「三次枚数上升」读成趋势，而公式让枚数与价格反向——<strong>那是价格连续下跌的结果</strong>（见 3.0、4.2）。</p>
+<h3 id="116">11.6 发布前审查记录</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>层</th>
+<th>审查者</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>作者自查（送审前）</td>
+<td>发现三情景区间封闭、中性 50% 未对照基线，重写第 9 章初版</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>tools/verify_report.py</code> 机械核查</td>
+<td>修订后重跑，见下</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>_bian</strong>（推理审查）</td>
+<td>13 条，全部采纳或部分采纳</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Codex</strong>（领域审查）</td>
+<td>5 条，全部采纳</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>初稿由分身在后台完成时曾写「第 2 层本期未执行」；<strong>本期最终两层审查都已执行</strong>，该说法作废。</p>
+</blockquote>
+<p><strong>_bian 对作者自查版第 9 章的批评（最重要）</strong>：<br />
+1. 公布的 25/25/50 按报告自己的方法算出来是期望市值 +3.7%、溢价约 +125bp，不是「≈0」；53→50 也不是四舍五入 → <strong>改为公布未取整的 24/23/53</strong>，9.4 不再报期望市值。<br />
+2. B8-5 改判 ⊘ 的理由（「统计量由作者建模选择决定」）同样适用于本期头条结论 → <strong>头条改为锚无关的「供应缩减 ≈ 美债」，「溢价约 0」明确标为依赖锚</strong>；B8-5 的 ⊘ 理由改为「登记时未指定重算方法与锚」，并写明 ⊘ 放弃的是一个赢面。<br />
+3. 「悲观 50% 不是看空」与采纳的分布矛盾（三年后价格低于现价的概率约 61%）、「不给基准预期」名不副实 → <strong>改为明确写出作者基准 = 期望市值不变的基线，并报出 61%</strong>。<br />
+4. 「无风险利率是估值的一半」是构造的同义反复，被写成了长期认知 → 10.5 第二条改写，3.5 加限定。<br />
+5. B9-2 的排查会把 meme 活动本身扣掉、只在 ❌ 一侧有出口、论点含未检验的因果 → 记分卡改写。<br />
+6. B9-1 区分不了「公式成立」与「和上次差不多」→ 记分卡注明只能排除 1/P 形式。<br />
+7. 「概率变化全部是机械的」→ 改为「方法变更」；B8-6 的先验推导已失效 → 记分卡注明。<br />
+8–13. 撤回引用对不上 8 月原文（「基准预期是中性」8 月原文没有这句）、+0.76% 应为 +0.7%、卷首 $310 亿应为 $31 亿、更正条数、MiCA「没有任何一个申请」超出报道、同一事实多空两侧各计一次、「三连跌」实为两次下跌等 → 逐条更正。</p>
+<p><strong>Codex 的五条（领域层）</strong>：<br />
+1. 第 9 章「把假设写成了收益率」→ <strong>采纳</strong>（与 _bian 第 2 条一致）：9.4 改为条件回报，明确「不是预期回报」。<br />
+2. 公式拟合被赋予过高预测力；官方用链上预言机价格、参数调整未公布 → <strong>采纳</strong>：B8-2 由「大概率判错」降为「倾向判错，把握有限」；B9-1 先验 71% → 60%。<br />
+3. meme 占比的分母不含链费，含链费为 40.5%；B9-2 检验不了因果，多地址刷量过滤不掉 → <strong>采纳</strong>。<br />
+4. BEP-95 交叉验证只是量级检查；<code>burnRatio</code> 可治理 → <strong>采纳</strong>，已打开 BEP-95 原文核对。<br />
+5. BNC 漏了名义行权价权证，mNAV 应约 0.78 → <strong>采纳</strong>，已打开 10-Q 权证表核对（7,750,510 + 3,564,362 份）。</p>
+<p><strong>分歧</strong>：无实质分歧。两位审查者在第 9 章上的意见方向一致；作者唯一保留的选择是「期望市值不变」这个锚，理由与代价已写入 9.3、9.4。</p>
+<h2 id="zec-25bp-076252550mnav-061-grep"><strong>ZEC 期清扫</strong>：撤回的说法（「溢价约 25bp」「期望市值 +0.76%」「基准预期是中性」「不对市值表态」「25/25/50」「三连跌」「mNAV 约 0.61」作为结论）已在报告、摘要、记分卡中 grep 清扫。</h2>
+<blockquote>
+<p><strong>配套文件</strong>：<code>bnb_questions_summary_202609.md</code>（简明速查）、<code>../thesis_scorecard.md</code>（论点滚动记分卡）。<br />
+本报告不构成投资建议。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-bnb-bnb-chain-2026-9-q3">BNB / BNB Chain 简明速查（2026 年 9 月版兼 Q3 回顾）</h1>
+<blockquote>
+<p>配套 <code>bnb_research_report_202609.md</code> 使用。Date: 2026-10-05（数据截至 9/30；供应量与生态 30 天窗口取到 10/4）</p>
+</blockquote>
+<hr />
+<h2 id="s-1-9-q3">1. 9 月和 Q3 发生了什么</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>9 月</th>
+<th>Q3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BNB（币安日线）</td>
+<td><strong>+11.26%</strong>，收 $769.27</td>
+<td><strong>+40.76%</strong></td>
+</tr>
+<tr>
+<td>BTC</td>
+<td>+6.42%</td>
+<td>+42.64%</td>
+</tr>
+<tr>
+<td>对 BTC 的 beta / R²</td>
+<td>0.66 / 0.41</td>
+<td>0.63 / 0.50</td>
+</tr>
+<tr>
+<td>高于 beta 预期</td>
+<td>+7.0pp（约 0.73 个标准差）</td>
+<td>+14.0pp（约 1.15 个标准差）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Q3 BNB 是五个资产里涨幅最小的</strong>（ADA +70.78%、ETH +70.86%、SOL +60.34%、BTC +42.64%）——这是低 beta 在普涨季的正常表现；高于 beta 预期的部分在噪声范围内。</p>
+<hr />
+<h2 id="s-2-meme">2. 本期最重要的发现：费用回升 = meme 回升</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>2026 年</th>
+<th style="text-align: right;">BSC L1 费用</th>
+<th style="text-align: right;">Flap sh + GMGN</th>
+<th style="text-align: right;">meme 占生态费用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6 月</td>
+<td style="text-align: right;">$1,085 万</td>
+<td style="text-align: right;">$323 万</td>
+<td style="text-align: right;">10.0%</td>
+</tr>
+<tr>
+<td>7 月</td>
+<td style="text-align: right;">$903 万</td>
+<td style="text-align: right;">$617 万</td>
+<td style="text-align: right;">18.4%</td>
+</tr>
+<tr>
+<td>8 月</td>
+<td style="text-align: right;">$1,836 万</td>
+<td style="text-align: right;">$2,551 万</td>
+<td style="text-align: right;">38.1%</td>
+</tr>
+<tr>
+<td><strong>9 月</strong></td>
+<td style="text-align: right;"><strong>$2,178 万</strong></td>
+<td style="text-align: right;"><strong>$5,376 万</strong></td>
+<td style="text-align: right;"><strong>48.4%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>生态费用 6→9 月增量的 <strong>64%</strong> 来自 Flap sh 与 GMGN 两家（DefiLlama 一手）</li>
+<li>占比口径：分母不含链本身时 48.4%；<strong>加上链费则约 40.5%</strong></li>
+<li><strong>这是同步，不是已证明的因果</strong>：没有做交易级拆分，不能说 L1 费用增量的几成来自 meme</li>
+<li><strong>8 月版「五个资产里唯一 L1 费用同比增长」不再成立</strong>：9 月 $2,178 万对 2025-09 的 $2,190 万，真年同比 <strong>−0.6%</strong>（8 月的 +62.6% 是低基数）</li>
+</ul>
+<hr />
+<h2 id="s-3-37-10-36">3. 第 37 次销毁（10 月中）倾向少于第 36 次，但把握有限</h2>
+<ul>
+<li>用六次官方销毁数据反推公式：<strong>B × (P + 1,000) ÷ 天数</strong> 在六次里只相差 5%，支持「价格加常数在分母」的形式（<strong>公式形式未一手确认</strong>）</li>
+<li>按 Q3 均价 $650.9 估算：<strong>约 160.6 万枚（区间 159.2–167.8 万）</strong>，中值低于 B8-2 的门槛 161.6 万枚——<strong>但门槛落在区间内</strong>；官方用链上预言机价格、升级后参数调整未公布</li>
+<li><strong>8 月版把「三次枚数上升」读成趋势，其实是价格连续下跌（$982 → $727 → $621）的镜像</strong>：价格越高、烧得越少</li>
+<li>BEP-95 实时销毁 Q3 约 7,392 枚，只是季度销毁的约 0.5%。<strong>这是按「gas × 10%」推算、与供应量做的量级检查</strong>；BEP-95 原文规定销毁比例可由验证者投票修改，当前是否仍为 10% 未验证</li>
+</ul>
+<hr />
+<h2 id="s-4">4. 机构：通道开了，几乎没人走</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>数值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VanEck VBNB 净资产（6/30）</td>
+<td><strong>$214 万</strong>，约 40% 是 VanEck 种子资金</td>
+<td>SEC 10-K</td>
+</tr>
+<tr>
+<td>VBNB 份额</td>
+<td>10 万 → 9 万（8/31）</td>
+<td>SEC 10-K</td>
+</tr>
+<tr>
+<td>BNB Standard Corp（原 CEA Industries）</td>
+<td>51.6 万枚，均价 $866、浮亏约 11%</td>
+<td>SEC 10-Q / 8-K</td>
+</tr>
+<tr>
+<td>其 mNAV</td>
+<td><strong>约 0.78</strong>（计入行权价仅 $0.00001 的两类权证；初稿漏算时为 0.61）</td>
+<td>SEC 10-Q 权证表 + Yahoo</td>
+</tr>
+</tbody>
+</table></div>
+<p>8 月版「机构通道已打开」<strong>过度表述</strong>，多头降为一星。</p>
+<hr />
+<h2 id="s-5">5. 欧洲监管（二手）</h2>
+<ul>
+<li>据 WSJ（经 CoinDesk 转述）：欧洲央行行长介入，希腊监管机构推迟批准 Binance 的 MiCA 申请；<strong>Binance 6 月已撤回希腊申请</strong>（其他成员国是否有在审申请，未核实）</li>
+<li>当事方均未公开确认；<strong>不是吊销，B8-6 不触发</strong></li>
+<li>含义（若报道属实）：阻力来自欧元区货币当局，<strong>不会以罚款形式出现，但限制增长空间</strong></li>
+</ul>
+<hr />
+<h2 id="s-6">6. 估值：销毁带来的回报与美债持平</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">收益率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3 年期美债（9/30）</td>
+<td style="text-align: right;"><strong>5.00%</strong>（8/31 为 4.40%）</td>
+</tr>
+<tr>
+<td>BNB 销毁带来的年化供应缩减（三年 +15.71%）</td>
+<td style="text-align: right;"><strong>约 4.98%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>能确定的是这个比较本身</strong>：如果三年后市值不变，持有人每年得到约 5.0% 的价格回报，全部来自销毁——<strong>与无风险利率持平</strong></li>
+<li>「溢价约 0」<strong>依赖作者采用的锚</strong>（期望市值不变）；换成「期望价格不变」是 −500bp，换成「中位数不变」是 +1,490bp</li>
+<li><strong>8 月版的「100–130bp」有两处错误</strong>：3 年期美债是估的（实际 8/31 为 4.40%）；溢价来自 +0.7% 的期望市值，而 8 月版自己的敏感性就显示它在 −9.4% 到 +10.8% 之间变动</li>
+<li><strong>结论</strong>：买 BNB 的理由只能是「我认为它的市值会涨」，<strong>「它有收益」在 3 年期美债 5% 时不成立</strong></li>
+</ul>
+<hr />
+<h2 id="s-7-2029-09-30">7. 三情景（至 2029-09-30）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>悲观</th>
+<th>中性</th>
+<th>乐观</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目标价</td>
+<td><strong>$640 以下</strong></td>
+<td>$640–$1,134</td>
+<td><strong>$1,134 以上</strong></td>
+</tr>
+<tr>
+<td>基线：中位数不变</td>
+<td>36%</td>
+<td>25%</td>
+<td>39%</td>
+</tr>
+<tr>
+<td>基线：期望市值不变</td>
+<td>53%</td>
+<td>23%</td>
+<td>24%</td>
+</tr>
+<tr>
+<td><strong>本期采用</strong></td>
+<td><strong>53%</strong></td>
+<td><strong>23%</strong></td>
+<td><strong>24%</strong></td>
+</tr>
+<tr>
+<td>8 月版</td>
+<td>25%</td>
+<td>50%</td>
+<td>25%</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>方法变更</strong>（不是证据变化）：两端改为开放；概率对照随机游走基线——8 月版的中性 50% 没有对照，按 BNB 自己的波动只有约 23%–25%</li>
+<li><strong>作者的基准预期 = 期望市值不变的基线，不作偏离</strong>：期望市值持平，但<strong>三年后价格低于现价的概率约 61%</strong>。按「期望回报」作者不看空；按「更可能下跌」这个基准是偏空的</li>
+<li>选「期望市值不变」而不是「中位数不变」是一个选择：后者隐含市值年化约 +14%</li>
+<li>8 月版「中性概率最高」撤回</li>
+</ul>
+<hr />
+<h2 id="s-8">8. 记分卡</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>9 月读数</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B8-1（9–12 月 ≥3 个月 L1 费用 ≥$1,500 万则错）</td>
+<td>9 月 $2,178 万</td>
+<td>⏳ 方向不利</td>
+</tr>
+<tr>
+<td>B8-2（第 37 次 &lt; 161.6 万枚则错）</td>
+<td>估算中值 160.6 万</td>
+<td>⏳ 10 月中判，<strong>倾向 ❌，把握有限</strong></td>
+</tr>
+<tr>
+<td>B8-3（meme 占比 &lt;35% 则错）</td>
+<td>48.2%（30 天）</td>
+<td>⏳ 43% 基准是刚起来的峰值</td>
+</tr>
+<tr>
+<td>B8-4（beta ≥1 则错）</td>
+<td>0.593（9/5 起）</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>B8-5（单币层溢价 ≥300bp 则错）</td>
+<td>随方法在 −500bp 到 +1,490bp</td>
+<td><strong>⊘ 检验失效</strong>：登记时未指定重算方法与锚（按 8 月原方法多数参数会判 ✅，⊘ 放弃的是赢面）</td>
+</tr>
+<tr>
+<td>B8-6（单一实体风险兑现则错）</td>
+<td>未触发</td>
+<td>⏳</td>
+</tr>
+</tbody>
+</table></div>
+<p>本期起升级到 11 条门槛，新登记：<br />
+- <strong>B9-1</strong>：第 37 次销毁落在 159.2–167.8 万枚（60%；✅ 只能排除 1/P 形式，须与 B8-2 一起读）<br />
+- <strong>B9-2</strong>：12 月 BSC L1 费用 &lt; $1,500 万（45%；不含因果主张）<br />
+- 拒绝登记「年化供应缩减 ≤ 美债」：实质是利率赌注</p>
+<hr />
+<h2 id="s-9">9. 该盯什么</h2>
+<ol>
+<li><strong>10 月中第 37 次销毁</strong>——同时判 B8-2 与 B9-1</li>
+<li><strong>meme 占比</strong>——跌破 35% 判 B8-3 错；继续上升说明需求质量更差</li>
+<li><strong>月度 L1 费用</strong>——12 月是否回到 $1,500 万以下（B9-2）</li>
+<li><strong>3 年期美债</strong>——每降 50bp，BNB 的溢价就多 50bp</li>
+</ol>
+<hr />
+<h2 id="s-10-3-5">10. 如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>Q3 BNB +40.8%，五个资产里最小</strong>——低 beta（0.63）在普涨季就该这样，超额部分在噪声内。</p>
+</li>
+<li>
+<p><strong>BSC 费用回升了，但增量的 64% 来自两家 meme 协议</strong>；9 月 L1 费用真年同比 −0.6%，「唯一同比增长」不再成立。</p>
+</li>
+<li>
+<p><strong>第 37 次销毁倾向少于第 36 次（把握有限）</strong>——公式让价格越高烧得越少，8 月版把价格效应读成了趋势。</p>
+</li>
+<li>
+<p><strong>ETF 渠道几乎是空的</strong>：VBNB 净资产 $214 万，四成是发行商自己的钱；最大储备公司 mNAV 约 0.78，在回购股票而不是买币。</p>
+</li>
+<li>
+<p><strong>销毁带来的年化供应缩减约 5.0%，与 3 年期美债持平</strong>——「它有收益」已不是买入理由；作者采用的基准下，三年后价格低于现价的概率约 61%。</p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>bnb_research_report_202609.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>
