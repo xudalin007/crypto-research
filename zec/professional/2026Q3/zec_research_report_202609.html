@@ -1,0 +1,2302 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ZEC / Zcash 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#ecb244;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">ⓩ ZEC 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>ⓩ ZEC 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-zcash">1. Zcash 是什么</a>
+<a href="#2-zec">2. ZEC 的发展阶段划分</a>
+<a href="#3-zec">3. ZEC 当前现状</a>
+<a href="#4">4. 屏蔽池</a>
+<a href="#5">5. 发行与供应</a>
+<a href="#6-zec">6. ZEC 与其他资产的比较</a>
+<a href="#7-8">7. 价格与屏蔽占比</a>
+<a href="#8">8. 核心价值逻辑与估值</a>
+<a href="#9">9. 投资与风险启示</a>
+<a href="#10">10. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-0">0. 一处必须先读的利益相关声明</a>
+<a href="#s-1">1. 一句话</a>
+<a href="#s-2-zec">2. ZEC 是什么</a>
+<a href="#s-3-valuepools2026-09-30">3. 六个池</a>
+<a href="#s-4">4. 本期核心发现</a>
+<a href="#s-5-8">5. 价格与屏蔽占比</a>
+<a href="#s-6-8">6. 机构与监管</a>
+<a href="#s-7-nu7">7. NU7</a>
+<a href="#s-8">8. 价格、发行、费用</a>
+<a href="#s-9">9. 估值</a>
+<a href="#s-10">10. 记分卡与要盯的指标</a>
+<a href="#s-3-5">如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>ⓩ ZEC / Zcash<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">ⓩ Zcash</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="zec-zcash">ZEC / Zcash 完整调研与分析报告</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 10 月 5 日<br />
+<strong>数据截止</strong>：2026 年 9 月 30 日（9 月与 Q3 完整数据已闭合）；链上快照取到 10/5<br />
+<strong>版本</strong>：2026 年 9 月版（第二期）<strong>兼 Q3 季度回顾</strong><br />
+<strong>研究方法</strong>：沿用 8 月首期框架（屏蔽池占比为核心测量对象）。<strong>本期第一次有上期论点可核对</strong>（Z8-1 至 Z8-5，见 3.0）。<br />
+<strong>口径</strong>：本期起价格统一用<strong>币安日线 UTC 收盘</strong>（与本系列其他 9 月版相同）；8 月首期用 CoinGecko 快照，8 月涨幅按新口径为 <strong>+85.30%</strong>（原 +82.88%）。链上数据全部来自节点 <code>valuePools</code> / <code>chainSupply</code> 记账项（Blockchair <code>raw/block</code> 原样转发）。</p>
+<p>⚠️ <strong>利益相关声明（沿用 8 月版）</strong>：本系列核心事件——Orchard 电路漏洞——由安全研究员借助 Anthropic 的模型发现，而本报告也由 Anthropic 的模型撰写。<strong>本期该事件已不是主线</strong>，但 4.2 与 10.4 #2 重新解读了漏洞后的「恢复」。<strong>偏向的方向</strong>：若本报告倾向于放大漏洞冲击、贬低恢复，读者应向反方向调整——这两处是需要额外怀疑的地方。</p>
+<p><strong>本版更新要点</strong>：</p>
+<ol>
+<li><strong>9 月 +69.60%、Q3 +260.05%</strong>（$399.50 → $1,438.41）。<strong>Q3 涨幅是本系列 9 月版里最大的</strong>（UNI +219.73% 次之）；9 月与 UNI（+69.76%）几乎并列。按对数收益扣掉 BTC 的 beta 后，9 月约 <strong>1.1 个标准差</strong>、Q3 约 <strong>1.4 个标准差</strong>——<strong>不能排除噪声</strong>。</li>
+<li><strong>本期最重要的发现：8 月版说的屏蔽占比「恢复」，大部分发生在一个 52 小时窗口里，而这个窗口紧挨着一次持币人投票的资格快照。</strong><br />
+   NU7 持币人投票按 <strong>区块 3,459,350（8/24 19:18 UTC）</strong> 时的 Ironwood 余额确定资格——<strong>快照区块 8/05 就已公布，规则写明快照后资金可以立刻转走</strong>（社区论坛与投票组织方原文，一手）。本报告逐块读取：<strong>8/22 07:28 → 8/24 11:55，屏蔽总量 +40.8 万枚，屏蔽占比 25.99% → 28.39%</strong>；快照之后流入停止，也没有回流。<br />
+<strong>8 月版写的「从谷底恢复 +3.36pp」，其中约 2.4pp 来自这 52 小时</strong>，而且约 40 万枚是从透明池新转入的。<strong>这 2.4pp 不是无触发的逐步恢复</strong>（其余约 1.4pp 是平缓回升）；<strong>时点精确对准快照、而不是一天后的 ETF 上市</strong>——最可能与投票资格相关，<strong>但资金来源与持有人动机不可知</strong>。</li>
+<li><strong>9 月价格 +69.60%，屏蔽占比只从 28.74% 升到 29.14%（+0.40pp）</strong>；距 4 月峰值 31.01% 仍差 1.87pp。<strong>周度同期相关很弱</strong>：减半以来 97 个周度观测里，屏蔽占比周变化与价格周收益的相关系数只有 <strong>0.13</strong>（不显著）；<strong>但「上周价格 → 本周屏蔽占比」的滞后相关 0.22（t≈2.2）与 4 周窗口的 0.53，与 8 月版的读法②（采用度跟随价格）也相容——本期数据不能区分读法①与②</strong>（第 7 章）。</li>
+<li><strong>机构通道：Grayscale 的 Zcash ETF（ZCSH）8/25 在 NYSE Arca 上市</strong>——<strong>8 月版漏记</strong>。SEC 一手文件显示：6/30 持有 <strong>388,673.68 ZEC</strong>；9/8 DCG 以 <strong>85,705.33 ZEC</strong> 换购约 $1 亿份额；9/29 拆股前 7,989,300 股 × 每股净值 $111.41 ≈ <strong>$8.90 亿</strong>，折合约 <strong>63–64 万 ZEC（约 3.7% 的总供应）</strong>。</li>
+<li><strong>一手核实了 8 月版标为二手的三件事</strong>：ZIP 271 原文确认 78,750 ZEC 是 <strong>NU6.1 激活时的一次性拨付</strong>（打到 2-of-3 多签地址）；ZIP 208 确认<strong>下次减半在区块 4,406,400</strong>（约 2028 年 11 月）；8 月版「1,046,399 → 1,046,400 补贴 6.25 → 3.125 机制未确认」的答案是——<strong>那就是第一次减半</strong>（Blossom 把出块从 150 秒改为 75 秒，每块补贴先折半成 6.25）。</li>
+<li><strong>NU7（25 秒出块）</strong>：ZIP 218 原文写明每块补贴同时除以 3，<strong>单位时间发行不变</strong>——与 GRAM 期「提速即放水」的情形相反。持币人投票 99.9% 支持（二手），测试网 10/4 激活，主网计划 11/5（二手，激活高度 10/20 才定）。</li>
+<li><strong>监管（8 月版完全缺失，本期补上）</strong>：交易所 API 一手核对——ZEC 在币安、OKX、Coinbase（ZEC-USD）、Kraken 仍可交易；<strong>Coinbase 已下架 ZEC-USDC 与 ZEC-BTC</strong>；<strong>币安的 XMR 交易对状态为 BREAK（停止交易）</strong>。欧盟 AMLR 2027-07-10 起的限制本报告<strong>未能打开 EUR-Lex 原文</strong>（网站对脚本返回空页），标为二手。</li>
+</ol>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ZEC 是什么</strong></td>
+<td>一条把「隐私」做成产品的 PoW 链，21,000,000 枚硬顶、约四年减半，与 BTC 同构；差别是透明池与屏蔽池两套账</td>
+</tr>
+<tr>
+<td><strong>当前价格位置</strong></td>
+<td><strong>$1,438.41</strong>（9/30 币安收盘），市值约 <strong>$244.0 亿</strong>（9/30 链上总供应 16,961,500 × 收盘价；CoinGecko 10/5 排名第 10）</td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3 表现</strong></td>
+<td><strong>9 月 +69.60%、Q3 +260.05%</strong>，YTD +180.77%。超出 BTC beta 预期：9 月约 1.1 个标准差、Q3 约 1.4 个，<strong>不能排除噪声</strong></td>
+</tr>
+<tr>
+<td><strong>本期最重要的发现</strong></td>
+<td><strong>8 月版的「恢复」大半来自（事先公布的）投票快照前 52 小时的集中屏蔽</strong>（+40.8 万枚，+2.4pp，约 40 万来自透明池）；资金来源与动机不可知；9 月价格 +69.60%，屏蔽占比只 +0.40pp</td>
+</tr>
+<tr>
+<td><strong>屏蔽占比</strong></td>
+<td><strong>29.14%</strong>（9/30，4,942,688 ZEC ≈ $71.1 亿）。4 月峰值 31.01% 仍未收复；<strong>日采样的最低点是 7/28 的 25.38%</strong>（8 月版写 7/30 的 25.49%，采样更稀）</td>
+</tr>
+<tr>
+<td><strong>价格与屏蔽占比</strong></td>
+<td>周度同期相关 <strong>0.13</strong>（97 周，不显著）；滞后（价格领先一周）0.22、4 周 0.53——<strong>同期几乎无关，但与「采用跟随价格」也相容；本期不能区分</strong></td>
+</tr>
+<tr>
+<td><strong>机构通道</strong></td>
+<td>ZCSH 持有约 <strong>63–64 万 ZEC（约 3.7% 供应）</strong>，Q3 增加约 25 万枚，其中 DCG 一笔 85,705 枚（SEC 一手）</td>
+</tr>
+<tr>
+<td><strong>发行</strong></td>
+<td>区块补贴 <strong>1.5625 ZEC</strong>，年增发约 <strong>3.87%</strong>；下次减半区块 <strong>4,406,400</strong>（约 2028-11）；NU7 若按 ZIP 218 激活，<strong>每块补贴变为约 0.5208、单位时间发行不变</strong></td>
+</tr>
+<tr>
+<td><strong>开发基金</strong></td>
+<td><code>lockbox</code> <strong>66,674.25 ZEC</strong>（9/30，≈ $9,590 万），<strong>78,750 枚一次性拨付后没有新的拨付机制</strong>（ZIP 271 只列备选方案）</td>
+</tr>
+<tr>
+<td><strong>链上费用</strong></td>
+<td>9 月 <strong>109.28 ZEC</strong>（≈ $14.4 万），交易笔数是 8 月的 2.7 倍；<strong>只占当月区块补贴的 0.20%</strong></td>
+</tr>
+<tr>
+<td><strong>核心多头逻辑</strong></td>
+<td>ETF 通道打开且有大额实物申购；减半与 NU7 发行规则透明且有原文；Orchard 迁移已完成约 90%；屏蔽占比在快照后维持在 29% 左右（判别力弱）</td>
+</tr>
+<tr>
+<td><strong>核心空头逻辑</strong></td>
+<td>屏蔽占比不能用作短期价格信号（周度同期相关 0.13）；它可被投票激励、托管等非「采用」因素移动；年增发 3.87%；Coinbase 已下架 ZEC 两个交易对、XMR 在币安停止交易（同类先例）；ZCSH 关联方 DCG 的矿池约占全网算力 15.4%</td>
+</tr>
+<tr>
+<td><strong>估值立场</strong></td>
+<td><strong>不给目标价</strong>（同 8 月版）；本期尝试了屏蔽池「净流入加权价格」（约 $157），<strong>它不是成本基准</strong>，原因见 8.3</td>
+</tr>
+<tr>
+<td><strong>风险等级</strong></td>
+<td>高。年化波动 9 月 153.0%、过去一年 156.2%；beta 1.5，R² 只有 0.19</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-zcash">1. Zcash 是什么</h2>
+<blockquote>
+<p>完整背景见 8 月首期第 1 章。本期只保留理解新内容所需的部分，并补上 8 月版遗留的两处原文核对。</p>
+</blockquote>
+<h3 id="11-btc">1.1 与 BTC 同构的货币政策，加上两套账</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>ZEC</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供应上限</td>
+<td>21,000,000</td>
+<td>21,000,000</td>
+</tr>
+<tr>
+<td>共识</td>
+<td>PoW（Equihash）</td>
+<td>PoW（SHA-256）</td>
+</tr>
+<tr>
+<td>当前区块补贴</td>
+<td><strong>1.5625 ZEC</strong>（75 秒一块）</td>
+<td>3.125 BTC（10 分钟一块）</td>
+</tr>
+<tr>
+<td>账本</td>
+<td><strong>透明池 + 屏蔽池</strong></td>
+<td>单一透明账本</td>
+</tr>
+<tr>
+<td>开发基金</td>
+<td><strong>有</strong>（补贴的 12% 进 <code>lockbox</code>，8% 给社区资助 ZCG）</td>
+<td>无</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="12-8">1.2 减半规则：8 月版的两个空白，本期用协议原文补上</h3>
+<p><strong>ZIP 208 原文</strong>（GitHub <code>zcash/zips</code>，一手）：Blossom 升级把出块间隔从 150 秒改为 75 秒，<code>PostBlossomHalvingInterval = floor(840,000 × 2) = 1,680,000</code> 区块，每块补贴同时除以 2，<strong>以保持单位时间发行与减半日期不变</strong>。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th style="text-align: right;">区块</th>
+<th>发生了什么</th>
+<th style="text-align: center;">每块补贴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">653,600（2019-12）</td>
+<td>Blossom：出块 150 秒 → 75 秒</td>
+<td style="text-align: center;">12.5 → <strong>6.25</strong>（单位时间发行不变）</td>
+</tr>
+<tr>
+<td style="text-align: right;"><strong>1,046,400</strong>（2020-11）</td>
+<td><strong>第一次减半</strong></td>
+<td style="text-align: center;">6.25 → <strong>3.125</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;"><strong>2,726,400</strong>（2024-11-23）</td>
+<td>第二次减半</td>
+<td style="text-align: center;">3.125 → <strong>1.5625</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;"><strong>4,406,400</strong>（约 2028-11，<strong>仅在 NU7 不激活时成立</strong>）</td>
+<td><strong>第三次减半</strong>（2,726,400 + 1,680,000）</td>
+<td style="text-align: center;">→ 0.78125</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>8 月版写「1,046,399 → 1,046,400 补贴 6.25 → 3.125，机制未确认」——它就是第一次减半。</strong> 8 月版的 12.5 来自 Blossom 之前的采样点，而 Blossom 把每块补贴先折半成 6.25，8 月版没有采到中间这一段。<br />
+<strong>下次减半的日期按 75 秒推算</strong>：从 9/30 的区块 3,501,995 起还有 904,405 块，约 785 天，<strong>约 2028 年 11 月下旬</strong>。⚠️ <strong>NU7 若激活，减半的区块高度会变</strong>（激活后剩余区块按 25 秒、间隔 5,040,000 重算），<strong>但 ZIP 218 的设计使日期大致不变</strong>（1.4）——<strong>「4,406,400」只在 NU7 不激活时是减半高度</strong>（Codex 审查指出）。</p>
+</blockquote>
+<h3 id="13-zip-271">1.3 开发基金：ZIP 271 原文</h3>
+<p><strong>ZIP 271《Dev Fund Extension and One-Time Disbursement》原文</strong>（一手）：</p>
+<ul>
+<li>NU6.1 激活时，把 lockbox 的<strong>全部余额一次性</strong>支付到一个 <strong>2-of-3 P2SH 多签地址</strong>（持钥方为 Zcash Foundation、Electric Coin Company 等）；</li>
+<li>原文写明该金额<strong>在主网必须为 78,750 ZEC</strong>——与 8 月版二分法定位到区块 3,146,400 的 78,750.00 枚完全一致；</li>
+<li><strong>激活之后继续累积进 lockbox 的资金，ZIP 271 只列出「多种可选的分配机制」，没有定下任何一种</strong>；该 ZIP 状态仍为 Proposed。</li>
+</ul>
+<p><strong>链上读数</strong>：9/30 lockbox <strong>66,674.25 ZEC</strong> = (3,501,995 − 3,146,400) × 0.1875 + 0.19，与「每块 0.1875、期间无拨付」完全吻合。</p>
+<blockquote>
+<p><strong>含义</strong>：8 月版撤回「420,000 区块周期」是对的——<strong>它不是周期，是一次性的</strong>。现在这 6.67 万枚（≈ $9,590 万）<strong>没有已定义的拨付时点和机制</strong>；它在协议里锁着，直到有新的 ZIP 定下规则。</p>
+</blockquote>
+<h3 id="14-nu725">1.4 NU7：25 秒出块，但发行不变</h3>
+<p><strong>ZIP 218《25-second Block Target Spacing》原文</strong>（一手，状态 Draft）：</p>
+<ul>
+<li>出块目标从 75 秒改为 <strong>25 秒</strong>；</li>
+<li><strong>每块补贴再除以 3</strong>（公式中加入 <code>NU7PoWTargetSpacingRatio</code>），原文：使「<strong>单位挂钟时间的总发行保持不变</strong>」；</li>
+<li>减半间隔放大为 <strong>5,040,000 块</strong>，减半日期不变；取整带来的发行差异为亿分之一 ZEC 量级。</li>
+</ul>
+<blockquote>
+<p><strong>与 GRAM 期的对照（本系列最直接的一次）</strong>：TON 在 2026-04 把出块从 2.4 秒提到 0.4 秒，<strong>每块奖励没改</strong>，年化发行因此放大 5.85 倍，且没有出现在任何货币政策讨论里。<br />
+<strong>Zcash 的 ZIP 218 把「出块速度」和「每块补贴」写在同一份规范里一起改</strong>——这正是 GRAM 期那条规则（「按块发放的链，提速就是一次货币政策变更」）要求的做法。<br />
+⚠️ <strong>但它目前只是规范文本</strong>。主网是否按此执行，要等激活后读 <code>chainSupply.valueDelta</code> 才知道——本期登记为 Z9-1。</p>
+</blockquote>
+<hr />
+<h2 id="2-zec">2. ZEC 的发展阶段划分</h2>
+<blockquote>
+<p>阶段一至四见 8 月首期。阶段五追加本期事件。</p>
+</blockquote>
+<h3 id="etf2026-05">阶段五：漏洞、迁移、投票与 ETF（2026-05– 至今）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>事件</th>
+<th style="text-align: center;">核实等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-06-04</td>
+<td>Orchard 电路伪造漏洞公开披露</td>
+<td style="text-align: center;">⚠️ 二手</td>
+</tr>
+<tr>
+<td>2026-06-26 起</td>
+<td>Grayscale Zcash Trust 申请转为 ETF（S-3 及修订，SEC）</td>
+<td style="text-align: center;">✅ SEC 一手</td>
+</tr>
+<tr>
+<td><strong>2026-07-28</strong></td>
+<td><strong>Ironwood（NU6.3）激活，区块 3,428,143；当日屏蔽占比日采样最低 25.38%</strong></td>
+<td style="text-align: center;">✅ 链上</td>
+</tr>
+<tr>
+<td><strong>2026-08-22 07:28 → 08-24 11:55</strong></td>
+<td><strong>屏蔽总量 +40.8 万枚（25.99% → 28.39%）</strong></td>
+<td style="text-align: center;">✅ 链上</td>
+</tr>
+<tr>
+<td><strong>2026-08-05</strong></td>
+<td><strong>NU7 持币人投票公告：快照区块 3,459,350，按 Ironwood 余额定资格，快照后资金可立即转走</strong></td>
+<td style="text-align: center;">✅ 社区论坛发起帖原文</td>
+</tr>
+<tr>
+<td><strong>2026-08-24 19:18</strong></td>
+<td><strong>快照区块 3,459,350</strong></td>
+<td style="text-align: center;">✅ 链上</td>
+</tr>
+<tr>
+<td><strong>2026-08-25</strong></td>
+<td><strong>ZCSH 在 NYSE Arca 上市</strong>（S-3 8/24 生效）</td>
+<td style="text-align: center;">✅ SEC 一手</td>
+</tr>
+<tr>
+<td><strong>2026-09-08</strong></td>
+<td>DCG 以 85,705.33 ZEC 换购约 $1 亿 ZCSH 份额</td>
+<td style="text-align: center;">✅ SEC 8-K</td>
+</tr>
+<tr>
+<td>2026-09-14</td>
+<td>NU7 投票截止：约 240 万 ZEC 参与，99.9% 支持 25 秒出块、98.9% 支持保留减半时间表、约 97% 支持 2031-02 开始 NSM 再发行</td>
+<td style="text-align: center;">⚠️ 二手</td>
+</tr>
+<tr>
+<td>2026-09-16</td>
+<td>ZEC 单日 <strong>+20.5%</strong>（9 月唯一一个超过 20% 的交易日）</td>
+<td style="text-align: center;">✅ 币安</td>
+</tr>
+<tr>
+<td>2026-09-24</td>
+<td>Bitget 被盗约 $3.875 亿；据报道部分资金（约 2,746 ZEC）9/30 转入 Ironwood</td>
+<td style="text-align: center;">⚠️ 二手，<strong>屏蔽转入无法在链上归属</strong></td>
+</tr>
+<tr>
+<td><strong>2026-09-26</strong></td>
+<td>9 月收盘高点 <strong>$1,653.12</strong>（盘中 $1,698.00）</td>
+<td style="text-align: center;">✅ 币安</td>
+</tr>
+<tr>
+<td>2026-09-30</td>
+<td>ZCSH 1 拆 3 生效；当日据报单日赎回约 $3,025 万</td>
+<td style="text-align: center;">✅ 拆股为 SEC 一手；赎回额二手</td>
+</tr>
+<tr>
+<td>2026-10-04</td>
+<td>NU7 在测试网激活（晚于本期数据截止）</td>
+<td style="text-align: center;">⚠️ 二手</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="3-zec">3. ZEC 当前现状</h2>
+<h3 id="30-8-5">3.0 论点校验：8 月版登记的 5 条</h3>
+<blockquote>
+<p>8 月版登记的 Z8-1 至 Z8-5 <strong>都未到检验窗口</strong>（最早 2027-03-08）。下表记录中期读数，<strong>不做判定</strong>。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th>检验条件（摘要）</th>
+<th>9 月读数</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Z8-1</td>
+<td>⚑ 屏蔽占比会恢复到 31.01% 之上</td>
+<td>2027-03-08 前未站上 31.01% 且无单个 4 小时窗口净流入 &gt;20 万枚，则错</td>
+<td><strong>9 月最高 29.14%（9/30）</strong>；登记后最大单日净流入 +5.2 万（9/30）</td>
+<td>⏳。⚠️ <strong>构念警示（两侧对称）</strong>：屏蔽占比可被投票资格快照推动（4.2），<strong>若靠下一次快照站上 31.01% 或靠 4 小时脉冲豁免，须注明窗口内有无快照</strong>；若 ETF 净申购 &gt;17 万枚且以透明方式托管，可能压低占比，<strong>判 ❌ 时同样须注明</strong>。快照前窗口实测最大 4 小时净流入 13.7 万枚（未达 20 万，且早于登记日）</td>
+</tr>
+<tr>
+<td>Z8-2</td>
+<td>Orchard 残留会被基本清空</td>
+<td>2027-03-08 时 Orchard &gt; 100,000 则错</td>
+<td><strong>378,875</strong>（9/30）；10/1–10/5 只少 1,660 枚</td>
+<td>⏳ <strong>方向不利</strong>：下降明显放缓</td>
+</tr>
+<tr>
+<td>Z8-3</td>
+<td>区块补贴维持 1.5625</td>
+<td>2027-03-08 时 <code>valueDelta</code> ≠ 1.5625 则错</td>
+<td><strong>1.5625</strong>（9/30）</td>
+<td>⏳。⚠️ <strong>NU7 若在检验日前激活，被测量的参数会按协议计划改变</strong>——记分卡改为：激活则 <strong>⊘</strong>（不计入正确率），未激活则按字面判；发行是否不变由 Z9-1 单独检验</td>
+</tr>
+<tr>
+<td>Z8-4</td>
+<td>⚑ 不会再发现同类电路漏洞（条件式）</td>
+<td>有独立审计且无严重问题则 ✅；再披露严重漏洞则 ❌；否则不判</td>
+<td><strong>9 月未见新的屏蔽池完整性漏洞披露</strong>（检索范围：Zcash 社区与主要加密媒体，WebSearch）；也未见完成的独立第三方电路审计</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>Z8-5</td>
+<td>波动主要来自自身事件</td>
+<td>2027-09-09 时一年 R² &gt; 40% 且年化波动未跌破 110%，则错</td>
+<td><strong>一年 R² 0.193、年化波动 156.2%</strong>（币安）</td>
+<td>⏳ 远离门槛</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="31">3.1 价格与市场</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9/30 收盘</strong></td>
+<td><strong>$1,438.41</strong></td>
+<td>币安 ZECUSDT 日线</td>
+</tr>
+<tr>
+<td>市值</td>
+<td><strong>约 $244.0 亿</strong></td>
+<td>链上总供应 16,961,500 × 收盘价</td>
+</tr>
+<tr>
+<td>CoinGecko 排名</td>
+<td>第 10（10/5）</td>
+<td>CoinGecko API</td>
+</tr>
+<tr>
+<td>9 月区间</td>
+<td>低 <strong>$788.15</strong>（9/2 盘中）/ 高 <strong>$1,698.00</strong>（9/26 盘中）；收盘低 $815.53（9/2）、高 $1,653.12（9/26）</td>
+<td>币安</td>
+</tr>
+<tr>
+<td>9 月日成交额中位数</td>
+<td><strong>$3.09 亿</strong>（8 月版 $2.09 亿为 CoinGecko 口径）</td>
+<td>币安 quote volume</td>
+</tr>
+<tr>
+<td>历史最高</td>
+<td>$3,191.93（2016-10-28，上线当日，流动性极薄）</td>
+<td>CoinGecko</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th>ZEC</th>
+<th>BTC</th>
+<th>DASH（另一隐私类资产）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9 月</strong>（8/31 → 9/30）</td>
+<td><strong>+69.60%</strong></td>
+<td>+6.42%</td>
+<td>+34.95%</td>
+</tr>
+<tr>
+<td><strong>Q3</strong>（6/30 → 9/30）</td>
+<td><strong>+260.05%</strong></td>
+<td>+42.64%</td>
+<td>+86.17%</td>
+</tr>
+<tr>
+<td>8 月（币安口径，更正 8 月版）</td>
+<td>+85.30%</td>
+<td>+24.95%</td>
+<td>+45.46%</td>
+</tr>
+<tr>
+<td>YTD</td>
+<td>+180.77%</td>
+<td>−4.59%</td>
+<td>+45.42%</td>
+</tr>
+<tr>
+<td>近 1 年（2025-09-30 起）</td>
+<td><strong>+1,835%</strong></td>
+<td>−26.68%</td>
+<td>+170.45%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>beta、R² 与噪声带</strong>（对数收益）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>窗口</th>
+<th>年化波动</th>
+<th>对 BTC beta</th>
+<th>R²</th>
+<th>对数残差</th>
+<th>1 个标准差</th>
+<th><strong>约几个标准差</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月</td>
+<td>153.0%</td>
+<td>1.496</td>
+<td>0.162</td>
+<td>+0.435</td>
+<td>0.402</td>
+<td><strong>约 1.1</strong></td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>118.9%</td>
+<td>1.702</td>
+<td>0.297</td>
+<td>+0.677</td>
+<td>0.500</td>
+<td><strong>约 1.4</strong></td>
+</tr>
+<tr>
+<td>近 1 年</td>
+<td>156.2%</td>
+<td>1.523</td>
+<td>0.193</td>
+<td>+3.435</td>
+<td>1.403</td>
+<td>约 2.4</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>读法</strong>：R² 只有 0.16–0.30，BTC 只能解释 ZEC 两成左右的日波动；<strong>9 月和 Q3 的超额都在 1.5 个标准差以内，不能断言是 ZEC 自己的行情</strong>。近一年的 2.4 个标准差是本系列少见的量级，但它包含 2025-10 的单月暴涨（7.2 的 2025-09-27 窗口）——<strong>该窗口贡献了一年残差的约四成（39%）</strong>。<br />
+9 月单日涨跌超过 20% 的只有 <strong>9/16（+20.5%）</strong>——NU7 投票结果公布的同一天（二手报道）。<strong>本报告不做归因</strong>：同日还有美联储议息，且 ZEC 近一年有 13 天单日涨跌超过 20%。</p>
+</blockquote>
+<h3 id="32">3.2 发行与链上费用</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>9 月</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>区块补贴</td>
+<td><strong>1.5625 ZEC</strong>（9/30 <code>valueDelta</code>）</td>
+<td>✅ 链上</td>
+</tr>
+<tr>
+<td>9 月出块</td>
+<td>34,405 块（区块 3,467,591 → 3,501,995）</td>
+<td>✅ 链上</td>
+</tr>
+<tr>
+<td>9 月新发行</td>
+<td><strong>53,757.8 ZEC</strong>（= 34,405 × 1.5625，与 <code>chainSupply</code> 增量一致）</td>
+<td>✅ 链上</td>
+</tr>
+<tr>
+<td>年增发</td>
+<td>约 657,000 ZEC = <strong>3.87%</strong></td>
+<td>计算</td>
+</tr>
+<tr>
+<td><strong>9 月链上手续费</strong></td>
+<td><strong>109.28 ZEC</strong>（≈ $14.4 万）</td>
+<td>Coin Metrics <code>FeeTotNtv</code>（DefiLlama 适配器即读此字段，已读源码确认）</td>
+</tr>
+<tr>
+<td>9 月交易笔数</td>
+<td><strong>363,167</strong>（日均 12,105；8 月 140,220、日均 4,523）</td>
+<td>Coin Metrics <code>TxCnt</code></td>
+</tr>
+<tr>
+<td>平均每笔手续费</td>
+<td>0.000301 ZEC（8 月 0.000426）</td>
+<td>计算</td>
+</tr>
+<tr>
+<td><strong>手续费 ÷ 区块补贴</strong></td>
+<td><strong>0.20%</strong></td>
+<td>计算</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>交易笔数 9 月是 8 月的 2.7 倍，手续费只是 1.8 倍</strong>——每笔费用在下降，说明增量主要是低费用交易。<strong>增量的来源本报告没有拆分</strong>（不知道是支付、交易所归集、投票相关操作还是刷量），不做解读。<br />
+⚠️ <strong>口径提醒</strong>：8 月版引用的「全网约 12,690 笔/日」来自 Blockchair <code>/stats</code>，与 Coin Metrics 的口径不同（8 月 Coin Metrics 日均 4,523），<strong>两者不可混用</strong>。<br />
+<strong>量级</strong>：手续费只有区块补贴的 0.2%。<strong>矿工收入几乎全部来自发行</strong>，8 月版「持币人对费用没有索取权」这个论证在量级上也无关紧要——<strong>费用本身可以忽略</strong>。NU7 的 NSM（网络可持续机制，把部分手续费移出流通、2031 年起再发行）<strong>按当前费用量级，对供应的影响也可以忽略</strong>。</p>
+</blockquote>
+<h3 id="33-9">3.3 屏蔽池：9 月的读数</h3>
+<p><strong>六个池的余额</strong>（节点 <code>valuePools</code>，区块 3,501,995，9/30 23:59 UTC）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>池</th>
+<th style="text-align: right;">9/30</th>
+<th style="text-align: right;">8/31（区块 3,467,590）</th>
+<th style="text-align: right;">9 月变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transparent</td>
+<td style="text-align: right;">11,952,137.71（70.47%）</td>
+<td style="text-align: right;">11,988,216.80</td>
+<td style="text-align: right;">−36,079</td>
+</tr>
+<tr>
+<td>sprout</td>
+<td style="text-align: right;">22,310.78</td>
+<td style="text-align: right;">22,591.46</td>
+<td style="text-align: right;"><strong>−280.68</strong></td>
+</tr>
+<tr>
+<td>sapling</td>
+<td style="text-align: right;">478,714.53</td>
+<td style="text-align: right;">524,781.69</td>
+<td style="text-align: right;">−46,067</td>
+</tr>
+<tr>
+<td>orchard（已关闭）</td>
+<td style="text-align: right;"><strong>378,875.32</strong></td>
+<td style="text-align: right;">470,499.48</td>
+<td style="text-align: right;"><strong>−91,624</strong></td>
+</tr>
+<tr>
+<td><strong>ironwood</strong></td>
+<td style="text-align: right;"><strong>4,062,787.58</strong></td>
+<td style="text-align: right;">3,841,429.62</td>
+<td style="text-align: right;"><strong>+221,358</strong></td>
+</tr>
+<tr>
+<td>lockbox</td>
+<td style="text-align: right;">66,674.25</td>
+<td style="text-align: right;">60,223.31</td>
+<td style="text-align: right;">+6,451</td>
+</tr>
+<tr>
+<td><strong>合计 = chainSupply</strong></td>
+<td style="text-align: right;"><strong>16,961,500.17</strong></td>
+<td style="text-align: right;">16,907,742.35</td>
+<td style="text-align: right;">+53,758</td>
+</tr>
+<tr>
+<td><strong>屏蔽合计</strong></td>
+<td style="text-align: right;"><strong>4,942,688.21 = 29.14%</strong></td>
+<td style="text-align: right;">4,859,302.24 = 28.74%</td>
+<td style="text-align: right;"><strong>+83,386 / +0.40pp</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>两项内部一致性检验均通过</strong>：六池合计与 <code>chainSupply</code> 差 0.000000（8/31、9/30、6/30 三个时点）；9 月供应增量 53,758 = 出块数 × 1.5625。<br />
+⚠️ 全部池数据仍来自同一个接口（Blockchair 转发的节点字段），<strong>不是独立节点验证</strong>。</p>
+<p><strong>两处值得记录的小变化</strong>：① <strong>Sprout（2016 年第一代池，8 月版称「搁浅资金」）9 月流出 280.68 枚</strong>——搁浅了多年的资金在被取出，说明「搁浅」不等于「永久丢失」，这与 Z8-2 的判断有关；② Sapling 9 月流出 46,067 枚，Ironwood 的增量里有一部分来自 Sapling 迁移，<strong>不全是新屏蔽的资金</strong>。</p>
+</blockquote>
+<h3 id="34">3.4 宏观环境</h3>
+<blockquote>
+<p>与 BTC 9 月版共用（美联储 9/16 加息 25bp 至 3.75–4.00%，10 年期美债 5.29%，一手）。<strong>ZEC 对 BTC 的 R² 只有约 0.19，宏观经 BTC 传导的解释力很弱。</strong></p>
+</blockquote>
+<h3 id="35-8">3.5 机构通道与监管（本期新增；8 月版完全缺失）</h3>
+<p><strong>① ETF：Grayscale 的 Zcash ETF（ZCSH）</strong>（SEC EDGAR，一手）</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th>事件 / 数据</th>
+<th>文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6/30</td>
+<td>持有 <strong>388,673.68 ZEC</strong>，成本 $4,732 万，公允价值 $1.553 亿；4,829,300 股，每股净值 $32.15</td>
+<td>10-Q</td>
+</tr>
+<tr>
+<td>8/24</td>
+<td>S-3 生效（EFFECT），NYSE Arca 上市登记（8-A12B）</td>
+<td>SEC</td>
+</tr>
+<tr>
+<td><strong>8/25</strong></td>
+<td><strong>在 NYSE Arca 上市交易</strong>（此前在 OTCQX）</td>
+<td>424B3</td>
+</tr>
+<tr>
+<td><strong>9/8</strong></td>
+<td><strong>DCG 通过授权参与人以 85,705.33 ZEC 换购约 $1 亿份额</strong>（原意向约 20 万枚）</td>
+<td>8-K</td>
+</tr>
+<tr>
+<td>9/30</td>
+<td>1 拆 3 生效：<strong>拆股前 7,989,300 股、每股净值 $111.41</strong>；拆股后 23,967,900 股、每股 $37.14</td>
+<td>8-K</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>由此推算 9/29 的持仓（粗估，不是 SEC 披露的持币数）</strong>：每股含币量 6/30 为 0.080483 ZEC，<strong>按年化 2.5%、以 ZEC 支付的管理费（10-Q 一手）</strong>扣减一个季度后约 0.0800 → 约 63.9 万；按每股净值 $111.41 ÷ 9/29 币安收盘 $1,417.36 反推约 62.8 万（定价时点与口径不同）。→ <strong>约 63–64 万 ZEC，约占总供应 3.7%</strong>；Q3 增加约 24–25 万枚，其中 DCG 一笔占三分之一以上。<strong>实际持仓以 Q3 10-Q 为准。</strong></p>
+<blockquote>
+<p><strong>托管</strong>（424B3、10-Q 一手）：托管人为 <strong>Coinbase Custody Trust Company</strong>，私钥冷存储。⚠️ <strong>以透明还是屏蔽地址持币，申报文件没有写</strong>。<strong>若以透明方式托管，ETF 每申购 17 万枚就会把屏蔽占比压低约 1 个百分点</strong>——这是 8 月版 1.2 所说「交易所/托管方持仓会扭曲比率」的一个具体、可观测的来源。</p>
+</blockquote>
+<p><strong>② 交易所渠道</strong>（各交易所公开 API，<strong>10/5 单一时点</strong>一手实测；下架发生的时间本报告未查，<strong>不能据此说「正在收窄」</strong>）</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>交易所</th>
+<th>ZEC</th>
+<th>其他隐私类资产</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>币安</td>
+<td>ZEC/USDT、ZEC/BTC <strong>TRADING</strong></td>
+<td><strong>XMR/USDT 状态 BREAK</strong>（币安日线止于 2024-02-20）；DASH TRADING</td>
+</tr>
+<tr>
+<td>OKX</td>
+<td>ZEC-USDT、ZEC-USDC、<strong>ZEC-EUR</strong> live</td>
+<td>DASH live；无 XMR</td>
+</tr>
+<tr>
+<td>Coinbase</td>
+<td><strong>ZEC-USD online；ZEC-USDC、ZEC-BTC 已下架（delisted）</strong></td>
+<td>DASH online</td>
+</tr>
+<tr>
+<td>Kraken</td>
+<td>ZEC-EUR online</td>
+<td>XMR 多个交易对 online</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>能说的</strong>：ZEC 在主要交易所仍可交易；<strong>Coinbase 上 ZEC 只剩 ZEC-USD</strong>（另两对已下架，时点未查）；XMR 在币安已停止交易——<strong>同类资产的下架先例是存在的</strong>。<br />
+⚠️ 媒体报道「OKX 收紧 ZEC 支持」——<strong>OKX API 显示 ZEC 三个交易对均 live，本报告不采信该说法</strong>。</p>
+</blockquote>
+<p><strong>③ 欧盟 AMLR</strong>：多家媒体称欧盟反洗钱条例（Regulation (EU) 2024/1624）自 <strong>2027-07-10</strong> 起禁止加密资产服务商处理「增强匿名性」的资产。<strong>本报告尝试打开 EUR-Lex 原文三次（HTML、PDF、出版局地址），网站均返回空页或 404</strong>，因此<strong>该条款的确切措辞与适用范围标为 ⚠️ 二手</strong>。⚠️ <strong>领域审查（Codex）称已读到原文</strong>：定义<strong>明确包括可选匿名功能</strong>的资产，但第 79 条针对的是服务商<strong>维持允许匿名或增加交易模糊性的账户</strong>，<strong>不能简写成「全面禁止处理 ZEC」</strong>——本报告未能独立打开原文核对，<strong>按这个更窄的读法写入</strong>。</p>
+<p><strong>④ 矿工集中度（424B3 一手，8 月版列为缺口）</strong>：招募书写明，<strong>ZCSH 发起人的关联方 DCG 经营的 ZEC 矿池约占 2026 年 7 月 Zcash 全网算力的 15.4%</strong>，并提示 DCG 可能优先考虑自身利益。<strong>同一集团既是最大的 ETF 申购方之一（9/8 的 85,705 枚）、又经营约六分之一的算力</strong>——这是一个需要跟踪的集中度与利益冲突点。</p>
+<p><strong>⑤ 美国</strong>：ZCSH 的 S-3 已生效并在交易所上市——<strong>美国注册公开发行的通道已经打开</strong>（SEC 一手）。媒体称 SEC 对 Zcash Foundation 的调查已结束未采取行动（<strong>二手</strong>）。</p>
+<h3 id="36-q3">3.6 Q3 季度回顾</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>Q2 2026</th>
+<th><strong>Q3 2026</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ZEC 季度涨跌（币安）</td>
+<td>—</td>
+<td><strong>+260.05%</strong></td>
+</tr>
+<tr>
+<td>季末屏蔽占比</td>
+<td>26.31%（6/30）</td>
+<td><strong>29.14%</strong>（9/30），+2.83pp</td>
+</tr>
+<tr>
+<td>其中投票快照前 52 小时</td>
+<td>—</td>
+<td><strong>+2.40pp</strong>（8/22–8/24）</td>
+</tr>
+<tr>
+<td>季内最低（日采样）</td>
+<td>—</td>
+<td>25.38%（7/28）</td>
+</tr>
+<tr>
+<td>Orchard → Ironwood</td>
+<td>Orchard 3,773,138</td>
+<td>Orchard 378,875 / Ironwood 4,062,788</td>
+</tr>
+<tr>
+<td>ZCSH 持仓</td>
+<td>388,674 ZEC</td>
+<td>约 63–64 万 ZEC</td>
+</tr>
+<tr>
+<td>链上手续费（ZEC）</td>
+<td>—</td>
+<td>7 月 50.8 / 8 月 59.8 / 9 月 109.3</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>一句话</strong>：<strong>Q3 是 ZEC 价格涨了 3.6 倍、屏蔽占比回升 2.8pp 的季度——但回升的大部分集中在一次投票资格快照之前，价格的大部分涨幅与屏蔽占比的变化在时间上对不上。</strong></p>
+<hr />
+<h2 id="4">4. 屏蔽池：从「恢复」到「快照」（本期核心章）</h2>
+<h3 id="41">4.1 日采样的屏蔽占比</h3>
+<p><img alt="Zcash 屏蔽占比（2026-07-01 至 10-05，按天采样）" src="charts/shielded-ratio-202609.svg" /></p>
+<blockquote>
+<p>图中数字：7/28 日采样最低 25.38%；8/24 投票快照，前 52 小时 +40.8 万枚；10/5 为 29.09%；红虚线为 4/25 峰值 31.01%（Z8-1 门槛）；纵轴刻度 25% / 27% / 29% / 31%；横轴 7/1、8/1、9/1、10/1。</p>
+</blockquote>
+<p><strong>本期把采样从 8 月版的 8–27 天一个点加密到每天一个点</strong>（7/1–10/5，97 个点）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点（UTC）</th>
+<th style="text-align: right;">区块</th>
+<th style="text-align: right;">屏蔽合计</th>
+<th style="text-align: center;">屏蔽占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6/30 23:58</td>
+<td style="text-align: right;">3,396,508</td>
+<td style="text-align: right;">4,419,574</td>
+<td style="text-align: center;">26.31%</td>
+</tr>
+<tr>
+<td><strong>7/28 00:03</strong>（Ironwood 激活当日）</td>
+<td style="text-align: right;">3,427,467</td>
+<td style="text-align: right;">4,274,960</td>
+<td style="text-align: center;"><strong>25.38%（日采样最低）</strong></td>
+</tr>
+<tr>
+<td>8/20 03:15</td>
+<td style="text-align: right;">3,454,000</td>
+<td style="text-align: right;">4,384,863</td>
+<td style="text-align: center;">25.97%</td>
+</tr>
+<tr>
+<td>8/22 07:28</td>
+<td style="text-align: right;">3,456,500</td>
+<td style="text-align: right;">4,389,215</td>
+<td style="text-align: center;">25.99%</td>
+</tr>
+<tr>
+<td>8/23 15:00</td>
+<td style="text-align: right;">3,458,000</td>
+<td style="text-align: right;">4,680,359</td>
+<td style="text-align: center;">27.71%</td>
+</tr>
+<tr>
+<td>8/24 11:55</td>
+<td style="text-align: right;">3,459,000</td>
+<td style="text-align: right;">4,797,201</td>
+<td style="text-align: center;">28.40%</td>
+</tr>
+<tr>
+<td><strong>8/24 19:18（投票快照区块）</strong></td>
+<td style="text-align: right;"><strong>3,459,350</strong></td>
+<td style="text-align: right;"><strong>4,796,835</strong></td>
+<td style="text-align: center;"><strong>28.39%</strong></td>
+</tr>
+<tr>
+<td>8/27 02:54</td>
+<td style="text-align: right;">3,462,000</td>
+<td style="text-align: right;">4,803,435</td>
+<td style="text-align: center;">28.42%</td>
+</tr>
+<tr>
+<td>8/31 23:59</td>
+<td style="text-align: right;">3,467,590</td>
+<td style="text-align: right;">4,859,302</td>
+<td style="text-align: center;">28.74%</td>
+</tr>
+<tr>
+<td>9/30 23:59</td>
+<td style="text-align: right;">3,501,995</td>
+<td style="text-align: right;">4,942,688</td>
+<td style="text-align: center;"><strong>29.14%（9 月日采样最高）</strong></td>
+</tr>
+<tr>
+<td>10/5 00:02</td>
+<td style="text-align: right;">3,506,581</td>
+<td style="text-align: right;">4,936,328</td>
+<td style="text-align: center;">29.09%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>更正 8 月版的谷底</strong>：8 月版写「谷底 25.49%（7/30）」——<strong>日采样显示 7/28 为 25.38%，更低</strong>。8 月版的采样点在 7/12 和 7/30，跨过了这一天。<strong>真实的最低值可能更低</strong>（日采样仍会漏掉日内低点），本报告只能说「日采样最低 25.38%」。<br />
+这是 ZEC 首期「极值断言必须回到数据复算」教训的又一次：<strong>这次不是读错了表，是表的采样太稀。</strong></p>
+</blockquote>
+<h3 id="42-52-408">4.2 52 小时、40.8 万枚：一次与投票快照重合的集中屏蔽</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th style="text-align: right;">屏蔽总量变化</th>
+<th style="text-align: center;">占比变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8/22 07:28 → 8/24 11:55（约 52 小时）</td>
+<td style="text-align: right;"><strong>+407,986</strong></td>
+<td style="text-align: center;">25.99% → 28.40%</td>
+</tr>
+<tr>
+<td>8/24 11:55 → 19:18（快照前约 7 小时）</td>
+<td style="text-align: right;">−366</td>
+<td style="text-align: center;">不变</td>
+</tr>
+<tr>
+<td><strong>8/24 19:18 → 8/31 23:59（快照后一周）</strong></td>
+<td style="text-align: right;">+62,467</td>
+<td style="text-align: center;">28.39% → 28.74%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>投票的规则</strong>（<strong>一手</strong>：Zcash 社区论坛 8/05 的发起帖、投票组织方 zcashlabs.org/voting 页面原文）：<br />
+- 「eligible voters need spendable shielded funds in <strong>Ironwood</strong> at Mainnet block height <strong>3459350</strong>, approximately August 24, 2026 at 19:00 UTC」——<strong>快照区块提前 19 天公布</strong>；<br />
+- 「<strong>Funds can be moved immediately after the snapshot</strong>」——<strong>快照后可以立刻转走</strong>；<br />
+- 透明池、Orchard、Sapling 里的 ZEC 和交易所里的 ZEC <strong>都没有资格</strong>，必须先转进 Ironwood 自托管。</p>
+<p><strong>本报告的链上印证</strong>：快照区块的 Ironwood 余额为 <strong>3,731,959</strong>，约 240 万投票量（二手）约占 <strong>64%</strong>，与报道的「约 66%」相符。</p>
+<p><strong>52 小时里资金从哪来</strong>（同一组区块读数）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>池</th>
+<th style="text-align: right;">8/22 07:28 → 8/24 11:55</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Orchard</td>
+<td style="text-align: right;">−151,512</td>
+</tr>
+<tr>
+<td><strong>Ironwood</strong></td>
+<td style="text-align: right;"><strong>+561,748</strong></td>
+</tr>
+<tr>
+<td>屏蔽合计</td>
+<td style="text-align: right;"><strong>+407,986</strong></td>
+</tr>
+<tr>
+<td>transparent（含期间新发行）</td>
+<td style="text-align: right;">约 −404,000</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Ironwood 的增量里约 15 万来自 Orchard 迁移，约 40 万来自透明池</strong>——也就是从交易所或透明地址<strong>新转入屏蔽状态</strong>的资金。</p>
+</blockquote>
+<p><strong>这条证据能区分什么、不能区分什么</strong>（ZEC 期「不判别的证据不能用来表态」规则）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>假设</th>
+<th>它预测的形态</th>
+<th>实测</th>
+<th style="text-align: center;">本期判别力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A：无触发的逐步恢复</td>
+<td>数周内较平缓的回升</td>
+<td>这 2.4pp 集中在 52 小时</td>
+<td style="text-align: center;"><strong>对这 2.4pp 基本排除</strong>；其余约 1.4pp（7/28→8/22 +0.61pp、快照后→9/30 +0.75pp）是平缓回升，<strong>A 对它们仍然成立</strong></td>
+</tr>
+<tr>
+<td>B：为取得投票资格而屏蔽</td>
+<td>快照（8/05 已公布）前集中流入，快照后停止</td>
+<td>✅ 流入止于快照前约 7 小时</td>
+<td style="text-align: center;">时点证据<strong>偏向 B</strong></td>
+</tr>
+<tr>
+<td>D：ETF 上市（8/25）带来的托管调整</td>
+<td>与上市日对齐的大额屏蔽</td>
+<td>流入止于<strong>快照</strong>前 7 小时，不是对准上市日；Q3 ETF 新增约 24–25 万枚、且 DCG 的 8.6 万枚在 9/8，<strong>新增量撑不起 40 万</strong></td>
+<td style="text-align: center;">只剩一个版本未被排除：<strong>托管人把既有约 39 万枚改为屏蔽托管</strong>——量级恰好吻合，<strong>列为需要核实</strong></td>
+</tr>
+<tr>
+<td>E：单一大额持有人或交易所的运营性归集</td>
+<td>少数几个时段的大额跳升</td>
+<td>52 小时里有三个 4 小时窗口占大部分（+13.7 万、+9.6 万、+9.1 万）</td>
+<td style="text-align: center;">不能排除——<strong>8 月版测到的流出也是时间集中的，这是它的镜像</strong></td>
+</tr>
+<tr>
+<td>注：「6–7 月撤出的资金回流」</td>
+<td>—</td>
+<td>新屏蔽只能来自透明池，<strong>B、D、E 都预测同样的来源</strong>；ZEC 同质、无交易级流向数据</td>
+<td style="text-align: center;"><strong>不可观测</strong>，不作为独立假设（初稿写作「最可能是 B+C」，审查后撤回）</td>
+</tr>
+<tr>
+<td>注：Orchard → Ironwood 池间迁移</td>
+<td>—</td>
+<td>只解释约 15 万</td>
+<td style="text-align: center;">初稿写成「合计必然不变」的稻草人，Codex 审查后改为按池拆分</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>能说的</strong>：8 月版写的「屏蔽占比从谷底恢复了约一半」，<strong>其中约 2.4pp 发生在一个紧贴（事先公布的）投票快照的 52 小时窗口内</strong>；<strong>时点对准快照而不是 ETF 上市</strong>，最可能与投票资格相关。<br />
+<strong>不能说的</strong>：资金来源与持有人动机；B 与 E、以及 D 的托管变更版本之间没有判别证据。<br />
+<strong>「快照后没有回流」没有判别力</strong>：留在屏蔽池对 B（惯性、手续费、保留下次投票资格）、D、E 都同样自然，<strong>它只能排除「临时借来、事后必须归还」这一个窄版本</strong>。初稿据此写「不是虚假回升」，审查后撤回——<strong>本期数据无法判断这 40 万枚是否反映采用</strong>。<br />
+<strong>对 8 月版的影响</strong>：8 月版以「恢复约一半」列为多头 #1（四星）；8 月 7.2 已声明这段回升「对信心零信息量」。本期据时点证据把多头 #1 改写并降为两星。</p>
+</blockquote>
+<h3 id="43-9-6960-040pp">4.3 9 月：价格 +69.60%，屏蔽占比 +0.40pp</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>9 月</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格</td>
+<td>$848.10 → $1,438.41（<strong>+69.60%</strong>）</td>
+</tr>
+<tr>
+<td>屏蔽占比</td>
+<td>28.74% → 29.14%（<strong>+0.40pp</strong>）</td>
+</tr>
+<tr>
+<td>屏蔽合计</td>
+<td>+83,386 枚，其中 9/30 一天 +52,201</td>
+</tr>
+<tr>
+<td>最大单日流出</td>
+<td>9/26 −10,686</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>9 月全月的屏蔽增量里有六成来自月末最后一天</strong>；其余 29 天几乎横住。<strong>价格在同一个月涨了七成。</strong><br />
+8 月版 9.3 的说明段落指出：<strong>「比率横住、价格自行其是」不触发 8 月版的任何阈值</strong>。本期 9 月单月正是这个形态；本期在 9.3 补上对应的监控行。</p>
+</blockquote>
+<h3 id="44-orchard">4.4 迁移：Orchard 残留在放缓</h3>
+<p><img alt="Orchard → Ironwood 迁移（2026-07-01 至 10-05，百万 ZEC）" src="charts/migration-202609.svg" /></p>
+<blockquote>
+<p>图中数字：10/5 Ironwood 4.06、Orchard 0.377（百万 ZEC）；纵轴刻度 0 / 1 / 2 / 3 / 4；横轴 7/1、8/1、9/1、10/1。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>日期</th>
+<th style="text-align: right;">Orchard</th>
+<th style="text-align: right;">Ironwood</th>
+<th style="text-align: right;">Orchard 当期流出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7/28</td>
+<td style="text-align: right;">3,660,101</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td>8/31</td>
+<td style="text-align: right;">470,499</td>
+<td style="text-align: right;">3,841,430</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td>9/30</td>
+<td style="text-align: right;"><strong>378,875</strong></td>
+<td style="text-align: right;"><strong>4,062,788</strong></td>
+<td style="text-align: right;">9 月 −91,624</td>
+</tr>
+<tr>
+<td>10/5</td>
+<td style="text-align: right;">377,215</td>
+<td style="text-align: right;">4,059,868</td>
+<td style="text-align: right;">5 天 −1,660</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>以 7/28 的 366 万枚为基数，迁移已完成约 89.7%</strong>；但<strong>最后 5 天只迁出 1,660 枚，日均 332 枚</strong>——按这个速度，降到 Z8-2 的 10 万枚门槛需要两年以上。<br />
+Sprout 至今仍有 22,311 枚（八年前的池），但本期也看到它在流出（3.3）。<strong>残留会不会像 Sprout 一样长期搁浅，是 Z8-2 真正在赌的东西。</strong></p>
+</blockquote>
+<hr />
+<h2 id="5">5. 发行与供应</h2>
+<blockquote>
+<p>8 月版第 5 章的同构/不同构分析不变。本期新增的一手核对见 1.2–1.4。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th style="text-align: right;">ZEC</th>
+<th style="text-align: right;">BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>当前流通（链上总供应）</td>
+<td style="text-align: right;">16,961,500（<strong>80.77%</strong>）</td>
+<td style="text-align: right;">约 95.6%</td>
+</tr>
+<tr>
+<td>当前区块补贴</td>
+<td style="text-align: right;">1.5625（75 秒）</td>
+<td style="text-align: right;">3.125（10 分钟）</td>
+</tr>
+<tr>
+<td>年增发率</td>
+<td style="text-align: right;"><strong>3.87%</strong></td>
+<td style="text-align: right;">约 0.83%</td>
+</tr>
+<tr>
+<td>下次减半</td>
+<td style="text-align: right;"><strong>约 2028-11</strong>（NU7 不激活时为区块 4,406,400）</td>
+<td style="text-align: right;">约 2028-04</td>
+</tr>
+<tr>
+<td>开发基金累积</td>
+<td style="text-align: right;">每块 0.1875（12%）进 lockbox；另 8% 给 ZCG</td>
+<td style="text-align: right;">无</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>ZIP 218 若激活</strong>：每块 1.5625 → 约 0.5208，出块 75 秒 → 25 秒，<strong>年增发率仍是 3.87%</strong>；减半日期不变。<br />
+<strong>开发基金每年流入 lockbox 约 78,840 枚（≈ $1.13 亿，按 9/30 价格）</strong>，而<strong>这些钱目前没有已定义的使用机制</strong>（1.3）。</p>
+</blockquote>
+<hr />
+<h2 id="6-zec">6. ZEC 与其他资产的比较</h2>
+<blockquote>
+<p><strong>口径</strong>：币安日线 UTC 收盘，同一次 API 调用取得；8/31 → 9/30、6/30 → 9/30；R² 统一为 2025-09-30 → 2026-09-30 日对数收益（<strong>与各资产 9 月版里的窗口不同，不可混比</strong>）。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th style="text-align: right;"><strong>9 月</strong></th>
+<th style="text-align: right;"><strong>Q3</strong></th>
+<th style="text-align: right;">近 1 年</th>
+<th style="text-align: center;">对 BTC R²（一年，统一窗口）</th>
+<th>持有人回报来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ZEC</strong></td>
+<td style="text-align: right;"><strong>+69.60%</strong></td>
+<td style="text-align: right;"><strong>+260.05%</strong></td>
+<td style="text-align: right;"><strong>+1,835%</strong></td>
+<td style="text-align: center;"><strong>0.19</strong></td>
+<td>无（PoW，发行归矿工与开发基金）</td>
+</tr>
+<tr>
+<td>UNI</td>
+<td style="text-align: right;">+69.76%</td>
+<td style="text-align: right;">+219.73%</td>
+<td style="text-align: right;">+16.24%</td>
+<td style="text-align: center;">0.40</td>
+<td>销毁</td>
+</tr>
+<tr>
+<td>DASH</td>
+<td style="text-align: right;">+34.95%</td>
+<td style="text-align: right;">+86.17%</td>
+<td style="text-align: right;">+170.45%</td>
+<td style="text-align: center;"><strong>0.18</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>ADA</td>
+<td style="text-align: right;">+24.67%</td>
+<td style="text-align: right;">+70.78%</td>
+<td style="text-align: right;">−69.45%</td>
+<td style="text-align: center;">0.65</td>
+<td>质押</td>
+</tr>
+<tr>
+<td>SOL</td>
+<td style="text-align: right;">+14.61%</td>
+<td style="text-align: right;">+60.34%</td>
+<td style="text-align: right;">−43.40%</td>
+<td style="text-align: center;">0.76</td>
+<td>质押</td>
+</tr>
+<tr>
+<td>BNB</td>
+<td style="text-align: right;">+11.26%</td>
+<td style="text-align: right;">+40.76%</td>
+<td style="text-align: right;">−23.72%</td>
+<td style="text-align: center;">0.59</td>
+<td>销毁</td>
+</tr>
+<tr>
+<td>ETH</td>
+<td style="text-align: right;">+8.85%</td>
+<td style="text-align: right;">+70.86%</td>
+<td style="text-align: right;">−35.20%</td>
+<td style="text-align: center;">0.82</td>
+<td>质押</td>
+</tr>
+<tr>
+<td>BTC</td>
+<td style="text-align: right;">+6.42%</td>
+<td style="text-align: right;">+42.64%</td>
+<td style="text-align: right;">−26.68%</td>
+<td style="text-align: center;">—</td>
+<td>无</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Q3 ZEC 是这八个里最高的</strong>；9 月与 UNI 几乎并列（UNI 高 0.16pp）。<br />
+<strong>R² 最低的两个是两个隐私类资产：DASH（0.18）与 ZEC（0.19）</strong>——BTC 只能解释它们不到两成的日波动。⚠️ 初稿写成「ZEC 与 UNI」，统一窗口重算后 UNI 是 0.40，已更正。<br />
+<strong>ZEC 的价格不仅和 BTC 关系弱，和它自己的核心指标（屏蔽占比）在周度上也几乎无关</strong>（第 7 章）——<strong>它的价格驱动因素，本报告目前没有一个可测的候选。</strong></p>
+</blockquote>
+<hr />
+<h2 id="7-8">7. 价格与屏蔽占比：8 月版问的问题，本期给出数据</h2>
+<h3 id="71-8">7.1 8 月版留下的问题</h3>
+<p>8 月版 7.2 提出两种读法，并说「无法区分」：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>读法</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 价格反映的是别的东西</td>
+<td>屏蔽占比不是估值锚，报告第 4、7 章的框架用错了</td>
+</tr>
+<tr>
+<td>② 采用度会跟上</td>
+<td>屏蔽占比会继续回升，直至超过 31.01%</td>
+</tr>
+</tbody>
+</table></div>
+<p>8 月版的记分卡写明：「<strong>下期必须单独设计一条真正检验框架的论点</strong>（例如直接测屏蔽占比与价格的滚动相关性）」。</p>
+<h3 id="72">7.2 周度相关性（本期新做）</h3>
+<p><strong>数据</strong>：2024-11-23（减半日）到 2026-10-05，<strong>98 个周度点</strong>（6 月前为每周一次的节点读数，7 月起取自日采样）；价格为币安日线收盘。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检验</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>屏蔽占比周变化 vs 价格周对数收益</strong></td>
+<td><strong>相关系数 0.13</strong>（n = 97，t ≈ 1.3，<strong>不显著</strong>）</td>
+</tr>
+<tr>
+<td>只剔除已知非采用事件周（8/24 投票快照那一周）</td>
+<td><strong>0.08</strong>（n = 95）</td>
+</tr>
+<tr>
+<td>屏蔽占比单周变化 ≥ 1pp 的 10 周<strong>单独</strong>计算</td>
+<td>0.25（n = 10）。⚠️ 初稿写「剔除这 10 周后约 0.00」——<strong>按自变量幅度剔除会机械压低相关</strong>，且删掉的正是最可能有信号的周，<strong>该数字撤回、不作证据</strong></td>
+</tr>
+<tr>
+<td>屏蔽占比周变化 vs <strong>上一周</strong>的价格收益</td>
+<td><strong>0.22（t ≈ 2.2，本表唯一在 5% 水平显著的周度结果）</strong></td>
+</tr>
+<tr>
+<td>价格周收益 vs <strong>上一周</strong>的屏蔽占比变化</td>
+<td>0.07</td>
+</tr>
+<tr>
+<td>4 周窗口（n = 24）</td>
+<td>0.53（t ≈ 2.9）；剔除变动 ≥ 1.5pp 的 6 个窗口后 0.21（n = 18，t ≈ 0.9，同样受幅度剔除影响，信息量很低）</td>
+</tr>
+<tr>
+<td>水平值（屏蔽占比 vs 对数价格）</td>
+<td>0.83——⚠️ <strong>两条都是长期上行的序列，水平相关不说明任何关系</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>4 周窗口里屏蔽占比变动最大的五个</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>窗口起点</th>
+<th style="text-align: center;">屏蔽占比变化</th>
+<th style="text-align: center;">同期价格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-09-27</td>
+<td style="text-align: center;"><strong>+6.60pp</strong></td>
+<td style="text-align: center;"><strong>+396%</strong></td>
+</tr>
+<tr>
+<td>2025-02-15</td>
+<td style="text-align: center;">+3.67pp</td>
+<td style="text-align: center;">0%</td>
+</tr>
+<tr>
+<td>2025-08-02</td>
+<td style="text-align: center;">+3.16pp</td>
+<td style="text-align: center;">+13%</td>
+</tr>
+<tr>
+<td>2026-06-06</td>
+<td style="text-align: center;"><strong>−3.10pp</strong></td>
+<td style="text-align: center;"><strong>+27%</strong></td>
+</tr>
+<tr>
+<td>2026-08-01</td>
+<td style="text-align: center;">+3.09pp</td>
+<td style="text-align: center;">+84%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>读法</strong>：<br />
+① <strong>周度同期相关弱且不显著</strong>（0.13；只剔除快照周后 0.08）——<strong>屏蔽占比不能用作短期价格信号</strong>。<br />
+② <strong>但有两组数字偏向读法②</strong>：滞后相关（价格领先一周）0.22、t≈2.2；4 周窗口 0.53（其中 2025-10 窗口影响很大，而 2026-06 窗口方向相反）。<strong>「价格先动、屏蔽跟进」正是②（采用度跟随价格）的形态。</strong><br />
+③ <strong>本期数据不能区分读法①与②。</strong> 初稿写「这支持读法①」，审查（_bian）指出：②原本就是一个按月计、有滞后的预测，周度同期相关对它没有判别力；而且屏蔽占比本身「脏」（会被快照、托管移动），<strong>测量噪声会系统性压低相关</strong>——空头 #2 本身就能解释空头 #1 的低相关。已撤回。</p>
+<p>⚠️ <strong>三处限制</strong>：① 周度相关低，也可能是因为屏蔽占比是<strong>慢变量</strong>，而价格是快变量——它们可以在更长的尺度上相关，而一年半只有约 6 个不重叠的季度，<strong>样本不足以检验季度尺度</strong>；② 屏蔽占比本身会被非「采用」因素移动（投票快照、ETF 托管方式），<strong>它作为「采用度」的测量比 8 月版设想的更脏</strong>；③ <strong>这不证明「屏蔽占比不重要」</strong>——它只说明「用屏蔽占比解释价格的短期变化」这条路走不通。</p>
+</blockquote>
+<h3 id="73">7.3 由此修订的本报告框架</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>8 月版</th>
+<th>本期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>屏蔽占比是「最干净的产品采用度指标」</td>
+<td><strong>它是最干净的「有多少 ZEC 处于屏蔽状态」的测量</strong>；但它会被投票资格、托管方式等非采用因素移动，<strong>作为采用度的代理比 8 月版设想的更脏</strong></td>
+</tr>
+<tr>
+<td>价格与采用度「背离」是本期最想让读者注意的事</td>
+<td><strong>保留为描述</strong>：9 月「价格大幅变动而屏蔽占比横住」；<strong>但周度同期相关本来就弱，单月的「背离」不构成证据</strong>（初稿撤回「背离」并改用「脱钩」，审查指出两者预设相同，已统一为中性描述）</td>
+</tr>
+<tr>
+<td>读法①②无法区分</td>
+<td><strong>仍无法区分</strong>：同期周度相关弱（不利于把屏蔽占比当短期信号），滞后与 4 周相关与②相容；季度尺度样本不足</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="8">8. 核心价值逻辑与估值</h2>
+<p><strong>星级编码证据等级</strong>：完全建立在二手转述上的论据不得给到五星。</p>
+<h3 id="81">8.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>说明与证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>屏蔽占比在快照后维持在 29% 左右</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ 链上一手。<strong>由 8 月版的「恢复约一半」（四星）改写并降为两星</strong>：回升的大半紧贴事先公布的投票快照（4.2）；<strong>快照后维持对「是否反映采用」没有判别力</strong>（4.2），与记分卡 Z9-x2 的拒绝理由一致</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>机构通道打开：ETF 上市、大额实物申购</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ SEC 一手：ZCSH 约 63–64 万 ZEC、DCG 一笔 85,705 枚。<strong>本月新增</strong>。⚠️ 9/30 起出现赎回（二手）</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>货币规则透明且有原文</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ ZIP 208 / 218 / 271 原文：减半区块、NU7 发行等价、开发基金一次性拨付全部可查。<strong>由 8 月版「21M 硬顶 + 减半」改写</strong>，加入了 NU7 的「提速不放水」</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Orchard 迁移已完成约 90%</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 链上一手。<strong>由四星降为三星</strong>：最后 5 天只迁出 1,660 枚，残留下降明显放缓</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>持币人治理参与度高</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>⚠️ <strong>二手</strong>（约 240 万 ZEC 参与、约三分之二有资格余额）。快照时点已在链上印证，但票数本身未一手核实</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Q3 +260%、近一年 +1,835%</td>
+<td style="text-align: center;">★☆☆☆☆</td>
+<td>✅ 一手。<strong>「涨得多」不是论据</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="82">8.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>说明与证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>屏蔽占比不能用作短期价格信号</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 本报告计算（97 周同期相关 0.13，只剔除快照周后 0.08）。<strong>本月新增</strong>。<strong>三星</strong>：滞后与 4 周相关与「采用跟随价格」相容（7.2），本条不等于「价格与采用度无关」；且与空头 #2 同源（见下）</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>屏蔽占比会被非采用因素移动</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 链上一手（快照前 52 小时 +40.8 万枚）+ ✅ 投票规则原文（快照区块事先公布）。<strong>本月新增</strong>。含义是：<strong>本报告的核心指标比首期设想的脏</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>年增发 3.87%，是 BTC 的 4.7 倍</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>✅ 链上 + ZIP 208（NU7 不改变这一点）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>开发基金 6.67 万枚、每年再进约 7.9 万枚，没有已定义的使用机制</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 链上 + ZIP 271 原文。<strong>由 8 月版的「每年抽走约 $9,515 万」改写</strong>：问题不只是抽成，而是<strong>抽出来的钱规则未定</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>交易所与监管渠道有下架先例</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 交易所 API（10/5 单一时点）：Coinbase 上 ZEC 只剩 ZEC-USD；XMR 在币安停止交易（同类先例）。下架时点未查，不能说「正在收窄」。⚠️ 欧盟 AMLR 原文未能取得（按更窄读法：针对允许匿名的账户）。<strong>本月新增，替代 8 月版的「监管风险（未调研）」</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>波动率 153%–156%、beta 1.5</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 本报告计算</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>多空同源检查</strong>（DOT 期规则）：① 多头 1 与空头 2 来自同一组链上数据（快照前后的屏蔽量），是同一件事的两面；② <strong>空头 2 是空头 1 低相关的一个替代解释</strong>——代理变量越「脏」，它与价格的相关就越会被系统性压低。<strong>两条空头互相解释，不能当成两条独立证据。</strong><br />
+多头 2（ETF）与空头 2 也有交叉：<strong>ETF 托管方式未知，它可能正在压低屏蔽占比</strong>（3.5）。</p>
+</blockquote>
+<h3 id="83">8.3 估值：本报告给什么、不给什么</h3>
+<p><strong>不给目标价</strong>——<strong>理由是缺乏可信的估值模型与参数</strong>：本系列给 BTC 用的「已实现价格 × MVRV」依赖透明账本的成本基准，<strong>在 ZEC 上因约 29% 的供应处于屏蔽状态而失效</strong>（本期已尝试，见下）。另外，现金流法也不适用（持币人对费用无索取权，且费用只占区块补贴的 0.2%）——<strong>但这一条不是承重理由</strong>：BTC 同样没有费用索取权，本系列照样给出了估值框架。</p>
+<p><strong>8 月版承诺的「屏蔽池总量成本基准」——本期做了，结论是它不是成本基准</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th style="text-align: right;">屏蔽池净变化</th>
+<th style="text-align: right;">按区间均价加权</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024-11-23 → 2025-09-30</td>
+<td style="text-align: right;">+211.0 万</td>
+<td style="text-align: right;">约 $40</td>
+</tr>
+<tr>
+<td>2025-09-30 → 2026-04-25</td>
+<td style="text-align: right;">+136.7 万</td>
+<td style="text-align: right;">约 $229</td>
+</tr>
+<tr>
+<td>2026-04-25 → 2026-07-30</td>
+<td style="text-align: right;">−78.8 万</td>
+<td style="text-align: right;">约 $417</td>
+</tr>
+<tr>
+<td>2026-07-30 → 2026-10-05</td>
+<td style="text-align: right;">+61.6 万</td>
+<td style="text-align: right;">约 $763</td>
+</tr>
+<tr>
+<td><strong>减半以来合计</strong></td>
+<td style="text-align: right;"><strong>净 +321.3 万</strong>（总流入 476.0 万、总流出 154.7 万）</td>
+<td style="text-align: right;"><strong>净流入加权约 $157；总流入加权约 $247</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>方法：周度屏蔽合计的差分 × 区间首尾收盘均价（币安），减半日起的存量 172.3 万枚不计入（成本未知）。现价 $1,438.41。</p>
+<p><strong>为什么这不是成本基准</strong>：① <strong>屏蔽池内部的转手完全不可见</strong>——一枚 2025 年屏蔽的 ZEC 可能已在池内换过多次手；② 净流入把「A 进、B 出」相抵，<strong>进出的不是同一批人</strong>；③ 减半前已在池里的 172 万枚成本未知。<br />
+<strong>能说的只有</strong>：<strong>按流入时的价格算，净流入加权价约 $157，远低于现价</strong>。⚠️ <strong>这对任何 ZEC 都成立</strong>（近一年 +1,835%，样本期内几乎所有价格都远低于现价），<strong>不是屏蔽池特有的信息</strong>；它也<strong>不能推出持有人有浮盈</strong>——池内转手不可见，2025 年以 $40 屏蔽的币可能已被人以 $1,000 买走（初稿写「无论持有人是谁，普遍有大幅浮盈」，与上面的理由①矛盾，审查后撤回）。<br />
+<strong>它不能像 BTC 的已实现价格那样用作支撑位或估值锚</strong>——8 月版「BTC 那套框架因隐私而失效」的判断，<strong>本期尝试后确认</strong>：不是「未尝试」，是「尝试了、只能得到一个弱得多的量」。</p>
+</blockquote>
+<h3 id="84">8.4 这套判断的弱点</h3>
+<ol>
+<li><strong>4.2 的「与投票资格相关」是时点吻合，不是动机证明。</strong> 快照规则是一手；<strong>持有人动机与资金来源不可知</strong>；ETF 托管变更版本未核实。</li>
+<li><strong>7.2 的相关性检验只覆盖周度与 4 周尺度</strong>，季度尺度样本不足。</li>
+<li><strong>ETF 的托管方式未知</strong>，它对屏蔽占比的影响方向与量级都未测。</li>
+<li><strong>监管部分的关键原文（欧盟 AMLR）未能取得</strong>；交易所状态是 10/5 一个时点的快照。</li>
+<li><strong>本系列的记录</strong>：截至本期，本系列已检验论点的正确率很低（BTC 1/9、ADA 0/1），<strong>ZEC 尚无已判定论点</strong>。请以相应的怀疑程度对待本报告。</li>
+</ol>
+<hr />
+<h2 id="9">9. 投资与风险启示</h2>
+<h3 id="91-zec">9.1 ZEC 现在处于什么位置</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>屏蔽占比</strong></td>
+<td><strong>29.14%，横住。</strong> 8 月版的「恢复」大半与投票快照重合</td>
+</tr>
+<tr>
+<td><strong>价格</strong></td>
+<td><strong>Q3 +260%，本系列最高</strong>；与屏蔽占比周度几乎无关</td>
+</tr>
+<tr>
+<td><strong>技术执行</strong></td>
+<td>Ironwood 迁移约 90%；NU7 测试网已激活、规范写明发行不变</td>
+</tr>
+<tr>
+<td><strong>机构</strong></td>
+<td>ETF 持有约 3.7% 供应（粗估）；Coinbase 上 ZEC 只剩 ZEC-USD；DCG 矿池约占全网算力 15.4%</td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td>不给目标价</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="92">9.2 策略含义</h3>
+<blockquote>
+<p>以下为研究性质的框架整理，<strong>不构成投资建议</strong>。</p>
+</blockquote>
+<ol>
+<li><strong>不要用屏蔽占比做 ZEC 的短期交易信号。</strong> 本期的周度同期相关只有 0.13（7.2）；它与价格的滞后关系也很弱。</li>
+<li><strong>看屏蔽占比时，先排除治理与托管事件。</strong> 投票资格快照、ETF 申购赎回、交易所归集都能在几天内移动它 1–3 个百分点。</li>
+<li><strong>NU7 是一次可以被链上精确核对的货币政策事件。</strong> 激活后读 <code>chainSupply.valueDelta</code> 与出块间隔，<strong>若每块补贴没有除以 3，年增发会变成 3 倍</strong>——这是本期唯一一个「错了后果很大、而且立刻可查」的变量。</li>
+</ol>
+<h3 id="93">9.3 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">当前值</th>
+<th>改变结论的阈值</th>
+<th>查询方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>屏蔽占比</strong></td>
+<td style="text-align: right;"><strong>29.14%</strong></td>
+<td>站上 31.01%（Z8-1）；跌破 26%</td>
+<td>节点 <code>valuePools</code></td>
+</tr>
+<tr>
+<td><strong>屏蔽占比与价格的周度同期相关</strong></td>
+<td style="text-align: right;">0.13（97 周）</td>
+<td>2026-10 至 2027-04 的 26 周 |r| ≥ 0.25 → Z9-2 判错</td>
+<td>本报告复算</td>
+</tr>
+<tr>
+<td><strong>NU7 激活后的每块补贴</strong></td>
+<td style="text-align: right;">1.5625</td>
+<td>11/30 前未变为 0.52083333 → Z9-1 判错</td>
+<td><code>chainSupply.valueDelta</code></td>
+</tr>
+<tr>
+<td>Orchard 残留</td>
+<td style="text-align: right;">378,875</td>
+<td>2027-03-08 仍 &gt; 100,000 → Z8-2 判错</td>
+<td><code>valuePools</code></td>
+</tr>
+<tr>
+<td>ZCSH 持仓与托管方式</td>
+<td style="text-align: right;">约 63–64 万 ZEC（粗估）；托管 Coinbase Custody，地址类型未知</td>
+<td>季度净赎回 &gt; 17 万枚（约市值 1%）；托管人披露屏蔽托管</td>
+<td>SEC 10-Q / 8-K</td>
+</tr>
+<tr>
+<td><code>lockbox</code></td>
+<td style="text-align: right;">66,674.25</td>
+<td>出现新的拨付 ZIP 或整池清空</td>
+<td><code>valuePools</code> + ZIP 仓库</td>
+</tr>
+<tr>
+<td>交易所渠道</td>
+<td style="text-align: right;">ZEC 四大所可交易</td>
+<td>任一大所 ZEC 法币对下架</td>
+<td>交易所 API</td>
+</tr>
+<tr>
+<td><strong>价格大幅变动而屏蔽占比横住</strong></td>
+<td style="text-align: right;"><strong>9 月单月符合</strong>（价格 +69.6%、屏蔽占比 +0.4pp）；8 月屏蔽占比 +3.1pp（25.60% → 28.74%），<strong>两个月条件未满足</strong></td>
+<td>连续两个月价格变动 &gt; 30% 而屏蔽占比变动 &lt; 0.5pp</td>
+<td>同上</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="94">9.4 风险提醒</h3>
+<ol>
+<li><strong>NU7 的发行参数</strong>：规范写明发行不变，<strong>但激活前它只是文本</strong>（Z9-1）。</li>
+<li><strong>核心指标被污染</strong>：屏蔽占比会被治理与托管事件移动（4.2、3.5）。</li>
+<li><strong>年增发 3.87%</strong>，开发基金累积的资金规则未定。</li>
+<li><strong>交易所与欧盟监管</strong>：Coinbase 上 ZEC 只剩 ZEC-USD、XMR 在币安停止交易（同类先例）；欧盟 2027-07 的限制原文未核实（按更窄读法：针对允许匿名的账户）。</li>
+<li><strong>零知识电路的审计难度</strong>（8 月版风险 1，不变）。</li>
+<li><strong>本报告自身</strong>：4.2 的核心发现建立在「时点吻合」上；监管原文缺失；且仍有利益相关（卷首）。</li>
+</ol>
+<h3 id="95">9.5 长期认知</h3>
+<p><strong>第一，「恢复」要先问是谁、在什么时候恢复的。</strong> 8 月版看到屏蔽占比从 25.49% 回到 28.85%，把它读成「恢复了一半」。<strong>日采样之后发现，七成的回升挤在一次投票快照前的 52 小时里。</strong> 一个比率的变化，先拆时间分布，再谈含义。</p>
+<p><strong>第二，一个指标「干净」指的是测量干净，不是含义干净。</strong> 屏蔽池余额是节点记账项，测量上无可挑剔；<strong>但「多少 ZEC 处于屏蔽状态」会被投票资格、ETF 托管、交易所归集推动</strong>——它离「多少人在用隐私」比首期设想的更远。</p>
+<p><strong>第三，提速不一定放水，要看规范有没有把两个参数写在一起。</strong> GRAM 改了出块、没改奖励，发行放大 5.85 倍；<strong>Zcash 的 ZIP 218 把两者写在同一个公式里</strong>。下一次遇到「出块提速」，第一件事是找到规范里每块奖励那一行。</p>
+<p><strong>第四，8 月版说「下期必须做」的事，本期都做了，但没有一件做成决定性的</strong>：成本基准（只能得到一个对任何 ZEC 都成立的加权价）、框架检验（周度同期相关弱，但不能区分读法①②）、监管（交易所与 SEC 一手已补，欧盟原文未取得）。</p>
+<hr />
+<h2 id="10">10. 附录</h2>
+<h3 id="101-2026-09-30">10.1 关键数据速查（截至 2026-09-30）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>指标</th>
+<th style="text-align: right;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>市场</strong></td>
+<td>9/30 收盘 / 市值</td>
+<td style="text-align: right;">$1,438.41 / 约 $244.0 亿</td>
+</tr>
+<tr>
+<td></td>
+<td>9 月 / Q3 / YTD / 近 1 年</td>
+<td style="text-align: right;"><strong>+69.60% / +260.05% / +180.77% / +1,835%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>年化波动 / beta / R²（一年）</td>
+<td style="text-align: right;">156.2% / 1.523 / 0.193</td>
+</tr>
+<tr>
+<td></td>
+<td>9 月日成交额中位数</td>
+<td style="text-align: right;">$3.09 亿</td>
+</tr>
+<tr>
+<td><strong>屏蔽池</strong></td>
+<td>屏蔽合计 / 占比（9/30）</td>
+<td style="text-align: right;">4,942,688 / <strong>29.14%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>ironwood / orchard / sapling / sprout</td>
+<td style="text-align: right;">4,062,787.58 / 378,875.32 / 478,714.53 / 22,310.78</td>
+</tr>
+<tr>
+<td></td>
+<td>日采样最低（Q3）</td>
+<td style="text-align: right;">25.38%（7/28）</td>
+</tr>
+<tr>
+<td></td>
+<td>投票快照前 52 小时</td>
+<td style="text-align: right;">+407,986 枚，25.99% → 28.40%</td>
+</tr>
+<tr>
+<td></td>
+<td>周度相关（屏蔽占比变化 vs 价格收益）</td>
+<td style="text-align: right;">同期 0.13（97 周）；只剔除快照周 0.08；滞后（价格领先）0.22</td>
+</tr>
+<tr>
+<td></td>
+<td>净流入加权价格（减半以来）</td>
+<td style="text-align: right;">约 $157（<strong>不是成本基准</strong>）</td>
+</tr>
+<tr>
+<td><strong>供应</strong></td>
+<td>链上总供应 / 已发行占比</td>
+<td style="text-align: right;">16,961,500.17 / 80.77%</td>
+</tr>
+<tr>
+<td></td>
+<td>区块补贴 / 年增发</td>
+<td style="text-align: right;">1.5625 / 3.87%</td>
+</tr>
+<tr>
+<td></td>
+<td>下次减半</td>
+<td style="text-align: right;">约 2028-11（NU7 不激活时为区块 4,406,400）</td>
+</tr>
+<tr>
+<td><strong>开发基金</strong></td>
+<td>lockbox（9/30）</td>
+<td style="text-align: right;">66,674.25 ZEC（无已定义的拨付机制）</td>
+</tr>
+<tr>
+<td><strong>费用</strong></td>
+<td>9 月手续费 / 交易笔数</td>
+<td style="text-align: right;">109.28 ZEC / 363,167</td>
+</tr>
+<tr>
+<td><strong>机构</strong></td>
+<td>ZCSH 持仓（9/29，推算）</td>
+<td style="text-align: right;">约 62.8–64.3 万 ZEC（约 3.7%）</td>
+</tr>
+<tr>
+<td></td>
+<td>6/30 持仓 / DCG 申购</td>
+<td style="text-align: right;">388,673.68 / 85,705.33 ZEC</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="102">10.2 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th style="text-align: center;">核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>六池余额、<code>chainSupply</code>、区块补贴</td>
+<td>Blockchair <code>raw/block</code> 转发的节点记账项</td>
+<td style="text-align: center;">✅ 一手：日采样 97 点 + 周采样 84 点 + 快照前后 10 点；六池合计 = <code>chainSupply</code></td>
+</tr>
+<tr>
+<td>价格、涨跌、波动率、beta、R²、成交额</td>
+<td>币安 API <code>klines</code>（ZEC / BTC / ETH / SOL / BNB / ADA / UNI / DASH）</td>
+<td style="text-align: center;">✅ 一手 API</td>
+</tr>
+<tr>
+<td>市值排名</td>
+<td>CoinGecko API</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td><strong>减半规则、下次减半区块</strong></td>
+<td><strong>ZIP 208 原文</strong>（GitHub <code>zcash/zips</code>）</td>
+<td style="text-align: center;">✅ 一手（8 月版为「未核实」）</td>
+</tr>
+<tr>
+<td><strong>78,750 ZEC 一次性拨付、后续机制未定</strong></td>
+<td><strong>ZIP 271 原文</strong></td>
+<td style="text-align: center;">✅ 一手（8 月版为二手）</td>
+</tr>
+<tr>
+<td><strong>NU7 发行等价、减半间隔 5,040,000</strong></td>
+<td><strong>ZIP 218 原文</strong>（Draft）</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td><strong>ZCSH 持仓、DCG 申购、拆股、上市</strong></td>
+<td><strong>SEC EDGAR：10-Q、8-K（9/8、9/18、9/30）、424B3、EFFECT</strong></td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>手续费、交易笔数</td>
+<td>Coin Metrics <code>FeeTotNtv</code> / <code>TxCnt</code>（DefiLlama 适配器源码确认同源）</td>
+<td style="text-align: center;">✅ 一手 API</td>
+</tr>
+<tr>
+<td>交易所上架状态</td>
+<td>币安 <code>exchangeInfo</code>、OKX <code>instruments</code>、Coinbase <code>products</code>、Kraken <code>AssetPairs</code></td>
+<td style="text-align: center;">✅ 一手 API（10/5 时点）</td>
+</tr>
+<tr>
+<td><strong>NU7 投票规则（快照区块、Ironwood 资格、快照后可转走）</strong></td>
+<td><strong>Zcash 社区论坛 8/05 发起帖、zcashlabs.org/voting 原文</strong></td>
+<td style="text-align: center;">✅ 一手（Codex 审查提示，已打开原文）</td>
+</tr>
+<tr>
+<td>NU7 投票结果（参与量、支持率）</td>
+<td>媒体报道（多家一致）</td>
+<td style="text-align: center;">⚠️ 二手；参与量与快照时 Ironwood 余额比例吻合</td>
+</tr>
+<tr>
+<td>NU7 主网计划 11/5、测试网 10/4 激活</td>
+<td>媒体报道</td>
+<td style="text-align: center;">⚠️ 二手</td>
+</tr>
+<tr>
+<td>ZCSH 9 月流入、9/30 与 10/2 单日赎回</td>
+<td>媒体报道</td>
+<td style="text-align: center;">⚠️ 二手</td>
+</tr>
+<tr>
+<td>Bitget 被盗资金转入 Ironwood</td>
+<td>媒体报道</td>
+<td style="text-align: center;">⚠️ 二手；<strong>屏蔽转入在链上无法归属</strong></td>
+</tr>
+<tr>
+<td><strong>欧盟 AMLR 2027-07-10 的隐私资产限制</strong></td>
+<td>媒体报道</td>
+<td style="text-align: center;">⚠️ 二手；<strong>EUR-Lex 原文三次尝试失败</strong>（HTML / PDF 返回空页，出版局地址 404）</td>
+</tr>
+<tr>
+<td>SEC 对 Zcash Foundation 调查结束</td>
+<td>媒体报道</td>
+<td style="text-align: center;">⚠️ 二手</td>
+</tr>
+<tr>
+<td>ZCSH 托管人与管理费</td>
+<td>424B3、10-Q</td>
+<td style="text-align: center;">✅ 一手：Coinbase Custody、冷存储；管理费年化 2.5%、以 ZEC 支付</td>
+</tr>
+<tr>
+<td><strong>DCG 矿池约占全网算力 15.4%（2026 年 7 月）</strong></td>
+<td><strong>424B3</strong></td>
+<td style="text-align: center;">✅ 一手（发起人自述）</td>
+</tr>
+<tr>
+<td>ZCSH 托管的地址类型（透明 / 屏蔽）</td>
+<td>申报文件未写明</td>
+<td style="text-align: center;">❌ 未获取</td>
+</tr>
+<tr>
+<td>9 月交易笔数增量的构成</td>
+<td>—</td>
+<td style="text-align: center;">❌ 未拆分</td>
+</tr>
+<tr>
+<td>传统金融机构对 ZEC 的研究覆盖</td>
+<td>检索未找到</td>
+<td style="text-align: center;">❌</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="103">10.3 来源偏向声明</h3>
+<ul>
+<li><strong>核心测量（屏蔽池、供应、价格、ETF 持仓、协议规则）全部一手</strong>，本期还把 8 月版三处二手（ZIP 271、减半区块、补贴变化机制）升为一手。</li>
+<li><strong>仍为二手的集中在「事件叙事」</strong>：投票结果、NU7 主网日期、ETF 资金流、监管条款——<strong>本报告的多头 5（治理参与度）与空头 5 的欧盟部分因此限星</strong>。</li>
+<li><strong>传统金融机构</strong>：本期引用了 <strong>SEC 申报文件</strong>（Grayscale、DCG）与<strong>美联储</strong>利率。<strong>没有找到传统金融机构对 ZEC 的研究覆盖。</strong></li>
+<li><strong>利益相关</strong>：见卷首。本期主线已从漏洞事件移到投票与 ETF，<strong>但 4.2 改写了 8 月版对漏洞后「恢复」的解读</strong>，读者应留意本报告是否在这一点上过度修正。</li>
+</ul>
+<h3 id="104-8">10.4 本版对 8 月版的更正</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>8 月版写法</th>
+<th>更正</th>
+<th>发现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>谷底 25.49%（2026-07-30）</td>
+<td><strong>日采样最低 25.38%（7/28，Ironwood 激活当日）</strong>；真实最低可能更低</td>
+<td>日采样</td>
+</tr>
+<tr>
+<td>2</td>
+<td>「屏蔽占比从谷底恢复了约一半」列为多头 #1（四星）；8 月 7.2 已声明它对信心零信息量</td>
+<td><strong>约 2.4pp 集中在事先公布的投票快照前 52 小时</strong>；时点对准快照而非 ETF 上市；<strong>资金来源与动机不可知</strong></td>
+<td>逐块读取快照前后</td>
+</tr>
+<tr>
+<td>3</td>
+<td>8 月涨幅 +82.88%（CoinGecko 快照）</td>
+<td>币安 UTC 收盘口径 <strong>+85.30%</strong></td>
+<td>币安日线</td>
+</tr>
+<tr>
+<td>4</td>
+<td>「1,046,399 → 1,046,400 补贴变化机制未确认」</td>
+<td><strong>第一次减半</strong>（Blossom 后每块 6.25 → 3.125）</td>
+<td>ZIP 208 原文</td>
+</tr>
+<tr>
+<td>5</td>
+<td>「下次减半约 2028，未核实具体区块」</td>
+<td><strong>约 2028-11</strong>；NU7 不激活时为区块 4,406,400</td>
+<td>ZIP 208 原文</td>
+</tr>
+<tr>
+<td>6</td>
+<td>ZIP 271 的一次性拨付「本报告未打开原文，标为二手」</td>
+<td><strong>原文确认</strong>：NU6.1 激活时一次性拨付 78,750 ZEC 至 2-of-3 多签；后续机制未定</td>
+<td>ZIP 271 原文</td>
+</tr>
+<tr>
+<td>7</td>
+<td>未提 Grayscale ETF</td>
+<td><strong>ZCSH 8/25 已在 NYSE Arca 上市</strong>（早于 8 月版数据截止 9/8）</td>
+<td>SEC EDGAR</td>
+</tr>
+<tr>
+<td>8</td>
+<td>价格与采用度「背离」是核心观察</td>
+<td>周度同期相关 0.13（弱），但滞后与 4 周相关与「采用跟随价格」相容——<strong>8 月的读法①②本期仍不能区分</strong>；「背离」保留为单月形态描述</td>
+<td>本报告计算</td>
+</tr>
+<tr>
+<td>9</td>
+<td>「监管风险本报告完全未覆盖」</td>
+<td>本期补上交易所 API 一手与 SEC 通道；欧盟原文未取得</td>
+<td>3.5</td>
+</tr>
+<tr>
+<td>10</td>
+<td>「矿工结构 / 算力集中度：未做」</td>
+<td><strong>DCG 矿池约占全网算力 15.4%</strong>（424B3）</td>
+<td>SEC 一手</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="105">10.5 发布前审查记录</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>层</th>
+<th>审查者</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>tools/verify_report.py</code></td>
+<td>修订后重跑，0 FAIL / 1 WARN（传统机构配平：ZEC 无传统机构研究覆盖）</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>_bian</strong>（推理）</td>
+<td>第一次因额度中断；重跑后 14 条，全部采纳或部分采纳</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Codex</strong>（领域）</td>
+<td>第一次因本地代理 502 中断，留下 3 条阶段性意见（已采纳）；重跑后 5 条，全部采纳</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>_bian 的主要发现</strong>：<br />
+1. <strong>7.2「支持读法①」是尺度错配</strong>：读法②本身是按月计、有滞后的预测，周度同期相关对它没有判别力；滞后相关 0.22（t≈2.2，表中唯一显著）与 4 周 0.53 反而像②；屏蔽占比的测量噪声会系统性压低相关 → <strong>改为「本期不能区分①②」，空头 #1 降为三星并改为「不能用作短期信号」</strong>。<br />
+2. <strong>「剔除事件周后约 0.00」是按自变量幅度截断样本，机械压低相关</strong> → 撤回，改报「只剔除快照周 0.08」与「那 10 周单独 0.25」。<br />
+3. <strong>「快照后没转走」在三处有三种用法</strong>，且对各假设没有判别力 → 撤回「不是虚假回升」，多头 #1 降为两星，与记分卡 Z9-x2 统一。<br />
+4. <strong>「最可能 B+C」</strong>：C（6–7 月资金回流）不可观测；真正有判别力的证据（流入止于快照前 7 小时、ETF 新增量撑不起 40 万）没用上；假设集漏了单一实体 → 4.2 假设表重写。<br />
+5. <strong>「无触发恢复基本可排除」范围过大</strong>：只对这 2.4pp 成立，其余约 1.4pp 是平缓回升 → 已限定。<br />
+6. <strong>Z8-3 的「事前细则」写于信息到达之后</strong>，且与 Z9-1 重复计分 → 改为 NU7 激活则 ⊘。<br />
+7. <strong>对 8 月版的引用失真</strong>：8 月版没有把回升「读作信心恢复」（它在 7.2 已声明零信息量）；利益声明没说明偏向方向 → 已更正，卷首写明方向。<br />
+8. <strong>8.3「无论持有人是谁，普遍浮盈」与本节理由①矛盾</strong>，且前半句对任何 ZEC 都成立 → 撤回后半句。<br />
+9. <strong>撤回「背离」后改用「脱钩」，预设相同</strong>；4.3 引用了 8 月版并不存在的「脱钩」监控行；9.3 写「本期出现」而两个月条件未满足 → 统一为中性描述，已更正。<br />
+10. <strong>Z9-2</strong>：灰区大、出口只在 ❌ 一侧、不是框架检验 → 改为两侧对称 |r| ≥ 0.25、无出口、只称「短期信号检验」。<br />
+11–14. 已升为一手的快照规则仍写「二手」两处；不给目标价的承重理由排成了「无现金流」；Z8-1 构念注释只在 ✅ 一侧；章节交叉引用错（4.4 → 4.2 / 7.2）；「一个窗口贡献大部分」实测只有 39% → 逐条更正。</p>
+<p><strong>Codex 的主要发现</strong>：<br />
+1. 池余额净变化不能读成同一批人的行为；「没有回流」只是净额没下降 → <strong>采纳</strong>（与 _bian 第 3、4 条一致）。<br />
+2. 屏蔽占比的经济口径混杂（Sprout、lockbox、托管、迁移、投票）→ <strong>采纳</strong>，多头 #1 降星。<br />
+3. ZCSH 持仓要扣 2.5% 管理费、NAV 不能直接除以不同口径的价格 → <strong>采纳</strong>，已打开 10-Q 核对费率，改标「粗估」；顺带在 424B3 找到 <strong>DCG 矿池约占全网算力 15.4%</strong>（一手），补入 3.5。<br />
+4. 0.13 被赋予超过检验能力的结论；Z9-2 只在正相关一侧判错 → <strong>采纳</strong>。<br />
+5. 欧盟 AMLR 第 79 条针对的是「允许匿名的账户」，不能简写成全面禁止；交易所单时点状态不能说明「正在收窄」；Z9-1 的出块间隔受算力影响 → <strong>采纳</strong>（AMLR 措辞本报告仍未能独立打开，按 Codex 的更窄读法写入并标注）。<br />
+- <strong>阶段性意见</strong>（第一次中断前）：4.2 把迁移写成「合计不变」的稻草人；快照规则有一手来源；NU7 激活后 4,406,400 不再是减半高度 → 全部采纳。</p>
+<p><strong>ZEC 期清扫</strong>：撤回的说法（「支持读法①」「剔除事件周后为零 / 约 0.00」「价格在反映别的东西」「基本可以排除」作为全段结论、「最可能 B+C」「不是虚假回升」「普遍有大幅浮盈」「脱钩」「4.4」误引、「快照区块二手」「一个窗口贡献了大部分」「交易所渠道在收窄」）已在报告、摘要、记分卡中 grep 清扫。</p>
+<blockquote>
+<p><strong>本期最该记住的一条</strong>：<strong>一个对两种假设都成立的统计量，不能用来支持其中一种——哪怕它看起来像一次「真正的检验」。</strong> 本期初稿把周度同期相关当成了 8 月版「框架检验」的答案；而 8 月版的读法②本来就是滞后、按月计的，周度同期相关对它天然没有判别力。<strong>设计检验时，先写下每个假设对这个统计量的预测，再去算。</strong></p>
+</blockquote>
+<hr />
+<blockquote>
+<p><strong>配套文件</strong>：<code>zec_questions_summary_202609.md</code>（简明速查）、<code>../thesis_scorecard.md</code>（论点滚动记分卡）。<br />
+本报告不构成投资建议。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-zec-zcash-2026-9-q3">ZEC / Zcash 简明速查（2026 年 9 月版兼 Q3 回顾）</h1>
+<blockquote>
+<p>完整报告的浓缩版，给快速复习用。<strong>数据截止 2026-09-30，链上快照到 10/5。</strong><br />
+本文件不构成投资建议。</p>
+</blockquote>
+<hr />
+<h2 id="s-0">0. 一处必须先读的利益相关声明</h2>
+<p>本系列核心事件之一——Orchard 电路漏洞——由安全研究员借助 Anthropic 的模型发现，而本报告也由 Anthropic 的模型撰写。<br />
+<strong>本期主线已转到投票与 ETF，但第 4 节改写了 8 月版对漏洞后「恢复」的读法。偏向的方向</strong>：若本报告倾向于放大漏洞冲击、贬低恢复，读者应向反方向调整。</p>
+<hr />
+<h2 id="s-1">1. 一句话</h2>
+<p><strong>ZEC 这个季度涨了 3.6 倍（本系列 9 月版里最高）；8 月版说的屏蔽占比「恢复」，大半挤在一次事先公布的投票快照前 52 小时里；屏蔽占比和价格在周度上同期相关很弱，但不能据此说两者无关。</strong></p>
+<hr />
+<h2 id="s-2-zec">2. ZEC 是什么（不变）</h2>
+<p>21,000,000 枚硬顶、约四年减半的 PoW 链，与 BTC 同构；区别是<strong>透明池 + 屏蔽池两套账</strong>，以及<strong>补贴的 12% 进开发基金 <code>lockbox</code></strong>。</p>
+<p><strong>本期用协议原文补上的三件事</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>8 月版</th>
+<th>本期（原文一手）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>下次减半「约 2028，未核实」</td>
+<td><strong>约 2028-11</strong>（ZIP 208；NU7 不激活时为区块 4,406,400，激活后高度会变、日期大致不变）</td>
+</tr>
+<tr>
+<td>1,046,400 的补贴变化「机制未确认」</td>
+<td><strong>那就是第一次减半</strong>（Blossom 后每块 6.25 → 3.125）</td>
+</tr>
+<tr>
+<td>78,750 ZEC 一次性拨付「二手」</td>
+<td><strong>ZIP 271 原文确认</strong>；拨付后再累积的资金<strong>没有已定义的使用机制</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-3-valuepools2026-09-30">3. 六个池（一手，节点 valuePools，2026-09-30）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>池</th>
+<th style="text-align: right;">ZEC</th>
+<th style="text-align: right;">9 月变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>transparent</td>
+<td style="text-align: right;">11,952,137.71（70.47%）</td>
+<td style="text-align: right;">−36,079</td>
+</tr>
+<tr>
+<td>sprout</td>
+<td style="text-align: right;">22,310.78</td>
+<td style="text-align: right;"><strong>−280.68</strong>（搁浅多年的资金在被取出）</td>
+</tr>
+<tr>
+<td>sapling</td>
+<td style="text-align: right;">478,714.53</td>
+<td style="text-align: right;">−46,067</td>
+</tr>
+<tr>
+<td>orchard（已关闭）</td>
+<td style="text-align: right;"><strong>378,875.32</strong></td>
+<td style="text-align: right;">−91,624</td>
+</tr>
+<tr>
+<td><strong>ironwood</strong></td>
+<td style="text-align: right;"><strong>4,062,787.58</strong></td>
+<td style="text-align: right;">+221,358</td>
+</tr>
+<tr>
+<td>lockbox</td>
+<td style="text-align: right;">66,674.25</td>
+<td style="text-align: right;">+6,451</td>
+</tr>
+<tr>
+<td><strong>屏蔽合计</strong></td>
+<td style="text-align: right;"><strong>4,942,688 = 29.14%</strong></td>
+<td style="text-align: right;"><strong>+0.40pp</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>六池合计 = 链上总供应 16,961,500.17，差 0。</p>
+<hr />
+<h2 id="s-4">4. 本期核心发现：「恢复」大半来自一次投票快照之前</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点（UTC）</th>
+<th style="text-align: center;">屏蔽占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7/28（Ironwood 激活当日）</td>
+<td style="text-align: center;"><strong>25.38%</strong>（日采样最低；8 月版写 7/30 的 25.49%，采样更稀）</td>
+</tr>
+<tr>
+<td>8/22 07:28</td>
+<td style="text-align: center;">25.99%</td>
+</tr>
+<tr>
+<td><strong>8/24 11:55</strong></td>
+<td style="text-align: center;"><strong>28.40%</strong>（52 小时 <strong>+40.8 万枚</strong>）</td>
+</tr>
+<tr>
+<td><strong>8/24 19:18（NU7 投票资格快照，区块 3,459,350）</strong></td>
+<td style="text-align: center;">28.39%</td>
+</tr>
+<tr>
+<td>9/30</td>
+<td style="text-align: center;">29.14%</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>快照区块 8/05 已公布</strong>，资格是「快照时 Ironwood 里的可用屏蔽资金」，规则写明快照后可立刻转走（社区论坛与投票组织方原文，一手）</li>
+<li>52 小时里 Ironwood +56.2 万：约 15 万来自 Orchard 迁移，<strong>约 40 万来自透明池</strong>；三个 4 小时窗口占约八成</li>
+<li><strong>能说的</strong>：这 2.4pp 不是无触发的逐步恢复；<strong>时点对准快照，而不是一天后的 ETF 上市</strong>——最可能与投票资格相关</li>
+<li><strong>不能说的</strong>：资金来源与持有人动机；「单一大户或交易所归集」「ETF 托管人把既有约 39 万枚改为屏蔽托管」都不能排除（后者量级恰好吻合，待核实）</li>
+<li><strong>快照后没有回流没有判别力</strong>——对各种解释都同样自然；<strong>本期无法判断这 40 万枚是否反映采用</strong></li>
+<li>其余约 1.4pp 是平缓回升（7/28→8/22 +0.61pp、快照后→9/30 +0.75pp）</li>
+</ul>
+<hr />
+<h2 id="s-5-8">5. 价格与屏蔽占比：8 月版的问题，本期仍不能定论</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检验（减半以来，周度）</th>
+<th style="text-align: center;">相关系数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>屏蔽占比周变化 vs 价格周收益（同期）</td>
+<td style="text-align: center;"><strong>0.13</strong>（97 周，不显著）</td>
+</tr>
+<tr>
+<td>只剔除投票快照那一周</td>
+<td style="text-align: center;">0.08</td>
+</tr>
+<tr>
+<td>屏蔽占比周变化 vs <strong>上一周</strong>价格收益</td>
+<td style="text-align: center;"><strong>0.22</strong>（t≈2.2，唯一显著）</td>
+</tr>
+<tr>
+<td>4 周窗口</td>
+<td style="text-align: center;">0.53（2025-10 一个窗口影响很大，2026-06 窗口方向相反）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>同期相关弱：屏蔽占比不能用作短期价格信号</strong></li>
+<li><strong>但「价格先动、屏蔽跟进」的滞后相关与 8 月版的读法②（采用度跟随价格）相容——本期数据不能区分读法①与②</strong></li>
+<li>屏蔽占比本身「脏」（会被快照、托管移动），测量噪声也会压低相关</li>
+<li>9 月是单月例子：价格 +69.60%，屏蔽占比 +0.40pp（其中六成来自 9/30 一天）——<strong>单月形态不构成证据</strong></li>
+<li>⚠️ 初稿写「剔除事件周后约 0.00」「支持读法①」「价格在反映别的东西」，审查后撤回</li>
+</ul>
+<hr />
+<h2 id="s-6-8">6. 机构与监管（8 月版缺失，本期补上）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>数据</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Grayscale Zcash ETF（ZCSH）</strong></td>
+<td><strong>8/25 在 NYSE Arca 上市</strong>；6/30 持有 388,674 ZEC；9/8 DCG 以 85,705 ZEC 换购约 $1 亿；9/29 拆股前净资产约 $8.90 亿 ≈ <strong>63–64 万 ZEC（粗估，约 3.7% 供应）</strong>；管理费年化 2.5%、以 ZEC 支付；托管 Coinbase Custody 冷存储</td>
+<td>SEC 一手</td>
+</tr>
+<tr>
+<td><strong>矿工集中度</strong></td>
+<td><strong>DCG 经营的矿池约占全网算力 15.4%</strong>（2026 年 7 月）——同一集团也是最大的 ETF 申购方之一</td>
+<td>SEC 424B3 一手</td>
+</tr>
+<tr>
+<td>交易所</td>
+<td>ZEC 在币安、OKX、Coinbase（ZEC-USD）、Kraken 可交易；<strong>Coinbase 上 ZEC-USDC、ZEC-BTC 已下架</strong>（时点未查）；<strong>币安 XMR 停止交易</strong></td>
+<td>交易所 API 一手（10/5 单一时点）</td>
+</tr>
+<tr>
+<td>欧盟 AMLR</td>
+<td>2027-07-10 起；据 Codex 读原文，针对的是服务商维持「允许匿名的账户」，<strong>不是全面禁止处理 ZEC</strong></td>
+<td>⚠️ 本报告三次未能打开 EUR-Lex 原文</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>ETF 的托管方式未知</strong>——若以透明方式托管，每申购约 17 万枚就会把屏蔽占比压低约 1pp。</p>
+</blockquote>
+<hr />
+<h2 id="s-7-nu7">7. NU7：提速，但发行不变（规范一手）</h2>
+<ul>
+<li><strong>ZIP 218 原文</strong>：出块 75 秒 → 25 秒，<strong>每块补贴同时除以 3，「单位时间总发行不变」</strong>，减半日期不变</li>
+<li><strong>与 GRAM 期正好相反</strong>：TON 提速没改奖励，发行放大 5.85 倍</li>
+<li>持币人投票 99.9% 支持（二手）；测试网 10/4 激活，主网计划 11/5（二手）</li>
+<li><strong>激活后要读链上补贴是否真的变成 0.52083333</strong>——登记为 Z9-1</li>
+</ul>
+<hr />
+<h2 id="s-8">8. 价格、发行、费用</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘 / 市值</td>
+<td><strong>$1,438.41 / 约 $244.0 亿</strong>（CoinGecko 第 10）</td>
+</tr>
+<tr>
+<td>9 月 / Q3 / 近 1 年</td>
+<td><strong>+69.60% / +260.05% / +1,835%</strong>（币安）</td>
+</tr>
+<tr>
+<td>超出 BTC beta 预期</td>
+<td>9 月约 1.1σ、Q3 约 1.4σ——<strong>不能排除噪声</strong></td>
+</tr>
+<tr>
+<td>一年 R²</td>
+<td><strong>0.19</strong>（八个资产里仅高于 DASH 的 0.18）</td>
+</tr>
+<tr>
+<td>年增发</td>
+<td><strong>3.87%</strong>（NU7 不改变这一点）</td>
+</tr>
+<tr>
+<td>9 月手续费</td>
+<td>109.28 ZEC，<strong>只占区块补贴的 0.20%</strong>；交易笔数是 8 月的 2.7 倍，原因未拆</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-9">9. 估值：仍不给目标价</h2>
+<p><strong>理由是缺乏可信模型</strong>：BTC 用的「已实现价格」依赖透明账本，ZEC 约 29% 的供应在屏蔽池，这套方法失效。（「持币人对费用无索取权」不是承重理由——BTC 同样没有。）</p>
+<p>8 月版承诺尝试屏蔽池的「成本基准」——<strong>本期做了</strong>：减半以来净流入 321 万枚，按流入时价格加权约 <strong>$157</strong>，现价 $1,438。<br />
+<strong>它不是成本基准，也不能推出持有人有浮盈</strong>：池内转手不可见；而且「远低于现价」对任何 ZEC 都成立（近一年 +1,835%），不是屏蔽池特有的信息。</p>
+<hr />
+<h2 id="s-10">10. 记分卡与要盯的指标</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>论点</th>
+<th>9 月读数</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Z8-1 屏蔽占比站上 31.01%</td>
+<td>29.14%</td>
+<td>⏳；两侧都可能被快照或 ETF 托管影响，判定时须注明</td>
+</tr>
+<tr>
+<td>Z8-2 Orchard 残留降到 10 万以下</td>
+<td>378,875；最近日均只少 332 枚</td>
+<td>⏳ 方向不利</td>
+</tr>
+<tr>
+<td>Z8-3 补贴维持 1.5625</td>
+<td>1.5625</td>
+<td>⏳；<strong>NU7 若在检验日前激活则记 ⊘</strong>（参数按计划改变）</td>
+</tr>
+<tr>
+<td>Z8-4 不再发现同类漏洞</td>
+<td>9 月未见</td>
+<td>⏳ 不判定</td>
+</tr>
+<tr>
+<td>Z8-5 波动主要来自自身</td>
+<td>R² 0.193</td>
+<td>⏳ 远离门槛</td>
+</tr>
+<tr>
+<td><strong>Z9-1</strong> NU7 11/30 前激活且每块补贴 = 0.52083333</td>
+<td>—</td>
+<td>⏳ 自评 55%</td>
+</tr>
+<tr>
+<td><strong>Z9-2</strong> 屏蔽占比不能用作短期价格信号（26 周同期相关 |r| &lt; 0.25，两侧对称）</td>
+<td>—</td>
+<td>⏳ 自评 65%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>要盯的</strong>：NU7 激活高度（10/20）与激活后的链上补贴；屏蔽占比是否站上 31.01%；ZCSH 的 Q3 10-Q（实际持仓与托管方式）；Orchard 残留。</p>
+<hr />
+<h2 id="s-3-5">如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>Q3 ZEC +260%，本系列 9 月版里最高</strong>——但超出 BTC beta 预期只有约 1.4 个标准差，不能排除噪声。</p>
+</li>
+<li>
+<p><strong>8 月版说的屏蔽占比「恢复」，约 2.4pp 挤在事先公布的 NU7 投票快照前 52 小时里</strong>（+40.8 万枚，约 40 万来自透明池）——时点对准快照，资金来源与动机不可知。</p>
+</li>
+<li>
+<p><strong>屏蔽占比不能用作短期价格信号</strong>（周度同期相关 0.13）；但「价格先动、屏蔽跟进」的滞后相关（0.22）与「采用跟随价格」相容——<strong>本期不能区分两种读法</strong>。</p>
+</li>
+<li>
+<p><strong>Grayscale 的 ZEC ETF 8/25 已上市，持有约 3.7% 供应（粗估）</strong>（SEC 一手）——8 月版漏记；<strong>同一集团（DCG）的矿池约占全网算力 15.4%</strong>。</p>
+</li>
+<li>
+<p><strong>NU7 的 25 秒出块按规范「提速不放水」</strong>（每块补贴除以 3）——这是本期唯一「错了后果很大、而且激活后立刻可查」的变量。</p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>zec_research_report_202609.md</code>（对 8 月版的更正见 10.4，审查记录见 10.5）。<br />
+论点检验记录见 <code>../thesis_scorecard.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>

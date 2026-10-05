@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" width="100%" role="img" aria-label="Zcash 屏蔽占比（2026-07-01 至 10-05，按天采样）">
+<style> .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}</style>
+<rect width="680" height="330" fill="none"/><text x="0" y="16" class="t">Zcash 屏蔽占比（2026-07-01 至 10-05，按天采样）</text><text x="0" y="34" class="s">节点 valuePools 记账项（Blockchair raw/block 转发），屏蔽 = sprout + sapling + orchard + ironwood，÷ chainSupply</text>
+<line x1="54" y1="250.0" x2="660" y2="250.0" class="ax"/><text x="46" y="254.0" class="l" text-anchor="end">25%</text>
+<line x1="54" y1="196.9" x2="660" y2="196.9" class="ax"/><text x="46" y="200.9" class="l" text-anchor="end">27%</text>
+<line x1="54" y1="143.7" x2="660" y2="143.7" class="ax"/><text x="46" y="147.7" class="l" text-anchor="end">29%</text>
+<line x1="54" y1="90.6" x2="660" y2="90.6" class="ax"/><text x="46" y="94.6" class="l" text-anchor="end">31%</text>
+<line x1="54" y1="90.3" x2="660" y2="90.3" stroke="#e34948" stroke-dasharray="5 4" stroke-width="1.2"/><text x="660" y="84.3" class="l" text-anchor="end" style="fill:#e34948">4/25 峰值 31.01%（Z8-1 门槛）</text>
+<text x="54" y="267" class="l" text-anchor="middle">7/1</text>
+<text x="249" y="267" class="l" text-anchor="middle">8/1</text>
+<text x="443" y="267" class="l" text-anchor="middle">9/1</text>
+<text x="632" y="267" class="l" text-anchor="middle">10/1</text>
+<polyline points="54.0,215.1 60.3,216.5 66.6,216.6 72.9,216.7 79.2,216.6 85.4,216.6 91.7,216.9 98.0,221.4 104.2,221.5 110.5,221.4 116.7,221.1 123.0,221.3 129.3,221.1 135.6,221.1 142.0,221.4 148.2,221.5 154.5,222.2 160.7,222.5 167.0,222.0 173.3,221.9 179.5,221.7 185.9,219.9 192.1,222.4 198.4,222.4 204.7,222.5 210.9,222.8 217.2,223.3 223.6,240.0 229.8,238.7 236.0,236.8 242.3,235.6 248.6,234.1 254.9,233.1 261.2,232.8 267.5,228.7 273.8,229.1 280.0,229.2 286.4,228.8 292.6,228.2 298.9,227.0 305.2,226.5 311.4,226.5 317.8,226.7 324.0,225.4 330.3,224.3 336.5,224.1 342.9,224.0 349.1,223.7 355.4,225.3 361.7,223.5 367.9,224.3 374.3,224.6 380.5,224.0 386.8,202.0 393.1,177.4 399.4,159.9 405.7,160.0 412.0,160.4 418.2,158.7 424.6,158.9 430.8,152.2 437.1,151.0 443.4,150.6 449.7,150.4 455.9,150.8 462.2,150.0 468.5,150.2 474.7,150.3 481.0,149.3 487.3,148.5 493.6,147.8 499.9,145.8 506.2,145.8 512.4,145.7 518.7,145.8 525.0,146.1 531.2,146.3 537.5,146.1 543.8,145.3 550.1,142.7 556.4,143.0 562.7,143.5 569.0,144.1 575.2,143.6 581.5,144.1 587.8,144.9 594.0,144.8 600.3,146.5 606.6,146.9 612.8,147.2 619.1,147.4 625.5,148.1 631.7,140.0 638.1,140.1 644.3,141.2 650.6,141.2 656.9,141.3" fill="none" stroke="#2a78d6" stroke-width="2"/>
+<rect x="382.4" y="64" width="15.8" height="186" fill="#eb6834" opacity="0.18"/>
+<line x1="398.2" y1="64" x2="398.2" y2="250" stroke="#eb6834" stroke-width="1.5"/>
+<text x="403.2" y="218.1" class="v" style="fill:#eb6834">8/24 投票快照</text><text x="403.2" y="230.1" class="l">前 52 小时 +40.8 万枚</text>
+<circle cx="223.6" cy="240.0" r="4" fill="#2a78d6"/><text x="217.6" y="256.0" class="v" text-anchor="end">7/28 25.38%</text>
+<circle cx="656.9" cy="141.3" r="4" fill="#2a78d6"/><text x="652.9" y="132.3" class="v" text-anchor="end">10/5 29.09%</text>
+<text x="0" y="304" class="s">9 月价格 +69.60%，屏蔽占比 28.74% → 29.14%（+0.40pp）。8/31 后序列几乎横住。</text>
+<text x="0" y="322" class="s">7/28 为 Ironwood 激活当日的日采样最低值；8 月版写的「谷底 25.49%（7/30）」是更稀的采样点。</text></svg>
