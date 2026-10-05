@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 320" width="100%" role="img" aria-label="Uniswap 归持有人收入：Robinhood Chain vs 其他链">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 10.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}
+</style>
+<rect width="620" height="320" fill="none"/>
+<text x="0" y="16" class="t">Uniswap 归持有人收入：Robinhood Chain vs 其他链</text><text x="0" y="34" class="s">单位：百万美元 · 柱顶为比值（归持有人 ÷ 总费用）· 数据源：DefiLlama 分链数据（一手）</text>
+<line x1="54" y1="240.0" x2="600" y2="240.0" class="ax"/><text x="46" y="244.0" class="l" text-anchor="end">0</text>
+<line x1="54" y1="195.0" x2="600" y2="195.0" class="ax"/><text x="46" y="199.0" class="l" text-anchor="end">5</text>
+<line x1="54" y1="150.0" x2="600" y2="150.0" class="ax"/><text x="46" y="154.0" class="l" text-anchor="end">10</text>
+<line x1="54" y1="105.0" x2="600" y2="105.0" class="ax"/><text x="46" y="109.0" class="l" text-anchor="end">15</text>
+<line x1="54" y1="60.0" x2="600" y2="60.0" class="ax"/><text x="46" y="64.0" class="l" text-anchor="end">20</text>
+<rect x="90.2" y="194.1" width="64" height="45.9" fill="#2a78d6"/>
+<text x="122" y="221" class="v" text-anchor="middle" style="fill:#fff">5.1</text>
+<text x="122" y="188" class="v" text-anchor="middle">10.32%</text>
+<text x="122" y="258" class="l" text-anchor="middle">6 月</text>
+<rect x="226.8" y="207.6" width="64" height="32.4" fill="#2a78d6"/>
+<text x="259" y="228" class="v" text-anchor="middle" style="fill:#fff">3.6</text>
+<rect x="226.8" y="200.4" width="64" height="5.2" rx="1" fill="#eb6834"/>
+<text x="259" y="194" class="v" text-anchor="middle">4.17%</text>
+<text x="259" y="258" class="l" text-anchor="middle">7 月</text>
+<rect x="363.2" y="194.1" width="64" height="45.9" fill="#2a78d6"/>
+<text x="395" y="221" class="v" text-anchor="middle" style="fill:#fff">5.1</text>
+<rect x="363.2" y="156.3" width="64" height="35.8" rx="3" fill="#eb6834"/>
+<text x="395" y="179" class="v" text-anchor="middle" style="fill:#fff">4.2</text>
+<text x="395" y="150" class="v" text-anchor="middle">8.49%</text>
+<text x="395" y="258" class="l" text-anchor="middle">8 月</text>
+<rect x="499.8" y="178.8" width="64" height="61.2" fill="#2a78d6"/>
+<text x="532" y="213" class="v" text-anchor="middle" style="fill:#fff">6.8</text>
+<rect x="499.8" y="100.5" width="64" height="76.3" rx="3" fill="#eb6834"/>
+<text x="532" y="144" class="v" text-anchor="middle" style="fill:#fff">8.7</text>
+<text x="532" y="94" class="v" text-anchor="middle">7.62%</text>
+<text x="532" y="258" class="l" text-anchor="middle">9 月</text>
+<rect x="54" y="278" width="12" height="10" fill="#eb6834"/><text x="71" y="287" class="l">Robinhood Chain</text><rect x="184" y="278" width="12" height="10" fill="#2a78d6"/><text x="201" y="287" class="l">其他链合计</text>
+<text x="0" y="312" class="s">9 月归持有人收入的 56.4% 来自 Robinhood Chain；7 月 0.8 来自该链（时滞）。</text></svg>

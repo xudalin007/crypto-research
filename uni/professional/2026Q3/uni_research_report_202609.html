@@ -1,0 +1,1754 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>UNI / Uniswap 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#FF007A;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">🦄 UNI 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>🦄 UNI 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-uniswap-uni">1. Uniswap 与 UNI</a>
+<a href="#2">2. 发展阶段</a>
+<a href="#3">3. 当前现状</a>
+<a href="#4">4. 销毁</a>
+<a href="#5">5. 价值捕获</a>
+<a href="#6">6. 与其他资产比较</a>
+<a href="#7">7. 核心价值逻辑</a>
+<a href="#8">8. 关键变量</a>
+<a href="#9">9. 估值与情景</a>
+<a href="#10">10. 投资与风险启示</a>
+<a href="#11">11. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-9-q3">一、9 月和 Q3 发生了什么</a>
+<a href="#s-robinhood-chain">二、本期最重要的发现</a>
+<a href="#s-_1">三、销毁</a>
+<a href="#s-_2">四、估值</a>
+<a href="#s-dex">五、DEX 赛道</a>
+<a href="#s-2027">六、三情景</a>
+<a href="#s-_3">七、记分卡</a>
+<a href="#s-_4">八、接下来看什么</a>
+<a href="#s-3-5">九、如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>🦄 UNI / Uniswap<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">🦄 Uniswap</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="uni-uniswap">UNI / Uniswap 完整调研与分析报告</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 10 月 5 日<br />
+<strong>数据截止</strong>：2026 年 9 月 30 日（9 月与 Q3 完整数据已闭合）；链上快照取到 10/4<br />
+<strong>版本</strong>：2026 年 9 月版（第二期）<strong>兼 Q3 季度回顾</strong><br />
+<strong>研究方法</strong>：沿用 8 月首期框架。本期第一次有上期论点可核对（U8-1、U8-3、U8-4、U8-7，见 3.0）。</p>
+<p><strong>本版更新要点</strong>：</p>
+<ol>
+<li><strong>9 月 +69.76%，Q3 +219.73%</strong>——收于 $8.882（币安日线），在本系列 BTC / ETH / SOL / UNI 四份 9 月版里涨幅最大（PONS 9 月版截至 9/27 为 +89.1%，窗口不同不比）。按对数收益计算的 beta 残差：9 月约 1.3 个标准差、Q3 约 1.6 个标准差——<strong>大而不算确定</strong>。与基本面<strong>季度方向一致（费用翻倍）、月内背离</strong>：9/1–9/23 价格 +111%，同期周日均持有人收入 −49%。</li>
+<li><strong>本期最重要的发现：Uniswap 9 月的费用与销毁，大部分来自 Robinhood Chain。</strong><br />
+   DefiLlama 分链数据：9 月 Uniswap 总费用 <strong>$2.032 亿</strong> 中 <strong>$1.394 亿（68.6%）</strong> 来自 Robinhood Chain；归持有人收入 <strong>$1,549 万</strong> 中 <strong>56.4%</strong> 来自该链。<br />
+   该链上 Uniswap 费用的代币构成<strong>本期未拆分</strong>；<strong>推断</strong>其中相当部分是 meme 交易（本系列 PONS 9 月版记录了该链发射台收入从 9/5 峰值下跌 87.8%），但新链上线热度退潮、代币化股票等解释同样会产生同步下跌，<strong>本期数据分不开</strong>。<br />
+<strong>Uniswap 的归持有人收入在 9 月内逐周下降</strong>：周日均 $74.5 万 → $53.5 万 → $44.5 万 → $37.8 万 → 9/29–10/4 的 <strong>$28.3 万</strong>。</li>
+<li><strong>销毁首次用链上一手数据逐月核实</strong>：以太坊主网 <code>0xdead</code> 地址的 UNI 余额逐月读数显示，<strong>2025-12 一次性增量 100,000,003 枚，与「国库销毁 1 亿枚」一致</strong>（转出地址未查）、此后持续销毁至 10/1 累计 <strong>1,238 万枚</strong>；9 月销毁 <strong>248.0 万枚</strong>（8 月 207.6 万）。<br />
+<strong>CoinGecko 的总供应量（8.874 亿）与「10 亿 − 0xdead 余额」只差 4,000 枚</strong>——8 月版标为二手的「1 亿枚国库销毁」和「总供应量口径」都已一手确认。</li>
+<li><strong>8 月版的三处更正</strong>（见 11.5）：「PumpSwap 已达 Uniswap V4 的 96%」只在 8/7–9/5 这个窗口成立，<strong>按自然月，7 月与 8 月 PumpSwap 都高于 V4</strong>；DefiLlama 已把 8 月归持有人收入修订为 <strong>$933 万</strong>（8 月版为 $888 万）；DefiLlama 的 <code>uniswap-v4</code> 条目显示归持有人收入为 0，<strong>v4 池的协议费被统一记在 v3 条目里</strong>（共用 Firepit 合约，已读适配器源码确认）。</li>
+</ol>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>UNI 是什么</strong></td>
+<td>去中心化交易所龙头 Uniswap 的治理代币；2025-12 起协议费用于销毁 UNI</td>
+</tr>
+<tr>
+<td><strong>当前价格位置</strong></td>
+<td>$8.882（9/30 币安收盘），市值 <strong>$55.12 亿</strong>（CoinGecko，第 23）、FDV 约 <strong>$78.8 亿</strong>。距 ATH（$45.00，币安 2021-05-03）<strong>−80.3%</strong></td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3 表现</strong></td>
+<td><strong>9 月 +69.76%、Q3 +219.73%</strong>，YTD +57.48%。高于 BTC beta 预期：9 月约 1.3 个标准差、Q3 约 1.6 个（对数口径），<strong>不能完全排除噪声</strong></td>
+</tr>
+<tr>
+<td><strong>本期最重要的发现</strong></td>
+<td><strong>9 月费用的 68.6%、归持有人收入的 56.4% 来自 Robinhood Chain</strong>（推断以 meme 交易为主，代币构成未拆分）。<strong>全协议持有人收入在 9 月内逐周下降</strong>，最后 6 天日均只有月初一周的 38%</td>
+</tr>
+<tr>
+<td><strong>业务</strong></td>
+<td>9 月总费用 <strong>$2.032 亿</strong>（8 月 $1.099 亿，+85%）；9 月成交额 $936 亿</td>
+</tr>
+<tr>
+<td><strong>价值捕获</strong></td>
+<td>9 月归持有人收入 <strong>$1,549 万</strong>、销毁 <strong>248.0 万枚</strong>（主网链上读数）；比值（归持有人 ÷ 总费用）<strong>7.62%</strong></td>
+</tr>
+<tr>
+<td><strong>估值（FDV 口径）</strong></td>
+<td>9 月年化 <strong>42.4 倍</strong>；Q3 年化 67.4 倍；9/22–28 一周 57.1 倍；9/29–10/4 六天 76.3 倍——<strong>倍数随窗口在 42–76 倍之间变化，最后 6 天受批量释放噪声影响，不当作单一读数</strong></td>
+</tr>
+<tr>
+<td><strong>核心多头逻辑</strong></td>
+<td>费用与销毁绝对额创新高；销毁链上一手可验证；9 月 V4 费用 $1.344 亿，高于 PumpSwap $1.061 亿；Robinhood Chain 上线两个月即成为 Uniswap 最大的单一费用来源</td>
+</tr>
+<tr>
+<td><strong>核心空头逻辑</strong></td>
+<td>收入高度集中于一条链，且已在衰减（一手）；比值仍只有约 7.6%；估值倍数对窗口高度敏感，最后 6 天折算高于 8 月版主口径</td>
+</tr>
+<tr>
+<td><strong>估值立场</strong></td>
+<td>市值层三情景<strong>补上期限（至 2027 年底）并改为两端开放</strong>；对照随机游走基线后概率由 25/45/30 改为 <strong>乐观 30 / 中性 25 / 悲观 45</strong>；<strong>不给单一基准预期</strong>（最高的悲观档未过半）；按此分布，2027 年底市值低于当前的概率约 67%</td>
+</tr>
+<tr>
+<td><strong>风险等级</strong></td>
+<td>高。年化波动 9 月 129%、过去一年 100%；<strong>收入集中风险是本期新增的主要风险</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-uniswap-uni">1. Uniswap 与 UNI</h2>
+<blockquote>
+<p>完整背景见 8 月首期第 1 章。本期只保留必要部分。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时期</th>
+<th>UNI 的经济属性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2020-09 – 2025-11</td>
+<td>纯治理代币，交易费全部归流动性提供者（LP），持有人收入为零</td>
+</tr>
+<tr>
+<td><strong>2025-12 起</strong></td>
+<td>UNIfication：部分协议费导入 Firepit 合约，累积到阈值后买入并销毁 UNI；国库一次性销毁 1 亿枚</td>
+</tr>
+<tr>
+<td><strong>2026-07-27 起</strong></td>
+<td>治理提案 100：v4 池在七条网络开启协议费（含 Robinhood Chain）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>销毁机制的链上形态</strong>（DefiLlama 适配器源码 + 以太坊 RPC，一手）：<br />
+- 各链有一个 Firepit 合约（以太坊主网 <code>0x0D5C…6721</code>），每当累积到阈值就触发一次 <code>Released</code> 事件；<br />
+- <strong>主网 Firepit 的阈值（<code>threshold()</code>）为 4,000 UNI</strong>；OP Stack L2 的 Firepit 阈值为 2,000 UNI，L2 销毁要经 L2→L1 桥的 <strong>7 天挑战期</strong>后才转入主网 <code>0xdead</code>（Uniswap <code>protocol-fees</code> 官方 README，一手）。主网 <code>0xdead</code> 持续销毁部分的月度增量都是 2,000 的整数倍（误差 ≤3 枚），<strong>不全是 4,000 的整数倍</strong>（如 5 月 990,000 枚），与「主网 + L2 桥接」两路来源一致；<br />
+- DefiLlama 的「归持有人收入」= <code>Released</code> 事件次数 × 阈值 × 当日 UNI 价格（源码第 47–55 行）。<strong>它记的是「释放时的价值」，不是「交易发生时的费用」</strong>，两者有时滞。</p>
+<hr />
+<h2 id="2">2. 发展阶段（追加本期）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-12</td>
+<td>UNIfication 生效；<strong>主网 <code>0xdead</code> 余额 12 月增加 100,028,003 枚</strong>（国库销毁 1 亿 + 持续销毁 2.8 万）</td>
+</tr>
+<tr>
+<td>2026-06-11</td>
+<td>五年市值最低 <strong>$14.91 亿</strong>（CoinGecko）</td>
+</tr>
+<tr>
+<td>2026-07-27</td>
+<td>v4 协议费在七条网络上线，含 Robinhood Chain（适配器配置的 <code>feeSwitchDate</code>）</td>
+</tr>
+<tr>
+<td><strong>2026-09-01 至 07</strong></td>
+<td>Robinhood Chain 上的 Uniswap 日均费用 <strong>$955 万</strong>，占全协议 85%</td>
+</tr>
+<tr>
+<td><strong>2026-09-18</strong></td>
+<td>UNI 单日大涨；媒体归因于 SEC 允许代币化美股在许可制 AMM 上交易的框架（<strong>转述，未核实</strong>）</td>
+</tr>
+<tr>
+<td><strong>2026-09-23</strong></td>
+<td>年内最高市值 <strong>$63.43 亿</strong>（CoinGecko）；币安盘中高点 $10.942</td>
+</tr>
+<tr>
+<td><strong>2026-09-29 至 10-04</strong></td>
+<td>归持有人收入日均降至 <strong>$28.3 万</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="3">3. 当前现状</h2>
+<h3 id="30-8">3.0 论点校验：8 月版登记的论点</h3>
+<blockquote>
+<p>8 月版登记 7 条，其中 U8-2、U8-5 已撤销、U8-6 判为不可检验。其余 4 条在 9 月都未到检验窗口；<strong>本期审查把 U8-4 改判 ⊘</strong>（检验失效），有效待验 3 条。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th>检验条件（摘要）</th>
+<th>9 月读数</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>U8-1</td>
+<td>v4 协议费覆盖范围会继续扩大</td>
+<td>2026-12 月度归持有人收入 ≤ $888 万则错</td>
+<td>9 月 <strong>$1,549 万</strong>；9/22–28 一周折月约 $1,150 万，9/29–10/4 六天折月约 $860 万</td>
+<td>⏳ 12 月核；<strong>构念错位</strong>：它测的是全协议收入水平，现在主要受 Robinhood Chain 热度驱动，而不是「覆盖范围」</td>
+</tr>
+<tr>
+<td>U8-3</td>
+<td>销毁持续，CoinGecko 总供应量继续下降</td>
+<td>12/31 总供应 ≥ 8.905 亿则错</td>
+<td><strong>8.874 亿</strong>（10/4），且与链上「10 亿 − 0xdead」只差 4,000 枚</td>
+<td>⏳ 方向成立</td>
+</tr>
+<tr>
+<td>U8-4</td>
+<td>DEX 龙头地位四个月内不被撼动</td>
+<td>年底前连续两个月 PumpSwap 30 天费用 &gt; Uniswap V4，则错</td>
+<td>9 月 V4 <strong>$1.344 亿</strong> &gt; PumpSwap $1.061 亿</td>
+<td><strong>⊘ 检验失效</strong>：按自然月，7、8 月 PumpSwap 都高于 V4——<strong>证伪条件在登记前就已满足</strong>，论点前提（V4 领先）登记时即不成立；不计入正确率（11.5 第 1 条）</td>
+</tr>
+<tr>
+<td>U8-7</td>
+<td>8 月的 $888 万是新常态</td>
+<td>9–12 月月均 &lt; $700 万则错</td>
+<td>9 月 $1,549 万；10–12 月平均低于 $417 万才会触发</td>
+<td>⏳ 大概率不触发</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>U8-1 最需要注意</strong>：9 月整月远高于门槛，但收入在月内持续下降，<strong>最后 6 天折月已落到 $888 万以下</strong>（前一周还在门槛之上）。12 月是否触发，主要取决于 Robinhood Chain 的热度（见 5.1）——<strong>U8-1 与 U9-1 都读同一股热度，计正确率时不当作两条独立样本</strong>。</p>
+<h3 id="31">3.1 价格与市场</h3>
+<blockquote>
+<p>口径：币安 UNIUSDT 日线 UTC 收盘，与 BTC / ETH / SOL 9 月版统一。8 月版用 CoinGecko 零点快照，8 月涨幅按新口径为 +20.30%（原 +18.06%）。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9/30 收盘</strong></td>
+<td><strong>$8.882</strong></td>
+</tr>
+<tr>
+<td>市值 / FDV</td>
+<td>$55.12 亿（9/30，CoinGecko）/ 约 $78.8 亿（总供应 8.874 亿 × 收盘价）</td>
+</tr>
+<tr>
+<td>9 月区间</td>
+<td>低 <strong>$5.195</strong>（9/1）/ 高 <strong>$10.942</strong>（9/23）</td>
+</tr>
+<tr>
+<td>距 ATH</td>
+<td>−80.3%（币安 ATH $45.00）</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th>UNI</th>
+<th>BTC</th>
+<th>ETH</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9 月</strong></td>
+<td><strong>+69.76%</strong></td>
+<td>+6.42%</td>
+<td>+8.85%</td>
+</tr>
+<tr>
+<td><strong>Q3</strong></td>
+<td><strong>+219.73%</strong></td>
+<td>+42.64%</td>
+<td>+70.86%</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>−21.64%</td>
+<td>−14.15%</td>
+<td>−25.34%</td>
+</tr>
+<tr>
+<td>YTD</td>
+<td>+57.48%</td>
+<td>−4.59%</td>
+<td>−9.61%</td>
+</tr>
+<tr>
+<td>近 1 年</td>
+<td>+16.24%</td>
+<td>−26.68%</td>
+<td>−35.20%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>beta、R² 与噪声带</strong>（对数收益口径，ETH 9 月版审查后统一）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>窗口</th>
+<th>年化波动</th>
+<th>对 BTC beta</th>
+<th>R²</th>
+<th>对数残差</th>
+<th>1 个标准差</th>
+<th><strong>约几个标准差</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月</td>
+<td>129.4%</td>
+<td>1.40</td>
+<td>0.20</td>
+<td>0.442</td>
+<td>0.332</td>
+<td><strong>约 1.3</strong></td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>99.4%</td>
+<td>1.23</td>
+<td>0.22</td>
+<td>0.724</td>
+<td>0.440</td>
+<td><strong>约 1.6</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>R² 只有 0.20–0.22</strong>：BTC 只能解释 UNI 约五分之一的日波动。UNI 本季的上涨大部分是自身因素，但<strong>1.3–1.6 个标准差不足以排除噪声</strong>。<br />
+用简单收益算会得到 9 月约 1.8、Q3 约 3.8 个标准差——<strong>简单收益在高波动、大涨幅下会夸大残差</strong>，本报告采用对数口径。<br />
+<strong>同期的 UNI 专属事件</strong>：费用翻倍、销毁创新高（第 4、5 章）；SEC 代币化股票框架（转述）。<strong>这些是相关，不是已证明的原因</strong>——而且月内方向相反：9/1–9/23 价格 +111%，周日均持有人收入 $74.5 万 → $37.8 万（−49%）。</p>
+</blockquote>
+<h3 id="32-robinhood-chain">3.2 业务：费用翻倍，大部分来自 Robinhood Chain</h3>
+<p><strong>Uniswap 月度总费用</strong>（DefiLlama <code>summary/fees/uniswap</code>，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th>总费用</th>
+<th>其中 Robinhood Chain</th>
+<th>占比</th>
+<th>其他链合计</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-06</td>
+<td>$4,966 万</td>
+<td>$0</td>
+<td>0%</td>
+<td>$4,966 万</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td>$1.059 亿</td>
+<td>$7,293 万</td>
+<td>68.9%</td>
+<td>$3,296 万</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td>$1.099 亿</td>
+<td>$6,749 万</td>
+<td>61.4%</td>
+<td>$4,244 万</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td><strong>$2.032 亿</strong></td>
+<td><strong>$1.394 亿</strong></td>
+<td><strong>68.6%</strong></td>
+<td><strong>$6,380 万</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>两个读法都成立</strong>：<br />
+1. <strong>扣掉 Robinhood Chain，其他链的费用 6 月到 9 月也增长了 28%</strong>（$4,966 万 → $6,380 万），与 BTC、ETH 的 Q3 行情方向一致。<br />
+2. <strong>但 9 月的翻倍主要是 Robinhood Chain 贡献的</strong>：总费用增量 $9,330 万里，$7,190 万来自该链（77%）。</p>
+<p><strong>分版本</strong>（DefiLlama，9 月）：V4 <strong>$1.344 亿</strong>（其中 Robinhood $1.044 亿）、V3 $6,413 万、V2 $467 万。</p>
+<p><strong>与 PumpSwap</strong>（Solana meme 交易平台）对比：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th>Uniswap V4</th>
+<th>PumpSwap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-07</td>
+<td>$3,232 万</td>
+<td><strong>$5,315 万</strong></td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td>$5,757 万</td>
+<td><strong>$8,644 万</strong></td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td><strong>$1.344 亿</strong></td>
+<td>$1.061 亿</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>9 月 V4 首次在自然月口径上超过 PumpSwap</strong>——而 V4 的 77.7% 来自 Robinhood Chain。<br />
+<strong>换句话说：Uniswap 9 月的反超主要靠 Robinhood Chain 一条链</strong>（该链交易构成未拆分）。</p>
+</blockquote>
+<h3 id="33-robinhood-chain">3.3 Robinhood Chain：集中，且在衰减</h3>
+<p><strong>周度日均</strong>（DefiLlama 分链，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>周</th>
+<th>Uniswap 总费用/天</th>
+<th>Robinhood/天</th>
+<th>Robinhood 占比</th>
+<th>归持有人收入/天</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/1–9/7</td>
+<td>$1,121 万</td>
+<td>$955 万</td>
+<td>85%</td>
+<td><strong>$74.5 万</strong></td>
+</tr>
+<tr>
+<td>9/8–9/14</td>
+<td>$640 万</td>
+<td>$447 万</td>
+<td>70%</td>
+<td>$53.5 万</td>
+</tr>
+<tr>
+<td>9/15–9/21</td>
+<td>$535 万</td>
+<td>$272 万</td>
+<td>51%</td>
+<td>$44.5 万</td>
+</tr>
+<tr>
+<td>9/22–9/28</td>
+<td>$462 万</td>
+<td>$237 万</td>
+<td>51%</td>
+<td>$37.8 万</td>
+</tr>
+<tr>
+<td>9/29–10/4（6 天）</td>
+<td>$445 万</td>
+<td>$223 万</td>
+<td>50%</td>
+<td><strong>$28.3 万</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Robinhood Chain 上的 Uniswap 费用从月初到月底跌了 77%（该链的归持有人收入 $54.4 万/天 → $10.4 万/天，−81%）；全协议归持有人收入跌了 62%。</strong><br />
+这与 PONS 9 月版记录的现象同步：Robinhood Chain 上的 Pons 发射台收入从 9/5 峰值下跌 87.8%；<strong>Pons V2 发行的代币「毕业」后进入 Uniswap V4 交易</strong>（Pons 官方文档，见 PONS 9 月版第 1 章）。<br />
+<strong>推断</strong>：两份报告读的可能是同一条链上的同一股 meme 热度。<strong>这不是测量</strong>——本报告没有逐池拆分 Robinhood Chain 上 Uniswap 费用的代币构成；PONS 毕业路径只证明这条交易路径存在，不证明它占该链费用的大部分。<br />
+<strong>同步下跌分不开几种解释</strong>：meme 退潮、新链上线初期热度退潮、激励结束都会产生同样的形态。本期只把<strong>集中度与衰减</strong>当作一手事实。</p>
+</blockquote>
+<h3 id="34">3.4 宏观环境</h3>
+<blockquote>
+<p>与 BTC 9 月版共用（美联储 9/16 加息 25bp，10 年期美债 5.29%）。UNI 与 BTC 的 R² 只有约 0.2，<strong>宏观对本季 UNI 的解释力很弱</strong>。</p>
+</blockquote>
+<h3 id="35-q3">3.5 Q3 季度回顾</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>Q2 2026</th>
+<th><strong>Q3 2026</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UNI 季度涨跌（币安）</td>
+<td>−21.64%</td>
+<td><strong>+219.73%</strong></td>
+</tr>
+<tr>
+<td>Uniswap 总费用</td>
+<td>$1.406 亿</td>
+<td><strong>$4.190 亿</strong></td>
+</tr>
+<tr>
+<td>归持有人收入</td>
+<td>$1,349 万</td>
+<td><strong>$2,923 万</strong></td>
+</tr>
+<tr>
+<td>主网销毁（枚）</td>
+<td>414.4 万</td>
+<td><strong>577.6 万</strong></td>
+</tr>
+<tr>
+<td>季末总供应（CoinGecko）</td>
+<td>8.933 亿（推算：10 亿 − 6/30 前后 0xdead 余额）</td>
+<td><strong>8.876 亿</strong>（10/1 链上推算）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>一句话</strong>：<strong>Q3 是 v4 协议费上线（7/27）与 Robinhood Chain meme 热潮叠加的一个季度</strong>，两者在时间上无法拆开。</p>
+<hr />
+<h2 id="4">4. 销毁：本期首次逐月链上核实</h2>
+<blockquote>
+<p>8 月版 4.2 只能用「10 亿 − CoinGecko 总量 − 二手的 1 亿」做减法，并把结论限定为「量级相容」。<br />
+<strong>本期在每月第一个区块读取以太坊主网 <code>0xdead</code> 地址的 UNI 余额</strong>（drpc 公共节点，历史状态 <code>eth_call</code>，一手），得到逐月销毁量。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th>主网 <code>0xdead</code> 余额增量（枚）</th>
+<th>DefiLlama 归持有人收入</th>
+<th>按日价折算（枚）</th>
+<th>链上 ÷ 折算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-12</td>
+<td>100,028,003（<strong>国库 1 亿 + 持续 28,003</strong>）</td>
+<td>$16.4 万</td>
+<td>27,956</td>
+<td>1.00</td>
+</tr>
+<tr>
+<td>2026-01</td>
+<td>532,000</td>
+<td>$286.5 万</td>
+<td>568,424</td>
+<td>0.94</td>
+</tr>
+<tr>
+<td>2026-02</td>
+<td>864,000</td>
+<td>$320.9 万</td>
+<td>906,351</td>
+<td>0.95</td>
+</tr>
+<tr>
+<td>2026-03</td>
+<td>1,036,000</td>
+<td>$458.8 万</td>
+<td>1,227,757</td>
+<td>0.84</td>
+</tr>
+<tr>
+<td>2026-04</td>
+<td>1,374,000</td>
+<td>$450.1 万</td>
+<td>1,387,334</td>
+<td>0.99</td>
+</tr>
+<tr>
+<td>2026-05</td>
+<td>990,000</td>
+<td>$385.2 万</td>
+<td>1,124,637</td>
+<td>0.88</td>
+</tr>
+<tr>
+<td>2026-06</td>
+<td>1,780,000</td>
+<td>$512.5 万</td>
+<td>1,857,498</td>
+<td>0.96</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td>1,220,000</td>
+<td>$441.4 万</td>
+<td>1,218,680</td>
+<td>1.00</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td>2,076,000</td>
+<td>$933.1 万</td>
+<td>2,268,974</td>
+<td>0.92</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td><strong>2,480,001</strong></td>
+<td><strong>$1,548.8 万</strong></td>
+<td>2,167,298</td>
+<td>1.14</td>
+</tr>
+<tr>
+<td><strong>合计（持续部分）</strong></td>
+<td><strong>12,380,004</strong></td>
+<td>$4,853 万</td>
+<td>12,754,910</td>
+<td><strong>0.97</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="UNI 月度销毁：主网 0xdead 余额增量（价值捕获执行曲线）" src="charts/fee-switch-ramp-202609.svg" /></p>
+<blockquote>
+<p>图中数字：月度销毁（万枚，取整）2.8 / 53.2 / 86.4 / 103.6 / 137.4 / 99.0 / 178.0 / 122.0 / 207.6 / 248.0（2025-12 至 2026-09，2025-12 不含国库 1 亿）；纵轴刻度 0 / 100 / 200 / 300。</p>
+</blockquote>
+<p><strong>能确定的</strong>：<br />
+1. <strong>12 月增量扣掉持续部分后为 100,000,003 枚，与「国库一次性销毁 1 亿枚」一致</strong>——8 月版标为二手的数字得到链上支持；<strong>转出地址本期未查</strong>，「来自国库」仍依赖 UNIfication 的公开说明。<br />
+2. <strong>CoinGecko 的总供应量与「10 亿 − 0xdead 余额」只差 4,000 枚</strong>：10/4 链上 10 亿 − 112,567,581 = 887,432,419，CoinGecko 887,436,419。这与 CoinGecko 扣除已销毁币的口径相符，但<strong>不证明它逐笔、实时按这个地址计算</strong>。8 月版 4.2 的「路径一」因此不是两个独立来源的减法，而很可能是同一个链上量的两种读法。<br />
+3. <strong>持续销毁 10 个月累计 1,238 万枚</strong>，是 DefiLlama 按日价折算值的 97%。</p>
+<blockquote>
+<p>⚠️ <strong>这不是两个独立测量的交叉验证</strong>（CKB 期规则）：DefiLlama 的数字来自 Firepit 的 <code>Released</code> 事件，而 <code>0xdead</code> 余额的增加正是这些释放的结果——<strong>两者读的是同一批链上动作</strong>。<br />
+合计 0.97 只说明 DefiLlama 的「次数 × 阈值」算法与实际转入销毁地址的数量<strong>量级吻合</strong>。<strong>逐月不能精确对账</strong>：OP Stack L2 的销毁要经 7 天挑战期才落到主网，月界两侧天然错位。<strong>9 月 1.14 的偏离原因未核实</strong>——桥接时滞与价格换算都可能贡献，本期没有拆分（约 620 次释放的日内价格误差会大体抵消，单靠价格解释不了同一方向的 +14%）。<br />
+<strong>一处未解决的张力</strong>：DefiLlama 把 9 月 56.4% 的持有人收入记在 Robinhood Chain，而主网 <code>0xdead</code> 9 月增量达到全链折算值的 114%。两者同时成立，需要 Robinhood Chain 的销毁也经桥落到主网，或者 DefiLlama 的分链归属不对应销毁实际落地的位置。<strong>Robinhood Chain 的 Firepit 销毁路径本期未核实</strong>，因此 56.4% 应读作「在该链上触发的释放价值占比」，不是「该链交易产生的收入占比」。</p>
+</blockquote>
+<p><strong>流通量</strong>：CoinGecko 流通量 9/6 为 6.232 亿、9/30 为 6.204 亿、10/3 为 6.252 亿（由市值 ÷ 价格反推），<strong>一周内波动 0.5 亿枚，不是可用的测量</strong>。8 月版结论（销毁减少总量、增长预算拨付增加流通量，两者大致抵消）本期没有新证据推翻，也没有新的一手数据。</p>
+<hr />
+<h2 id="5">5. 价值捕获</h2>
+<h3 id="51">5.1 归持有人收入：新高，但在月内衰减</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th>归持有人收入</th>
+<th>其中 Robinhood Chain</th>
+<th>其他链</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-06</td>
+<td>$512.5 万</td>
+<td>0</td>
+<td>$512.5 万</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td>$441.4 万</td>
+<td>$77 万</td>
+<td>$364 万</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td>$933.1 万</td>
+<td>$421 万</td>
+<td>$513 万</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td><strong>$1,548.8 万</strong></td>
+<td><strong>$874 万（56.4%）</strong></td>
+<td><strong>$675 万</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>扣掉 Robinhood Chain，其他链的归持有人收入 9 月为 $675 万</strong>，比 6 月（v4 协议费上线前）高 32%——这一部分可以归到 v4 协议费上线与行业整体回暖。<br />
+<strong>而 9 月新增的部分主要来自 Robinhood Chain，且该链的收入在月内持续下降</strong>（3.3）。</p>
+<blockquote>
+<p><strong>DefiLlama 的 v4 / v3 归属</strong>：<code>uniswap-v4</code> 条目的归持有人收入为 0，<code>uniswap-v3</code> 条目却包含 v4 池的协议费——<br />
+适配器源码显示两个版本共用同一个 Firepit 合约，<strong>销毁只能按链统计、无法按版本拆分</strong>，适配器统一记在 v3 名下。<strong>按版本做捕获率对比会得到错误结论。</strong></p>
+</blockquote>
+<h3 id="52">5.2 比值：归持有人 ÷ 总费用</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th>比值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-06</td>
+<td>10.32%</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td>4.17%</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td>8.49%</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td><strong>7.62%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>8 月版指出的两处口径问题仍然存在</strong>：分子是释放时的价值、分母是交易发生时的费用（时滞）；分母包含尚未开启协议费的池子。<br />
+7 月的 4.17% <strong>主要因为 v4 协议费 7/27 才开启</strong>：Robinhood Chain 7 月的 $7,293 万费用大部分产生在开启之前，本来就不产生协议费；释放时滞可能占一部分。</p>
+</blockquote>
+<p><img alt="Uniswap 归持有人收入：Robinhood Chain vs 其他链" src="charts/capture-rate-202609.svg" /></p>
+<blockquote>
+<p>图中数字（百万美元）：Robinhood Chain 0 / 0.8 / 4.2 / 8.7；其他链 5.1 / 3.6 / 5.1 / 6.8（6–9 月）；柱顶比值 10.32% / 4.17% / 8.49% / 7.62%。纵轴刻度 0 / 5 / 10 / 15 / 20。</p>
+</blockquote>
+<hr />
+<h2 id="6">6. 与其他资产比较</h2>
+<blockquote>
+<p>口径：币安日线 UTC 收盘；费用为 DefiLlama 同一批 API。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>UNI</strong></th>
+<th>ETH</th>
+<th>SOL</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月</td>
+<td><strong>+69.76%</strong></td>
+<td>+8.85%</td>
+<td>+14.61%</td>
+<td>+6.42%</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td><strong>+219.73%</strong></td>
+<td>+70.86%</td>
+<td>+60.34%</td>
+<td>+42.64%</td>
+</tr>
+<tr>
+<td>对 BTC 的 R²（9 月）</td>
+<td><strong>0.20</strong></td>
+<td>0.86</td>
+<td>0.73</td>
+<td>—</td>
+</tr>
+<tr>
+<td>9 月归持有人 / 销毁（美元）</td>
+<td><strong>$1,549 万</strong></td>
+<td>销毁约 $531 万（30 天）</td>
+<td>销毁约 $291 万</td>
+<td>无</td>
+</tr>
+<tr>
+<td>FDV（或市值）/ 9 月年化持有人价值</td>
+<td><strong>42.4 倍</strong></td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>UNI 是这四个资产里唯一与 BTC 几乎脱钩的</strong>（R² 0.2）。但 R² 低只说明 BTC 解释不了，<strong>不说明价格在跟收入走</strong>：9 月内价格与持有人收入反向（3.1）。<strong>驱动因素本期不明。</strong></p>
+</blockquote>
+<hr />
+<h2 id="7">7. 核心价值逻辑</h2>
+<h3 id="71">7.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th style="text-align: center;">强度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>费用与销毁绝对额创新高</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>9 月总费用 $2.032 亿、归持有人 $1,549 万、主网销毁 248.0 万枚（DefiLlama + 链上一手）。<strong>扣掉 Robinhood 后仍比 6 月高 28–32%</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>销毁机制链上一手可验证</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td><strong>本期升为五星</strong>（8 月三星）：逐月 <code>0xdead</code> 读数、国库 1 亿枚确认、CoinGecko 总量与链上差 4,000 枚</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Robinhood Chain 上线两个月即成为 Uniswap 最大的单一费用来源</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td><strong>本月新增</strong>。9 月贡献 Uniswap 68.6% 的费用。<strong>Uniswap 在该链 DEX 交易中的份额本期未取得</strong>；需求性质推断为 meme（未拆分），且在衰减</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>DEX 龙头</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>9 月 V4 $1.344 亿 &gt; PumpSwap $1.061 亿。<strong>由 8 月的五星降为三星</strong>：7、8 月按自然月 PumpSwap 都高于 V4（8 月版窗口夸大了领先，11.5 第 1 条），9 月的反超来自 Robinhood Chain</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>与 BTC 低相关</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>R² 约 0.2；可分散，但也意味着它的风险是自己的</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="72">7.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th style="text-align: center;">强度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>收入集中于一条链，且在衰减</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td><strong>本月新增</strong>。9 月费用 68.6%、持有人收入 56.4% 来自 Robinhood Chain；该链持有人收入周日均 $54.4 万 → $10.4 万（DefiLlama 分链，一手）。需求性质（meme）为推断，不计入星级</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>估值对窗口高度敏感</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td><strong>本月新增</strong>。同一 FDV，9 月整月 42.4 倍、9/22–28 一周 57.1 倍、最后 6 天 76.3 倍；只有最后 6 天高于 8 月版主口径 58.3 倍，<strong>而这 6 天受批量释放噪声影响</strong>（见 9.1）</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>捕获比值仍低</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>约 7.6%；AMM 模式下大部分费用必须归 LP（8 月版结构性论证不变）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>多空同源检查</strong>：多头 1、3 与空头 1 都来自 Robinhood Chain 这一个事实——<strong>本期把它在空头侧计为五星（集中与衰减都有一手数据），多头 3 只给三星，多头 1 的说明里扣除了该链的贡献</strong>。<br />
+8 月版的「DEX 龙头被窗口夸大」已通过多头 4 降星计过一次，不再在空头侧重复计数；初稿空头的「价格三个月 3.2 倍」描述的是对称的波动，不是单边论据，审查后删除。</p>
+</blockquote>
+<hr />
+<h2 id="8">8. 关键变量</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+<th style="text-align: center;">方向</th>
+<th style="text-align: center;">重要性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>每周</strong></td>
+<td><strong>Robinhood Chain 上的 Uniswap 费用</strong>（9/29–10/4 日均 $223 万）</td>
+<td style="text-align: center;">关键</td>
+<td style="text-align: center;">★★★★★</td>
+</tr>
+<tr>
+<td><strong>每月</strong></td>
+<td>归持有人收入是否守住 $888 万（U8-1 门槛；最后 6 天折月约 $860 万、前一周约 $1,150 万）</td>
+<td style="text-align: center;">关键</td>
+<td style="text-align: center;">★★★★★</td>
+</tr>
+<tr>
+<td>持续</td>
+<td>其他链（不含 Robinhood）的费用趋势（9 月 $6,380 万）</td>
+<td style="text-align: center;">观察</td>
+<td style="text-align: center;">★★★★☆</td>
+</tr>
+<tr>
+<td>未定</td>
+<td>新的协议费治理提案</td>
+<td style="text-align: center;">双向</td>
+<td style="text-align: center;">★★★☆☆</td>
+</tr>
+<tr>
+<td>未定</td>
+<td>SEC 代币化股票框架是否带来许可制 AMM 的实际交易量（转述）</td>
+<td style="text-align: center;">↑</td>
+<td style="text-align: center;">★★☆☆☆</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="9">9. 估值与情景（市值层）</h2>
+<h3 id="91">9.1 窗口决定倍数</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>年化口径</th>
+<th>年化归持有人收入</th>
+<th><strong>FDV（约 $78.8 亿）÷ 年化</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月 × 12</td>
+<td>$1.859 亿</td>
+<td><strong>42.4 倍</strong></td>
+</tr>
+<tr>
+<td>Q3 × 4</td>
+<td>$1.169 亿</td>
+<td>67.4 倍</td>
+</tr>
+<tr>
+<td>9/22–28 一周日均 × 365</td>
+<td>$1.380 亿</td>
+<td><strong>57.1 倍</strong></td>
+</tr>
+<tr>
+<td>9/29–10/4 六天日均 × 365</td>
+<td>$1.033 亿</td>
+<td><strong>76.3 倍</strong></td>
+</tr>
+<tr>
+<td>8 月版主口径（8 月 × 12，当时 FDV）</td>
+<td>—</td>
+<td>58.3 倍</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>同一天，倍数从 42.4 到 76.3。</strong> 「最后 6 天已比 8 月版更贵」<strong>只在这一个窗口成立</strong>：换成前一个完整周（57.1 倍），结论反转。<br />
+<strong>最后 6 天的读数噪声大</strong>：持有人收入是批量释放（主网每次 4,000 枚、约每天 8 次），10/3、10/4 两天只有 $10.9 万、$14.4 万，而同期总费用没有下降（每天约 $380 万–$400 万）。<br />
+<strong>分子的性质也要说清</strong>：DefiLlama 的「归持有人收入」是搜寻者销毁 UNI、换取 TokenJar 资产时的价值（Uniswap <code>protocol-fees</code> README），<strong>记录时点不等于收费时点，也不是持有人收到的现金</strong>。上表的除法本身没有错，但不能把任何一行读成稳定的盈利倍数。本报告不选主口径，全部列出。</p>
+</blockquote>
+<h3 id="92-2027">9.2 三种情景（期限：至 2027 年底）</h3>
+<p><strong>推导方式</strong>：参照市值取自 UNI 自 2022 年以来实际交易过的水平（CoinGecko 一手）；只给市值层，不给单币价格——流通量路径不可靠（4 章）。<br />
+<strong>本期两处结构更正</strong>（审查后）：① 8 月版没有写情景期限，本期定为 <strong>2027 年 12 月 31 日（约 15 个月）</strong>；② 8 月版三档封闭在 $15 亿–$116 亿，等于默认价格不会离开这个区间，<strong>本期把两端改为开放</strong>，使三档覆盖全部结果。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>年份</th>
+<th>最低市值</th>
+<th>最高市值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2022</td>
+<td>$16.35 亿</td>
+<td>$83.80 亿</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>$29.32 亿</td>
+<td>$58.86 亿</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>$40.42 亿</td>
+<td><strong>$115.92 亿</strong></td>
+</tr>
+<tr>
+<td>2025</td>
+<td>$28.62 亿</td>
+<td>$91.77 亿</td>
+</tr>
+<tr>
+<td>2026（至 9/30）</td>
+<td><strong>$14.91 亿</strong></td>
+<td>$63.43 亿（9/23）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>随机游走基线</strong>（按过去一年年化波动 100%、15 个月、起点 $55.12 亿；两列分别为零对数漂移、扣除波动拖累）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>情景</th>
+<th>市值区间（2027 年底）</th>
+<th>相对当前 $55.12 亿</th>
+<th style="text-align: center;">随机游走基线</th>
+<th style="text-align: center;"><strong>本期主观概率</strong></th>
+<th style="text-align: center;">8 月版</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>乐观</strong></td>
+<td><strong>$60 亿以上</strong>（参照 2024 年高点 $116 亿）</td>
+<td>+9% 以上</td>
+<td style="text-align: center;">47% / 26%</td>
+<td style="text-align: center;"><strong>30%</strong></td>
+<td style="text-align: center;">25%</td>
+</tr>
+<tr>
+<td><strong>中性</strong></td>
+<td>$30 亿 – $60 亿</td>
+<td>−46% ~ +9%</td>
+<td style="text-align: center;">24% / 23%</td>
+<td style="text-align: center;"><strong>25%</strong></td>
+<td style="text-align: center;">45%</td>
+</tr>
+<tr>
+<td><strong>悲观</strong></td>
+<td><strong>$30 亿以下</strong>（参照 2026 年低点 $15 亿）</td>
+<td>−46% 以下</td>
+<td style="text-align: center;">29% / 51%</td>
+<td style="text-align: center;"><strong>45%</strong></td>
+<td style="text-align: center;">30%</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="UNI 三情景市值区间与主观概率" src="charts/scenarios-202609.svg" /></p>
+<blockquote>
+<p>图中横轴刻度为 $0 / $20 / $40 / $60 / $80 / $100 / $120 亿；虚线为 9/30 市值 $55.12 亿；乐观、悲观两档为开放区间，图中画到 $120 亿与 $0 为止。</p>
+</blockquote>
+<p><strong>概率变化的拆分</strong>：<br />
+- <strong>机械部分</strong>：8 月版的中性 45% 没有和基线对照。按 UNI 自己的波动，15 个月后仍在 $30–60 亿的概率只有约 23%–24%——<strong>中性 45% 高出基线近一倍，而 8 月版没有给出理由</strong>。本期把中性降到 25%（接近基线），释放的概率按基线分到两端。<br />
+- <strong>证据部分</strong>：新增收入集中于一条正在衰减的链（3.3）、估值倍数对窗口高度敏感（9.1）——<strong>作者把悲观放在基线区间（29%–51%）的上半部分、乐观放在基线区间（26%–47%）的下部</strong>。这是本期唯一的观点性调整。</p>
+<p><strong>这组概率的含义</strong>（假设每档内部按对数均匀分布）：<strong>2027 年底市值低于当前的概率约 67%</strong>（45% + 中性档中低于 $55.12 亿的部分约 22%），<strong>中位数约 $34.5 亿，相对当前约 −37%</strong>。<br />
+<strong>作者不给单一基准预期</strong>：最高的悲观档为 45%，未过半；但分布整体偏向下方，<strong>这是一个方向判断，不是框架误差</strong>——8 月版「落在框架误差之内、不给方向判断」的说法本期不再沿用。</p>
+<h3 id="93">9.3 这套方法的弱点</h3>
+<ol>
+<li><strong>参照区间不是估值</strong>，只是市场给过的价。</li>
+<li><strong>情景按市值划分，与收入的来源无关</strong>——Robinhood Chain 集中风险只通过主观概率进入，没有进入任何参数。</li>
+<li><strong>概率是主观赋值</strong>；随机游走基线本身对漂移假设很敏感（悲观档 29% 与 51% 之间），本期主观概率落在两列之间。</li>
+<li><strong>情景没有对应的市值论点登记</strong>：记分卡 U9-1、U9-2 测收入与销毁，不测市值。</li>
+</ol>
+<hr />
+<h2 id="10">10. 投资与风险启示</h2>
+<h3 id="101-uni">10.1 UNI 现在处于什么位置</h3>
+<p><strong>一个刚证明能收钱的行业龙头，在一个新增收入高度依赖单条新链的季度里涨了 3.2 倍。</strong><br />
+销毁机制已被链上一手证实；<strong>但 9 月新增收入的大部分来自 Robinhood Chain，而该链上 Uniswap 的费用在 9 月内跌了 77%、持有人收入跌了 81%。</strong></p>
+<h3 id="102">10.2 策略框架</h3>
+<blockquote>
+<p>以下为研究性质的框架整理，<strong>不构成投资建议</strong>。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>持有者类型</th>
+<th>框架</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>未持有者</strong></td>
+<td>理由应当是「Uniswap 的协议费在 Robinhood 之外也能增长」——扣除该链后 9 月持有人收入 $675 万，比 6 月高 32%（其中多少来自行业周期性回暖，本期分不开）。<strong>不要用 9 月整月的 42 倍当估值依据</strong>，它包含一个已经消退的高峰</td>
+</tr>
+<tr>
+<td><strong>已持有者</strong></td>
+<td>关键跟踪项：<strong>每周的归持有人收入与 Robinhood Chain 占比</strong>（DefiLlama 免费可查）。若周日均持续低于 $29 万（约 $888 万/月），U8-1 将在 12 月判错。按 9.2 的概率，2027 年底市值低于当前的概率约 67%</td>
+</tr>
+<tr>
+<td><strong>杠杆</strong></td>
+<td>年化波动 100%–129%；悲观档（30%）对应 −46% 至 −73%</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="103">10.3 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>指标</th>
+<th>当前值</th>
+<th>改变结论的阈值</th>
+<th>观测方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>周日均归持有人收入</strong></td>
+<td>$28.3 万（9/29–10/4，6 天，噪声大）/ $37.8 万（9/22–28）</td>
+<td>&lt;$29 万持续到 12 月 → U8-1 判错</td>
+<td>DefiLlama</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Robinhood Chain 上的 Uniswap 归持有人收入</strong></td>
+<td>日均 $10.4 万（9/29–10/4）；费用占比 50%</td>
+<td>Q4 合计 ≥ $1,300 万 → U9-1 判错；占比降到 30% 以下且总费用不降 → 集中风险缓解</td>
+<td>DefiLlama 分链</td>
+</tr>
+<tr>
+<td>3</td>
+<td>其他链费用</td>
+<td>$6,380 万（9 月）</td>
+<td>连续两月下降 → 行业回暖结束</td>
+<td>DefiLlama</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>主网 <code>0xdead</code> UNI 余额</strong></td>
+<td>112,567,581（10/4）</td>
+<td>停止增长 → 销毁中断</td>
+<td>以太坊 RPC</td>
+</tr>
+<tr>
+<td>5</td>
+<td>CoinGecko 总供应</td>
+<td>8.874 亿</td>
+<td>应等于 10 亿 − 0xdead；不等即口径变化</td>
+<td>CoinGecko + RPC</td>
+</tr>
+<tr>
+<td>6</td>
+<td>V4 vs PumpSwap（自然月）</td>
+<td>$1.344 亿 vs $1.061 亿</td>
+<td>U8-4 已判 ⊘，本项只作行业位置观察</td>
+<td>DefiLlama</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="104">10.4 风险提醒</h3>
+<ol>
+<li><strong>收入集中风险（本期新增）</strong>：一条链贡献近七成费用，且已在衰减（需求性质推断为 meme，未拆分）。</li>
+<li><strong>窗口风险</strong>：估值倍数随窗口在 42–76 倍之间变化；最后 6 天的读数受批量释放噪声影响。</li>
+<li><strong>8 月版的「DEX 龙头」论据被窗口夸大过</strong>（11.5）。</li>
+<li><strong>本报告自身</strong>：UNI 记分卡尚无已判定论点（U8-4 判 ⊘）；本系列 BTC 记分卡正确率 11%（1/9）。</li>
+</ol>
+<h3 id="105">10.5 长期认知</h3>
+<ol>
+<li><strong>读 DEX 的收入，要按链拆开读。</strong> 一个协议级的「费用翻倍」，可能主要是一条新链上的一股热潮。</li>
+<li><strong>批量释放型的收入，不能用几天的窗口折算年化。</strong> 同一 FDV，相邻两个窗口给出 57 倍与 76 倍，结论相反。</li>
+<li><strong>销毁类机制，能读链上余额就别做减法。</strong> 8 月版花了一整节论证「量级相容」，一次历史状态 <code>eth_call</code> 就把它变成了逐月读数——<strong>但跨链销毁有 7 天桥接时滞，逐月读数只能量级对账，不能逐月精确对账</strong>。</li>
+<li><strong>按月比较两个协议，先固定是自然月还是滚动窗口</strong>——8 月版的「96%」换成自然月就是「150%–165%」，U8-4 因此在登记前就已失效。</li>
+</ol>
+<hr />
+<h2 id="11">11. 附录</h2>
+<h3 id="111-2026-09-30">11.1 关键数据速查（截至 2026-09-30）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>市场</strong></td>
+<td>9/30 收盘 / 市值 / FDV</td>
+<td>$8.882 / $55.12 亿 / 约 $78.8 亿</td>
+</tr>
+<tr>
+<td></td>
+<td>9 月 / Q3 / YTD</td>
+<td>+69.76% / +219.73% / +57.48%</td>
+</tr>
+<tr>
+<td></td>
+<td>对 BTC R²（9 月 / Q3）</td>
+<td>0.20 / 0.22</td>
+</tr>
+<tr>
+<td><strong>业务</strong></td>
+<td>9 月总费用 / Robinhood 占比</td>
+<td>$2.032 亿 / 68.6%</td>
+</tr>
+<tr>
+<td></td>
+<td>9 月 V4 / PumpSwap</td>
+<td>$1.344 亿 / $1.061 亿</td>
+</tr>
+<tr>
+<td><strong>捕获</strong></td>
+<td>9 月归持有人收入 / Robinhood 占比</td>
+<td>$1,548.8 万 / 56.4%</td>
+</tr>
+<tr>
+<td></td>
+<td>9/29–10/4 日均</td>
+<td>$28.3 万</td>
+</tr>
+<tr>
+<td><strong>销毁</strong></td>
+<td>9 月主网 <code>0xdead</code> 增量</td>
+<td>2,480,001 枚</td>
+</tr>
+<tr>
+<td></td>
+<td>持续销毁累计（至 10/1）</td>
+<td>12,380,004 枚</td>
+</tr>
+<tr>
+<td></td>
+<td>12 月一次性增量（与国库销毁 1 亿一致）</td>
+<td>100,000,003 枚（转出地址未查）</td>
+</tr>
+<tr>
+<td></td>
+<td>0xdead 余额（10/4）</td>
+<td>112,567,581</td>
+</tr>
+<tr>
+<td></td>
+<td>Firepit 阈值（主网 / OP Stack L2）</td>
+<td>4,000 / 2,000 UNI</td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td>FDV ÷ 年化持有人收入</td>
+<td>42.4（9 月）/ 67.4（Q3）/ 57.1（9/22–28）/ 76.3（9/29–10/4）</td>
+</tr>
+<tr>
+<td><strong>情景</strong></td>
+<td>乐观 / 中性 / 悲观（至 2027 年底）</td>
+<td>30% / 25% / 45%；低于当前市值的概率约 67%</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112">11.2 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th>核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格、涨跌、波动率、beta、R²</td>
+<td>币安 API <code>klines</code></td>
+<td>✅ 一手 API</td>
+</tr>
+<tr>
+<td>市值、FDV、总供应、流通量、历年市值区间</td>
+<td>CoinGecko API</td>
+<td>✅ 一手 API（流通量为反推，不可靠）</td>
+</tr>
+<tr>
+<td><strong>主网 <code>0xdead</code> 余额逐月、<code>totalSupply()</code></strong></td>
+<td>以太坊 RPC（drpc 历史状态 <code>eth_call</code>）</td>
+<td>✅ <strong>一手</strong></td>
+</tr>
+<tr>
+<td><strong>Firepit 阈值 4,000 UNI</strong></td>
+<td>以太坊 RPC <code>threshold()</code>（选择器用自写 keccak 计算并自检）</td>
+<td>✅ 一手</td>
+</tr>
+<tr>
+<td>L2 阈值 2,000 UNI、L2→L1 7 天挑战期、搜寻者销毁换取 TokenJar 资产的机制</td>
+<td>Uniswap <code>protocol-fees</code> 官方 GitHub README</td>
+<td>✅ 一手（Codex 审查提出，本期已打开原文核对）</td>
+</tr>
+<tr>
+<td>Robinhood Chain Firepit 的销毁落地路径；Uniswap 在该链 DEX 中的份额</td>
+<td>—</td>
+<td>❌ 未核实</td>
+</tr>
+<tr>
+<td>总费用、分版本、分链、归持有人收入</td>
+<td>DefiLlama API；<strong>口径已读 <code>dexs/uniswap-v3.ts</code> 源码确认</strong></td>
+<td>✅ 一手 API</td>
+</tr>
+<tr>
+<td>PumpSwap 费用</td>
+<td>DefiLlama API</td>
+<td>✅ 一手 API</td>
+</tr>
+<tr>
+<td>Firepit <code>Released</code> 事件逐条</td>
+<td>公共节点 <code>eth_getLogs</code> 均有区块范围或归档限制</td>
+<td>❌ 未取得；改用 <code>0xdead</code> 余额逐月读数替代</td>
+</tr>
+<tr>
+<td>9/18 大涨归因（SEC 代币化股票框架）、Hayden Adams 的「年化 $2.63 亿」</td>
+<td>媒体转述</td>
+<td>⚠️ 未核实</td>
+</tr>
+<tr>
+<td>Robinhood Chain 上 Uniswap 费用的代币构成</td>
+<td>—</td>
+<td>❌ 未拆分（与 Pons 的关联为推断）</td>
+</tr>
+<tr>
+<td>9 月治理提案</td>
+<td>—</td>
+<td>❌ <strong>本期未查 Tally / Snapshot</strong></td>
+</tr>
+<tr>
+<td>传统金融机构观点</td>
+<td>—</td>
+<td>❌ 未找到 UNI 的覆盖</td>
+</tr>
+<tr>
+<td>宏观</td>
+<td>见 BTC 9 月版（美联储、美国财政部）</td>
+<td>✅ 一手</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113">11.3 来源偏向声明</h3>
+<ul>
+<li>核心数据（价格、费用、销毁、供应）全部一手；销毁首次用链上余额逐月核实。</li>
+<li><strong>事件归因（9/18 大涨原因）来自加密原生媒体</strong>，结构上偏多。</li>
+<li><strong>没有找到传统金融机构对 UNI 的覆盖</strong>（与 8 月版相同）。本报告的宏观背景引用美联储与美国财政部一手数据，但它们不评价 UNI。</li>
+</ul>
+<h3 id="114-btc-eth-sol-uni">11.4 BTC / ETH / SOL / UNI 共用口径</h3>
+<p>四份 9 月报告的价格均为币安 UTC 收盘、宏观数据为同一批抓取。</p>
+<h3 id="115-8">11.5 本版对 8 月版的更正</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>8 月版写法</th>
+<th>更正</th>
+<th>发现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>「PumpSwap 单协议月费用已达 Uniswap V4 的 96%」；U8-4「当前 96%」</td>
+<td>只在 8/7–9/5 窗口成立（$8,963 万 vs $9,348 万）；<strong>按自然月，7 月 PumpSwap 是 V4 的 164%、8 月 150%</strong></td>
+<td>DefiLlama 日度数据按月聚合</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2026-08 归持有人收入 $888.2 万</td>
+<td>DefiLlama 已修订为 <strong>$933.1 万</strong>（6 月 $511.6 万 → $512.5 万）</td>
+<td>DefiLlama 本期重新调用</td>
+</tr>
+<tr>
+<td>3</td>
+<td>「国库一次性销毁 1 亿枚」标为 ⚠️ 二手</td>
+<td><strong>链上确认</strong>：主网 0xdead 12 月增量扣除持续销毁后为 100,000,003 枚</td>
+<td>以太坊 RPC</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4.2「路径一」= 10 亿 − CoinGecko 总量 − 1 亿，被当作独立测量</td>
+<td>CoinGecko 总量 = 10 亿 − 0xdead 余额（差 4,000 枚），<strong>它与链上读数是同一个量</strong></td>
+<td>RPC + CoinGecko</td>
+</tr>
+<tr>
+<td>5</td>
+<td>「8 月 +18.06%」</td>
+<td>币安 UTC 收盘口径 <strong>+20.30%</strong>（CoinGecko 零点快照口径差异）</td>
+<td>币安日线</td>
+</tr>
+<tr>
+<td>6</td>
+<td>「两条独立路径相差 4.1%」</td>
+<td>8 月版审查已撤回此说法，<strong>但 8 月版正文第 643、684、777、803 行仍保留</strong>（已发布版本不改）；本期不再引用</td>
+<td>本期推理审查</td>
+</tr>
+<tr>
+<td>7</td>
+<td>三情景无期限、区间封闭、中性 45% 未与随机游走基线对照</td>
+<td>期限定为 2027 年底、两端开放、概率改为 30/25/45（9.2）</td>
+<td>本期推理审查</td>
+</tr>
+<tr>
+<td>8</td>
+<td>U8-4「当前 96%，小幅变化即可触发」</td>
+<td>按自然月口径证伪条件在登记前已满足，<strong>改判 ⊘</strong></td>
+<td>本期推理审查</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="116">11.6 发布前审查记录</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>层</th>
+<th>审查者</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>tools/verify_report.py</code> 机械核查</td>
+<td>修订后重跑，见下</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>_bian</strong>（推理审查）</td>
+<td>15 条，全部采纳或部分采纳</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Codex</strong>（领域审查）</td>
+<td>5 条，4 条采纳、1 条部分不同意</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>_bian 的主要发现（推理层）</strong>：<br />
+1. 情景无期限、区间封闭、中性 45% 未对照随机游走基线（基线约 23%–24%）→ 9.2 重写，概率改为 30/25/45。<br />
+2. 「落在框架误差之内」沿用 8 月的敏感性跨度，但本期敏感性已几乎全在零以下 → 删除，改为明确写出方向（低于当前的概率约 67%）。<br />
+3. 「价格更像在反映自己的收入」与月内数据相反（价格 +111%、收入 −49%）→ 第 6 章、卷首、摘要改写。<br />
+4. 「已比 8 月更贵」只在 6 天窗口成立；前一完整周 57.1 倍反而更便宜 → 9.1 并列相邻窗口。<br />
+5. U8-4 的证伪条件在登记前已满足 → 改判 ⊘。<br />
+6. U9-1 原版测全协议收入（与「Robinhood 衰减」的论点统计量不同）、基准含旧制度的 7 月、排查只看单日 → <strong>改为测 Robinhood Chain 单链、以最后一个完整周为基准、按季度累计排查</strong>。<br />
+7. 「meme 主导」在承重位置被当成事实 → 全文改为推断并列出替代解释。<br />
+8. 7 月 4.17% 主要因为协议费 7/27 才开启，不是时滞。<br />
+9. 第 4 章「全部是 4,000 的整数倍」「链上读数略高」与表格矛盾；56.4% 与主网 114% 之间的张力未交代 → 已更正并列为未核实。<br />
+10. U9-2 用 Q3 数论证门槛 → 改用两种运行速率（约 293 万 / 423 万枚）重写，先验 70% → 55%。<br />
+11–15. 记分卡残留旧说法、U8-1 构念错位与 U9-1 不独立、多头 3 统计量不对题、摘要措辞强于正文、空头表重复计数 → 逐条清理。</p>
+<p><strong>Codex 的主要发现（领域层）</strong>：<br />
+1. 「归持有人收入」是搜寻者销毁换取 TokenJar 资产时的价值，批量、可延迟，不能把短窗口当稳定盈利速率 → <strong>采纳</strong>，9.1 补充说明。<br />
+2. Robinhood Chain 与 PONS 的关联只证明存在交易路径；56.4% 是释放时的价值占比 → <strong>采纳</strong>。<br />
+3. U9-1 可被分散多日的释放推至判错、U9-2 可被直接转入 <code>0xdead</code> 制造（300 万枚约 $2,665 万，低于市值 1%）→ <strong>采纳</strong>，两条的排查规则都已改写。<br />
+4. L2 销毁经 7 天挑战期才落到主网，逐月不能精确对账；「恰好 1 亿来自国库」需查转出地址 → <strong>采纳</strong>，已打开 Uniswap <code>protocol-fees</code> README 原文核对。<br />
+5. 低 R² 不等于基本面归因 → <strong>采纳</strong>（与 _bian 第 3 条一致）。<br />
+- <strong>不同意的部分</strong>：Codex 认为 U8-7 被 9 月高值锚定、已不足以检验「$888 万是常态」。<strong>作者的判断</strong>：门槛 7 针对的是登记时已实现的部分；U8-7 登记于 9/6，9 月当时尚未发生，9 月的高读数是新证据而非登记缺陷，因此保留 ⏳。</p>
+<p><strong>ZEC 期清扫</strong>：撤回的说法（「运行速率更接近现状」「落在框架误差之内」「交易主力是 meme 币」「全部是 4,000 的整数倍」「国库一次性销毁正好」「期望市值 $49.0 亿」）已在报告、摘要、记分卡中 grep 清扫。</p>
+<hr />
+<blockquote>
+<p><strong>配套文件</strong>：<code>uni_questions_summary_202609.md</code>（简明速查）、<code>../thesis_scorecard.md</code>（论点滚动记分卡）。<br />
+本报告不构成投资建议。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-uni">UNI 调研分析 — 核心问题与简明总结</h1>
+<blockquote>
+<p>配套 <code>uni_research_report_202609.md</code> 使用。Date: 2026-10-05（9 月版兼 Q3 回顾；数据截至 9/30，链上快照到 10/4）</p>
+</blockquote>
+<hr />
+<h2 id="s-9-q3">一、9 月和 Q3 发生了什么</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>9 月</th>
+<th>Q3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UNI（币安日线）</td>
+<td><strong>+69.76%</strong>，收 $8.882</td>
+<td><strong>+219.73%</strong></td>
+</tr>
+<tr>
+<td>BTC / ETH</td>
+<td>+6.42% / +8.85%</td>
+<td>+42.64% / +70.86%</td>
+</tr>
+<tr>
+<td>高于 BTC beta 预期（对数口径）</td>
+<td>约 1.3 个标准差</td>
+<td>约 1.6 个标准差</td>
+</tr>
+<tr>
+<td>对 BTC 的 R²</td>
+<td>0.20</td>
+<td>0.22</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>UNI 本季几乎与 BTC 脱钩，但 1.3–1.6 个标准差还不能排除噪声。</strong><br />
+R² 低只说明 BTC 解释不了，<strong>不说明价格在跟收入走</strong>：9/1–9/23 价格 +111%，同期周日均持有人收入 −49%。驱动因素本期不明。</p>
+<hr />
+<h2 id="s-robinhood-chain">二、本期最重要的发现：费用和销毁大部分来自 Robinhood Chain</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>9 月</th>
+<th>全协议</th>
+<th>其中 Robinhood Chain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总费用</td>
+<td>$2.032 亿</td>
+<td><strong>$1.394 亿（68.6%）</strong></td>
+</tr>
+<tr>
+<td>归持有人收入</td>
+<td>$1,549 万</td>
+<td><strong>$874 万（56.4%）</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>而且在月内衰减</strong>（DefiLlama 分链，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>周</th>
+<th>全协议持有人收入/天</th>
+<th>其中 Robinhood Chain/天</th>
+<th>Robinhood 占费用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/1–9/7</td>
+<td>$74.5 万</td>
+<td>$54.4 万</td>
+<td>85%</td>
+</tr>
+<tr>
+<td>9/22–9/28</td>
+<td>$37.8 万</td>
+<td>$14.3 万</td>
+<td>51%</td>
+</tr>
+<tr>
+<td>9/29–10/4（6 天）</td>
+<td><strong>$28.3 万</strong></td>
+<td><strong>$10.4 万</strong></td>
+<td>50%</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>该链需求的性质是推断</strong>：推断以 meme 为主（PONS 9 月版记录了同一条链上的发射台收入从峰值下跌 87.8%），但代币构成未拆分；新链热度退潮、激励结束也会产生同样的下跌形态。</li>
+<li>56.4% 是「在该链上触发的释放价值」占比，<strong>该链销毁落地路径未核实</strong>。</li>
+<li>扣掉 Robinhood Chain，其他链 9 月费用比 6 月高 28%、持有人收入高 32%——其中多少是行业周期性回暖，本期分不开。</li>
+</ul>
+<hr />
+<h2 id="s-_1">三、销毁：第一次逐月链上核实</h2>
+<ul>
+<li>读以太坊主网 <code>0xdead</code> 地址的 UNI 余额（历史状态）：</li>
+<li>2025-12 一次性增量 <strong>100,000,003 枚</strong>，与「国库销毁 1 亿枚」一致（转出地址未查）</li>
+<li>持续销毁 10 个月累计 <strong>1,238 万枚</strong>；<strong>9 月 248.0 万枚，创新高</strong></li>
+<li>CoinGecko 总供应 8.874 亿与「10 亿 − 0xdead 余额」只差 4,000 枚</li>
+<li>主网 Firepit 每次释放 4,000 UNI；OP Stack L2 每次 2,000 UNI，<strong>经 7 天桥接挑战期后才落到主网</strong>（Uniswap 官方 README）——所以逐月只能量级对账，不能精确对账</li>
+</ul>
+<blockquote>
+<p>这不是独立交叉验证：DefiLlama 的收入数字和 0xdead 余额读的是同一批链上动作。</p>
+</blockquote>
+<hr />
+<h2 id="s-_2">四、估值：窗口决定倍数</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>年化口径</th>
+<th>FDV ÷ 年化归持有人收入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月 × 12</td>
+<td><strong>42.4 倍</strong></td>
+</tr>
+<tr>
+<td>Q3 × 4</td>
+<td>67.4 倍</td>
+</tr>
+<tr>
+<td>9/22–28 一周</td>
+<td>57.1 倍</td>
+</tr>
+<tr>
+<td>9/29–10/4 六天</td>
+<td>76.3 倍</td>
+</tr>
+<tr>
+<td>8 月版主口径</td>
+<td>58.3 倍</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>「比 8 月更贵」只在最后 6 天成立</strong>，换成前一周就更便宜。</li>
+<li>最后 6 天受批量释放噪声影响：10/3、10/4 持有人收入只有 $10.9 万、$14.4 万，而总费用没降。</li>
+<li>分子是搜寻者销毁 UNI 时的价值，<strong>不是持有人收到的现金</strong>。</li>
+</ul>
+<hr />
+<h2 id="s-dex">五、DEX 赛道</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>自然月</th>
+<th>Uniswap V4</th>
+<th>PumpSwap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7 月</td>
+<td>$3,232 万</td>
+<td><strong>$5,315 万</strong></td>
+</tr>
+<tr>
+<td>8 月</td>
+<td>$5,757 万</td>
+<td><strong>$8,644 万</strong></td>
+</tr>
+<tr>
+<td>9 月</td>
+<td><strong>$1.344 亿</strong></td>
+<td>$1.061 亿</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>8 月版的「PumpSwap 已达 V4 的 96%」只在一个特定 30 天窗口成立；<strong>按自然月 7、8 月 PumpSwap 都更高</strong></li>
+<li>9 月 V4 反超，但 V4 的 77.7% 来自 Robinhood Chain</li>
+</ul>
+<hr />
+<h2 id="s-2027">六、三情景（市值层，期限至 2027 年底）</h2>
+<p>审查后两处结构更正：<strong>补上期限</strong>；<strong>两端改为开放</strong>，覆盖全部结果。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>悲观</th>
+<th>中性</th>
+<th>乐观</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市值</td>
+<td>$30 亿以下</td>
+<td>$30–60 亿</td>
+<td>$60 亿以上</td>
+</tr>
+<tr>
+<td>随机游走基线</td>
+<td>29%–51%</td>
+<td>23%–24%</td>
+<td>26%–47%</td>
+</tr>
+<tr>
+<td><strong>概率</strong></td>
+<td><strong>45%</strong></td>
+<td><strong>25%</strong></td>
+<td><strong>30%</strong></td>
+</tr>
+<tr>
+<td>8 月版</td>
+<td>30%</td>
+<td>45%</td>
+<td>25%</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>中性从 45% 降到 25% 是机械更正</strong>：8 月版没有对照基线，45% 高出基线近一倍</li>
+<li><strong>悲观放在基线上半部分是观点</strong>：新增收入集中且在衰减</li>
+<li><strong>不给单一基准预期</strong>（最高的悲观档未过半）；但按这组概率，<strong>2027 年底市值低于当前的概率约 67%</strong>，中位数约 $34.5 亿（−37%）——这是一个方向判断</li>
+</ul>
+<hr />
+<h2 id="s-_3">七、记分卡</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>读数</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>U8-1（12 月持有人收入 &gt; $888 万）</td>
+<td>9 月 $1,549 万；最后 6 天折月约 $860 万</td>
+<td>⏳；构念错位（主要测 Robinhood 热度）</td>
+</tr>
+<tr>
+<td>U8-3（总供应继续下降）</td>
+<td>8.905 亿 → 8.874 亿</td>
+<td>⏳ 方向成立</td>
+</tr>
+<tr>
+<td>U8-4（PumpSwap 不连续两月超 V4）</td>
+<td>按自然月 7、8 月已超</td>
+<td><strong>⊘ 检验失效</strong>：证伪条件在登记前已满足</td>
+</tr>
+<tr>
+<td>U8-7（9–12 月月均 ≥ $700 万）</td>
+<td>10–12 月平均低于 $417 万才会触发</td>
+<td>⏳</td>
+</tr>
+</tbody>
+</table></div>
+<p>本期起升级到 11 条门槛，新登记：<br />
+- <strong>U9-1</strong>：Robinhood Chain 上 Uniswap 持有人收入 Q4 合计 &lt; $1,300 万（65%）<br />
+- <strong>U9-2</strong>：主网 <code>0xdead</code> Q4 增量 ≥ 300 万枚，只计协议来源（55%）</p>
+<hr />
+<h2 id="s-_4">八、接下来看什么</h2>
+<ol>
+<li><strong>Robinhood Chain 上的 Uniswap 持有人收入</strong>——Q4 是否守在 $1,300 万以下（U9-1）</li>
+<li><strong>全协议周日均持有人收入</strong>——是否守住 $29 万/天（≈ $888 万/月，U8-1）</li>
+<li><strong>其他链的费用趋势</strong>——扣掉 Robinhood 后的增长能否持续</li>
+<li><strong>主网 0xdead 余额</strong>——销毁是否持续（U9-2）</li>
+</ol>
+<hr />
+<h2 id="s-3-5">九、如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>Q3 UNI +220%，几乎与 BTC 脱钩（R² 0.2）</strong>——但月内价格与收入反向，驱动因素不明。</p>
+</li>
+<li>
+<p><strong>9 月费用的 68.6%、持有人收入的 56.4% 来自 Robinhood Chain 一条链</strong>（需求性质推断为 meme，未拆分）。</p>
+</li>
+<li>
+<p><strong>该链的热度在 9 月内大幅消退</strong>：该链 Uniswap 费用跌 77%、持有人收入跌 81%；全协议持有人收入跌 62%。</p>
+</li>
+<li>
+<p><strong>销毁是真的，而且能逐月读链上余额</strong>：持续销毁累计 1,238 万枚，9 月 248 万枚创新高。</p>
+</li>
+<li>
+<p><strong>估值随窗口在 42–76 倍之间变化，不能取单一读数</strong>；三情景补上期限、对照基线后，概率偏向下方（低于当前市值的概率约 67%）。</p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>uni_research_report_202609.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 300" width="100%" role="img" aria-label="UNI 月度销毁（以太坊主网 0xdead 余额增量）">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 10.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}
+</style>
+<rect width="620" height="300" fill="none"/>
+<text x="0" y="16" class="t">UNI 月度销毁（以太坊主网 0xdead 余额增量）</text><text x="0" y="34" class="s">单位：万枚 · 以太坊 RPC 历史状态读数（一手）· 2025-12 不含国库一次性销毁 1 亿枚</text>
+<line x1="54" y1="236.0" x2="600" y2="236.0" class="ax"/><text x="46" y="240.0" class="l" text-anchor="end">0</text>
+<line x1="54" y1="177.3" x2="600" y2="177.3" class="ax"/><text x="46" y="181.3" class="l" text-anchor="end">100</text>
+<line x1="54" y1="118.7" x2="600" y2="118.7" class="ax"/><text x="46" y="122.7" class="l" text-anchor="end">200</text>
+<line x1="54" y1="60.0" x2="600" y2="60.0" class="ax"/><text x="46" y="64.0" class="l" text-anchor="end">300</text>
+<path d="M64.3,236 L64.3,235.2 Q64.3,234.4 65.1,234.4 L97.5,234.4 Q98.3,234.4 98.3,235.2 L98.3,236 Z" fill="#1baf7a"/>
+<text x="81" y="229" class="v" text-anchor="middle">2.8</text><text x="81" y="252" class="l" text-anchor="middle" style="font-size:9.5px">2025-12</text>
+<path d="M118.9,236 L118.9,207.8 Q118.9,204.8 121.9,204.8 L149.9,204.8 Q152.9,204.8 152.9,207.8 L152.9,236 Z" fill="#1baf7a"/>
+<text x="136" y="200" class="v" text-anchor="middle">53.2</text><text x="136" y="252" class="l" text-anchor="middle" style="font-size:9.5px">2026-01</text>
+<path d="M173.5,236 L173.5,188.3 Q173.5,185.3 176.5,185.3 L204.5,185.3 Q207.5,185.3 207.5,188.3 L207.5,236 Z" fill="#1baf7a"/>
+<text x="190" y="180" class="v" text-anchor="middle">86.4</text><text x="190" y="252" class="l" text-anchor="middle" style="font-size:9.5px">2026-02</text>
+<path d="M228.1,236 L228.1,178.2 Q228.1,175.2 231.1,175.2 L259.1,175.2 Q262.1,175.2 262.1,178.2 L262.1,236 Z" fill="#1baf7a"/>
+<text x="245" y="170" class="v" text-anchor="middle">103.6</text><text x="245" y="252" class="l" text-anchor="middle" style="font-size:9.5px">2026-03</text>
+<path d="M282.7,236 L282.7,158.4 Q282.7,155.4 285.7,155.4 L313.7,155.4 Q316.7,155.4 316.7,158.4 L316.7,236 Z" fill="#1baf7a"/>
+<text x="300" y="150" class="v" text-anchor="middle">137.4</text><text x="300" y="252" class="l" text-anchor="middle" style="font-size:9.5px">2026-04</text>
+<path d="M337.3,236 L337.3,180.9 Q337.3,177.9 340.3,177.9 L368.3,177.9 Q371.3,177.9 371.3,180.9 L371.3,236 Z" fill="#1baf7a"/>
+<text x="354" y="173" class="v" text-anchor="middle">99.0</text><text x="354" y="252" class="l" text-anchor="middle" style="font-size:9.5px">2026-05</text>
+<path d="M391.9,236 L391.9,134.6 Q391.9,131.6 394.9,131.6 L422.9,131.6 Q425.9,131.6 425.9,134.6 L425.9,236 Z" fill="#1baf7a"/>
+<text x="409" y="127" class="v" text-anchor="middle">178.0</text><text x="409" y="252" class="l" text-anchor="middle" style="font-size:9.5px">2026-06</text>
+<path d="M446.5,236 L446.5,167.4 Q446.5,164.4 449.5,164.4 L477.5,164.4 Q480.5,164.4 480.5,167.4 L480.5,236 Z" fill="#1baf7a"/>
+<text x="464" y="159" class="v" text-anchor="middle">122.0</text><text x="464" y="252" class="l" text-anchor="middle" style="font-size:9.5px">2026-07</text>
+<path d="M501.1,236 L501.1,117.2 Q501.1,114.2 504.1,114.2 L532.1,114.2 Q535.1,114.2 535.1,117.2 L535.1,236 Z" fill="#1baf7a"/>
+<text x="518" y="109" class="v" text-anchor="middle">207.6</text><text x="518" y="252" class="l" text-anchor="middle" style="font-size:9.5px">2026-08</text>
+<path d="M555.7,236 L555.7,93.5 Q555.7,90.5 558.7,90.5 L586.7,90.5 Q589.7,90.5 589.7,93.5 L589.7,236 Z" fill="#2a78d6"/>
+<text x="573" y="86" class="v" text-anchor="middle">248.0</text><text x="573" y="252" class="l" text-anchor="middle" style="font-size:9.5px">2026-09</text>
+<text x="0" y="292" class="s">9 月销毁 248.0 万枚，创新高；持续销毁 10 个月累计 1,238 万枚。</text></svg>
