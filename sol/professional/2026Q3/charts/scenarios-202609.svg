@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 270" width="100%" role="img" aria-label="SOL 三情景：2029 年价格区间与主观概率">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 10.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}
+</style>
+<rect width="620" height="270" fill="none"/>
+<text x="0" y="16" class="t">SOL 三情景：2029 年价格区间与主观概率</text><text x="0" y="34" class="s">区间 = SOL 自身实际交易过的市值区间 ÷ 2029 年流通量 6.448 亿；三档首尾相接；推导见第 9 章</text>
+<line x1="120" y1="62" x2="120" y2="226" class="ax"/><text x="120" y="243" class="l" text-anchor="middle">$0</text>
+<line x1="204" y1="62" x2="204" y2="226" class="ax"/><text x="204" y="243" class="l" text-anchor="middle">$50</text>
+<line x1="288" y1="62" x2="288" y2="226" class="ax"/><text x="288" y="243" class="l" text-anchor="middle">$100</text>
+<line x1="372" y1="62" x2="372" y2="226" class="ax"/><text x="372" y="243" class="l" text-anchor="middle">$150</text>
+<line x1="456" y1="62" x2="456" y2="226" class="ax"/><text x="456" y="243" class="l" text-anchor="middle">$200</text>
+<line x1="540" y1="62" x2="540" y2="226" class="ax"/><text x="540" y="243" class="l" text-anchor="middle">$250</text>
+<line x1="318" y1="56" x2="318" y2="226" stroke="#57534e" stroke-width="1.5" stroke-dasharray="4 3"/><text x="323" y="52" class="l">9/30 收盘 $118.12</text>
+<text x="106" y="89" class="v" text-anchor="end" style="font-size:11.5px">乐观 25%</text><text x="106" y="103" class="l" text-anchor="end">收入转型成功</text>
+<rect x="327" y="76" width="143" height="24" rx="4" fill="#1baf7a"/>
+<text x="477" y="92" class="v" style="font-size:11.5px;paint-order:stroke;stroke:#fff;stroke-width:5px">$123 – $208</text>
+<text x="106" y="141" class="v" text-anchor="end" style="font-size:11.5px">中性 50%</text><text x="106" y="155" class="l" text-anchor="end">变现平庸</text>
+<rect x="214" y="128" width="113" height="24" rx="4" fill="#2a78d6"/>
+<text x="335" y="144" class="v" style="font-size:11.5px;paint-order:stroke;stroke:#fff;stroke-width:5px">$56 – $123</text>
+<text x="106" y="193" class="v" text-anchor="end" style="font-size:11.5px">悲观 25%</text><text x="106" y="207" class="l" text-anchor="end">价值捕获失败</text>
+<rect x="128" y="180" width="86" height="24" rx="4" fill="#eb6834"/>
+<text x="222" y="196" class="v" style="font-size:11.5px;paint-order:stroke;stroke:#fff;stroke-width:5px">$5 – $56</text>
+<text x="0" y="262" class="s">时间范围是 2029 年。当前市值约 $695 亿，位于中性区间（$360 亿–$796 亿）上部。</text></svg>

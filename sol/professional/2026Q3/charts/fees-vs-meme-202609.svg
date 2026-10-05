@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 320" width="100%" role="img" aria-label="Solana 链上费用 vs pump.fun 收入（季度）">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 10.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}
+</style>
+<rect width="620" height="320" fill="none"/>
+<text x="0" y="16" class="t">Solana 链上费用 vs pump.fun 收入（季度）</text><text x="0" y="34" class="s">单位：百万美元 · 链上费用＝基础费＋优先费（不含 Jito 小费）· 数据源：DefiLlama API</text>
+<line x1="54" y1="240.0" x2="600" y2="240.0" class="ax"/><text x="46" y="244.0" class="l" text-anchor="end">0</text>
+<line x1="54" y1="188.6" x2="600" y2="188.6" class="ax"/><text x="46" y="192.6" class="l" text-anchor="end">100</text>
+<line x1="54" y1="137.1" x2="600" y2="137.1" class="ax"/><text x="46" y="141.1" class="l" text-anchor="end">200</text>
+<line x1="54" y1="85.7" x2="600" y2="85.7" class="ax"/><text x="46" y="89.7" class="l" text-anchor="end">300</text>
+<path d="M66.0,240 L66.0,65.6 Q66.0,62.6 69.0,62.6 L89.0,62.6 Q92.0,62.6 92.0,65.6 L92.0,240 Z" fill="#2a78d6"/>
+<path d="M94.0,240 L94.0,106.7 Q94.0,103.7 97.0,103.7 L117.0,103.7 Q120.0,103.7 120.0,106.7 L120.0,240 Z" fill="#eb6834"/>
+<text x="79" y="58" class="v" text-anchor="middle">345</text><text x="107" y="99" class="v" text-anchor="middle">265</text>
+<text x="93" y="258" class="l" text-anchor="middle">2025 Q1</text>
+<path d="M144.0,240 L144.0,185.5 Q144.0,182.5 147.0,182.5 L167.0,182.5 Q170.0,182.5 170.0,185.5 L170.0,240 Z" fill="#2a78d6"/>
+<path d="M172.0,240 L172.0,160.6 Q172.0,157.6 175.0,157.6 L195.0,157.6 Q198.0,157.6 198.0,160.6 L198.0,240 Z" fill="#eb6834"/>
+<text x="157" y="177" class="v" text-anchor="middle">112</text><text x="185" y="153" class="v" text-anchor="middle">160</text>
+<text x="171" y="258" class="l" text-anchor="middle">2025 Q2</text>
+<path d="M222.0,240 L222.0,179.9 Q222.0,176.9 225.0,176.9 L245.0,176.9 Q248.0,176.9 248.0,179.9 L248.0,240 Z" fill="#2a78d6"/>
+<path d="M250.0,240 L250.0,180.8 Q250.0,177.8 253.0,177.8 L273.0,177.8 Q276.0,177.8 276.0,180.8 L276.0,240 Z" fill="#eb6834"/>
+<text x="235" y="172" class="v" text-anchor="middle">123</text><text x="263" y="173" class="v" text-anchor="middle">121</text>
+<text x="249" y="258" class="l" text-anchor="middle">2025 Q3</text>
+<path d="M300.0,240 L300.0,209.2 Q300.0,206.2 303.0,206.2 L323.0,206.2 Q326.0,206.2 326.0,209.2 L326.0,240 Z" fill="#2a78d6"/>
+<path d="M328.0,240 L328.0,188.3 Q328.0,185.3 331.0,185.3 L351.0,185.3 Q354.0,185.3 354.0,188.3 L354.0,240 Z" fill="#eb6834"/>
+<text x="313" y="201" class="v" text-anchor="middle">66</text><text x="341" y="180" class="v" text-anchor="middle">106</text>
+<text x="327" y="258" class="l" text-anchor="middle">2025 Q4</text>
+<path d="M378.0,240 L378.0,207.2 Q378.0,204.2 381.0,204.2 L401.0,204.2 Q404.0,204.2 404.0,207.2 L404.0,240 Z" fill="#2a78d6"/>
+<path d="M406.0,240 L406.0,180.2 Q406.0,177.2 409.0,177.2 L429.0,177.2 Q432.0,177.2 432.0,180.2 L432.0,240 Z" fill="#eb6834"/>
+<text x="391" y="199" class="v" text-anchor="middle">70</text><text x="419" y="172" class="v" text-anchor="middle">122</text>
+<text x="405" y="258" class="l" text-anchor="middle">2026 Q1</text>
+<path d="M456.0,240 L456.0,221.9 Q456.0,218.9 459.0,218.9 L479.0,218.9 Q482.0,218.9 482.0,221.9 L482.0,240 Z" fill="#2a78d6"/>
+<path d="M484.0,240 L484.0,195.9 Q484.0,192.9 487.0,192.9 L507.0,192.9 Q510.0,192.9 510.0,195.9 L510.0,240 Z" fill="#eb6834"/>
+<text x="469" y="214" class="v" text-anchor="middle">41</text><text x="497" y="188" class="v" text-anchor="middle">92</text>
+<text x="483" y="258" class="l" text-anchor="middle">2026 Q2</text>
+<path d="M534.0,240 L534.0,210.7 Q534.0,207.7 537.0,207.7 L557.0,207.7 Q560.0,207.7 560.0,210.7 L560.0,240 Z" fill="#2a78d6"/>
+<path d="M562.0,240 L562.0,168.5 Q562.0,165.5 565.0,165.5 L585.0,165.5 Q588.0,165.5 588.0,168.5 L588.0,240 Z" fill="#eb6834"/>
+<text x="547" y="203" class="v" text-anchor="middle">63</text><text x="575" y="160" class="v" text-anchor="middle">145</text>
+<text x="561" y="258" class="l" text-anchor="middle">2026 Q3</text>
+<rect x="54" y="278" width="12" height="10" fill="#2a78d6"/><text x="71" y="287" class="l">链上费用</text><rect x="144" y="278" width="12" height="10" fill="#eb6834"/><text x="161" y="287" class="l">pump.fun 收入（meme 热度对照）</text>
+<text x="0" y="312" class="s">2026 Q3 链上费用环比 +53%，pump.fun 同期 +58%：回升与 meme 回潮同步。</text></svg>

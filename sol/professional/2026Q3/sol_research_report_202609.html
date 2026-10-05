@@ -1,0 +1,2212 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SOL / Solana 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#14f195;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">◎ SOL 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>◎ SOL 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-solana">1. Solana 的起源与设计取舍</a>
+<a href="#2-sol">2. SOL 的发展阶段划分</a>
+<a href="#3-sol">3. SOL 当前现状分析</a>
+<a href="#4-sol">4. 代币经济学与治理</a>
+<a href="#5-sol">5. 上市公司 SOL 储备</a>
+<a href="#6-sol">6. SOL 的核心价值逻辑</a>
+<a href="#7-sol">7. SOL 与其他资产的比较</a>
+<a href="#8-312">8. 未来 3–12 个月的关键变量</a>
+<a href="#9-2029">9. 情景推演</a>
+<a href="#10">10. 投资与风险启示</a>
+<a href="#11">11. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-9-q3">一、9 月和 Q3 发生了什么</a>
+<a href="#s-_1">二、本期最重要的发现</a>
+<a href="#s-meme">三、收入回升了，但跟着 meme 一起回升</a>
+<a href="#s-_2">四、销毁几乎不抵消增发</a>
+<a href="#s-rpc">五、质押与验证者</a>
+<a href="#s-_3">六、网络升级</a>
+<a href="#s-sec">七、储备公司</a>
+<a href="#s-etf">八、ETF</a>
+<a href="#s-2029">九、三情景</a>
+<a href="#s-_4">十、记分卡与接下来看什么</a>
+<a href="#s-3-5">十一、如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>◎ SOL / Solana<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">◎ Solana</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="sol-solana">SOL / Solana 完整调研与分析报告</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 10 月 5 日<br />
+<strong>数据截止</strong>：2026 年 9 月 30 日（9 月与 Q3 完整数据已闭合）；链上快照取自 10/5<br />
+<strong>版本</strong>：2026 年 9 月版（第二期）<strong>兼 Q3 季度回顾</strong><br />
+<strong>研究方法</strong>：沿用 8 月首期框架。<strong>本期第一次有上期论点可核对</strong>（S8-1 至 S8-5，见 3.0）。</p>
+<p><strong>本版更新要点</strong>：</p>
+<ol>
+<li><strong>9 月 +14.61%，Q3 +60.34%</strong>——收于 $118.12（币安日线）。按 beta 扣掉 BTC 的影响，9 月与 Q3 多出来的部分都只有约 0.6 个标准差，<strong>属于噪声范围</strong>。</li>
+<li><strong>本期最重要的发现：8 月通过的「加倍减发」（SIMD-0550）至今没有在链上生效。</strong><br />
+   Solana 官方 RPC 的 <code>getInflationGovernor</code> 显示通胀递减率仍为 <strong>0.15</strong>（提案要改为 0.30）；提案原文状态仍是「Review」，激活所需的 feature key 一栏为空。<br />
+<strong>8 月版写「减发提速已通过」，混淆了「治理投票通过」与「协议已执行」。</strong></li>
+<li><strong>链上费用 Q3 回升 53%</strong>（DefiLlama，$4,110 万 → $6,290 万）——<strong>但同期 meme 币发行平台 pump.fun 的收入也回升了 58%</strong>。8 月版登记的 S8-1 要求「meme 币未复苏的情况下」收入回升，<strong>Q3 的回升与 meme 复苏同步，不能算作「实用崛起」的证据</strong>。</li>
+<li><strong>SOL ETF 9/25 单日净流入 $8,670 万，为上市以来最高</strong>（Farside 全历史统计行，一手）；9/21–25 一周 $1.88 亿（Farside 逐日加总），<strong>「周度纪录」为媒体转述</strong>；全月约 $2.72 亿（二手）。</li>
+<li><strong>储备公司首次取得一手数据</strong>（SEC 8-K / 10-K）：Forward Industries Q3 增持 94.9 万枚至 <strong>850.1 万枚</strong>，<strong>公司自披露 mNAV：基本 0.684、完全摊薄 0.946</strong>（已扣 $1.675 亿借款）；Upexi 234 万枚中 <strong>108.4 万枚是可转债的抵押 SOL</strong>（未转股须交还），扣除后净资产与市值大致相当（mNAV 约 1.0）。</li>
+<li><strong>8 月版的多处数据被一手数据更正</strong>（见 11.5）：质押量 3.75 亿 → <strong>4.418 亿 SOL</strong>（RPC）；通胀「约 3.8%」→ <strong>3.618%</strong>；验证者「906 个」→ RPC 显示有质押的为 <strong>685 个</strong>（口径不同，不能据此判断下降）；收入口径（21Shares 含 Jito 小费，DefiLlama 不含）。</li>
+<li><strong>情景框架重建</strong>：8 月版三档价格沿用自被推翻的收入倍数法，且档间有重叠和空档。本期改用 SOL 自身实际交易过的市值区间，三档首尾相接；<strong>概率经审查后改为 35/30/35</strong>（随机游走基线下中性档只有约 25%–30%），<strong>本期不给单一基准预期</strong>。</li>
+</ol>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SOL 是什么</strong></td>
+<td>一条<strong>高性能单体区块链</strong>（所有交易在主链完成），定位是<strong>消费级应用的执行层</strong></td>
+</tr>
+<tr>
+<td><strong>当前价格位置</strong></td>
+<td>$118.12（9/30 币安收盘），市值约 <strong>$695 亿</strong>（CoinGecko 第 7）。距 ATH（$295.83，币安 2025-01-19 盘中）<strong>−60.1%</strong></td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3 表现</strong></td>
+<td><strong>9 月 +14.61%、Q3 +60.34%</strong>。高于 BTC beta 预期 9 月 +6.2pp、Q3 +8.7pp，<strong>都只有约 0.6 个标准差，不能排除噪声</strong></td>
+</tr>
+<tr>
+<td><strong>本期最重要的发现</strong></td>
+<td><strong>「加倍减发」投票通过了，但没有生效</strong>。RPC 显示通胀递减率仍为 0.15，当前通胀 <strong>3.618%</strong>。生效后 2029 年当年少增发约 558 万枚，<strong>与被否决的 SIMD-0553（每年多销毁约 422 万枚）同一量级</strong></td>
+</tr>
+<tr>
+<td><strong>收入</strong></td>
+<td>链上费用（基础费 + 优先费，不含 Jito 小费）9 月 <strong>$2,498 万</strong>，Q3 环比 <strong>+53%</strong>；<strong>但 pump.fun 同期 +58%</strong>，回升与 meme 复苏同步。真同比：9 月 −33.8%、Q3 −48.7%</td>
+</tr>
+<tr>
+<td><strong>供应抵消</strong></td>
+<td>9 月日均销毁约 <strong>889 SOL</strong>，日均增发约 <strong>62,961 SOL</strong>——<strong>销毁只抵消增发的 1.41%</strong>（同口径 8 月约 1.26%）。不质押的持有人每年被稀释约 3.6%。<strong>这个比值只衡量供应抵消，不衡量质押者分到的优先费与 MEV</strong></td>
+</tr>
+<tr>
+<td><strong>核心多头逻辑</strong></td>
+<td>ETF 单日流入创纪录、连续净流入（单一配置者可决定流量符号）；稳定币 $164 亿创新高；TVL Q3 +33.5%（以美元计）；质押 4.418 亿 SOL（占总供应 69.6%）；30 个月以上零全网中断</td>
+</tr>
+<tr>
+<td><strong>核心空头逻辑</strong></td>
+<td>销毁/增发 1.41%；收入回升与 meme 同步（不能确认因果）；减发未生效；Forward 基本 mNAV 0.684；Upexi 一半 SOL 是可转债抵押、有 BitGo 借款；8/12 的基础设施集中风险没有新数据可证明已缓解</td>
+</tr>
+<tr>
+<td><strong>估值立场</strong></td>
+<td>情景以 SOL 自身实际交易过的市值区间为参照，概率 <strong>35/30/35</strong>（悲观/中性/乐观）。<strong>本期不给单一基准预期</strong>：按随机游走，2029 年还留在 2026 年交易区间的概率只有约 25%–30%，三档概率接近</td>
+</tr>
+<tr>
+<td><strong>风险等级</strong></td>
+<td>高于 BTC 与 ETH。年化波动 9 月 63.2%、过去一年 68.0%，对 BTC 的 beta 约 1.3</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-solana">1. Solana 的起源与设计取舍</h2>
+<blockquote>
+<p>本章与 8 月首期相同，此处只保留理解本期内容必需的部分。完整内容见 <code>sol_research_report_202608.md</code> 第 1 章。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Bitcoin</th>
+<th>Ethereum</th>
+<th><strong>Solana</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>首要目标</td>
+<td>抗审查的货币</td>
+<td>去中心化的可编程平台</td>
+<td><strong>高吞吐的执行层</strong></td>
+</tr>
+<tr>
+<td>扩容路线</td>
+<td>二层</td>
+<td>二层（Rollup）</td>
+<td><strong>单体链，主链直接扩容</strong></td>
+</tr>
+<tr>
+<td>对节点门槛的态度</td>
+<td>刻意压低</td>
+<td>中等</td>
+<td><strong>接受高门槛换性能</strong></td>
+</tr>
+<tr>
+<td>代价</td>
+<td>吞吐低</td>
+<td>L2 生态碎片化</td>
+<td><strong>验证者成本高 → 中心化压力</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>SOL 代币的三重角色</strong>：</p>
+<ol>
+<li><strong>手续费媒介</strong>——<strong>只有基础费（每笔交易签名 5,000 lamports）的 50% 被销毁</strong>；优先费按 SIMD-0096 <strong>100% 归出块验证者</strong>；Jito 小费（MEV）在协议外支付给验证者</li>
+<li><strong>质押资产</strong>——4.418 亿 SOL 在质押（RPC 一手）</li>
+<li><strong>储备 / 投资标的</strong>——ETF 与上市公司持仓</li>
+</ol>
+<p><strong>通胀规则</strong>（RPC <code>getInflationGovernor</code>，一手）：初始 8%、每年递减 15%（taper 0.15）、终端 1.5%。<strong>这三个参数可以被治理投票修改</strong>——这是 SOL 与 BTC 的根本差异，也是本期核心发现的背景。</p>
+<hr />
+<h2 id="2-sol">2. SOL 的发展阶段划分</h2>
+<blockquote>
+<p>阶段一至四见 8 月首期。阶段五追加本期事件。</p>
+</blockquote>
+<h3 id="2026">阶段五：收入退潮与结构转型（2026）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026 H1</td>
+<td>链上费用（DefiLlama）$1.107 亿，<strong>同比 −75.8%</strong></td>
+</tr>
+<tr>
+<td>2026-06-07</td>
+<td>年内最低市值 <strong>$360 亿</strong>（CoinGecko）</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td>SOL +41.43%；8/12 路由故障致 28.83% 质押掉线（8 月版详述）</td>
+</tr>
+<tr>
+<td>2026-08-27</td>
+<td><strong>首次全网治理投票</strong>：SIMD-0550（加倍减发）以 67% 通过，SIMD-0553（费用改革）被否</td>
+</tr>
+<tr>
+<td><strong>2026-09-15</strong></td>
+<td>9 月低点 <strong>$95.82</strong>（CLARITY 法案参议院投票失败当日）</td>
+</tr>
+<tr>
+<td><strong>2026-09-18</strong></td>
+<td>Agave 客户端 <strong>v4.3.0</strong> 作为主网稳定版发布（GitHub 一手）</td>
+</tr>
+<tr>
+<td><strong>2026-09-22/24</strong></td>
+<td><strong>Alpenglow 新共识在公共测试网激活</strong>（媒体转述）；<strong>主网未激活</strong></td>
+</tr>
+<tr>
+<td><strong>2026-09-25</strong></td>
+<td>SOL ETF 单日净流入 <strong>$8,670 万</strong>（上市以来最高，Farside）；SIMD-0553 修正案 #600 关闭未合并</td>
+</tr>
+<tr>
+<td><strong>2026-09-30</strong></td>
+<td>Forward Industries 持仓 <strong>850.1 万枚</strong>（季度 +94.9 万）</td>
+</tr>
+<tr>
+<td><strong>2026-Q3</strong></td>
+<td><strong>+60.34%</strong>；链上费用环比 +53%；pump.fun 收入环比 +58%</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="3-sol">3. SOL 当前现状分析</h2>
+<h3 id="30-8-5">3.0 论点校验：8 月版登记的 5 条</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th>检验条件（摘要）</th>
+<th>9 月 / Q3 读数</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S8-1</td>
+<td>收入崩塌是「投机退潮 + 实用崛起」的转型</td>
+<td>Q3/Q4 收入在 <strong>meme 币未复苏</strong>的情况下环比 &gt;30% 则成立；连续两季持平或续跌则证伪</td>
+<td>链上费用 Q3 环比 <strong>+53%</strong>，<strong>但 pump.fun 收入同期 +58%</strong>（meme 复苏）；Q2 曾环比 −41%</td>
+<td>⏳ <strong>Q3 两个分支都不满足</strong>：收入回升了，但前提「meme 未复苏」不成立。Q4 再核</td>
+</tr>
+<tr>
+<td>S8-2</td>
+<td>「软件同质化导致全网停摆」已过时（仅限这一类风险）</td>
+<td>单次 &gt;20% 质押掉线，或最大 ASN 占比未在年底前降至 25% 以下，则错</td>
+<td>9 月未见大规模掉线（10/5 掉线质押 0.03%，RPC）；<strong>ASN 分布本期取不到</strong></td>
+<td>⏳ 年底核；<strong>门槛 9 风险</strong>：ASN 数据源本期不可得</td>
+</tr>
+<tr>
+<td>S8-3</td>
+<td>治理集中度：单一大户可跨越门槛差额</td>
+<td>后续投票中任一持票 &gt;3% 的实体立场翻转决定了结果，则成立</td>
+<td>9 月<strong>没有新的全网治理投票</strong></td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>S8-4</td>
+<td>SOL 是 BTC 的高 beta 版本</td>
+<td>未来三个月 30 日相关性低于 0.5，则错</td>
+<td>9 月 30 日相关性 <strong>0.80–0.85</strong>（最低 0.796，9/3）</td>
+<td>⏳ 11 月底核；9 月未触发</td>
+</tr>
+<tr>
+<td>S8-5</td>
+<td>验证者经济恶化是趋势</td>
+<td>Q4 验证者数量环比回升 &gt;10%，则错</td>
+<td><strong>RPC：有质押的验证者 685 个</strong>（10/5）；8 月版的 906 是二手数据、口径不明</td>
+<td>⏳ 以 685 为 Q3 末基准</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>S8-1 是本期最有信息量的一条</strong>：它的设计本身是对的——要求收入回升<strong>不能来自 meme</strong>。Q3 恰好给出了一次「收入回升 + meme 同步回升」的读数，<br />
+<strong>这说明 Q3 的收入回升更像 8 月版所说的「投机退潮」的反向（投机回潮），而不是「实用崛起」。</strong> 但它没有触发任何一个判定分支，按规则继续待验。</p>
+<h3 id="31">3.1 价格与市场</h3>
+<blockquote>
+<p>口径：币安 SOLUSDT 日线 UTC 收盘，与 BTC、ETH 9 月版统一。8 月版的价格来自搜索摘要。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9/30 收盘</strong></td>
+<td><strong>$118.12</strong></td>
+</tr>
+<tr>
+<td>市值</td>
+<td>约 <strong>$695 亿</strong>（收盘价 × 流通量 5.8831 亿，RPC）；CoinGecko 排名第 7</td>
+</tr>
+<tr>
+<td>ATH</td>
+<td>$295.83（2025-01-19 盘中，币安）</td>
+</tr>
+<tr>
+<td><strong>距 ATH</strong></td>
+<td><strong>−60.1%</strong></td>
+</tr>
+<tr>
+<td>9 月区间</td>
+<td>低 <strong>$95.82</strong>（9/15）/ 高 <strong>$124.95</strong>（9/27）</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th>SOL</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9 月</strong>（8/31→9/30）</td>
+<td><strong>+14.61%</strong></td>
+<td>+6.42%</td>
+</tr>
+<tr>
+<td><strong>Q3</strong>（6/30→9/30）</td>
+<td><strong>+60.34%</strong></td>
+<td>+42.64%</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>−11.45%</td>
+<td>−14.15%</td>
+</tr>
+<tr>
+<td>YTD</td>
+<td>−5.24%</td>
+<td>−4.59%</td>
+</tr>
+<tr>
+<td>近 1 年</td>
+<td>−43.40%</td>
+<td>−26.68%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>beta、R² 与噪声带</strong>（XIN / CKB 期规则，并按 ETH 9 月版补上标准差）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>窗口</th>
+<th>年化波动</th>
+<th>beta</th>
+<th>R²</th>
+<th>beta 预期</th>
+<th>实际</th>
+<th>高于预期</th>
+<th>约几个标准差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月</td>
+<td>63.2%</td>
+<td>1.31</td>
+<td>0.73</td>
+<td>+8.42%</td>
+<td>+14.61%</td>
+<td>+6.19pp</td>
+<td><strong>约 0.66</strong></td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>55.4%</td>
+<td>1.21</td>
+<td>0.70</td>
+<td>+51.68%</td>
+<td>+60.34%</td>
+<td>+8.65pp</td>
+<td><strong>约 0.57</strong></td>
+</tr>
+<tr>
+<td>近 1 年</td>
+<td>68.0%</td>
+<td>1.31</td>
+<td>0.76</td>
+<td>−34.97%</td>
+<td>−43.40%</td>
+<td>−8.42pp</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>标准差算法：残差年化波动 = 年化波动 × √(1 − R²)，再按窗口天数折算。9 月残差月度 1 个标准差约 9.4pp，Q3 约 15.3pp。<br />
+<strong>结论：9 月和 Q3 的超额部分都在噪声范围内，SOL 的上涨可以用「高 beta 跟随 BTC」解释。</strong> 近一年的 −8.4pp 同样不显著。</p>
+</blockquote>
+<p><strong>30 日相关性</strong>（S8-4）：8/31 为 0.795，9/15 为 0.830，9/30 为 0.854。<strong>SOL 与 BTC 在 9 月越来越同步。</strong></p>
+<h3 id="32-meme">3.2 收入与生态：回升了，但跟着 meme 一起回升</h3>
+<blockquote>
+<p><strong>本期起收入改用 DefiLlama 一手 API</strong>，并读了适配器源码（<code>dimension-adapters/fees/solana.ts</code>）确认口径：<br />
+<strong>「fees」= 基础费 + 优先费（不含 Jito 小费）；「revenue」= 基础费 ÷ 2 = 销毁量</strong>（源码第 35–36 行）。<br />
+8 月版引用的「H1 网络收入 $1.41 亿、−87.1%」来自 21Shares，<strong>口径包含 Jito 小费</strong>，与本表不可直接比较。</p>
+</blockquote>
+<p><strong>链上费用季度序列</strong>（DefiLlama，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>季度</th>
+<th>链上费用</th>
+<th>pump.fun 收入（对照：meme 热度）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025 Q1</td>
+<td>$3.450 亿</td>
+<td>$2.651 亿</td>
+</tr>
+<tr>
+<td>2025 Q2</td>
+<td>$1.119 亿</td>
+<td>$1.602 亿</td>
+</tr>
+<tr>
+<td><strong>2025 Q3</strong></td>
+<td><strong>$1.226 亿</strong></td>
+<td>$1.209 亿</td>
+</tr>
+<tr>
+<td>2025 Q4</td>
+<td>$6,580 万</td>
+<td>$1.063 亿</td>
+</tr>
+<tr>
+<td>2026 Q1</td>
+<td>$6,960 万</td>
+<td>$1.222 亿</td>
+</tr>
+<tr>
+<td>2026 Q2</td>
+<td>$4,110 万</td>
+<td>$9,160 万</td>
+</tr>
+<tr>
+<td><strong>2026 Q3</strong></td>
+<td><strong>$6,290 万</strong>（环比 <strong>+53%</strong>）</td>
+<td><strong>$1.449 亿</strong>（环比 <strong>+58%</strong>）</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="链上费用与 pump.fun 收入：同涨同跌" src="charts/fees-vs-meme-202609.svg" /></p>
+<blockquote>
+<p>图中数字（百万美元，取整）：链上费用 345 / 112 / 123 / 66 / 70 / 41 / 63；pump.fun 收入 265 / 160 / 121 / 106 / 122 / 92 / 145（2025 Q1 至 2026 Q3）。纵轴刻度 0 / 100 / 200 / 300。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>比较</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月链上费用</td>
+<td><strong>$2,498 万</strong>（8 月 $2,221 万）</td>
+</tr>
+<tr>
+<td>9 月真同比（vs 2025-09 $3,775 万）</td>
+<td><strong>−33.8%</strong></td>
+</tr>
+<tr>
+<td>Q3 真同比（vs 2025 Q3）</td>
+<td><strong>−48.7%</strong></td>
+</tr>
+<tr>
+<td>H1 2026 真同比（DefiLlama 口径）</td>
+<td>$1.107 亿 vs $4.569 亿 = <strong>−75.8%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>这张表说明的事</strong>：2025 Q1 至今，链上费用和 pump.fun 收入<strong>六次季度环比变动里有五次同向</strong>（唯一例外是 2025 Q3：费用升、pump.fun 降）。<br />
+<strong>Q3 2026 的回升，在时间上与 meme 平台收入的回升完全重合</strong>——这不能证明因果，但它削弱了「收入回升来自稳定币/RWA 等实用场景」的读法。</p>
+<blockquote>
+<p>⚠️ <strong>一个未排除的共同因子</strong>（<code>_bian</code>）：两条序列都是先以 SOL 计价、再按币价折成美元，<strong>SOL 价格本身就是共同乘数</strong>；本报告给 TVL 做了价格平减，却没有给这两条序列做。去掉价格因子后同向关系还剩多少，<strong>本期未测</strong>。</p>
+</blockquote>
+<p><strong>同期在增长的「实用」指标</strong>（DefiLlama，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>6/30</th>
+<th>8/31</th>
+<th><strong>9/30</strong></th>
+<th>同比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Solana 上的稳定币</td>
+<td>$153.6 亿</td>
+<td>$159.7 亿</td>
+<td><strong>$164.2 亿</strong></td>
+<td>+16.3%（vs 2025-09-30 $141.2 亿）</td>
+</tr>
+<tr>
+<td>DeFi TVL</td>
+<td>$49.2 亿</td>
+<td>$58.0 亿</td>
+<td><strong>$65.7 亿</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>Q2 2026</th>
+<th><strong>Q3 2026</strong></th>
+<th>环比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DEX 成交额</td>
+<td>$1,859 亿</td>
+<td><strong>$1,994 亿</strong></td>
+<td>+7.3%</td>
+</tr>
+<tr>
+<td>生态合计费用（含应用层）</td>
+<td>$6.39 亿</td>
+<td><strong>$9.48 亿</strong></td>
+<td>+48.3%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>TVL 与稳定币的增长要打折读</strong>：TVL 以美元计，SOL 价格 Q3 涨了 60%，TVL 涨 33.5% 意味着以 SOL 计反而下降；<br />
+稳定币存量 +16.3% 是真实的美元增长，但<strong>它产生的费用不在「链上费用」里</strong>——稳定币转账的手续费极低。<br />
+<strong>DEX 成交额只增 7.3%，而生态费用增 48%</strong>——费用增长主要来自单价更高的交易（与 meme 交易相符），不是成交规模。</p>
+</blockquote>
+<h3 id="33">3.3 质押与验证者经济</h3>
+<blockquote>
+<p><strong>本期起改用 Solana 官方 RPC</strong>（<code>api.mainnet-beta.solana.com</code>，<code>getVoteAccounts</code>、<code>getSupply</code>、<code>getInflationRate</code>，10/5 快照，一手）。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总供应 / 流通量</td>
+<td><strong>6.3523 亿 / 5.8831 亿 SOL</strong></td>
+</tr>
+<tr>
+<td><strong>质押量（activated stake）</strong></td>
+<td><strong>4.418 亿 SOL</strong>——占总供应 <strong>69.6%</strong>、占流通量 75.1%</td>
+</tr>
+<tr>
+<td><strong>有质押的验证者</strong></td>
+<td><strong>685 个</strong>（在线 670 + 掉线 15）</td>
+</tr>
+<tr>
+<td>掉线质押占比</td>
+<td><strong>0.03%</strong></td>
+</tr>
+<tr>
+<td>验证者级 Nakamoto 系数（达到 1/3 质押所需的最少验证者数）</td>
+<td><strong>18</strong></td>
+</tr>
+<tr>
+<td>最大单个验证者 / 前 10 大</td>
+<td>4.06% / 24.56%</td>
+</tr>
+<tr>
+<td>佣金为 0% / 100% 的验证者</td>
+<td>229 个 / 62 个</td>
+</tr>
+<tr>
+<td>当前通胀率</td>
+<td><strong>3.618%</strong>（epoch 1049）</td>
+</tr>
+<tr>
+<td>增发给质押者的毛收益率</td>
+<td>约 <strong>5.20%</strong>（年增发 ÷ 质押量，未扣佣金）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>与 8 月版的差异</strong>：8 月版写质押 3.75 亿 SOL（64%）、验证者 906 个（2026-06），<strong>全部来自二手</strong>。<br />
+<strong>验证者数量不能直接比较</strong>：RPC 只能给当前快照，8 月版的 906 口径不明（可能包含无质押的投票账户），<strong>本报告不据此判断验证者在减少</strong>。<br />
+Nakamoto 系数 18 是<strong>验证者级</strong>的；同一运营方控制多个验证者时，<strong>实体级的数字会更低</strong>——本报告未做实体归并。</p>
+</blockquote>
+<p><strong>8/12 事件涉及的基础设施集中度</strong>（单一 ASN 占 27.34%，超过 Solana 自设的 25% 上限）：<strong>本期没有取得新的 ASN 分布数据</strong>（validators.app 等需要付费密钥），<strong>无法判断是否已缓解</strong>。</p>
+<h3 id="34">3.4 网络稳定性与升级</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>事项</th>
+<th>状态</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全网中断</td>
+<td>2024-02-06 以来未发生（8 月版）</td>
+<td>转述</td>
+</tr>
+<tr>
+<td>10/5 掉线质押</td>
+<td>0.03%</td>
+<td>RPC ✅</td>
+</tr>
+<tr>
+<td>Agave v4.3.0</td>
+<td>9/18 发布，「适用于测试网、开发网和主网」</td>
+<td>GitHub <code>anza-xyz/agave</code> ✅</td>
+</tr>
+<tr>
+<td><strong>Alpenglow</strong>（新共识，目标约 150 毫秒最终确认、取消投票交易）</td>
+<td><strong>SIMD-0326 状态「Review」</strong>；9/22–24 在公共测试网激活（媒体转述）；<strong>9/28 并未如部分媒体所说在主网激活</strong></td>
+<td>GitHub SIMD 仓库 ✅；测试网激活为转述 ⚠️</td>
+</tr>
+<tr>
+<td>客户端分布</td>
+<td>Frankendancer 约 21%、完整 Firedancer 约 14%（<strong>来源日期不一，未核实</strong>）</td>
+<td>搜索摘要 ⚠️</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Alpenglow 的含义</strong>：它会取消投票交易——<strong>投票交易目前占 Solana 交易笔数的大部分</strong>，也是验证者每年约 1.1 SOL/天投票成本的来源。<br />
+若上线，验证者的固定成本会下降（利好小验证者），<strong>交易笔数统计也会断层</strong>——下期比较交易数据时要注意。</p>
+</blockquote>
+<h3 id="35">3.5 宏观环境</h3>
+<blockquote>
+<p>与 BTC 9 月版共用，详见该报告 3.1 与 3.4。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>因素</th>
+<th>9 月末</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>联邦基金利率</td>
+<td><strong>3.75–4.00%</strong>（美联储 9/16 加息 25bp，12:0）</td>
+<td>federalreserve.gov ✅</td>
+</tr>
+<tr>
+<td>10 年期美债</td>
+<td><strong>5.29%</strong>（年内最高）</td>
+<td>美国财政部 ✅</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>与 BTC、ETH 9 月版相同的观察</strong>：宏观全面偏鹰，SOL 仍涨 14.6%。<strong>本报告不把宏观偏鹰直接翻译成 SOL 偏空</strong>，也不反过来说利率无关。<br />
+SOL 9 月的上涨在 beta 意义上<strong>完全可以由 BTC 解释</strong>（见 3.1）。</p>
+</blockquote>
+<h3 id="36-q3">3.6 Q3 季度回顾（本版新增）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>Q2 2026</th>
+<th><strong>Q3 2026</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SOL 季度涨跌（币安）</td>
+<td>−11.45%</td>
+<td><strong>+60.34%</strong></td>
+</tr>
+<tr>
+<td>链上费用</td>
+<td>$4,110 万</td>
+<td><strong>$6,290 万</strong>（+53%）</td>
+</tr>
+<tr>
+<td>pump.fun 收入</td>
+<td>$9,160 万</td>
+<td><strong>$1.449 亿</strong>（+58%）</td>
+</tr>
+<tr>
+<td>DEX 成交额</td>
+<td>$1,859 亿</td>
+<td>$1,994 亿（+7%）</td>
+</tr>
+<tr>
+<td>季末稳定币</td>
+<td>$153.6 亿</td>
+<td><strong>$164.2 亿</strong></td>
+</tr>
+<tr>
+<td>季末 TVL</td>
+<td>$49.2 亿</td>
+<td><strong>$65.7 亿</strong></td>
+</tr>
+<tr>
+<td>Forward Industries 持仓</td>
+<td>755.3 万</td>
+<td><strong>850.1 万</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>一句话</strong>：<strong>Q3 是一个高 beta 资产在 BTC 大涨季度里的表现</strong>——价格超额在噪声内，收入回升与 meme 回潮同步（不能确认因果）；稳定币存量同比 +16%，ETF 流入为正（但单一配置者就能决定流量符号）。</p>
+<hr />
+<h2 id="4-sol">4. 代币经济学与治理（SOL 特有）</h2>
+<h3 id="41">4.1 本期核心发现：投票通过 ≠ 协议执行</h3>
+<p><strong>8 月版 4.2 记录了 SIMD-0550（加倍减发）以 67% 通过，并在多头 5、9.1、10.3 中把它当作「已确定的改善」。本期核对链上状态：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th>结果</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链上通胀参数</td>
+<td><code>getInflationGovernor</code> = initial 0.08、<strong>taper 0.15</strong>、terminal 0.015</td>
+<td><strong>Solana RPC，一手</strong></td>
+</tr>
+<tr>
+<td>SIMD-0550 要改成</td>
+<td>taper <strong>0.30</strong>（年递减 15% → 30%）</td>
+<td>提案原文</td>
+</tr>
+<tr>
+<td>提案原文状态</td>
+<td><strong><code>status: Review</code></strong>；<code>feature:</code> 一栏写着「（接受后填写 feature key 与跟踪 issue）」</td>
+<td>GitHub <code>solana-foundation/solana-improvement-documents</code> ✅</td>
+</tr>
+<tr>
+<td>当前通胀率</td>
+<td><strong>3.618%</strong></td>
+<td>RPC <code>getInflationRate</code> ✅</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>结论：截至 10/5，SIMD-0550 没有在主网生效。</strong> Solana 的协议变更需要在客户端代码里实现、再由 feature gate 激活；治理投票只表达了意愿。</p>
+<p><strong>这个更正有多重要——用盈亏平衡的方式回答</strong>（DOT 期规则）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>2029 年流通量（约三年后，按当前流通量 5.8831 亿外推）</th>
+<th>通胀路径</th>
+<th>三年累计增长</th>
+<th>2029 年流通量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>按当前参数</strong>（taper 0.15）</td>
+<td>3.62% → 3.08% → 2.61%</td>
+<td>+9.6%</td>
+<td><strong>约 6.448 亿</strong></td>
+</tr>
+<tr>
+<td>若 SIMD-0550 立即生效（taper 0.30）</td>
+<td>3.62% → 2.53% → 1.77%</td>
+<td>+8.1%</td>
+<td>约 6.358 亿</td>
+</tr>
+<tr>
+<td><strong>差异</strong></td>
+<td></td>
+<td></td>
+<td><strong>约 1.4%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>SIMD-0550 若明天生效，到 2029 年流通量少约 1.4%（三年累计）；看 2029 年当年，少增发约 558 万枚，把不质押者的稀释率从约 2.6% 降到约 1.8%。</strong><br />
+<strong>用同一把尺子比较</strong>（<code>_bian</code>）：被否决的 SIMD-0553（销毁最多提高约 14 倍）按当前销毁水平每年多销毁约 <strong>422 万枚</strong>——<strong>两个方案同一量级</strong>。<br />
+<strong>所以 8 月版的错误在于状态（写成已执行）</strong>；本报告初稿另写「量级本来就不大」，是拿三年累计占比（看起来小）去和另一个方案的销毁倍数（看起来大）比较，<strong>尺子不一致，已删除</strong>。<br />
+（外推假设销毁可忽略、非流通部分不变，未计入质押奖励在流通/非流通之间的分配差异。）</p>
+</blockquote>
+<h3 id="42">4.2 销毁与增发：持币人价值桥</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>9 月</th>
+<th>数值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>月销毁</td>
+<td><strong>26,656 SOL</strong>（日均 <strong>889 SOL</strong>；8 月日均 796）</td>
+<td>DefiLlama <code>revenue</code>（= 基础费 ÷ 2）按日价折算</td>
+</tr>
+<tr>
+<td>日均增发</td>
+<td><strong>62,961 SOL</strong></td>
+<td>RPC 通胀率 3.618% × 总供应 6.3523 亿 ÷ 365</td>
+</tr>
+<tr>
+<td><strong>销毁 ÷ 增发</strong></td>
+<td><strong>1.41%</strong>（同口径 8 月约 1.26%；8 月版写的 1.06% 基于未注明来源的 648 SOL/天）</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="SOL 日均销毁 vs 日均增发（9 月）" src="charts/burn-vs-issuance-202609.svg" /></p>
+<blockquote>
+<p>图中数字：日均增发 62,961 SOL、日均销毁 889 SOL（9 月），8 月日均销毁 796 SOL。</p>
+<p>8 月版写日均销毁 648 SOL，来源未注明；<strong>按同一 DefiLlama 口径，8 月为 796 SOL/天</strong>。<br />
+<strong>DefiLlama 的基础费按「交易数 × 5,000 lamports」计算</strong>（源码），而基础费实际按签名数收取——多签名交易会被少算，<strong>销毁量是下限</strong>。</p>
+</blockquote>
+<p><strong>结论不变</strong>：<strong>对不质押的持有人，SOL 每年稀释约 3.6%，销毁几乎不抵消</strong>；质押者拿到约 5.2% 的毛增发补偿（扣佣金前）。</p>
+<h3 id="43-simd-0553">4.3 价值捕获的另一条路：SIMD-0553 修正案关闭</h3>
+<p>8 月被否决的 SIMD-0553（把基础费改为资源计价、销毁提高最多约 14 倍）有一个修正案 #600，提议把包含费从 2,500 调到 2,600 lamports 以抵消验证者收入下降约 4%。<strong>#600 于 9/25 关闭，未合并</strong>（GitHub 一手）。<br />
+SIMD-0553 原文仍为「Draft」。<strong>提高销毁的方案本期没有进展</strong>；它与 SIMD-0550 的供应效应同一量级（见 4.1）。</p>
+<hr />
+<h2 id="5-sol">5. 上市公司 SOL 储备</h2>
+<blockquote>
+<p><strong>本期起改用各公司提交给 SEC 的 8-K / 10-K（一手）</strong>；附件中的新闻稿是公司自述，SEC 不核验内容。</p>
+</blockquote>
+<h3 id="51">5.1 头部公司</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>公司</th>
+<th>持仓</th>
+<th>日期</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Forward Industries（FWDI）</strong></td>
+<td><strong>8,501,298 SOL</strong>（约 1.4% 流通量）</td>
+<td>9/30</td>
+<td>10/1 8-K 附件</td>
+</tr>
+<tr>
+<td>DeFi Development（DFDV）</td>
+<td>2,538,010 SOL 及等价物</td>
+<td>9/25</td>
+<td>9/28 8-K</td>
+</tr>
+<tr>
+<td><strong>Upexi（UPXI）</strong></td>
+<td>2,340,150 SOL，<strong>其中 1,084,176 枚为可转债抵押</strong>（95% 已质押）</td>
+<td>6/30（财年末）</td>
+<td>9/17 10-K</td>
+</tr>
+<tr>
+<td>Solana Company（HSDT）</td>
+<td>本期未取得持仓；9/30 宣布约 $1,430 万定向增发</td>
+<td>—</td>
+<td>9/30 8-K</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>本节在发布前审查后重写</strong>（Codex）。初稿自己用「完全摊薄股数 × 股价 ÷ SOL 毛持仓」算出 FWDI mNAV 0.82，<strong>漏了借款、现金与其他资产</strong>；又用 9/30 的每股 SOL 去判断 9/22 那笔增发是否摊薄，<strong>用了事后数据</strong>。<br />
+Upexi 的「mNAV 0.34」<strong>没有处理可转债抵押的 108.4 万枚 SOL</strong>。三处都已按公司一手披露更正。</p>
+</blockquote>
+<h3 id="52-forward-industries-mnav">5.2 Forward Industries：公司自披露的 mNAV</h3>
+<p><strong>公司 10/1 8-K 附件的资本结构表（未经审计，一手）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>金额</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SOL 持仓公允价值（8,501,298 枚 × $118.06）</td>
+<td>$10.037 亿</td>
+</tr>
+<tr>
+<td>其他数字资产</td>
+<td>$2,690 万</td>
+</tr>
+<tr>
+<td>现金</td>
+<td>$730 万</td>
+</tr>
+<tr>
+<td><strong>机构借款</strong></td>
+<td><strong>−$1.675 亿</strong>（6/30 为 $1.05 亿）</td>
+</tr>
+<tr>
+<td><strong>净资产</strong></td>
+<td><strong>$8.704 亿</strong></td>
+</tr>
+<tr>
+<td><strong>mNAV（基本，7,628.8 万股 × $7.80）</strong></td>
+<td><strong>0.684</strong></td>
+</tr>
+<tr>
+<td><strong>mNAV（完全摊薄，1.055 亿股）</strong></td>
+<td><strong>0.946</strong>（6/30 为 0.908）</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Q3 变化</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>增持</td>
+<td><strong>+948,601 SOL</strong>（+13%），均价约 $83（约 $7,870 万）</td>
+</tr>
+<tr>
+<td>每股 SOL（完全摊薄）</td>
+<td>0.0730 → 0.0806（季度 +10.4%）</td>
+</tr>
+<tr>
+<td>完全摊薄股数</td>
+<td>1.0353 亿 → 1.0554 亿（<strong>+1.9%</strong>）</td>
+</tr>
+<tr>
+<td>机构借款</td>
+<td>$1.05 亿 → $1.675 亿（<strong>+$6,250 万</strong>）</td>
+</tr>
+<tr>
+<td>9/22 定向增发</td>
+<td>312.5 万股 × $8.00 = 约 $2,500 万</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>读法</strong>：<br />
+- <strong>Q3 买币约 $7,870 万，主要靠新增借款（+$6,250 万）与 9/22 增发（约 $2,500 万）</strong>——每股 SOL 上升的主要原因是<strong>加杠杆</strong>，不是增发溢价。公司说「增发是增值的，每股 SOL 的增长证明了这一点」——<strong>这个推论不成立</strong>：用借款买币同样会让每股 SOL 上升。<br />
+- <strong>9/22 增发是否摊薄无法判定</strong>：按 9/30 的完全摊薄每股净值（$8.704 亿 ÷ 1.055 亿 ≈ $8.25），$8.00 约低 3%；但 9/22 当天的每股净值未披露。初稿的「折价 16.3%」已撤回。<br />
+- <strong>完全摊薄股数季内只增 1.9%，而 9/22 单笔就占约 3.0%</strong>——口径（基本 vs 完全摊薄、认股权证行权）未能核清，<strong>列为待核实</strong>。</p>
+<h3 id="53-upexi-sol">5.3 Upexi：一半 SOL 是可转债的抵押</h3>
+<p><strong>10-K 附注 5 的持仓表（一手）</strong>，按类别：流动 899,431、锁定 352,543、质押收益 4,000、<strong>可转债 1,084,176</strong>，合计 2,340,150 枚。</p>
+<p><strong>10-K 原文</strong>：这批票据以 SOL 换入，「若票据未转股，公司须交付当初收到的相应比例的 SOL 来清偿本金」。转股价为 <strong>$4.25 与 $2.39</strong>，而 9/30 股价 <strong>$1.14</strong>——<strong>转股的可能性很低，这部分 SOL 在经济上是欠票据持有人的</strong>。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>扣除可转债抵押后的净 SOL</td>
+<td>2,340,150 − 1,084,176 = <strong>1,255,974 枚</strong></td>
+</tr>
+<tr>
+<td>按 9/30 价格</td>
+<td>约 $1.484 亿</td>
+</tr>
+<tr>
+<td>BitGo 借款</td>
+<td><strong>−$5,730 万</strong>（保证金追缴线 300%、清算线 115%；抵押可为 SOL、USDC、美元）</td>
+</tr>
+<tr>
+<td>粗算净资产（未计其他资产负债）</td>
+<td>约 <strong>$9,110 万</strong></td>
+</tr>
+<tr>
+<td>市值（8,210 万股 × $1.14）</td>
+<td>约 $9,360 万</td>
+</tr>
+<tr>
+<td><strong>粗算 mNAV</strong></td>
+<td><strong>约 1.03</strong></td>
+</tr>
+<tr>
+<td>持仓均价 / 浮亏</td>
+<td>$154 / <strong>约 −23%</strong></td>
+</tr>
+<tr>
+<td>6/30 账面股东权益</td>
+<td><strong>−$5,381 万</strong>（10-K 资产负债表）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>初稿的「mNAV 0.34、深度折价」是错的</strong>——扣掉欠票据持有人的 SOL 和 BitGo 借款后，市场给 Upexi 的估值与其净资产大致相当。<br />
+<strong>BitGo 借款的两条线</strong>（若全部以 SOL 抵押、按 125.6 万枚净 SOL 计）：清算线 115% 对应约 $52；<strong>保证金追缴线 300% 对应约 $137——已高于现价</strong>，而公司没有披露正被追缴，<strong>说明抵押品不只这部分 SOL（可能包括可转债抵押的 SOL 或 USDC），或追缴线定义与这里的算法不同</strong>。<br />
+<strong>抵押构成未披露</strong>，这两个价格只是在「全部用 SOL 抵押」假设下的示意，<strong>实际触发价无法计算</strong>。</p>
+</blockquote>
+<p><strong>对 8 月版判断的影响</strong>：8 月版用 Upexi 说明「发行溢价崩塌」。本期一手数据显示，它的市值已回到大致等于净资产的水平，<strong>不再是深度折价</strong>；<strong>储备公司里折价最深的反而是 Forward（基本 mNAV 0.684）</strong>。</p>
+<hr />
+<h2 id="6-sol">6. SOL 的核心价值逻辑</h2>
+<h3 id="61">6.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>逻辑</th>
+<th>强度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>ETF 单日流入创纪录</strong></td>
+<td>★★★☆☆</td>
+<td>9/25 单日 $8,670 万为上市以来最高、9/21–25 周流入 $1.88 亿（Farside 一手）。<strong>但单一大型配置者就可能决定一个月的流量符号</strong>（见记分卡拒登条目），且全月数据为二手</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>稳定币存量创新高</strong></td>
+<td>★★★☆☆</td>
+<td>$164.2 亿，同比 +16.3%（DefiLlama 一手）。<strong>但它产生的链上费用很少</strong>，不直接改善持币人价值</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>成本优势结构性</strong></td>
+<td>★★★★☆</td>
+<td>基础费 5,000 lamports/签名，架构决定</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>生息资产</strong></td>
+<td>★★★☆☆</td>
+<td><strong>本期降为三星</strong>：通胀奖励毛收益约 5.2%（RPC），这部分对整个持有人群体是转移；<strong>质押者另有分到的优先费与 Jito 小费，本报告未测量</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>减发已投票通过</strong></td>
+<td>★★☆☆☆</td>
+<td><strong>本期降为两星</strong>：投票通过但<strong>未生效</strong>（RPC taper 0.15）。生效后 2029 年当年少增发约 558 万枚，可把不质押者的稀释率从约 2.6% 降到约 1.8%</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>软件同质化风险已缓解</strong></td>
+<td>★★★☆☆</td>
+<td>多客户端（Firedancer 系）运行；Alpenglow 已在测试网。<strong>基础设施集中风险无新数据</strong></td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>收入 Q3 回升 53%</strong></td>
+<td>★★☆☆☆</td>
+<td><strong>本月新增</strong>。DefiLlama 一手。<strong>但与 pump.fun +58% 同步</strong>（两者都以 SOL 计价再折美元，SOL 价格是共同因子，不能确认因果）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="62">6.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>逻辑</th>
+<th>强度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>销毁几乎不抵消增发</strong></td>
+<td>★★★★☆</td>
+<td>销毁 ÷ 增发 <strong>1.41%</strong>（RPC + DefiLlama 一手）。<strong>这个比值只衡量供应抵消</strong>——质押者分到的优先费与 MEV 未测量，且 DefiLlama 的基础费按交易数估算，故从五星降为四星</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>收入回升与 meme 同步</strong></td>
+<td>★★★☆☆</td>
+<td><strong>本月新增</strong>。链上费用与 pump.fun 收入六次季度环比变动里五次同向；Q3 同步回升。<strong>两者都受 SOL 价格这一共同因子影响</strong>，未做价格平减，故三星</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>真同比仍深度为负</strong></td>
+<td>★★★★☆</td>
+<td>9 月 −33.8%、Q3 −48.7%（DefiLlama 一手）。<strong>对应 8 月版的空头 1（「收入暴跌 87%」五星），本期降为四星</strong>，理由是改用一手口径后跌幅更小（−75.8% vs −87.1%）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>储备公司在加杠杆、估值低于净资产</strong></td>
+<td>★★★☆☆</td>
+<td>FWDI 基本 mNAV 0.684（公司自披露），Q3 买币主要靠新增借款 $6,250 万；Upexi 一半 SOL 是可转债抵押、另有 BitGo 借款、浮亏 23%（SEC 一手）。<strong>审查后降为三星</strong>：Upexi 扣除抵押后 mNAV 约 1.0，FWDI 完全摊薄 0.946，折价没有初稿写的深</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>价值捕获方案停滞</strong></td>
+<td>★★★☆☆</td>
+<td>SIMD-0553 修正案 #600 关闭未合并；SIMD-0550 未生效</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>基础设施集中风险未证明缓解</strong></td>
+<td>★★★☆☆</td>
+<td>8/12 单一 ASN 占 27.34%（8 月版，转述）；<strong>本期无新数据</strong>，不能说恶化也不能说缓解</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>高 beta、高波动</strong></td>
+<td>★★★☆☆</td>
+<td>年化波动 63.2%（9 月）、68.0%（一年）；beta 约 1.3</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>多空同源检查（DOT 期规则）</strong>：<br />
+- 多头 7（收入回升）与空头 2（回升依赖 meme）、空头 3（真同比为负）是同一条费用序列的三个读法——<strong>多头 7 只给两星，空头 3 从五星降到四星</strong>。<br />
+- 多头 4（生息）与空头 1（销毁 / 增发 1.41%）同源：通胀奖励就是增发——<strong>多头 4 已降为三星，空头 1 也因未测质押者的费用分成降为四星</strong>。<br />
+- 多头 5（减发通过）的下调与本期核心发现（未生效）一致。</p>
+</blockquote>
+<h3 id="63">6.3 机构观点</h3>
+<p><strong>本期没有找到 9 月发布的传统金融机构对 SOL 的研究观点。</strong> 能找到的一手机构动作是 ETF 资金流（Farside）与 Bitwise BSOL 占周度流入 68%（媒体转述）。<br />
+<strong>这是一处配平缺口</strong>：本报告的事件归因与 ETF 全月数据来自加密原生媒体。</p>
+<hr />
+<h2 id="7-sol">7. SOL 与其他资产的比较</h2>
+<blockquote>
+<p>口径：涨幅统一按币安日线 UTC 收盘；费用为 DefiLlama 同一批 API。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th><strong>SOL</strong></th>
+<th>ETH</th>
+<th>BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月</td>
+<td><strong>+14.61%</strong></td>
+<td>+8.85%</td>
+<td>+6.42%</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td><strong>+60.34%</strong></td>
+<td>+70.86%</td>
+<td>+42.64%</td>
+</tr>
+<tr>
+<td>年化波动（9 月）</td>
+<td>63.2%</td>
+<td>43.6%</td>
+<td>41.2%</td>
+</tr>
+<tr>
+<td>9 月 L1 费用</td>
+<td><strong>$2,498 万</strong></td>
+<td>$1,591 万</td>
+<td>—</td>
+</tr>
+<tr>
+<td>销毁 ÷ 发行</td>
+<td><strong>1.41%</strong></td>
+<td>2.27%</td>
+<td>不适用（无销毁）</td>
+</tr>
+<tr>
+<td>年通胀</td>
+<td><strong>3.618%</strong></td>
+<td>0.862%</td>
+<td>约 0.8%</td>
+</tr>
+<tr>
+<td>DeFi TVL（9/30）</td>
+<td>$65.7 亿</td>
+<td>$532.9 亿</td>
+<td>—</td>
+</tr>
+<tr>
+<td>稳定币</td>
+<td>$164.2 亿</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>一组值得注意的对照</strong>：SOL 9 月 L1 费用（$2,498 万）<strong>高于 ETH（$1,591 万）</strong>，而 SOL 市值约为 ETH 的 21%。<br />
+<strong>但 SOL 持币人从中得到的更少</strong>：SOL 只销毁基础费的一半（优先费全归验证者），ETH 销毁全部 base fee；且 SOL 的通胀是 ETH 的约 4 倍。<br />
+<strong>「网络收入高」与「持币人价值高」是两回事</strong>——这是 8 月版第 9 章重建的出发点，本期的横向数据再次印证。</p>
+</blockquote>
+<hr />
+<h2 id="8-312">8. 未来 3–12 个月的关键变量</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>催化剂</th>
+<th style="text-align: center;">方向</th>
+<th style="text-align: center;">重要性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>未定</strong></td>
+<td><strong>SIMD-0550 是否实现并激活</strong>（RPC taper 由 0.15 变为 0.30 即为生效）</td>
+<td style="text-align: center;">↑（慢）</td>
+<td style="text-align: center;">★★★☆☆</td>
+</tr>
+<tr>
+<td><strong>未定</strong></td>
+<td><strong>Alpenglow 主网激活</strong>（取消投票交易、降低验证者成本）</td>
+<td style="text-align: center;">↑</td>
+<td style="text-align: center;">★★★★☆</td>
+</tr>
+<tr>
+<td><strong>Q4</strong></td>
+<td><strong>链上费用能否在 meme 不复苏的情况下回升</strong>（S8-1）</td>
+<td style="text-align: center;">决定性</td>
+<td style="text-align: center;">★★★★★</td>
+</tr>
+<tr>
+<td>持续</td>
+<td>ETF 流量能否延续 9 月下旬的纪录速度</td>
+<td style="text-align: center;">↑/↓</td>
+<td style="text-align: center;">★★★☆☆</td>
+</tr>
+<tr>
+<td>持续</td>
+<td><strong>储备公司杠杆与 mNAV</strong>（FWDI 借款 $1.675 亿、基本 mNAV 0.684；UPXI 可转债抵押 108.4 万枚 + BitGo 借款）</td>
+<td style="text-align: center;">↓</td>
+<td style="text-align: center;">★★★★☆</td>
+</tr>
+<tr>
+<td>10/27–28、12/8–9</td>
+<td>FOMC；点阵图指向年内再加一次</td>
+<td style="text-align: center;">双向</td>
+<td style="text-align: center;">★★★☆☆</td>
+</tr>
+<tr>
+<td>年底</td>
+<td>最大 ASN 质押占比是否降到 25% 以下（S8-2）</td>
+<td style="text-align: center;">↑/↓</td>
+<td style="text-align: center;">★★★☆☆</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="9-2029">9. 情景推演（2029 年）</h2>
+<h3 id="91">9.1 为什么重建情景框架</h3>
+<p>8 月版自己在 9.4 弱点 6、7 里承认：三档价格（$120–270 / $58–147 / $10–35）<strong>沿用自已被推翻的收入倍数法</strong>，概率「应当被当作粗略排序」。<br />
+<strong>此外三档之间有重叠（$120–147）和空档（$35–58）</strong>——按 PONS 期规则，情景必须首尾相接、覆盖全部取值。</p>
+<p><strong>推导方式</strong>（与 ETH 9 月版相同）：价格 = 参照市值 ÷ 2029 年流通量。<strong>参照市值取 SOL 自身实际交易过的市值区间</strong>，2029 年流通量按当前链上通胀参数推算（见 4.1），两者都是可复算的一手数据；<strong>三档的划分与概率是作者的判断</strong>。<br />
+这个方法不需要假设一个收入倍数——<strong>它只说「过去市场给过 SOL 什么价」</strong>，弱点见 9.4。</p>
+<p><strong>SOL 历年市值区间</strong>（CoinGecko 2022 年至今日线，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>年份</th>
+<th>最低市值</th>
+<th>最高市值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2022</td>
+<td><strong>$35 亿</strong>（12/30）</td>
+<td>$554 亿</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>$37 亿</td>
+<td>$519 亿</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>$361 亿</td>
+<td>$1,220 亿</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>$544 亿</td>
+<td><strong>$1,344 亿</strong>（9/19，2022 年以来最高）</td>
+</tr>
+<tr>
+<td>2026（至 9/30）</td>
+<td><strong>$360 亿</strong>（6/7）</td>
+<td><strong>$796 亿</strong>（1/15）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>2029 年流通量</strong>：按当前参数（taper 0.15）约 <strong>6.448 亿</strong>枚（见 4.1）。</p>
+<h3 id="92">9.2 三种情景</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>情景</th>
+<th>参照市值</th>
+<th><strong>2029 年价格</strong></th>
+<th>相对现价 $118.12</th>
+<th>主观概率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>乐观</strong>：市值回到 2024–2025 年水平</td>
+<td>$796 亿 – $1,344 亿（2026 年高点 → 2022 年以来最高）</td>
+<td><strong>$123 – $208</strong></td>
+<td>+4% ~ +76%</td>
+<td><strong>35%</strong></td>
+</tr>
+<tr>
+<td><strong>中性</strong>：留在 2026 年交易区间</td>
+<td>$360 亿 – $796 亿（2026 年实际交易区间）</td>
+<td><strong>$56 – $123</strong></td>
+<td>−53% ~ +4%</td>
+<td><strong>30%</strong></td>
+</tr>
+<tr>
+<td><strong>悲观</strong>：跌破 2026 年低点</td>
+<td>$35 亿 – $360 亿（2022 年最低 → 2026 年最低）</td>
+<td><strong>$5 – $56</strong></td>
+<td>−95% ~ −53%</td>
+<td><strong>35%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="SOL 三情景：2029 年价格区间与主观概率" src="charts/scenarios-202609.svg" /></p>
+<blockquote>
+<p>图中横轴刻度为 $0 / $50 / $100 / $150 / $200 / $250；虚线为 9/30 收盘价。</p>
+</blockquote>
+<p><strong>三档首尾相接，覆盖 $35 亿–$1,344 亿</strong>；超出的尾部并入相邻档。当前市值约 $695 亿，落在中性区间内（距上沿 +14.5%、距下沿 −48%）。</p>
+<p><strong>先给一个机械基线</strong>（<code>_bian</code> 审查后补算）：假设市值是年化波动 55%–68% 的随机游走（9 月实测 63.2%、过去一年 68.0%），从 $695 亿出发约 3.25 年：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>漂移假设</th>
+<th>悲观（&lt; $360 亿）</th>
+<th>中性（$360 亿–$796 亿）</th>
+<th>乐观（&gt; $796 亿）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>均值不变（中位数逐年下移）</td>
+<td>43%–53%</td>
+<td>24%–30%</td>
+<td>24%–26%</td>
+</tr>
+<tr>
+<td>中位数不变</td>
+<td>25%–30%</td>
+<td>25%–30%</td>
+<td>45%–46%</td>
+</tr>
+<tr>
+<td><strong>本版主观概率</strong></td>
+<td><strong>35%</strong></td>
+<td><strong>30%</strong></td>
+<td><strong>35%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>初稿给中性 50%，理由是「2026 年 SOL 已在这个区间里从上沿走到下沿再回来」</strong>——<code>_bian</code> 指出这条证据<strong>恰好说明区间宽度只相当于 9 个月的波动</strong>，按报告自己的波动率算，三年后留在区间内的概率约 25%–30%，<strong>证据与结论方向相反</strong>。<br />
+初稿还写「悲观与乐观对称，作者没有理由认为哪一边更近」，而同一节又写现价「靠近上沿」（上沿 +14.5%、下沿 −48%），自相矛盾。两处都已删除。</p>
+</blockquote>
+<p><strong>为什么是 35/30/35</strong>：中性取基线的上沿（30%）；两侧尾部的基线取决于漂移假设，作者<strong>没有可靠依据判断 SOL 三年的漂移方向</strong>，所以两侧取对称的 35%。</p>
+<p><strong>这意味着本期没有单一的基准预期</strong>——三档概率接近，SOL 三年后的分布很宽。<strong>按 PONS 期规则，本报告因此撤回全文的方向性措辞</strong>（初稿写的「作者的基准预期在中性档」已删除）。<br />
+<strong>进出两侧尾部的主要路径是 beta</strong>（SOL 是 BTC 的高 beta 版本），不是叙事事件——2024–2025 年市值到过 $1,344 亿，靠的是 meme 与 ETF；6 月跌到 $360 亿时，悲观叙事里的事件一件也没发生。<strong>下面的叙事只是可能的路径之一，不用来推概率</strong>：</p>
+<ul>
+<li><strong>乐观</strong>：回到 2024–2025 年的市值水平。可能的路径：BTC 继续上涨叠加 1.3 倍 beta；或收入在 meme 不复苏时回升（S8-1 成立）。</li>
+<li><strong>中性</strong>：留在 2026 年的交易区间。</li>
+<li><strong>悲观</strong>：跌破 2026 年 6 月的低点。可能的加速因素：储备公司加杠杆（Forward 借款 $1.675 亿）、基础设施集中风险。悲观区间下沿取 2022 年 FTX 后的 $35 亿，<strong>代表一次存在性危机，不是基准悲观</strong>；<strong>这一档的概率是「低于 $360 亿」这个阈值事件，区间多宽不影响它</strong>。</li>
+</ul>
+<h3 id="93">9.3 敏感性：最大的不确定性在参照区间，不在流通量</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>输入</th>
+<th>推到哪一端</th>
+<th>中性区间价格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2029 年流通量 6.448 亿（taper 0.15）</td>
+<td>基准</td>
+<td>$56 – $123</td>
+</tr>
+<tr>
+<td>若 SIMD-0550 立即生效（6.358 亿）</td>
+<td>流通量下端</td>
+<td>$57 – $125（<strong>+1.4%</strong>；本模型固定市值，供应政策只能按比例传导，<strong>这一行不衡量估值效应</strong>）</td>
+</tr>
+<tr>
+<td>若参照区间换成 2024–2025 年（$361 亿–$1,344 亿）</td>
+<td>区间上移</td>
+<td>$56 – $208</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ 按 TRX 期教训：两行的摆幅之比反映的是作者选的扰动宽度。<strong>能说的只是</strong>：<strong>选哪一段历史作参照，才是决定区间的那个输入</strong>；减发那一行的「1.4%」是模型结构决定的（市值固定），不是测出来的估值影响。</p>
+</blockquote>
+<h3 id="94">9.4 这套方法的弱点</h3>
+<ol>
+<li><strong>参照区间不是估值</strong>：它说的是「市场给过什么价」，不是「应该值多少」。SOL 对持币人几乎没有现金流（销毁 ÷ 增发 1.41%），<strong>本报告没有一个能从基本面推出价格的模型</strong>——8 月版尝试过（收入倍数），已被推翻。</li>
+<li><strong>悲观下沿 $35 亿来自 FTX 崩溃</strong>，那时 SOL 被 FTX 资产抛售预期压制，市场结构与现在不同。</li>
+<li><strong>2029 年流通量假设销毁可忽略、非流通部分不变</strong>。</li>
+<li><strong>概率是主观赋值</strong>，与 8 月版不可比（区间不同）；本期给出了随机游走基线作对照。</li>
+<li><strong>基础设施集中风险（8/12 类事件）没有进入任何参数</strong>——它是一个可能让悲观情景提前发生的尾部风险。</li>
+</ol>
+<hr />
+<h2 id="10">10. 投资与风险启示</h2>
+<h3 id="101-sol">10.1 SOL 现在处于什么位置</h3>
+<p><strong>一句话：一个高 beta 资产在 BTC 大涨季度里涨了 60%，而它自己的基本面在 Q3 没有发生方向性变化。</strong></p>
+<ul>
+<li>价格超额在噪声内（约 0.6 个标准差）；</li>
+<li>收入回升与 meme 回潮同步；</li>
+<li>减发投票通过但未生效；</li>
+<li>稳定币存量 +16% 同比是真实的美元增长；ETF 流入为正，但单一配置者就能决定流量符号。</li>
+</ul>
+<h3 id="102">10.2 策略框架</h3>
+<blockquote>
+<p>以下为研究性质的框架整理，<strong>不构成投资建议</strong>。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>持有者类型</th>
+<th>框架</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>未持有者</strong></td>
+<td>若已持有 BTC，SOL 提供的是<strong>同向、更高 beta</strong> 的敞口（30 日相关 0.85），分散价值很低</td>
+</tr>
+<tr>
+<td><strong>已持有且未质押</strong></td>
+<td>每年被稀释约 3.6%；质押毛收益约 5.2%（扣佣金前），<strong>质押是占优选择</strong>，但这笔收益来自其他未质押者，不是网络创造的价值</td>
+</tr>
+<tr>
+<td><strong>通过储备公司股票持有</strong></td>
+<td><strong>FWDI 基本 mNAV 0.684、完全摊薄 0.946</strong>（公司自披露，已扣借款）；Q3 主要靠借款买币。<strong>UPXI 扣除可转债抵押与借款后 mNAV 约 1.0</strong>。<strong>看 mNAV 必须先扣掉负债和欠出的 SOL</strong>——本报告初稿就因没扣而算错</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>8 月版的承诺是否被触发</strong>：8 月版 10.2 的判据表写的是「环比能否回升 &gt;30% <strong>且来源是稳定币/RWA</strong>」与销毁/增发比「是否出现<strong>实质</strong>改善」，承诺是「→ <strong>判定转型说成立</strong>」，进而降星。<br />
+<strong>本期收入环比 +53%，但来源与 meme 同步，不满足「来源是稳定币/RWA」；销毁/增发从同口径约 1.26% 升到 1.41%，不是实质改善</strong>——<strong>承诺没有被触发</strong>。</p>
+<blockquote>
+<p>⚠️ <strong>初稿写「两个条件字面上都满足了，但本报告不执行」，并把它记为 8 月版的错误——这是误引了 8 月版原文</strong>（<code>_bian</code>）：8 月版的条件本来就包含来源要求，并不宽。初稿还用了跨口径的 1.06% 夸大了比值的改善。已删除。</p>
+</blockquote>
+<h3 id="103">10.3 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>指标</th>
+<th>当前值</th>
+<th>改变结论的阈值</th>
+<th>观测方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>销毁 ÷ 增发</strong></td>
+<td><strong>1.41%</strong></td>
+<td>&gt;10% → 持币人价值开始有意义</td>
+<td>DefiLlama <code>revenue</code> + RPC</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>链上费用 vs pump.fun 收入</strong></td>
+<td>Q3 $6,290 万 / $1.449 亿</td>
+<td><strong>费用回升而 pump.fun 不回升</strong> → S8-1 转型说成立</td>
+<td>DefiLlama</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>通胀递减率</strong></td>
+<td><strong>0.15</strong></td>
+<td>变为 0.30 → SIMD-0550 生效</td>
+<td>RPC <code>getInflationGovernor</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td>Alpenglow 主网</td>
+<td>未激活</td>
+<td>激活 → 投票交易消失，交易笔数统计断层</td>
+<td>RPC / GitHub</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>储备公司 mNAV（扣负债后）与借款</strong></td>
+<td>FWDI 0.684（基本）/ 0.946（摊薄）；UPXI 约 1.0</td>
+<td>FWDI 基本 mNAV 持续 &lt;1 且继续借款买币 → 杠杆风险上升</td>
+<td>公司 8-K 资本结构表</td>
+</tr>
+<tr>
+<td>6</td>
+<td>有质押的验证者</td>
+<td>685</td>
+<td>Q4 环比 &gt;+10% → S8-5 判错</td>
+<td>RPC</td>
+</tr>
+<tr>
+<td>7</td>
+<td>ETF 月度流量</td>
+<td>9/15–9/30 +$2.38 亿</td>
+<td>—</td>
+<td>Farside</td>
+</tr>
+<tr>
+<td>8</td>
+<td>掉线质押 / 最大 ASN</td>
+<td>0.03% / 无数据</td>
+<td>单次 &gt;20% 掉线 → S8-2 判错</td>
+<td>RPC / 待补数据源</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="104">10.4 风险提醒</h3>
+<ol>
+<li><strong>SOL 是 BTC 的高 beta 版本</strong>：9 月 30 日相关 0.85、beta 1.31。</li>
+<li><strong>「投票通过」不等于「已经生效」</strong>——本期最该记住的一条。</li>
+<li><strong>储备公司在加杠杆</strong>：持仓最多的 Forward Q3 买币主要靠借款（+$6,250 万，余额 $1.675 亿），基本 mNAV 0.684（推断：杠杆上升会放大 SOL 下跌时的压力，未验证）。</li>
+<li><strong>基础设施集中风险没有新数据</strong>——没有数据不等于风险消失。</li>
+<li><strong>本报告自身</strong>：SOL 记分卡尚无已判定的论点；本系列 BTC 记分卡正确率 11%（1/9）。</li>
+</ol>
+<h3 id="105">10.5 长期认知</h3>
+<ol>
+<li><strong>治理投票表达的是意愿，协议代码才是规则。</strong> 读一条「已通过」的治理新闻，要再查一次链上参数——<strong>一次 RPC 调用就够</strong>。</li>
+<li><strong>收入回升要看它从哪里来。</strong> 8 月版设计了一个好的检验（S8-1 要求 meme 未复苏）。本期用 pump.fun 的收入做对照，看到 Q3 的回升与 meme 同步——<strong>同步不等于因果</strong>（两者都受 SOL 价格影响），但它足以说明「实用崛起」的读法没有得到支持。</li>
+<li><strong>网络收入高 ≠ 持币人价值高</strong>：SOL 的 L1 费用高于 ETH，销毁 ÷ 发行却更低。</li>
+</ol>
+<hr />
+<h2 id="11">11. 附录</h2>
+<h3 id="111-2026-09-30">11.1 关键数据速查（截至 2026-09-30）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>市场</strong></td>
+<td>9/30 收盘 / 市值</td>
+<td>$118.12 / 约 $695 亿（第 7）</td>
+</tr>
+<tr>
+<td></td>
+<td>9 月 / Q3 / YTD</td>
+<td><strong>+14.61% / +60.34% / −5.24%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>距 ATH</td>
+<td>−60.1%</td>
+</tr>
+<tr>
+<td></td>
+<td>30 日相关（vs BTC）</td>
+<td>0.854</td>
+</tr>
+<tr>
+<td><strong>供应与通胀</strong></td>
+<td>总供应 / 流通</td>
+<td>6.3523 亿 / 5.8831 亿</td>
+</tr>
+<tr>
+<td></td>
+<td>通胀率 / taper</td>
+<td><strong>3.618% / 0.15</strong>（SIMD-0550 未生效）</td>
+</tr>
+<tr>
+<td></td>
+<td>日均增发 / 日均销毁</td>
+<td>62,961 / 889 SOL</td>
+</tr>
+<tr>
+<td></td>
+<td>销毁 ÷ 增发</td>
+<td><strong>1.41%</strong></td>
+</tr>
+<tr>
+<td><strong>费用</strong></td>
+<td>9 月链上费用</td>
+<td>$2,498 万（真同比 −33.8%）</td>
+</tr>
+<tr>
+<td></td>
+<td>Q3 链上费用 / pump.fun 收入</td>
+<td>$6,290 万 / $1.449 亿</td>
+</tr>
+<tr>
+<td><strong>质押</strong></td>
+<td>质押量 / 占总供应</td>
+<td>4.418 亿 / 69.6%</td>
+</tr>
+<tr>
+<td></td>
+<td>有质押的验证者 / 验证者级 Nakamoto</td>
+<td>685 / 18</td>
+</tr>
+<tr>
+<td><strong>生态</strong></td>
+<td>稳定币 / TVL</td>
+<td>$164.2 亿 / $65.7 亿</td>
+</tr>
+<tr>
+<td><strong>机构</strong></td>
+<td>ETF 9/15–9/30</td>
+<td>+$2.38 亿（Farside）</td>
+</tr>
+<tr>
+<td></td>
+<td>FWDI 持仓 / mNAV（基本 / 摊薄）</td>
+<td>850.1 万 / 0.684 / 0.946</td>
+</tr>
+<tr>
+<td></td>
+<td>UPXI 净 SOL / 粗算 mNAV</td>
+<td>125.6 万（扣可转债抵押）/ 约 1.03</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112">11.2 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th>核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格、涨跌、波动率、beta、相关性</td>
+<td>币安 API <code>klines</code></td>
+<td>✅ 一手 API</td>
+</tr>
+<tr>
+<td>市值排名、历年市值区间</td>
+<td>CoinGecko API</td>
+<td>✅ 一手 API</td>
+</tr>
+<tr>
+<td><strong>供应、通胀率、通胀参数、质押量、验证者、掉线质押</strong></td>
+<td><strong>Solana 官方 RPC</strong>（<code>getSupply</code>、<code>getInflationRate</code>、<code>getInflationGovernor</code>、<code>getVoteAccounts</code>）</td>
+<td>✅ <strong>一手</strong>（8 月版为二手）</td>
+</tr>
+<tr>
+<td><strong>SIMD-0550 / 0553 / 0326 状态、#600 关闭</strong></td>
+<td>GitHub <code>solana-foundation/solana-improvement-documents</code></td>
+<td>✅ 一手</td>
+</tr>
+<tr>
+<td>Agave 版本发布</td>
+<td>GitHub <code>anza-xyz/agave</code> releases</td>
+<td>✅ 一手</td>
+</tr>
+<tr>
+<td>链上费用、销毁、DEX、生态费用、TVL、pump.fun 收入</td>
+<td>DefiLlama API；<strong>口径已读适配器源码确认</strong></td>
+<td>✅ 一手 API（8 月版为转述）</td>
+</tr>
+<tr>
+<td>稳定币存量</td>
+<td>DefiLlama stablecoins API</td>
+<td>✅ 一手 API</td>
+</tr>
+<tr>
+<td><strong>ETF 9/15–9/30 日度流量、累计 $16.0 亿</strong></td>
+<td>farside.co.uk/sol</td>
+<td>✅ 一手（<strong>Farside 只公开最近两周</strong>）</td>
+</tr>
+<tr>
+<td>ETF 9 月全月约 $2.72 亿、13 周连续流入、BSOL 占 68%</td>
+<td>媒体转述</td>
+<td>⚠️ 搜索摘要</td>
+</tr>
+<tr>
+<td><strong>Forward、DFDV、Upexi、HSDT 持仓与融资</strong></td>
+<td>SEC EDGAR 8-K / 10-K</td>
+<td>✅ 一手文件（附件为公司自述）</td>
+</tr>
+<tr>
+<td>储备公司股价</td>
+<td>Yahoo Finance</td>
+<td>✅ API</td>
+</tr>
+<tr>
+<td>Alpenglow 测试网激活日期</td>
+<td>Solana Compass、cryptoticker 等</td>
+<td>⚠️ 转述（SIMD 状态为一手）</td>
+</tr>
+<tr>
+<td>客户端分布（Firedancer 系占比）</td>
+<td>搜索摘要，日期不一</td>
+<td>⚠️ 未核实</td>
+</tr>
+<tr>
+<td><strong>最大 ASN / 数据中心质押分布</strong></td>
+<td>—</td>
+<td>❌ <strong>未获取</strong>（validators.app 等需付费密钥）</td>
+</tr>
+<tr>
+<td>实体级 Nakamoto 系数</td>
+<td>—</td>
+<td>❌ 未做实体归并</td>
+</tr>
+<tr>
+<td>传统机构 9 月观点</td>
+<td>—</td>
+<td>❌ 未找到</td>
+</tr>
+<tr>
+<td>宏观</td>
+<td>见 BTC 9 月版</td>
+<td>✅ 一手</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113">11.3 来源偏向声明</h3>
+<ul>
+<li><strong>本期核心数据全部改为一手</strong>：价格（币安）、链上（RPC）、费用（DefiLlama，并核对源码）、治理（GitHub）、储备公司（SEC）、ETF 部分日度（Farside）。<strong>8 月版声明的「大量来自 Solana 生态内部来源」已基本消除。</strong></li>
+<li>仍为二手的：ETF 全月总数、Alpenglow 测试网时间、客户端分布、事件归因。</li>
+<li><strong>本期没有找到任何传统金融机构的 9 月 SOL 观点</strong>——这是一处明确的配平缺口。</li>
+</ul>
+<h3 id="114-btc-eth-sol">11.4 BTC / ETH / SOL 共用的口径</h3>
+<p>三份 9 月报告的价格均为币安 UTC 收盘、宏观数据为同一批抓取，可直接对照。</p>
+<h3 id="115-8">11.5 本版对 8 月版的更正</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>8 月版写法</th>
+<th>更正</th>
+<th>发现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>「SIMD-0550 通过……1.5% 地板提前至 2029 年」，多头 5「减发提速已通过」、9.1「确定性较高」</td>
+<td><strong>投票通过但未生效</strong>：RPC taper 仍为 0.15；提案状态 Review、无 feature key</td>
+<td>RPC + GitHub</td>
+</tr>
+<tr>
+<td>2</td>
+<td>质押率 64%（约 3.75 亿 SOL）</td>
+<td><strong>4.418 亿 SOL</strong>，占总供应 69.6%、流通量 75.1%</td>
+<td>RPC</td>
+</tr>
+<tr>
+<td>3</td>
+<td>当前通胀率约 3.8%</td>
+<td><strong>3.618%</strong>（epoch 1049）</td>
+<td>RPC</td>
+</tr>
+<tr>
+<td>4</td>
+<td>验证者 906 个（2026-06）</td>
+<td>RPC 显示有质押的为 <strong>685 个</strong>；<strong>两者口径不同，不能据此判断数量变化</strong></td>
+<td>RPC</td>
+</tr>
+<tr>
+<td>5</td>
+<td>日均销毁约 648 SOL</td>
+<td>按 DefiLlama 口径 8 月为 <strong>796 SOL/天</strong>，9 月 889</td>
+<td>DefiLlama + 源码</td>
+</tr>
+<tr>
+<td>6</td>
+<td>「H1 网络收入 $1.41 亿，同比 −87.1%」</td>
+<td>21Shares 口径（含 Jito 小费）；<strong>DefiLlama 口径（基础费 + 优先费）为 $1.107 亿、−75.8%</strong>，两者不可直接比较</td>
+<td>DefiLlama 源码</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Upexi 持有 240 万 SOL</td>
+<td>10-K：约 <strong>234 万</strong>（6/30），均价 $154</td>
+<td>SEC 10-K</td>
+</tr>
+<tr>
+<td>8</td>
+<td>三档情景价格区间</td>
+<td>有重叠（$120–147）与空档（$35–58），且来自被推翻的方法；<strong>本期重建</strong></td>
+<td>PONS 期规则</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="116">11.6 发布前审查记录</h3>
+<p>本期走了三层审查：<strong>第 1 层脚本</strong>（<code>verify_report.py</code>）、<strong>第 2 层 <code>_bian</code>（推理审查，11 条）</strong>、<strong>第 3 层 Codex（领域审查，3 条）</strong>。每条都由作者对照一手来源复核后才采纳，<strong>下表分开记录出处</strong>。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>发现</th>
+<th>出处</th>
+<th>作者复核</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>储备公司 mNAV 算错</strong>：FWDI 0.82 漏了借款、现金与其他资产；公司同日自披露基本 0.684、完全摊薄 0.946。Upexi 0.34 没处理可转债。9/22「折价 16.3%」用了 9/30 的事后数据</td>
+<td>Codex（第 1 条）</td>
+<td>✅ <strong>全部成立</strong>：读 FWDI 8-K 资本结构表与 Upexi 10-K 附注 5——<strong>Upexi 234 万枚里 108.4 万枚是可转债抵押，未转股须交还；扣除后粗算 mNAV 约 1.03，与初稿方向相反</strong></td>
+<td>第 5 章重写；撤回 0.82、0.34、16.3%；空头 4 降为三星</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>「持币人价值几乎为零」跨口径</strong>：销毁/增发只衡量供应抵消；5.2% 只是通胀奖励，漏了质押者分到的优先费与 MEV；DefiLlama 基础费按交易数估算</td>
+<td>Codex（第 2 条）</td>
+<td>✅ 成立</td>
+<td>改为「销毁几乎不抵消增发」；空头 1 降为四星</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>685 个验证者、Nakamoto 18 不是实体数</strong>；Alpenglow 上线后安全模型改为 20+20，需重算；taper 判据正确</td>
+<td>Codex（第 3 条）</td>
+<td>✅ 成立</td>
+<td>3.3 已有「验证者级」限定，保留；taper 判据经 SIMD-0550 原文确认有效</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>中性 50% 与自引证据方向相反</strong>：区间被 9 个月快速穿越，说明它只相当于 9 个月的波动；按报告自己的波动率三年后留在区间约 25%–30%。「哪边都不更近」与「靠近上沿」矛盾</td>
+<td><code>_bian</code>（第 1 条）</td>
+<td>✅ 成立，作者补算随机游走基线</td>
+<td>概率改为 <strong>35/30/35</strong>；撤回「作者的基准预期在中性档」与全文方向性措辞</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>10.2「字面满足但不执行」误引 8 月原文</strong>：8 月的承诺本身含「来源是稳定币/RWA」，并未被触发</td>
+<td><code>_bian</code>（第 2 条）</td>
+<td>✅ 成立（读 8 月版第 573–582 行）</td>
+<td>10.2 改为「承诺未被触发」；删除 11.5 原第 9 条；空头 3 降星理由只保留口径更正</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>SIMD-0550 与 0553 用了两把尺子</strong>；9.3 的「价格影响 &lt;2%」是模型自带的</td>
+<td><code>_bian</code>（第 3 条）</td>
+<td>✅ 成立（复算：0550 在 2029 年少增发约 558 万枚，0553 每年多销毁约 422 万枚）</td>
+<td>删除「量级本来就不大」；9.3 注明不衡量估值效应</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>S9-2 不是 3.2 的检验</strong>，基准取 Q3 合计留下反向灰区，单日尖峰排查会剔掉有机 meme 日</td>
+<td><code>_bian</code>（第 4 条）</td>
+<td>✅ 成立</td>
+<td>S9-2 改为水平预测（9 月 × 3），新增 S9-4 测同向关系</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>S8-1 补定义对 Q4 是放宽</strong>，漏了来源条件</td>
+<td><code>_bian</code>（第 5 条）</td>
+<td>✅ 成立</td>
+<td>改为固定水平定义、补来源条件、加 ❌ 分支，不追溯 Q3</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>「五次同向」受 SOL 价格共同因子影响</strong>；速查与 10.5 去掉了「不能确认因果」</td>
+<td><code>_bian</code>（第 6 条）</td>
+<td>✅ 成立</td>
+<td>3.2 补共同因子说明；速查、10.5、空头 2 补限定，空头 2 降为三星</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>1.06% → 1.41% 是跨口径比较</strong></td>
+<td><code>_bian</code>（第 7 条）</td>
+<td>✅ 成立（同口径 8 月约 1.26%）</td>
+<td>全文改用 1.26%</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>FWDI：接受了公司不成立的推论；股数对不上；「风险在扩散」去掉了限定</strong></td>
+<td><code>_bian</code>（第 8 条）</td>
+<td>✅ 成立；作者补查资本结构表发现 <strong>Q3 买币主要靠新增借款 $6,250 万</strong></td>
+<td>5.2 改写；10.4 改为「在加杠杆」并标推断</td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>Upexi 只用了 115% 清算线，300% 追缴线没进结论</strong></td>
+<td><code>_bian</code>（第 9 条）</td>
+<td>✅ 成立；按净 SOL 全抵押算追缴线约 $137，已高于现价</td>
+<td>5.3 补上，并注明抵押构成未披露</td>
+</tr>
+<tr>
+<td>13</td>
+<td><strong>摘要的 ETF「周度纪录」、TVL 未注明美元计；3.6、10.1 把 ETF 当结构性增长</strong></td>
+<td><code>_bian</code>（第 10 条）</td>
+<td>✅ 成立</td>
+<td>摘要、3.6、10.1 改写</td>
+</tr>
+<tr>
+<td>14</td>
+<td><strong>S9-3 门槛 11 断言过关</strong></td>
+<td><code>_bian</code>（第 11 条）</td>
+<td>✅ 成立</td>
+<td>改用公司自披露口径，并标「断言、未精确计算」</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>分歧</strong>：<code>_bian</code> 认为「状态更正」作为本期最重要的发现属于排序品味问题，作者保留。</p>
+<p><strong>本期最该记住的一条</strong>：<strong>算储备公司的 mNAV 前，先读公司自己的资本结构表。</strong> 初稿自己拼了一个口径（股数 × 股价 ÷ SOL 毛值），漏掉借款和欠出的 SOL——<strong>Upexi 的结论因此方向完全相反</strong>（0.34 → 约 1.0），而正确的数字就在同一批 SEC 文件里。</p>
+<hr />
+<blockquote>
+<p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不构成投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-sol">SOL 调研分析 — 核心问题与简明总结</h1>
+<blockquote>
+<p>配套 <code>sol_research_report_202609.md</code> 使用。Date: 2026-10-05（9 月版兼 Q3 回顾；数据截至 9/30）</p>
+</blockquote>
+<hr />
+<h2 id="s-9-q3">一、9 月和 Q3 发生了什么</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>9 月</th>
+<th>Q3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SOL（币安日线）</td>
+<td><strong>+14.61%</strong>，收 $118.12</td>
+<td><strong>+60.34%</strong></td>
+</tr>
+<tr>
+<td>BTC</td>
+<td>+6.42%</td>
+<td>+42.64%</td>
+</tr>
+<tr>
+<td>高于 BTC beta 预期</td>
+<td>+6.2pp（约 0.66 个标准差）</td>
+<td>+8.7pp（约 0.57 个标准差）</td>
+</tr>
+<tr>
+<td>30 日相关性（vs BTC）</td>
+<td>0.85</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>SOL 的上涨在统计上可以完全由「高 beta 跟随 BTC」解释</strong>——超额部分在噪声范围内。</p>
+<hr />
+<h2 id="s-_1">二、本期最重要的发现：「加倍减发」投票通过了，但没有生效</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 月治理投票</td>
+<td>SIMD-0550 以 67% 通过（通胀年递减 15% → 30%）</td>
+</tr>
+<tr>
+<td><strong>链上参数（RPC <code>getInflationGovernor</code>）</strong></td>
+<td><strong>taper 仍是 0.15</strong></td>
+</tr>
+<tr>
+<td>提案原文状态</td>
+<td><strong>Review</strong>，激活所需的 feature key 一栏为空</td>
+</tr>
+<tr>
+<td>当前通胀率</td>
+<td><strong>3.618%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>8 月版写「减发提速已通过」，混淆了「投票通过」与「协议执行」。</strong></p>
+<p><strong>量级</strong>：生效后 2029 年当年少增发约 558 万枚，与被否决的 SIMD-0553（每年多销毁约 422 万枚）同一量级。</p>
+<hr />
+<h2 id="s-meme">三、收入回升了，但跟着 meme 一起回升</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>季度</th>
+<th>链上费用</th>
+<th>pump.fun 收入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026 Q2</td>
+<td>$4,110 万</td>
+<td>$9,160 万</td>
+</tr>
+<tr>
+<td>2026 Q3</td>
+<td><strong>$6,290 万（+53%）</strong></td>
+<td><strong>$1.449 亿（+58%）</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>六次季度环比变动里五次同向（两者都受 SOL 价格影响，<strong>不能确认因果</strong>）</li>
+<li>8 月登记的 S8-1 要求收入回升<strong>不能来自 meme</strong>——Q3 不满足这个前提，<strong>不算「实用崛起」的证据</strong></li>
+<li>真同比仍为负：9 月 −33.8%、Q3 −48.7%</li>
+</ul>
+<blockquote>
+<p>口径：DefiLlama「链上费用」= 基础费 + 优先费，<strong>不含 Jito 小费</strong>（已读适配器源码确认）。8 月版引用的 21Shares 数字含 Jito，不可直接比较。</p>
+</blockquote>
+<hr />
+<h2 id="s-_2">四、销毁几乎不抵消增发</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>9 月</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>日均增发</td>
+<td>62,961 SOL</td>
+</tr>
+<tr>
+<td>日均销毁</td>
+<td>889 SOL</td>
+</tr>
+<tr>
+<td><strong>销毁 ÷ 增发</strong></td>
+<td><strong>1.41%</strong>（同口径 8 月约 1.26%）</td>
+</tr>
+</tbody>
+</table></div>
+<p>不质押的持有人每年被稀释约 3.6%；质押者拿到约 5.2% 的通胀奖励（来自未质押的人），<strong>另有优先费与 MEV 分成，本报告未测量</strong>。</p>
+<hr />
+<h2 id="s-rpc">五、质押与验证者（RPC 一手）</h2>
+<ul>
+<li>质押 <strong>4.418 亿 SOL</strong>，占总供应 69.6%（8 月版写 3.75 亿 / 64%，为二手）</li>
+<li>有质押的验证者 <strong>685 个</strong>（8 月版的 906 口径不明，<strong>不能据此说在减少</strong>）</li>
+<li>验证者级 Nakamoto 系数 18；掉线质押 0.03%</li>
+<li><strong>8/12 那类基础设施集中风险：本期没有新数据</strong></li>
+</ul>
+<hr />
+<h2 id="s-_3">六、网络升级</h2>
+<ul>
+<li><strong>Alpenglow</strong>（新共识，约 150 毫秒最终确认）：9/22–24 在公共测试网激活（转述），<strong>主网未激活</strong>；SIMD-0326 状态 Review</li>
+<li>Agave v4.3.0 于 9/18 作为主网稳定版发布</li>
+<li>SIMD-0553 修正案 #600 于 9/25 关闭未合并——<strong>提高销毁的方案没有进展</strong></li>
+</ul>
+<hr />
+<h2 id="s-sec">七、储备公司（SEC 一手文件）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>公司</th>
+<th>持仓</th>
+<th>mNAV（扣负债后）</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Forward（FWDI）</strong></td>
+<td><strong>850.1 万</strong>（Q3 +94.9 万）</td>
+<td><strong>基本 0.684 / 摊薄 0.946</strong>（公司自披露）</td>
+<td>Q3 买币主要靠<strong>新增借款 $6,250 万</strong>（余额 $1.675 亿）</td>
+</tr>
+<tr>
+<td>DFDV</td>
+<td>253.8 万</td>
+<td>—</td>
+<td>持续增持</td>
+</tr>
+<tr>
+<td><strong>Upexi（UPXI）</strong></td>
+<td>234 万，<strong>其中 108.4 万是可转债抵押</strong>（未转股须交还）</td>
+<td><strong>约 1.0</strong>（扣抵押 SOL 与 BitGo 借款）</td>
+<td>均价 $154、浮亏 23%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>初稿自算的 FWDI 0.82、UPXI 0.34 都没扣负债和欠出的 SOL，<strong>审查后撤回</strong>；「9/22 折价 16.3% 增发」也撤回（用了事后数据，按摊薄净值只低约 3%）。</p>
+</blockquote>
+<hr />
+<h2 id="s-etf">八、ETF</h2>
+<ul>
+<li><strong>9/25 单日 $8,670 万为上市以来最高</strong>（Farside 一手）；9/21–25 一周 $1.88 亿（Farside 逐日加总；「周度纪录」为媒体转述）</li>
+<li>单一大型配置者就能决定一个季度的流量符号，<strong>流入不能直接读成广泛需求</strong></li>
+<li>9/15–9/30 合计 +$2.38 亿；全月约 $2.72 亿（二手）；上市以来累计 $16.0 亿</li>
+</ul>
+<hr />
+<h2 id="s-2029">九、三情景（2029 年，框架重建）</h2>
+<p>8 月版的三档价格来自被推翻的收入倍数法，且档间有重叠和空档。本期改用 <strong>SOL 自身实际交易过的市值区间</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>悲观</th>
+<th>中性</th>
+<th>乐观</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参照市值</td>
+<td>$35 亿–$360 亿</td>
+<td>$360 亿–$796 亿（2026 年交易区间）</td>
+<td>$796 亿–$1,344 亿</td>
+</tr>
+<tr>
+<td><strong>2029 年价格</strong></td>
+<td><strong>$5–$56</strong></td>
+<td><strong>$56–$123</strong></td>
+<td><strong>$123–$208</strong></td>
+</tr>
+<tr>
+<td>随机游走基线</td>
+<td>25%–53%</td>
+<td><strong>24%–30%</strong></td>
+<td>24%–46%</td>
+</tr>
+<tr>
+<td><strong>主观概率</strong></td>
+<td><strong>35%</strong></td>
+<td><strong>30%</strong></td>
+<td><strong>35%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>初稿给中性 50%，但按 SOL 自己的波动率，三年后还留在区间里的概率只有约 25%–30%——<strong>审查后改为 35/30/35</strong></li>
+<li><strong>本期不给单一基准预期</strong>：三档概率接近，分布很宽；进出两侧的主要路径是 beta，不是叙事事件</li>
+</ul>
+<hr />
+<h2 id="s-_4">十、记分卡与接下来看什么</h2>
+<p>8 月登记的 5 条（S8-1 至 S8-5）<strong>都未到检验窗口</strong>，全部待验。本期起升级到 11 条门槛，新登记 S9-1 至 S9-3。</p>
+<p><strong>接下来看</strong>：<br />
+1. <strong>Q4 费用回升时 pump.fun 是否也回升</strong>（S8-1 的关键）<br />
+2. <strong>RPC taper 何时变成 0.30</strong>（SIMD-0550 生效）<br />
+3. <strong>Alpenglow 主网激活</strong><br />
+4. <strong>储备公司是否继续折价增发</strong></p>
+<hr />
+<h2 id="s-3-5">十一、如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>Q3 SOL +60%，但超额部分只有约 0.6 个标准差</strong>——它是 BTC 的高 beta 版本，30 日相关 0.85。</p>
+</li>
+<li>
+<p><strong>8 月投票通过的「加倍减发」至今没有生效</strong>——RPC 显示通胀递减率还是 0.15。投票表达意愿，代码才是规则。</p>
+</li>
+<li>
+<p><strong>Q3 收入回升 53%，但 meme 平台收入同期回升 58%</strong>——两者同步（不能确认因果），8 月版期待的「实用崛起」没有得到支持。</p>
+</li>
+<li>
+<p><strong>销毁几乎不抵消增发</strong>：只抵消 1.41%，不质押每年被稀释约 3.6%。</p>
+</li>
+<li>
+<p><strong>储备公司在加杠杆</strong>：最大持有者 Forward 的基本 mNAV 0.684，Q3 买币主要靠新增借款 $6,250 万；Upexi 一半 SOL 是可转债抵押，扣掉后估值约等于净资产。</p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>sol_research_report_202609.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>
