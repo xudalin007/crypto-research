@@ -1,0 +1,1912 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>XIN / Mixin 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#4b7bec;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">◐ XIN 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>◐ XIN 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-mixin">1. Mixin 是什么</a>
+<a href="#2-xin">2. XIN 的发展阶段划分</a>
+<a href="#3">3. 当前现状</a>
+<a href="#4-mdtu">4. MDTu</a>
+<a href="#5">5. 链上供应取证</a>
+<a href="#6">6. 数据基础设施</a>
+<a href="#7">7. 业务侧</a>
+<a href="#8-xin">8. XIN 与其他资产的比较</a>
+<a href="#9">9. 核心价值逻辑</a>
+<a href="#10">10. 估值</a>
+<a href="#11">11. 投资与风险启示</a>
+<a href="#12">12. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-1">1. 一句话</a>
+<a href="#s-2-xin">2. XIN 是什么</a>
+<a href="#s-3-x8-1">3. X8-1 到期</a>
+<a href="#s-4-tvl-731">4. 本期最重要的发现</a>
+<a href="#s-5">5. 价格与成交</a>
+<a href="#s-6">6. 链上供应</a>
+<a href="#s-7">7. 估值</a>
+<a href="#s-8">8. 记分卡</a>
+<a href="#s-9">9. 要盯的指标</a>
+<a href="#s-3-5">如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>◐ XIN / Mixin<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">◐ Mixin</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="xin-mixin">XIN / Mixin 完整调研与分析报告</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 10 月 5 日<br />
+<strong>数据截止</strong>：2026 年 9 月 30 日（9 月与 Q3 完整数据已闭合）；链上快照取到 10/5<br />
+<strong>版本</strong>：2026 年 9 月版（第二期）<strong>兼 Q3 季度回顾</strong><br />
+<strong>研究方法</strong>：沿用 8 月首期框架。<strong>本期第一次有上期论点可核对，且第一次有论点到期</strong>（X8-1，见 3.0）。<br />
+<strong>口径</strong>：价格与成交额沿用 CoinGecko（币安未上架 XIN）。<strong>CoinGecko 的 00:00 UTC 数据点代表前一日收盘</strong>，本期全部按此对齐（8 月版的 8 月涨幅因此差了一天，见 12.5）。</p>
+<p><strong>本版更新要点</strong>：</p>
+<ol>
+<li><strong>X8-1 到期：✅（解释性判定，10/6 作出）。</strong> 原论点「Mixin 会如期在 2026-09-23 前<strong>公告</strong> MDTu 已全额清偿」。<strong>一手证据</strong>：创始人 Cedric Fung 在其 Mixin 圈子「冯晓东的小迷圈」（7000100118）9/07 20:42 宣布开始全额偿还；<strong>9/21 18:26 宣布「已经完成了……2300 万美元大部分 USDT 的赔付，所有已经提交的 MDTu 还款交易都已经审批处理完毕」</strong>，早于 9/23（委托方截图，委托方处存档；发送者身份由委托方确认（委托方本人认识））。<strong>「大部分」不是「全额」，判 ✅ 依赖一个读法</strong>：债务代币兑付必有未领取的部分，若把「全额清偿」读成「每一枚都兑完」，本条从登记起就不可能 ✅（违反门槛 1）；唯一可满足的读法是「向全体持有人开放全额兑付，且所有已提交的兑付都已完成」。<strong>这个读法是看到原文之后确定的</strong>，如实记录。作者自评 40%，押错了方向（Brier 0.36）。</li>
+<li><strong>本期最重要的发现：8 月版的 TVL 数字落在一个冻结的序列上。</strong> DefiLlama 的 Mixin TVL 自 <strong>2026-07-31</strong> 起每日变动不超过 0.03%（此前日波动 1–3%），而同期 BTC 上涨 <strong>29.2%</strong>。<strong>8 月版「8/31 TVL $1,883 万、同比 −56.7%」用的是冻结后的数字</strong>；8 月版登记的 <strong>X8-4（以 BTC 计的 TVL）因此失去检验能力，改判 ⊘</strong>。Mixin 官方接口的「快照数」972,451,025 也与 8 月版逐位相同。</li>
+<li><strong>9 月 −3.19%、Q3 +9.25%</strong>（BTC 同期 +6.39%、+42.70%，CoinGecko 口径）。一年期对 BTC 的 R² 只有 <strong>0.025</strong>——价格仍然不是可用的测量。<strong>9 月唯一一个单日涨跌超过 20% 的 UTC 交易日是 9/07（+20.0%，成交额 $25.2 万，全月最高）——跳涨起于 12:00–13:00 UTC，与创始人宣布开始兑付（北京时间 20:42，即 12:42 UTC；时区经委托方核实）在同一小时。</strong></li>
+<li><strong>链上供应</strong>：SafeProxy #1（430,000 枚）仍然零转出（X8-3 未触发）；SafeProxy #3 于 <strong>9/10 向运营地址转出 2,000 枚</strong>——恰好落在 8 月版「单月超过 2,000 枚」监控线上，未超过。</li>
+<li><strong>成交额翻倍但仍在万元量级</strong>：9 月日成交额中位数 <strong>$21,295</strong>（8 月 $10,878），距 X8-2 的 $100,000 门槛还差 4.7 倍。</li>
+</ol>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>XIN 是什么</strong></td>
+<td>一家产品公司（Mixin）的网络代币，不是一条公链的燃料；<strong>本报告未找到任何文件赋予 XIN 对公司利润的请求权</strong>（8 月版 6.3，不变）</td>
+</tr>
+<tr>
+<td><strong>当前价格位置</strong></td>
+<td><strong>$54.41</strong>（9/30 收盘，CoinGecko）；<strong>FDV $5,441 万</strong>；市值仍无法计算（CoinGecko 流通量字段为 0）；距 ATH（$2,095.67，2018-01-19）<strong>−97.4%</strong></td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3 表现</strong></td>
+<td><strong>9 月 −3.19%、Q3 +9.25%</strong>；BTC 同期 +6.39%、+42.70%。一年 R² <strong>0.025</strong>、年化波动 <strong>182.3%</strong>——<strong>这个价格不承载可解读的信息</strong></td>
+</tr>
+<tr>
+<td><strong>本期最重要的发现</strong></td>
+<td><strong>X8-1 到期判 ✅</strong>（创始人 9/21 宣布「大部分赔付完成、所有已提交兑付处理完毕」；判定依赖对「全额」的读法，见 3.0）；<strong>DefiLlama 的 Mixin TVL 不是市值</strong>——Pando Leaf 一项用的是接口里的陈旧价格，8 月版的 TVL 结论与 X8-4 都建立在这条序列上</td>
+</tr>
+<tr>
+<td><strong>MDTu</strong></td>
+<td>$2,300 万承诺于 9/23 前偿还；<strong>9/07 晚开始兑付，9/21 创始人宣布大部分赔付完成、所有已提交兑付处理完毕</strong>（创始人原话，委托方截图）；委托方称已兑付比例在 99% 以上（未核实）。相当于 9/30 FDV 的 42.3%</td>
+</tr>
+<tr>
+<td><strong>剩余债务界</strong></td>
+<td>MDTe / MDTb：官方「暂无明确时间表」。按 8 月版的区间（$5,200 万–$7,700 万，输入全为二手），<strong>约为 9/30 FDV 的 0.96–1.42 倍</strong>（FDV 下跌使倍数上升）</td>
+</tr>
+<tr>
+<td><strong>链上供应</strong></td>
+<td>前 1 / 3 / 50 名 <strong>43.00% / 73.30% / 98.87%</strong>；SafeProxy #3 9/10 转出 2,000 枚；DEX 池 17,915.62 枚。<strong>自由流通盘上界 236,000 枚，可观测交易盘约 29,193 枚</strong></td>
+</tr>
+<tr>
+<td><strong>成交量</strong></td>
+<td>9 月日成交额中位数 <strong>$21,295</strong>（8 月 $10,878），最低 $6,192（9/13）；<strong>9/07 一天 $251,801</strong></td>
+</tr>
+<tr>
+<td><strong>核心多头逻辑</strong></td>
+<td><strong>公开承诺已按期兑现</strong>（MDTu，创始人原话；资金来源未披露）；产品持续交付（8 月版第 7 章）；总量硬顶 100 万枚</td>
+</tr>
+<tr>
+<td><strong>核心空头逻辑</strong></td>
+<td>业务经济性仍不可观测；剩余债务与 FDV 同量级（输入二手）；金库持续向运营地址转出（去向未查）</td>
+</tr>
+<tr>
+<td><strong>估值立场</strong></td>
+<td><strong>不给目标价</strong>（理由同 8 月版：业务经济性不可观测）。MDTu 已兑付（8 月版清单第 3 项已发生），<strong>但第 1、2、4 项仍未满足</strong></td>
+</tr>
+<tr>
+<td><strong>风险等级</strong></td>
+<td>高。流动性、供应集中、数据基础设施三项风险都未改善</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-mixin">1. Mixin 是什么</h2>
+<blockquote>
+<p>完整内容见 8 月首期第 1 章（产品线、注册实体、XIN 的角色）。本期没有新的一手材料改变这些描述。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>角色</th>
+<th>本期核对</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总量硬顶 1,000,000 枚</td>
+<td>✅ 以太坊主网 RPC <code>totalSupply()</code> 本期复读，<strong>仍为 1,000,000</strong></td>
+</tr>
+<tr>
+<td>节点抵押 10,000 XIN、100 个验证者</td>
+<td>⚠️ 仍为二手；<strong>mixin.space 本期对脚本访问返回 Cloudflare 验证页，未能复读</strong></td>
+</tr>
+<tr>
+<td>XIN 对公司利润的请求权</td>
+<td>❌ 仍未找到任何赋权文件</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-xin">2. XIN 的发展阶段划分</h2>
+<blockquote>
+<p>阶段一至五见 8 月首期。本期追加：</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>事件</th>
+<th style="text-align: center;">核实等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-10-27</td>
+<td>Mixin 中文公告：计划于 2026-09-23 前完成 MDTu 所代表 $2,300 万债务的全额偿还；MDTb / MDTe 暂无时间表</td>
+<td style="text-align: center;">✅ 官方中文公告原文（8 月版已核实，本期复读一致）</td>
+</tr>
+<tr>
+<td><strong>2026-07-31</strong></td>
+<td><strong>DefiLlama 的 Mixin 链级 TVL 序列此后几乎不再变动</strong></td>
+<td style="text-align: center;">✅ DefiLlama API 逐日序列</td>
+</tr>
+<tr>
+<td><strong>2026-09-07（UTC）</strong></td>
+<td><strong>XIN 单日 +20.0%（$57.99 → $69.61），成交额 $251,801，均为 9 月最高</strong></td>
+<td style="text-align: center;">✅ CoinGecko</td>
+</tr>
+<tr>
+<td><strong>2026-09-07 20:42（北京时间，委托方核实）</strong></td>
+<td><strong>创始人 Cedric Fung 在 Mixin 圈子宣布开始 MDTu 的 2,300 万美元全额偿还</strong>，开放兑换机器人（比承诺提前 16 天；委托方 8 月版记为「9/08」）</td>
+<td style="text-align: center;">✅ 创始人原话（委托方截图，委托方处存档；发送者身份由委托方确认（委托方本人认识））</td>
+</tr>
+<tr>
+<td>2026-09-10 20:08</td>
+<td>创始人：所有已提交的兑付已处理完毕，「从金额上来看，大部分都处理完成了」</td>
+<td style="text-align: center;">✅ 同上</td>
+</tr>
+<tr>
+<td>2026-09-10</td>
+<td>SafeProxy #3 向运营地址转出 2,000 XIN</td>
+<td style="text-align: center;">✅ 链上</td>
+</tr>
+<tr>
+<td><strong>2026-09-21 18:26</strong></td>
+<td><strong>创始人：「Mixin 已经完成了……2300 万美元大部分 USDT 的赔付，所有已经提交的 MDTu 还款交易都已经审批处理完毕」</strong>；未领取者仍可去机器人兑换</td>
+<td style="text-align: center;">✅ 同上；委托方确认 9/22–9/30 该圈子无后续消息</td>
+</tr>
+<tr>
+<td>2026-09-23</td>
+<td>MDTu 承诺偿还截止日；同日运营地址转出 1,320.59 XIN</td>
+<td style="text-align: center;">✅ 承诺为官方原文；转账为链上</td>
+</tr>
+<tr>
+<td><strong>2026-09-30（快讯日期）</strong></td>
+<td><strong>媒体转述 Mixin 称「已完成约 2,300 万 USDT 的兑付并开放全额兑换」</strong></td>
+<td style="text-align: center;">⚠️ 二手（KuCoin 快讯，文中把 923 事件误写成「2026 年 9 月的事件」）；<strong>很可能转述的是 9/21 创始人消息，并把「大部分」写成了「已完成」（推断）</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="3">3. 当前现状</h2>
+<h3 id="30-8-6">3.0 论点校验：8 月版登记的 6 条</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th>检验条件（摘要）</th>
+<th>9 月读数</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>X8-1</strong></td>
+<td>⚑ 反向登记（约 40%）：<strong>Mixin 会如期在 2026-09-23 前公告 MDTu 已全额清偿</strong>（登记原文）</td>
+<td>若 2026-09-30 前没有出现「MDTu 已全额清偿」的官方公告，则本条错误（登记原文；9/08 曾改写为「未能兑付则错」，<strong>本期不采用</strong>）</td>
+<td>创始人 9/21 原话：「已经完成了……2300 万美元<strong>大部分</strong> USDT 的赔付，所有已经提交的 MDTu 还款交易都已经审批处理完毕」</td>
+<td><strong>✅</strong>（解释性判定，见下）</td>
+</tr>
+<tr>
+<td>X8-2</td>
+<td>XIN 的成交量不会实质改善</td>
+<td>2026-12 日成交额中位数 ≥ $100,000 则错</td>
+<td>9 月中位数 <strong>$21,295</strong>（8 月 $10,878，×1.96）</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>X8-3</td>
+<td>SafeProxy #1 不会在四个月内动用</td>
+<td>2027-01-07 前出现任何 XIN 转出则错</td>
+<td><strong>430,000 枚，零转出</strong>（全部 5 笔均为转入）</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td><strong>X8-4</strong></td>
+<td>⚑ 反向登记（约 45%）：Mixin 的业务规模不会企稳</td>
+<td>2026-12 末 TVL（以 BTC 计）高于 9 月末则错</td>
+<td><strong>序列不是市值（Pando 接口价格陈旧），且 7/31 起几乎不动</strong></td>
+<td><strong>⊘ 检验失效</strong>（检验条件有缺陷，见 6.1）</td>
+</tr>
+<tr>
+<td>X8-5</td>
+<td>低相关是测量失效，不是资产特征</td>
+<td>12 月成交中位数 ≥ $10 万且 2027-09-07 的 R² 仍 &lt;15%，则错</td>
+<td>一年 R² 0.025；成交中位数 $21,295</td>
+<td>⏳（前提未出现）</td>
+</tr>
+<tr>
+<td>X8-6</td>
+<td>业务经济性会持续不可观测</td>
+<td>2027-03-07 前出现 MDTe/MDTb 余额、审计营收或 AUM、储备证明任一项，则错</td>
+<td><strong>9 月未出现任何一项</strong>（中英文支持站检索）</td>
+<td>⏳</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>X8-1 怎么判的</strong>：<br />
+- <strong>一手证据（10/6 取得）</strong>：创始人 Cedric Fung 在 Mixin 圈子「冯晓东的小迷圈」（7000100118）的四天消息——9/07 20:42「现在开始进行 USDT 的 2300 万美金债务的全额偿还」；9/08 20:24 处理进度约 70%；9/10 20:08「所有已经提交的 MDTu 还款交易都已经审批处理完毕……从金额上来看，大部分都处理完成了，只有少量小额的」；<strong>9/21 18:26「Mixin 已经完成了因为黑客攻击导致的 2300 万美元大部分 USDT 的赔付，所有已经提交的 MDTu 还款交易都已经审批处理完毕……可能还有少数小额度的用户没有收到消息，请到机器人进行兑换」</strong>。委托方截图，并确认 9/22–9/30 该圈子无后续消息；截图由委托方存档（SHA-256 <code>2b4c087e…de3c955</code>）。<strong>发送者身份由委托方确认（委托方本人认识）；截图为北京时间（委托方向截图提供者核实）。两项均为委托方确认，本报告未独立复核。</strong><br />
+- <strong>对照 10/5 补定的判法</strong>：发布于 9/30 前 ✅；渠道属于「Messenger 公告」✅（创始人以个人圈子发布，比 Team Mixin 系统公告低一档，按公司公开表态计）；<strong>内容是「大部分」，不是「全额」——补定判法没有覆盖这一档。</strong><br />
+- <strong>判 ✅ 依据的读法</strong>：任何债务代币兑付都会剩下未领取的部分（离开 Mixin、遗忘、放弃）。若把「全额清偿」读成「每一枚都兑完」，<strong>本条从登记那天起就不可能判 ✅，违反门槛 1</strong>。唯一可满足的读法是「<strong>向全体持有人开放全额兑付，且所有已提交的兑付都已完成</strong>」——9/21 的消息逐字满足，且早于 9/23。登记原文「未发布的三个原因」里的「部分还」指公司只偿付一部分，不指持有人未来领取。<br />
+- <strong>必须如实记下的三点</strong>：① <strong>这个读法是 10/6 看到原文之后确定的</strong>——它是门槛 1 推出的唯一可满足读法，但仍是解释性判定，不是机械判定；② 「已兑付比例 99% 以上」是委托方的说法，原文只有「大部分」，<strong>未核实</strong>；③ 证据由主张判 ✅ 的委托方提供，委托方可能持有 MDTu 或 XIN——截图里的兑换机器人 ID、支持站链接与官方一致，但本报告无法独立复现这几条消息。<br />
+- <strong>初稿判 ✅、二稿改待核的经过</strong>见 12.6。初稿的 ✅ 用的是改写后的构念和「声明大概率存在」的推断；本稿的 ✅ 建立在原文上。<strong>结论相同，依据不同——初稿那一版仍然是错的。</strong><br />
+- 作者自评 40%，<strong>押错了方向</strong>，Brier (1 − 0.4)² = 0.36。</p>
+</blockquote>
+<h3 id="31">3.1 价格与市场</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9/30 收盘</strong></td>
+<td><strong>$54.41</strong></td>
+<td>CoinGecko（00:00 UTC 点按前一日收盘）</td>
+</tr>
+<tr>
+<td>10/5 价格（第二来源）</td>
+<td>$54.70</td>
+<td><strong>Mixin 官方 ticker API 直接调用</strong>，与 CoinGecko 一致</td>
+</tr>
+<tr>
+<td>FDV</td>
+<td><strong>$5,441 万</strong></td>
+<td>$54.41 × 1,000,000</td>
+</tr>
+<tr>
+<td>市值</td>
+<td><strong>无法计算</strong></td>
+<td>CoinGecko <code>circulating_supply</code> 与 <code>market_cap</code> 仍为 0</td>
+</tr>
+<tr>
+<td>9 月收盘区间</td>
+<td>高 <strong>$69.61（9/07）</strong> / 低 <strong>$54.41（9/30）</strong></td>
+<td>CoinGecko</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th style="text-align: right;">XIN</th>
+<th style="text-align: right;">BTC（同口径）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9 月</strong>（8/31 → 9/30 收盘）</td>
+<td style="text-align: right;"><strong>−3.19%</strong></td>
+<td style="text-align: right;">+6.39%</td>
+</tr>
+<tr>
+<td><strong>Q3</strong>（6/30 → 9/30）</td>
+<td style="text-align: right;"><strong>+9.25%</strong></td>
+<td style="text-align: right;">+42.70%</td>
+</tr>
+<tr>
+<td>8 月（7/31 → 8/31，<strong>更正 8 月版</strong>）</td>
+<td style="text-align: right;">+13.72%</td>
+<td style="text-align: right;">+25.04%</td>
+</tr>
+<tr>
+<td>YTD</td>
+<td style="text-align: right;">−5.22%</td>
+<td style="text-align: right;">−4.57%</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>统计量（日对数收益，2025-10-06 至 2026-09-30）</th>
+<th style="text-align: center;">XIN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年化波动率</td>
+<td style="text-align: center;"><strong>182.3%</strong></td>
+</tr>
+<tr>
+<td>beta（vs BTC）</td>
+<td style="text-align: center;">0.646</td>
+</tr>
+<tr>
+<td><strong>R²</strong></td>
+<td style="text-align: center;"><strong>0.025</strong></td>
+</tr>
+<tr>
+<td>单日涨跌 &gt;20% 的天数</td>
+<td style="text-align: center;">17 天（9 月只有 9/07 一天）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>口径的原始数据点</strong>（CoinGecko <code>market_chart</code>，365 天日度；每个点的时间戳为 00:00 UTC，价格为该时刻的报价，成交额为截至该时刻的 24 小时成交额——<strong>因此 00:00 的点对应的是前一个 UTC 日</strong>）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时间戳（UTC）</th>
+<th style="text-align: right;">价格</th>
+<th style="text-align: right;">24 小时成交额</th>
+<th>本报告归属</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08-01 00:00</td>
+<td style="text-align: right;">$49.43</td>
+<td style="text-align: right;">—</td>
+<td>7/31 收盘</td>
+</tr>
+<tr>
+<td>2026-09-01 00:00</td>
+<td style="text-align: right;">$56.21</td>
+<td style="text-align: right;">—</td>
+<td>8/31 收盘</td>
+</tr>
+<tr>
+<td>2026-09-07 00:00</td>
+<td style="text-align: right;">$57.99</td>
+<td style="text-align: right;">$12,272</td>
+<td>9/06</td>
+</tr>
+<tr>
+<td><strong>2026-09-08 00:00</strong></td>
+<td style="text-align: right;"><strong>$69.61</strong></td>
+<td style="text-align: right;"><strong>$251,801</strong></td>
+<td><strong>9/07（UTC 日）</strong></td>
+</tr>
+<tr>
+<td>2026-10-01 00:00</td>
+<td style="text-align: right;">$54.41</td>
+<td style="text-align: right;">—</td>
+<td>9/30 收盘</td>
+</tr>
+</tbody>
+</table></div>
+<p>⚠️ CoinGecko 免费接口只开放最近 365 天，<strong>一年期窗口起点是 2025-10-06</strong>，与 8 月版（2025-09 起）不完全相同；R² 与 8 月版的 0.024 量级一致。<br />
+<strong>R² 0.025 的含义与 8 月版相同：BTC 解释不了 XIN 97.5% 的日波动——这个 beta 是拟合噪声得到的数，本报告不对 9 月或 Q3 的超额/落后做任何解读。</strong></p>
+</blockquote>
+<h3 id="32">3.2 成交量</h3>
+<p><img alt="XIN 的价格与成交额（2026-07-01 至 10-04）" src="charts/price-and-volume-202609.svg" /></p>
+<blockquote>
+<p>图中数字：9/7 收盘 $69.61（+20.0%）、成交额 $251,801；9/30 收盘 $54.41；9 月成交中位数 $21,295；价格轴刻度 $45 / $55 / $65 / $75；成交额对数轴刻度 $1 千 / $1 万 / $10 万 / $100 万；横轴 7/1、8/1、9/1、10/1。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">9 月</th>
+<th style="text-align: right;">8 月</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>日成交额中位数</strong></td>
+<td style="text-align: right;"><strong>$21,295</strong></td>
+<td style="text-align: right;">$10,878</td>
+</tr>
+<tr>
+<td>最低</td>
+<td style="text-align: right;">$6,192（9/13）</td>
+<td style="text-align: right;">$2,207</td>
+</tr>
+<tr>
+<td>最高</td>
+<td style="text-align: right;"><strong>$251,801（9/07）</strong></td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td>年化换手（中位数 × 365 ÷ FDV）</td>
+<td style="text-align: right;"><strong>14.3%</strong></td>
+<td style="text-align: right;">5.84%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>9/07（UTC）一天的成交额是 9 月中位数的 11.8 倍，同日价格 +20.0%。小时数据显示跳涨起于 12:00–13:00 UTC</strong>（价格 12:00 $57.63 → 13:00 $60.68 → 14:00 $67.93；24 小时滚动成交额 $12,837 → $61,865 → $141,123，CoinGecko），<strong>与创始人宣布开始兑付的 20:42 在同一小时</strong>（北京时间，即 12:42 UTC；时区经委托方向截图提供者核实）。<br />
+<strong>时点吻合到小时，本报告据此认为跳涨很可能是对 MDTu 兑付公告的反应</strong>——9 月有 720 个小时，随机落在同一小时的概率很低。⚠️ 两个限定：① 时区由委托方向截图提供者核实为北京时间，本报告未独立复核；② 日成交两万美元的市场里，一个参与者就能制造这样的一天，「反应」可能只来自很少几个人。次日起价格连跌，9 月收于 $54.41，低于 9/07 之前的水平。<br />
+<strong>8 月版写稿时看到当日成交约 $1.2–1.7 万</strong>——小时数据里 24 小时滚动成交额在 06:00–12:00 UTC 为 $1.17–1.28 万，13:00 起才升到 $6 万以上。<strong>8 月版记的写稿时点「14:40」因此应是北京时间（06:40 UTC），在公告之前</strong>（推断；12.5 第 4 条一并更正）。</p>
+</blockquote>
+<h3 id="33">3.3 宏观环境</h3>
+<blockquote>
+<p>与 BTC 9 月版共用（美联储 9/16 加息 25bp 至 3.75–4.00%，一手）。<strong>XIN 对 BTC 的 R² 只有 0.025，宏观通过 BTC 传导到 XIN 的路径测不出来</strong>（与 8 月版相同）。</p>
+</blockquote>
+<hr />
+<h2 id="4-mdtu">4. MDTu：一条判定，和它的证据等级（本期核心章之一）</h2>
+<h3 id="41">4.1 证据清单</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>证据</th>
+<th>内容</th>
+<th style="text-align: center;">等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>承诺</td>
+<td>「我们计划于 2026 年 9 月 23 日前，完成 MDTu 所代表 2300 万美元债务的全额偿还」（2025-10-27 公告）</td>
+<td style="text-align: center;">✅ 官方中文原文，本期复读一致</td>
+</tr>
+<tr>
+<td>开始兑付</td>
+<td>9/07 20:42 创始人宣布开始全额偿还，开放兑换机器人 7000105119</td>
+<td style="text-align: center;">✅ <strong>创始人原话</strong>（委托方截图；发送者身份由委托方确认（委托方本人认识））</td>
+</tr>
+<tr>
+<td>完成表态</td>
+<td>9/21 18:26 创始人：「已经完成了……2300 万美元<strong>大部分</strong> USDT 的赔付，所有已经提交的 MDTu 还款交易都已经审批处理完毕」</td>
+<td style="text-align: center;">✅ <strong>创始人原话</strong>（同上）；委托方称比例在 99% 以上，<strong>未核实</strong></td>
+</tr>
+<tr>
+<td>完成声明</td>
+<td>9/30 KuCoin 快讯：Mixin 称已完成约 2,300 万 USDT 兑付、开放全额兑换，可通过兑换机器人与钱包记录核对</td>
+<td style="text-align: center;">⚠️ <strong>二手转述</strong>，且文中有明显错误（把 923 事件写成 2026 年 9 月）；很可能转述 9/21 消息并把「大部分」写成「已完成」（推断）</td>
+</tr>
+<tr>
+<td>官方完成公告</td>
+<td>检索 Mixin 中文「重要公告」栏目（61 篇）与英文支持站首页</td>
+<td style="text-align: center;">❌ <strong>未找到</strong>——中文栏目最新的 MDT 相关文章仍是 2025-10-27 的计划说明（Team Mixin 系统公告同样未见；创始人圈子消息见上）</td>
+</tr>
+<tr>
+<td>公开资产接口</td>
+<td><code>api.mixin.one/network/assets/search/MDTu</code></td>
+<td style="text-align: center;">❌ 返回空（与 8 月版相同；MDT 很可能不进公开资产表）</td>
+</tr>
+<tr>
+<td>二级市场</td>
+<td>BigONE 的 MDTu-USDT：<strong>无卖单</strong>，最近成交价 $0.70，近期无成交；同期 MDTe / MDTb 最近成交价均为 <strong>$0.10</strong></td>
+<td style="text-align: center;">✅ 交易所 API 一手；⚠️ <strong>市场极薄，只能说「没人以低于面值的价格卖」，证明力很弱</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>对 X8-1 的含义见 3.0</strong>：创始人原话满足「如期公开表态」，判 ✅ 依赖对「全额」的读法。<br />
+<strong>作为关于 Mixin 的信息</strong>：<strong>MDTu 已按期兑付</strong>，依据是创始人原话；「全额」的程度——委托方称 99% 以上——<strong>未核实</strong>。⚠️ 所有证据仍都源自 Mixin 自身，<strong>资金来源未披露</strong>。<br />
+<strong>MDTu 与 MDTe / MDTb 在 BigONE 上的价差</strong>（无卖单 vs $0.10）与「先还 MDTu、MDTe / MDTb 暂无时间表」的官方次序一致——<strong>但 MDTe / MDTb 的 $0.10 来自几笔零星成交（8/14–8/30，最大一笔 108.92 枚），不能读作市场定价。</strong></p>
+</blockquote>
+<h3 id="42">4.2 它改变了什么、没改变什么</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>8 月版的判断</th>
+<th>本期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「业务经济性不可观测」是不给目标价的唯一充分理由</td>
+<td><strong>不变</strong>。创始人原话表明公司在 24 个月内动用了约 $2,300 万，<strong>没有</strong>告诉我们营收、利润或资金来源</td>
+</tr>
+<tr>
+<td>10.5 清单第 3 项「MDTu 如期清偿」</td>
+<td><strong>已发生</strong>（创始人原话；「大部分」，比例未核实）</td>
+</tr>
+<tr>
+<td>清单第 1 项（营收 / AUM 可验证披露）、第 2 项（债务余额披露）、第 4 项（三个多签性质说明）</td>
+<td><strong>仍无</strong></td>
+</tr>
+<tr>
+<td>下界：公司可动用资金至少 $2,300 万</td>
+<td><strong>相当于 9/30 FDV 的 42.3%</strong>（8 月版写 33.8%，分母是当时的 FDV）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>一个值得写下的反差</strong>：8 月版说这是「业务经济性上出现的第一个正面硬证据」。<strong>它兑付的这个月，XIN 下跌 3.19%，Q3 跑输 BTC 33 个百分点。</strong><br />
+⚠️ <strong>但这个反差不能用来推断「市场不在乎」</strong>——R² 0.025、日成交两万美元，<strong>价格本来就不承载可解读的信息</strong>（3.1）。本报告只记录这个反差，不解读。</p>
+</blockquote>
+<hr />
+<h2 id="5">5. 链上供应取证（本期复核）</h2>
+<p><img alt="前 50 个地址持有 98.87% 的 XIN" src="charts/supply-concentration-202609.svg" /></p>
+<blockquote>
+<p>图中数字：前 1 / 3 / 5 / 10 / 20 / 50 名累计 43.00% / 73.30% / 86.34% / 93.91% / 97.21% / 98.87%（8 月版前 3 名为 73.50%）；横轴刻度 0% / 25% / 50% / 75% / 100%；前 50 名之外约 11,277 枚。</p>
+</blockquote>
+<h3 id="51-blockscout105">5.1 前十二大持有人（Blockscout，10/5）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th style="text-align: center;">#</th>
+<th>地址</th>
+<th style="text-align: right;">XIN</th>
+<th style="text-align: right;">8 月版</th>
+<th style="text-align: right;">变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td>SafeProxy #1 0x20C03d89…fe52</td>
+<td style="text-align: right;"><strong>430,000.00</strong></td>
+<td style="text-align: right;">430,000.00</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td>SafeProxy #2 0xe512EA4B…EA42</td>
+<td style="text-align: right;">220,000.00</td>
+<td style="text-align: right;">220,000.00</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td>SafeProxy #3 0xA82bCC5b…A4cb</td>
+<td style="text-align: right;"><strong>83,000.00</strong></td>
+<td style="text-align: right;">85,000.00</td>
+<td style="text-align: right;"><strong>−2,000</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td>0x4cee646e…999A</td>
+<td style="text-align: right;">76,593.28</td>
+<td style="text-align: right;">76,593.28</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td>0xC8e793E1…60E4</td>
+<td style="text-align: right;">53,757.00</td>
+<td style="text-align: right;">53,757.00</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td>0x…0001（销毁）</td>
+<td style="text-align: right;">20,000.00</td>
+<td style="text-align: right;">20,000.00</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td>DEX 池 0xcDe46A48…67B6</td>
+<td style="text-align: right;"><strong>17,915.62</strong></td>
+<td style="text-align: right;">17,617.71</td>
+<td style="text-align: right;">+297.91</td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td>0xA2EC1844…3142</td>
+<td style="text-align: right;">13,439.00</td>
+<td style="text-align: right;">13,439.00</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">9</td>
+<td>0x59F819af…419D</td>
+<td style="text-align: right;">13,439.00</td>
+<td style="text-align: right;">13,439.00</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">10</td>
+<td>0x…0002（销毁）</td>
+<td style="text-align: right;">11,000.00</td>
+<td style="text-align: right;">11,000.00</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr>
+<td style="text-align: center;">11</td>
+<td>SafeProxy 0xef96A3a2…3C62</td>
+<td style="text-align: right;">4,533.01</td>
+<td style="text-align: right;">（8 月版未列）</td>
+<td style="text-align: right;">2024-09 收到 4,563.01 枚，2025-01 转出 30 枚，此后不动</td>
+</tr>
+<tr>
+<td style="text-align: center;">12</td>
+<td>0x5d7801C9…6457</td>
+<td style="text-align: right;">4,357.57</td>
+<td style="text-align: right;">（未列）</td>
+<td style="text-align: right;">—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>持有人总数 20,897，与 8 月版逐位相同</strong>——Blockscout 的计数器可能有缓存，<strong>本报告不把它当作「持有人数没变」的证据</strong>。</p>
+</blockquote>
+<h3 id="52">5.2 金库释放</h3>
+<p><strong>分页拉全三个多签的全部 XIN 转账</strong>（#1 共 5 笔、#2 共 6 笔、#3 共 33 笔；三者 IN − OUT 都恰好等于当前余额，可确认已拉全）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>期间</th>
+<th style="text-align: right;">#3 → 运营地址 0x1616b057</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-10 至 2025-12</td>
+<td style="text-align: right;">6,501</td>
+</tr>
+<tr>
+<td>2026-01 至 2026-08</td>
+<td style="text-align: right;">8,500</td>
+</tr>
+<tr>
+<td><strong>2026-09（9/10，单笔）</strong></td>
+<td style="text-align: right;"><strong>2,000</strong></td>
+</tr>
+<tr>
+<td><strong>近 12 个月（2025-10 至 2026-09）</strong></td>
+<td style="text-align: right;"><strong>17,001 枚，约 $92.5 万（按 9/30 价格）</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>量级参照</strong>：17,001 枚 / 365 天 ≈ 每天 46.6 枚 ≈ $2,534，<strong>约为 9 月日成交中位数的 11.9%</strong>（8 月版为 25.7%）。⚠️ <strong>这只是量级参照，不是卖压占比</strong>——17,001 枚证明的是「多签 → 运营地址」的转账，<strong>它们有没有进入交易所、有没有卖出，本报告没有追踪到</strong>。<br />
+运营地址 8 月以来向十余个地址转出合计约 3,450 枚，<strong>最大一笔是 9/23 的 1,320.59 枚</strong>（MDTu 承诺截止日当天，接收方 0x75bBDeD4…）。⚠️ <strong>接收方性质未查</strong>，本报告不把它与 MDTu 兑付联系起来。</p>
+</blockquote>
+<h3 id="53">5.3 自由流通盘</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>推导</th>
+<th style="text-align: right;">枚数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>上界</strong></td>
+<td>1,000,000 − 三个多签 733,000 − 销毁 31,000</td>
+<td style="text-align: right;"><strong>236,000</strong></td>
+</tr>
+<tr>
+<td><strong>可观测确在交易的</strong></td>
+<td>DEX 池 17,915.62 + 前 50 名之外约 11,277</td>
+<td style="text-align: right;"><strong>约 29,193</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>上界比 8 月版多 2,000 枚，正是 #3 释放的那一笔。销毁地址余额（0x…0001 为 20,000、0x…0002 为 11,000）本期以以太坊 RPC <code>balanceOf</code> 复读，<strong>不变</strong>——<strong>XIN 仍没有可见的持续销毁</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="6">6. 数据基础设施：一个比价格更大的问题（本期核心章之二）</h2>
+<h3 id="61-defillama-mixin-tvl-731">6.1 DefiLlama 的 Mixin TVL 自 7/31 起冻结</h3>
+<p><img alt="DefiLlama 的 Mixin TVL：7/31 起几乎不再变动" src="charts/tvl-collapse-202609.svg" /></p>
+<blockquote>
+<p>图中数字：8/31 为 18.83、9/30 为 18.82（百万美元）；纵轴刻度 16 / 18 / 20 / 22 / 24；横轴 5/1、6/1、7/1、8/1、9/1、10/1；同期 BTC +29.2%（图注取整为 29%）。</p>
+</blockquote>
+<p><strong>逐日序列的月内日波动（标准差）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: right;">日变动标准差</th>
+<th style="text-align: right;">月末 TVL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-05</td>
+<td style="text-align: right;">1.23%</td>
+<td style="text-align: right;">$2,110 万</td>
+</tr>
+<tr>
+<td>2026-06</td>
+<td style="text-align: right;">1.72%</td>
+<td style="text-align: right;">$1,792 万</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td style="text-align: right;">1.28%</td>
+<td style="text-align: right;">$1,882 万</td>
+</tr>
+<tr>
+<td><strong>2026-08</strong></td>
+<td style="text-align: right;"><strong>0.011%</strong></td>
+<td style="text-align: right;">$1,883 万</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td style="text-align: right;"><strong>0.015%</strong></td>
+<td style="text-align: right;">$1,882 万</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>冻结的判据</strong>：<br />
+1. <strong>日波动降了两个数量级</strong>（1–3% → 0.01%），从 7/31 前后开始；<br />
+2. <strong>同期 BTC 上涨 29.2%</strong>（7/31 $64,743 → 9/30 $83,640），而 8 月版说 Mixin TVL 以 BTC / ETH 为主——<strong>若仍在按币价计值，它应当明显上升</strong>；<br />
+3. <strong>协议级序列分化</strong>：同一数据商的 Pando Leaf（Mixin 上最大的协议，约 $1,139 万）<strong>同样冻结</strong>；ExinPool <strong>却在变动</strong>（7/31 $783 万 → 9/30 $1,024 万，+30.8%）。</p>
+<p><strong>Pando Leaf 的水平口径（已一手查明，审查阶段补做；7/31 断点的原因仍未知）</strong>：DefiLlama 的 Pando Leaf 适配器（GitHub <code>DefiLlama-Adapters/projects/pando-leaf/index.js</code>，已读源码）只做一件事——调用 Pando 官方接口 <code>leaf-api.pando.im/api/cats</code>，把每种抵押品的 <code>ink × price</code> 加总，且 <code>timetravel: false</code>（不能回溯）。<strong>本报告 10/5 直接调用该接口</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>抵押品</th>
+<th style="text-align: right;">接口给出的价格</th>
+<th style="text-align: right;">同日市价（约）</th>
+<th style="text-align: right;">抵押数量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BTC</td>
+<td style="text-align: right;"><strong>$57,827</strong></td>
+<td style="text-align: right;">$86,000</td>
+<td style="text-align: right;">165.08</td>
+</tr>
+<tr>
+<td>ETH</td>
+<td style="text-align: right;"><strong>$571.14</strong></td>
+<td style="text-align: right;">$2,700</td>
+<td style="text-align: right;">1,114.77</td>
+</tr>
+<tr>
+<td><strong>XIN</strong></td>
+<td style="text-align: right;"><strong>$236.30</strong></td>
+<td style="text-align: right;"><strong>$54.70</strong></td>
+<td style="text-align: right;">3,742.83</td>
+</tr>
+<tr>
+<td>ZEC</td>
+<td style="text-align: right;">$454.04</td>
+<td style="text-align: right;">$1,300</td>
+<td style="text-align: right;">196.99</td>
+</tr>
+<tr>
+<td>合计（13 种）</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;"><strong>$11,397,866</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>合计与 DefiLlama 的 Pando Leaf 数值逐位一致</strong>——<strong>DefiLlama 记的是「接口里的陈旧价格 × 抵押数量」，不是市值。</strong> 接口价格与市价的偏离方向不一（XIN 高估 4.3 倍、ETH 低估约 4.7 倍），这些价格<strong>不是当日市价</strong>；它们是否对应某一个历史日期（接口里 ETH/BTC ≈ 0.0099）、<code>price</code> 字段的确切语义，本报告<strong>未核实</strong>。<br />
+<strong>能确定的是两件不同的事</strong>：① <strong>水平</strong>——Pando Leaf 这一项的「TVL」是接口报价 × 抵押数量，不是市值；② <strong>断点</strong>——链级序列自 7/31 起几乎不动，<strong>原因未知</strong>（接口 BTC 报价 $57,827 也不等于 7/31 的 BTC 市价 $64,743，陈旧报价与 7/31 断点是两件事）。<strong>结论只有一个：这条序列不能当作 Mixin 业务规模的测量</strong>；8 月版引用的更早历史（峰值 $3.783 亿、923 前 $1.199 亿）是否受同一问题影响，<strong>无法排除</strong>。<br />
+<strong>按市价重算 Pando Leaf 的量级</strong>（推断，按 10/5 市价：BTC 165.08 × $86,000 + ETH 1,114.77 × $2,700 + XIN 3,742.83 × $54.7 + ZEC 196.99 × $1,300 ≈ $1,767 万，再加其余 9 种约 $24 万）≈ <strong>$1,790 万</strong>，比接口口径高约 57%；<strong>污染的方向是低估</strong>（BTC、ETH 被低估）。ExinPool 的序列在变动，其机制本期未查。</p>
+<p><strong>对 8 月版的影响</strong>：<br />
+- <strong>8 月版写「TVL 现在 $1,883 万（2026-08-31），距峰值 −95.0%，同比 −56.7%」——8/31 的读数已在冻结期内。</strong> 「距峰值」与「同比」两个数字的终点都不可靠，<strong>峰值端是否受同一问题污染也未知</strong>——本期<strong>不再引用</strong>「距峰值 −95%」「同比 −56.7%」「事件后无回升」。若按市价粗算（上一段），终点约高 57%，距峰值约 −93%，<strong>量级相近但这个粗算本身依赖一个未核实的峰值</strong>。<br />
+- <strong>8 月版的监控指标「TVL 连续三个月回升」与记分卡 X8-4 都失去检验能力</strong>：一个按美元冻结的序列，换算成 BTC 计价后只会随 BTC 价格反向变动——<strong>X8-4 实际上变成了一个 BTC 价格的赌注。</strong> 本期改判 ⊘：统计量在登记前就已失效（<strong>当时未知</strong>，所以不是违反门槛 9），落在「检验条件有缺陷」一档；<strong>另外，即便 TVL 正常，「混合资产 TVL ÷ BTC 价格」也不能干净地检验「业务规模企稳」</strong>。<br />
+- 三个口径的分歧扩大为三个数：链级历史序列 $1,882 万、<code>/v2/chains</code> <strong>$7,715 万</strong>（与 8 月版逐位相同，同样可疑）、<strong>协议级合计约 $2,907 万</strong>。</p>
+</blockquote>
+<h3 id="62">6.2 其他失效的公开指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>8 月版</th>
+<th>本期</th>
+<th>读法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>api.mixin.one/network</code> 快照数</td>
+<td>972,451,025</td>
+<td><strong>972,451,025</strong></td>
+<td><strong>一个月逐位不变</strong>——该计数可能对应已不再出块的旧网络层（8 月版已推测两套快照口径差 12.2 倍），<strong>未确认</strong></td>
+</tr>
+<tr>
+<td>同上 峰值吞吐</td>
+<td>229 TPS</td>
+<td>229</td>
+<td>历史峰值，不变是正常的</td>
+</tr>
+<tr>
+<td>mixin.space 浏览器（验证者、销毁、交易数）</td>
+<td>直接抓取</td>
+<td><strong>返回 Cloudflare 验证页</strong></td>
+<td><strong>本期无法复读</strong></td>
+</tr>
+<tr>
+<td>Blockscout 持有人数</td>
+<td>20,897</td>
+<td>20,897</td>
+<td>可能是缓存，未确认</td>
+</tr>
+<tr>
+<td>CoinGecko 流通量 / 市值</td>
+<td>0</td>
+<td>0</td>
+<td>不变</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>8 月版的风险 #4 说「对同一个标的出现四处这种级别的分歧，本系列前八期没有遇到过」。本期又多了两处，而且性质更糟：不是两个口径对不上，而是数据源给的数不是它名义上的东西</strong>（Pando 接口给的是陈旧价格；<strong>7/31 断点的原因未知</strong>）。<br />
+<strong>这对本报告的方法有直接含义</strong>：XIN 的大部分「可观测」指标，本来就依赖第三方或公司自己的接口；<strong>当这些接口不再反映实际时，它们不报错，只是给一个看起来正常的数</strong>——与 DOT 期、ZEC 期的教训同一形态。<strong>本期起，Mixin 的业务规模只用链上可直读的量（以太坊侧的多签、DEX 池、销毁地址）和官方公告，不再用聚合器的 TVL。</strong></p>
+</blockquote>
+<hr />
+<h2 id="7">7. 业务侧</h2>
+<blockquote>
+<p>8 月版第 7 章列出的产品交付记录（2026 年四到六项功能上线）本期没有新增的一手核对（官网更新列表未复读）。<strong>MDTu 的兑现（第 4 章）是本期业务侧唯一的新证据。</strong><br />
+<strong>公司自述的规模</strong>（$1B+ AUM、10M+ 客户）本期没有新的可验证材料，8 月版的判断（「无法独立验证；客户数口径七个月变 10 倍」）不变。</p>
+</blockquote>
+<hr />
+<h2 id="8-xin">8. XIN 与其他资产的比较</h2>
+<blockquote>
+<p><strong>口径</strong>：XIN 为 CoinGecko（00:00 点按前一日收盘）；其他资产为币安日线 UTC 收盘（与本系列其他 9 月版相同）；<strong>两种口径对其他资产的差异在 0.2pp 以内，对 XIN 的结论不构成影响</strong>。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th style="text-align: right;">9 月</th>
+<th style="text-align: right;">Q3</th>
+<th style="text-align: center;">对 BTC R²（一年）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>XIN</strong></td>
+<td style="text-align: right;"><strong>−3.19%</strong></td>
+<td style="text-align: right;"><strong>+9.25%</strong></td>
+<td style="text-align: center;"><strong>0.025</strong></td>
+</tr>
+<tr>
+<td>ZEC</td>
+<td style="text-align: right;">+69.60%</td>
+<td style="text-align: right;">+260.05%</td>
+<td style="text-align: center;">0.19</td>
+</tr>
+<tr>
+<td>UNI</td>
+<td style="text-align: right;">+69.76%</td>
+<td style="text-align: right;">+219.73%</td>
+<td style="text-align: center;">0.40</td>
+</tr>
+<tr>
+<td>BNB</td>
+<td style="text-align: right;">+11.26%</td>
+<td style="text-align: right;">+40.76%</td>
+<td style="text-align: center;">0.59</td>
+</tr>
+<tr>
+<td>SOL</td>
+<td style="text-align: right;">+14.61%</td>
+<td style="text-align: right;">+60.34%</td>
+<td style="text-align: center;">0.76</td>
+</tr>
+<tr>
+<td>ETH</td>
+<td style="text-align: right;">+8.85%</td>
+<td style="text-align: right;">+70.86%</td>
+<td style="text-align: center;">0.82</td>
+</tr>
+<tr>
+<td>BTC</td>
+<td style="text-align: right;">+6.42%</td>
+<td style="text-align: right;">+42.64%</td>
+<td style="text-align: center;">—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>XIN 是本系列已做 9 月版的资产里唯一 9 月下跌的</strong>；<strong>Q3 跑输 BTC 的有两个——XIN（落后 33pp）与 BNB（落后 1.9pp）</strong>；XIN 的 R² 也最低。<strong>两件事放在一起读：它的价格既不跟 BTC 走，也没有被一条正面的偿债消息托住——但在这个流动性下，两者都不构成可解读的信号。</strong></p>
+</blockquote>
+<hr />
+<h2 id="9">9. 核心价值逻辑</h2>
+<p><strong>星级编码证据等级</strong>：完全建立在二手转述上的论据不得给到五星。</p>
+<h3 id="91">9.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>说明与证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>MDTu（$2,300 万）已按期兑付</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td><strong>由三星升为四星</strong>：依据从二手转述升级为创始人原话（9/21）；<strong>不给五星</strong>——仍是公司自述、经委托方截图取得（发送者身份由委托方确认（委托方本人认识）），「全额」只有「大部分」；资金来源未披露</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>总量硬顶 100 万枚，无增发</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>✅ 以太坊 RPC 本期复读</td>
+</tr>
+<tr>
+<td>3</td>
+<td>产品在持续交付</td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 8 月版官网抓取，本期未复核。（初稿以「未复核」降为三星，审查指出同样未复核的多头 #4、空头 #2 都未降星——<strong>改为三条一致：都不因「未复核」改星</strong>）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>持有公开的合规注册编号</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>8 月版不变（公司自述，核实失败）</td>
+</tr>
+<tr>
+<td>5</td>
+<td>成交额翻倍</td>
+<td style="text-align: center;">★☆☆☆☆</td>
+<td>✅ 一手，但仍在两万美元量级；<strong>一个参与者就能造出这种变化</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="92">9.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>说明与证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>业务经济性仍不可观测</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>✅ 已核实的不可观测：无营收/AUM 披露、MDTe/MDTb 余额无披露、无审计或储备证明</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>剩余债务与 FDV 同量级（0.96–1.42 倍）</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>⚠️ 输入全为二手（8 月版 6.4）；<strong>按 8 月版 6.3，这不构成对 XIN 的清偿次序主张</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>公开数据源在静默失效</strong></td>
+<td style="text-align: center;"><strong>不计入评级</strong></td>
+<td>✅ 本月新增的观察：TVL 不是市值、官方快照计数一个月不变、浏览器挂上反爬。<strong>按 8 月版 9.2 #4 的先例（给信息缺席打星就是把不可观测读作空头证据），改记为「已核实的信息缺席」，不计入多空评级</strong>——它削弱的是所有人观察这个业务的能力，不指向业务本身的好坏</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>供应集中，金库持续向运营地址转出（去向未查）</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 链上一手：近 12 个月 17,001 枚转到运营地址；<strong>是否进入交易所或卖出未追踪</strong>（初稿写「向市场释放」是推断，已改）</td>
+</tr>
+<tr>
+<td>5</td>
+<td>~~价格不承载信息~~</td>
+<td style="text-align: center;"><strong>移出空头表</strong></td>
+<td>它与 11.2 #1、11.4 #1 的「流动性对多空对称」是同一组事实（日成交 $21,295、R² 0.025）——<strong>一处算对称、一处算五星空头不一致</strong>，本期统一按对称风险处理（见 11.4）</td>
+</tr>
+<tr>
+<td>—</td>
+<td>~~TVL 距峰值 −95%，事件后无回升~~</td>
+<td style="text-align: center;"><strong>撤销</strong></td>
+<td>序列不是市值且 7/31 起几乎不动（6.1）。「距峰值 −95%」「无回升」「同比 −56.7%」均不再引用</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>多空同源检查</strong>：多头 1（MDTu 兑付）与空头 1（业务经济性不可观测）<strong>并不矛盾</strong>——前者是创始人原话表明「拿出了约 $2,300 万」，后者说「不知道钱从哪来、还有多少」。<strong>两条测的是不同的东西。</strong></p>
+</blockquote>
+<hr />
+<h2 id="10">10. 估值：仍不给目标价</h2>
+<p><strong>理由不变：业务经济性不可观测</strong>（8 月版 4.4 的唯一充分条件）。MDTu 兑付（创始人原话）使 8 月版 10.5 清单的第 3 项变为「已发生」，<strong>第 1、2、4 项仍未满足</strong>。</p>
+<p><strong>8 月版的反推按 9/30 价格更新</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th style="text-align: right;">8 月版（FDV $6,800.9 万）</th>
+<th style="text-align: right;"><strong>本期（FDV $5,441 万）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>现金流口径：100 倍 / 50 倍 / 20 倍隐含的年化归属价值</td>
+<td style="text-align: right;">$68 万 / $136 万 / $340 万</td>
+<td style="text-align: right;"><strong>$54.4 万 / $109 万 / $272 万</strong></td>
+</tr>
+<tr>
+<td>节点抵押口径：100 个节点 × 10% 回报</td>
+<td style="text-align: right;">$680 万</td>
+<td style="text-align: right;"><strong>$544 万</strong></td>
+</tr>
+<tr>
+<td>MDTu 之后的公司债务 ÷ FDV</td>
+<td style="text-align: right;">0.76–1.13 倍</td>
+<td style="text-align: right;"><strong>0.96–1.42 倍</strong></td>
+</tr>
+<tr>
+<td>已兑付的 MDTu ÷ FDV</td>
+<td style="text-align: right;">33.8%</td>
+<td style="text-align: right;"><strong>42.3%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>这些数字的变化全部来自分母（FDV 下跌 20%），不是新信息。</strong> 本报告不据此给方向判断。<br />
+<strong>8 月版 10.6「可以说 / 不能说」的分界本期不变</strong>，只把「MDTu 如期清偿」从「不能说」挪到「可以说」（依据为创始人原话，「全额」程度未核实，见 3.0 与第 4 章）。</p>
+</blockquote>
+<hr />
+<h2 id="11">11. 投资与风险启示</h2>
+<h3 id="111-xin">11.1 XIN 现在处于什么位置</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>偿债</strong></td>
+<td><strong>MDTu 已按期兑付</strong>（创始人原话；「大部分」，比例未核实）；MDTe / MDTb 无时间表</td>
+</tr>
+<tr>
+<td><strong>业务</strong></td>
+<td><strong>不可观测</strong>——连 8 月版用过的 TVL 序列都已冻结</td>
+</tr>
+<tr>
+<td><strong>流动性</strong></td>
+<td><strong>实质缺失</strong>，日成交中位数 $21,295</td>
+</tr>
+<tr>
+<td><strong>价格</strong></td>
+<td><strong>不承载信息</strong>（R² 0.025）</td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td><strong>不给目标价</strong>（业务经济性不可观测）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>更正 8 月版 11.1 的残留</strong>：8 月版此处写「XIN 是三档债务之后的剩余索取权」——<strong>这个说法 8 月版自己在 6.3 已经收回</strong>（XIN 是网络代币，未找到赋权文件），<strong>但 11.1 表格没改</strong>。本期按 6.3 的结论表述。</p>
+</blockquote>
+<h3 id="112">11.2 策略含义</h3>
+<blockquote>
+<p>以下为研究性质的框架整理，<strong>不构成投资建议</strong>。</p>
+</blockquote>
+<ol>
+<li><strong>仓位规模仍是第一约束</strong>：日成交中位数 $21,295，一笔两万美元的单子就是当天全市场。<strong>这一条对多空对称。</strong></li>
+<li><strong>MDTu 已兑付，但它说明的只是公司会兑现公开承诺，不说明 XIN 能分享公司的价值</strong>——XIN 与公司利润之间没有已知的法律连接（8 月版 6.3）。</li>
+<li><strong>不要再用聚合器的 TVL 跟踪 Mixin</strong>（6.1）。可用的跟踪项见下表。</li>
+</ol>
+<h3 id="113">11.3 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">当前值</th>
+<th>改变结论的阈值</th>
+<th>查询方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>MDTe / MDTb 偿还时间表</strong></td>
+<td style="text-align: right;">「暂无明确时间表」</td>
+<td>官方偿还安排原文（X9-1；只有二手、取不到原文记 ⊘）</td>
+<td>Mixin 中英文支持站「重要公告」</td>
+</tr>
+<tr>
+<td><strong>SafeProxy #1 余额</strong></td>
+<td style="text-align: right;">430,000</td>
+<td>出现任何转出（X8-3）</td>
+<td>Blockscout</td>
+</tr>
+<tr>
+<td><strong>#2 + #3 → 排除集以外</strong>（X9-2 口径；目前全部去往运营地址，去向未查）</td>
+<td style="text-align: right;">9 月 2,000 枚；近 12 个月 17,001</td>
+<td>Q4 合计 ≥ 6,000 枚（X9-2）</td>
+<td>Blockscout</td>
+</tr>
+<tr>
+<td>日成交额中位数</td>
+<td style="text-align: right;">$21,295</td>
+<td>12 月 ≥ $100,000（X8-2）</td>
+<td>CoinGecko</td>
+</tr>
+<tr>
+<td>官方完成公告 / 审计 / 储备证明</td>
+<td style="text-align: right;">无</td>
+<td>出现任一项（X8-6）</td>
+<td>官方公告</td>
+</tr>
+<tr>
+<td>~~TVL~~</td>
+<td style="text-align: right;">~~$1,883 万~~</td>
+<td>—</td>
+<td><strong>已停用</strong>：DefiLlama 序列自 7/31 冻结</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="114">11.4 风险提醒</h3>
+<ol>
+<li><strong>流动性风险</strong>（对多空对称）。</li>
+<li><strong>数据基础设施风险上升</strong>：聚合器 TVL 冻结、官方计数器不动、浏览器反爬（6.1–6.2）。<strong>本报告对这个业务的观察能力比 8 月更弱了。</strong></li>
+<li><strong>剩余债务</strong>：MDTe / MDTb 无时间表，量级与 FDV 相当（输入二手）。</li>
+<li><strong>供应集中</strong>：43% 在一个约 22 个月未动的多签里。</li>
+<li><strong>本报告自身</strong>：X8-1 的 ✅ 是解释性判定（依赖对「全额」的读法，见 3.0）；8 月版的 TVL 结论建立在一条不是市值的序列上；8 月涨幅的窗口差了一天（见 12.5）。</li>
+</ol>
+<h3 id="115">11.5 长期认知</h3>
+<p><strong>第一，「按原措辞判」要把论点、构念、条件三样一起恢复，而不只是条件句。</strong> 本期初稿说「按原措辞判」，实际只恢复了条件句，论点与构念用的仍是 9/08 信息到达后改写的版本——于是一条「开放兑换」的观察被当成了「公告全额清偿」的证据。<strong>恢复原措辞的检查方法：去 git 取登记当时的那一版，逐字对照三处。</strong></p>
+<p><strong>第二，数据源可能在不报错的情况下停止反映实际，而这样的数看起来最「稳定」。</strong> DefiLlama 的 Mixin TVL 从 7/31 起几乎不动（原因未知），且水平就不是市值，<strong>8 月版看到的是一个平稳的 $1,883 万，并据此写了同比与监控阈值</strong>。<strong>检查方法很便宜：看月内日波动有没有突然降一两个数量级，再拿一个必然联动的量（BTC 价格）对照。</strong></p>
+<p><strong>第三，CoinGecko 的 00:00 数据点是前一天的收盘。</strong> 8 月版把它当成当天，8 月涨幅因此差了一天（+9.67% vs +13.72%），本期在 9/07 的跳涨上也差点犯同一个错。<strong>按日期标注单日事件之前，先确认数据点代表的是哪一天。</strong></p>
+<hr />
+<h2 id="12">12. 附录</h2>
+<h3 id="121-2026-09-30">12.1 关键数据速查（截至 2026-09-30）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>指标</th>
+<th style="text-align: right;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>市场</strong></td>
+<td>9/30 收盘 / FDV</td>
+<td style="text-align: right;">$54.41 / $5,441 万</td>
+</tr>
+<tr>
+<td></td>
+<td>9 月 / Q3 / YTD</td>
+<td style="text-align: right;">−3.19% / +9.25% / −5.22%</td>
+</tr>
+<tr>
+<td></td>
+<td>年化波动 / beta / R²（一年）</td>
+<td style="text-align: right;">182.3% / 0.646 / 0.025</td>
+</tr>
+<tr>
+<td></td>
+<td>9 月日成交中位数 / 最高</td>
+<td style="text-align: right;">$21,295 / $251,801（9/07）</td>
+</tr>
+<tr>
+<td><strong>供应</strong></td>
+<td>总量</td>
+<td style="text-align: right;">1,000,000（RPC 复读）</td>
+</tr>
+<tr>
+<td></td>
+<td>前 1 / 3 / 50 名</td>
+<td style="text-align: right;">43.00% / 73.30% / 98.87%</td>
+</tr>
+<tr>
+<td></td>
+<td>自由流通盘上界 / 可观测交易盘</td>
+<td style="text-align: right;">236,000 / 约 29,193</td>
+</tr>
+<tr>
+<td></td>
+<td>金库 → 运营地址（近 12 个月，去向未查）</td>
+<td style="text-align: right;">17,001 枚</td>
+</tr>
+<tr>
+<td><strong>债务</strong></td>
+<td>MDTu</td>
+<td style="text-align: right;">$2,300 万，<strong>已按期兑付</strong>（创始人原话，「大部分」；X8-1 ✅，见 3.0）</td>
+</tr>
+<tr>
+<td></td>
+<td>MDTe / MDTb</td>
+<td style="text-align: right;">无时间表；剩余债务约 FDV 的 0.96–1.42 倍（输入二手）</td>
+</tr>
+<tr>
+<td><strong>数据源</strong></td>
+<td>DefiLlama Mixin TVL</td>
+<td style="text-align: right;"><strong>自 7/31 冻结</strong>（约 $1,882 万）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="122">12.2 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th style="text-align: center;">核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总供应量</td>
+<td>以太坊主网 RPC <code>totalSupply()</code></td>
+<td style="text-align: center;">✅ 本期复读</td>
+</tr>
+<tr>
+<td>持有人分布、三个多签的全部转账</td>
+<td>Blockscout API（分页拉全，IN − OUT = 余额）</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>销毁地址余额</td>
+<td>以太坊 RPC <code>balanceOf</code></td>
+<td style="text-align: center;">✅ 本期复读</td>
+</tr>
+<tr>
+<td>价格、成交额、波动率、beta、R²</td>
+<td>CoinGecko API（365 天）</td>
+<td style="text-align: center;">✅ 一手；00:00 点按前一日收盘</td>
+</tr>
+<tr>
+<td>XIN 官方报价</td>
+<td><code>api.mixin.one/network/ticker</code></td>
+<td style="text-align: center;">✅ 与 CoinGecko 一致</td>
+</tr>
+<tr>
+<td><strong>TVL 序列与冻结判定</strong></td>
+<td>DefiLlama <code>historicalChainTvl/Mixin</code>、<code>/v2/chains</code>、<code>/protocols</code>、<code>/protocol/pando-leaf</code>、<code>/protocol/exinpool</code></td>
+<td style="text-align: center;">✅ 一手 API</td>
+</tr>
+<tr>
+<td><strong>Pando Leaf 水平口径</strong></td>
+<td>DefiLlama 适配器源码 + Pando 官方接口 <code>leaf-api.pando.im/api/cats</code>（10/5 直接调用）</td>
+<td style="text-align: center;">✅ 一手：接口价格陈旧（XIN $236.30、ETH $571.14、BTC $57,827），合计与 DefiLlama 逐位一致</td>
+</tr>
+<tr>
+<td>MDTu 承诺原文</td>
+<td>Mixin 中文公告（2025-10-27）</td>
+<td style="text-align: center;">✅ 本期复读</td>
+</tr>
+<tr>
+<td><strong>MDTu 开始兑付（9/07）与完成表态（9/21）</strong></td>
+<td>创始人在 Mixin 圈子的原话（委托方截图，委托方处存档）</td>
+<td style="text-align: center;">✅ 原话；发送者身份与北京时间均由委托方确认</td>
+</tr>
+<tr>
+<td><strong>MDTu 完成声明（9/30）</strong></td>
+<td>KuCoin 快讯（转述 Mixin）</td>
+<td style="text-align: center;">⚠️ 二手，文中有错误</td>
+</tr>
+<tr>
+<td>官方完成公告</td>
+<td>Mixin 中文「重要公告」栏目、英文支持站</td>
+<td style="text-align: center;">❌ <strong>未找到</strong></td>
+</tr>
+<tr>
+<td>MDT 公开资产</td>
+<td><code>api.mixin.one/network/assets/search/MDTu</code></td>
+<td style="text-align: center;">❌ 返回空</td>
+</tr>
+<tr>
+<td>MDTu / MDTe / MDTb 二级市场</td>
+<td>BigONE 公开 API</td>
+<td style="text-align: center;">✅ 一手；市场极薄</td>
+</tr>
+<tr>
+<td>网络统计</td>
+<td><code>api.mixin.one/network</code></td>
+<td style="text-align: center;">✅ 直接调用；<strong>快照数一个月不变，可能已停更</strong></td>
+</tr>
+<tr>
+<td>mixin.space 浏览器</td>
+<td>—</td>
+<td style="text-align: center;">❌ 本期返回 Cloudflare 验证页</td>
+</tr>
+<tr>
+<td>宏观</td>
+<td>本系列 BTC 9 月版（美联储一手）</td>
+<td style="text-align: center;">✅ 内部引用</td>
+</tr>
+<tr>
+<td>传统金融机构对 XIN 的研究</td>
+<td>检索未找到</td>
+<td style="text-align: center;">❌</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="123">12.3 来源偏向声明</h3>
+<ul>
+<li><strong>本期唯一的正面证据（MDTu 兑付）来自委托方提供的截图</strong>（创始人原话，发送者身份由委托方确认（委托方本人认识））；<strong>而空头论据（数据失效、业务不可观测、价格噪声）全部来自一手接口</strong>。8 月版 9.3 的提醒仍然适用：<strong>这个不对称有一部分来自标的性质</strong>——偿债这类公司行为本来就只能从公司公告得知，而 Mixin 没有发布可检索的完成公告。</li>
+<li><strong>X8-1 的判定证据由委托方提供</strong>（创始人消息截图），委托方可能持有 MDTu 或 XIN，<strong>并主张判 ✅</strong>。本报告的处理：截图中可核对的部分（兑换机器人 ID、支持站链接）与官方一致；判 ✅ 的依据写明是门槛 1 推出的读法，不是委托方的主张；「99% 以上」不采信为事实。</li>
+<li><strong>传统金融机构</strong>：本期引用了<strong>美联储</strong>（利率）。<strong>没有找到任何传统金融机构对 XIN 或 Mixin 的研究覆盖。</strong></li>
+</ul>
+<h3 id="124-9">12.4 与本系列其他 9 月版共用的口径</h3>
+<p>宏观数据与 BTC 9 月版共用同一批抓取；其他资产的价格为币安日线（XIN 为 CoinGecko，见第 8 章口径说明）。</p>
+<h3 id="125-8">12.5 本版对 8 月版的更正</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>8 月版写法</th>
+<th>更正</th>
+<th>发现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>「TVL 现在 $1,883 万（2026-08-31），同比 −56.7%、事件后无回升」</td>
+<td><strong>DefiLlama 序列自 7/31 起几乎不动</strong>，且其 Pando Leaf 部分按陈旧接口价格计值、不是市值；8/31 读数不可用；「同比」「无回升」不再引用</td>
+<td>逐日序列的日波动 + 同期 BTC 对照</td>
+</tr>
+<tr>
+<td>2</td>
+<td>8 月涨幅 +9.67%（$49.425 → $54.206）</td>
+<td>8 月版把 CoinGecko 8/31 00:00 的点（= 8/30 收盘）当成 8/31；<strong>7/31 → 8/31 收盘为 +13.72%</strong></td>
+<td>本期按「00:00 点 = 前一日收盘」重算</td>
+</tr>
+<tr>
+<td>3</td>
+<td>11.1「XIN 是三档债务之后的剩余索取权」</td>
+<td><strong>8 月版 6.3 已收回此说法，但 11.1 表格未同步</strong></td>
+<td>本期回扫</td>
+</tr>
+<tr>
+<td>4</td>
+<td>9/07「当日成交额约 $1.2–1.7 万」</td>
+<td>写稿时点的盘中值（8 月版记为「14:40 UTC」，按小时数据应为北京时间即 06:40 UTC，在 12:42 UTC 的兑付公告之前）；<strong>全天最终为 $251,801</strong></td>
+<td>CoinGecko 日度数据</td>
+</tr>
+<tr>
+<td>5</td>
+<td>11.5「长期认知」有两个「第四」</td>
+<td>编号错误</td>
+<td>本期回扫</td>
+</tr>
+<tr>
+<td>6</td>
+<td>监控指标「TVL 连续三个月回升」、记分卡 X8-4</td>
+<td>序列不是市值且 7/31 起几乎不动，X8-4 判 ⊘（检验条件有缺陷，不是门槛 9）</td>
+<td>6.1</td>
+</tr>
+<tr>
+<td>7</td>
+<td>X8-1 的论点、构念与检验条件（9/08 得知开放兑换后改写为「兑现 MDTu」「测会不会兑现承诺」「未能兑付则错」）</td>
+<td><strong>恢复 8 月版首次提交的原文</strong>（「公告已全额清偿」「测会不会公开发布」「无官方公告则错」），按原文判定（10/6 取得创始人原话后判 ✅，依赖对「全额」的读法）</td>
+<td>git <code>e9d738f</code> 逐字对照</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="126">12.6 发布前审查记录</h3>
+<p><strong>第 1 层 <code>verify_report.py</code></strong>：初稿有 FAIL（图表刻度与图注数字 55 / 65 / 73.5 / 29.0 在正文无出处、价格图未嵌入），已补脚注并嵌入图表，复跑 0 FAIL。</p>
+<p><strong>第 2 层 _bian（推理审查）与第 3 层 Codex（读原文复核）</strong>——两边独立指出同一处硬伤：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th style="text-align: center;">出处</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>X8-1 判 ✅ 不成立</strong>：只恢复了条件句，论点与构念仍用 9/08 改写版；委托方的「开放兑换」观察在原构念下是 ❌ 路径之一（「悄悄还了」）；唯一相关证据是含错误的媒体转述，「官方声明大概率存在」不能代替原文</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 改为 <strong>⏳ 待核</strong>，不计入正确率；恢复 <code>e9d738f</code> 原文；写死 10 月版判法（3.0）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>记分卡 X8-1 的检验条件栏仍是改写版</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 改回原文，改写版移入脚注</td>
+</tr>
+<tr>
+<td>3</td>
+<td>摘要把「价格跑输 BTC」当核心空头，与「价格不承载信息」冲突</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 删除</td>
+</tr>
+<tr>
+<td>4</td>
+<td>6.1「机制已一手查明」过度：查明的只是水平口径，不解释 7/31 断点；「−95% 仍成立」与自认污染矛盾</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 收窄；按市价复算约 +57%（偏低）；−95% 不再引用</td>
+</tr>
+<tr>
+<td>5</td>
+<td>金库「向市场释放」、11.9%「卖压」是推断</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 改为「运营地址，去向未查」「规模参照」</td>
+</tr>
+<tr>
+<td>6</td>
+<td>X8-4 的 ⊘ 挂错条款（门槛 9 指<strong>已知</strong>取不到）</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 改为「检验条件有缺陷」，并注明 BTC 计价的混合资产 TVL 本身也不是业务规模的好构念</td>
+</tr>
+<tr>
+<td>7</td>
+<td>X9-1：观测渠道含取不到的社交媒体且「缺席即错」；「一手」前提不成立；35% 无推导</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 重写（见记分卡）</td>
+</tr>
+<tr>
+<td>8</td>
+<td>X9-2：「不加速」与 6,000 线之间有灰区；70% 无推导；窗口已过 5 天未声明</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 改写为「不回到 2025 Q4 节奏」，补推导与窗口声明</td>
+</tr>
+<tr>
+<td>9</td>
+<td>X8-2 门槛 11 补注：排查条件无判别力，且 ⚠️ 档位用错</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 改记 ⊘，排查条件改为与 8–9 月同场所的笔数与单笔规模分布对比</td>
+</tr>
+<tr>
+<td>10</td>
+<td>「正确率 100%（1/1）」不度量作者判断（自评 40%）</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 随 X8-1 改待核一并删除；记分卡加自评概率说明</td>
+</tr>
+<tr>
+<td>11</td>
+<td>空头 #3（数据源失效）是信息缺席，不应计星；空头 #5 与「对多空对称」重复</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ #3 不计入评级；#5 移为对称风险</td>
+</tr>
+<tr>
+<td>12</td>
+<td>「未复核 → 降星」只用在多头一侧</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 删除该降级理由，多头 #3 维持四星</td>
+</tr>
+<tr>
+<td>13</td>
+<td>9/07 跳涨与委托方「9/08」未对齐时区</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 先改为「相邻或重叠」；10/6 取得截图后按小时数据确认同一小时（时区经委托方核实为北京时间）</td>
+</tr>
+<tr>
+<td>14</td>
+<td>CoinGecko 日界线需列原始时间戳以便复核</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 3.1 补原始时间戳表</td>
+</tr>
+<tr>
+<td>15</td>
+<td>X9-2 初稿条件「两个多签以外」会把销毁算成释放（2026-01-06 #2 向 0x…0001 / 0x…0002 转出 31,000 枚）</td>
+<td style="text-align: center;">本报告复拉转账时自查</td>
+<td>✅ 排除销毁地址</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>分歧（未采纳）</strong>：_bian 首轮倾向于把 X8-4 的统计量重设为 Pando「数量 × 固定价格」。本报告选 ⊘。<strong>初稿给的理由（「价格语义未知」）在复审中被 _bian 驳倒</strong>——固定价格只起权重作用，不影响涨跌方向。<strong>成立的理由是</strong>：在已知序列失效之后再换统计量，本身就是信息到达后改口径（X8-1、ZEC Z8-3 的同一教训）；且 Pando Leaf 只是一个协议，序列几乎不动也意味着数量可能同样陈旧。_bian 复审时同意这个理由。</p>
+<p><strong>复审（第二轮修订后，_bian 与 Codex 再审一次）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th style="text-align: center;">出处</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R1</td>
+<td>X8-1 后续判法写于观测状态已知之后，不能叫「事前」；「取不到 → ⊘」关掉了原条件的 ❌ 路径</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 改称「10/5 补定」；❌ 补回「追溯出处后确认非 Mixin 公告且列明渠道查无」；⊘ 限于有可信线索但核实不了，理由写「检验条件有缺陷」；补「有原文无日期」档</td>
+</tr>
+<tr>
+<td>R2</td>
+<td>新加的 ⊘ 都落在对作者不利的一侧；X9-1 的 ❌ 仍是默认出口</td>
+<td style="text-align: center;">两者</td>
+<td>✅ ⊘ 定义补「观测不可完成」，每次判 ⊘ 须写落点；X9-1 / X8-1 加通则「≥ 2 家互不引用的二手 → 视同原文」；X9-1 的 ❌ 限于事先列明的渠道</td>
+</tr>
+<tr>
+<td>R3</td>
+<td>X9-2 的检验条件会把 2024Q3 那类转给四个 13,439 份额合约的转出算作释放，单笔即可翻转结论；基率与条件口径不一致</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 排除集改为全部已知 Mixin 多签 + 四个份额合约 + 销毁地址；监控表同步</td>
+</tr>
+<tr>
+<td>R4</td>
+<td>X8-2 排查条件无阈值，裁量只开在 ❌ 侧</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 写死三项数字阈值；<strong>取不到排查数据 → 按原条件判</strong>；⊘ 落在 ❌ 侧，如实记录</td>
+</tr>
+<tr>
+<td>R5</td>
+<td>「停的是价格」「冻结机制」「静默冻结」「停了」是被撤回的机制断言换了说法</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 四处改写</td>
+</tr>
+<tr>
+<td>R6</td>
+<td>记分卡 9/08 中途记录未标「已被取代」</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 标注；「下界」加「二手，若属实」</td>
+</tr>
+<tr>
+<td>R7</td>
+<td>12.3「独立渠道」「硬证据」、4.2「兑现」残留</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 改写</td>
+</tr>
+<tr>
+<td>R8</td>
+<td>X9-1 与 X9-2 可能相关（运营地址首笔收款与 MDTu 时间表公告同日）</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 补相关性声明</td>
+</tr>
+<tr>
+<td>R9</td>
+<td>X9-1 基率的事件类比 ✅ 条件窄；「×2 上调」像给已有数找理由</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 基率改为区间 15%–28%，自评改为 25%，不再做 ×2</td>
+</tr>
+<tr>
+<td>R10</td>
+<td>「本表起都写自评」8 月期兑现不了；X9-1 与 X8-6「方向相反」会被读成对冲；9 月 ×3 是「恰在 ❌ 线上」</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 改写</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第 4 层 _dalin（10/6）</strong>：</p>
+<ul>
+<li>提供创始人 Cedric Fung 在 Mixin 圈子的消息截图（9/07–9/21），并确认 9/22–9/30 无后续消息 → <strong>X8-1 由 ⏳ 待核改判 ✅</strong>。</li>
+<li>主张「大部分 = 99% 以上，零星小额是离开或遗忘的用户，不影响结果」。<strong>本报告采纳 ✅，但不以这条理由为依据</strong>：判 ✅ 的依据是门槛 1——「全额」若指每一枚都兑完，本条从登记起就不可能 ✅；「99% 以上」未核实。</li>
+<li>截图同时更正了两处时间：开始兑付是 9/07 晚（不是 9/08）；8 月版写稿时点「14:40」应为北京时间。</li>
+<li>⚠️ <strong>这次改判未经 _bian 与 Codex 复审</strong>——它推翻的正是两位审查者首轮否掉的 ✅（当时依据是推断，本次依据是原文）。</li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>配套文件</strong>：<code>xin_questions_summary_202609.md</code>（简明速查）、<code>../thesis_scorecard.md</code>（论点滚动记分卡）。<br />
+本报告不构成投资建议。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-xin-mixin-2026-9-q3">XIN / Mixin 简明速查（2026 年 9 月版兼 Q3 回顾）</h1>
+<blockquote>
+<p>完整报告的浓缩版，给快速复习用。<strong>数据截止 2026-09-30，链上快照到 10/5。</strong><br />
+本文件不构成投资建议。</p>
+</blockquote>
+<hr />
+<h2 id="s-1">1. 一句话</h2>
+<p><strong>Mixin 按期兑付了 $2,300 万的 MDTu——创始人 9/21 原话「大部分赔付完成、所有已提交兑付处理完毕」，8 月版只给约 40% 把握的 X8-1 判 ✅（依赖对「全额」的读法）；同时这个业务比 8 月更难被观察了——8 月版用过的 TVL 序列不是市值，且 7/31 起几乎不动。</strong></p>
+<hr />
+<h2 id="s-2-xin">2. XIN 是什么（不变）</h2>
+<p>一家产品公司（Mixin）的网络代币。总量 100 万枚（以太坊 RPC 复读）。<strong>仍未找到任何文件赋予 XIN 对公司利润的请求权。</strong></p>
+<hr />
+<h2 id="s-3-x8-1">3. X8-1 到期：✅（解释性判定）</h2>
+<p><strong>登记原文</strong>（<code>e9d738f</code>）：「Mixin 会如期在 2026-09-23 前<strong>公告</strong> MDTu 已全额清偿」；条件「9/30 前没有出现『已全额清偿』的官方公告则错」。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>证据</th>
+<th style="text-align: center;">等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>承诺「2026-09-23 前全额偿还 MDTu 所代表的 $2,300 万」（2025-10-27 中文公告）</td>
+<td style="text-align: center;">✅ 官方原文</td>
+</tr>
+<tr>
+<td><strong>9/07 20:42 创始人：「现在开始进行 USDT 的 2300 万美金债务的全额偿还」</strong></td>
+<td style="text-align: center;">✅ 创始人原话（委托方截图）</td>
+</tr>
+<tr>
+<td><strong>9/21 18:26 创始人：「已经完成了……2300 万美元大部分 USDT 的赔付，所有已经提交的 MDTu 还款交易都已经审批处理完毕」</strong></td>
+<td style="text-align: center;">✅ 创始人原话（同上）；发送者身份由委托方确认</td>
+</tr>
+<tr>
+<td>9/30 KuCoin 快讯「已完成约 2,300 万兑付」</td>
+<td style="text-align: center;">⚠️ 二手；很可能是把 9/21 的「大部分」写成了「已完成」</td>
+</tr>
+<tr>
+<td>支持站与 Team Mixin 系统公告</td>
+<td style="text-align: center;">❌ 未见完成公告</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>「大部分」不是「全额」，判 ✅ 靠一个读法</strong>：债务代币兑付必有未领取部分；若「全额」指每一枚都兑完，这条从登记起就不可能 ✅（违反门槛 1）。唯一可满足的读法是「向全体持有人开放全额兑付、且所有已提交兑付都已完成」——9/21 消息逐字满足，早于 9/23</li>
+<li><strong>这个读法是看到原文之后才确定的</strong>，属解释性判定；委托方称兑付比例 99% 以上，<strong>未核实</strong></li>
+<li>作者自评 40%，<strong>押错了方向</strong>（Brier 0.36）；初稿判 ✅ 的依据是推断，已撤回，<strong>结论相同、依据不同</strong></li>
+<li>已兑付的约 $2,300 万相当于 9/30 FDV 的 <strong>42.3%</strong>；资金来源未披露</li>
+</ul>
+<hr />
+<h2 id="s-4-tvl-731">4. 本期最重要的发现：TVL 序列不是市值，且 7/31 起几乎不动</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: center;">DefiLlama Mixin TVL 的日变动标准差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-05 / 06 / 07</td>
+<td style="text-align: center;">1.23% / 1.72% / 1.28%</td>
+</tr>
+<tr>
+<td><strong>2026-08 / 09</strong></td>
+<td style="text-align: center;"><strong>0.011% / 0.015%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>自 7/31 起几乎不动</strong>，同期 BTC +29.2%——而 8 月版说 Mixin TVL 以 BTC / ETH 为主</li>
+<li>同一数据商的 Pando Leaf 也冻结，ExinPool 却在变（+30.8%）</li>
+<li><strong>水平口径已一手查明（Pando Leaf；7/31 断点原因未知）</strong>：DefiLlama 只是把 Pando 官方接口里的「数量 × 价格」加总，而该接口 10/5 给出的价格是 <strong>XIN $236.30（市价约 $54.7）、ETH $571.14（约 $2,700）、BTC $57,827（约 $86,000）</strong>——<strong>记的是陈旧报价，不是市值</strong>；按市价重算 Pando 部分约 $1,790 万，比序列值高约 57%（序列偏低）；8 月版引用的「距峰值 −95%」不再引用</li>
+<li><strong>8 月版的「TVL $1,883 万、同比 −56.7%」不再引用</strong>；<strong>X8-4（以 BTC 计的 TVL）改判 ⊘</strong>（检验条件有缺陷）</li>
+<li>另外两个公开指标也读不到变化：Mixin 官方「快照数」与 8 月版逐位相同（原因未确认）；mixin.space 挂上了反爬验证页</li>
+</ul>
+<hr />
+<h2 id="s-5">5. 价格与成交</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘 / FDV</td>
+<td>$54.41 / $5,441 万</td>
+</tr>
+<tr>
+<td>9 月 / Q3</td>
+<td><strong>−3.19% / +9.25%</strong>（BTC +6.39% / +42.70%）</td>
+</tr>
+<tr>
+<td>一年 R² / 年化波动</td>
+<td><strong>0.025 / 182.3%</strong></td>
+</tr>
+<tr>
+<td>9 月日成交中位数</td>
+<td><strong>$21,295</strong>（8 月 $10,878）</td>
+</tr>
+<tr>
+<td>9 月唯一 &gt;20% 的 UTC 交易日</td>
+<td><strong>9/07 +20.0%，成交 $251,801</strong>——跳涨起于 12:00–13:00 UTC，与创始人宣布开始兑付在同一小时（时区经委托方核实为北京时间）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>跳涨很可能是对兑付公告的反应</strong>（时点吻合到小时）；但市场极薄，一个参与者就能造出这样的一天，且之后价格连跌</li>
+<li><strong>更正 8 月版</strong>：CoinGecko 的 00:00 数据点是前一日收盘，8 月版因此差了一天——<strong>8 月实为 +13.72%，不是 +9.67%</strong></li>
+</ul>
+<hr />
+<h2 id="s-6">6. 链上供应</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>前 1 / 3 / 50 名</td>
+<td>43.00% / 73.30% / 98.87%</td>
+</tr>
+<tr>
+<td>SafeProxy #1（430,000 枚）</td>
+<td><strong>零转出</strong>（X8-3 未触发）</td>
+</tr>
+<tr>
+<td>SafeProxy #3</td>
+<td><strong>9/10 向运营地址转出 2,000 枚</strong>（恰在 8 月版「单月 &gt;2,000」监控线上；去向未查）</td>
+</tr>
+<tr>
+<td>近 12 个月金库 → 运营地址</td>
+<td>17,001 枚；日均约为日成交中位数的 11.9%——<strong>量级参照，不是卖压</strong>（是否进入交易所未追踪）</td>
+</tr>
+<tr>
+<td>自由流通盘上界 / 可观测交易盘</td>
+<td>236,000 / 约 29,193</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-7">7. 估值：仍不给目标价</h2>
+<p><strong>理由不变：业务经济性不可观测。</strong> MDTu 已兑付（8 月版清单第 3 项已发生），第 1（营收 / AUM 披露）、2（债务余额）、4（多签性质）项仍无。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>反推（按 9/30 FDV）</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>现金流口径 100 / 50 / 20 倍隐含的年化归属价值</td>
+<td>$54.4 万 / $109 万 / $272 万</td>
+</tr>
+<tr>
+<td>节点抵押口径（100 节点 × 10%）</td>
+<td>$544 万</td>
+</tr>
+<tr>
+<td>MDTu 之后的公司债务 ÷ FDV</td>
+<td>0.96–1.42 倍（输入二手）</td>
+</tr>
+</tbody>
+</table></div>
+<p>这些数字的变化全部来自 FDV 下跌，不是新信息。</p>
+<hr />
+<h2 id="s-8">8. 记分卡</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>论点</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>X8-1</strong> Mixin 9/23 前公告 MDTu 已全额清偿（登记原文）</td>
+<td><strong>✅</strong>（创始人 9/21 原话；解释性判定，自评 40%，Brier 0.36）</td>
+</tr>
+<tr>
+<td>X8-2 成交量不会实质改善（12 月中位数 &lt; $10 万）</td>
+<td>⏳ 9 月 $21,295；可被刷高，判 ❌ 前按写死的三项阈值排查刷量；排查数据取不到则按原条件判</td>
+</tr>
+<tr>
+<td>X8-3 SafeProxy #1 不动</td>
+<td>⏳ 零转出</td>
+</tr>
+<tr>
+<td><strong>X8-4</strong> 业务规模不企稳（以 BTC 计的 TVL）</td>
+<td><strong>⊘ 检验失效</strong>：序列不是市值，检验条件有缺陷</td>
+</tr>
+<tr>
+<td>X8-5 低相关是测量失效</td>
+<td>⏳ 前提未出现</td>
+</tr>
+<tr>
+<td>X8-6 业务经济性持续不可观测</td>
+<td>⏳ 9 月无任何披露</td>
+</tr>
+<tr>
+<td><strong>X9-1</strong> 2027-03-31 前公布 MDTe / MDTb 偿还安排</td>
+<td>⏳ 自评 25%（反向登记；基率区间 15%–28%）</td>
+</tr>
+<tr>
+<td><strong>X9-2</strong> 金库释放不回到单季 ≥ 6,000 枚的节奏（Mixin 多签、份额合约、销毁不计）</td>
+<td>⏳ 自评 65%</td>
+</tr>
+</tbody>
+</table></div>
+<p>XIN 记分卡目前判定 1 条：<strong>X8-1 ✅</strong>——论点成立，但作者押的是另一侧（自评 40%，Brier 0.36），且是解释性判定。</p>
+<hr />
+<h2 id="s-9">9. 要盯的指标</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>当前值</th>
+<th>阈值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MDTe / MDTb 偿还时间表</td>
+<td>暂无</td>
+<td>官方偿还安排原文（X9-1；<strong>查中英文所有版本</strong>）</td>
+</tr>
+<tr>
+<td>SafeProxy #1</td>
+<td>430,000</td>
+<td>任何转出（X8-3）</td>
+</tr>
+<tr>
+<td>#2 + #3 对外释放</td>
+<td>9 月 2,000</td>
+<td>Q4 ≥ 6,000（X9-2）</td>
+</tr>
+<tr>
+<td>日成交中位数</td>
+<td>$21,295</td>
+<td>12 月 ≥ $10 万（X8-2）</td>
+</tr>
+<tr>
+<td>~~TVL~~</td>
+<td>—</td>
+<td><strong>已停用</strong>（序列不是市值）</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-3-5">如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>Mixin 按期兑付了 $2,300 万的 MDTu</strong>——创始人 9/21 原话「大部分赔付完成、所有已提交兑付处理完毕」；8 月版只给约 40% 把握的 X8-1 判 ✅，但「全额」靠读法，比例未核实。</p>
+</li>
+<li>
+<p><strong>这条 ✅ 判了两次</strong>：初稿凭推断判 ✅，审查后撤回；拿到原文后再判 ✅。<strong>结论相同、依据不同——初稿那一版仍然是错的。</strong></p>
+</li>
+<li>
+<p><strong>DefiLlama 的 Mixin TVL 不是市值</strong>（按陈旧接口价格计值），且 7/31 起几乎不动：8 月版的 TVL 结论不再引用，X8-4 作废。<strong>这个业务比 8 月更难观察了。</strong></p>
+</li>
+<li>
+<p><strong>XIN 9 月 −3.19%、Q3 +9.25%</strong>（BTC +6.39% / +42.70%）；R² 只有 0.025、日成交两万美元——<strong>价格不承载可解读的信息，这组数字不作多空论据。</strong></p>
+</li>
+<li>
+<p><strong>仍不给目标价</strong>：即便 MDTu 已兑付，它也只说明公司会兑现承诺，没告诉我们营收、利润和剩余债务。</p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>xin_research_report_202609.md</code>（对 8 月版的更正见 12.5）。<br />
+论点检验记录见 <code>../thesis_scorecard.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>

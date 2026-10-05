@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 450" width="100%" role="img" aria-label="XIN 的价格与成交额（2026-07-01 至 10-04）">
+<style> .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}</style>
+<rect width="720" height="450" fill="none"/><text x="0" y="16" class="t">XIN 的价格与成交额（2026-07-01 至 10-04）</text><text x="0" y="34" class="s">上：日收盘价　下：日成交额（对数轴）。CoinGecko 一手（00:00 UTC 数据点按前一日收盘计）</text>
+<text x="60" y="60" class="v">① 日收盘价</text>
+<line x1="60" y1="210.0" x2="700" y2="210.0" class="ax"/><text x="54" y="214.0" class="l" text-anchor="end">$45</text>
+<line x1="60" y1="164.0" x2="700" y2="164.0" class="ax"/><text x="54" y="168.0" class="l" text-anchor="end">$55</text>
+<line x1="60" y1="118.0" x2="700" y2="118.0" class="ax"/><text x="54" y="122.0" class="l" text-anchor="end">$65</text>
+<line x1="60" y1="72.0" x2="700" y2="72.0" class="ax"/><text x="54" y="76.0" class="l" text-anchor="end">$75</text>
+<polyline fill="none" stroke="#2a78d6" stroke-width="2" points="60.0,183.5 66.7,182.8 73.5,180.8 80.2,179.4 86.9,176.1 93.7,173.0 100.4,174.3 107.2,179.1 113.9,177.8 120.6,186.4 127.4,181.3 134.1,181.8 140.8,181.5 147.6,179.7 154.3,182.9 161.1,180.7 167.8,184.7 174.5,186.0 181.3,186.5 188.0,187.9 194.7,185.0 201.5,183.4 208.2,184.8 214.9,186.0 221.7,186.4 228.4,184.7 235.2,187.3 241.9,189.9 248.6,189.2 255.4,190.2 262.1,189.6 268.8,189.8 275.6,189.5 282.3,187.1 289.1,184.6 295.8,185.8 302.5,185.3 309.3,180.3 316.0,178.7 322.7,181.8 329.5,182.6 336.2,178.8 342.9,180.2 349.7,177.9 356.4,181.3 363.2,184.2 369.9,186.4 376.6,187.3 383.4,187.5 390.1,175.6 396.8,173.6 403.6,160.9 410.3,160.5 417.1,161.9 423.8,165.1 430.5,165.3 437.3,180.3 444.0,174.4 450.7,161.8 457.5,163.8 464.2,167.7 470.9,158.4 477.7,158.4 484.4,159.4 491.2,154.4 497.9,154.3 504.6,153.7 511.4,150.3 518.1,96.8 524.8,111.8 531.6,123.9 538.3,137.5 545.1,134.7 551.8,140.9 558.5,141.2 565.3,146.1 572.0,155.2 578.7,163.2 585.5,165.6 592.2,151.2 598.9,149.6 605.7,153.5 612.4,145.4 619.2,146.9 625.9,151.5 632.6,150.0 639.4,148.3 646.1,151.9 652.8,152.3 659.6,159.3 666.3,161.2 673.1,166.7 679.8,166.6 686.5,167.2 693.3,166.1 700.0,165.5"/>
+<circle cx="518.1" cy="96.8" r="4" fill="#e34948"/><text x="525.1" y="92.8" class="v">9/7 $69.61（+20.0%）</text>
+<circle cx="673.1" cy="166.7" r="4" fill="#2a78d6"/><text x="667.1" y="184.7" class="v" text-anchor="end">9/30 $54.41</text>
+<text x="60" y="250" class="v">② 日成交额（对数轴）</text>
+<line x1="60" y1="400.0" x2="700" y2="400.0" class="ax"/><text x="54" y="404.0" class="l" text-anchor="end">$1千</text>
+<line x1="60" y1="354.0" x2="700" y2="354.0" class="ax"/><text x="54" y="358.0" class="l" text-anchor="end">$1万</text>
+<line x1="60" y1="308.0" x2="700" y2="308.0" class="ax"/><text x="54" y="312.0" class="l" text-anchor="end">$10万</text>
+<line x1="60" y1="262.0" x2="700" y2="262.0" class="ax"/><text x="54" y="266.0" class="l" text-anchor="end">$100万</text>
+<rect x="57.7" y="329.8" width="4.7" height="70.2" fill="#a8a29e"/>
+<rect x="64.4" y="330.8" width="4.7" height="69.2" fill="#a8a29e"/>
+<rect x="71.1" y="332.7" width="4.7" height="67.3" fill="#a8a29e"/>
+<rect x="77.9" y="341.3" width="4.7" height="58.7" fill="#a8a29e"/>
+<rect x="84.6" y="333.9" width="4.7" height="66.1" fill="#a8a29e"/>
+<rect x="91.4" y="335.4" width="4.7" height="64.6" fill="#a8a29e"/>
+<rect x="98.1" y="332.3" width="4.7" height="67.7" fill="#a8a29e"/>
+<rect x="104.8" y="313.7" width="4.7" height="86.3" fill="#a8a29e"/>
+<rect x="111.6" y="349.0" width="4.7" height="51.0" fill="#a8a29e"/>
+<rect x="118.3" y="338.1" width="4.7" height="61.9" fill="#a8a29e"/>
+<rect x="125.0" y="353.7" width="4.7" height="46.3" fill="#a8a29e"/>
+<rect x="131.8" y="376.1" width="4.7" height="23.9" fill="#a8a29e"/>
+<rect x="138.5" y="357.5" width="4.7" height="42.5" fill="#a8a29e"/>
+<rect x="145.2" y="360.7" width="4.7" height="39.3" fill="#a8a29e"/>
+<rect x="152.0" y="349.7" width="4.7" height="50.3" fill="#a8a29e"/>
+<rect x="158.7" y="362.6" width="4.7" height="37.4" fill="#a8a29e"/>
+<rect x="165.5" y="345.0" width="4.7" height="55.0" fill="#a8a29e"/>
+<rect x="172.2" y="374.8" width="4.7" height="25.2" fill="#a8a29e"/>
+<rect x="178.9" y="357.4" width="4.7" height="42.6" fill="#a8a29e"/>
+<rect x="185.7" y="354.6" width="4.7" height="45.4" fill="#a8a29e"/>
+<rect x="192.4" y="354.1" width="4.7" height="45.9" fill="#a8a29e"/>
+<rect x="199.1" y="375.3" width="4.7" height="24.7" fill="#a8a29e"/>
+<rect x="205.9" y="360.4" width="4.7" height="39.6" fill="#a8a29e"/>
+<rect x="212.6" y="359.2" width="4.7" height="40.8" fill="#a8a29e"/>
+<rect x="219.4" y="359.6" width="4.7" height="40.4" fill="#a8a29e"/>
+<rect x="226.1" y="373.4" width="4.7" height="26.6" fill="#a8a29e"/>
+<rect x="232.8" y="341.5" width="4.7" height="58.5" fill="#a8a29e"/>
+<rect x="239.6" y="357.5" width="4.7" height="42.5" fill="#a8a29e"/>
+<rect x="246.3" y="354.3" width="4.7" height="45.7" fill="#a8a29e"/>
+<rect x="253.0" y="344.5" width="4.7" height="55.5" fill="#a8a29e"/>
+<rect x="259.8" y="367.1" width="4.7" height="32.9" fill="#a8a29e"/>
+<rect x="266.5" y="351.7" width="4.7" height="48.3" fill="#a8a29e"/>
+<rect x="273.2" y="350.2" width="4.7" height="49.8" fill="#a8a29e"/>
+<rect x="280.0" y="357.4" width="4.7" height="42.6" fill="#a8a29e"/>
+<rect x="286.7" y="357.4" width="4.7" height="42.6" fill="#a8a29e"/>
+<rect x="293.5" y="361.6" width="4.7" height="38.4" fill="#a8a29e"/>
+<rect x="300.2" y="364.4" width="4.7" height="35.6" fill="#a8a29e"/>
+<rect x="306.9" y="346.2" width="4.7" height="53.8" fill="#a8a29e"/>
+<rect x="313.7" y="363.4" width="4.7" height="36.6" fill="#a8a29e"/>
+<rect x="320.4" y="351.7" width="4.7" height="48.3" fill="#a8a29e"/>
+<rect x="327.1" y="377.5" width="4.7" height="22.5" fill="#a8a29e"/>
+<rect x="333.9" y="350.9" width="4.7" height="49.1" fill="#a8a29e"/>
+<rect x="340.6" y="372.7" width="4.7" height="27.3" fill="#a8a29e"/>
+<rect x="347.4" y="384.2" width="4.7" height="15.8" fill="#a8a29e"/>
+<rect x="354.1" y="366.7" width="4.7" height="33.3" fill="#a8a29e"/>
+<rect x="360.8" y="363.2" width="4.7" height="36.8" fill="#a8a29e"/>
+<rect x="367.6" y="379.6" width="4.7" height="20.4" fill="#a8a29e"/>
+<rect x="374.3" y="344.6" width="4.7" height="55.4" fill="#a8a29e"/>
+<rect x="381.0" y="374.9" width="4.7" height="25.1" fill="#a8a29e"/>
+<rect x="387.8" y="336.4" width="4.7" height="63.6" fill="#a8a29e"/>
+<rect x="394.5" y="343.3" width="4.7" height="56.7" fill="#a8a29e"/>
+<rect x="401.2" y="329.6" width="4.7" height="70.4" fill="#a8a29e"/>
+<rect x="408.0" y="337.4" width="4.7" height="62.6" fill="#a8a29e"/>
+<rect x="414.7" y="340.8" width="4.7" height="59.2" fill="#a8a29e"/>
+<rect x="421.5" y="342.1" width="4.7" height="57.9" fill="#a8a29e"/>
+<rect x="428.2" y="353.8" width="4.7" height="46.2" fill="#a8a29e"/>
+<rect x="434.9" y="320.2" width="4.7" height="79.8" fill="#a8a29e"/>
+<rect x="441.7" y="352.3" width="4.7" height="47.7" fill="#a8a29e"/>
+<rect x="448.4" y="326.3" width="4.7" height="73.7" fill="#a8a29e"/>
+<rect x="455.1" y="369.6" width="4.7" height="30.4" fill="#a8a29e"/>
+<rect x="461.9" y="337.3" width="4.7" height="62.7" fill="#a8a29e"/>
+<rect x="468.6" y="332.5" width="4.7" height="67.5" fill="#a8a29e"/>
+<rect x="475.4" y="336.9" width="4.7" height="63.1" fill="#a8a29e"/>
+<rect x="482.1" y="362.1" width="4.7" height="37.9" fill="#a8a29e"/>
+<rect x="488.8" y="338.2" width="4.7" height="61.8" fill="#a8a29e"/>
+<rect x="495.6" y="348.0" width="4.7" height="52.0" fill="#a8a29e"/>
+<rect x="502.3" y="347.5" width="4.7" height="52.5" fill="#a8a29e"/>
+<rect x="509.0" y="349.9" width="4.7" height="50.1" fill="#a8a29e"/>
+<rect x="515.8" y="289.6" width="4.7" height="110.4" fill="#e34948"/>
+<rect x="522.5" y="316.4" width="4.7" height="83.6" fill="#a8a29e"/>
+<rect x="529.2" y="320.1" width="4.7" height="79.9" fill="#a8a29e"/>
+<rect x="536.0" y="319.0" width="4.7" height="81.0" fill="#a8a29e"/>
+<rect x="542.7" y="335.3" width="4.7" height="64.7" fill="#a8a29e"/>
+<rect x="549.5" y="356.6" width="4.7" height="43.4" fill="#a8a29e"/>
+<rect x="556.2" y="363.6" width="4.7" height="36.4" fill="#a8a29e"/>
+<rect x="562.9" y="333.0" width="4.7" height="67.0" fill="#a8a29e"/>
+<rect x="569.7" y="335.2" width="4.7" height="64.8" fill="#a8a29e"/>
+<rect x="576.4" y="330.1" width="4.7" height="69.9" fill="#a8a29e"/>
+<rect x="583.1" y="339.0" width="4.7" height="61.0" fill="#a8a29e"/>
+<rect x="589.9" y="327.2" width="4.7" height="72.8" fill="#a8a29e"/>
+<rect x="596.6" y="348.9" width="4.7" height="51.1" fill="#a8a29e"/>
+<rect x="603.4" y="343.0" width="4.7" height="57.0" fill="#a8a29e"/>
+<rect x="610.1" y="327.3" width="4.7" height="72.7" fill="#a8a29e"/>
+<rect x="616.8" y="344.2" width="4.7" height="55.8" fill="#a8a29e"/>
+<rect x="623.6" y="338.8" width="4.7" height="61.2" fill="#a8a29e"/>
+<rect x="630.3" y="341.3" width="4.7" height="58.7" fill="#a8a29e"/>
+<rect x="637.0" y="344.7" width="4.7" height="55.3" fill="#a8a29e"/>
+<rect x="643.8" y="345.3" width="4.7" height="54.7" fill="#a8a29e"/>
+<rect x="650.5" y="348.1" width="4.7" height="51.9" fill="#a8a29e"/>
+<rect x="657.2" y="334.4" width="4.7" height="65.6" fill="#a8a29e"/>
+<rect x="664.0" y="349.1" width="4.7" height="50.9" fill="#a8a29e"/>
+<rect x="670.7" y="326.0" width="4.7" height="74.0" fill="#a8a29e"/>
+<rect x="677.5" y="342.5" width="4.7" height="57.5" fill="#a8a29e"/>
+<rect x="684.2" y="337.4" width="4.7" height="62.6" fill="#a8a29e"/>
+<rect x="690.9" y="351.7" width="4.7" height="48.3" fill="#a8a29e"/>
+<rect x="697.7" y="351.4" width="4.7" height="48.6" fill="#a8a29e"/>
+<line x1="60" y1="338.9" x2="700" y2="338.9" stroke="#eb6834" stroke-dasharray="5 4"/><text x="64" y="333.9" class="v" style="fill:#eb6834">$21,295（9 月中位）</text>
+<text x="524.1" y="293.6" class="v" style="fill:#e34948">9/7 $251,801（9 月最高）</text>
+<text x="60" y="416" class="l" text-anchor="middle">7/1</text>
+<text x="269" y="416" class="l" text-anchor="middle">8/1</text>
+<text x="478" y="416" class="l" text-anchor="middle">9/1</text>
+<text x="680" y="416" class="l" text-anchor="middle">10/1</text>
+<text x="0" y="442" class="s">9/7 成交额全月最高、价格单日 +20.0%（跳涨起于 UTC 12–13 时，与创始人宣布开始兑付同一小时）；此后回落，9 月收于 $54.41（−3.19%）。</text></svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" width="100%" role="img" aria-label="前 50 个地址持有 98.87% 的 XIN">
+<style> .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}</style>
+<rect width="720" height="330" fill="none"/><text x="0" y="16" class="t">前 50 个地址持有 98.87% 的 XIN</text><text x="0" y="34" class="s">累计持仓占总供应（1,000,000 枚，以太坊 totalSupply 直读）。Blockscout 一手，2026-10-05</text>
+<line x1="90" y1="52" x2="90" y2="268" class="ax"/><text x="90" y="284" class="l" text-anchor="middle">0%</text>
+<line x1="230" y1="52" x2="230" y2="268" class="ax"/><text x="230" y="284" class="l" text-anchor="middle">25%</text>
+<line x1="370" y1="52" x2="370" y2="268" class="ax"/><text x="370" y="284" class="l" text-anchor="middle">50%</text>
+<line x1="510" y1="52" x2="510" y2="268" class="ax"/><text x="510" y="284" class="l" text-anchor="middle">75%</text>
+<line x1="650" y1="52" x2="650" y2="268" class="ax"/><text x="650" y="284" class="l" text-anchor="middle">100%</text>
+<text x="80" y="74" class="l" text-anchor="end">前 1 名</text><rect x="90" y="58" width="240.8" height="22" rx="3" fill="#eb6834"/><text x="324.8" y="73" class="v" text-anchor="end" style="fill:#fff">43.00%</text>
+<text x="80" y="110" class="l" text-anchor="end">前 3 名</text><rect x="90" y="94" width="410.5" height="22" rx="3" fill="#2a78d6"/><text x="494.5" y="109" class="v" text-anchor="end" style="fill:#fff">73.30%</text>
+<text x="80" y="146" class="l" text-anchor="end">前 5 名</text><rect x="90" y="130" width="483.5" height="22" rx="3" fill="#2a78d6"/><text x="567.5" y="145" class="v" text-anchor="end" style="fill:#fff">86.34%</text>
+<text x="80" y="182" class="l" text-anchor="end">前 10 名</text><rect x="90" y="166" width="525.9" height="22" rx="3" fill="#2a78d6"/><text x="609.9" y="181" class="v" text-anchor="end" style="fill:#fff">93.91%</text>
+<text x="80" y="218" class="l" text-anchor="end">前 20 名</text><rect x="90" y="202" width="544.4" height="22" rx="3" fill="#2a78d6"/><text x="628.4" y="217" class="v" text-anchor="end" style="fill:#fff">97.21%</text>
+<text x="80" y="254" class="l" text-anchor="end">前 50 名</text><rect x="90" y="238" width="553.7" height="22" rx="3" fill="#2a78d6"/><text x="637.7" y="253" class="v" text-anchor="end" style="fill:#fff">98.87%</text>
+<text x="0" y="304" class="s">第 1 名是 SafeProxy #1（430,000 枚，自 2024-12 起零转出）；8 月以来三个多签里唯一的变化是 SafeProxy #3 9/10 向运营地址转出 2,000 枚。</text>
+<text x="0" y="322" class="s">前 3 名由 73.50% 降到 73.30%，即这 2,000 枚。前 50 名之外合计约 11,277 枚。</text></svg>
