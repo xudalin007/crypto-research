@@ -1,0 +1,2960 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ADA / Cardano 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#0033AD;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">₳ ADA 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>₳ ADA 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-cardano">1. Cardano 的起源与设计取舍</a>
+<a href="#2-ada">2. ADA 的发展阶段划分</a>
+<a href="#3-ada">3. ADA 当前现状分析</a>
+<a href="#4-ada">4. 代币经济学与国库</a>
+<a href="#5">5. 治理</a>
+<a href="#6">6. 机构通道与持有者结构</a>
+<a href="#7-ada">7. ADA 的核心价值逻辑</a>
+<a href="#8-ada">8. ADA 与其他资产的比较</a>
+<a href="#9">9. 关键变量与三种情景推演</a>
+<a href="#10">10. 投资与风险启示</a>
+<a href="#11">11. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-1-ada">1. ADA 是什么</a>
+<a href="#s-2-9-btc">2. 9 月价格</a>
+<a href="#s-3">3. 链上</a>
+<a href="#s-4">4. 治理</a>
+<a href="#s-5">5. 机构通道</a>
+<a href="#s-6">6. 供应与质押</a>
+<a href="#s-7">7. 多空一览</a>
+<a href="#s-8_1">8. 情景</a>
+<a href="#s-9_1">9. 该盯什么</a>
+<a href="#s-10">10. 记分卡</a>
+<a href="#s-11-3-5">11. 如果你只有 3 分钟，记住这 5 …</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>₳ ADA / Cardano<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">₳ Cardano</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="ada-cardano">ADA / Cardano 完整调研与分析报告</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 10 月 5 日<br />
+<strong>数据截止</strong>：2026 年 9 月 30 日（9 月与 Q3 完整数据已闭合）；链上快照取自 epoch 659（10/1 起）与 10/5<br />
+<strong>版本</strong>：2026 年 9 月版（第二期）<strong>兼 Q3 季度回顾</strong><br />
+<strong>研究方法</strong>：沿用 8 月首期框架（治理与国库为核心章）。<strong>本期第一次有上期论点可核对</strong>（A8-1 至 A8-6，见 3.0）。</p>
+<p><strong>本版更新要点</strong>：</p>
+<ol>
+<li><strong>9 月 +24.64%、Q3 +70.94%</strong>（CoinGecko 日线；本系列 ETH 9 月版用币安口径记为 +24.67% / +70.78%），收于 <strong>$0.2465</strong>，市值 <strong>$92.5 亿</strong>。按 beta 扣掉 BTC 的影响，9 月高出预期 <strong>+14.5pp，约 1.25 个标准差</strong>——比 SOL（0.66）大，但<strong>仍不足以排除噪声</strong>。</li>
+<li><strong>本期最重要的发现：8 月版的治理叙事有两处建立在「中途快照」上，与首期 86.72% 是同一类错误。</strong><br />
+   ① 8 月版写宪法委员会续任案「SPO 51.18%、仅超门槛 0.18pp」——<strong>逐票复算显示 51.18% 与 9/1 11:30 UTC 前后的中途读数一致；最终值三个来源分别为 54.69%（本报告逐票复算）、54.40%（Koios 汇总）、56.54%（Intersect 周报），差异原因未查明</strong>，但都高于 51%、都不是 51.18%，超门槛约 3.4–5.5pp；<br />
+   ② 8 月版写「IOG 系四笔提案全部通过」——<strong>链上有一笔 4 月提交的 1,229 万 ADA 提案（媒体称 IO 的 Pogun 项目）以 DRep 赞成 35.67% 失败</strong>（64.33% 为「未赞成」，含沉默；明确反对约占分母 40%），投了票的 DRep 中明确反对（16.75 亿 ADA）多于明确赞成（14.81 亿）。8 月版的观察窗口漏掉了它。</li>
+<li><strong>8 月版论点 A8-6「风险是冷漠而非对立」按检验字面判 ❌</strong>（统计量与论点不完全同构，见 3.0）：9 月到期的 Governance Incentives Framework 2026 被<strong>明确反对票</strong>否决（反对 23.55 亿 vs 赞成 0.74 亿 ADA），即使把全部沉默票算作赞成也只有 45.2%，低于 67% 门槛。<strong>同月另有两笔动议因沉默质押失败——冷漠与明确拒绝同时存在。</strong></li>
+<li><strong>国库 9 个 epoch 零新批准，但还不能称为停摆</strong>：epoch 650（8/17–8/22）之后没有一笔国库提取获批；9 月到期两笔失败（其中 Ikigai 是 98.1% 赞成、因沉默失败的冷漠型案例），在投的 OpenZeppelin 提案 DRep 反对 96.57%。<strong>但 epoch 571 以来出现过三次 ≥9 个 epoch 的批准空档</strong>（Koios 一手），本报告自设的「停摆确认」阈值是 18 个 epoch；已批准资金仍在发放（Intersect 9/11 周报：已为 16 份合同拨款）。同期 Hoskinson 9/18 公开表示 <strong>IO 今后不再「Cardano 优先」</strong>（媒体转述，未取得原始视频）。</li>
+<li><strong>9 月 TVL +27.1% 约六成是价格效应</strong>：按价格平减只增 <strong>+0.2%</strong>，按 TVL 对价格的 beta 0.66 粗估、隐含持仓约 <strong>+10%</strong>；<strong>链上稳定币 9 月「+32%」主要是数据断档</strong>——DefiLlama 对 USDM 的统计在 2026-02-09 至 09-28 之间缺失，9/28 恢复时一次计入约 $1,366 万（9/30 存量 $1,354 万）；剔除 USDM 后其余稳定币增长约 +5.7%。</li>
+<li><strong>L1 手续费 9 月 $48,848</strong>（DefiLlama），环比 +24.0%，<strong>真同比 –81.9%</strong>；交易笔数 722,433（+11.9%）。<strong>仍在噪声量级。</strong></li>
+<li><strong>情景框架重建</strong>：8 月版的中性区间上沿「2026 年高点 $91 亿」是错的（实为 1 月 13 日 $158.3 亿），且三档之间有两段空档。本期改用 ADA 自身实际交易过的市值区间、两端开放、首尾相接；<strong>作者基准 = 「期望市值不变」的随机游走基线，概率 64.5/22.0/13.5（悲观/中性/乐观）：期望持平，但 2029 年价格低于现价的概率约 78%</strong>（初稿的 45/30/25「不给方向」经审查撤回，见 9.2）。</li>
+</ol>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ADA 是什么</strong></td>
+<td>一条以学术同行评审方式开发的权益证明公链（Ouroboros + eUTxO），核心卖点是形式化验证与<strong>链上治理</strong>。它的估值既够不着 BTC 的稀缺性锚，也够不着 SOL 的网络收入锚</td>
+</tr>
+<tr>
+<td><strong>当前价格位置</strong></td>
+<td>9/30 收于 <strong>$0.2465</strong>，市值 <strong>$92.5 亿</strong>；10/5 为 $0.2678、市值第 16（8 月版第 19）。距 ATH $3.09 回撤 <strong>–92.0%</strong>，近 1 年 <strong>–70.6%</strong></td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3 表现</strong></td>
+<td><strong>9 月 +24.64%、Q3 +70.94%</strong>。beta 1.58，按 BTC 推算的预期 9 月 +10.10%；超额 <strong>+14.5pp ≈ 1.25 个标准差</strong>，Q3 超额只有 0.26 个标准差。<strong>9 月的超额值得记录，但不显著</strong></td>
+</tr>
+<tr>
+<td><strong>本期最重要的发现</strong></td>
+<td><strong>8 月版的两处治理事实是中途快照或观察窗口不全</strong>：CC 续任案最终 SPO 54.4%–56.5%（三个来源，不是 51.18%）；IOG 系提案并非「全部通过」（Pogun 1,229 万 ADA 失败）。<strong>8 月版把媒体快照标成了一手：86.72% 与 51.18% 是同一类来源分级错误</strong></td>
+</tr>
+<tr>
+<td><strong>治理</strong></td>
+<td><strong>冷漠与明确拒绝同时存在</strong>：GIF 2026 被明确反对票否决（A8-6 按字面 ❌）；Ikigai 返还（投票者 98.1% 赞成）与参数修改第二部分（投票 SPO 76.8% 赞成）因沉默失败。<strong>国库自 epoch 650 起 9 个 epoch 零新批准</strong>（有先例，尚未达「停摆」阈值）。有效选民很窄：DRep 委托 157.4 亿 ADA 中 103.0 亿是「自动弃权」，国库类动议的有效计票分母约 43 亿</td>
+</tr>
+<tr>
+<td><strong>链上使用</strong></td>
+<td>9 月 722,433 笔（日均 24,081，0.28 TPS）；L1 费 $48,848，真同比 –81.9%；TVL 按价格平减 +0.2%。<strong>使用量仍在噪声量级，8 月版的判断不变</strong></td>
+</tr>
+<tr>
+<td><strong>核心多头逻辑</strong></td>
+<td>9 月超额 +14.5pp（不显著）；Cardano Foundation 加入 Mastercard Crypto Partner Program（<strong>媒体转述，无产品、无 ADA 集成</strong>）；Node 11.2 / Dijkstra 在推进，节点 11.3 计划含 Leios（<strong>二手、无主网日期</strong>）；排名回到第 16</td>
+</tr>
+<tr>
+<td><strong>核心空头逻辑</strong></td>
+<td>国库 9 个 epoch 零新批准；IO 表示不再 Cardano 优先（<strong>媒体转述，未取得原始视频</strong>）；明确反对型否决出现；L1 费真同比 –81.9%；TVL 增长约六成是价格效应；仍零份单一资产 ADA 现货 ETF 申报（SEC EDGAR 一手）；8 月版的治理风险证据（0.18pp）被高估、「IOG 系全过」漏了一笔</td>
+</tr>
+<tr>
+<td><strong>估值立场</strong></td>
+<td>情景以 ADA 自身实际交易过的市值区间为参照、两端开放；<strong>作者基准 = 期望市值不变的随机游走基线</strong>，概率 <strong>64.5/22.0/13.5</strong>（悲观/中性/乐观）。期望市值持平，但 <strong>2029 年价格低于现价的概率约 78%</strong>。没有可用的现金流锚，这是选锚的结果，不是基本面推导</td>
+</tr>
+<tr>
+<td><strong>风险等级</strong></td>
+<td>高于 BTC、ETH 与 SOL。年化波动 9 月 76.8%、过去一年 82.3%；对 BTC 的 beta 约 1.4–1.6</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-cardano">1. Cardano 的起源与设计取舍</h2>
+<blockquote>
+<p>本章与 8 月首期相同，此处只保留理解本期内容必需的部分。完整内容见 <code>ada_research_report_202608.md</code> 第 1 章。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Bitcoin</th>
+<th>Solana</th>
+<th><strong>Cardano</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>首要目标</td>
+<td>抗审查的货币</td>
+<td>高吞吐执行层</td>
+<td><strong>形式化验证 + 链上治理</strong></td>
+</tr>
+<tr>
+<td>账本模型</td>
+<td>UTXO</td>
+<td>账户</td>
+<td><strong>eUTxO</strong>（交易结果可在提交前本地确定性验证）</td>
+</tr>
+<tr>
+<td>开发方式</td>
+<td>开源社区</td>
+<td>公司主导快速迭代</td>
+<td><strong>先发论文、过同行评审，再写代码</strong></td>
+</tr>
+<tr>
+<td>代价</td>
+<td>吞吐低</td>
+<td>中心化压力</td>
+<td><strong>产品速度慢；并发争用让 DeFi 开发更难</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>ADA 的三重角色</strong>：质押品（APY 约 2.1%，见 3.5）、手续费（数量级可忽略，见 3.2–3.3）、<strong>治理票权</strong>（本期核心，见第 5 章）。</p>
+<p><strong>三实体架构</strong>：IOG（研发）/ Cardano Foundation（瑞士非营利）/ EMURGO（商业孵化），另有会员制组织 <strong>Intersect</strong> 负责治理协调与预算流程。本期第 5 章的冲突发生在 IOG 与 DRep 群体之间。</p>
+<hr />
+<h2 id="2-ada">2. ADA 的发展阶段划分</h2>
+<blockquote>
+<p>阶段一至四见 8 月首期（Byron / Shelley / Goguen / Basho）。阶段五追加本期事件。</p>
+</blockquote>
+<h3 id="voltaire-202409">阶段五：Voltaire —— 治理落地与压力测试（2024.09– 至今）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-04-22</td>
+<td><strong>Pogun 国库提案（1,229 万 ADA）上链</strong>；epoch 633（约 5 月下旬）<strong>以 DRep 赞成 35.67% 过期失败</strong>——8 月版漏记</td>
+</tr>
+<tr>
+<td>2026-08-17 ~ 08-22</td>
+<td><strong>epoch 650：最后一笔获批的国库提取</strong>（AlphaGrowth 1.2 亿 ADA）</td>
+</tr>
+<tr>
+<td><strong>2026-09-01</strong></td>
+<td>宪法委员会续任案最后一张 SPO 票在 epoch 653 边界前 69 秒（21:43 UTC）上链；最终 SPO 赞成率 <strong>54.69%</strong>（逐票复算）/ 54.40%（Koios）/ 56.54%（Intersect）</td>
+</tr>
+<tr>
+<td>2026-09-01</td>
+<td>参数修改第二部分（minPoolCost 75 + Plutus 内存上限）<strong>过期</strong>：DRep 68.57% 达标，<strong>SPO 32.88% 未达 51%</strong></td>
+</tr>
+<tr>
+<td><strong>2026-09-06</strong></td>
+<td>新宪法委员会在 epoch 654 边界生效</td>
+</tr>
+<tr>
+<td>2026-09-06 ~ 09-11</td>
+<td>两笔新动议上链：<strong>OpenZeppelin 工具栈 1,178.7 万 ADA</strong>、<strong>minPoolCost 单独降至 75 ADA</strong>（均于 epoch 661 到期）</td>
+</tr>
+<tr>
+<td><strong>2026-09-15</strong></td>
+<td><strong>Cardano Foundation 加入 Mastercard Crypto Partner Program</strong>（媒体转述）；同日 CLARITY 法案参议院程序性投票 49–50 失败，ADA 收于 9 月低点 <strong>$0.1954</strong></td>
+</tr>
+<tr>
+<td>2026-09-16</td>
+<td>美联储加息 25bp 至 3.75–4.00%</td>
+</tr>
+<tr>
+<td><strong>2026-09-18</strong></td>
+<td><strong>Hoskinson 直播表示 IO 今后按产品选链、不再「Cardano 优先」</strong>（CryptoSlate 等转述）</td>
+</tr>
+<tr>
+<td><strong>2026-09-21</strong></td>
+<td><strong>epoch 656 结束、提案移除</strong>（Intersect 周报写作「Sep 16, 2026 (Epoch 656)」，指的是到期 epoch 的开始日）：Governance Incentives Framework 2026（420.8 万 ADA）<strong>被明确反对票否决</strong>；Ikigai 押金返还（10.3 万 ADA）<strong>因沉默失败</strong></td>
+</tr>
+<tr>
+<td>2026-09-25</td>
+<td>9 月高点 <strong>$0.2586</strong></td>
+</tr>
+<tr>
+<td>2026-09-05 / 09-11</td>
+<td>Intersect 周报（<strong>已打开原文</strong>）：节点 11.2「完整 Dijkstra 功能、不含 Leios」，不到 1 个月；<strong>11.3 为含 Leios 的硬分叉候选版本，1–2 个月</strong>；无主网日期</td>
+</tr>
+<tr>
+<td>2026-09-28</td>
+<td>DefiLlama 恢复 USDM 统计，Cardano 链上稳定币一日跳升约 $1,366 万（数据事件，非资金流入）</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="3-ada">3. ADA 当前现状分析</h2>
+<h3 id="30-8-6">3.0 论点校验：8 月版登记的 6 条</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th>检验条件（摘要）</th>
+<th>9 月读数</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A8-1</td>
+<td>链上活动不跟随价格</td>
+<td>9–12 月中 ≥3 个月「价格与 TVL 同向且均 &gt;5%」则错</td>
+<td>9 月价格 +24.67%（币安）、TVL +27.1%（DefiLlama）——<strong>计 1 个月</strong>；⚠️ 美元 TVL 对价格的 beta 约 0.66，价格波动超过约 7.6% 的月份会机械地「同向且 &gt;5%」，<strong>本条实际受价格波动污染</strong>，判定时须注明</td>
+<td>⏳ 1 / 3</td>
+</tr>
+<tr>
+<td>A8-2</td>
+<td>L1 收入不会脱离噪声量级</td>
+<td>2027-06-30 前 L1 30 天费用 &gt;$50 万并维持两个月则错</td>
+<td>9 月 $48,848</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>A8-3</td>
+<td>Leios 面对执行风险而非资金风险</td>
+<td>2027-03-31 前因资金不足延期则错</td>
+<td>未见资金相关声明；节点 11.2 不含 Leios，11.3 无主网日期（二手）</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>A8-4</td>
+<td>ETF 通道短期不会打开</td>
+<td>2026 年底前出现单一资产 ADA 现货 ETF 申报则错</td>
+<td><strong>SEC EDGAR 全文检索 8/1–10/4：零份</strong>；唯一相关文件是 Grayscale 8/7 的撤回（RW）</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>A8-5</td>
+<td>中性区间 $0.13–$0.26 是最可能结果</td>
+<td>2026-12 月均价落在区间外则错</td>
+<td>9 月月均 <strong>$0.2223</strong>；<strong>10/5 已到 $0.2678，高于上沿</strong></td>
+<td>⏳ 12 月核</td>
+</tr>
+<tr>
+<td><strong>A8-6</strong></td>
+<td><strong>治理风险是冷漠而非对立</strong></td>
+<td>任一动议因明确反对超过门槛而失败则错；关键动议因参与率失败则成立</td>
+<td><strong>两个分支在 9 月同时触发</strong>——GIF 2026 因明确反对失败；Ikigai、参数修改第二部分因沉默失败</td>
+<td><strong>❌（按检验字面）</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>A8-6 是本期最有信息量的一条</strong>：它的「成立」与「错误」两个分支不互斥，同月同时触发，而登记时没有规定这种情况怎么判。<br />
+本报告按登记的证伪条件字面判 ❌——条件写明「任一动议因明确反对超过门槛而失败则错」，GIF 2026 满足。<br />
+<strong>但要同时写明两点限制</strong>（审查后补）：① 8 月版原话是「治理的<strong>主要</strong>风险是冷漠」，这是关于哪种机制占主导的判断；本期 3 笔失败里 2 笔是冷漠型，反而支持「主要是冷漠」——<strong>检验统计量（是否出现一次明确反对型失败）与论点（哪种机制为主）不完全同构（门槛 4）</strong>；要真正检验「主要」，需要把 epoch 626 以来全部过期提案逐笔分类，本期未做。② GIF 2026 被约 97% 的投票票权与宪法委员会 4:1 否决，是<strong>近乎一致的拒绝</strong>，不是「阵营对立」。<br />
+<strong>另一处</strong>：Pogun 在 5 月就已失败且投票者多数反对（见 5.4）——若媒体归属正确，8 月版写下这条论点时，一个相关反例已经在链上。</p>
+<blockquote>
+<p>检验设计缺陷已补入记分卡门槛 5 的执行细则：<strong>多个判定分支必须互斥，或预先规定同时触发时怎么判。</strong></p>
+</blockquote>
+<h3 id="31">3.1 价格与市场</h3>
+<blockquote>
+<p>口径：CoinGecko <code>market_chart</code>（365 天、日线；每日 00:00 UTC 数据点视为前一日收盘）。币安 API 本期在作者环境中不可用；<strong>横向对照时引用本系列 ETH 9 月版的币安口径数字，并在表内注明</strong>。两种口径 9 月相差 0.03pp。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9/30 收盘</strong></td>
+<td><strong>$0.2465</strong></td>
+</tr>
+<tr>
+<td>市值（9/30）</td>
+<td><strong>$92.5 亿</strong></td>
+</tr>
+<tr>
+<td>10/5 价格 / 市值 / 排名</td>
+<td>$0.2678 / $100.55 亿 / <strong>第 16</strong>（8 月版为第 19）</td>
+</tr>
+<tr>
+<td>流通量</td>
+<td>375.41 亿（CoinGecko，与 Koios「总供应 – 国库」完全一致，见 4.1）</td>
+</tr>
+<tr>
+<td>ATH / 距 ATH</td>
+<td>$3.09（2021-09-01）/ <strong>–92.0%</strong></td>
+</tr>
+<tr>
+<td>9 月区间</td>
+<td>低 <strong>$0.1954</strong>（9/15）/ 高 <strong>$0.2586</strong>（9/25）</td>
+</tr>
+<tr>
+<td>9 月月均（9/1–9/30 共 30 个 00:00 点）</td>
+<td><strong>$0.2223</strong></td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th>ADA（CoinGecko）</th>
+<th>ADA（币安，ETH 9 月版）</th>
+<th>BTC（CoinGecko）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9 月</strong>（8/31→9/30）</td>
+<td><strong>+24.64%</strong></td>
+<td>+24.67%</td>
+<td>+6.39%</td>
+</tr>
+<tr>
+<td><strong>Q3</strong>（6/30→9/30）</td>
+<td><strong>+70.94%</strong></td>
+<td>+70.78%</td>
+<td>+42.70%</td>
+</tr>
+<tr>
+<td>YTD</td>
+<td>–26.04%</td>
+<td>–26.06%</td>
+<td>–4.57%</td>
+</tr>
+<tr>
+<td>近 1 年（2025-10-05→9/30）</td>
+<td><strong>–70.55%</strong></td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>beta、R² 与噪声带</strong>（XIN / CKB 期规则：beta 必须与 R² 一起报；超额必须换算成标准差）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>窗口</th>
+<th>ADA 年化波动</th>
+<th>beta</th>
+<th>R²</th>
+<th>beta 预期</th>
+<th>实际</th>
+<th>超额</th>
+<th>1 个标准差</th>
+<th>约几个标准差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9 月</strong></td>
+<td>76.8%</td>
+<td>1.580</td>
+<td>0.722</td>
+<td>+10.10%</td>
+<td>+24.64%</td>
+<td><strong>+14.54pp</strong></td>
+<td>11.6pp</td>
+<td><strong>约 1.25</strong></td>
+</tr>
+<tr>
+<td>Q3</td>
+<td>75.8%</td>
+<td>1.511</td>
+<td>0.581</td>
+<td>+64.53%</td>
+<td>+70.94%</td>
+<td>+6.42pp</td>
+<td>24.6pp</td>
+<td>约 0.26</td>
+</tr>
+<tr>
+<td>近 1 年</td>
+<td>82.3%</td>
+<td>1.381</td>
+<td>0.569</td>
+<td>–44.62%</td>
+<td>–70.55%</td>
+<td>–25.93pp</td>
+<td>53.7pp</td>
+<td>约 –0.48</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>标准差算法：残差年化波动 = 年化波动 × √(1 − R²)，按窗口天数折算。同期 BTC 年化波动 9 月 41.3%。<br />
+<strong>结论</strong>：9 月 ADA 跑赢 beta 预期 14.5pp，按百分点是本系列 9 月 BTC / ETH / SOL / ADA 里超额最大的（SOL 为 +6.19pp、约 0.66 个标准差）；<strong>但 1.25 个标准差不足以排除噪声</strong>。Q3 与近一年的超额都在噪声内。<br />
+30 日相关性（vs BTC）：9/15 为 0.869，9/30 为 0.850。</p>
+</blockquote>
+<p><strong>9 月最大的单一事件是否解释了超额？——事件窗检验</strong>（GRAM 期规则：写进多空表之前先检验是否已被定价）</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>窗口</th>
+<th>ADA</th>
+<th>BTC</th>
+<th>SOL</th>
+<th>ADA/BTC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8/31 → 9/14（宣布前）</td>
+<td>+5.44%</td>
+<td>–0.48%</td>
+<td>–0.48%</td>
+<td><strong>+5.95%</strong></td>
+</tr>
+<tr>
+<td>9/15 → 9/22（Mastercard 宣布后一周）</td>
+<td><strong>+30.03%</strong></td>
+<td>+14.01%</td>
+<td>+22.33%</td>
+<td><strong>+14.05%</strong></td>
+</tr>
+<tr>
+<td>9/14 → 9/30</td>
+<td>+18.21%</td>
+<td>+6.91%</td>
+<td>+15.15%</td>
+<td>+10.57%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>按 9 月 beta 1.58，9/15→9/22 的预期为 +22.1%，超额约 +7.9pp；一周的残差标准差约 5.6pp，<strong>约 1.4 个标准差</strong>。<br />
+<strong>这条证据不判别</strong>（ZEC 期规则）：9/15 当天同时发生 CLARITY 法案失败（BTC –3.3%），宣布后一周是全市场从该低点的反弹，SOL 同期也跑赢 BTC 8.3pp；<strong>而 ADA/BTC 在宣布前两周已经 +5.95%</strong>。<br />
+<strong>本报告不把 9 月的超额归因于 Mastercard 事件</strong>——能说的只是「时间上重叠、量级在 1–1.5 个标准差」。</p>
+</blockquote>
+<h3 id="32">3.2 链上活动</h3>
+<blockquote>
+<p>Koios 公共 API <code>epoch_info</code>（一手）。Cardano 的 epoch 为 5 天，本期取 epoch 653–658（9/1 21:44 → 10/1 21:44 UTC，共 30 天），与 8 月版的 epoch 647–652 首尾相接。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th style="text-align: center;">Epoch</th>
+<th>起始（UTC）</th>
+<th style="text-align: right;">交易笔数</th>
+<th style="text-align: right;">手续费（ADA）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">653</td>
+<td>09-01</td>
+<td style="text-align: right;">107,090</td>
+<td style="text-align: right;">33,855</td>
+</tr>
+<tr>
+<td style="text-align: center;">654</td>
+<td>09-06</td>
+<td style="text-align: right;">108,500</td>
+<td style="text-align: right;">32,556</td>
+</tr>
+<tr>
+<td style="text-align: center;">655</td>
+<td>09-11</td>
+<td style="text-align: right;">89,353</td>
+<td style="text-align: right;">27,291</td>
+</tr>
+<tr>
+<td style="text-align: center;">656</td>
+<td>09-16</td>
+<td style="text-align: right;">127,132</td>
+<td style="text-align: right;">41,273</td>
+</tr>
+<tr>
+<td style="text-align: center;">657</td>
+<td>09-21</td>
+<td style="text-align: right;">130,442</td>
+<td style="text-align: right;">40,053</td>
+</tr>
+<tr>
+<td style="text-align: center;">658</td>
+<td>09-26</td>
+<td style="text-align: right;">159,916</td>
+<td style="text-align: right;">53,506</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">9 月（epoch 653–658）</th>
+<th style="text-align: right;">8 月（epoch 647–652）</th>
+<th style="text-align: right;">变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>交易总笔数</td>
+<td style="text-align: right;"><strong>722,433</strong></td>
+<td style="text-align: right;">645,772</td>
+<td style="text-align: right;"><strong>+11.9%</strong></td>
+</tr>
+<tr>
+<td>日均 / TPS</td>
+<td style="text-align: right;">24,081 / <strong>0.28</strong></td>
+<td style="text-align: right;">21,526 / 0.25</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>手续费</td>
+<td style="text-align: right;"><strong>228,535 ADA</strong></td>
+<td style="text-align: right;">188,805 ADA</td>
+<td style="text-align: right;">+21.0%</td>
+</tr>
+<tr>
+<td>平均每笔手续费</td>
+<td style="text-align: right;"><strong>0.316 ADA</strong></td>
+<td style="text-align: right;">0.292 ADA</td>
+<td style="text-align: right;">+8.2%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>交叉核对</strong>：228,535 ADA × 9 月月均价 $0.2223 ≈ <strong>$50,800</strong>，DefiLlama 9 月 L1 费 $48,848，相差约 4%（窗口与折算价不同），<strong>数量级一致</strong>。<br />
+<strong>读法</strong>：交易笔数 +11.9% 是一个月的变化，8 月版监控指标 #1 的阈值是「连续一个月日均 &gt;10 万笔」——<strong>9 月的 24,081 笔离它还差约 4 倍</strong>。</p>
+</blockquote>
+<h3 id="33-819">3.3 费用：真同比 –81.9%</h3>
+<p><strong>L1 协议层手续费月度序列</strong>（DefiLlama <code>summary/fees/cardano</code>，日度按月加总，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: right;">L1 手续费</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-07</td>
+<td style="text-align: right;">$270,673</td>
+<td></td>
+</tr>
+<tr>
+<td>2025-08</td>
+<td style="text-align: right;">$312,207</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>2025-09</strong></td>
+<td style="text-align: right;"><strong>$269,935</strong></td>
+<td>真同比基准</td>
+</tr>
+<tr>
+<td>2025-12</td>
+<td style="text-align: right;">$159,502</td>
+<td></td>
+</tr>
+<tr>
+<td>2026-01</td>
+<td style="text-align: right;">$102,318</td>
+<td><strong>最近一次 ≥ $10 万</strong></td>
+</tr>
+<tr>
+<td>2026-06</td>
+<td style="text-align: right;">$46,788</td>
+<td></td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td style="text-align: right;">$40,936</td>
+<td></td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td style="text-align: right;">$39,380</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td style="text-align: right;"><strong>$48,848</strong></td>
+<td>环比 <strong>+24.0%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>比较</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9 月真同比</strong>（vs 2025-09）</td>
+<td><strong>–81.9%</strong></td>
+</tr>
+<tr>
+<td>Q3 2026 合计</td>
+<td>$129,164</td>
+</tr>
+<tr>
+<td>Q3 环比（vs Q2 $164,599）</td>
+<td>–21.5%</td>
+</tr>
+<tr>
+<td><strong>Q3 真同比</strong>（vs 2025 Q3 $852,815）</td>
+<td><strong>–84.9%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>9 月环比 +24.0%：价格与用量大致各占一半</strong>——9 月月均价比 8 月（$0.1961）高 13.4%；以 ADA 计的链上手续费（Koios）环比 +21.0%，其中笔数 +11.9%、每笔费用 +8.2%。<strong>量级没有变化。</strong><br />
+⚠️ 两个来源只在<strong>水平</strong>上一致：Koios 手续费 × 月均价得出美元口径约 +37%（$37,025 → $50,800），DefiLlama 为 +24%，<strong>增速相差约 13pp</strong>，原因未查（窗口与折算价不同）。</p>
+</blockquote>
+<p><strong>生态应用层费用</strong>（DefiLlama <code>overview/fees/cardano</code>，一手）：</p>
+<blockquote>
+<p>⚠️ <strong>口径说明（本期发现）</strong>：DefiLlama 当前返回的 <code>overview</code> 合计<strong>不含</strong> L1 链费——「Cardano Chain」作为协议单列，但不进合计（30 天合计 $496,492 等于其余协议之和）。8 月版写「生态合计 $353,264 <strong>含</strong> L1 $38,275」，<strong>按当前接口无法复现</strong>；8 月版列出的 Strike Finance（$54,691）在当前历史序列中也不再出现。<strong>DefiLlama 对历史数据有修订，8 月版的分项不能与本表直接比较。</strong></p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>协议</th>
+<th style="text-align: right;">2026-08</th>
+<th style="text-align: right;"><strong>2026-09</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Minswap DEX</td>
+<td style="text-align: right;">$103,120</td>
+<td style="text-align: right;"><strong>$155,002</strong></td>
+</tr>
+<tr>
+<td>Liqwid（借贷）</td>
+<td style="text-align: right;">$85,223</td>
+<td style="text-align: right;"><strong>$110,043</strong></td>
+</tr>
+<tr>
+<td>SundaeSwap V2</td>
+<td style="text-align: right;">$11,383</td>
+<td style="text-align: right;">$17,976</td>
+</tr>
+<tr>
+<td>WingRiders</td>
+<td style="text-align: right;">$12,480</td>
+<td style="text-align: right;">$15,553</td>
+</tr>
+<tr>
+<td>Minswap Aggregator</td>
+<td style="text-align: right;">$3,562</td>
+<td style="text-align: right;">$6,128</td>
+</tr>
+<tr>
+<td><strong>Dano Finance</strong></td>
+<td style="text-align: right;"><strong>$78,667</strong></td>
+<td style="text-align: right;"><strong>$4,116</strong></td>
+</tr>
+<tr>
+<td><strong>应用层合计</strong></td>
+<td style="text-align: right;"><strong>$301,409</strong></td>
+<td style="text-align: right;"><strong>$311,514</strong></td>
+</tr>
+<tr>
+<td>加 L1 链费</td>
+<td style="text-align: right;">$340,789</td>
+<td style="text-align: right;"><strong>$360,362</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>读法</strong>：应用层合计几乎持平（+3.4%），但结构换了——Dano Finance 从 $7.9 万掉到 $4,116，Minswap 与 Liqwid 补上。<br />
+⚠️ <strong>10 月初的一个异常值，提前标注</strong>：10/4、10/5 两天 SundaeSwap V2 的日费用都是 <strong>$124,555</strong>（9 月日均不到 $600），两日数字完全相同。<strong>疑似数据异常，10 月版需核实后再用。</strong></p>
+</blockquote>
+<h3 id="34-tvl">3.4 生态数据：TVL 与稳定币</h3>
+<p><strong>DeFi TVL</strong>（DefiLlama <code>historicalChainTvl</code>，一手；「按价格平减」= 美元 TVL ÷ 同一 00:00 UTC 时点的 CoinGecko 价格。⚠️ <strong>这不是锁仓 ADA 的枚数</strong>——TVL 里还有稳定币与其他代币，平减值只是一个购买力单位）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th style="text-align: right;">TVL（美元）</th>
+<th style="text-align: right;">TVL（按价格平减，ADA 单位）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>历史高点 2024-12-07</td>
+<td style="text-align: right;">$7.21 亿</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td>2026-06-30</td>
+<td style="text-align: right;">$8,242 万</td>
+<td style="text-align: right;">5.662 亿枚</td>
+</tr>
+<tr>
+<td>2026-07-31</td>
+<td style="text-align: right;">$6,349 万</td>
+<td style="text-align: right;">3.742 亿枚</td>
+</tr>
+<tr>
+<td><strong>2026-08-31</strong></td>
+<td style="text-align: right;"><strong>$5,254 万</strong></td>
+<td style="text-align: right;"><strong>2.727 亿枚</strong></td>
+</tr>
+<tr>
+<td>2026-09 月内低 / 高</td>
+<td style="text-align: right;">$5,513 万（9/16）/ $6,928 万（9/26）</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td><strong>2026-09-30</strong></td>
+<td style="text-align: right;"><strong>$6,676 万</strong></td>
+<td style="text-align: right;"><strong>2.732 亿枚</strong></td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>变化</th>
+<th style="text-align: right;">以美元计</th>
+<th style="text-align: right;"><strong>按价格平减</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9 月</strong></td>
+<td style="text-align: right;"><strong>+27.1%</strong></td>
+<td style="text-align: right;"><strong>+0.2%</strong></td>
+</tr>
+<tr>
+<td>Q3</td>
+<td style="text-align: right;">–19.0%</td>
+<td style="text-align: right;"><strong>–51.7%</strong></td>
+</tr>
+<tr>
+<td>距历史高点</td>
+<td style="text-align: right;">–90.7%</td>
+<td style="text-align: right;">—</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="Cardano DeFi TVL：美元计 vs ADA 计" src="charts/price-vs-tvl-202609.svg" /></p>
+<blockquote>
+<p>图中数字：美元 TVL（百万美元）82.4 / 63.5 / 52.5 / 66.8；按价格平减（百万，ADA 单位）566.2 / 374.2 / 272.7 / 273.2（6/30、7/31、8/31、9/30）。左图纵轴 0 / 50 / 100，右图纵轴 0 / 200 / 400 / 600。</p>
+</blockquote>
+<p><strong>9 月 TVL 的增长约六成是价格效应</strong>：过去 6 个月 TVL 日度对数变动对 ADA 价格的 beta 为 0.66（R² 0.47）——<strong>TVL 的大部分、但不是全部，是 ADA 计价资产</strong>。按这个 beta，持仓不变时 9 月美元 TVL 应涨约 +16%，实际 +27.1%，<strong>隐含持仓约 +10%</strong>；Q3 隐含持仓约 <strong>−43%</strong>。<br />
+⚠️ 初稿写「以 ADA 计锁仓没有变化」「锁仓 ADA 季度少了一半」——<strong>用的是平减值，它只在 TVL 100% 为 ADA 时等于锁仓枚数</strong>，与本节自己测出的 beta 0.66 不兼容，审查后改写。按 beta 的粗估同样有误差（R² 只有 0.47）；<strong>根本解法是按协议拆代币构成，本期未做。</strong></p>
+<blockquote>
+<p>⚠️ <strong>更正 8 月版的一处推理</strong>：8 月版用「链上稳定币 $6,411 万 ≈ TVL $6,467 万」推出「TVL 几乎全部是静态存放的稳定币」。<br />
+<strong>两个数接近不等于一个包含另一个</strong>：稳定币存量统计的是链上发行在外的全部稳定币（大部分在钱包里），TVL 统计的是锁在 DeFi 合约里的资产，是两个不同的集合。<br />
+本期的价格弹性（beta 0.66）说明 TVL 主要是 ADA 计价资产——<strong>与 8 月版的说法方向相反</strong>。另：DefiLlama 已把 8/31 的 TVL 从 $5,634 万修订为 $5,254 万。</p>
+</blockquote>
+<p><strong>链上稳定币</strong>（DefiLlama stablecoins API，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th style="text-align: right;">合计</th>
+<th style="text-align: right;">其中 USDM</th>
+<th style="text-align: right;">同口径（剔除 USDM）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08-31</td>
+<td style="text-align: right;">$5,091 万</td>
+<td style="text-align: right;">未统计</td>
+<td style="text-align: right;">$5,091 万</td>
+</tr>
+<tr>
+<td>2026-09-27</td>
+<td style="text-align: right;">$5,383 万</td>
+<td style="text-align: right;">未统计</td>
+<td style="text-align: right;">$5,383 万</td>
+</tr>
+<tr>
+<td><strong>2026-09-28</strong></td>
+<td style="text-align: right;"><strong>$6,749 万</strong></td>
+<td style="text-align: right;"><strong>恢复统计</strong></td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td><strong>2026-09-30</strong></td>
+<td style="text-align: right;"><strong>$6,736 万</strong></td>
+<td style="text-align: right;">$1,354 万</td>
+<td style="text-align: right;"><strong>$5,382 万</strong></td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>9 月变化</th>
+<th style="text-align: right;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表面增长</td>
+<td style="text-align: right;"><strong>+32.3%</strong></td>
+</tr>
+<tr>
+<td><strong>剔除 USDM 后其余稳定币的增长</strong></td>
+<td style="text-align: right;"><strong>+5.7%</strong></td>
+</tr>
+<tr>
+<td>其中 USDC（$4,337 万 → $4,658 万）</td>
+<td style="text-align: right;">+7.4%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>「9 月链上稳定币 +32%」是数据事件，不是资金流入</strong>：DefiLlama 的 USDM（Moneta）序列在 <strong>2026-02-09 至 2026-09-28 之间整段缺失</strong>（2025-09-30 时为 $1,301 万），9/28 恢复时一次计入约 $1,366 万。<br />
+这与 CKB 期「数据源可以两端都对、中间一段坏」是同一形态。<strong>任何用 DefiLlama 合计数说「9 月稳定币大增」的报道都是错的。</strong></p>
+</blockquote>
+<p><strong>DEX 成交额</strong>：9 月 $6,379 万（日均约 $213 万，DefiLlama <code>overview/dexs</code>）。8 月版已指出该接口的 30 天口径自相矛盾，<strong>本期只报月度合计，不做环比</strong>。</p>
+<h3 id="35">3.5 质押与验证者经济</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>质押总量（epoch 658 active stake）</td>
+<td><strong>213.21 亿 ADA</strong></td>
+<td>Koios（一手）</td>
+</tr>
+<tr>
+<td>质押率（÷ 流通 375.41 亿）</td>
+<td><strong>56.8%</strong>（8 月版 56.4%–57.0%）</td>
+<td>计算</td>
+</tr>
+<tr>
+<td>注册质押池</td>
+<td><strong>2,889 个</strong>（8 月版 2,895）</td>
+<td>Koios <code>pool_list</code>（一手）</td>
+</tr>
+<tr>
+<td>有投票权的池（epoch 653）</td>
+<td>2,826 个</td>
+<td>Koios <code>pool_voting_power_history</code></td>
+</tr>
+<tr>
+<td><strong>质押者实得毛收益（推算）</strong></td>
+<td><strong>约 2.11%</strong></td>
+<td>见下</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>毛收益的推算（本期新增，一手）</strong>：epoch 653→659 储备每 epoch 净减少约 984 万 ADA，其中约 368 万进入国库（国库每 epoch 增量），<strong>余下约 616 万分配给质押者与池运营者</strong> → 年化约 4.50 亿 ADA ÷ 质押量 213.21 亿 ≈ <strong>2.11%</strong>。与 StakingRewards 的 2.07%（8 月版）一致。<br />
+在 10 年期美债 <strong>5.29%</strong> 的环境下（9 月末，美国财政部），质押收益不到无风险利率的四成。</p>
+</blockquote>
+<h3 id="36">3.6 宏观环境</h3>
+<blockquote>
+<p>与 BTC / SOL 9 月版共用（一手：federalreserve.gov、美国财政部）。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>因素</th>
+<th>9 月末</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>联邦基金利率</td>
+<td><strong>3.75–4.00%</strong>（美联储 9/16 加息 25bp，12:0）</td>
+</tr>
+<tr>
+<td>10 年期美债</td>
+<td><strong>5.29%</strong>（年内最高）</td>
+</tr>
+<tr>
+<td>CLARITY 法案</td>
+<td>9/15 参议院程序性投票 49–50 失败（需 60 票）</td>
+</tr>
+<tr>
+<td>8 月 CPI</td>
+<td>同比 3.4%（转述）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>宏观全面偏鹰，ADA 仍涨 24.6%。</strong> 与 BTC 9 月版的观察相同：本报告不把宏观偏鹰直接翻译成偏空。<br />
+<strong>对 ADA 的特殊含义</strong>：CLARITY 失败意味着 SEC 对 ADA 是证券还是商品<strong>仍无定论</strong>——这是单一资产 ADA 现货 ETF 的前提条件之一（见 6.1）。</p>
+</blockquote>
+<h3 id="37-q3">3.7 Q3 季度回顾（本版新增）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>Q2 2026</th>
+<th><strong>Q3 2026</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ADA 季度涨跌（CoinGecko）</td>
+<td>—</td>
+<td><strong>+70.94%</strong></td>
+</tr>
+<tr>
+<td>L1 手续费</td>
+<td>$164,599</td>
+<td><strong>$129,164</strong>（–21.5%）</td>
+</tr>
+<tr>
+<td>季末 TVL（美元）</td>
+<td>$8,242 万</td>
+<td><strong>$6,676 万</strong>（–19.0%）</td>
+</tr>
+<tr>
+<td>季末 TVL（按价格平减）</td>
+<td>5.662 亿</td>
+<td><strong>2.732 亿</strong>（–51.7%；按 beta 粗估隐含持仓约 −43%）</td>
+</tr>
+<tr>
+<td>获批的国库提取（按 enacted_epoch 近似归季）</td>
+<td>14 笔 / 2.63 亿 ADA</td>
+<td><strong>15 笔 / 1.84 亿 ADA，全部在 epoch 650（8/17–8/22）之前；此后为零</strong></td>
+</tr>
+<tr>
+<td>市值排名（季末前后）</td>
+<td>第 19（8 月版）</td>
+<td><strong>第 16</strong>（10/5）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>一句话</strong>：<strong>Q3 是一个高 beta 资产在 BTC 大涨季度里的表现</strong>——价格超额在噪声内，链上锁仓按 beta 粗估少了四成多，L1 收入环比下降，国库季末起 9 个 epoch 没有新批准。</p>
+<blockquote>
+<p>归季口径：Q2 ≈ epoch 622–640（3/30–7/3），Q3 ≈ epoch 641–658（7/3–10/1），epoch 边界与自然季度相差最多 3 天。Q3 的 15 笔里 11 笔集中在 epoch 645–646（7/23–8/2），属于同一批 6 月提交的基础设施提案。</p>
+</blockquote>
+<hr />
+<h2 id="4-ada">4. 代币经济学与国库（ADA 特有）</h2>
+<h3 id="41-185">4.1 发行实测：总供应年化增速 1.85%</h3>
+<p><strong>供应账目</strong>（Koios <code>totals</code>，epoch 659，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总供应（supply）</td>
+<td style="text-align: right;">389.12 亿</td>
+</tr>
+<tr>
+<td>其中国库</td>
+<td style="text-align: right;"><strong>13.71 亿</strong></td>
+</tr>
+<tr>
+<td><strong>流通（总供应 – 国库）</strong></td>
+<td style="text-align: right;"><strong>375.41 亿</strong>（与 CoinGecko 流通量完全一致）</td>
+</tr>
+<tr>
+<td>未发行储备（reserves）</td>
+<td style="text-align: right;"><strong>60.88 亿</strong></td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td style="text-align: right;"><strong>450.00 亿</strong>（= 硬上限，闭合）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>发行速度</strong>（epoch 653 → 659，6 个 epoch）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">每 epoch</th>
+<th style="text-align: right;">年化（73 个 epoch）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>储备净减少 = 总供应增加</td>
+<td style="text-align: right;">约 984 万 ADA</td>
+<td style="text-align: right;">约 7.18 亿 ADA，<strong>占总供应 1.85%</strong></td>
+</tr>
+<tr>
+<td>其中进入国库</td>
+<td style="text-align: right;">约 368 万</td>
+<td style="text-align: right;">约 2.69 亿</td>
+</tr>
+<tr>
+<td><strong>进入流通（质押奖励）</strong></td>
+<td style="text-align: right;">约 616 万</td>
+<td style="text-align: right;">约 4.50 亿，<strong>占流通 1.20%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>8 月版的「通胀 1.47%」来自 StakingRewards，口径未注明</strong>；按 Koios 账目，总供应年化增速 1.85%、流通年化增速 1.20%，<strong>两者都不是 1.47%</strong>。本期起改用链上账目。<br />
+储备每 epoch 衰减约 0.16%（协议参数 ρ = 0.3% 是上限，按出块表现折算后未分配部分退回储备）。</p>
+</blockquote>
+<h3 id="42">4.2 国库：在增长，新批准暂停</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">epoch 651（8 月版）</th>
+<th style="text-align: right;"><strong>epoch 659</strong></th>
+<th style="text-align: right;">变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国库余额</td>
+<td style="text-align: right;">13.41 亿 ADA</td>
+<td style="text-align: right;"><strong>13.71 亿 ADA</strong></td>
+<td style="text-align: right;"><strong>+2.2%</strong></td>
+</tr>
+<tr>
+<td>折美元</td>
+<td style="text-align: right;">约 $2.88 亿</td>
+<td style="text-align: right;"><strong>约 $3.38 亿</strong>（按 $0.2465）</td>
+<td style="text-align: right;"></td>
+</tr>
+<tr>
+<td>期间新获批的国库提取</td>
+<td style="text-align: right;">AlphaGrowth 1.2 亿（epoch 650）</td>
+<td style="text-align: right;"><strong>零</strong>（已批准资金仍在发放，见 5.6）</td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>国库提取动议的累计战绩</strong>（Koios <code>proposal_list</code>，按 proposed_epoch ≥ 626，一手）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>状态</th>
+<th style="text-align: right;">8 月版</th>
+<th style="text-align: right;"><strong>本期</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>已批准并执行</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;"><strong>26</strong></td>
+</tr>
+<tr>
+<td>过期未通过</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;"><strong>25</strong></td>
+</tr>
+<tr>
+<td>投票中</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;"><strong>1</strong>（OpenZeppelin）</td>
+</tr>
+<tr>
+<td><strong>通过率</strong></td>
+<td style="text-align: right;">53.1%</td>
+<td style="text-align: right;"><strong>51.0%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>8 月版的两笔「投票中」（Ikigai、GIF 2026）<strong>都在 9 月失败</strong>；新增的一笔（OpenZeppelin）DRep 反对 96.57%。<br />
+<strong>过去 73 个 epoch（约一年）共批准 32 笔、合计 5.32 亿 ADA</strong>；<strong>而 epoch 650 之后一笔都没有</strong>。<strong>这种空档有先例</strong>：epoch 571 以来出现过三次 ≥9 个 epoch 的批准空档（578→598 共 20 个、606→621 共 15 个、625→634 共 9 个；Koios 一手），批准本来就成批出现（Q3 的 15 笔里 11 笔集中在 epoch 645–646）。8 月版监控指标 #5 的阈值是「通过率跌破 35%」——<strong>累计通过率是一个慢变量，它掩盖了最近 9 个 epoch 的零批准</strong>。本期把监控改为「最近一笔获批距今的 epoch 数」（见 10.3）。</p>
+</blockquote>
+<hr />
+<h2 id="5">5. 治理：冷漠与对立同时出现（本期核心章）</h2>
+<h3 id="51-9-koios-proposal_voting_summary-proposal_list">5.1 9 月结算的治理动议（Koios <code>proposal_voting_summary</code> + <code>proposal_list</code>，一手）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>动议</th>
+<th>类型</th>
+<th>结果</th>
+<th style="text-align: right;">DRep 赞成</th>
+<th style="text-align: right;">SPO 赞成</th>
+<th>宪法委员会</th>
+<th><strong>失败原因</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Update Constitutional Committee 2026</td>
+<td>委员会更新</td>
+<td>✅ epoch 653 批准、654 生效</td>
+<td style="text-align: right;">71.95%</td>
+<td style="text-align: right;"><strong>54.40%</strong>（Koios；逐票复算 54.69%；Intersect 周报 56.54%）</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>降 minPoolCost 至 75 + 提高 Plutus 内存（第二部分）</td>
+<td>参数修改</td>
+<td>❌ epoch 653 过期</td>
+<td style="text-align: right;">68.57%（门槛 67% ✅）</td>
+<td style="text-align: right;"><strong>32.88%</strong>（门槛 51%）</td>
+<td>71.43%</td>
+<td><strong>SPO 沉默</strong>：投票 SPO 中 76.8% 赞成（37.10 亿 vs 11.21 亿），约 64.5 亿未投票计为反对</td>
+</tr>
+<tr>
+<td>Ikigai 押金返还（10.3 万 ADA）</td>
+<td>国库提取</td>
+<td>❌ epoch 656 过期</td>
+<td style="text-align: right;"><strong>65.18%</strong>（差 1.82pp）</td>
+<td style="text-align: right;">不适用</td>
+<td>5 赞 1 反</td>
+<td><strong>DRep 沉默</strong>：投票者 98.1% 赞成（28.91 亿 vs 0.55 亿），约 13.50 亿沉默 + 1.39 亿自动不信任计为反对</td>
+</tr>
+<tr>
+<td><strong>Governance Incentives Framework 2026</strong>（420.8 万 ADA）</td>
+<td>国库提取</td>
+<td>❌ epoch 656 过期</td>
+<td style="text-align: right;"><strong>1.72%</strong></td>
+<td style="text-align: right;">不适用</td>
+<td><strong>1 赞 4 反</strong></td>
+<td><strong>明确反对</strong>：98 个 DRep / 23.55 亿 ADA 投反对，12 个 / 0.74 亿投赞成</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>9 月上链、尚在投票的</strong>（截至 epoch 659）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>动议</th>
+<th>金额 / 内容</th>
+<th>到期</th>
+<th style="text-align: right;">当前 DRep 赞成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenZeppelin 工具栈（Intersect 管理）</td>
+<td>1,178.7 万 ADA</td>
+<td>epoch 661</td>
+<td style="text-align: right;"><strong>3.43%</strong>（61 个 DRep / 17.19 亿反对）</td>
+</tr>
+<tr>
+<td>单独降 minPoolCost 至 75 ADA</td>
+<td>参数修改</td>
+<td>epoch 661</td>
+<td style="text-align: right;">26.65%</td>
+</tr>
+<tr>
+<td>是否把 k 从 500 提到 1000（SPO 意见调查）</td>
+<td>信息动议</td>
+<td>epoch 663</td>
+<td style="text-align: right;">2.83%（SPO 0.72%）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="52-gif-2026">5.2 GIF 2026：一次明确的拒绝</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">数值（ADA）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>明确赞成（12 个 DRep）</td>
+<td style="text-align: right;"><strong>0.74 亿</strong></td>
+</tr>
+<tr>
+<td><strong>明确反对（98 个 DRep）</strong></td>
+<td style="text-align: right;"><strong>23.55 亿</strong></td>
+</tr>
+<tr>
+<td>自动不信任（计为反对）</td>
+<td style="text-align: right;">1.39 亿</td>
+</tr>
+<tr>
+<td>沉默（活跃 DRep 未投票，计为反对）</td>
+<td style="text-align: right;">17.29 亿</td>
+</tr>
+<tr>
+<td>有效计票分母</td>
+<td style="text-align: right;"><strong>42.96 亿</strong></td>
+</tr>
+<tr>
+<td><strong>把沉默与自动不信任全部算成赞成时的上限</strong></td>
+<td style="text-align: right;">(0.74 + 17.29 + 1.39) ÷ 42.96 = <strong>45.2%</strong>，仍低于 67%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>结论</strong>：这笔提案的失败与冷漠无关——<strong>投了票的人里 97% 的票权反对它</strong>，宪法委员会也 4 比 1 反对。<br />
+它满足 8 月版 A8-6 登记的证伪条件，<strong>本期按字面判 ❌</strong>（限制见 3.0）。<br />
+<strong>但这不等于「Cardano 进入了阵营对立」</strong>：97% 的投票票权加宪法委员会 4:1 是近乎一致的拒绝，不是两个阵营对峙；同月另外两笔是典型的冷漠型失败（投票者 98.1% / 76.8% 赞成）。<strong>正确的描述是冷漠与明确拒绝并存。</strong></p>
+</blockquote>
+<h3 id="53-8-spo-5118-018pp">5.3 更正 8 月版：「SPO 51.18%、仅超门槛 0.18pp」是中途快照</h3>
+<p>8 月版第 5.4 节写：宪法委员会续任案「SPO 支持率 51.18%（门槛 51%，仅超 0.18pp）」「SPO 投票率一度仅 39%」，<strong>并在正文标注「（已一手核实）」、在 11.4 标为「✅ 打开原文」</strong>，以此作为「治理风险是冷漠」的核心证据之一。</p>
+<p><strong>本期逐票复算</strong>（Koios <code>proposal_votes</code> 的 338 张 SPO 票 × <code>pool_voting_power_history</code> 的 epoch 652 质押分布；未投票计反对，「自动弃权」约 95.15 亿从分母中扣除）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点（UTC）</th>
+<th style="text-align: right;">SPO 赞成率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8/31 13:00</td>
+<td style="text-align: right;"><strong>39.02%</strong></td>
+</tr>
+<tr>
+<td>9/1 00:00</td>
+<td style="text-align: right;">46.99%</td>
+</tr>
+<tr>
+<td>9/1 11:26</td>
+<td style="text-align: right;">首次越过 51%</td>
+</tr>
+<tr>
+<td><strong>9/1 11:30</strong></td>
+<td style="text-align: right;"><strong>51.18%</strong> ← 与 8 月版引用值一致</td>
+</tr>
+<tr>
+<td><strong>9/1 21:43（最后一张 SPO 票，epoch 653 边界前 69 秒）</strong></td>
+<td style="text-align: right;"><strong>54.69%（最终）</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="宪法委员会续任案：SPO 赞成率随投票时间的变化" src="charts/usage-gap-202609.svg" /></p>
+<blockquote>
+<p>图中数字：8/31 13:00 UTC 39.02%；9/1 11:30 UTC 51.18%；最终 54.69%；通过门槛 51%；纵轴 0% / 20% / 40% / 60%；横轴刻度 8/25、8/26、8/27、8/28、8/29、8/30、8/31、9/1；Koios 汇总口径 54.40%（Intersect 周报为 56.54%，见下）。</p>
+</blockquote>
+<p><strong>这说明三件事</strong>：</p>
+<ol>
+<li><strong>8 月版犯的是来源分级错误。</strong> 首期的头号更正是「86.72% 反对」是中途快照——那个数字支持的是初稿当时的结论，是被外部审查抓出来的；<strong>同一份报告里的 51.18% 也是媒体快照</strong>，却被标成「已一手核实」「✅ 打开原文」——<strong>打开的是媒体原文，不是链上记录</strong>。两者是同一类来源，前者有人抓、后者没人抓。</li>
+<li><strong>「39%」的口径存疑</strong>：8 月版写「SPO 投票率一度仅 39%」；本期复算显示 8/31 13:00 的<strong>赞成率</strong>是 39.02%，但本报告没有计算投票率序列，<strong>无法确认 8 月版是把赞成率写成了投票率，还是另有一个 39% 的投票率时点</strong>。</li>
+<li><strong>险情的性质需要重写，但没有消失</strong>：最终超门槛约 3.4–5.5pp（三个来源），<strong>不是 0.18pp</strong>；但最终赞成票权的 <strong>32% 是在截止前最后约 46 小时才到达的</strong>，约 51.9 亿 ADA 的未投票质押仍被计为反对。<strong>「靠最后时刻动员过关」这个描述成立；「险胜 0.18pp」不成立。</strong></li>
+</ol>
+<blockquote>
+<p><strong>最终值有三个来源、三个数</strong>：Koios 汇总端点（epoch 653 质押分布）54.40%；本报告逐票复算（epoch 652 分布）54.69%；<strong>Intersect 9/5、9/11 周报 56.54%（已打开原文）</strong>。前两者的差异来自质押分布取点；与 Intersect 的差异<strong>原因未查明</strong>（可能与 SPO 未投票的默认计票规则或质押快照有关，未验证）。<strong>三者都高于 51%、都不是 51.18%</strong>，结论不受影响；但「51.18% 恰好是 11:30 的读数」只能说「与 11:30 前后的读数一致」——本报告的复算方法与 Koios 相差 0.29pp，精度不足以把时点钉到分钟。</p>
+</blockquote>
+<h3 id="54-8-iog">5.4 更正 8 月版：「IOG 系四笔提案全部通过」不成立</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>数值（Koios，一手）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>提案</td>
+<td>国库提取 <strong>1,229 万 ADA</strong>（链上元数据标题为空；<strong>多家媒体称为 Input Output 的 Pogun 项目</strong>，CryptoSlate 引用了同一组 Koios 数字）</td>
+</tr>
+<tr>
+<td>上链 / 到期</td>
+<td>2026-04-22（proposed epoch 626）/ <strong>epoch 633 过期</strong></td>
+</tr>
+<tr>
+<td>DRep 赞成 / 未赞成</td>
+<td><strong>35.67% / 64.33%</strong>（64.33% 含沉默计反对；明确反对约占分母 40%）</td>
+</tr>
+<tr>
+<td>投了票的 DRep</td>
+<td><strong>明确赞成 14.81 亿 vs 明确反对 16.75 亿 ADA</strong></td>
+</tr>
+<tr>
+<td>宪法委员会</td>
+<td>100% 赞成</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>8 月版的观察窗口是「epoch 626 以来」，而这笔提案恰好是 epoch 626 提交的——它在 8 月版自己的样本里，却没有被归入「IOG 系」。</strong><br />
+若媒体的归属正确，那么：① 「IOG 系四笔全部通过」应为「五笔中四笔通过」；② <strong>这是一次投票者多数反对的失败，早于 A8-6 登记三个月</strong>——8 月版写「治理风险是冷漠而非对立」时，反例已经在链上。<br />
+⚠️ <strong>提案人身份未能一手确认</strong>：链上元数据指向 IPFS，本期作者环境无法访问 IPFS 网关。归属依据是媒体的一致报道（CryptoSlate、Blockonomi、cryptonews 等）——<strong>按 ADA 首期规则，多家一致 ≠ 事实</strong>，因此本条标 ⚠️。</p>
+</blockquote>
+<h3 id="55">5.5 有效选民有多窄</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目（epoch 658）</th>
+<th style="text-align: right;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DRep 委托合计</td>
+<td style="text-align: right;"><strong>157.4 亿 ADA</strong>（861 个 DRep）</td>
+</tr>
+<tr>
+<td>其中「自动弃权」</td>
+<td style="text-align: right;"><strong>103.0 亿</strong></td>
+</tr>
+<tr>
+<td>其中「自动不信任」</td>
+<td style="text-align: right;">1.39 亿</td>
+</tr>
+<tr>
+<td><strong>国库类动议的有效计票分母</strong>（GIF 2026）</td>
+<td style="text-align: right;"><strong>约 43 亿</strong></td>
+</tr>
+<tr>
+<td>占流通量</td>
+<td style="text-align: right;"><strong>约 11.4%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>ADA 的治理结果由约 43 亿 ADA 的票权决定</strong>，约等于流通量的九分之一。其余要么没委托、要么委托给「自动弃权」——后者在 Cardano 的计票规则里<strong>从分母中扣除</strong>，不影响结果。<br />
+<strong>这对门槛 11 有直接含义</strong>（审查后改写）：左右一笔国库提取所需的票权<strong>取决于提案离门槛多远</strong>。最难翻转的是 GIF（反对方 23.55 亿）；<strong>最容易的是 Ikigai</strong>——赞成 28.91 亿、分母约 44.35 亿，<strong>一个参与者新委托约 2.44 亿 ADA 给赞成方就能把它推过 67%，低于市值 1% 的 3.75 亿 ADA</strong>。初稿只用了最难的案例，得出「远超」，审查后撤回。</p>
+</blockquote>
+<h3 id="56-io">5.6 国库新批准暂停与 IO 的表态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>事实</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>epoch 650 之后零笔国库提取获批</strong>（截至 epoch 659，9 个 epoch、约 45 天）；epoch 571 以来有三次 ≥9 个 epoch 的先例</td>
+<td>Koios ✅</td>
+</tr>
+<tr>
+<td><strong>已批准资金仍在发放</strong>：Intersect 作为国库提取管理方，2026 预算周期已为 16 份合同拨款、9 份待拨，累计转出 7,400 万 ADA 与 2,200 万 USDx</td>
+<td>Intersect 9/11 周报 ✅（已打开原文）</td>
+</tr>
+<tr>
+<td>9 月两笔到期国库提案失败（GIF 为明确拒绝；Ikigai 为 98.1% 赞成、因沉默失败），在投的 OpenZeppelin 提案 DRep 反对 96.57%</td>
+<td>Koios ✅</td>
+</tr>
+<tr>
+<td>9/18 Hoskinson 直播：<strong>IO 今后按产品选择最合适的链，不再「Cardano 优先」</strong>；RealFi 将于 10 月在 Cardano 上线，Pogun 在 90 天内推出</td>
+<td>CryptoSlate 等转述 ⚠️</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>该怎么读</strong>：明确被拒的是<strong>新增支出</strong>（激励框架；新的工具栈拨款正在以 96.57% 反对的速度被否），而 Leios 等核心研发的资助已在 6 月到位、已批准合同仍在拨付。<strong>所以这不是「研发资金被切断」。「增量支出被冻结」是推断</strong>——能区分「冻结」与「批次之间的正常空档」的只有 GIF 与尚未结束的 OpenZeppelin 两笔，Ikigai 属于冷漠型失败，不计入；按本报告自设的阈值（&gt;18 个 epoch），停摆尚未确认。<br />
+<strong>但「核心开发实体不再 Cardano 优先」是一个新的、方向明确的风险</strong>——8 月版把它列为「ADA 独有的额外风险」之一（核心开发实体退出），本期它从假设变成了公开表态。<strong>它的实际含义要看 IO 下一个产品选哪条链，本期不推断。</strong></p>
+</blockquote>
+<h3 id="57-8">5.7 本章的定性（相对 8 月版的修订）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>8 月版的说法</th>
+<th>本期判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「治理风险是冷漠，不是对立」</td>
+<td>❌ <strong>按检验字面判错</strong>：GIF 2026 是明确拒绝型否决；Pogun 早在 5 月就有投票者多数反对。<strong>但「主要风险是冷漠」本期未被检验</strong>（3.0）</td>
+</tr>
+<tr>
+<td>「两次险情均由沉默计反对导致」（Summit 差 1.46pp、CC 差 0.18pp）</td>
+<td>⚠️ <strong>CC 那次的 0.18pp 是中途快照</strong>，最终约 3.4–5.5pp；Summit 的 1.46pp 本期未复算</td>
+</tr>
+<tr>
+<td>「IOG 系四笔全部通过」</td>
+<td>⚠️ <strong>漏了 Pogun</strong>（若媒体归属正确，应为五笔中四笔）</td>
+</tr>
+<tr>
+<td>「国库在高强度地花钱」</td>
+<td>⚠️ <strong>到 8 月中为止成立</strong>；epoch 650 后 9 个 epoch 零新批准，已批准资金仍在发放</td>
+</tr>
+<tr>
+<td>「DRep 批准基础设施、否决市场活动」</td>
+<td>⚠️ <strong>9 月被否的 GIF 2026 是治理激励，OpenZeppelin 是开发者工具</strong>——后者属于基础设施，正在以 96.57% 反对的速度被否</td>
+</tr>
+<tr>
+<td>「治理即将崩溃」</td>
+<td><strong>仍然不该说</strong>。CC 续任成功，宪法委员会满员运作，参数与国库机制都在工作——<strong>只是它现在在说「不」</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>修正后的核心判断</strong>：<strong>ADA 治理的结果由一个约 43 亿 ADA 的有效选民决定，这个选民群体同时表现出冷漠（沉默计反对导致高支持率提案失败）与对部分新增支出的明确拒绝。</strong> 「支出收紧成为常态」是推断，目前只有 GIF 一个确定样本。<br />
+8 月版没看到后者，<strong>能解释的是它漏记了 Pogun</strong>；51.18% 是不是中途快照，与它有没有看到明确拒绝型否决无关。</p>
+</blockquote>
+<hr />
+<h2 id="6">6. 机构通道与持有者结构</h2>
+<h3 id="61-etf1023">6.1 ETF：零份申报，10/23 窗口不会发生任何事</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th>结果</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SEC EDGAR 全文检索「Cardano」，8/1–10/4，表格 S-1 / S-1/A / 19b-4</td>
+<td>8 条命中，<strong>全部是多资产产品</strong>（Cryptex Digital Market Cap ETF 的 S-1/A ×4、Canary 的 INJ / PEPE / TRX / SEI 单币 ETF 修订稿）</td>
+<td>EDGAR ✅</td>
+</tr>
+<tr>
+<td>检索「Cardano Trust」</td>
+<td><strong>Grayscale Cardano Trust ETF 8/7 提交 RW（撤回申请）</strong></td>
+<td>EDGAR ✅（8 月版为媒体转述，本期一手确认）</td>
+</tr>
+<tr>
+<td>检索「ADA ETF」</td>
+<td>0 条</td>
+<td>EDGAR ✅</td>
+</tr>
+<tr>
+<td>指数型敞口</td>
+<td>Hashdex Nasdaq Crypto Index ETF 持有 ADA</td>
+<td>媒体转述 ⚠️</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>8 月版写的 10/23「理论审查窗口」不会发生任何事</strong>：没有申报就没有审查。A8-4 继续待验。<br />
+⚠️ <strong>检索的局限</strong>：交易所提交的 19b-4 不一定以 EDGAR 全文形式出现，本检索<strong>不能排除</strong>交易所官网上的 19b-4。</p>
+</blockquote>
+<h3 id="62-mastercard">6.2 Mastercard：加入一个合作计划，不是一个产品</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>事件</td>
+<td><strong>Cardano Foundation 于 9/15 加入 Mastercard Crypto Partner Program 的「区块链」赛道</strong>，方向为跨境转账、企业支付与结算</td>
+</tr>
+<tr>
+<td>未披露</td>
+<td><strong>产品发布、ADA 集成、交易量目标、时间表——均无</strong></td>
+</tr>
+<tr>
+<td>来源</td>
+<td>多家加密媒体转述；<strong>Cardano Foundation 官网（cardano.org）在作者环境中被网络策略拦截，未能打开原文</strong> ⚠️</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>这是一个有多家参与者的合作计划</strong>（媒体称同一计划内还有其他公链与支付公司），<strong>本报告不把它写成「Mastercard 采用 Cardano」</strong>。<br />
+事件窗检验（3.1）显示宣布后一周 ADA/BTC +14.05%，<strong>但它与 CLARITY 失败后的全市场反弹重叠，且宣布前两周 ADA/BTC 已 +5.95%——不判别</strong>。<br />
+记分卡已明确拒绝登记「Mastercard 合作会带来链上稳定币支付增长」：前提只有媒体转述（门槛 10），且没有能与其他增长来源区分的统计量（门槛 9）。</p>
+</blockquote>
+<h3 id="63-cardano-foundation">6.3 Cardano Foundation 与企业储备</h3>
+<p><strong>本期无新数据。</strong> Cardano Foundation 的下一份年度报告预计在 2027 年；8 月版的数据（2025 年末总资产 –45%、现金及金融资产占比 22.9%）仍是最新。企业储备渗透率仍近乎为零。</p>
+<hr />
+<h2 id="7-ada">7. ADA 的核心价值逻辑</h2>
+<blockquote>
+<p><strong>星级编码证据等级</strong>（ETH 期规则）：全部建立在二手转述上的论据不得高于三星，并在说明栏写明。</p>
+</blockquote>
+<h3 id="71">7.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th style="text-align: center;">强度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>链上治理真实运转</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td><strong>本期由四星降为三星</strong>：机制在工作（CC 续任成功、委员会满员）；降星理由是 8 月版的「IOG 系四笔全过」漏了 Pogun、国库 9 个 epoch 零新批准。<strong>注意：51.18% 更正为 54.4%–56.5%，说明续任案过得更从容，对本条是利好，不是降星理由。</strong> 它证明的是「治理有效」，不是「治理会持续资助发展」</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>出块层去中心化程度高</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>2,889 个注册池，2,826 个有投票权（Koios 一手）</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>安全记录干净</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>主网 2017 年至今无共识层重大事故（不变）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>9 月跑赢 beta 预期 14.5pp</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td><strong>本月新增</strong>。CoinGecko 一手，但只有约 1.25 个标准差，Q3 与近一年都在噪声内</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Leios 在推进</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td><strong>由三星降为两星</strong>：节点 11.2 不含 Leios，含 Leios 的 11.3（硬分叉候选版本）在其后 1–2 个月、无主网日期——<strong>Intersect 9/5、9/11 周报原文已打开（一手）</strong>；降星理由是进度本身，不是证据等级</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Mastercard 合作计划</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td><strong>本月新增</strong>。<strong>本报告未取得一手来源</strong>；无产品、无 ADA 集成；事件窗不判别</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Midnight 有企业节点运营商</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td><strong>由三星降为两星</strong>：本期无新数据，8 月版来源本身为搜索摘要</td>
+</tr>
+<tr>
+<td>—</td>
+<td>~~ETF 窗口在 10 月前存在~~</td>
+<td style="text-align: center;"><strong>删除</strong></td>
+<td>零份申报（EDGAR 一手），10/23 不会发生任何事</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="72">7.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th style="text-align: center;">强度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>网络使用量在数量级上近乎不存在</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>9 月 722,433 笔、0.28 TPS；L1 费 $48,848、<strong>真同比 –81.9%</strong>（Koios + DefiLlama 一手，两源在水平上一致、增速相差约 13pp）</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>国库新批准暂停，新增支出遭明确拒绝</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td><strong>本月新增</strong>。epoch 650 后 9 个 epoch 零新批准；GIF 明确拒绝、在投的 OpenZeppelin 96.57% 反对（Koios 一手）。<strong>三星而非四星</strong>（审查后下调）：9 个 epoch 的空档有三次先例，未达本报告「停摆」阈值；已批准资金仍在发放；核心研发资助已在 6 月到位</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>治理出现明确拒绝型否决</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td><strong>本月新增</strong>。GIF 2026（Koios 一手）。<strong>三星而非四星</strong>：同月另两笔是冷漠型失败，单次明确拒绝不足以说明阵营化</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>核心开发实体不再 Cardano 优先</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td><strong>本月新增</strong>。Hoskinson 9/18 表态，<strong>媒体转述、本报告未取得原始视频或文字稿</strong>，故三星</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>TVL 增长约六成是价格效应，锁仓季度减少四成多</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td><strong>由 8 月版「TVL –91%」改写</strong>：按 beta 0.66 粗估隐含持仓 9 月约 +10%、Q3 约 −43%（DefiLlama + CoinGecko 一手；粗估，代币构成未拆）。审查后由四星降为三星</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>ETF 通道空白</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>零份单一资产申报、Grayscale 已撤回（EDGAR 一手）</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>质押收益不敌无风险利率</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>实得毛收益约 2.11% vs 10 年期美债 5.29%</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>高 beta、高波动</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>年化波动 76.8%（9 月）/ 82.3%（一年），beta 1.4–1.6</td>
+</tr>
+<tr>
+<td>—</td>
+<td>~~「ghost chain」批评已逼近兑现（第 19）~~</td>
+<td style="text-align: center;"><strong>删除</strong></td>
+<td>排名回到第 16；<strong>排名主要由价格决定，本身不是使用量证据</strong>——8 月版把它当空头证据、本期若当多头证据同样不对</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="73-dot">7.3 多空同源检查（DOT 期规则）</h3>
+<ul>
+<li><strong>多头 1（治理运转）与空头 2、3（新批准暂停、明确拒绝型否决）是同一个机制的两面</strong>：治理「有效」恰恰体现在它能说「不」。<strong>多头 1 已降为三星，空头 3 只给三星</strong>——同一组 Koios 数据不能同时给两边高星。</li>
+<li><strong>多头 4（9 月超额）与空头 8（高 beta）同源</strong>：9 月的上涨里约 10pp 是 beta，剩下的 14.5pp 不显著。<strong>多头 4 只给两星。</strong></li>
+<li><strong>空头 1（使用量）与空头 5（TVL）同源</strong>：都是「链上没有新增使用」。<strong>空头 5 由「TVL –91%」改写为扣除价格后的锁仓变化</strong>，避免与价格重复计入。</li>
+<li><strong>多头 6（Mastercard）与多头 4 不能叠加</strong>：事件窗检验已说明两者在时间上重叠，<strong>不能既算一次「合作利好」又算一次「超额表现」</strong>。</li>
+</ul>
+<h3 id="74">7.4 多空对照的一句话总结</h3>
+<blockquote>
+<p><strong>8 月版的问题是「制度做对了一切，为什么还是没有人用」。本期的答案变得更不舒服：制度没有做错，但它开始对部分新增支出说「不」，而据媒体转述，最大的开发实体表示不再 Cardano 优先（未取得原始视频）。</strong><br />
+<strong>使用这一侧没有变化</strong>——0.28 TPS、L1 月费五万美元、锁仓按粗估季度减少四成多。</p>
+</blockquote>
+<hr />
+<h2 id="8-ada">8. ADA 与其他资产的比较</h2>
+<blockquote>
+<p><strong>口径</strong>：涨幅统一按 CoinGecko 日线（8/31→9/30、6/30→9/30）；市值为 9/30 CoinGecko；SOL 的 TVL 与 L1 费引自 SOL 9 月版（DefiLlama 同一批 API）。<strong>与 ETH 9 月版的币安口径相差 ≤0.16pp。</strong></p>
+</blockquote>
+<h3 id="81">8.1 横向矩阵</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th><strong>ADA</strong></th>
+<th>SOL</th>
+<th>ETH</th>
+<th>BTC</th>
+<th>ALGO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9 月</strong></td>
+<td><strong>+24.64%</strong></td>
+<td>+14.59%</td>
+<td>+8.84%</td>
+<td>+6.39%</td>
+<td><strong>+44.70%</strong></td>
+</tr>
+<tr>
+<td><strong>Q3</strong></td>
+<td><strong>+70.94%</strong></td>
+<td>+60.46%</td>
+<td>+71.02%</td>
+<td>+42.70%</td>
+<td>+49.54%</td>
+</tr>
+<tr>
+<td>YTD</td>
+<td>–26.04%</td>
+<td>–5.20%</td>
+<td>–9.61%</td>
+<td>–4.57%</td>
+<td>+12.35%</td>
+</tr>
+<tr>
+<td>市值（9/30）</td>
+<td><strong>$92.5 亿</strong></td>
+<td>$694.1 亿</td>
+<td>$3,277.8 亿</td>
+<td>$1.68 万亿</td>
+<td>$11.2 亿</td>
+</tr>
+<tr>
+<td>年化波动（9 月）</td>
+<td>76.8%</td>
+<td>63.2%（SOL 9 月版）</td>
+<td>43.6%（ETH 9 月版）</td>
+<td>41.3%</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="82-ada-vs-sol">8.2 ADA vs SOL</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th><strong>ADA</strong></th>
+<th>SOL</th>
+<th style="text-align: right;">ADA / SOL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市值</td>
+<td>$92.5 亿</td>
+<td>$694.1 亿</td>
+<td style="text-align: right;"><strong>13.3%</strong></td>
+</tr>
+<tr>
+<td>9 月 L1 费用</td>
+<td>$48,848</td>
+<td>$2,498 万</td>
+<td style="text-align: right;"><strong>0.20%</strong></td>
+</tr>
+<tr>
+<td>DeFi TVL（9/30）</td>
+<td>$6,676 万</td>
+<td>$65.7 亿</td>
+<td style="text-align: right;"><strong>1.02%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>8 月版的结论不变</strong>：按市值，市场把 ADA 定价为 SOL 的约七分之一；按 L1 费用，ADA 是 SOL 的五百分之一。</p>
+</blockquote>
+<h3 id="83-ada-vs-algo">8.3 ADA vs ALGO：参照物本身在动</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">8 月版（9/4）</th>
+<th style="text-align: right;"><strong>本期（9/30）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ALGO 市值</td>
+<td style="text-align: right;">$8.22 亿</td>
+<td style="text-align: right;"><strong>$11.2 亿</strong></td>
+</tr>
+<tr>
+<td>ADA / ALGO 市值倍数</td>
+<td style="text-align: right;">9.7 倍</td>
+<td style="text-align: right;"><strong>8.2 倍</strong></td>
+</tr>
+<tr>
+<td>ALGO 9 月</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;"><strong>+44.70%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>ALGO 9 月涨了 44.70%，比 ADA 还多 20pp。</strong> 8 月版用 ALGO 市值的 1.5–3.5 倍作悲观地板——<strong>参照物一个月涨 45%，地板就跟着抬高 45%</strong>。这是 8 月版第 9.6 节弱点 1（「参照资产的选择主导了全部结论」）的一次现场演示。本期情景框架改用 ADA 自身的历史区间（见 9.1），ALGO 只用作悲观档的示意下沿。</p>
+</blockquote>
+<hr />
+<h2 id="9">9. 关键变量与三种情景推演</h2>
+<h3 id="90-312">9.0 未来 3–12 个月的催化剂日历</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th>事件</th>
+<th style="text-align: center;">方向</th>
+<th style="text-align: center;">重要性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>epoch 661（约 10/11–10/16）</strong></td>
+<td>OpenZeppelin 1,178.7 万 ADA、单独降 minPoolCost 两笔动议到期</td>
+<td style="text-align: center;">观察</td>
+<td style="text-align: center;">★★★☆☆</td>
+</tr>
+<tr>
+<td><strong>Q4</strong></td>
+<td><strong>国库是否恢复批准新增支出类拨款</strong>（A9-1）</td>
+<td style="text-align: center;">决定性</td>
+<td style="text-align: center;">★★★★★</td>
+</tr>
+<tr>
+<td>10 月</td>
+<td>节点 11.2（Dijkstra 区块格式 + Plutus V4，不含 Leios）</td>
+<td style="text-align: center;">中性</td>
+<td style="text-align: center;">★★☆☆☆</td>
+</tr>
+<tr>
+<td>10 月</td>
+<td>IO 的 RealFi 在 Cardano 上线（Hoskinson 表态，转述）</td>
+<td style="text-align: center;">观察</td>
+<td style="text-align: center;">★★☆☆☆</td>
+</tr>
+<tr>
+<td>11.2 后 1–2 个月</td>
+<td>节点 11.3（含 Leios 的硬分叉候选版本，Intersect 周报一手）；<strong>硬分叉须经治理投票，结果链上可查</strong>（A9-3）</td>
+<td style="text-align: center;">关键</td>
+<td style="text-align: center;">★★★★☆</td>
+</tr>
+<tr>
+<td>约 12 月中</td>
+<td>Pogun 推出、观察它选哪条链（<strong>区分力有限</strong>：它曾被 Cardano 国库否决拨款，去别的链也可能只是针对这个项目的选择）</td>
+<td style="text-align: center;">观察</td>
+<td style="text-align: center;">★★☆☆☆</td>
+</tr>
+<tr>
+<td>10/27–28、12/8–9</td>
+<td>FOMC</td>
+<td style="text-align: center;">双向</td>
+<td style="text-align: center;">★★★☆☆</td>
+</tr>
+<tr>
+<td>持续</td>
+<td>以 ADA 计的链上手续费是否翻倍（A9-2）</td>
+<td style="text-align: center;">关键</td>
+<td style="text-align: center;">★★★★☆</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="91">9.1 为什么重建情景框架</h3>
+<p>8 月版的三档（乐观 $294–589 亿 / 中性 $50–100 亿 / 悲观 $12.3–28.8 亿）有三个问题：</p>
+<ol>
+<li><strong>中性上沿的依据是错的</strong>：8 月版写「年内高点约 $91 亿（5 月初）」，<strong>CoinGecko 日线显示 2026 年高点是 1 月 13 日的 $158.3 亿</strong>，低点是 6 月 25 日的 $53.5 亿。</li>
+<li><strong>三档之间有两段空档</strong>（$28.8–50 亿、$100–294 亿）——按 PONS 期规则，情景必须首尾相接；<strong>而 9/30 的 $92.5 亿离中性上沿只差 8%，10/5 的 $100.55 亿已经落进空档</strong>。</li>
+<li><strong>乐观档锚定 SOL、悲观档锚定 ALGO</strong>，两个参照物本身都在剧烈变动（ALGO 9 月 +44.70%，见 8.3）。</li>
+</ol>
+<p><strong>推导方式</strong>（与 SOL / ETH 9 月版相同）：<strong>价格 = 参照市值 ÷ 2029 年流通量</strong>。参照市值取 <strong>ADA 自身实际交易过的市值区间</strong>（CoinGecko 一手），流通量按链上发行速度外推；<strong>三档的划分与概率是作者的选择</strong>。这个方法只说「过去市场给过 ADA 什么价」，不说「应该值多少」。</p>
+<p><strong>ADA 可得的市值区间</strong>（CoinGecko 免费接口只开放最近 365 天）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th style="text-align: right;">低</th>
+<th style="text-align: right;">高</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026 年（1/1–9/30）</td>
+<td style="text-align: right;"><strong>$53.5 亿</strong>（6/25）</td>
+<td style="text-align: right;"><strong>$158.3 亿</strong>（1/13）</td>
+</tr>
+<tr>
+<td>最近 365 天</td>
+<td style="text-align: right;">$53.5 亿（6/25）</td>
+<td style="text-align: right;"><strong>$319 亿</strong>（2025-10-06）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>2029 年流通量</strong>：按 4.1 的发行速度（储备每 epoch 衰减约 0.16%），约 3.25 年（237 个 epoch）共新发行约 19.2 亿 ADA；其中进入流通约 62.6%、其余进国库。<strong>国库不支出时流通约 387.4 亿，国库全部支出时约 394.6 亿；取中 391 亿</strong>（±1%，8 月版为 391.82 亿）。</p>
+<h3 id="92-2029">9.2 三种情景（2029 年）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>情景</th>
+<th>参照市值</th>
+<th><strong>2029 年价格</strong></th>
+<th>相对 9/30 $0.2465</th>
+<th>概率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>乐观</strong>：回到最近一年的高位区间</td>
+<td>$158.3 亿以上（参照 365 天高点 $319 亿）</td>
+<td><strong>$0.405 以上</strong></td>
+<td>+64% 以上</td>
+<td><strong>13.5%</strong></td>
+</tr>
+<tr>
+<td><strong>中性</strong>：留在 2026 年交易区间</td>
+<td>$53.5 亿 – $158.3 亿</td>
+<td><strong>$0.137 – $0.405</strong></td>
+<td>–44% ~ +64%</td>
+<td><strong>22.0%</strong></td>
+</tr>
+<tr>
+<td><strong>悲观</strong>：跌破 2026 年低点</td>
+<td>&lt; $53.5 亿（示意下沿：ALGO 9/30 市值 $11.2 亿 × 1.5 = $16.8 亿）</td>
+<td><strong>&lt; $0.137</strong>（示意下沿 $0.043）</td>
+<td>&lt; –44%</td>
+<td><strong>64.5%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="ADA 三情景：2029 年价格区间与主观概率" src="charts/scenarios-202609.svg" /></p>
+<blockquote>
+<p>图中数字：乐观 $0.405 以上（13.5%，图中画到 $0.816）、中性 $0.137 – $0.405（22.0%）、悲观 &lt; $0.137、示意下沿 $0.043（64.5%）；虚线为 9/30 收盘 $0.2465；横轴 $0.00 / $0.20 / $0.40 / $0.60 / $0.80；2029 年流通量约 391 亿枚；2026 年低点 $53.5 亿；ALGO 9/30 市值的 1.5 倍；8 月版概率 12/46/42。</p>
+</blockquote>
+<p><strong>随机游走基线</strong>（起点 $92.5 亿，约 3.25 年；两种漂移假设分别在不同统计量上「中性」）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>漂移假设</th>
+<th style="text-align: center;">年化波动</th>
+<th style="text-align: right;">悲观（&lt; $53.5 亿）</th>
+<th style="text-align: right;">中性（$53.5–158.3 亿）</th>
+<th style="text-align: right;">乐观（&gt; $158.3 亿）</th>
+<th style="text-align: right;">2029 年价格低于现价的概率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中位数不变（零对数漂移）</td>
+<td style="text-align: center;">82.3%</td>
+<td style="text-align: right;">35.6%</td>
+<td style="text-align: right;">28.5%</td>
+<td style="text-align: right;">35.9%</td>
+<td style="text-align: right;">51%</td>
+</tr>
+<tr>
+<td><strong>期望市值不变</strong>（作者采用）</td>
+<td style="text-align: center;"><strong>82.3%</strong></td>
+<td style="text-align: right;"><strong>64.5%</strong></td>
+<td style="text-align: right;"><strong>22.0%</strong></td>
+<td style="text-align: right;"><strong>13.5%</strong></td>
+<td style="text-align: right;"><strong>78%</strong></td>
+</tr>
+<tr>
+<td>期望市值不变</td>
+<td style="text-align: center;">76.8%（9 月）</td>
+<td style="text-align: right;">61.7%</td>
+<td style="text-align: right;">24.3%</td>
+<td style="text-align: right;">14.0%</td>
+<td style="text-align: right;">77%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>「价格低于现价」⇔ 2029 年市值低于 $0.2465 × 391 亿 ≈ <strong>$96.4 亿</strong>——流通量增长 4.2%，<strong>市值不变时价格约 −4%</strong>（稀释，与 BNB 的销毁方向相反）。</p>
+</blockquote>
+<p><strong>作者的基准预期（明确写出）</strong>：<strong>采用「期望市值不变」、年化波动 82.3%（过去一年实测）的基线，不作偏离</strong>——概率 <strong>64.5 / 22.0 / 13.5</strong>（悲观 / 中性 / 乐观），未取整。它的含义：<br />
+- 三年后<strong>期望市值持平</strong>，但<strong>中位数约低 67%</strong>（约 $31 亿）；<br />
+- <strong>2029 年价格低于现价的概率约 78%</strong>；<br />
+- <strong>按「期望回报」的定义作者不看空；按「更可能下跌」的定义，这个基准明显偏空</strong>——两者都要告诉读者。</p>
+<p><strong>为什么改</strong>（审查后，方法变更，不是证据变化）：初稿取「中位数不变」与「期望不变」两列的中点 45/30/25，并称其「机械的、不是作者的观点」。推理审查指出：① 45/30/25 只在年化波动取 70% 时成立，而实测是 76.8%–82.3%；② <strong>两列的中点不是中性基线</strong>——它既不保持中位数也不保持期望，按它算期望市值约 +60%~+100%、中位数约 −40%，是一个「多数情形下跌、期望为正」的分布，而初稿没有说出这一点。本系列 BNB 9 月版因同一问题改为明确选锚，本期照做。<br />
+<strong>为什么选期望不变</strong>：零对数漂移意味着期望市值三年增长约 2–3 倍，本身是强烈看多的观点；期望不变对应「市场价格已反映全部信息」的通常假设。<strong>这是一个选择</strong>——选另一列，悲观档从 64.5% 变成 35.6%。<br />
+<strong>为什么不偏离基线</strong>：有利的证据（9 月超额、Mastercard 合作〔转述〕、Leios 推进）与不利的（使用量在噪声量级、国库 9 个 epoch 零新批准、IO 表态〔转述〕）方向相反，且有利一侧多为二手——作者判断不足以移动一个三年的情景。<br />
+<strong>与 8 月版的 12/46/42 不可比较</strong>：区间完全不同；8 月版的中性档宽 2 倍（$50–100 亿），本期宽 3 倍（$53.5–158.3 亿）。</p>
+<p><strong>进出两侧的主要路径是 beta</strong>（ADA 对 BTC 的 beta 1.4–1.6，一年期 R² 0.57）。<strong>下面的叙事只是可能的路径之一，不用来推概率</strong>：</p>
+<ul>
+<li><strong>乐观</strong>：BTC 继续上涨叠加 1.5 倍 beta；或国库恢复拨款 + Leios 主网激活 + 使用量出现数量级变化（8 月版的乐观条件）。</li>
+<li><strong>中性</strong>：留在 2026 年的交易区间。</li>
+<li><strong>悲观</strong>：跌破 2026 年 6 月的低点。可能的加速因素：国库长期不批新支出、IO 把新产品放到其他链。<strong>这一档的概率对应「低于 $53.5 亿」这一阈值事件，示意下沿取多少不影响它。</strong></li>
+</ul>
+<h3 id="93">9.3 敏感性：最大的不确定性在参照区间</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>输入</th>
+<th>推到哪一端</th>
+<th>中性档价格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2029 年流通量 391 亿</td>
+<td>基准</td>
+<td>$0.137 – $0.405</td>
+</tr>
+<tr>
+<td>流通量 387.4 亿（国库不支出）</td>
+<td>下端</td>
+<td>$0.138 – $0.409（+0.9%）</td>
+</tr>
+<tr>
+<td>流通量 394.6 亿（国库全部支出）</td>
+<td>上端</td>
+<td>$0.136 – $0.401（–0.9%）</td>
+</tr>
+<tr>
+<td>参照区间换成最近 365 天（$53.5–319 亿）</td>
+<td>区间上移</td>
+<td>$0.137 – $0.816</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ 按 TRX 期教训：各行摆幅之比反映的是作者选的扰动宽度。<strong>能说的只是：选哪一段历史作参照，才是决定区间的那个输入</strong>；流通量的 ±0.9% 是模型结构决定的（市值固定），不是测出来的估值影响。</p>
+</blockquote>
+<h3 id="94">9.4 这套方法的弱点</h3>
+<ol>
+<li><strong>参照区间不是估值</strong>：它说的是「市场给过什么价」，不是「应该值多少」。ADA 的 L1 收入在噪声量级（$48,848/月），<strong>本报告没有一个能从基本面推出价格的模型</strong>——这一点与 8 月版相同。</li>
+<li><strong>历史只取得 365 天</strong>：CoinGecko 免费接口的限制。2021 年 ATH 时期的市值区间（远高于 $319 亿）不在样本内，<strong>乐观档的上沿因此被截断</strong>，「+」号即表示这一点。</li>
+<li><strong>悲观档没有可靠下沿</strong>：ALGO 的 1.5 倍只是示意，ALGO 本身一个月可以涨 45%。</li>
+<li><strong>概率锚定「期望市值不变」的随机游走基线</strong>，不是从 ADA 的基本面推出的；选锚本身是一个选择（换锚悲观档在 35.6%–64.5% 之间）；<strong>随机游走假设本身也未经检验</strong>（加密资产的收益分布有厚尾）。</li>
+<li><strong>流通量假设协议参数不变</strong>：ρ、τ 可以被治理修改；国库支出速度未知（±0.9%）。</li>
+</ol>
+<hr />
+<h2 id="10">10. 投资与风险启示</h2>
+<h3 id="101-ada">10.1 ADA 现在处于什么位置</h3>
+<p><strong>一句话：价格在 9 月跑赢了 BTC，但链上使用、锁仓、国库与核心开发实体的态度都没有朝同一个方向走。</strong></p>
+<ul>
+<li>9 月超额 +14.5pp，约 1.25 个标准差，不显著；</li>
+<li>L1 费真同比 –81.9%，锁仓按粗估季度减少四成多；</li>
+<li>国库 epoch 650 后 9 个 epoch 零新批准（有先例），出现明确拒绝型否决；</li>
+<li>IO 表示不再 Cardano 优先（媒体转述）。</li>
+</ul>
+<h3 id="102">10.2 策略框架</h3>
+<blockquote>
+<p>以下为研究性质的框架整理，<strong>不构成投资建议</strong>。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>持有者类型</th>
+<th>框架</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>未持有者</strong></td>
+<td>作者基准（9.2）：期望市值持平，但 2029 年价格低于现价的概率约 78%。ADA 对 BTC 的 30 日相关 0.85、beta 1.58——若已持有 BTC，ADA 提供的主要是<strong>同向、更高 beta</strong> 的敞口</td>
+</tr>
+<tr>
+<td><strong>已持有者</strong></td>
+<td>关键问题仍是「当初买入的理由是否还成立」。<strong>若理由是「治理会持续资助发展」——本期数据削弱了它</strong>（新批准暂停、GIF 被明确拒绝、IO 表态〔转述〕），但空档有先例、停摆未确认；若理由是「技术路线会兑现」——本期没有新的一手证据，Leios 仍无主网日期</td>
+</tr>
+<tr>
+<td><strong>质押</strong></td>
+<td>实得毛收益约 2.11%，对整个持有人群体是转移（来自储备发行），<strong>不是网络创造的价值</strong></td>
+</tr>
+<tr>
+<td><strong>杠杆</strong></td>
+<td><strong>不适用</strong>。9 月年化波动 76.8%，悲观档对应 –44% 以下</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>8 月版的承诺是否被触发</strong>：8 月版 10.3 监控指标 #5「通过率跌破 35% → 治理转向紧缩」——累计通过率 51.0%，<strong>字面上未触发</strong>；但最近 9 个 epoch 零批准。<strong>本报告认为字面未触发；是否实质触发要看空档是否超过先例</strong>，并据此把该指标改为「最近一笔获批距今的 epoch 数」（下表 #5）——<strong>这是改指标，不是追溯判定</strong>。</p>
+<h3 id="103">10.3 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>指标</th>
+<th>当前值</th>
+<th>改变结论的阈值</th>
+<th>观测方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>日均链上交易</td>
+<td><strong>24,081 笔</strong>（9 月）</td>
+<td>连续一个月日均 &gt;10 万 → 多头实质改善；&lt;1.5 万 → 悲观上调</td>
+<td>Koios <code>epoch_info</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>链上手续费（以 ADA 计，30 天）</strong></td>
+<td><strong>228,535 ADA</strong>（美元 $48,848）</td>
+<td>≥ 45.7 万 ADA（翻倍，A9-2）→ 用量出现变化的第一个信号；美元 $50 万并维持两个月（A8-2）才算脱离噪声量级</td>
+<td>Koios <code>epoch_info</code> / DefiLlama</td>
+</tr>
+<tr>
+<td>3</td>
+<td>应用层月费用</td>
+<td>$311,514</td>
+<td>&gt;$300 万 → 应用层出现真实需求</td>
+<td>DefiLlama <code>overview</code>（<strong>注意不含 L1</strong>）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>TVL（按价格平减）</strong></td>
+<td><strong>2.732 亿</strong></td>
+<td>连续两月增长 &gt;10% → 链上资金可能流入（须按代币构成复核）；<strong>美元 TVL 不再单独作判据</strong></td>
+<td>DefiLlama + CoinGecko</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>最近一笔国库提取获批距今的 epoch 数</strong></td>
+<td><strong>9</strong>（epoch 650 → 659）</td>
+<td><strong>&gt;20（超过 epoch 571 以来的最长先例）→ 国库停摆确认</strong>；恢复批准新增支出 → A9-1 成立</td>
+<td>Koios <code>proposal_list</code></td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>明确反对型否决的次数</strong></td>
+<td>9 月 1 次（GIF）</td>
+<td>一个季度内 ≥3 次 → 支出收紧成为主导机制</td>
+<td>Koios <code>proposal_voting_summary</code></td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>有效计票分母</strong></td>
+<td>约 43 亿 ADA</td>
+<td>&lt;30 亿 → 治理结果更容易被少数票权决定</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>8</td>
+<td>单一资产 ADA 现货 ETF 申报</td>
+<td><strong>零</strong></td>
+<td>任一申报 → 乐观上调</td>
+<td>SEC EDGAR</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Leios / 协议版本 12 硬分叉</td>
+<td>节点 11.3 未发布</td>
+<td>HardForkInitiation 动议 enacted（A9-3）</td>
+<td>Koios / Intersect</td>
+</tr>
+<tr>
+<td>10</td>
+<td>IO 新产品的链选择</td>
+<td>约 12 月中</td>
+<td><strong>未被 Cardano 国库否决过的</strong> IO 新产品首发不在 Cardano → 「核心开发实体退出」风险从表态变为行动（Pogun 曾被国库否决，单看它区分不了两种解释）</td>
+<td>IO 公告</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>8 月版的 #7（市值排名）已删除：排名主要由价格决定，与 #2–#4 不独立。#5、#6、#7 是本期为治理新增或改写的。</p>
+</blockquote>
+<h3 id="104">10.4 风险提醒</h3>
+<ol>
+<li><strong>治理风险：两种机制并存</strong>。冷漠（沉默计反对）会否决高支持率的提案，明确拒绝会否决部分新增支出——<strong>本期两者都出现了</strong>；哪种为主，本期没有逐笔分类，不下结论。</li>
+<li><strong>核心开发实体风险</strong>：IO 9/18 表示不再 Cardano 优先（媒体转述，未取得原始视频）。8 月版把它列为 ADA 独有的风险之一，本期它有了公开表态。</li>
+<li><strong>数据源风险</strong>：本期发现 DefiLlama 的稳定币序列有 7 个半月的断档、<code>overview</code> 合计口径与 8 月版不同、8/31 TVL 被修订。<strong>引用 DefiLlama 合计数之前，先看分项和断档。</strong></li>
+<li><strong>流动性与波动</strong>：年化波动 76.8%，beta 1.58。</li>
+<li><strong>本报告自身</strong>：<strong>8 月版在头号更正「多家媒体一致 ≠ 事实、必须查最终状态」之后，在同一份报告里又把一个媒体快照（51.18%）标为「已一手核实」「✅ 打开原文」</strong>；本期初稿也在推理审查中被改动了概率框架、停摆措辞与 TVL 读法。ADA 记分卡目前已判定 1 条、正确 0 条。<strong>请以相应的怀疑程度对待本报告。</strong></li>
+</ol>
+<h3 id="105">10.5 长期认知</h3>
+<ol>
+<li><strong>「打开了媒体原文」不是一手。</strong> 8 月版的 86.72% 与 51.18% 来自同一类媒体快照：前者被外部审查抓出，后者被标成「已一手核实」「✅ 打开原文」后没人再查。<strong>治理数字的一手只有链上最终状态；来源分级必须按「数据从哪来」标，不按「打开了哪个网页」标。</strong> 本期用逐票复算把它找了出来——即便如此，最终值仍有三个来源对不上（5.3）。</li>
+<li><strong>治理「有效」不等于治理「慷慨」。</strong> 一个能说「不」的国库，迟早会对你在意的支出说「不」。</li>
+<li><strong>TVL 要扣掉价格，但不能简单地除以价格。</strong> 9 月美元 TVL +27.1%，按价格平减 +0.2%，按实测 beta 0.66 粗估隐含持仓约 +10%——<strong>除以价格只在 TVL 全是 ADA 时成立</strong>。</li>
+</ol>
+<hr />
+<h2 id="11">11. 附录</h2>
+<h3 id="111-2026-09-30">11.1 关键数据速查（截至 2026-09-30）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>市场</strong></td>
+<td>9/30 收盘 / 市值</td>
+<td>$0.2465 / $92.5 亿</td>
+</tr>
+<tr>
+<td></td>
+<td>10/5 价格 / 排名</td>
+<td>$0.2678 / 第 16</td>
+</tr>
+<tr>
+<td></td>
+<td>9 月 / Q3 / YTD / 近 1 年</td>
+<td><strong>+24.64% / +70.94% / –26.04% / –70.55%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>距 ATH</td>
+<td>–92.0%</td>
+</tr>
+<tr>
+<td></td>
+<td>beta / R² / 超额（9 月）</td>
+<td>1.580 / 0.722 / +14.54pp（约 1.25σ）</td>
+</tr>
+<tr>
+<td><strong>链上</strong></td>
+<td>9 月交易笔数 / 日均 / TPS</td>
+<td>722,433 / 24,081 / 0.28</td>
+</tr>
+<tr>
+<td></td>
+<td>9 月链上手续费 / 每笔</td>
+<td>228,535 ADA / 0.316 ADA</td>
+</tr>
+<tr>
+<td><strong>费用</strong></td>
+<td>9 月 L1 费 / 真同比</td>
+<td><strong>$48,848 / –81.9%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>9 月应用层费用</td>
+<td>$311,514（不含 L1）</td>
+</tr>
+<tr>
+<td><strong>生态</strong></td>
+<td>TVL（美元 / 按价格平减）</td>
+<td>$6,676 万 / 2.732 亿</td>
+</tr>
+<tr>
+<td></td>
+<td>TVL 9 月（美元 / 平减 / beta 粗估隐含持仓）</td>
+<td>+27.1% / +0.2% / <strong>约 +10%</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>链上稳定币（剔除 USDM）</td>
+<td>$5,382 万（+5.7%）；含 USDM $6,736 万</td>
+</tr>
+<tr>
+<td><strong>供应</strong></td>
+<td>总供应 / 流通 / 国库 / 储备</td>
+<td>389.12 / 375.41 / 13.71 / 60.88 亿</td>
+</tr>
+<tr>
+<td></td>
+<td>年化增速（总供应 / 流通）</td>
+<td>1.85% / 1.20%</td>
+</tr>
+<tr>
+<td><strong>质押</strong></td>
+<td>质押量 / 质押率</td>
+<td>213.21 亿 / 56.8%</td>
+</tr>
+<tr>
+<td></td>
+<td>实得毛收益（推算）</td>
+<td>约 2.11%</td>
+</tr>
+<tr>
+<td></td>
+<td>注册池</td>
+<td>2,889</td>
+</tr>
+<tr>
+<td><strong>治理</strong></td>
+<td>最近一笔国库提取获批</td>
+<td><strong>epoch 650</strong>（之后 9 个 epoch 零笔；≥9 个 epoch 的空档 epoch 571 以来有 3 次）</td>
+</tr>
+<tr>
+<td></td>
+<td>国库提取通过率（epoch 626 起）</td>
+<td>51.0%（26 / 51）</td>
+</tr>
+<tr>
+<td><strong>情景</strong></td>
+<td>悲观 / 中性 / 乐观（至 2029，期望市值不变基线）</td>
+<td>64.5% / 22.0% / 13.5%；2029 年价格低于现价的概率约 78%</td>
+</tr>
+<tr>
+<td></td>
+<td>GIF 2026</td>
+<td>❌ 明确反对 23.55 亿 vs 赞成 0.74 亿 ADA</td>
+</tr>
+<tr>
+<td></td>
+<td>CC 续任 SPO 最终赞成</td>
+<td><strong>54.69%（复算）/ 54.40%（Koios）/ 56.54%（Intersect）</strong>；8 月版 51.18% 为中途快照</td>
+</tr>
+<tr>
+<td></td>
+<td>DRep 委托 / 自动弃权 / 有效分母</td>
+<td>157.4 亿 / 103.0 亿 / 约 43 亿</td>
+</tr>
+<tr>
+<td><strong>机构</strong></td>
+<td>单一资产 ADA 现货 ETF 申报</td>
+<td><strong>零</strong>（EDGAR）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112">11.2 数据来源与核实状态</h3>
+<p><strong>核实状态标注规则</strong>：✅ = 本报告直接抓取一手来源（API 或原文）；⚠️ = 仅来自搜索摘要或二手转述；❌ = 尝试核实失败。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th style="text-align: center;">核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格、市值、涨跌、波动率、beta、R²、相关性、2026 年与 365 天市值区间</td>
+<td>CoinGecko API（<code>market_chart</code>、<code>markets</code>）</td>
+<td style="text-align: center;">✅ 一手 API</td>
+</tr>
+<tr>
+<td>币安口径的 9 月 / Q3 / YTD 涨幅</td>
+<td>本系列 ETH 9 月版（币安 <code>klines</code>）</td>
+<td style="text-align: center;">✅ 内部引用（本期币安 API 在作者环境中被代理拦截）</td>
+</tr>
+<tr>
+<td>交易笔数、手续费、质押量、epoch 数据</td>
+<td>Koios <code>epoch_info</code></td>
+<td style="text-align: center;">✅ 一手 API</td>
+</tr>
+<tr>
+<td>国库提取批准的历史空档（epoch 571 起）</td>
+<td>Koios <code>proposal_list</code>（TreasuryWithdrawals 的 enacted_epoch）</td>
+<td style="text-align: center;">✅ 一手 API（审查阶段补取）</td>
+</tr>
+<tr>
+<td>供应、国库、储备</td>
+<td>Koios <code>totals</code></td>
+<td style="text-align: center;">✅ 一手 API，450 亿闭合</td>
+</tr>
+<tr>
+<td>注册池数、各池投票权</td>
+<td>Koios <code>pool_list</code>、<code>pool_voting_power_history</code></td>
+<td style="text-align: center;">✅ 一手 API</td>
+</tr>
+<tr>
+<td><strong>全部治理动议状态、得票、逐票记录、DRep 委托结构</strong></td>
+<td>Koios <code>proposal_list</code>、<code>proposal_voting_summary</code>、<code>proposal_votes</code>、<code>drep_epoch_summary</code></td>
+<td style="text-align: center;">✅ <strong>一手 API</strong>；CC 续任 SPO 赞成率为本报告逐票复算</td>
+</tr>
+<tr>
+<td>Pogun 提案的提案人身份</td>
+<td>CryptoSlate、Blockonomi、cryptonews 等</td>
+<td style="text-align: center;">⚠️ <strong>媒体一致报道</strong>；链上元数据在 IPFS，作者环境无法访问网关 ❌</td>
+</tr>
+<tr>
+<td>L1 手续费月度序列、应用层费用分项、DEX 成交额</td>
+<td>DefiLlama <code>summary/fees</code>、<code>overview/fees</code>、<code>overview/dexs</code></td>
+<td style="text-align: center;">✅ 一手 API（<strong><code>overview</code> 合计不含 L1，与 8 月版不同</strong>）</td>
+</tr>
+<tr>
+<td>TVL 序列</td>
+<td>DefiLlama <code>historicalChainTvl</code></td>
+<td style="text-align: center;">✅ 一手 API（8/31 读数已被修订）</td>
+</tr>
+<tr>
+<td>链上稳定币分项与 USDM 断档</td>
+<td>DefiLlama stablecoins API（<code>stablecoins</code>、<code>stablecoincharts/Cardano?stablecoin=</code>）</td>
+<td style="text-align: center;">✅ 一手 API</td>
+</tr>
+<tr>
+<td><strong>ETF 申报</strong></td>
+<td><strong>SEC EDGAR 全文检索</strong>（efts.sec.gov）</td>
+<td style="text-align: center;">✅ 一手；不覆盖交易所官网的 19b-4</td>
+</tr>
+<tr>
+<td>Hashdex 指数 ETF 持有 ADA</td>
+<td>媒体转述</td>
+<td style="text-align: center;">⚠️ 搜索摘要</td>
+</tr>
+<tr>
+<td><strong>Mastercard Crypto Partner Program</strong></td>
+<td>多家加密媒体</td>
+<td style="text-align: center;">⚠️ 转述；cardano.org 被网络策略拦截 ❌</td>
+</tr>
+<tr>
+<td>Hoskinson 9/18 直播内容</td>
+<td>CryptoSlate、cryptobenelux 等</td>
+<td style="text-align: center;">⚠️ 转述，未取得视频或文字稿</td>
+</tr>
+<tr>
+<td>节点 11.2 / 11.3、Leios 测试网（MusashiNet）；CC 续任案 SPO 56.54%；GIF / Ikigai 到期标注；2026 预算已拨 16 份合同</td>
+<td><strong>Intersect 9/5（#127）、9/11（#128）周报原文</strong></td>
+<td style="text-align: center;">✅ 一手（审查阶段打开；初稿为转述）</td>
+</tr>
+<tr>
+<td>宏观（美联储、10 年期美债、CLARITY、CPI）</td>
+<td>本系列 BTC 9 月版（federalreserve.gov、美国财政部一手；CPI 转述）</td>
+<td style="text-align: center;">✅ 内部引用</td>
+</tr>
+<tr>
+<td>SOL 的 TVL、L1 费、年化波动；ETH 的年化波动</td>
+<td>本系列 SOL / ETH 9 月版</td>
+<td style="text-align: center;">✅ 内部引用</td>
+</tr>
+<tr>
+<td>传统金融机构 9 月对 ADA 的研究观点</td>
+<td>检索 Bernstein / JPMorgan / Standard Chartered / Citi</td>
+<td style="text-align: center;">❌ <strong>未找到</strong></td>
+</tr>
+<tr>
+<td>开发者活动数据</td>
+<td>—</td>
+<td style="text-align: center;">❌ 仍缺（8 月版弱点 7）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113">11.3 来源偏向声明</h3>
+<ul>
+<li><strong>本期核心数据全部为一手</strong>：价格（CoinGecko）、链上与治理（Koios，含逐票复算）、费用与生态（DefiLlama）、ETF（SEC EDGAR）。</li>
+<li><strong>仍为二手的是本期全部「利好事件」</strong>：Mastercard 合作、Leios 进度、Hashdex 持仓——<strong>这与 8 月版相反</strong>：8 月版的二手部分偏空（治理冲突叙事），本期的二手部分偏多（合作与升级叙事）。<strong>读者应据此调整信任度，本报告已在 7.1 中把这几条压到两星。</strong></li>
+<li><strong>传统金融机构的配平</strong>：本期没有找到任何传统机构对 ADA 的 9 月研究观点。能找到的机构行为是 <strong>Grayscale 的撤回（SEC 一手）</strong>、<strong>Mastercard 的合作计划（转述）</strong>、CME 期货与<strong>美联储</strong>加息。<strong>这是一处明确的配平缺口。</strong></li>
+<li><strong>本报告作者在本期发现了上一期自己的两处错误</strong>（51.18%、IOG 系全过），并把 A8-6 按字面判 ❌——A8-6 的判定只依赖 GIF 2026，与这两处更正无关。<strong>纠错方向与作者此前的结论相反，读者可以视为对偏向的一个弱检验</strong>。</li>
+</ul>
+<h3 id="114-8">11.4 本版对 8 月版的更正</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>8 月版写法</th>
+<th>更正</th>
+<th>发现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>宪法委员会续任案「SPO 51.18%，仅超门槛 0.18pp」，正文标「（已一手核实）」、11.4 标「✅ 打开原文」</td>
+<td><strong>最终 54.40%–56.54%</strong>（三个来源）；51.18% 与 9/1 11:30 UTC 前后的中途读数一致；<strong>来源分级错误</strong>：打开的是媒体原文</td>
+<td>逐票复算（Koios）+ Intersect 周报</td>
+</tr>
+<tr>
+<td>2</td>
+<td>「SPO 投票率一度仅 39%」</td>
+<td><strong>存疑，不列为更正</strong>：8/31 13:00 的赞成率为 39.02%，但本期未计算投票率序列，无法排除另有一个 39% 的投票率时点</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>3</td>
+<td>「IOG 系四笔提案全部通过」</td>
+<td>漏了 Pogun（1,229 万 ADA，DRep 赞成 35.67%，epoch 633 过期）；<strong>提案人身份为媒体归属</strong></td>
+<td>Koios + 媒体</td>
+</tr>
+<tr>
+<td>4</td>
+<td>「年内高点约 $91 亿（5 月初）」（中性情景上沿依据）</td>
+<td><strong>2026 年高点为 1 月 13 日 $158.3 亿</strong>，低点 6 月 25 日 $53.5 亿</td>
+<td>CoinGecko</td>
+</tr>
+<tr>
+<td>5</td>
+<td>三档情景之间留有空档（$28.8–50 亿、$100–294 亿）</td>
+<td>本期重建为首尾相接</td>
+<td>PONS 期规则</td>
+</tr>
+<tr>
+<td>6</td>
+<td>「TVL 几乎全部是静态存放的稳定币」</td>
+<td>两个数接近不等于包含关系；<strong>TVL 对价格的 beta 为 0.66，主要是 ADA 计价资产</strong></td>
+<td>DefiLlama + CoinGecko</td>
+</tr>
+<tr>
+<td>7</td>
+<td>「生态合计 $353,264 含 L1 $38,275」</td>
+<td>DefiLlama 当前 <code>overview</code> 合计不含 L1；8 月版的分项（如 Strike $54,691）已无法复现</td>
+<td>DefiLlama</td>
+</tr>
+<tr>
+<td>8</td>
+<td>8/31 TVL $5,634 万</td>
+<td>DefiLlama 已修订为 <strong>$5,254 万</strong></td>
+<td>DefiLlama</td>
+</tr>
+<tr>
+<td>9</td>
+<td>通胀 1.47%（StakingRewards）</td>
+<td><strong>总供应年化 1.85%、流通年化 1.20%</strong>（Koios 账目）</td>
+<td>Koios <code>totals</code></td>
+</tr>
+<tr>
+<td>10</td>
+<td>8 月版第 3.4 节「Volatility Shares 的期货型 ADA ETF」等 ETF 信息为媒体转述</td>
+<td>Grayscale 撤回已在 EDGAR 一手确认（RW，8/7）</td>
+<td>EDGAR</td>
+</tr>
+<tr>
+<td>11</td>
+<td>8 月版情景图 <code>scenarios-202608.svg</code> 脚注仍写「市场当前定价隐含的乐观概率约 6.1%」</td>
+<td><strong>该推理在 8 月版 9.7 节已被撤回为循环论证，但图中未删</strong>（ZEC 期「撤回 ≠ 撤回生效」的形态）。历史图表保留原样，在此记录</td>
+<td>本期回扫</td>
+</tr>
+<tr>
+<td>12</td>
+<td>同一案的 DRep 赞成率与沉默票</td>
+<td>8 月版 DRep 69.36%、沉默 53.16 亿；本期复算 <strong>71.95%</strong>、约 <strong>51.9 亿</strong>（同属中途读数）</td>
+<td>Koios</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="115">11.5 发布前审查记录</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>层</th>
+<th>执行情况</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第 1 层：脚本（<code>tools/verify_report.py</code>）</td>
+<td>✅ 修订后重跑，0 FAIL</td>
+</tr>
+<tr>
+<td>第 2 层：<code>_bian</code> 审推理</td>
+<td>✅ <strong>发布前补做</strong>（初稿在云端完成时未执行）：14 条，全部采纳或部分采纳</td>
+</tr>
+<tr>
+<td>第 3 层：Codex 审领域</td>
+<td>✅ <strong>发布前补做</strong>：5 条，4 条采纳、1 条部分不同意</td>
+</tr>
+<tr>
+<td>第 4 层：_dalin 抽查</td>
+<td>⏳</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>_bian 的主要发现（推理层）</strong>：<br />
+1. 9.2「概率是机械的、不给方向」名不副实：45/30/25 只在波动率 70% 时成立（实测 76.8%–82.3%）；两种基线的中点既不保持中位数也不保持期望 → <strong>改为明确选「期望市值不变」基线，概率 64.5/22.0/13.5，写出「价格低于现价约 78%」</strong>。<br />
+2. 51.18% 的更正被用在相反方向：它对「治理运转」是利好，却被拿来给多头 #1 降星；5.7、11.3、速览都有同类误用 → 已改。<br />
+3. 「对不喜欢的数字查了、喜欢的没查 = 确认偏误」与 8 月版记录相反（86.72% 当时支持初稿结论，是被外部审查抓出的）→ <strong>改诊断为来源分级错误</strong>（10.5、本节、记分卡、速查同步改）。<br />
+4. A9-1 的门槛 11 被 Ikigai 数字推翻（约 2.44 亿 ADA 即可翻转，低于 3.75 亿）；统计量「任一笔获批」不测论点 → 记分卡重写。<br />
+5. 「国库停摆」强于本报告自己的阈值与先验；Ikigai 是冷漠型失败却被算作收紧证据 → 改措辞，补 Koios 空档先例。<br />
+6. 「以 ADA 计 TVL」与自测 beta 0.66 不兼容 → 改为平减值 + beta 粗估。<br />
+7. A8-6 判 ❌ 的统计量与论点不同构、「对立」含义被换 → 保留 ❌ 并写明限制，「对立」改「明确拒绝」。<br />
+8. A9-2 的 $10 万门槛实为价格赌注，且与 A8-2 的「噪声量级」定义冲突 → 改为 ADA 计。<br />
+9–14. 3.3 环比主因写反、两源增速相差 13pp；39% 与「恰好 11:30」是用巧合下结论；Hoskinson 转述在总结句丢了标记；「治理无方向性变化」与第 5 章矛盾；Pogun 监控无区分力；USDM 金额、周报日期、对 8 月版的引用不全 → 逐条更正。</p>
+<p><strong>Codex 的主要发现（领域层）</strong>：<br />
+1. 逐票复算未对上最终计票：Intersect 周报为 SPO 56.54% → <strong>采纳</strong>，已打开原文核对，三个来源并列、差异原因标未查明。GIF / Ikigai 到期日「应为 9/16」→ <strong>部分不同意</strong>：Intersect 的「Sep 16 (Epoch 656)」是到期 epoch 的开始日，提案在 epoch 656 结束（9/21）时移除，两者是同一事件的两个时点，正文已注明。<br />
+2. 64.33% 不全是明确反对；「零批准」不等于资金停止执行（Intersect：已拨 16 份合同）；Hoskinson 只能算转述 → <strong>采纳</strong>。<br />
+3. A9-2 的防制造规则执行反了、A9-1「任一笔获批」太宽 → <strong>采纳</strong>（与 _bian 第 4、8 条一致）。<br />
+4. 平减 TVL 不是锁仓 ADA 枚数；剔除 USDM 的 +5.7% 只能称「其余稳定币」→ <strong>采纳</strong>。<br />
+5. 价格口径（CoinGecko vs 币安，差 0.03pp）、1.25σ 由同一短窗口估计、45/30/25 不是推导 → <strong>采纳</strong>：口径差异不改变任何排序（已在 3.1 与第 8 章注明）；1.25σ 已标「不显著」；概率见 _bian 第 1 条。</p>
+<p><strong>作者自查（初稿时）</strong>：治理数字取最终状态、真同比、价格效应与断档、事件窗、多空同源、beta 配 R²、首尾相接、极值复算——均已执行；<strong>但「情景概率是否有明确的锚」「更正的方向是否与使用它的论点一致」两项不在清单上，初稿两处都出了错。</strong></p>
+<p><strong>ZEC 期清扫</strong>：撤回的说法（「概率是机械的」「不给方向性判断」「国库停摆」作为结论、「以 ADA 计锁仓」「锁仓 ADA 季度减半」「对立型否决」「确认偏误」「恰好是 9/1 11:30」「投票率口径写错」）已在报告、摘要、记分卡中 grep 清扫。</p>
+<blockquote>
+<p><strong>本期最该记住的一条</strong>：<strong>8 月版把「打开了媒体原文」标成了一手。</strong> 86.72% 和 51.18% 是同一类来源——治理数字的一手只有链上最终状态；即使查了链上，最终值也可能有多个来源对不上（本期 54.40% / 54.69% / 56.54%），应当并列而不是挑一个。</p>
+</blockquote>
+<hr />
+<blockquote>
+<p><strong>配套文件</strong>：<code>ada_questions_summary_202609.md</code>（简明速查）、<code>../thesis_scorecard.md</code>（论点滚动记分卡）。<br />
+本报告不构成投资建议。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-ada-cardano-2026-9">ADA / Cardano 简明速查（2026 年 9 月版）</h1>
+<blockquote>
+<p>本文是 <code>ada_research_report_202609.md</code> 的浓缩版，供快速复习。<strong>第二期，兼 Q3 季度回顾。</strong><br />
+数据截止 2026-09-30（链上快照至 10/5）。不构成投资建议。</p>
+<p>⚠️ <strong>本期更正了 8 月版的两处治理事实</strong>：「SPO 51.18%、险胜 0.18pp」是中途快照（最终 54.4%–56.5%，三个来源）；「IOG 系四笔全部通过」漏了一笔失败的提案（Pogun）。详见第 4 节。</p>
+</blockquote>
+<hr />
+<h2 id="s-1-ada">1. ADA 是什么（不变）</h2>
+<p>一条以学术同行评审方式开发的权益证明公链（Ouroboros 共识 + eUTxO 账本），核心卖点是形式化验证与<strong>链上治理</strong>。<br />
+它的估值够不着 BTC 的稀缺性锚，也够不着 SOL 的网络收入锚——L1 收入在噪声量级。</p>
+<h2 id="s-2-9-btc">2. 9 月价格：跑赢 BTC，但不显著</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘 / 市值</td>
+<td><strong>$0.2465 / $92.5 亿</strong></td>
+</tr>
+<tr>
+<td>10/5 价格 / 排名</td>
+<td>$0.2678 / 第 16（8 月版第 19）</td>
+</tr>
+<tr>
+<td>9 月 / Q3 / YTD</td>
+<td><strong>+24.64% / +70.94% / –26.04%</strong>（CoinGecko；币安口径 +24.67% / +70.78%）</td>
+</tr>
+<tr>
+<td>距 ATH $3.09</td>
+<td>–92.0%</td>
+</tr>
+<tr>
+<td>beta / R²（9 月）</td>
+<td>1.580 / 0.722</td>
+</tr>
+<tr>
+<td>beta 预期 / 超额</td>
+<td>+10.10% / <strong>+14.54pp，约 1.25 个标准差</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>9/15 Mastercard 消息后一周 ADA/BTC +14.05%</strong>——但同一天 CLARITY 法案失败，之后是全市场反弹，且宣布前两周 ADA/BTC 已 +5.95%。<strong>本报告不把超额归因于这条消息。</strong></p>
+<h2 id="s-3">3. 链上：仍在噪声量级</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">9 月</th>
+<th style="text-align: right;">8 月</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>交易笔数</td>
+<td style="text-align: right;"><strong>722,433</strong></td>
+<td style="text-align: right;">645,772</td>
+</tr>
+<tr>
+<td>日均 / TPS</td>
+<td style="text-align: right;">24,081 / 0.28</td>
+<td style="text-align: right;">21,526 / 0.25</td>
+</tr>
+<tr>
+<td><strong>L1 手续费</strong></td>
+<td style="text-align: right;"><strong>$48,848</strong></td>
+<td style="text-align: right;">$39,380</td>
+</tr>
+<tr>
+<td>链上手续费（ADA 计）</td>
+<td style="text-align: right;">228,535 ADA</td>
+<td style="text-align: right;">188,805 ADA</td>
+</tr>
+<tr>
+<td>L1 手续费真同比</td>
+<td style="text-align: right;"><strong>–81.9%</strong></td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td>应用层费用（不含 L1）</td>
+<td style="text-align: right;">$311,514</td>
+<td style="text-align: right;">$301,409</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>两个「好看的数字」拆开后都不成立</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>表面</th>
+<th>拆开后</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TVL 9 月 <strong>+27.1%</strong></td>
+<td>约六成是价格效应：按价格平减 +0.2%，按实测 beta 0.66 粗估隐含持仓约 <strong>+10%</strong>；Q3 隐含持仓约 <strong>−43%</strong>（平减值不是锁仓枚数，代币构成未拆）</td>
+</tr>
+<tr>
+<td>链上稳定币 9 月 <strong>+32%</strong></td>
+<td>DefiLlama 的 USDM 统计 2/9–9/28 整段缺失，9/28 一次补回约 $1,366 万；<strong>剔除 USDM 后其余稳定币 +5.7%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-4">4. 治理：本期最重要的一章</h2>
+<h3 id="s-8">8 月版的两处更正</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>8 月版</th>
+<th>链上一手</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>宪法委员会续任「SPO 51.18%，仅超门槛 0.18pp」（8 月版标「已一手核实」）</td>
+<td><strong>最终 54.69%（逐票复算）/ 54.40%（Koios）/ 56.54%（Intersect 周报）</strong>，差异原因未查明，但都不是 51.18%。51.18% 与 9/1 11:30 UTC 前后的中途读数一致</td>
+</tr>
+<tr>
+<td>「IOG 系四笔提案全部通过」</td>
+<td>漏了 <strong>Pogun（1,229 万 ADA）</strong>：4 月提交、DRep <strong>赞成仅 35.67%</strong> 失败（64.33% 含沉默，明确反对约占 40%），投了票的人里反对（16.75 亿）多于赞成（14.81 亿）。提案人身份为媒体归属</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>51.18% 与 86.72% 是同一类来源（媒体快照）。</strong> 8 月版的失败是<strong>来源分级</strong>：把「打开了媒体原文」标成了一手。（初稿把这诊断为「只查不喜欢的数字」的确认偏误，与 8 月版记录相反，审查后撤回。）<br />
+<strong>注意方向</strong>：51.18% 更正为 54%–57%，说明续任案过得更从容——对「治理在运转」是利好。</p>
+</blockquote>
+<h3 id="s-9">9 月的三笔失败，两种机制</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>动议</th>
+<th>投了票的人</th>
+<th>失败原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Governance Incentives Framework 2026</strong></td>
+<td><strong>97% 的票权反对</strong>（23.55 亿 vs 0.74 亿 ADA），宪法委员会 4:1 反对</td>
+<td><strong>明确拒绝</strong></td>
+</tr>
+<tr>
+<td>Ikigai 押金返还</td>
+<td>98.1% 赞成</td>
+<td>沉默（DRep 65.18%，差 1.82pp）</td>
+</tr>
+<tr>
+<td>参数修改第二部分</td>
+<td>投票 SPO 76.8% 赞成</td>
+<td>沉默（SPO 32.88%，门槛 51%）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>8 月版论点 A8-6「治理风险是冷漠而非对立」按检验字面判 ❌</strong>——两种机制同时存在。但它原意是「<strong>主要</strong>风险是冷漠」，本期 3 笔里 2 笔是冷漠型，这层意思没有被推翻；GIF 是近乎一致的拒绝，不是阵营对立。</p>
+<h3 id="s-9-epoch">国库：9 个 epoch 零新批准，但还不能叫停摆</h3>
+<ul>
+<li><strong>epoch 650（8/17–8/22）之后零笔国库提取获批</strong>；9 月到期两笔失败（GIF 为明确拒绝；Ikigai 为 98.1% 赞成、因沉默失败）；在投的 OpenZeppelin 1,178.7 万 ADA 提案 DRep 反对 96.57%</li>
+<li><strong>这种空档有先例</strong>：epoch 571 以来出现过三次 ≥9 个 epoch 的批准空档（20、15、9 个 epoch；Koios 一手）</li>
+<li><strong>已批准的钱还在发</strong>：Intersect 9/11 周报——2026 预算已为 16 份合同拨款，转出 7,400 万 ADA</li>
+<li>国库余额 13.71 亿 ADA（+2.2%，约 $3.38 亿）</li>
+<li>9/18 Hoskinson 表示 <strong>IO 今后不再「Cardano 优先」</strong>（媒体转述，未取得原始视频）</li>
+</ul>
+<h3 id="s-_1">有效选民很窄</h3>
+<p>DRep 委托 157.4 亿 ADA，其中 <strong>103.0 亿是「自动弃权」</strong>；国库类动议的有效计票分母只有<strong>约 43 亿 ADA，约流通量的九分之一</strong>。</p>
+<h2 id="s-5">5. 机构通道</h2>
+<ul>
+<li><strong>SEC EDGAR 全文检索 8/1–10/4：零份单一资产 ADA 现货 ETF 申报</strong>；Grayscale 8/7 的撤回（RW）一手确认。8 月版写的 10/23 窗口<strong>不会发生任何事</strong></li>
+<li><strong>Mastercard</strong>：Cardano Foundation 9/15 加入 Mastercard Crypto Partner Program——<strong>一个多方参与的合作计划，无产品、无 ADA 集成</strong>，且只有媒体转述</li>
+</ul>
+<h2 id="s-6">6. 供应与质押（改用链上账目）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总供应 / 流通 / 国库 / 储备</td>
+<td>389.12 / 375.41 / 13.71 / 60.88 亿（合计 450.00 亿）</td>
+</tr>
+<tr>
+<td>年化增速</td>
+<td><strong>总供应 1.85%、流通 1.20%</strong>（8 月版写的 1.47% 来自 StakingRewards，口径不明）</td>
+</tr>
+<tr>
+<td>质押量 / 质押率</td>
+<td>213.21 亿 / 56.8%</td>
+</tr>
+<tr>
+<td>质押者实得毛收益</td>
+<td>约 2.11%（vs 10 年期美债 5.29%）</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-7">7. 多空一览</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>多头</th>
+<th style="text-align: center;">星级</th>
+<th>空头</th>
+<th style="text-align: center;">星级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>治理真实运转</td>
+<td style="text-align: center;">★★★ <strong>（降：漏了 Pogun、新批准暂停）</strong></td>
+<td>使用量近乎不存在</td>
+<td style="text-align: center;">★★★★★</td>
+</tr>
+<tr>
+<td>出块去中心化</td>
+<td style="text-align: center;">★★★★</td>
+<td><strong>国库新批准暂停、新增支出遭拒</strong></td>
+<td style="text-align: center;">★★★ <strong>（新）</strong></td>
+</tr>
+<tr>
+<td>安全记录干净</td>
+<td style="text-align: center;">★★★★</td>
+<td><strong>TVL 增长约六成是价格、锁仓季度减少四成多（粗估）</strong></td>
+<td style="text-align: center;">★★★</td>
+</tr>
+<tr>
+<td>9 月超额 +14.5pp</td>
+<td style="text-align: center;">★★ <strong>（新，不显著）</strong></td>
+<td>ETF 通道空白</td>
+<td style="text-align: center;">★★★★</td>
+</tr>
+<tr>
+<td>Leios 在推进</td>
+<td style="text-align: center;">★★ <strong>（降；Intersect 周报一手）</strong></td>
+<td><strong>明确拒绝型否决</strong></td>
+<td style="text-align: center;">★★★ <strong>（新）</strong></td>
+</tr>
+<tr>
+<td>Mastercard 合作计划</td>
+<td style="text-align: center;">★★ <strong>（新，二手）</strong></td>
+<td><strong>IO 不再 Cardano 优先</strong></td>
+<td style="text-align: center;">★★★ <strong>（新，转述）</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>同源提醒</strong>：「治理运转」与「新批准暂停」「明确拒绝型否决」是同一个机制的两面——治理有效，正体现在它能说「不」。</p>
+<h2 id="s-8_1">8. 情景：重建，作者基准写明</h2>
+<p>8 月版的中性上沿依据「2026 年高点 $91 亿」是错的（实为 1/13 的 $158.3 亿），三档之间还有两段空档。本期改用 ADA 自身的市值区间，两端开放、首尾相接：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>情景</th>
+<th>参照市值</th>
+<th>2029 年价格</th>
+<th style="text-align: center;">基线：中位数不变</th>
+<th style="text-align: center;"><strong>作者采用：期望市值不变</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>乐观</td>
+<td>&gt; $158.3 亿</td>
+<td>&gt; $0.405</td>
+<td style="text-align: center;">35.9%</td>
+<td style="text-align: center;"><strong>13.5%</strong></td>
+</tr>
+<tr>
+<td>中性（2026 年交易区间）</td>
+<td>$53.5 亿 – $158.3 亿</td>
+<td>$0.137 – $0.405</td>
+<td style="text-align: center;">28.5%</td>
+<td style="text-align: center;"><strong>22.0%</strong></td>
+</tr>
+<tr>
+<td>悲观（跌破 2026 年低点）</td>
+<td>&lt; $53.5 亿</td>
+<td>&lt; $0.137</td>
+<td style="text-align: center;">35.6%</td>
+<td style="text-align: center;"><strong>64.5%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>作者基准 = 期望市值不变的随机游走基线</strong>（年化波动 82.3%），不作偏离：<strong>期望市值持平，但 2029 年价格低于现价的概率约 78%</strong>，市值中位数约低 67%</li>
+<li>流通量到 2029 年增长约 4.2%，<strong>市值不变时价格约 −4%</strong>（稀释）</li>
+<li>初稿的 45/30/25「概率是机械的、不给方向」经审查撤回：它只在波动率 70% 时成立，且两种基线取中点既不保持中位数也不保持期望</li>
+</ul>
+<h2 id="s-9_1">9. 该盯什么</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>当前值</th>
+<th>阈值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>最近一笔国库提取获批距今</strong></td>
+<td><strong>9 个 epoch</strong></td>
+<td>&gt;20（超过 epoch 571 以来最长先例）→ 停摆确认；恢复批准新增支出 → A9-1 成立</td>
+</tr>
+<tr>
+<td>明确拒绝型否决次数</td>
+<td>9 月 1 次</td>
+<td>一个季度 ≥3 次 → 支出收紧成为主导</td>
+</tr>
+<tr>
+<td><strong>链上手续费（ADA 计，30 天）</strong></td>
+<td>228,535 ADA</td>
+<td>≥ 45.7 万 ADA（翻倍）→ A9-2 判错</td>
+</tr>
+<tr>
+<td>TVL（按价格平减）</td>
+<td>2.732 亿</td>
+<td>连续两月 &gt;+10% → 可能有资金流入（须按代币构成复核）</td>
+</tr>
+<tr>
+<td>单一资产 ADA ETF 申报</td>
+<td>零</td>
+<td>任一申报 → 乐观上调</td>
+</tr>
+<tr>
+<td>Leios 硬分叉</td>
+<td>未发布</td>
+<td>年内 enacted → A9-3 判错</td>
+</tr>
+<tr>
+<td>IO 新产品选哪条链</td>
+<td>约 12 月中</td>
+<td><strong>未被国库否决过的</strong>新产品首发不在 Cardano → 退出风险从表态变为行动（Pogun 曾被否决，单看它区分不了）</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-10">10. 记分卡</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>论点</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A8-6</strong> 治理风险是冷漠而非对立</td>
+<td><strong>❌（按检验字面）</strong>；统计量与论点不完全同构，已注明</td>
+</tr>
+<tr>
+<td>A8-1 链上活动不跟随价格</td>
+<td>⏳ 9 月计 1 个同向月（1 / 3）；检验受价格污染，已注明</td>
+</tr>
+<tr>
+<td>A8-2 至 A8-5</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td><strong>A9-1</strong> 国库会在 Q4 恢复批准<strong>新增支出类</strong>拨款（≥100 万 ADA）</td>
+<td>⏳ 自评 40%（本期押在可能输的一侧）</td>
+</tr>
+<tr>
+<td>A9-2 链上手续费（ADA 计）Q4 不会翻倍</td>
+<td>⏳ 自评 75%</td>
+</tr>
+<tr>
+<td>A9-3 Leios 硬分叉年内不会激活</td>
+<td>⏳ 自评 85%</td>
+</tr>
+</tbody>
+</table></div>
+<p>ADA 记分卡目前已判定 1 条，正确 0 条。</p>
+<h2 id="s-11-3-5">11. 如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>9 月 ADA +24.6%，比 beta 预期多 14.5pp，但只有约 1.25 个标准差——不能排除噪声。</strong> Mastercard 消息与全市场反弹在时间上重叠，不能归因。</p>
+</li>
+<li>
+<p><strong>8 月版的治理叙事有两块基石是错的</strong>：「SPO 险胜 0.18pp」是中途快照（最终 54.4%–56.5%）；「IOG 系全部通过」漏了 4 月失败的 Pogun。<strong>8 月版把媒体快照标成了「已一手核实」——这是来源分级错误。</strong></p>
+</li>
+<li>
+<p><strong>A8-6 按字面判错</strong>：GIF 2026 被 97% 的投票票权否决，同月另两笔因沉默失败——<strong>冷漠与明确拒绝同时存在</strong>；哪种为主，本期没有逐笔分类。</p>
+</li>
+<li>
+<p><strong>国库 9 个 epoch 零新批准（有先例，未达停摆阈值），据媒体转述 IO 表示不再 Cardano 优先。</strong> 治理有效，但它开始对部分新增支出说「不」。</p>
+</li>
+<li>
+<p><strong>链上没有变，情景偏空</strong>：0.28 TPS、L1 月费 $48,848（真同比 –81.9%）；TVL +27% 约六成是价格、稳定币 +32% 是数据断档。作者基准下 <strong>2029 年价格低于现价的概率约 78%</strong>（期望市值持平）。</p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>ada_research_report_202609.md</code>（对 8 月版的更正见其 11.4 节，审查记录见 11.5 节）。<br />
+论点检验记录见 <code>../thesis_scorecard.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>
