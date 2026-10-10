@@ -1,0 +1,2108 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>HYPE / Hyperliquid 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#97FCE4;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">◈ HYPE 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>◈ HYPE 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-hyperliquid">1. Hyperliquid 的起源与设计…</a>
+<a href="#2-hype">2. HYPE 的发展阶段划分</a>
+<a href="#3-hype">3. HYPE 当前现状分析</a>
+<a href="#4-assistance-fund">4. 回购</a>
+<a href="#5">5. 解锁与释放</a>
+<a href="#6">6. 竞争格局</a>
+<a href="#7-hype">7. HYPE 的核心价值逻辑</a>
+<a href="#8-hype">8. HYPE 与其他五个资产的比较</a>
+<a href="#9">9. 估值</a>
+<a href="#10">10. 投资与风险启示</a>
+<a href="#11">11. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-1">1. 一句话</a>
+<a href="#s-2">2. 当前位置</a>
+<a href="#s-3">3. 供应结构</a>
+<a href="#s-4">4. 核心贡献者地址</a>
+<a href="#s-5">5. 回购与奖励排放</a>
+<a href="#s-6">6. 收入、竞争与估值</a>
+<a href="#s-7">7. 记分卡</a>
+<a href="#s-3-5">如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>◈ HYPE / Hyperliquid<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">◈ Hyperliquid</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="hype-hyperliquid">HYPE / Hyperliquid 完整调研与分析报告</h1>
+<blockquote>
+<p><strong>版本</strong>：2026 年 9 月（兼 Q3 回顾）<br />
+<strong>编写日期</strong>：2026 年 10 月 10 日<br />
+<strong>数据截止</strong>：2026-09-30（链上与官方接口快照到 10/10）<br />
+<strong>研究方法</strong>：沿用 8 月首期框架。<strong>本期第一次有上期论点可核对。</strong></p>
+<p><strong>本期核心发现</strong>：</p>
+<ol>
+<li><strong>8 月版和市场一直称为「核心贡献者解锁」的转出，累计量几乎被同一地址的质押奖励抵消。</strong><br />
+   核心贡献者地址（<code>0x43e9abea…</code>）创世收到 238,000,000 枚，全部质押；截至 10/10 累计领到质押奖励 <strong>9,429,967</strong>、累计对外转出 <strong>9,542,470</strong>——<strong>累计转出只比累计奖励多 112,503 枚</strong>。<br />
+   6–9 月每月转出 43–53 万，同月奖励 43–45 万；10/07 那 375 万枚，在量上约等于此前累积未转出的奖励（约 350 万）。<br />
+   ⚠️ <strong>奖励自动复投、与本金混在同一笔委托余额里，链上不能识别转出的币是「奖励」还是「本金」</strong>——<strong>观测</strong>（与读法无关）：该地址的 HYPE 总额截至 10/10 只比创世时少约 11 万枚；<strong>读法</strong>：「本金基本未动」是「奖励优先抵扣」的会计读法。它是「未归属」还是「已归属未转出」，链上同样分不出来。</li>
+<li><strong>质押奖励是 <code>futureEmissions</code> 的一条持续释放通道，而且可以估算</strong>：官方文档写明质押奖励来自该储备；<br />
+   按 10/10 全网质押约 4.40 亿枚与文档公式，<strong>当前奖励排放速度约年化 2.26%、每月约 83 万枚</strong>（估算；奖励自动复投，<strong>不等于同额进入流通</strong>）。</li>
+<li><strong>Assistance Fund 的回购也测出来了：9 月约 70.0 万枚</strong>（9/06–9/30 实测 577,938 + 9/01–9/06 按实测日均外推）。<br />
+<strong>与当前奖励排放速度（约 83 万/月）同一量级</strong>；与核心贡献者地址的转出（43.3 万）相比为 <strong>约 162%</strong>——8 月版 H8-3（不会超过 150%）<strong>按推算判 ❌</strong>（实测部分为 133%，触线依赖 9/01–9/06 的外推）。</li>
+<li><strong>两处更正必须说清方向</strong>：① <strong>AF 就是销毁</strong>——官方文档原文：「HYPE in the assistance fund is burned, removing the tokens permanently from the circulating and total supply」；<br />
+   但官方 <code>tokenDetails</code> 接口的 <code>totalSupply</code> 没有扣 AF，<strong>两个官方口径不一致</strong>；CoinGecko 的总供应 9/06 以来没动过。<br />
+   ② <strong>初稿一度写「实际进入 AF 的只有 DefiLlama 口径的 81%」——撤回</strong>：10/01–10/09 的样本外检验得到 1.557，两窗口合计 0.985；<strong>结果与时点错配的解释相容，但不能据此识别原因</strong>。</li>
+<li><strong>价格：9 月 +8.00%（BTC +6.42%），Q3 +39.87%（BTC +42.64%），9/23 创历史新高 $97.89。</strong> 一年 beta 1.061、R² 0.262。<br />
+<strong>8 月版的 +52.42% 是 7/31 → 8/30（CoinGecko 00:00 点代表前一日收盘），按 7/31 → 8/31 收盘应为 +60.30%。</strong></li>
+</ol>
+<p><strong>本期核心判断</strong>：<strong>核心贡献者地址和 AF 这两块，用官方接口测得准；8 月版没去测。</strong><br />
+测准之后：<strong>当前约 83 万/月的奖励排放估计与约 70 万/月的回购同一量级</strong>；而<strong>真正悬着的是那 2.38 亿——按会计读法它至今基本没有流出</strong>。<br />
+<strong>若按解锁日历的名义节奏（每月约 992 万枚）开始流出，每月约 992 万，约为当前全网奖励排放估计（约 83 万）的 12 倍；若不流出，回购与奖励排放同一量级。本报告不知道是哪一个。</strong></p>
+<p>⚠️ <strong>本报告仍不给目标价</strong>，见第 9 章。</p>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>当前价格位置</strong></td>
+<td>9/30 收盘 <strong>$90.89</strong>；10/10 CoinGecko $83.69、市值 $186.2 亿（第 11）、FDV $799.5 亿。<strong>9/23 创 ATH $97.89</strong>（Hyperliquid 现货盘中）</td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3</strong></td>
+<td><strong>+8.00% / +39.87%</strong>（BTC +6.42% / +42.64%）；beta 1.061、<strong>R² 0.262</strong>；9 月较 beta 缩放的 BTC 收益高约 1.2pp，Q3 低约 5.4pp</td>
+</tr>
+<tr>
+<td><strong>供应结构（官方接口）</strong></td>
+<td>流通 3.022 亿 / 核心贡献者地址 2.379 亿 / AF 0.479 亿 / <code>futureEmissions</code> 4.109 亿 / 已销毁 0.011 亿（接口口径，AF 未计入销毁）</td>
+</tr>
+<tr>
+<td><strong>核心贡献者地址</strong></td>
+<td>累计转出 9,542,470 ≈ 累计质押奖励 9,429,967；<strong>HYPE 总额只比创世少 112,503</strong>（观测）</td>
+</tr>
+<tr>
+<td><strong>当前奖励排放速度（全网，估算）</strong></td>
+<td>10/10 全网质押约 4.40 亿 → 年化约 2.26% → <strong>每月约 83 万枚</strong>（自动复投，不等于同额进入流通）</td>
+</tr>
+<tr>
+<td><strong>AF 回购</strong></td>
+<td><strong>9 月约 70.0 万枚</strong>（其中 57.8 万实测）；10/01–10/09 实测 33.6 万</td>
+</tr>
+<tr>
+<td><strong>回购 vs 排放</strong></td>
+<td>9 月回购 ÷ 当前月均排放估计 ≈ <strong>85%</strong>；9 月回购 ÷ 核心地址转出 ≈ <strong>162%</strong>（推算）</td>
+</tr>
+<tr>
+<td><strong>归持有人收入（DefiLlama）</strong></td>
+<td>9 月 <strong>$7,419 万</strong>（2025-12 以来最高）；12 个月 <strong>$7.140 亿</strong>；9/06–10/09 合计比值约 0.99，<strong>端点时点差可造成约 ±15% 偏差，只能说同一量级</strong></td>
+</tr>
+<tr>
+<td><strong>业务规模（官方 API，10/10 单点）</strong></td>
+<td>OI <strong>$118.9 亿</strong>、24h 名义成交 <strong>$30.3 亿</strong>、234 个永续市场</td>
+</tr>
+<tr>
+<td><strong>竞争</strong></td>
+<td>Aster + Lighter 9 月归持有人收入合计为 Hyperliquid 的 <strong>9.1%</strong></td>
+</tr>
+<tr>
+<td><strong>估值锚</strong></td>
+<td>FDV ÷ 12 个月归持有人收入：<strong>121.6 倍</strong>（CoinGecko 总供应）/ <strong>127.2 倍</strong>（官方接口总供应），9/30 价格</td>
+</tr>
+<tr>
+<td><strong>本报告给目标价</strong></td>
+<td><strong>否</strong>，见第 9 章</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-hyperliquid">1. Hyperliquid 的起源与设计取舍</h2>
+<p>起源与三个技术取舍（自建 L1、全链上订单簿、协议收入回购代币）与 8 月版相同，不再重复。</p>
+<h3 id="14-8">1.4 本期补：供应结构的官方拆分（8 月版下期清单第二优先）</h3>
+<p>8 月版写道：「未流通份额中除核心贡献者约 2.37 亿枚外，其余约 6 亿枚的类别与释放时间表完全未获取」。<br />
+<strong>Hyperliquid 官方接口 <code>info</code> 的 <code>tokenDetails</code>（tokenId <code>0x0d01dc56dcaaca66ad901c959b4011ec</code>）直接返回：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>字段（2026-10-10）</th>
+<th style="text-align: right;">HYPE</th>
+<th style="text-align: right;">占上限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maxSupply</code></td>
+<td style="text-align: right;">1,000,000,000</td>
+<td style="text-align: right;">100%</td>
+</tr>
+<tr>
+<td><code>totalSupply</code></td>
+<td style="text-align: right;">998,870,656</td>
+<td style="text-align: right;">99.89%</td>
+</tr>
+<tr>
+<td><strong><code>circulatingSupply</code></strong></td>
+<td style="text-align: right;"><strong>302,164,310</strong></td>
+<td style="text-align: right;"><strong>30.2%</strong></td>
+</tr>
+<tr>
+<td><code>futureEmissions</code></td>
+<td style="text-align: right;">410,875,058</td>
+<td style="text-align: right;">41.1%</td>
+</tr>
+<tr>
+<td><code>nonCirculatingUserBalances</code>：<code>0x43e9abea…f8a251</code>（核心贡献者，见第 5 章）</td>
+<td style="text-align: right;">237,887,493</td>
+<td style="text-align: right;">23.8%</td>
+</tr>
+<tr>
+<td><code>nonCirculatingUserBalances</code>：<code>0xfefe…fefe</code>（Assistance Fund）</td>
+<td style="text-align: right;">47,942,119</td>
+<td style="text-align: right;">4.8%</td>
+</tr>
+<tr>
+<td><code>nonCirculatingUserBalances</code>：零地址与 <code>0x…dead</code></td>
+<td style="text-align: right;">1,676</td>
+<td style="text-align: right;">0.0%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>接口自洽</strong>：302,164,310 + 285,831,288（非流通合计，含 1,676）+ 410,875,058 = 998,870,656（原始精度下差约 7×10⁻⁸）。<br />
+⚠️ <strong>这是接口的定义恒等式（流通 = 总供应 − 非流通 − 未来排放），不是独立验证。</strong><br />
+上限与 <code>totalSupply</code> 之差 1,129,344 是接口口径的已销毁量——<strong>它没有计入 AF</strong>，与官方文档「AF 中的 HYPE 已销毁」的定义不一致（第 4 章）。</p>
+<p><strong><code>futureEmissions</code> 不是「静止的储备」</strong>：官方质押文档写明「Staking rewards come from the future emissions reserve. Rewards are accrued every minute and distributed to stakers every day」——<br />
+<strong>它每天都在以质押奖励的形式释放</strong>（第 5.3 节测算）。其余用途（社区奖励等）的构成与节奏，接口未给出。</p>
+</blockquote>
+<hr />
+<h2 id="2-hype">2. HYPE 的发展阶段划分</h2>
+<p>阶段一（空投与冷启动，2024.11–2025 上半年）、阶段二（永续 DEX 份额争夺，2025）与 8 月版相同。</p>
+<h3 id="cliff-202511">阶段三：cliff 到期之后（2025.11– 至今）——本期更正</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th>事件</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024-11-29</td>
+<td>核心贡献者地址创世收到 238,000,000 枚，此后全部质押，每月领约 44 万枚奖励</td>
+<td>链上一手</td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td>cliff 到期，该地址<strong>首次转出 1,745,745 枚</strong>（此前已累计约 491 万枚奖励未动）</td>
+<td>链上一手</td>
+</tr>
+<tr>
+<td>2026-01</td>
+<td>转出 1,125,766 枚</td>
+<td>链上一手</td>
+</tr>
+<tr>
+<td>2026-02 至 09</td>
+<td>每月转出 14.0 万 → 53.4 万，<strong>与当月奖励（40–45 万）同一水平</strong></td>
+<td>链上一手</td>
+</tr>
+<tr>
+<td><strong>2026-09-23</strong></td>
+<td><strong>ATH $97.89</strong>（Hyperliquid 现货盘中；CoinGecko 记 $97.96）</td>
+<td>一手</td>
+</tr>
+<tr>
+<td><strong>2026-10-07</strong></td>
+<td><strong>一天转出 3,750,000 枚</strong>，在量上超过此前累积未转出的奖励（约 350 万）约 15.5 万</td>
+<td>链上一手</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>更正 8 月版</strong>：8 月版阶段三写「同期每个月都有约 992 万枚解锁」——那是第 5 章已撤回的机械平均。<br />
+<strong>本期进一步发现：「175 万」「120 万」这些被当作实测解锁的转出，在累计量上都被同一地址的质押奖励覆盖——不能证明它们是本金归属。</strong></p>
+</blockquote>
+<hr />
+<h2 id="3-hype">3. HYPE 当前现状分析</h2>
+<h3 id="30-8-6">3.0 论点校验：8 月版登记的 6 条</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th>检验条件（摘要）</th>
+<th>9 月读数</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>H8-1</strong></td>
+<td>AF 的买入等同销毁，且总供应量会随之持续下降</td>
+<td>若 2026-12-31 CoinGecko 总供应 &gt; 9.5531 亿则错</td>
+<td>CoinGecko 总供应 <strong>9/06 以来未变</strong>（同期 AF +917,143）；官方文档定义 AF 为销毁，官方接口 <code>totalSupply</code> 不扣 AF</td>
+<td><strong>⊘ 检验条件有缺陷</strong>（见下）</td>
+</tr>
+<tr>
+<td>H8-2</td>
+<td>实际月度解锁显著低于 992 万枚</td>
+<td>2026-09 至 12 任一月核心贡献者实际分发 ≥ 500 万则错</td>
+<td>9 月该地址转出 <strong>433,419</strong>；<strong>10 月截至 10/10 已 3,750,000</strong></td>
+<td>⏳（10 月须核）</td>
+</tr>
+<tr>
+<td><strong>H8-3</strong></td>
+<td>回购与解锁同一量级（37%–70%）</td>
+<td>2026-12-31 前任一月回购 ÷ 解锁 &lt; 15% 或 &gt; 150% 则错</td>
+<td><strong>9 月约 700,116 ÷ 433,419 ≈ 162%</strong>（实测部分 133%）</td>
+<td><strong>❌（推算）</strong></td>
+</tr>
+<tr>
+<td>H8-4</td>
+<td>业务不会因竞争快速流失</td>
+<td>连续两月归持有人收入 &lt; $3,000 万，或 Aster + Lighter &gt; Hyperliquid 的 30% 则错</td>
+<td>9 月 $7,419 万；Aster + Lighter = <strong>9.1%</strong></td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>H8-5</td>
+<td>FDV / 年化归持有人收入在 80–170 倍</td>
+<td>2026-12-31 落在区间外则错</td>
+<td><strong>121.6 倍</strong>（9/30，CoinGecko 总供应口径）</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>H8-6</td>
+<td>框架存在方向性偏差</td>
+<td>—</td>
+<td>8 月期已判 ❌，并注明需重新设计</td>
+<td>❌（见记分卡）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>H8-3 为什么判 ❌</strong>：<br />
+- <strong>回购</strong>：AF 余额 9/06 05:39 UTC 为 47,024,976（8 月版官方接口读数），<strong>9/30 日末 47,602,914</strong>（官方成交记录的 <code>startPosition</code>），<strong>实测增量 577,938</strong>（24.8 天，日均 23,337）；<br />
+  9/01–9/06 05:39（5.235 天）<strong>按同月实测日均外推 122,178</strong>。合计约 <strong>700,116</strong>。<br />
+- <strong>解锁</strong>：按登记时的操作口径（「核心贡献者实际分发量」，8 月版以该地址的转出为观测），9 月转出 <strong>433,419</strong>。<strong>比值约 162%，超过 150%。</strong><br />
+- <strong>稳健性</strong>：只用实测部分为 133%；要不触线，那 5 天的回购须少于 72,191，即日均低于 13,790，<strong>比同月实测日均低 41%</strong>。改用 DefiLlama 隐含买入（不打折）外推那 5 天，比值为 168%。<br />
+- <strong>判定强度</strong>：实测部分（133%）未触线，<strong>❌ 依赖 9/01–9/06 的外推</strong>——记分卡把它记为「推算判错」，与实测判定分开计。<br />
+- <strong>错在对 HYPE 有利的方向</strong>（回购超过了被称为「解锁」的那部分转出）。<br />
+- ⚠️ <strong>登记时手里就有反向信号</strong>：8 月版 5.2 写着「领域审查称近期单月分发已降至约 43–53 万枚……若属实，回购销毁将超过解锁」——<br />
+<strong>标了「未验证」，却把论点登记在它的反面（37%–70%）</strong>。教训见 10.3。</p>
+<p><strong>H8-1 为什么判 ⊘</strong>：<br />
+- <strong>登记时就违反门槛 5</strong>：论点说「持续下降」，条件却是「高于 9.5531 亿才错」——<strong>持平也算对</strong>。这个缺陷在登记时就写在记分卡的门槛表里。<br />
+- <strong>统计量失效</strong>：CoinGecko 总供应 9/06 至 10/10 一枚未变，同期 AF +917,143——它不跟踪 AF。<br />
+- <strong>落点无法确定</strong>：登记的统计量是 CoinGecko 总供应，它不动；<strong>换用其他供应口径来判胜负属于事后改口径，本报告不做</strong>。（初稿写「文档 ✅ / 接口 ❌」，被 Codex 指出是事后换口径，已删。）<strong>AF 按官方文档属于销毁，作为独立的机制事实陈述。</strong><br />
+- ⚠️ <strong>「登记时未知」不成立</strong>：<code>tokenDetails</code> 在 9/06 同样可读——<strong>是「可得未查」</strong>。⊘ 的理由是门槛 5 的缺陷 + 统计量失效，不是「未知」。</p>
+<p><strong>本期新登记两条论点（H9-1 Q4 核心贡献者地址不出现名义节奏量级的流出、H9-2 Q4 每月归持有人收入守住 $5,000 万），拒绝登记一条，见 <code>../thesis_scorecard.md</code>。</strong></p>
+</blockquote>
+<h3 id="31">3.1 价格与市场</h3>
+<blockquote>
+<p><strong>口径</strong>：HYPE 用 <strong>Hyperliquid 官方 HYPE/USDC 现货（<code>@107</code>）UTC 日收盘</strong>（<code>candleSnapshot</code>，一手）；BTC 等用币安 UTC 日收盘。HYPE 在币安 9/24 才有日线。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9/30 收盘</strong></td>
+<td><strong>$90.89</strong></td>
+</tr>
+<tr>
+<td>10/10 CoinGecko</td>
+<td>价格 $83.69 / 市值 <strong>$186.2 亿（第 11）</strong> / FDV $799.5 亿</td>
+</tr>
+<tr>
+<td><strong>ATH</strong></td>
+<td><strong>$97.89（9/23 盘中，Hyperliquid 现货）</strong>；CoinGecko 记 $97.96（9/23 05:16 UTC）</td>
+</tr>
+<tr>
+<td>9 月盘中区间</td>
+<td>$74.48（9/17）– $97.89（9/23）</td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3</strong></td>
+<td><strong>+8.00% / +39.87%</strong>（BTC +6.42% / +42.64%）</td>
+</tr>
+<tr>
+<td>年初至今 / 近一年</td>
+<td>+257.41% / +101.03%（BTC −4.59% / −26.68%）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>更正 8 月版的月度涨幅</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th>8 月版</th>
+<th>本期（Hyperliquid 现货收盘）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 月终点</td>
+<td>$80.05（CoinGecko 8/31 00:00 点 = <strong>8/30 收盘</strong>）</td>
+<td><strong>8/31 收盘 $84.16</strong></td>
+</tr>
+<tr>
+<td><strong>8 月涨幅</strong></td>
+<td>+52.42%</td>
+<td><strong>+60.30%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>本期用 Hyperliquid 日线复算 7/31 → 8/30 正好是 +52.42%，支持「终点差了一天」。<strong>XIN、CKB、GRAM 9 月版刚发现同一个错。</strong><br />
+8 月版的六资产对照表全部用这个口径，其余五个资产同样受影响。</p>
+</blockquote>
+<p><strong>风险特征</strong>（2025-09-30 至 2026-09-30，365 天日对数收益）：年化波动率 <strong>93.4%</strong>（BTC 45.0%）、beta <strong>1.061</strong>、<strong>R² 0.262</strong>。</p>
+<p><strong>按月拆开</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">7 月</th>
+<th style="text-align: right;">8 月</th>
+<th style="text-align: right;">9 月</th>
+<th style="text-align: right;"><strong>Q3</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BTC</td>
+<td style="text-align: right;">+7.27%</td>
+<td style="text-align: right;">+24.95%</td>
+<td style="text-align: right;">+6.42%</td>
+<td style="text-align: right;">+42.64%</td>
+</tr>
+<tr>
+<td>HYPE</td>
+<td style="text-align: right;">−19.21%</td>
+<td style="text-align: right;">+60.30%</td>
+<td style="text-align: right;">+8.00%</td>
+<td style="text-align: right;">+39.87%</td>
+</tr>
+<tr>
+<td><strong>实际 − beta × BTC</strong></td>
+<td style="text-align: right;"><strong>−26.9pp</strong></td>
+<td style="text-align: right;"><strong>+33.8pp</strong></td>
+<td style="text-align: right;"><strong>+1.2pp</strong></td>
+<td style="text-align: right;"><strong>−5.4pp</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>9 月收益较 beta 缩放的 BTC 收益高约 1.2pp</strong>——这只是累计收益的比较，不是回归预测；R² 0.262 下单月特质波动约 ±23pp，<strong>+1.2pp 不说明「被 BTC 解释」，只说明与 beta 预期吻合</strong>。</p>
+</blockquote>
+<h3 id="32">3.2 六个资产的横向对照</h3>
+<blockquote>
+<p><strong>口径</strong>：9 月 = 8/31 → 9/30 收盘，Q3 = 6/30 → 9/30，近一年 = 2025-09-30 → 2026-09-30；HYPE 用 Hyperliquid 现货，其余用币安。<strong>8 月版本表用 CoinGecko 00:00 点，两期不可逐格对比。</strong></p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th style="text-align: right;"><strong>9 月</strong></th>
+<th style="text-align: right;"><strong>Q3</strong></th>
+<th style="text-align: right;">近一年</th>
+<th style="text-align: right;">beta</th>
+<th style="text-align: right;">R²</th>
+<th style="text-align: right;">9 月残差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HYPE</strong></td>
+<td style="text-align: right;"><strong>+8.00%</strong></td>
+<td style="text-align: right;"><strong>+39.87%</strong></td>
+<td style="text-align: right;"><strong>+101.03%</strong></td>
+<td style="text-align: right;">1.061</td>
+<td style="text-align: right;">0.262</td>
+<td style="text-align: right;"><strong>+1.2pp</strong></td>
+</tr>
+<tr>
+<td>ADA</td>
+<td style="text-align: right;">+24.67%</td>
+<td style="text-align: right;">+70.78%</td>
+<td style="text-align: right;">−69.45%</td>
+<td style="text-align: right;">1.419</td>
+<td style="text-align: right;">0.649</td>
+<td style="text-align: right;">+15.6pp</td>
+</tr>
+<tr>
+<td>SOL</td>
+<td style="text-align: right;">+14.61%</td>
+<td style="text-align: right;">+60.34%</td>
+<td style="text-align: right;">−43.40%</td>
+<td style="text-align: right;">1.311</td>
+<td style="text-align: right;">0.755</td>
+<td style="text-align: right;">+6.2pp</td>
+</tr>
+<tr>
+<td>BNB</td>
+<td style="text-align: right;">+11.26%</td>
+<td style="text-align: right;">+40.76%</td>
+<td style="text-align: right;">−23.72%</td>
+<td style="text-align: right;">0.883</td>
+<td style="text-align: right;">0.594</td>
+<td style="text-align: right;">+5.6pp</td>
+</tr>
+<tr>
+<td>ETH</td>
+<td style="text-align: right;">+8.85%</td>
+<td style="text-align: right;">+70.86%</td>
+<td style="text-align: right;">−35.20%</td>
+<td style="text-align: right;">1.283</td>
+<td style="text-align: right;">0.823</td>
+<td style="text-align: right;">+0.6pp</td>
+</tr>
+<tr>
+<td>BTC</td>
+<td style="text-align: right;">+6.42%</td>
+<td style="text-align: right;">+42.64%</td>
+<td style="text-align: right;">−26.68%</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">—</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="六个资产的 9 月与 Q3 涨幅" src="charts/six-asset-compare-202609.svg" /></p>
+<blockquote>
+<p>图中数字：纵轴 0% / 20% / 40% / 60% / 80%；柱顶为上表的 9 月与 Q3 涨幅。<br />
+<strong>HYPE 仍是六个里唯一近一年为正的（+101.03%），但 Q3 是六个里最低的（+39.87%）。</strong> 9 月各资产残差的差距都在单月噪声范围内。</p>
+</blockquote>
+<h3 id="33-hyperliquid-api1010">3.3 业务规模（Hyperliquid 官方 API，10/10 单点）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">本期</th>
+<th style="text-align: right;">8 月版（9/06 单点）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>永续市场数</td>
+<td style="text-align: right;"><strong>234</strong></td>
+<td style="text-align: right;">233</td>
+</tr>
+<tr>
+<td><strong>全市场未平仓合约</strong></td>
+<td style="text-align: right;"><strong>$118.9 亿</strong></td>
+<td style="text-align: right;">$109.53 亿</td>
+</tr>
+<tr>
+<td><strong>24h 名义成交</strong></td>
+<td style="text-align: right;"><strong>$30.3 亿</strong></td>
+<td style="text-align: right;">$29.52 亿</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>两个单日快照都高于 8 月版，<strong>不足以说明趋势</strong>。</p>
+</blockquote>
+<h3 id="34-defillama">3.4 收入（DefiLlama，月度）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: right;">归持有人收入</th>
+<th style="text-align: right;">总费用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-10</td>
+<td style="text-align: right;">$9,720 万</td>
+<td style="text-align: right;">$1.248 亿</td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td style="text-align: right;">$7,765 万</td>
+<td style="text-align: right;">$1.014 亿</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td style="text-align: right;">$3,842 万</td>
+<td style="text-align: right;">$5,514 万</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td style="text-align: right;">$6,136 万</td>
+<td style="text-align: right;">$7,777 万</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td style="text-align: right;"><strong>$7,419 万</strong></td>
+<td style="text-align: right;"><strong>$9,133 万</strong></td>
+</tr>
+<tr>
+<td><strong>12 个月（2025-10 至 2026-09）</strong></td>
+<td style="text-align: right;"><strong>$7.140 亿</strong></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>9 月是 2025-12 以来最高的一个月</strong>（2025-11 为 $7,765 万）。<br />
+<strong>DefiLlama 口径与 AF 实测在 9/06–10/09 窗口内同一量级</strong>（合计比值约 0.99；两个单窗口分别偏离约 −13 万、+12 万 HYPE，窗口终点同样受时点差影响，误差约 ±15%；第 4.3 节，描述性结果，不是资金流审计）。</p>
+</blockquote>
+<h3 id="35">3.5 宏观环境</h3>
+<blockquote>
+<p>与 BTC 9 月版共用（美联储 9/16 加息 25bp 至 3.75–4.00%）。</p>
+</blockquote>
+<hr />
+<h2 id="4-assistance-fund">4. 回购：Assistance Fund 的实测（本期核心章之一）</h2>
+<h3 id="41">4.1 余额序列（一手）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点（UTC）</th>
+<th style="text-align: right;">AF 余额</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-09-06 05:39</td>
+<td style="text-align: right;">47,024,976</td>
+<td>8 月版官方接口读数（本期未保存原始快照）</td>
+</tr>
+<tr>
+<td>2026-09-28 19:45</td>
+<td style="text-align: right;">47,551,025</td>
+<td>官方成交记录 <code>startPosition</code></td>
+</tr>
+<tr>
+<td><strong>2026-09-30 日末</strong></td>
+<td style="text-align: right;"><strong>47,602,914</strong></td>
+<td>同上（10/01 第一笔成交）</td>
+</tr>
+<tr>
+<td>2026-10-09 日末</td>
+<td style="text-align: right;">47,939,198</td>
+<td>同上（最后一笔成交后）</td>
+</tr>
+<tr>
+<td>2026-10-10</td>
+<td style="text-align: right;">47,942,119</td>
+<td>官方 <code>tokenDetails</code></td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th style="text-align: right;">增量</th>
+<th style="text-align: right;">日均</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9/06 05:39 → 9/30 日末</strong>（24.8 天）</td>
+<td style="text-align: right;"><strong>577,938</strong></td>
+<td style="text-align: right;"><strong>23,337</strong></td>
+</tr>
+<tr>
+<td>10/01 → 10/09 日末</td>
+<td style="text-align: right;">336,283</td>
+<td style="text-align: right;">37,365</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>方法限制</strong>：官方成交接口只返回最近约 1 万笔；9 月只覆盖到 9/28 之后。月末余额可以一手读出（成交附带成交前余额），<strong>月中逐笔不行</strong>；<br />
+缓存的逐笔成交序列有三处余额连续性缺口（合计 196 枚），<strong>端点余额法可用，逐笔闭合未完成</strong>。</p>
+</blockquote>
+<h3 id="42-af">4.2 AF 是销毁——但两个官方口径不一致</h3>
+<p><strong>官方文档（Trading / Fees 页）原文</strong>：</p>
+<blockquote>
+<p>「The assistance fund uses the system address 0xfefefefefefefefefefefefefefefefefefefefe. It converts trading fees to HYPE in a fully automated manner as part of the L1 execution. <strong>HYPE in the assistance fund is burned, removing the tokens permanently from the circulating and total supply.</strong>」</p>
+</blockquote>
+<p><strong>而官方接口 <code>tokenDetails</code> 的 <code>totalSupply</code>（998,870,656）没有扣除 AF，把它列在「非流通用户余额」里。</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径</th>
+<th>AF 的处理</th>
+<th style="text-align: right;">总供应</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>官方文档定义</td>
+<td>已销毁，移出流通与总供应</td>
+<td style="text-align: right;">约 9.509 亿（10 亿 − 接口已销毁 1,129,344 − AF 47,942,119，本报告计算）</td>
+</tr>
+<tr>
+<td>官方接口 <code>totalSupply</code></td>
+<td>非流通余额</td>
+<td style="text-align: right;">998,870,656</td>
+</tr>
+<tr>
+<td>CoinGecko</td>
+<td>不明</td>
+<td style="text-align: right;">955,307,079（9/06 以来未变）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>所以</strong>：<strong>销毁机制本身成立</strong>（官方文档）；<strong>不能用接口的 <code>totalSupply</code> 或 CoinGecko 的总供应去检验它</strong>——前者不扣 AF，后者不动。<br />
+<strong>8 月版用「10 亿 − AF ≈ CoinGecko 总供应（差 0.24%）」证明 CoinGecko 已扣除 AF，这个论证撤回</strong>：<br />
+一个月后 AF 涨了 92 万，CoinGecko 一枚未动——<strong>它要么是巧合，要么是某个时点人工扣过一次之后冻结，本报告未区分</strong>。<br />
+初稿据此写「协议自己没有把 AF 当作销毁」——<strong>这是错的，被领域审查（Codex）用官方文档纠正，已撤回。</strong></p>
+</blockquote>
+<h3 id="43-defillama-81">4.3 实测与 DefiLlama 口径的对照（初稿的「81%」撤回）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>窗口</th>
+<th style="text-align: right;">AF 实测增量</th>
+<th style="text-align: right;">DefiLlama 归持有人收入 ÷ 当日现货开收均价</th>
+<th style="text-align: right;">实测 ÷ 隐含</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/06 05:39 → 9/30（9/06 收入按 1101/1440 计）</td>
+<td style="text-align: right;">577,938</td>
+<td style="text-align: right;">712,263</td>
+<td style="text-align: right;">0.811</td>
+</tr>
+<tr>
+<td>10/01 → 10/09</td>
+<td style="text-align: right;">336,283</td>
+<td style="text-align: right;">216,013</td>
+<td style="text-align: right;"><strong>1.557</strong></td>
+</tr>
+<tr>
+<td><strong>合计（约 34 天）</strong></td>
+<td style="text-align: right;"><strong>914,221</strong></td>
+<td style="text-align: right;"><strong>928,276</strong></td>
+<td style="text-align: right;"><strong>0.985</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>初稿只用第一个窗口，写「实际进入 AF 的只有 DefiLlama 口径的约 81%」——撤回。</strong><br />
+样本外的 10 月窗口给出 1.557，两窗口合计 0.985：<strong>单窗口的偏离与「收入入账与 AF 买入之间存在时点差」的解释相容，但本报告不能据此识别原因</strong>——分母用开收均价折算、首日按时间比例分摊，都是近似。<br />
+<strong>能说的</strong>：在这个约 34 天的窗口里，<strong>合计比值约 0.99，但窗口终点同样受时点差影响（两个单窗口各偏离约 13 万枚，约占合计的 14%），误差约 ±15%——只能说同一量级</strong>；<strong>不能说</strong>「81% 被截留」，也不能说「已完成资金流审计」。<br />
+官方文档另写「fees are entirely directed to the community (HLP, the assistance fund, and deployers)」——手续费有一部分进入 HLP 与资产部署方；<strong>这与「归持有人收入 ≈ AF 买入」不矛盾，说明 DefiLlama 的归持有人口径已扣除了这些部分（推断）</strong>。</p>
+</blockquote>
+<h3 id="44">4.4 逐月回购</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: right;">回购（HYPE）</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-06</td>
+<td style="text-align: right;">约 923,373</td>
+<td>DefiLlama 隐含（推算）</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td style="text-align: right;">约 613,795</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td style="text-align: right;">约 881,340</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td style="text-align: right;"><strong>约 700,116</strong></td>
+<td><strong>实测 577,938 + 外推 122,178</strong></td>
+</tr>
+<tr>
+<td>2026-10（1–9 日）</td>
+<td style="text-align: right;">336,283</td>
+<td>实测</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="5">5. 解锁与释放：核心贡献者地址的账本（本期核心章之二）</h2>
+<h3 id="51-8">5.1 8 月版为什么没去测</h3>
+<p>8 月版第 5 章引用 The Block 的两个数（175 万、120 万），并写「完整归属时间表未公开，任何未来解锁速率都无法测算」。<br />
+<strong>核心贡献者地址的进出记录（官方 <code>userNonFundingLedgerUpdates</code>，310 条）与质押奖励记录（官方 <code>delegatorRewards</code>，651 条）都可以直接拉出来。</strong></p>
+<h3 id="52">5.2 转出几乎等于质押奖励</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: right;">该地址质押奖励</th>
+<th style="text-align: right;">该地址对外转出</th>
+<th style="text-align: right;">累计奖励 − 累计转出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024-12 至 2025-10（11 个月）</td>
+<td style="text-align: right;">合计 4,466,466</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4,466,466</td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td style="text-align: right;">444,220</td>
+<td style="text-align: right;"><strong>1,745,745</strong></td>
+<td style="text-align: right;">3,164,940</td>
+</tr>
+<tr>
+<td>2025-12</td>
+<td style="text-align: right;">450,889</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3,615,829</td>
+</tr>
+<tr>
+<td>2026-01</td>
+<td style="text-align: right;">445,515</td>
+<td style="text-align: right;"><strong>1,125,766</strong></td>
+<td style="text-align: right;">2,935,578</td>
+</tr>
+<tr>
+<td>2026-02</td>
+<td style="text-align: right;">400,314</td>
+<td style="text-align: right;">140,333</td>
+<td style="text-align: right;">3,195,559</td>
+</tr>
+<tr>
+<td>2026-03</td>
+<td style="text-align: right;">443,788</td>
+<td style="text-align: right;">173,217</td>
+<td style="text-align: right;">3,466,130</td>
+</tr>
+<tr>
+<td>2026-04</td>
+<td style="text-align: right;">431,958</td>
+<td style="text-align: right;">333,335</td>
+<td style="text-align: right;">3,564,754</td>
+</tr>
+<tr>
+<td>2026-05</td>
+<td style="text-align: right;">445,260</td>
+<td style="text-align: right;">421,879</td>
+<td style="text-align: right;">3,588,135</td>
+</tr>
+<tr>
+<td>2026-06</td>
+<td style="text-align: right;">433,874</td>
+<td style="text-align: right;">533,752</td>
+<td style="text-align: right;">3,488,257</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td style="text-align: right;">446,717</td>
+<td style="text-align: right;">452,000</td>
+<td style="text-align: right;">3,482,974</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td style="text-align: right;">447,611</td>
+<td style="text-align: right;">433,024</td>
+<td style="text-align: right;">3,497,561</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td style="text-align: right;"><strong>431,099</strong></td>
+<td style="text-align: right;"><strong>433,419</strong></td>
+<td style="text-align: right;">3,495,241</td>
+</tr>
+<tr>
+<td><strong>2026-10（至 10/10）</strong></td>
+<td style="text-align: right;">142,256</td>
+<td style="text-align: right;"><strong>3,750,000</strong></td>
+<td style="text-align: right;"><strong>−112,503</strong></td>
+</tr>
+<tr>
+<td><strong>累计</strong></td>
+<td style="text-align: right;"><strong>9,429,967</strong></td>
+<td style="text-align: right;"><strong>9,542,470</strong></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>对账</strong>：创世 238,000,000 + 质押奖励 9,429,966.70 − 转出 9,542,470 + 流入 0.01 = 237,887,496.72，与官方 <code>delegatorSummary.delegated</code> 237,887,492.71 <strong>相差约 4 枚，原因未解释</strong>（再计现货 0.003 枚仍差约 4 枚）。<strong>近似对上，不是严格闭合</strong>；该残差不影响量级判断。<br />
+初稿把约 943 万的差额写成「疑为质押口径，未解释」——<strong>推理审查指出「943 万 ≈ 累计转出 954 万」本身就是警报</strong>；本期用 <code>delegatorRewards</code> 证实：<strong>差额就是累计质押奖励</strong>。</p>
+<p><strong>读法</strong>：<br />
+- <strong>2025-11 至 2026-09，累计转出始终小于累计奖励</strong>（差额约 290 万–360 万）。奖励自动复投、与本金混在同一委托余额里，<strong>链上不能识别转出的是奖励还是本金</strong>——「转出的是奖励」只是「奖励优先抵扣」的会计读法。<br />
+- <strong>10/07 的 375 万</strong>（15 笔：5 笔 × 1 枚测试、5 笔 × 374,999、5 笔 × 375,000，五个新地址各 75 万）在量上超过此前累积的约 350 万奖励——<strong>10/07 转出当时的缺口约 155,113</strong>，此后 10/08–10/10 又到账奖励 42,610，<strong>截至 10/10 缺口为 112,503</strong>。<br />
+- <strong>观测：该地址的 HYPE 总额截至 10/10 只比创世少 112,503 枚</strong>（官方接口可直接读，与读法无关）；<strong>读法：按奖励优先抵扣，本金基本未动。</strong><br />
+- ⚠️ <strong>不论贴哪个标签，每月转出都是先解除质押、再分给多个个人地址</strong>（8/06 分 9 个、9/06 分 11 个、10/07 分 5 个新地址）——<strong>经济上都是向个人分发、进入流通</strong>，不能因为「在量上是奖励」就打折看待。</p>
+<p>⚠️ <strong>「转出」不等于「解锁」，「本金未动」也不等于「未归属」</strong>：归属是合同层面的，链上看不到；<strong>本金可能已部分归属但仍质押在同一地址</strong>。本报告只能说「它没有流出该地址」。</p>
+</blockquote>
+<h3 id="53">5.3 真正的新增供应：质押奖励</h3>
+<p><strong>官方质押文档</strong>：「Staking rewards come from the future emissions reserve... The staking reward rate formula is inspired by Ethereum, where the reward rate is inversely proportional to the square root of total HYPE staked. <strong>At 400M total HYPE staked, the reward rate is approximately 2.37% per year</strong>.」</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th style="text-align: right;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全网质押（官方 <code>validatorSummaries</code>，35 个验证者，10/10）</td>
+<td style="text-align: right;"><strong>440,034,967</strong></td>
+</tr>
+<tr>
+<td>按文档公式的年化奖励率（2.37% × √(400M ÷ 440.0M)）</td>
+<td style="text-align: right;"><strong>2.26%</strong></td>
+</tr>
+<tr>
+<td><strong>年化释放 / 月均释放（推算）</strong></td>
+<td style="text-align: right;"><strong>约 994 万 / 约 83 万</strong></td>
+</tr>
+<tr>
+<td>对照：核心贡献者地址 6–9 月奖励 ÷ 创世本金（近似年化）</td>
+<td style="text-align: right;">2.22%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>核心贡献者地址的近似年化（2.22%，以创世本金为分母）与公式推算（2.26%）接近</strong>，支持这一推算；但验证者佣金、各人质押时长不同，<strong>全网数为推算，未逐个地址加总</strong>。<br />
+<strong>这每月约 83 万枚是按 10/10 质押量估算的当前奖励排放速度</strong>——发给全体质押者，核心贡献者地址约占一半（每月约 44 万）。⚠️ <strong>奖励自动复投；发给被接口列为「非流通」的地址（如核心贡献者地址）的那部分，不等于同额进入流通。</strong></p>
+</blockquote>
+<h3 id="54-vs">5.4 回购 vs 释放</h3>
+<p><img alt="核心贡献者地址：质押奖励、转出，与 AF 回购" src="charts/buyback-vs-unlock-202609.svg" /></p>
+<blockquote>
+<p>图中数字（千枚）：奖励 434 / 447 / 448 / 431 / 142；转出 534 / 452 / 433 / 433 / 3,750；回购 923 / 614 / 881 / 700 / 336（6–8 月为 DefiLlama 隐含推算，9 月实测为主，10 月为 1–9 日实测）；纵轴 0 / 1,000 / 2,000 / 3,000 / 4,000。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>9 月</th>
+<th style="text-align: right;">HYPE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AF 回购</td>
+<td style="text-align: right;">约 700,116</td>
+</tr>
+<tr>
+<td>当前月均奖励排放估计（10/10 质押量，非 9 月实际奖励总额）</td>
+<td style="text-align: right;">约 828,592</td>
+</tr>
+<tr>
+<td><strong>9 月回购 ÷ 当前月均排放估计</strong></td>
+<td style="text-align: right;"><strong>约 85%</strong></td>
+</tr>
+<tr>
+<td>核心贡献者地址转出</td>
+<td style="text-align: right;">433,419</td>
+</tr>
+<tr>
+<td>回购 ÷ 该地址转出</td>
+<td style="text-align: right;">约 162%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>8 月版的框架是「回购 vs 核心贡献者解锁」。两种分母回答两个问题</strong>：<br />
+- <strong>回购 ÷ 该地址分发（162%，推算）</strong>——对应「进入流通的分发 vs 回购」；<br />
+- <strong>回购 ÷ 全网奖励排放（9 月约 85%，同一量级）</strong>——对应「总供应的增减」（质押奖励发给全体质押者，不只核心贡献者地址）。<br />
+8 月版只回答了前一个问题，<strong>不是分母选错，是漏了后一个问题</strong>。⚠️ 这是排放量的比较，<strong>不是流通量或卖压的平衡</strong>——奖励自动复投，进入流通的部分未测。</p>
+<p><strong>悬着的是 2.38 亿</strong>：多个解锁日历把它写成「每月名义 992 万枚」（2.38 亿 ÷ 24），<strong>链上至今没有按这个节奏流出</strong>（该地址 HYPE 总额只比创世少约 11 万）。<br />
+若某天开始按名义节奏流出，每月约 992 万，约为当前全网奖励排放估计（约 83 万）的 12 倍；<strong>若继续不流出，回购与奖励排放同一量级</strong>。</p>
+</blockquote>
+<h3 id="55-1007">5.5 关于 10/07 那笔的二手说法</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>说法</th>
+<th>来源</th>
+<th style="text-align: center;">等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>「Hyperliquid Labs 自 9/30 起解除质押 375 万枚用于 10 月团队分配」</td>
+<td>FinanceFeeds、Gate 等报道</td>
+<td style="text-align: center;">⚠️ 二手；与链上「10 月质押取出 3,750,000」一致（质押取出有 7 天队列）</td>
+</tr>
+<tr>
+<td>「这 375 万全部通过场外协议卖给单一机构买家」（报道称引自联合创始人）</td>
+<td>同上</td>
+<td style="text-align: center;">❌ <strong>原帖未打开，本报告不采用</strong>；<strong>即便属实，也只影响二级市场卖压，不影响流通核算</strong></td>
+</tr>
+<tr>
+<td>多个解锁日历把 10/06 列为「名义解锁 992 万枚」</td>
+<td>解锁日历类网站</td>
+<td style="text-align: center;">❌ <strong>正是 8 月版初稿那个机械平均</strong>；链上实际转出 375 万，该地址总额截至 10/10 只比创世少约 11 万</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="6">6. 竞争格局</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>协议（DefiLlama 归持有人收入）</th>
+<th style="text-align: right;">6 月</th>
+<th style="text-align: right;">7 月</th>
+<th style="text-align: right;">8 月</th>
+<th style="text-align: right;"><strong>9 月</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hyperliquid（全协议）</strong></td>
+<td style="text-align: right;">$5,996 万</td>
+<td style="text-align: right;">$3,842 万</td>
+<td style="text-align: right;">$6,136 万</td>
+<td style="text-align: right;"><strong>$7,419 万</strong></td>
+</tr>
+<tr>
+<td>Aster</td>
+<td style="text-align: right;">$206 万</td>
+<td style="text-align: right;">$385 万</td>
+<td style="text-align: right;">$436 万</td>
+<td style="text-align: right;">$410 万</td>
+</tr>
+<tr>
+<td>Lighter</td>
+<td style="text-align: right;">$282 万</td>
+<td style="text-align: right;">$211 万</td>
+<td style="text-align: right;">$264 万</td>
+<td style="text-align: right;">$266 万</td>
+</tr>
+<tr>
+<td><strong>(Aster + Lighter) ÷ Hyperliquid</strong></td>
+<td style="text-align: right;">8.1%</td>
+<td style="text-align: right;"><strong>15.5%</strong></td>
+<td style="text-align: right;">11.4%</td>
+<td style="text-align: right;"><strong>9.1%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>竞争者份额 7 月升到 15.5% 后回落；H8-4 的判错线（30%）远未触及。三个月序列不足以下结论。</p>
+</blockquote>
+<hr />
+<h2 id="7-hype">7. HYPE 的核心价值逻辑</h2>
+<blockquote>
+<p><strong>评分规则</strong>：星级编码<strong>证据等级</strong>，另列后果量级；同源论据须标注；后果量级依赖未知前提时写成条件式。</p>
+</blockquote>
+<h3 id="71">7.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">证据等级</th>
+<th style="text-align: center;">后果量级</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>归持有人收入规模领先</strong>：9 月 $7,419 万，12 个月 $7.140 亿；<strong>9/06–10/09 合计与 AF 实测买入同一量级（比值约 0.99，误差约 ±15%）</strong></td>
+<td style="text-align: center;">★★★★</td>
+<td style="text-align: center;">大</td>
+<td>收入规模为 DefiLlama 一手；与 AF 的对照<strong>只到同一量级</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>9 月回购约为当前奖励排放估计的 85%</strong>，同一量级</td>
+<td style="text-align: center;">★★★</td>
+<td style="text-align: center;">中</td>
+<td>回购 9 月实测为主；排放为公式估算。<strong>⚠️ 排放 ≠ 进入流通</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>核心贡献者地址的 HYPE 总额至今几乎未减少</strong>（比创世少 112,503）</td>
+<td style="text-align: center;">★★★★</td>
+<td style="text-align: center;"><strong>若持续则大</strong></td>
+<td>链上一手，对账差约 4 枚。<strong>⚠️ 「本金未流出」是会计读法；不等于未归属</strong>；它是多头，也是空头 #1 的另一面</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>业务规模</strong>：OI $118.9 亿、24h 成交 $30.3 亿</td>
+<td style="text-align: center;">★★★</td>
+<td style="text-align: center;">中</td>
+<td>官方 API，<strong>两个单日快照，不说明趋势</strong></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>竞争者份额未扩大</strong>：9 月 9.1%</td>
+<td style="text-align: center;">★★★★</td>
+<td style="text-align: center;">中</td>
+<td>DefiLlama 一手</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="72">7.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">证据等级</th>
+<th style="text-align: center;">后果量级</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>2.38 亿本金悬着</strong>：名义节奏每月约 992 万，约为当前全网奖励排放估计的 12 倍</td>
+<td style="text-align: center;">★★★</td>
+<td style="text-align: center;"><strong>若开始流出则大；不流出则无</strong></td>
+<td>存量一手；<strong>节奏无任何一手依据</strong>。<strong>与多头 #3 是同一事实的两面</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong><code>futureEmissions</code> 4.11 亿</strong>中，除质押奖励（每月约 83 万）外的用途与节奏未知</td>
+<td style="text-align: center;">★★★</td>
+<td style="text-align: center;">若有其他大额释放则大</td>
+<td>官方接口给存量、文档给奖励机制；其余未获取</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Q3 是六个资产里最低的</strong>（+39.87%）</td>
+<td style="text-align: center;">★★★★</td>
+<td style="text-align: center;">小</td>
+<td>一手；R² 0.262，单季信息量有限</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>收入依赖交易活跃度</strong>：7 月比 9 月低 48%</td>
+<td style="text-align: center;">★★★★</td>
+<td style="text-align: center;">中</td>
+<td>DefiLlama 一手</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>AF 的销毁在两个官方口径里不一致</strong>（文档：销毁；接口：非流通余额）</td>
+<td style="text-align: center;">★★★★</td>
+<td style="text-align: center;">小</td>
+<td>一手。<strong>只是记账口径冲突，销毁机制本身由文档确认</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>多空同源检查</strong>：多头 #3 与空头 #1 是<strong>同一个事实</strong>（按会计读法，2.38 亿至今基本未流出）；多头 #2 的分母就是空头 #2 中已知的那部分释放。</p>
+</blockquote>
+<h3 id="73">7.3 多空之间真正的分歧点</h3>
+<blockquote>
+<p><strong>8 月版的分歧是「最强现金流 vs 测不准的供应」。本期测准了两块（核心贡献者地址、AF），图景变成：</strong><br />
+<strong>当前的奖励排放估计（约 83 万/月）与回购（约 70 万/月）同一量级；分歧点是 2.38 亿何时、以什么节奏流出，以及 <code>futureEmissions</code> 其余部分的用途。</strong><br />
+<strong>前者链上可以逐月观察（H9-1），后者本期没有信息。</strong></p>
+</blockquote>
+<hr />
+<h2 id="8-hype">8. HYPE 与其他五个资产的比较</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th><strong>HYPE</strong></th>
+<th>BTC</th>
+<th>ETH</th>
+<th>BNB</th>
+<th>SOL</th>
+<th>ADA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月</td>
+<td><strong>+8.00%</strong></td>
+<td>+6.42%</td>
+<td>+8.85%</td>
+<td>+11.26%</td>
+<td>+14.61%</td>
+<td>+24.67%</td>
+</tr>
+<tr>
+<td>Q3</td>
+<td><strong>+39.87%</strong></td>
+<td>+42.64%</td>
+<td>+70.86%</td>
+<td>+40.76%</td>
+<td>+60.34%</td>
+<td>+70.78%</td>
+</tr>
+<tr>
+<td>近一年</td>
+<td><strong>+101.03%</strong></td>
+<td>−26.68%</td>
+<td>−35.20%</td>
+<td>−23.72%</td>
+<td>−43.40%</td>
+<td>−69.45%</td>
+</tr>
+<tr>
+<td>beta / R²</td>
+<td>1.061 / 0.262</td>
+<td>1.000 / 1.000</td>
+<td>1.283 / 0.823</td>
+<td>0.883 / 0.594</td>
+<td>1.311 / 0.755</td>
+<td>1.419 / 0.649</td>
+</tr>
+<tr>
+<td>回购 / 销毁机制</td>
+<td><strong>当期收入回购并销毁（文档）</strong></td>
+<td>无</td>
+<td>基础费销毁</td>
+<td>季度库存销毁</td>
+<td>基础费部分销毁</td>
+<td>无</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>口径同 3.2。<strong>8 月版六资产表须更正</strong>：月度涨幅的 CoinGecko 日界线错误（3.1），以及「净供应方向：可能大幅为正」——已撤回的 992 万/月的残留（11.4）。</p>
+</blockquote>
+<hr />
+<h2 id="9">9. 估值：仍不给目标价</h2>
+<h3 id="91-fdv">9.1 FDV 口径</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径（9/30 价格 $90.89 × 10/10 供应快照）</th>
+<th style="text-align: right;">FDV</th>
+<th style="text-align: right;">÷ 12 个月归持有人收入 $7.140 亿</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CoinGecko 总供应 955,307,079</td>
+<td style="text-align: right;">$868.3 亿</td>
+<td style="text-align: right;"><strong>121.6 倍</strong>（H8-5 登记口径）</td>
+</tr>
+<tr>
+<td>官方接口 <code>totalSupply</code> 998,870,656</td>
+<td style="text-align: right;">$907.9 亿</td>
+<td style="text-align: right;"><strong>127.2 倍</strong></td>
+</tr>
+<tr>
+<td>官方文档定义（扣除 AF）约 950,928,537</td>
+<td style="text-align: right;">约 $864.3 亿</td>
+<td style="text-align: right;">约 121.1 倍</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="92">9.2 为什么仍不给目标价</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>8 月版的理由</th>
+<th>本期状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① CoinGecko 流通量不跟踪解锁</td>
+<td><strong>已绕开</strong>：官方 <code>circulatingSupply</code> 一手可读</td>
+</tr>
+<tr>
+<td>② 官方归属时间表未公开</td>
+<td><strong>转化了</strong>：链上显示核心贡献者地址的 HYPE 总额至今几乎未减少——<strong>问题从「测不准」变成「不知道何时开始」</strong></td>
+</tr>
+<tr>
+<td>③ 约 6 亿枚其余未流通份额未获取</td>
+<td><strong>大部分解决</strong>：4.11 亿为 <code>futureEmissions</code>，已知其通过质押奖励持续排放（当前约 83 万/月，估算）；其余用途未知</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>本期不给目标价的理由</strong>：FDV 倍数（约 121–127 倍）给出的是一个<strong>位置</strong>，不是一个<strong>目标</strong>——<strong>本系列没有任何依据确定 HYPE 的「合理倍数」</strong>；<br />
+而决定单币层结果的最大变量（2.38 亿何时开始流出，名义节奏下每月约为当前全网奖励排放估计的 12 倍）<strong>链上可观察；一个季度以后的时点无法预测</strong>。<br />
+<strong>8 月版 9.4 的情景概率（20/45/35）与 9.5 的「2029 年流通量」表本期不沿用</strong>——它们建立在 CoinGecko 流通口径与已撤回的 992 万/月上。</p>
+</blockquote>
+<hr />
+<h2 id="10">10. 投资与风险启示</h2>
+<h3 id="101">10.1 关键监控指标（本期起全部为一手）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>指标</th>
+<th>当前值</th>
+<th>观测方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>核心贡献者地址的 HYPE 总额</strong></td>
+<td>237,887,493</td>
+<td>官方 <code>delegatorSummary</code>（<code>delegated</code> + <code>undelegated</code> + <code>totalPendingWithdrawal</code>）+ 现货余额——<strong>它若持续下降，就是会计读法下的本金流出</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>该地址月度转出 vs 月度奖励</td>
+<td>9 月 433,419 vs 431,099</td>
+<td>官方账本 + <code>delegatorRewards</code></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>AF 月末余额</strong></td>
+<td>9/30 日末 47,602,914</td>
+<td>官方成交 <code>startPosition</code> / <code>tokenDetails</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>全网质押量与奖励率</strong></td>
+<td>440,034,967 / 约 2.26%</td>
+<td>官方 <code>validatorSummaries</code></td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong><code>futureEmissions</code></strong></td>
+<td>410,875,058</td>
+<td>官方 <code>tokenDetails</code>——<strong>下降速度若明显快于质押奖励，就有其他释放</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td>月度归持有人收入</td>
+<td>9 月 $7,419 万</td>
+<td>DefiLlama</td>
+</tr>
+<tr>
+<td>7</td>
+<td>竞争者份额</td>
+<td>9.1%</td>
+<td>DefiLlama</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="102">10.2 风险提醒</h3>
+<ol>
+<li><strong>2.38 亿的流出时点</strong>（第 5 章）：按会计读法至今几乎未动；若按名义节奏开始，每月约为当前全网奖励排放估计的 12 倍。</li>
+<li><strong><code>futureEmissions</code> 除质押奖励外的用途未知。</strong></li>
+<li><strong>收入依赖交易活跃度</strong>：7 月比 9 月低 48%。</li>
+<li><strong>本报告自身</strong>：撤回了 8 月版「CoinGecko 已扣除 AF」的验证与初稿的「81%」；更正了 8 月版的月度涨幅与多处 992 万残留（11.4）；<strong>H8-3 判 ❌、H8-1 判 ⊘</strong>。</li>
+</ol>
+<h3 id="103">10.3 长期认知</h3>
+<p><strong>第一，「转出」不一定是「本金归属」——先查奖励流。</strong> 本期初稿把核心贡献者地址的转出直接读成「实际解锁」，并据此推出「10 月解锁跳升」；<br />
+<strong>而 <code>delegatorRewards</code> 一查就知道，累计转出几乎被累计奖励抵消。</strong>（第二轮审查又指出：奖励与本金混在同一余额里，「转出的是奖励」也只是会计读法。）推理审查在看到「943 万差额 ≈ 954 万累计转出」时就拉了警报——和 HYPE 首期「992 万 = 2.38 亿 ÷ 24」同型：<strong>完美吻合本应是警报。</strong></p>
+<p><strong>第二，标了「未验证」的反向信号，不等于可以把论点登记在它的反面。</strong> 8 月版 5.2 写着「近期单月约 43–53 万，若属实回购将超过解锁」，却把 H8-3 登记成「37%–70%」。<br />
+<strong>正确做法是先验证它，或至少不把论点押在与它相反的一侧。</strong></p>
+<p><strong>第三，单窗口的校准系数要做样本外检验。</strong> 初稿的「81%」只用了 24.8 天，10 月 9 天的样本外检验给出 1.557——<strong>一个比例换个窗口就翻转，单窗口比例不能读成结构；偏离与时点差的解释相容，原因未识别。</strong></p>
+<p><strong>第四，CoinGecko 的 00:00 点是前一日收盘。</strong> 本系列四份报告（XIN、CKB、GRAM、HYPE）的 8 月版都受影响。</p>
+<hr />
+<h2 id="11">11. 附录</h2>
+<h3 id="111-2026-09-30-1010">11.1 关键数据速查（截至 2026-09-30，快照到 10/10）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>指标</th>
+<th>数值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格</td>
+<td>9/30 收盘 / 9 月 / Q3</td>
+<td>$90.89 / +8.00% / +39.87%</td>
+<td>Hyperliquid 现货</td>
+</tr>
+<tr>
+<td></td>
+<td>ATH</td>
+<td>$97.89（9/23）</td>
+<td>同上</td>
+</tr>
+<tr>
+<td></td>
+<td>10/10 市值 / FDV / 排名</td>
+<td>$186.2 亿 / $799.5 亿 / 11</td>
+<td>CoinGecko</td>
+</tr>
+<tr>
+<td>供应（官方接口）</td>
+<td>总供应 / 流通</td>
+<td>998,870,656 / 302,164,310</td>
+<td><code>tokenDetails</code></td>
+</tr>
+<tr>
+<td></td>
+<td>核心贡献者 / AF / 未来排放</td>
+<td>237,887,493 / 47,942,119 / 410,875,058</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>核心贡献者地址</td>
+<td>累计奖励 / 累计转出 / 总额较创世</td>
+<td>9,429,967 / 9,542,470 / −112,503</td>
+<td>官方账本与 <code>delegatorRewards</code>（对账差约 4 枚）</td>
+</tr>
+<tr>
+<td>质押</td>
+<td>全网质押 / 奖励率 / 当前月均排放</td>
+<td>440,034,967 / 约 2.26% / 约 83 万</td>
+<td><code>validatorSummaries</code> + 文档公式（估算，10/10 快照）</td>
+</tr>
+<tr>
+<td>回购</td>
+<td>9 月 / 10/01–10/09</td>
+<td>约 700,116 / 336,283</td>
+<td>AF 余额（9 月含外推 122,178）</td>
+</tr>
+<tr>
+<td>收入</td>
+<td>9 月 / 12 个月归持有人</td>
+<td>$7,419 万 / $7.140 亿</td>
+<td>DefiLlama</td>
+</tr>
+<tr>
+<td>业务</td>
+<td>OI / 24h 成交 / 市场数</td>
+<td>$118.9 亿 / $30.3 亿 / 234</td>
+<td>官方 API</td>
+</tr>
+<tr>
+<td>估值</td>
+<td>FDV / 12 个月归持有人收入</td>
+<td>121.6 倍（CoinGecko）/ 127.2 倍（接口）</td>
+<td>计算</td>
+</tr>
+<tr>
+<td>风险</td>
+<td>波动率 / beta / R²</td>
+<td>93.4% / 1.061 / 0.262</td>
+<td>365 天</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="HYPE 供应结构（官方 tokenDetails）" src="charts/scenarios-202609.svg" /></p>
+<blockquote>
+<p>图中数字（百万枚，括号内为占上限比例）：流通 302.16（30.2%）/ 核心贡献者地址 237.89（23.8%）/ AF 47.94（4.8%）/ 未来释放 410.88（41.1%）/ 已销毁 1.13（0.1%）；对照 CoinGecko 流通 222.45（2026-05 起未变）、总供应 955.31（9/06 以来未变）。<br />
+<strong>图文件名沿用 8 月版的 <code>scenarios</code> 以保持两期对应；本期这张图画的是接口口径的供应结构，不是情景</strong>。按官方文档，AF 那一段应视为已销毁。</p>
+</blockquote>
+<h3 id="112">11.2 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th style="text-align: center;">核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供应拆分</td>
+<td>Hyperliquid 官方 <code>info</code> / <code>tokenDetails</code></td>
+<td style="text-align: center;">✅ 一手（接口自洽，非独立验证）</td>
+</tr>
+<tr>
+<td>AF 是否销毁</td>
+<td>官方文档 Trading / Fees 页原文</td>
+<td style="text-align: center;">✅ 一手，<strong>与接口 <code>totalSupply</code> 口径不一致</strong></td>
+</tr>
+<tr>
+<td>核心贡献者地址账本与奖励</td>
+<td>官方 <code>userNonFundingLedgerUpdates</code>、<code>delegatorRewards</code>、<code>delegatorSummary</code></td>
+<td style="text-align: center;">✅ 一手，<strong>近似对上（差约 4 枚，未解释）</strong></td>
+</tr>
+<tr>
+<td>质押奖励机制与公式</td>
+<td>官方文档 Staking 页原文</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>全网质押量</td>
+<td>官方 <code>validatorSummaries</code></td>
+<td style="text-align: center;">✅ 一手；<strong>月释放量为公式推算</strong></td>
+</tr>
+<tr>
+<td>AF 月末余额</td>
+<td>官方 <code>userFillsByTime</code> 的 <code>startPosition</code>、<code>tokenDetails</code></td>
+<td style="text-align: center;">✅ 一手；<strong>9/01–9/06 为外推</strong></td>
+</tr>
+<tr>
+<td>价格</td>
+<td>官方 <code>candleSnapshot</code>（<code>@107</code>）；其余币安</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>OI / 成交 / 市场数</td>
+<td>官方 <code>metaAndAssetCtxs</code></td>
+<td style="text-align: center;">✅ 一手，单一时点</td>
+</tr>
+<tr>
+<td>收入 / 竞争者</td>
+<td>DefiLlama API</td>
+<td style="text-align: center;">✅ 一手 API；<strong>与 AF 实测在 34 天合计上同一量级（误差约 ±15%）</strong></td>
+</tr>
+<tr>
+<td>市值 / FDV / CoinGecko 供应</td>
+<td>CoinGecko API</td>
+<td style="text-align: center;">✅ 一手 API；供应数<strong>不跟踪链上</strong></td>
+</tr>
+<tr>
+<td>10 月「场外卖给单一机构」</td>
+<td>媒体转述联合创始人</td>
+<td style="text-align: center;">❌ <strong>未打开原帖，未采用</strong></td>
+</tr>
+<tr>
+<td><code>futureEmissions</code> 除质押奖励外的用途</td>
+<td>—</td>
+<td style="text-align: center;">❌ 未获取</td>
+</tr>
+<tr>
+<td>2.38 亿本金的归属状态</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>链上不可见</strong>（只能看到未流出）</td>
+</tr>
+<tr>
+<td>宏观</td>
+<td>与 BTC 9 月版共用</td>
+<td style="text-align: center;">⚠️ 未重新核实</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113">11.3 来源偏向声明</h3>
+<ol>
+<li><strong>本期多空两侧的主要论据都来自 Hyperliquid 官方接口与文档</strong>。<strong>偏向主要来自本报告选择测什么</strong>：我测了核心贡献者地址、AF 与全网质押，<strong>没有测其他大户的流向，也没有测 <code>futureEmissions</code> 除质押奖励外的去向</strong>。</li>
+<li><strong>初稿的两处撤回方向相同，都已纠正</strong>：初稿「协议不把 AF 当销毁」（对多头不利，错了）、初稿「只有 81% 进入 AF」（对多头不利，错了）——<strong>两处都是被审查纠正的，说明初稿在这一期偏空</strong>。</li>
+<li>传统金融机构对 HYPE 的覆盖本期未重新检索。</li>
+</ol>
+<h3 id="114-8">11.4 本版对 8 月版的更正</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>8 月版写法</th>
+<th>更正</th>
+<th>发现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>8 月 +52.42%（$52.52 → $80.05）</td>
+<td>CoinGecko 00:00 点 = 前一日收盘；<strong>7/31 → 8/31 收盘为 +60.30%</strong>。六资产表全部受影响</td>
+<td>Hyperliquid 现货日线复算</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4.2「10 亿 − AF ≈ CoinGecko 总供应（差 0.24%），强力支持 AF 已被扣除」</td>
+<td><strong>撤回该论证</strong>：CoinGecko 总供应一个月不动；<strong>但销毁机制本身成立</strong>（官方文档）</td>
+<td>官方文档 + CoinGecko 复读</td>
+</tr>
+<tr>
+<td>3</td>
+<td>5.1–5.2「实际分发 175 万、120 万」被当作核心贡献者解锁</td>
+<td><strong>这些转出在累计量上被同一地址的质押奖励覆盖</strong>；该地址总额截至 10/10 只比创世少 112,503</td>
+<td><code>delegatorRewards</code> 对账</td>
+</tr>
+<tr>
+<td>4</td>
+<td>5.2「回购 ÷ 解锁 37%–70%」</td>
+<td>9 月回购 ÷ 该地址转出约 162%（推算）；÷ 当前奖励排放估计约 85%</td>
+<td>链上账本 + 文档公式</td>
+</tr>
+<tr>
+<td>5</td>
+<td>「官方完整归属时间表未公开 → 无法测算解锁」</td>
+<td><strong>链上可测「是否流出」；不可测「是否归属」</strong></td>
+<td>官方账本接口</td>
+</tr>
+<tr>
+<td>6</td>
+<td>「约 6 亿枚未流通份额类别未获取」</td>
+<td>4.11 亿 <code>futureEmissions</code>（通过质押奖励每日释放）+ 2.38 亿核心贡献者 + 0.48 亿 AF</td>
+<td>官方 <code>tokenDetails</code> + 文档</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>第 5 章已撤回 992 万/月，但 2 章阶段三、9.1 催化剂日历、10.1、10.2、10.4、11.2、11.3、8.1/8.2 仍在使用</strong>（「每月约 992 万枚解锁」「回购只能吸收 6.4%–8.5%」「维持现价需市值 3 倍」「净供应可能大幅为正」「期望价格 −63%」）</td>
+<td><strong>全部作废</strong>——本系列 ZEC 期记下的「撤回一个结论 ≠ 让撤回生效」在 HYPE 8 月版再次出现</td>
+<td>本期回扫</td>
+</tr>
+<tr>
+<td>8</td>
+<td>记分卡 H8-1 用 CoinGecko 总供应检验「AF 销毁」</td>
+<td>登记时即违反门槛 5，统计量又失效，<strong>判 ⊘</strong></td>
+<td>同 #2</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="115">11.5 发布前审查记录</h3>
+<p><strong>第 1 层 <code>verify_report.py</code></strong>：初稿 1 处 FAIL（供应结构图的 0.1% 在正文无出处），补图注后 0 FAIL / 1 WARN（来源偏向，各资产共有）。极值断言复算时自查出「9 月收入为 2025-10 以来最高」不成立（2025-11 更高），已改为 2025-12 以来。</p>
+<p><strong>第 2 层 _bian（推理）与第 3 层 Codex（领域，读本地原始数据缓存复算）——第一轮：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th style="text-align: center;">出处</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>「协议自己没有把 AF 当作销毁」与官方文档直接冲突</strong></td>
+<td style="text-align: center;">Codex</td>
+<td>✅ <strong>一手核实官方 Fees 页原文后撤回</strong>；改为「文档定义为销毁，接口 <code>totalSupply</code> 不扣，两个官方口径不一致」</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>「转出」被升级为「实际解锁」再升级为「流通量增速」</strong>；943 万差额 ≈ 累计转出 954 万本应是警报</td>
+<td style="text-align: center;">两者</td>
+<td>✅ <strong>用官方 <code>delegatorRewards</code> 证实：转出几乎全是质押奖励，本金净减少仅 112,503</strong>——<strong>第 5 章与第 9 章重写</strong>，「10 月解锁跳升」改为「累积奖励清偿」</td>
+</tr>
+<tr>
+<td>3</td>
+<td>「<code>futureEmissions</code> 节奏全然未知」不对：官方文档写明质押奖励来自它</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 一手核实质押文档；新增 5.3 测算全网释放（每月约 83 万，推算）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>0.811 是单窗口系数，不能读作资金流审计</strong></td>
+<td style="text-align: center;">两者</td>
+<td>✅ <strong>做了样本外检验</strong>：10/01–10/09 为 1.557，两窗口合计 0.985——<strong>「81%」撤回</strong>；9 月外推改用同月实测日均</td>
+</tr>
+<tr>
+<td>5</td>
+<td>H8-3 的 ❌ 依赖推算</td>
+<td style="text-align: center;">Codex</td>
+<td>部分接受：外推改用实测日均（162%）；另给 DefiLlama 外推（168%）与「本金」读法（无穷大），<strong>三种都超过 150%，维持 ❌</strong>；_bian 判断推算不循环、稳健性足够</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>H8-1 落点写成「空洞的 ✅」不对</strong>；登记时即违反门槛 5；「登记时未知」应为「可得未查」</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 落点改为「取决于官方口径（文档 ✅ / 接口 ❌）」；补门槛 5 缺陷；改「可得未查」</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>第 9 章新理由（流通增速 13% 差）与 FDV 锚矛盾</strong></td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 撤下该理由；改为「倍数给位置不给目标 + 2.38 亿本金流出时点不可预测」</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>H9-1 又犯无差别原则</strong>（连续第三期）</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 原论点前提随第 2 条失效，<strong>撤回重写</strong>为「本金 2026 年内不会开始实质流出」（70%，附依据）</td>
+</tr>
+<tr>
+<td>9</td>
+<td>H9-2 基率算错（12 个月只有 10 个三月窗口，4 个达标）</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 改为 40%</td>
+</tr>
+<tr>
+<td>10</td>
+<td>卷首「测得准」强于正文</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 收窄为「核心贡献者与 AF 两块测得准」</td>
+</tr>
+<tr>
+<td>11</td>
+<td>「9 月几乎完全由 BTC 解释」超出回归结果</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 改为「较 beta 缩放的 BTC 收益高约 1.2pp，与 beta 预期吻合」；对照资产补 R²</td>
+</tr>
+<tr>
+<td>12</td>
+<td>H8-3「登记时就已存在的信息」漏了 8 月版自己写的 43–53 万反向信号</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 引用 8 月版 5.2 原句，教训改写（10.3 第二）</td>
+</tr>
+<tr>
+<td>13</td>
+<td>10/07 是 15 笔不是 10 笔；「每月等额」过度概括；33.9 万应为 33.6 万；「低于 30%」与正文不一致</td>
+<td style="text-align: center;">Codex、_bian</td>
+<td>✅ 全部更正</td>
+</tr>
+<tr>
+<td>14</td>
+<td>「0.24% 吻合是巧合」无判别力</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 改为「巧合或一次性人工扣除后冻结，未区分」</td>
+</tr>
+<tr>
+<td>15</td>
+<td>空头量级未写成条件式；多头 #3 两个快照给五星；接口闭合当成独立验证</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 改为条件式、降星、改称「接口自洽」</td>
+</tr>
+<tr>
+<td>16</td>
+<td>SOL 回购 / 销毁机制写「无」</td>
+<td style="text-align: center;">_bian（事实待核）</td>
+<td>✅ 改为「基础费部分销毁」</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第 3 层 Codex——第二轮（复审第一轮修订稿）：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>「转出全是奖励」过强：奖励自动复投、与本金混在同一余额里，只能说累计量被抵消</td>
+<td>✅ 全文改为「累计转出 ≈ 累计奖励」+「奖励优先抵扣的会计读法」；补 10/07 当时缺口约 155,113</td>
+</tr>
+<tr>
+<td>2</td>
+<td>H9-1 统计量漏了 <code>undelegated</code>，且未写读数方法</td>
+<td>✅ 补 <code>undelegated</code>；写明存量检验、快照或回推方法</td>
+</tr>
+<tr>
+<td>3</td>
+<td>H8-3 的 ❌ 仍依赖外推；「本金读法比值无穷大」不成立</td>
+<td>✅ 标为「推算判错」（实测部分 133%），与实测判定分开计；删无穷大论证</td>
+</tr>
+<tr>
+<td>4</td>
+<td>83 万/月是按 10/10 质押量估算的排放速度，不是 9 月实际奖励、也不是净新增流通；「接近平衡」过强</td>
+<td>✅ 改称「当前月均排放估计」，注明排放 ≠ 进入流通；删「接近平衡」「大致相抵」</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1.5% 只是描述性吻合，不能证明时点差是原因；记分卡残留「高约 23%」</td>
+<td>✅ 改为「与时点错配解释相容，不能识别原因」；删残留</td>
+</tr>
+<tr>
+<td>6</td>
+<td>H8-1「文档 ✅ / 接口 ❌」是事后换口径判胜负</td>
+<td>✅ 删除，落点改为「无法确定」</td>
+</tr>
+<tr>
+<td>7</td>
+<td>「账闭合了」不准确，仍有约 4 枚未解释</td>
+<td>✅ 改为「近似对上」</td>
+</tr>
+<tr>
+<td>8</td>
+<td>速查「各项相加等于总供应」错：已销毁项不在其中</td>
+<td>✅ 改为「除已销毁项外」</td>
+</tr>
+<tr>
+<td>9</td>
+<td>第 9 章估值未写明价格与供应的时点</td>
+<td>✅ 注明「9/30 价格 × 10/10 供应快照」</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第 2 层 _bian——第二轮（审 Codex 第二轮修订后的稿子）：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>HTML 是第二轮修订之前生成的，撤回的说法在交付物里还在</td>
+<td>✅ 重新生成，并对 md、html、svg 做了旧说法 grep</td>
+</tr>
+<tr>
+<td>2</td>
+<td>「8 月版选错了分母」「转出不是解锁」与 H8-2、H8-3 用的操作口径自相矛盾；每月转出都是分给多个个人地址，经济上就是进入流通</td>
+<td>✅ 改为「两种分母回答两个问题」；10.3 改为「转出不一定是本金归属」；5.2 补分发结构</td>
+</tr>
+<tr>
+<td>3</td>
+<td>H9-1 论点比判错条件宽，「无反向灰区」不成立（11、12 月各 375 万仍判 ✅）</td>
+<td>✅ 论点收窄为「Q4 不出现名义节奏量级的流出」，写明它分不开「没开始」与「小规模开始」；先验 70% → 80%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>「相差 1.5%」精度是虚的：窗口终点同样受时点差影响，误差约 ±15%</td>
+<td>✅ 全文改为「合计比值约 0.99，只能说同一量级」</td>
+</tr>
+<tr>
+<td>5</td>
+<td>10.3 与速查仍把偏离归因于时点差</td>
+<td>✅ 改为「与时点差的解释相容，原因未识别」</td>
+</tr>
+<tr>
+<td>6</td>
+<td>「13 倍」的基数是排放量，却叫「进入可流通的量」</td>
+<td>✅ 改为数量比较：992 万约为当前全网排放估计的 12 倍</td>
+</tr>
+<tr>
+<td>7</td>
+<td>「按会计读法」挂在了可观测的地址总额上</td>
+<td>✅ 观测（总额 −112,503）与读法（本金未动）分开写</td>
+</tr>
+<tr>
+<td>8</td>
+<td>「无法预测」与 H9-1 的 80% 并存</td>
+<td>✅ 收窄为「一个季度以后的时点无法预测」</td>
+</tr>
+<tr>
+<td>9</td>
+<td>H9-2 的 40% 没用登记时已有的 10 月前 9 天数据</td>
+<td>✅ 补上（日均 $214 万 vs 判错线所需 $161 万）与 2025-01 起算的基率 9/19；先验 40% → 50%</td>
+</tr>
+<tr>
+<td>10</td>
+<td>10.4「两处撤回方向相反」与紧接着的「都对多头不利」矛盾</td>
+<td>✅ 改为「方向相同」</td>
+</tr>
+</tbody>
+</table></div>
+<p>_bian 判「无问题」的维度：H8-3 推算判错、H8-1 ⊘、85% 的分子分母可比性（_bian 用该地址 9 月实际奖励按份额放大复算得 85%–88%）。</p>
+<blockquote>
+<p>第一轮表中第 2、5、6、8 条与 Codex 第二轮表的「处理」列是当时的写法，已被后续轮次取代，保留原文作为记录。</p>
+</blockquote>
+<p><strong>第 4 层 _dalin</strong>：待审。</p>
+<hr />
+<blockquote>
+<p><strong>配套文件</strong>：<code>hype_questions_summary_202609.md</code>（简明速查）、<code>../thesis_scorecard.md</code>（论点滚动记分卡）。<br />
+本报告不构成投资建议。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-hype-hyperliquid-2026-9-q3">HYPE / Hyperliquid 简明速查（2026 年 9 月版兼 Q3 回顾）</h1>
+<blockquote>
+<p>完整报告的浓缩版，给快速复习用。<strong>数据截止 2026-09-30，链上与官方接口快照到 10/10。</strong><br />
+本文件不构成投资建议。</p>
+</blockquote>
+<hr />
+<h2 id="s-1">1. 一句话</h2>
+<p><strong>市场所说的「核心贡献者解锁」，累计量几乎被同一地址的质押奖励抵消——按「奖励优先抵扣」的会计读法，2.38 亿至今几乎没动；当前奖励排放估计每月约 83 万枚，与每月约 70 万枚回购同一量级。悬着的是那 2.38 亿何时开始流出。</strong></p>
+<hr />
+<h2 id="s-2">2. 当前位置</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td><strong>$90.89</strong>（Hyperliquid 现货）</td>
+</tr>
+<tr>
+<td>9 月 / Q3</td>
+<td><strong>+8.00% / +39.87%</strong>（BTC +6.42% / +42.64%）</td>
+</tr>
+<tr>
+<td>ATH</td>
+<td><strong>$97.89（9/23）</strong></td>
+</tr>
+<tr>
+<td>一年 beta / R² / 波动率</td>
+<td>1.061 / <strong>0.262</strong> / 93.4%</td>
+</tr>
+<tr>
+<td>9 月较 beta 缩放的 BTC 收益</td>
+<td>高约 1.2pp（与 beta 预期吻合，不说明「被 BTC 解释」）</td>
+</tr>
+<tr>
+<td>10/10 市值 / 排名</td>
+<td>$186.2 亿 / 第 11（CoinGecko）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Q3 是本系列六个资产里最低的</strong>；HYPE 仍是唯一近一年为正的（+101.03%）</li>
+<li><strong>更正 8 月版</strong>：8 月 +52.42% 实为 7/31 → 8/30（CoinGecko 00:00 点 = 前一日收盘）；<strong>7/31 → 8/31 收盘为 +60.30%</strong></li>
+</ul>
+<hr />
+<h2 id="s-3">3. 供应结构：官方接口</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>官方 <code>tokenDetails</code>（10/10）</th>
+<th style="text-align: right;">HYPE</th>
+<th style="text-align: right;">占上限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>流通</td>
+<td style="text-align: right;"><strong>302,164,310</strong></td>
+<td style="text-align: right;">30.2%</td>
+</tr>
+<tr>
+<td>核心贡献者地址 <code>0x43e9abea…</code></td>
+<td style="text-align: right;">237,887,493</td>
+<td style="text-align: right;">23.8%</td>
+</tr>
+<tr>
+<td>Assistance Fund</td>
+<td style="text-align: right;">47,942,119</td>
+<td style="text-align: right;">4.8%</td>
+</tr>
+<tr>
+<td>未来排放 <code>futureEmissions</code></td>
+<td style="text-align: right;"><strong>410,875,058</strong></td>
+<td style="text-align: right;">41.1%</td>
+</tr>
+<tr>
+<td>已销毁（接口口径）及其他非流通</td>
+<td style="text-align: right;">1,129,344 + 1,676</td>
+<td style="text-align: right;">0.1%</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>除「已销毁」一项外</strong>，其余各项相加 ≈ 接口总供应 998,870,656——<strong>这是接口的定义恒等式，不是独立验证</strong></li>
+<li><strong>质押奖励来自 <code>futureEmissions</code></strong>（官方质押文档原文）</li>
+<li><strong>CoinGecko 的流通（2.2245 亿）与总供应（9.5531 亿）都不随链上变动</strong>，别用</li>
+</ul>
+<hr />
+<h2 id="s-4">4. 核心贡献者地址：累计转出 ≈ 累计质押奖励</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th style="text-align: right;">HYPE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>创世收到</td>
+<td style="text-align: right;">238,000,000（全部质押）</td>
+</tr>
+<tr>
+<td>累计质押奖励（官方 <code>delegatorRewards</code>）</td>
+<td style="text-align: right;"><strong>9,429,967</strong></td>
+</tr>
+<tr>
+<td>累计转出</td>
+<td style="text-align: right;"><strong>9,542,470</strong></td>
+</tr>
+<tr>
+<td><strong>HYPE 总额较创世减少</strong></td>
+<td style="text-align: right;"><strong>112,503</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>6–9 月每月转出 43–53 万，<strong>同月奖励 43–45 万</strong></li>
+<li><strong>10/07 的 375 万</strong>（15 笔，五个新地址各 75 万）在量上超过此前累积的约 350 万奖励：当时缺口约 155,113，扣除此后到账的奖励，<strong>截至 10/10 缺口 112,503</strong></li>
+<li>与官方委托余额<strong>近似对上，仍有约 4 枚未解释</strong>——初稿把这 943 万差额写成「未解释」，审查指出它≈累计转出本身就是警报</li>
+<li>⚠️ 奖励自动复投、与本金混在同一余额里，<strong>链上分不出转出的是奖励还是本金</strong>——「本金未流出」是会计读法；它也 ≠「未归属」</li>
+<li>「场外卖给单一机构」只有媒体转述，未核实；「名义解锁 992 万」正是 8 月版初稿那个机械平均</li>
+</ul>
+<hr />
+<h2 id="s-5">5. 回购与奖励排放</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>9 月</th>
+<th style="text-align: right;">HYPE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AF 回购</td>
+<td style="text-align: right;"><strong>约 700,116</strong>（9/06–9/30 实测 577,938 + 9/01–9/06 按实测日均外推 122,178）</td>
+</tr>
+<tr>
+<td>当前月均奖励排放估计（10/10 全网质押约 4.40 亿、年化约 2.26%；非 9 月实际）</td>
+<td style="text-align: right;"><strong>约 828,592</strong></td>
+</tr>
+<tr>
+<td><strong>9 月回购 ÷ 当前月均排放估计</strong></td>
+<td style="text-align: right;"><strong>约 85%，同一量级</strong></td>
+</tr>
+<tr>
+<td>9 月回购 ÷ 核心贡献者地址转出</td>
+<td style="text-align: right;">约 162%（推算；实测部分 133%）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>
+<p>⚠️ 奖励自动复投，<strong>排放 ≠ 进入流通</strong>；这是排放量的比较，不是卖压平衡</p>
+</li>
+<li>
+<p><strong>AF 就是销毁</strong>：官方文档原文「HYPE in the assistance fund is burned, removing the tokens permanently from the circulating and total supply」（意为「AF 里的 HYPE 视为已销毁，永久移出流通与总供应」）；但官方接口的 <code>totalSupply</code> 没扣 AF——<strong>两个官方口径不一致</strong></p>
+</li>
+<li><strong>8 月版「10 亿 − AF ≈ CoinGecko 总供应」的验证撤回</strong>：AF 涨了 92 万，CoinGecko 一枚没动</li>
+<li><strong>初稿「只有 81% 进入 AF」撤回</strong>：10 月样本外检验得到 1.557，两个窗口合计 0.985——与时点差的解释相容，但不能据此识别原因；也不是资金流审计</li>
+</ul>
+<hr />
+<h2 id="s-6">6. 收入、竞争与估值</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月归持有人收入（DefiLlama）</td>
+<td><strong>$7,419 万</strong>（2025-12 以来最高；2025-11 为 $7,765 万）</td>
+</tr>
+<tr>
+<td>12 个月归持有人收入</td>
+<td>$7.140 亿</td>
+</tr>
+<tr>
+<td>Aster + Lighter ÷ Hyperliquid（9 月）</td>
+<td>9.1%</td>
+</tr>
+<tr>
+<td>OI / 24h 成交（10/10 单点）</td>
+<td>$118.9 亿 / $30.3 亿</td>
+</tr>
+<tr>
+<td>FDV ÷ 12 个月归持有人收入</td>
+<td><strong>121.6 倍</strong>（CoinGecko 总供应）/ 127.2 倍（官方接口）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>FDV 用 9/30 价格 × 10/10 供应快照</li>
+<li><strong>仍不给目标价</strong>：倍数给的是位置不是目标；最大变量（2.38 亿何时开始流出，名义节奏每月 992 万，约为当前全网奖励排放估计的 12 倍）可观察，一个季度以后的时点不可预测</li>
+</ul>
+<hr />
+<h2 id="s-7">7. 记分卡</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>论点</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>H8-1</strong> AF 买入等同销毁、CoinGecko 总供应下降</td>
+<td><strong>⊘</strong>：登记时即违反门槛 5（持平也算对），统计量又不动；落点无法确定（换口径判胜负属于事后改口径）</td>
+</tr>
+<tr>
+<td>H8-2 月度解锁 &lt; 500 万</td>
+<td>⏳ 10 月该地址已转出 375 万，10 月版须核</td>
+</tr>
+<tr>
+<td><strong>H8-3</strong> 回购 ÷ 解锁在 15%–150%</td>
+<td><strong>❌（推算）</strong> 9 月约 162%；实测部分 133% 未触线，判错依赖 9/01–9/06 外推（错在对 HYPE 有利的方向）</td>
+</tr>
+<tr>
+<td>H8-4 业务不因竞争快速流失</td>
+<td>⏳ 9 月收入 $7,419 万、竞争者 9.1%</td>
+</tr>
+<tr>
+<td>H8-5 FDV / 收入在 80–170 倍</td>
+<td>⏳ 121.6 倍</td>
+</tr>
+<tr>
+<td>H8-6 框架方向偏差</td>
+<td>❌（8 月期）；本期提出系列层面方案，样本不足未登记</td>
+</tr>
+<tr>
+<td><strong>H9-1</strong> Q4 核心贡献者地址不出现名义节奏量级的流出（2026 年末 HYPE 总额 ≥ 2.30 亿：<code>delegated</code> + <code>undelegated</code> + <code>totalPendingWithdrawal</code> + 现货；存量检验）</td>
+<td>⏳ 自评 80%</td>
+</tr>
+<tr>
+<td><strong>H9-2</strong> Q4 每月归持有人收入 ≥ $5,000 万</td>
+<td>⏳ 自评 50%（历史基率 4/10 或 9/19；10 月前 9 天日均 $214 万，高于判错线所需的 $161 万）</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-3-5">如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>「核心贡献者解锁」在累计量上几乎被质押奖励抵消</strong>：累计转出 954 万、累计奖励 943 万，<strong>该地址 HYPE 总额至今只比创世少 11 万枚</strong>（链上分不出转出的是奖励还是本金）。</p>
+</li>
+<li>
+<p><strong>当前奖励排放估计每月约 83 万，回购每月约 70 万——同一量级</strong>（排放 ≠ 进入流通）。</p>
+</li>
+<li>
+<p><strong>悬着的是 2.38 亿</strong>：若按名义节奏（每月 992 万）开始流出，每月约为当前全网奖励排放估计的 12 倍；它什么时候开始，链上能看到，一个季度以后的时点没人能预测。</p>
+</li>
+<li>
+<p><strong>AF 就是销毁（官方文档），但官方接口与 CoinGecko 都没把它反映在总供应里</strong>；初稿「只有八成进入 AF」已撤回——换个窗口比例就翻转，与时点差的解释相容，原因未识别。</p>
+</li>
+<li>
+<p><strong>9 月 +8.00%、Q3 +39.87%（六个资产里最低）</strong>；8 月版的 +52.42% 应为 +60.30%；<strong>仍不给目标价</strong>。</p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>hype_research_report_202609.md</code>（对 8 月版的更正见 11.4）。<br />
+论点检验记录见 <code>../thesis_scorecard.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>
