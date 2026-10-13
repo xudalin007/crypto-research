@@ -1,0 +1,1543 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>NEAR / NEAR Protocol 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#00a37a;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">Ⓝ NEAR 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>Ⓝ NEAR 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-near">1. NEAR 是什么</a>
+<a href="#2-near">2. NEAR 的发展阶段划分</a>
+<a href="#3-near">3. NEAR 当前现状</a>
+<a href="#4">4. 供应</a>
+<a href="#5">5. 持有人的位置</a>
+<a href="#6">6. 机构通道</a>
+<a href="#7">7. 核心价值逻辑</a>
+<a href="#dot-1-1-1-3-2-247">&amp;gt; 检查两条论据是否描述同一机制的两面</a>
+<a href="#8">8. 多空之间真正的分歧点</a>
+<a href="#9">9. 估值</a>
+<a href="#10">10. 投资与风险启示</a>
+<a href="#11">11. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-1">1. 一句话</a>
+<a href="#s-2">2. 三个默认</a>
+<a href="#s-3">3. 当前位置</a>
+<a href="#s-4">4. 供应</a>
+<a href="#s-5-intents">5. Intents 回购</a>
+<a href="#s-6">6. 机构</a>
+<a href="#s-7">7. 估值</a>
+<a href="#s-8">8. 记分卡</a>
+<a href="#s-3-5">如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>Ⓝ NEAR / NEAR Protocol<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">Ⓝ NEAR</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="near-near-protocol-2026-9">NEAR / NEAR Protocol 完整调研与分析报告（2026 年 9 月版，首期）</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 10 月 13 日<br />
+<strong>数据截止</strong>：2026 年 9 月 30 日；链上快照到 10/13<br />
+<strong>研究方法</strong>：沿用本系列框架。价格用<strong>币安现货 NEARUSDT 日线 UTC 收盘</strong>；超额收益用对数口径（ln 收益 − beta × ln BTC 收益，不扣截距）；对照组为本系列 9 个山寨（ZEC、UNI、ADA、SOL、BNB、ETH、TRX、CKB、DOT）。<strong>一手数据</strong>：NEAR 存档节点（<code>archival-rpc.mainnet.fastnear.com</code>，并用 <code>archival-rpc.mainnet.near.org</code> 复读同一区块）的区块头 <code>total_supply</code>、<code>validators</code>、<code>EXPERIMENTAL_protocol_config</code>、账户余额；nearcore 发布说明；SEC 文件（Bitwise NEAR ETF）；币安现货与永续接口；DefiLlama（手续费数据来自 Allium，Intents 数据来自 Dune）。<br />
+<strong>本期为 NEAR 首期报告</strong>，本系列第二十一个对象。</p>
+<p><strong>接入新资产的第一步：三个默认还成立吗</strong>（XIN 期教训）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th style="text-align: center;">结果</th>
+<th>依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>流通量已知吗</strong></td>
+<td style="text-align: center;">✅ <strong>总量可直读，两条独立路径相容</strong></td>
+<td>区块头 <code>total_supply</code> 10/13 为 <strong>1,308,809,574.8</strong>（10/1 为 1,307,742,138.6）；CoinGecko 的流通量与总量都是约 13.088 亿（<strong>它没有扣除任何锁定</strong>）。供应变化 = 每个 epoch 边界的铸造 − 每个区块的手续费销毁；<strong>按区块头推出的 9 月销毁（约 1.9 万–2.6 万枚）与 DefiLlama 按 Allium 交易数据推出的范围（2.26 万–3.24 万枚）量级相容</strong>——两条路径的输入不同（4.2）。⚠️ 两个存档节点在 1.5 亿号区块的读数相同，<strong>但它们可能是同一基础设施，不当作独立验证</strong></td>
+</tr>
+<tr>
+<td><strong>价格是可用的测量吗</strong></td>
+<td style="text-align: center;">✅</td>
+<td>币安 9 月现货日成交中位数约 <strong>$1.07 亿</strong>（8 月约 $1,690 万）；一年 beta 1.305、R² 0.320、波动率 104.0%</td>
+</tr>
+<tr>
+<td><strong>代币持有人是剩余索取权人吗</strong></td>
+<td style="text-align: center;">❌ <strong>没有找到赋权文件</strong></td>
+<td>手续费至少 70% 销毁（合约只拿到执行其函数所耗 gas 的 30%，其余全部销毁）；新发行全部给验证人（<code>protocol_reward_rate</code> = 0）；<strong>2026-02-23 起 NEAR Intents 的协议收入被用于在市场上回购 NEAR</strong>——这是一个运营项目，买回的币<strong>存在多签账户里，没有销毁</strong>（第 5 章），本报告没有找到任何赋予持有人权利的文件</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>本期核心发现</strong>：<br />
+1. <strong>9 月 +177.89%，本系列至今最大的单月个币异动</strong>：对数超额 <strong>+94.1</strong>（对照组中位数 +13.2），约为单月特质标准差（24.6）的 3.8 倍；Q3 +199.72%、近一年 +103.16%。<strong>涨幅分布在整个月</strong>：9/4–9/9（未找到对应事件）、9/16–9/20（五天对数涨幅 57.7、超额 48.6，最大一小时只占约 14%）、9/24–9/30。<strong>同期有五个可识别的事件</strong>：9/16 Bitwise 提交 S-1/A（SEC）、9/17 基于 Hyperliquid 的「隐私永续合约」上线、9/22–9/23 Hyperliquid 上线 NEAR 现货（均为媒体报道）、9/24 Bitwise 现货 NEAR ETF 注册生效（SEC 文件）、9/29 开始交易；<strong>同时 NEAR Intents 9 月成交约 $48.0 亿，创历史新高</strong>。合约持仓量（按枚）9/14 → 9/22 增加 49%，资金费率基本停在默认基准值。<strong>各因素的贡献本报告分不开</strong>（3.2）。<br />
+2. <strong>2025-10-30 的通胀减半在链上兑现了</strong>：月度年化净增发从 <strong>4.92%（2025-09）降到 2.39%–2.48%</strong>（2025-11 至 2026-10）；减半后 11 个月（2025-11-01 → 2026-10-01）净增 2,894 万枚，年化 <strong>2.47%</strong>。协议参数 <code>max_inflation_rate</code> = 1/40；<strong>发行按时间计、不按区块数计</strong>（每 epoch 约 7.38 小时铸造约 2.74 万枚，折年 2.49%）——出块提速不会变成隐性增发（GRAM 期检查，4.1）。<br />
+3. <strong>手续费销毁可以忽略</strong>：9 月约 1.9 万–2.6 万枚，约为当月铸造（约 267 万枚）的 1%。<br />
+4. <strong>Intents 回购口径在 9 月的入账，约为当月净增发的 21%——不减少供应</strong>：DefiLlama（Dune 查询，与 <code>revenue.near.org</code> 同口径）的回购口径（HoldersRevenue）9 月约 <strong>$184 万</strong>，按日价折约 <strong>56.4 万枚</strong>；⚠️ 这是<strong>收入钱包收到的 NEAR / wNEAR</strong>，<strong>是否构成新增的市场购买、何时执行，本报告没有逐笔核对</strong>——21% 只是入账枚数与净增发的数量比。<strong>买回的币存放在多签 <code>buybacks.multisignature.near</code>（10/13 余额 1,963,172 枚），没有销毁</strong>，不减少协议净发行（9 月净增仍约 265 万枚）。对账：回购多签余额约为 2/23 以来回购口径累计（约 286 万枚）的 69%，<strong>差约 90 万枚，去向需要逐笔流水才能定位</strong>（4.3）。<br />
+5. <strong>第一只美国现货 NEAR ETF</strong>：Bitwise NEAR ETF（NRR）2026-09-24 注册生效，招股书写明<strong>计划质押 100% 的 NEAR</strong>；发行方官网显示 10/11 持有 <strong>14,991,349 枚 NEAR</strong>（约为总供应的 1.15%），质押比例 99%（第 6 章）。</p>
+<p><strong>本期核心判断</strong>：<strong>NEAR 9 月的上涨与可测的使用增长同时发生；按成交，价格涨得更快；按收入，本报告判断不了。</strong> Intents 成交以美元计、主要是跨资产交易，基本不含 NEAR 自身的价格：8 月 → 9 月成交 +73%，同期 NEAR 月均价 +90%、月末价 +178%——<strong>按月末价配成交，以过去 12 个月的任一个月为基期，多数情况下价格跑得更快</strong>（9.2）。<strong>收入一侧取决于 Intents 收入的计价方式</strong>：若按成交额的美元比例收取，美元收入 +154% 就说明价格没有跑赢；若部分按 NEAR 收取，美元收入里就含有价格本身，这个比较就不成立——<strong>本报告没有查清计价方式，收入一侧不判方向</strong>。收入 ÷ 成交的费率从约 0.026% 升到 0.038%（10 月前 12 天 0.055%），原因也未查。<strong>供应侧</strong>，减半后年化净增发约 2.47%；Intents 回购口径的入账在 9 月约为净增发的 21%，但买回的币存在多签里、不减少供应。<strong>不质押的人每年被稀释约 2.5%</strong>（回购不改变这一点），质押者按约 42.6% 的质押率拿到约 5.9% 的毛奖励。<br />
+<strong>本报告不给目标价</strong>：持有人没有请求权，回购是可撤销的运营项目；市值（9/30）÷ 年化捕获收入按收入窗口不同在约 316–984 倍之间，没有可依赖的倍数参照。⚠️ 没有请求权削弱的是收入倍数法，不排除基于质押安全需求、存储锁定（NEAR 账户须按占用字节锁定余额）与可持续回购的情景估值——本报告没有做这些。</p>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>NEAR 是什么</strong></td>
+<td>分片 PoS 公链的原生代币：付 gas（至少 70% 销毁）、质押（新发行全部给验证人）；生态主线是 <strong>NEAR Intents</strong>（跨链意图交易）与「链抽象」</td>
+</tr>
+<tr>
+<td><strong>9/30 收盘</strong></td>
+<td><strong>$5.341</strong>（币安）；按 10/1 区块头总供应 13.077 亿枚，<strong>市值约 $69.8 亿</strong></td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3 / 近一年</strong></td>
+<td><strong>+177.89% / +199.72% / +103.16%</strong>（BTC +6.42% / +42.64% / −26.68%）</td>
+</tr>
+<tr>
+<td><strong>beta / R² / 波动率</strong></td>
+<td><strong>1.305 / 0.320 / 104.0%</strong>（2025-09-30 至 2026-09-30，365 个日收益）</td>
+</tr>
+<tr>
+<td><strong>对数超额</strong></td>
+<td>9 月 <strong>+94.1</strong>（对照组中位数 +13.2）；Q3 <strong>+63.4</strong>（对照组中位数 +2.8）</td>
+</tr>
+<tr>
+<td><strong>供应</strong></td>
+<td>无上限；最高年通胀 2.5%（2025-10-30 起）；减半后实测年化净增发 <strong>2.47%</strong></td>
+</tr>
+<tr>
+<td><strong>质押</strong></td>
+<td><strong>5.570 亿枚，约 42.6%</strong>；409 个验证人；需 9 个最大验证人才超过三分之一质押</td>
+</tr>
+<tr>
+<td><strong>9 月供应</strong></td>
+<td>铸造约 267 万、手续费销毁约 2 万、净增 <strong>265 万枚</strong>；Intents 回购口径约 56.4 万枚（收入钱包入账，存多签、未销毁，不减少净增）</td>
+</tr>
+<tr>
+<td><strong>使用</strong></td>
+<td>NEAR Intents 9 月成交 <strong>$48.0 亿</strong>（历史新高）；链上手续费 9 月 $11.5 万</td>
+</tr>
+<tr>
+<td><strong>ETF</strong></td>
+<td>Bitwise NRR 9/24 生效、9/29 交易；10/11 持有 14,991,349 枚（约 1.15%），质押 99%</td>
+</tr>
+<tr>
+<td><strong>持有人权益</strong></td>
+<td><strong>无请求权</strong>；回购是运营项目，买回的币存放在多签</td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td><strong>不给目标价</strong>（第 9 章）</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-near">1. NEAR 是什么</h2>
+<h3 id="11-1013">1.1 代币的用途与发行规则（协议参数原文，10/13 读取）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>max_inflation_rate</code></td>
+<td><strong>1/40（2.5%）</strong></td>
+<td>每年最高铸造量 = 总供应的 2.5%（2025-10-30 前为 5%）</td>
+</tr>
+<tr>
+<td><code>protocol_reward_rate</code></td>
+<td><strong>0/1</strong></td>
+<td>铸造量里分给国库（<code>treasury.near</code>）的比例——<strong>现在为 0，全部给验证人</strong></td>
+</tr>
+<tr>
+<td><code>online_min_threshold</code></td>
+<td>90/100</td>
+<td>验证人在线率低于 90% 拿不到奖励（没发出去的奖励不铸造）</td>
+</tr>
+<tr>
+<td><code>epoch_length</code></td>
+<td>43,200 块</td>
+<td>约 7.38 小时一个 epoch（按 9 月实测）</td>
+</tr>
+<tr>
+<td>手续费</td>
+<td>合约拿到执行其函数所耗 gas 的 30%，其余全部销毁（所以销毁至少占 70%）</td>
+<td>nearcore 文档 <code>Economics.md</code>；DefiLlama 一律按 70% 计（4.2）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="12-gram">1.2 发行是按时间还是按区块（GRAM 期必查项）</h3>
+<p><code>num_blocks_per_year</code> 参数写的是 31,536,000（即假设 1 秒一块），<strong>而实际出块约 0.615 秒一块</strong>。如果铸造按区块数计，实际通胀会被放大约 1.6 倍。<strong>实测否定了这一点</strong>：2026-09 两个 epoch 边界的铸造分别为 27,407.5 与 27,457.0 枚，每个 epoch 约 7.38 小时，折年约 3,255 万枚 = 总供应的 <strong>2.49%</strong>——正好是 2.5% 的上限乘以在线率，<strong>发行是按时间计的</strong>。</p>
+<hr />
+<h2 id="2-near">2. NEAR 的发展阶段划分</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一</td>
+<td>2020</td>
+<td>主网上线；最高年通胀 5%</td>
+</tr>
+<tr>
+<td>二</td>
+<td>2021–2024</td>
+<td>分片（Nightshade）；链抽象与 NEAR Intents</td>
+</tr>
+<tr>
+<td>三</td>
+<td><strong>2025-08</strong></td>
+<td>第一次社区投票通过率不够（Blockworks：45% 参与者支持，门槛 66.67%）</td>
+</tr>
+<tr>
+<td>三</td>
+<td><strong>2025-10-28 至 10-30</strong></td>
+<td><strong>nearcore 2.9.0（协议版本 81）</strong>：最高通胀 5% → 2.5%；需 80% 质押升级才生效（发布说明原文）；实测 10/30 后铸造减半</td>
+</tr>
+<tr>
+<td>四</td>
+<td><strong>2026-02-23</strong></td>
+<td>Intents 协议收入转为回购 NEAR（DefiLlama 方法说明；NEAR 联合创始人 X 帖，<strong>未打开</strong>）</td>
+</tr>
+<tr>
+<td>五</td>
+<td><strong>2026-09</strong></td>
+<td>9/17 隐私永续合约；9/22–9/23 Hyperliquid 现货；<strong>9/24 Bitwise NEAR ETF 生效</strong>；9/29 交易</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="3-near">3. NEAR 当前现状</h2>
+<h3 id="31">3.1 价格与市场</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td><strong>$5.341</strong>（9 月最低收盘 $1.887 在 9/1，最高 $5.387 在 9/27；10/11 收 $5.896）</td>
+</tr>
+<tr>
+<td>9 月 / Q3 / 近一年</td>
+<td><strong>+177.89% / +199.72% / +103.16%</strong></td>
+</tr>
+<tr>
+<td>BTC 同期</td>
+<td>+6.42% / +42.64% / −26.68%</td>
+</tr>
+<tr>
+<td>一年 beta / R² / 波动率</td>
+<td><strong>1.305 / 0.320 / 104.0%</strong></td>
+</tr>
+<tr>
+<td>特质（残差）标准差</td>
+<td>日 4.49%；按月约 24.6、按季约 43.1 个对数点</td>
+</tr>
+<tr>
+<td>9 月 / Q3 对数超额</td>
+<td><strong>+94.1 / +63.4</strong>（对照组中位数 +13.2 / +2.8）</td>
+</tr>
+<tr>
+<td>币安现货日成交中位数</td>
+<td>8 月约 $1,690 万 → <strong>9 月约 $1.07 亿</strong>（约 6.4 倍）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="32-9">3.2 9 月的上涨：五个事件，一条使用曲线，贡献分不开</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时段</th>
+<th style="text-align: right;">对数超额</th>
+<th>同期事件</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/4、9/6、9/9</td>
+<td style="text-align: right;">+13.1、+9.8、+7.1</td>
+<td>未找到对应事件</td>
+<td>—</td>
+</tr>
+<tr>
+<td>9/16</td>
+<td style="text-align: right;">+10.5</td>
+<td>Bitwise 提交 S-1/A（ETF 注册的修订稿）</td>
+<td>✅ SEC</td>
+</tr>
+<tr>
+<td><strong>9/16–9/20</strong></td>
+<td style="text-align: right;">五天对数涨幅 <strong>57.7</strong>、超额 <strong>48.6</strong>（最大一小时 9/20 16:00 UTC +8.3，约占 14%）</td>
+<td><strong>9/17 隐私永续合约上线</strong>（基于 Hyperliquid，持仓默认不公开，资金经 NEAR Intents 从 35 条以上的链进入）</td>
+<td>媒体（Cryptobriefing、CoinGape 等）；<strong>未找到官方公告</strong></td>
+</tr>
+<tr>
+<td>9/22–9/23</td>
+<td style="text-align: right;">+4.2、+0.6</td>
+<td>Hyperliquid 上线 NEAR 现货</td>
+<td>媒体</td>
+</tr>
+<tr>
+<td>9/24</td>
+<td style="text-align: right;">+5.8</td>
+<td><strong>Bitwise NEAR ETF 注册生效</strong>（SEC「EFFECT」与 424B3 同日）</td>
+<td>✅ SEC</td>
+</tr>
+<tr>
+<td>9/29–9/30</td>
+<td style="text-align: right;">+1.0、+9.0</td>
+<td>9/29 ETF 开始交易（NYSE Arca，代码 NRR）</td>
+<td>媒体</td>
+</tr>
+<tr>
+<td>10/1、10/8、10/12</td>
+<td style="text-align: right;">−12.4、−15.3、−13.2</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>同期可测的使用与杠杆</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>读数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NEAR Intents 月成交</td>
+<td>8 月 $27.8 亿 → <strong>9 月 $48.0 亿</strong>（+73%；前高为 2025-11 的 $36.6 亿）</td>
+</tr>
+<tr>
+<td>币安 NEAR 永续持仓量</td>
+<td>9/14 3,990 万枚（$9,200 万）→ 9/22 <strong>5,930 万枚</strong>（$2.53 亿）：按枚 +49%，按美元 +175%</td>
+</tr>
+<tr>
+<td>资金费率 9/17–9/24</td>
+<td>绝大多数时段为 0.0100%（币安默认基准值），9/22 一个时段 0.0138%——<strong>没有出现持续的高位</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>结论</strong>：价格在整个月里分段上涨，<strong>除 9/4–9/9 外，每一段都有至少一个候选解释</strong>。<strong>本报告不分配贡献</strong>——事件集中在两周内、互相重叠，日度数据判别不了。<strong>一个弱判别</strong>：近一年 364 个交易日里，Intents 日成交的对数变化与当日 NEAR 超额的相关系数约 <strong>0.02</strong>（成交领先一天约 0.00，价格领先一天约 −0.08）——<strong>在日度上，使用与价格没有共振</strong>；日度数据噪声大，这只是弱证据。从 8/31 起累计，9/30 为 +94.1，到 10/12 为 +90.5。</p>
+<p><img alt="9 月以来 NEAR 的累计对数超额" src="charts/excess-sep-202609.svg" /></p>
+<hr />
+<h2 id="4">4. 供应：发行、销毁与回购（本期核心章之一）</h2>
+<h3 id="41-total_supply">4.1 月度净增发（区块头 <code>total_supply</code>）</h3>
+<blockquote>
+<p><strong>推导方法</strong>：每月 1 日 00:00 UTC 之后第一个区块的 <code>total_supply</code> 之差；年化 = 差 ÷ 天数 × 365 ÷ 月初供应。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th style="text-align: right;">净增（枚）</th>
+<th style="text-align: right;">年化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-09</td>
+<td style="text-align: right;">5,128,813</td>
+<td style="text-align: right;"><strong>4.92%</strong></td>
+</tr>
+<tr>
+<td>2025-10-01 → 10-30（29 天，旧费率）</td>
+<td style="text-align: right;">4,909,854</td>
+<td style="text-align: right;">4.85%</td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td style="text-align: right;">2,516,268</td>
+<td style="text-align: right;"><strong>2.39%</strong></td>
+</tr>
+<tr>
+<td>2026-01</td>
+<td style="text-align: right;">2,658,773</td>
+<td style="text-align: right;">2.44%</td>
+</tr>
+<tr>
+<td>2026-04</td>
+<td style="text-align: right;">2,625,709</td>
+<td style="text-align: right;">2.47%</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td style="text-align: right;">2,720,845</td>
+<td style="text-align: right;">2.46%</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td style="text-align: right;">2,731,878</td>
+<td style="text-align: right;">2.47%</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td style="text-align: right;"><strong>2,650,576</strong></td>
+<td style="text-align: right;"><strong>2.47%</strong></td>
+</tr>
+<tr>
+<td><strong>减半后 11 个月（2025-11-01 → 2026-10-01）</strong></td>
+<td style="text-align: right;"><strong>28,943,703</strong></td>
+<td style="text-align: right;"><strong>2.47%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="NEAR 月度年化净增发：减半前后" src="charts/net-issuance-202609.svg" /></p>
+<p><strong>减半后的年化净增发从 2.39% 缓慢升到 2.47%</strong>——不是因为铸造变多，而是销毁变少（4.2）。</p>
+<h3 id="42">4.2 手续费销毁：两条独立路径</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>方法</th>
+<th style="text-align: right;">9 月销毁（枚）</th>
+<th style="text-align: right;">2025-09</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 区块头：抽两个 epoch，测 epoch 内部 <code>total_supply</code> 的下降（epoch 内只有销毁、没有铸造）</td>
+<td style="text-align: right;">9/10、9/20 两个 epoch 折合每天 <strong>664.5、578.2 枚</strong> → 一个月约 1.9 万</td>
+<td style="text-align: right;">每天 2,258.7 → 约 6.8 万</td>
+</tr>
+<tr>
+<td>② 区块头：月净增与按 epoch 铸造之差（每 epoch 约 2.74 万 × 约 97.6 个 epoch）</td>
+<td style="text-align: right;">约 <strong>2.6 万</strong></td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td>③ DefiLlama（Allium 交易手续费；适配器一律按 70% 计销毁），按币安日价折成枚</td>
+<td style="text-align: right;"><strong>22,646</strong>（按 100% 计为 32,351）</td>
+<td style="text-align: right;">70,491</td>
+</tr>
+</tbody>
+</table></div>
+<p>⚠️ <strong>DefiLlama 的 70% 是一律套用的</strong>：nearcore 文档写明，合约只拿到「执行其函数时消耗的 gas」的 30%，其余费用全部销毁——所以真实销毁在手续费的 70% 到 100% 之间，③ 给出的是 <strong>2.26 万–3.24 万</strong>。①② 同源（都来自区块头），② 是两个大数相减、对 epoch 时长很敏感。<strong>两条路径（区块头 / Allium）量级相容</strong>，精度不足以核对一个只占铸造约 1% 的量。<strong>销毁约为当月铸造（约 267 万枚）的 1%</strong>；按美元计，链上手续费 9 月 $11.5 万，一年前（2025-09）$27.5 万——<strong>下降约 58%</strong>。</p>
+<h3 id="43-intents">4.3 Intents 回购：买回来，但没烧</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>读数</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>机制</td>
+<td>自 2026-02-23 起，NEAR 从 Intents 捕获的收入「used to buy back $NEAR on the open market (not burned)」</td>
+<td>DefiLlama 方法说明（适配器源码注明与 <code>revenue.near.org</code> 口径一致）</td>
+</tr>
+<tr>
+<td>回购账户</td>
+<td><code>buybacks.multisignature.near</code>，<strong>10/13 余额 1,963,172 枚 NEAR</strong></td>
+<td>NEAR RPC <code>view_account</code></td>
+</tr>
+<tr>
+<td>另两个收入账户</td>
+<td><code>fefundsadmin.sputnik-dao.near</code>（前端收入）余额 1,885,800 枚；<code>1csfundsadmin.sputnik-dao.near</code> 余额约 271 枚</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>9 月回购口径入账</td>
+<td>约 <strong>$184 万</strong> ≈ <strong>56.4 万枚</strong>（按日价折算）</td>
+<td>DefiLlama（Dune）</td>
+</tr>
+<tr>
+<td>8 月</td>
+<td>约 $72 万 ≈ 40.5 万枚</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>2/23–10/12 回购口径累计</td>
+<td>约 286 万枚</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>9 月回购口径入账 ÷ 9 月净增发</strong></td>
+<td><strong>约 21%</strong>（数量比）</td>
+<td>计算</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>按月看</strong>（DefiLlama，Dune；按币安日价折成枚）。⚠️ DefiLlama 统计的是<strong>三个收入钱包收到的 NEAR / wNEAR</strong>（<code>fefundsadmin</code>、<code>1csfundsadmin</code>、<code>buybacks.multisignature</code>，排除钱包之间的内部转账），再乘以价格换成美元；<strong>2026-02-23 之后整笔标为「HoldersRevenue（回购）」</strong>——这是收入钱包的入账，<strong>不是逐笔识别的市场买单</strong>。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: right;">Intents 成交</th>
+<th style="text-align: right;">捕获收入</th>
+<th style="text-align: right;">其中回购口径（2/23 起）</th>
+<th style="text-align: right;">回购口径折合 NEAR</th>
+<th style="text-align: right;">÷ 当月净增发</th>
+<th style="text-align: right;">收入 ÷ 成交</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-09</td>
+<td style="text-align: right;">$4.8 亿</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td style="text-align: right;">$36.6 亿</td>
+<td style="text-align: right;">$77 万</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">0.021%</td>
+</tr>
+<tr>
+<td>2026-01</td>
+<td style="text-align: right;">$27.2 亿</td>
+<td style="text-align: right;">$36 万</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">0.013%</td>
+</tr>
+<tr>
+<td>2026-02</td>
+<td style="text-align: right;">$23.8 亿</td>
+<td style="text-align: right;">$66 万</td>
+<td style="text-align: right;"><strong>$19.7 万（2/23–2/28）</strong></td>
+<td style="text-align: right;"><strong>17.7 万</strong></td>
+<td style="text-align: right;">7.4%</td>
+<td style="text-align: right;">0.028%</td>
+</tr>
+<tr>
+<td>2026-03</td>
+<td style="text-align: right;">$20.8 亿</td>
+<td style="text-align: right;">$56 万</td>
+<td style="text-align: right;">$56 万</td>
+<td style="text-align: right;">45.1 万</td>
+<td style="text-align: right;">16.9%</td>
+<td style="text-align: right;">0.027%</td>
+</tr>
+<tr>
+<td>2026-04</td>
+<td style="text-align: right;">$19.0 亿</td>
+<td style="text-align: right;">$26 万</td>
+<td style="text-align: right;">$26 万</td>
+<td style="text-align: right;">19.3 万</td>
+<td style="text-align: right;">7.4%</td>
+<td style="text-align: right;">0.014%</td>
+</tr>
+<tr>
+<td>2026-05</td>
+<td style="text-align: right;">$20.0 亿</td>
+<td style="text-align: right;">$62 万</td>
+<td style="text-align: right;">$62 万</td>
+<td style="text-align: right;">32.4 万</td>
+<td style="text-align: right;">11.9%</td>
+<td style="text-align: right;">0.031%</td>
+</tr>
+<tr>
+<td>2026-06</td>
+<td style="text-align: right;">$23.5 亿</td>
+<td style="text-align: right;">$62 万</td>
+<td style="text-align: right;">$62 万</td>
+<td style="text-align: right;">29.2 万</td>
+<td style="text-align: right;">11.1%</td>
+<td style="text-align: right;">0.026%</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td style="text-align: right;">$22.1 亿</td>
+<td style="text-align: right;">$50 万</td>
+<td style="text-align: right;">$50 万</td>
+<td style="text-align: right;">26.7 万</td>
+<td style="text-align: right;">9.8%</td>
+<td style="text-align: right;">0.023%</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td style="text-align: right;">$27.8 亿</td>
+<td style="text-align: right;">$72 万</td>
+<td style="text-align: right;">$72 万</td>
+<td style="text-align: right;">40.5 万</td>
+<td style="text-align: right;">14.8%</td>
+<td style="text-align: right;"><strong>0.026%</strong></td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td style="text-align: right;"><strong>$48.0 亿</strong></td>
+<td style="text-align: right;"><strong>$184 万</strong></td>
+<td style="text-align: right;"><strong>$184 万</strong></td>
+<td style="text-align: right;"><strong>56.4 万</strong></td>
+<td style="text-align: right;"><strong>21.3%</strong></td>
+<td style="text-align: right;"><strong>0.038%</strong></td>
+</tr>
+<tr>
+<td>2026-10-01 至 10-12</td>
+<td style="text-align: right;">$16.8 亿</td>
+<td style="text-align: right;">$93 万</td>
+<td style="text-align: right;">$93 万</td>
+<td style="text-align: right;">18.6 万</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;"><strong>0.055%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="NEAR Intents 月成交与回购折合枚数" src="charts/intents-buyback-202609.svg" /></p>
+<p><strong>对账</strong>（10/13 余额 vs DefiLlama 累计，窗口对齐）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>比较</th>
+<th style="text-align: right;">余额</th>
+<th style="text-align: right;">DefiLlama 累计</th>
+<th style="text-align: right;">比例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>回购多签 vs 2/23–10/12 回购口径</td>
+<td style="text-align: right;">1,963,172</td>
+<td style="text-align: right;">约 286 万</td>
+<td style="text-align: right;"><strong>约 69%</strong></td>
+</tr>
+<tr>
+<td>三个收入钱包合计（1,963,172 + 1,885,800 + 约 271）vs 2025-11–10/12 全部捕获收入</td>
+<td style="text-align: right;">约 385 万</td>
+<td style="text-align: right;">约 391 万</td>
+<td style="text-align: right;">约 98.5%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>回购多签比回购口径累计少约 90 万枚</strong>；前端收入钱包有约 189 万枚，但<strong>它们是否就是这 90 万、还是此前的其他收入，需要期初余额与逐笔流水才能定位——本报告没有做</strong>。同样，三个钱包合计约等于累计捕获收入（98.5%）<strong>不能证明此前没有大额流出</strong>：期初余额或其他入金可以补足流出。</p>
+<p><strong>三个要注意的地方</strong>：<br />
+1. <strong>买回的币没有销毁，所以不减少协议净发行</strong>——9 月净增发仍约 265 万枚；<code>total_supply</code> 不变。<strong>若入账确实来自市场购买，它是一股买盘</strong>；但收入钱包入账是否等于新增的市场购买，本报告没有核实。<br />
+2. <strong>抵消比例 = 入账枚数 ÷ 发行枚数</strong>，与「美元入账 ÷（2.47% × 市值）」是同一个式子。<strong>价格上涨是否会削弱它，取决于收入的计价方式</strong>：若 Intents 按成交额的美元比例收费，币价上涨时收到的枚数会变少；若部分费用按 NEAR 收取，枚数不受价格影响、美元值随之重估。DefiLlama 按当天价格给当天入账估值，这本身不产生重估——<strong>计价方式本报告没有查清</strong>。本期 8 → 9 月入账枚数 +39%、月均价 ×1.9、抵消比例升到 21.3%（回购开始以来最高）。<br />
+3. <strong>收入 ÷ 成交的费率在上升</strong>：8 月约 0.026%、9 月 0.038%、10 月前 12 天 0.055%——原因（费率政策、正滑点等收入构成的变化）<strong>本报告没有查</strong>；它和计价方式一起，决定了收入一侧能不能用来度量「使用」（9.2）。</p>
+<hr />
+<h2 id="5">5. 持有人的位置：质押、稀释与回购</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>数值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>质押量</td>
+<td><strong>556,956,003 枚（约 42.6%）</strong></td>
+<td>RPC <code>validators</code>（当前 epoch）</td>
+</tr>
+<tr>
+<td>验证人数</td>
+<td>409</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>最大验证人</td>
+<td>约 3,204 万枚；前 10 大占质押的 37.9%</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>超过三分之一质押所需的最少验证人数</td>
+<td><strong>9</strong></td>
+<td>计算</td>
+</tr>
+<tr>
+<td>质押毛奖励率（按全部铸造给验证人）</td>
+<td>约 2.5% ÷ 42.6% ≈ <strong>5.9%</strong>（未扣验证人佣金）</td>
+<td>计算；Bitwise 招股书称约 5%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>质押奖励与稀释是同一件事的两面</strong>（DOT 期规则）：约 2.47% 的年化净增发全部发给了质押者；<strong>不质押的人每年被稀释约 2.5%</strong>——回购的币存在多签里、不减少供应，所以回购不改变这个数（若入账来自市场购买，它影响的是买盘，不是持有人占总供应的比例）。</p>
+</blockquote>
+<hr />
+<h2 id="6">6. 机构通道</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bitwise NEAR ETF（NRR）</td>
+<td>S-1/A 9/16；<strong>9/24 注册生效</strong>（EFFECT、424B3）；9/29 在 NYSE Arca 交易</td>
+<td>✅ SEC</td>
+</tr>
+<tr>
+<td>持仓（10/11）</td>
+<td><strong>14,991,348.85 枚 NEAR</strong>，净资产约 $8,169 万，2,870,000 份</td>
+<td>✅ 发行方官网 <code>nrretf.com</code></td>
+</tr>
+<tr>
+<td>质押</td>
+<td>招股书：「The Trust intends to stake 100% of the Trust's NEAR」；官网：10/10 质押比例 99%</td>
+<td>✅ 424B3 原文 + 官网</td>
+</tr>
+<tr>
+<td>种子资金</td>
+<td>Bitwise 母公司 2026-07-28 以 $200 买入 8 份</td>
+<td>✅ 424B3</td>
+</tr>
+<tr>
+<td>管理费</td>
+<td>0.75%（unitary management fee）</td>
+<td>✅ 424B3、官网</td>
+</tr>
+<tr>
+<td>资金流</td>
+<td>首日约 $3,599 万；9/29–9/30 两个交易日累计超过 $5,000 万</td>
+<td>⚠️ SoSoValue（二手）</td>
+</tr>
+<tr>
+<td>Grayscale NEAR Trust</td>
+<td>2026-01 申请转为 ETF</td>
+<td>⚠️ 媒体，状态未核实</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>14,991,349 枚约为 10/13 总供应的 1.15%</strong>；它是实物申购还是现金买入、净新增需求是多少，官网数据分不开。</p>
+<hr />
+<h2 id="7">7. 核心价值逻辑</h2>
+<h3 id="71">7.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Intents 使用与收入创新高</strong>：9 月成交 $48.0 亿（+73%），美元捕获收入 $184 万（+154%）</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ DefiLlama（Dune）；⚠️ 单月；收入的计价方式与费率上升的原因未查；成交 ≠ 归持有人的价值</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>通胀减半已兑现</strong>：年化净增发 4.92% → 2.47%</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ 区块头实测；⚠️ 已过去 11 个月，不是当期的新信息</td>
+</tr>
+<tr>
+<td>3</td>
+<td>回购口径的入账在 9 月约为净增发的 21%</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ DefiLlama + 链上余额；⚠️ 收入钱包入账 ≠ 已执行的市场回购；只有约 69% 在回购多签；不减少供应</td>
+</tr>
+<tr>
+<td>4</td>
+<td>第一只美国现货 ETF：持有约 1,499 万枚（约 1.15%），质押 99%</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ SEC + 发行方官网；⚠️ 净新增需求分不开</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="72">7.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>按成交看，价格涨得比使用快</strong>：成交 +73%，月均价 +90%、月末价 +178%</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 计算；月末价配成交时，多数基期结论相同（9.2）；⚠️ 按月均价时接近；单月比较不说明市场错了</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>净发行约 2.47%，回购不减少供应</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 区块头 + 账户余额</td>
+</tr>
+<tr>
+<td>3</td>
+<td>链上手续费一年下降约 58%（$27.5 万 → $11.5 万）</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ DefiLlama（Allium）；⚠️ 手续费低也可能是设计（Intents 的价值不在 gas）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>永续持仓上升：按枚 +49%（9/14 → 9/22），占供应从约 3.0% 到 4.5%</td>
+<td style="text-align: center;">★☆☆☆☆</td>
+<td>✅ 币安接口；⚠️ <strong>方向不定</strong>——资金费率停在默认值、9 月上旬多次低于默认值或为负，与空头入场同样相容</td>
+</tr>
+<tr>
+<td>5</td>
+<td>波动率 104.0%、beta 1.305；10 月前 12 天三天单日超额 −12 以上（同期也有五天 +7.5 以上）</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ 计算</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="dot-1-1-1-3-2-247">&gt; <strong>检查两条论据是否描述同一机制的两面</strong>（DOT 期规则）：<strong>多头 #1 与空头 #1 是同一组数据</strong>——使用确实创了新高（多头），但按成交，价格涨得更快（空头）；两条都是三星。收入一侧能不能反驳空头 #1，取决于收入的计价方式（未查清）。<strong>多头 #3 与空头 #2 是同一机制</strong>：入账在增加，供应照样增加约 2.47%。</h2>
+<h2 id="8">8. 多空之间真正的分歧点</h2>
+<ol>
+<li><strong>9 月的价格是在为 Intents 的未来增长定价，还是事件推动的重估</strong>：两者都和数据相容；按成交看价格跑得更快，收入一侧取决于计价方式；日度上使用与价格没有共振（3.2）。</li>
+<li><strong>回购的币会不会被永久移出流通</strong>：现在存在多签里，<code>total_supply</code> 不变。</li>
+<li><strong>Intents 的收入能否持续、费率为什么上升</strong>：9 月的 $184 万是此前月份的 2.5–3 倍，与价格异动同月；收入 ÷ 成交从 0.026% 升到 0.038%、10 月 0.055%——<strong>若来自正滑点等随波动上升的收入，就会随异动消退</strong>（DefiLlama 有收入分项，本报告没有拆）。</li>
+</ol>
+<hr />
+<h2 id="9">9. 估值：不给目标价</h2>
+<h3 id="91">9.1 为什么不给</h3>
+<ul>
+<li><strong>主要理由</strong>：持有人没有现金流请求权，Intents 回购是可撤销的运营项目、买回的币不销毁——这削弱的是收入倍数法；<strong>基于质押安全需求、存储锁定、可持续回购的情景估值本报告没有做</strong>，所以「不给」是方法上的选择，不是「无法估值」。</li>
+<li><strong>加重情节</strong>：单月收入与价格异动同月；市值（9/30）÷ 年化收入按收入窗口在约 316–984 倍之间，没有可依赖的倍数参照；收入的计价方式未查清。</li>
+</ul>
+<h3 id="92">9.2 比值与反推</h3>
+<blockquote>
+<p><strong>推导方法</strong>：市值 = 收盘或月均价 × 区块头总供应；年化捕获收入按三个窗口：9 月 × 12、回购开始以来（2/23–9/30，220 天）年化、近 12 个月实际（2025-10 至 2026-09）。不推导任何价格区间。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>比值</th>
+<th style="text-align: right;">9 月 × 12（约 $2,208 万）</th>
+<th style="text-align: right;">回购开始以来年化（约 $884 万）</th>
+<th style="text-align: right;">近 12 个月实际（约 $710 万）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市值（9/30，约 $69.8 亿）÷ 年化捕获收入</td>
+<td style="text-align: right;">约 <strong>316 倍</strong></td>
+<td style="text-align: right;">约 <strong>790 倍</strong></td>
+<td style="text-align: right;">约 <strong>984 倍</strong></td>
+</tr>
+<tr>
+<td>回购要完全「抵消」净增发所需的年收入（约 $1.73 亿）÷ 年化收入</td>
+<td style="text-align: right;">约 <strong>7.8 倍</strong></td>
+<td style="text-align: right;">约 <strong>19.5 倍</strong></td>
+<td style="text-align: right;">约 <strong>24.3 倍</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>⚠️ 近 12 个月一列含回购开始（2/23）之前的捕获收入，按当时政策它们进了国库、不是回购；放在「抵消所需」一行，隐含了历史收入全部适用当前回购政策的假设。⚠️ 「抵消」只是等量入账的意思——回购的币不销毁，<strong>不会让净发行归零</strong>。</p>
+<p><strong>逐月的「市值 ÷ 年化当月收入」</strong>（按当月均价；_bian 与本报告分别复算）：2025-11 至 2026-08 在 <strong>174–985 倍</strong>之间，中位数约 343 倍；9 月约 195 倍。⚠️ <strong>按月均价时，这个比值约等于「总供应 ÷（12 × 当月收到的 NEAR 枚数）」</strong>——价格在分子分母里近似约掉，它反映的是收到的枚数相对供应的变化，<strong>不能当作「价格便宜」的独立证据</strong>，除非收入按美元比例收取（计价方式未查清）。⚠️ 它用月均价，上面的三窗口表用 9/30 价格，两者不能拼成一个区间。</p>
+<p><strong>基期敏感性</strong>（_bian 复算）：以 2025-09 至 2026-08 的每个月为基期，<strong>月末价配成交时，12 个基期里有 8 个的「价格涨幅 ÷ 成交涨幅」≥ 1.47</strong>（价格跑得更快）；月均价配成交时在 0.12–1.54 之间（接近）。<strong>成交一侧的方向对基期不敏感，敏感的只是「远」字</strong>。收入一侧的基期比较取决于计价方式，本报告不引用。</p>
+<h3 id="93">9.3 这套判断的弱点</h3>
+<ol>
+<li>9 月的事件归因做不到（3.2）；</li>
+<li>Intents 的成交与收入来自 Dune 查询，本报告没有逐笔核对；</li>
+<li>两个存档节点可能同源；</li>
+<li>回购口径是收入钱包入账，不是逐笔识别的市场买单；回购多签只对上约 69%，差额去向未定位；</li>
+<li><strong>Intents 收入的计价方式（按美元比例还是按 NEAR）没有查清</strong>——它决定收入一侧能否用来度量使用；</li>
+<li>费率上升的原因没有查，DefiLlama 的收入分项没有拆；</li>
+<li>ETF 资金流是二手数据（持仓是一手）；</li>
+<li>隐私永续合约没有找到官方公告。</li>
+</ol>
+<hr />
+<h2 id="10">10. 投资与风险启示</h2>
+<h3 id="101">10.1 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>当前</th>
+<th>变化信号</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>年化净增发</strong></td>
+<td>2.47%</td>
+<td>低于 2.3%（回购被烧或销毁上升）或高于 2.5%（参数变化）</td>
+<td>区块头</td>
+</tr>
+<tr>
+<td><strong>Intents 月成交 / 捕获收入</strong></td>
+<td>$48.0 亿 / $184 万</td>
+<td>10–12 月能否保持在 $30 亿 / $100 万以上</td>
+<td>DefiLlama（Dune）</td>
+</tr>
+<tr>
+<td><strong>回购账户余额</strong></td>
+<td>1,963,172 枚</td>
+<td>是否转出（再分配）或销毁</td>
+<td>NEAR RPC</td>
+</tr>
+<tr>
+<td>质押率</td>
+<td>约 42.6%</td>
+<td>ETF 质押后上升</td>
+<td>RPC <code>validators</code></td>
+</tr>
+<tr>
+<td>永续持仓量</td>
+<td>10/12 5,850 万枚</td>
+<td>继续上升而价格横盘</td>
+<td>币安</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="102">10.2 风险提醒</h3>
+<ol>
+<li><strong>波动</strong>：年化波动率 104.0%，10 月前 12 天有三天单日超额 −12 以上、五天 +7.5 以上；</li>
+<li><strong>稀释</strong>：不质押的人每年约 2.5%（回购不改变）；</li>
+<li><strong>回购可撤销</strong>：运营项目，买回的币在多签里；</li>
+<li><strong>归因不明</strong>：9 月的上涨没有单一可验证的原因。</li>
+</ol>
+<h3 id="103">10.3 长期认知</h3>
+<p><strong>第一，「回购」要看币去了哪里。</strong> NEAR 的 Intents 回购把币放进多签，LEO 的「销毁」把币放进发行人控制的合约账户——<strong>两者都是承诺意义上的移出流通，不是协议意义上的</strong>。</p>
+<p><strong>第二，一个分母里含价格的统计量，拿来和价格比，结论是事先决定好的。</strong> 初稿用「捕获收入折成 NEAR +39% vs 价格 +178%」论证「价格跑赢使用」——而按枚收入 = 美元收入 ÷ 价格，价格被算了两次；收入与价格同步上涨时它也是 0%。换成美元收入、月均价，结论翻转。<strong>比较价格与基本面之前，先检查基本面那一侧有没有除以价格——</strong>也要检查它有没有乘以价格<strong>：修订稿一度改用美元收入，而美元收入在收入按 NEAR 计价时同样含有价格。本币计价的流量要除以价格才对，美元计价的流量才不用；两者分不清时，那一侧就不判方向。</strong></p>
+<p><strong>第三，减半是可测的，也确实兑现了。</strong> 4.92% → 2.47%，链上逐月可查；而且 NEAR 的发行按时间计，不会像 GRAM 那样被出块提速悄悄放大。</p>
+<hr />
+<h2 id="11">11. 附录</h2>
+<h3 id="111-2026-09-30-1013">11.1 关键数据速查（截至 2026-09-30，快照到 10/13）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td>$5.341</td>
+<td>币安</td>
+</tr>
+<tr>
+<td>9 月 / Q3 / 近一年</td>
+<td>+177.89% / +199.72% / +103.16%</td>
+<td>币安</td>
+</tr>
+<tr>
+<td>beta / R² / 波动率</td>
+<td>1.305 / 0.320 / 104.0%</td>
+<td>本报告计算</td>
+</tr>
+<tr>
+<td>总供应（10/1 / 10/13）</td>
+<td>1,307,742,138.6 / 1,308,809,574.8</td>
+<td>区块头</td>
+</tr>
+<tr>
+<td>减半后 11 个月年化净增发</td>
+<td>2.47%</td>
+<td>区块头</td>
+</tr>
+<tr>
+<td>9 月净增 / 销毁</td>
+<td>2,650,576 / 约 1.9 万–2.6 万（区块头）；DefiLlama 推出 2.26 万–3.24 万</td>
+<td>区块头 / Allium</td>
+</tr>
+<tr>
+<td>质押</td>
+<td>556,956,003（约 42.6%）</td>
+<td>RPC</td>
+</tr>
+<tr>
+<td>Intents 9 月成交 / 捕获收入</td>
+<td>$48.0 亿 / $184 万</td>
+<td>DefiLlama（Dune）</td>
+</tr>
+<tr>
+<td>回购账户余额</td>
+<td>1,963,172</td>
+<td>RPC</td>
+</tr>
+<tr>
+<td>ETF</td>
+<td>Bitwise NRR，9/24 生效</td>
+<td>SEC</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112">11.2 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th style="text-align: center;">状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格、成交、持仓量、资金费率</td>
+<td>币安现货与永续接口</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>总供应、epoch 铸造与销毁</td>
+<td>NEAR 存档节点区块头</td>
+<td style="text-align: center;">✅ 一手；⚠️ 两个端点可能同源</td>
+</tr>
+<tr>
+<td>协议参数</td>
+<td><code>EXPERIMENTAL_protocol_config</code></td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>质押与验证人</td>
+<td>RPC <code>validators</code></td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>通胀减半</td>
+<td>nearcore 2.9.0 发布说明原文 + 区块头实测</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>手续费</td>
+<td>DefiLlama（Allium）</td>
+<td style="text-align: center;">✅ 接口；与区块头路径相容</td>
+</tr>
+<tr>
+<td>Intents 成交与收入</td>
+<td>DefiLlama（Dune，适配器源码已读）</td>
+<td style="text-align: center;">✅ 接口；⚠️ 未逐笔核对</td>
+</tr>
+<tr>
+<td>回购账户余额</td>
+<td>NEAR RPC</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>Bitwise ETF 生效与质押计划</td>
+<td>SEC EFFECT、424B3 原文</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>ETF 资金流</td>
+<td>SoSoValue（搜索摘要）</td>
+<td style="text-align: center;">⚠️ 二手</td>
+</tr>
+<tr>
+<td>隐私永续合约、Hyperliquid 现货上线</td>
+<td>媒体</td>
+<td style="text-align: center;">⚠️ 未找到官方公告</td>
+</tr>
+<tr>
+<td>第一次通胀投票结果</td>
+<td>Blockworks（搜索摘要）</td>
+<td style="text-align: center;">⚠️ 二手</td>
+</tr>
+<tr>
+<td>Intents 回购启动（2026-02-23）</td>
+<td>DefiLlama 方法说明；X 帖未打开</td>
+<td style="text-align: center;">⚠️</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113">11.3 来源偏向声明</h3>
+<ul>
+<li>供应、通胀、销毁、质押、回购账户全部链上自读；多头论据 #1 的 Intents 数据来自 Dune 查询（适配器源码已读），<strong>它的口径由 NEAR 方面的查询定义</strong>。</li>
+<li>ETF 资金流、事件日期多来自加密媒体，<strong>已在星级中折扣</strong>。</li>
+<li><strong>传统金融机构视角</strong>：本期引用了<strong>美联储</strong>政策；Bitwise 是发行方，不是独立研究。<strong>未找到 Deutsche Bank、Citi、JPMorgan 等对 NEAR 的当期研究覆盖。</strong></li>
+</ul>
+<h3 id="114">11.4 发布前审查记录</h3>
+<p><strong>第 1 层 自动核查</strong>（<code>tools/verify_report.py</code>）：0 FAIL / 0 WARN。⚠️ 「来源偏向」一项通过，部分是因为 11.3 在「未找到研究覆盖」的句子里提到了 Deutsche Bank、Citi、JPMorgan 的名字——<strong>实际引用的传统机构只有美联储</strong>。图表渲染检查通过。</p>
+<p><strong>第 2–3 层 Codex（第一轮）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>「回购 56.4 万枚、抵消 21%」没有被证明</strong>：DefiLlama 统计的是三个收入钱包的入账，不是市场买单；漏核 <code>1csfundsadmin</code></td>
+<td>✅ 改称「回购口径（收入钱包入账）」；补三个钱包的对账表（回购多签只对上约 69%）</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>「币价越高回购越少」把因果讲反了</strong>：适配器先记 NEAR 数量、再换美元</td>
+<td>✅ 4.3 第 2 条重写：抵消比例与美元口径是同一个式子；本期数据显示相反方向</td>
+</tr>
+<tr>
+<td>3</td>
+<td>未销毁的回购不减少净发行，「剩 79% 仍是净发行」混淆了供给与买盘</td>
+<td>✅ 全文改为「相当于 21% 的买盘，不减少供应」；稀释改为约 2.5%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>「价格 +178% vs 成交 +73%」不是有效的估值检验；费率从 2.6bp 升到 3.8bp 没有分清</td>
+<td>✅ 核心判断改写（见 _bian #1）；补费率列</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>手续费不是统一 70/30</strong>：合约只拿函数执行 gas 的 30%，其余全烧；「独立验证」过强</td>
+<td>✅ 读 nearcore 文档与 DefiLlama 适配器确认；③ 改为 2.26 万–3.24 万的范围；措辞改为「两条路径量级相容」</td>
+</tr>
+<tr>
+<td>6</td>
+<td>NE9-1 检验不了「使用高点不可持续」；排查有问题</td>
+<td>✅ 删去「承接核心判断」；排查重写</td>
+</tr>
+<tr>
+<td>7</td>
+<td>NE9-3 「单笔 ≥ 10 万」可被拆分绕过、例行操作会误判</td>
+<td>✅ 改为累计、并排除收入钱包 / 质押池 / 包装合约</td>
+</tr>
+<tr>
+<td>8</td>
+<td>NE9-2 敏感性区间与参数对不上</td>
+<td>✅ 标注改正：σ 5.06% → 8.9%、σ 3.91% → 4.1%</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>ETF 持仓不用等 10-Q</strong>：官网已有</td>
+<td>✅ 补官网持仓 14,991,349 枚、质押 99%；拒登理由改写</td>
+</tr>
+<tr>
+<td>10</td>
+<td>「无请求权所以不估值」过强；漏了存储锁定需求</td>
+<td>✅ 9.1 改为方法上的选择，补存储锁定与质押需求</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第 2–3 层 Codex（第二轮，审修订稿）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>「相当于 21% 的买盘」仍未被证明，只改了标签</td>
+<td>✅ 全文改为「回购口径入账约为净增发的 21%（数量比）」；「减少短期库存」删除</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>「约三分之一在前端钱包」是推断不是对账</strong>；98.5% 不能证明没有外流；旧窗口数字残留</td>
+<td>✅ 改为「差约 90 万枚，去向需逐笔流水」；98.5% 补限定；旧数换成 2/23 起累计</td>
+</tr>
+<tr>
+<td>3</td>
+<td>NE9-3 可经豁免钱包两跳绕过；质押池不等于自己的钱包；边界冲突</td>
+<td>✅ 改用期末余额（含 wNEAR 与质押），消除绕行</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>美元收入含价格重估，「价格没跑赢」只是机械偏向换了方向</strong>；195 倍约等于供应 ÷ 收到的枚数</td>
+<td>✅ 核心判断改为「收入一侧取决于计价方式，不判方向」；逐月比值注明不是独立证据（与 _bian #1 同）</td>
+</tr>
+<tr>
+<td>5</td>
+<td>三窗口与逐月比值的价格时点不同，不能拼成一个区间；近 12 个月含回购前收入</td>
+<td>✅ 分开写；补注</td>
+</tr>
+<tr>
+<td>6</td>
+<td>NE9-1 新排查没有识别操纵的能力</td>
+<td>✅ NE9-1 翻转为押不可被制造的方向；排查只用于判 ❌ 前，写明它挡不住最便宜的方式</td>
+</tr>
+<tr>
+<td>7</td>
+<td>NE9-1 不承接收入论据</td>
+<td>✅ 删去「承接」；新增 NE9-4 直接检验费率</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第 2–3 层 _bian（第二轮，审修订稿）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>核心判断「按美元收入，价格没跑赢」与 4.3 第 2 点互相矛盾</strong>：它只在收入按美元比例收取时成立；_bian 承认第一轮自己默认了这个前提</td>
+<td>✅ 同 Codex #4；4.3 第 2 点改回「取决于计价方式」；计价方式列为「下期优先核实」第一</td>
+</tr>
+<tr>
+<td>2</td>
+<td>9.2 引用基期敏感性写错了：成交一侧对基期不敏感（月末价配成交，12 个基期中 8 个 ≥ 1.47）</td>
+<td>✅ 照原表改写；空头 #1 回到三星</td>
+</tr>
+<tr>
+<td>3</td>
+<td>NE9-1 排查：历史只证明不误判，证明不了能抓对倒；先验的基率把两个事件并成一个区间</td>
+<td>✅ 写明误报率 0、挡不住最便宜方式；先验按「三个月任一」的基率重写</td>
+</tr>
+<tr>
+<td>4</td>
+<td>NE9-3 只看一个账户</td>
+<td>✅ 同 Codex #3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>「三个钱包合计」其实只加了两个</td>
+<td>✅ 补 <code>1csfundsadmin</code> 约 271 枚</td>
+</tr>
+<tr>
+<td>6</td>
+<td>旧说法残留（70/30、22,646、327 万、「四个事件」、195–985、9.3 编号）</td>
+<td>✅ 全部清理</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第 2–3 层 _bian（第一轮）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>核心判断的比较自带偏向</strong>：按枚收入 = 美元收入 ÷ 价格，价格被算了两次；换月均价、换基期结论就翻</td>
+<td>✅ <strong>核心判断重写</strong>为「取决于使用指标」；补逐月「市值 ÷ 年化收入」（9 月约 195 倍，低于中位约 343 倍）与基期敏感性；空头 #1 降为二星</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>回购月度表把 2/1–2/22 的国库收入算成回购</strong>；对账窗口错配</td>
+<td>✅ 改用 HoldersRevenue，2 月只算 2/23–2/28（17.7 万枚、7.4%）；对账按窗口重做</td>
+</tr>
+<tr>
+<td>3</td>
+<td>NE9-1 的排查拿历史一跑会误杀 2025-11 与 2026-09；「超出 ≤ 0」无判法；先验与基率脱节</td>
+<td>✅ 排查改为「成交暴增而无行情」规则并在历史月份演示；先验 35% → 50%，先报基率</td>
+</tr>
+<tr>
+<td>4</td>
+<td>NE9-3 会被例行归集、质押触发</td>
+<td>✅ 同 Codex #7</td>
+</tr>
+<tr>
+<td>5</td>
+<td>「NE9-1 承接核心判断」不同构</td>
+<td>✅ 删除</td>
+</tr>
+<tr>
+<td>6</td>
+<td>「价格越高抵消越少」是有条件的命题</td>
+<td>✅ 同 Codex #2</td>
+</tr>
+<tr>
+<td>7</td>
+<td>9.1 说单月年化不可靠，9.2 照用</td>
+<td>✅ 9.2 改报三个窗口（316 / 790 / 984 倍；抵消所需 7.8 / 19.5 / 24.3 倍）</td>
+</tr>
+<tr>
+<td>8</td>
+<td>空头 #4 用一侧尾部当杠杆证据</td>
+<td>✅ 降为一星、标明方向不定；「三天 −12」移到波动并补「五天 +7.5」</td>
+</tr>
+<tr>
+<td>9</td>
+<td>3.2「每一段都有候选解释」与表中「未找到」矛盾；漏 9/16 的 S-1/A；可做日度相关</td>
+<td>✅ 全部补上（日度相关约 0.02）</td>
+</tr>
+<tr>
+<td>10</td>
+<td>「首周流入」实为两个交易日；57.7 是涨幅不是超额；21% 的分母措辞不统一</td>
+<td>✅ 改正</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>两份审查的共同点</strong>：都指向「回购」与「使用」两个口径——Codex 从数据源的机制（入账 ≠ 买单；70/30 不是统一的），_bian 从统计量的构造（分母含价格；月中开始却整月计入）。</p>
+<hr />
+<blockquote>
+<p>配套速查请阅读 <code>near_questions_summary_202609.md</code>。<br />
+论点检验记录见 <code>../thesis_scorecard.md</code>。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-near-near-protocol-2026-9">NEAR / NEAR Protocol 简明速查（2026 年 9 月版，首期）</h1>
+<blockquote>
+<p>完整报告的浓缩版，给快速复习用。<strong>数据截止 2026-09-30，链上快照到 10/13。</strong><br />
+本文件不构成投资建议。</p>
+</blockquote>
+<hr />
+<h2 id="s-1">1. 一句话</h2>
+<p><strong>NEAR 9 月涨了 177.89%（对数超额 +94.1，本系列最大），同期 NEAR Intents 成交与收入创新高（$48.0 亿 / $184 万）、第一只美国现货 ETF 生效——各事件的贡献分不开。按成交，价格涨得更快；按收入，取决于 Intents 收入的计价方式，本报告没有查清。供应侧，通胀减半在链上兑现（4.92% → 2.47%）；Intents 回购口径的入账约为 9 月净增发的 21%，但买回的币存在多签里、不减少供应。</strong></p>
+<hr />
+<h2 id="s-2">2. 三个默认</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>流通量已知吗</td>
+<td>✅ 区块头 <code>total_supply</code> 直读（10/13 为 1,308,809,574.8）；区块头推出的销毁与 DefiLlama（Allium）量级相容</td>
+</tr>
+<tr>
+<td>价格可用吗</td>
+<td>✅ 币安；9 月日成交中位数约 $1.07 亿；R² 0.320</td>
+</tr>
+<tr>
+<td>持有人是剩余索取权人吗</td>
+<td>❌ 没有赋权文件；Intents 回购是运营项目，买回的币在多签里</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-3">3. 当前位置</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td><strong>$5.341</strong>（币安）</td>
+</tr>
+<tr>
+<td>9 月 / Q3 / 近一年</td>
+<td><strong>+177.89% / +199.72% / +103.16%</strong>（BTC +6.42% / +42.64% / −26.68%）</td>
+</tr>
+<tr>
+<td>beta / R² / 波动率</td>
+<td><strong>1.305 / 0.320 / 104.0%</strong></td>
+</tr>
+<tr>
+<td>对数超额</td>
+<td>9 月 <strong>+94.1</strong>（对照组中位数 +13.2，约 3.8 个单月特质标准差）；Q3 +63.4</td>
+</tr>
+<tr>
+<td>市值（9/30）</td>
+<td>约 <strong>$69.8 亿</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>涨幅分布在整个月：9/4–9/9（未找到事件）、<strong>9/16–9/20（五天对数 +57.7、超额 48.6）</strong>、9/24–9/30</li>
+<li>同期事件：9/16 S-1/A、9/17 隐私永续合约（媒体）、9/22–23 Hyperliquid 现货（媒体）、<strong>9/24 Bitwise ETF 生效（SEC）</strong>、9/29 交易</li>
+<li>日度上 Intents 成交与超额的相关约 0.02（没有共振）</li>
+<li><strong>各因素的贡献分不开</strong></li>
+</ul>
+<hr />
+<h2 id="s-4">4. 供应</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最高年通胀</td>
+<td><strong>2.5%</strong>（<code>max_inflation_rate</code> = 1/40，2025-10-30 起；之前 5%）</td>
+</tr>
+<tr>
+<td>实测年化净增发</td>
+<td>2025-09 <strong>4.92%</strong> → 减半后 2.39%–2.48%；减半后 11 个月 <strong>2.47%</strong></td>
+</tr>
+<tr>
+<td>发行方式</td>
+<td><strong>按时间计</strong>（每 epoch 约 7.38 小时铸造约 2.74 万枚）——出块提速不会变成隐性增发</td>
+</tr>
+<tr>
+<td>新发行去向</td>
+<td>全部给验证人（<code>protocol_reward_rate</code> = 0）</td>
+</tr>
+<tr>
+<td>9 月手续费销毁</td>
+<td>约 1.9 万–2.6 万枚（区块头）；DefiLlama 推出 2.26 万–3.24 万——约为铸造的 1%</td>
+</tr>
+<tr>
+<td>质押</td>
+<td>5.570 亿枚（约 42.6%）；毛奖励率约 5.9%；9 个最大验证人超过三分之一</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-5-intents">5. Intents 回购</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>机制</td>
+<td>2026-02-23 起，Intents 协议收入用于回购 NEAR，<strong>不销毁</strong>；DefiLlama 记的是<strong>收入钱包收到的 NEAR</strong>，不是逐笔识别的市场买单</td>
+</tr>
+<tr>
+<td>回购多签</td>
+<td><code>buybacks.multisignature.near</code>，10/13 余额 <strong>1,963,172 枚</strong>——约为 2/23 以来回购口径累计（约 286 万）的 <strong>69%</strong>；差约 90 万枚，去向需逐笔流水才能定位</td>
+</tr>
+<tr>
+<td>9 月</td>
+<td>回购口径入账 <strong>$184 万</strong> ≈ <strong>56.4 万枚</strong>，约为当月净增发的 <strong>21%</strong>（数量比；回购开始以来最高；2 月 2/23–2/28 为 17.7 万枚）</td>
+</tr>
+<tr>
+<td>费率</td>
+<td>收入 ÷ 成交：8 月 0.026% → 9 月 0.038% → 10 月前 12 天 0.055%（原因未查）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>回购不减少供应</strong>：9 月净增发仍约 265 万枚</li>
+</ul>
+<hr />
+<h2 id="s-6">6. 机构</h2>
+<ul>
+<li><strong>Bitwise NEAR ETF（NRR）</strong>：9/24 注册生效（SEC），9/29 交易；<strong>10/11 持有 14,991,349 枚 NEAR（约 1.15%），质押 99%</strong>（发行方官网）；管理费 0.75%</li>
+</ul>
+<hr />
+<h2 id="s-7">7. 估值</h2>
+<ul>
+<li><strong>不给目标价</strong>：无请求权；回购可撤销、币未销毁；收入计价方式未查清（质押需求、存储锁定等情景估值本报告没做）</li>
+<li>市值（9/30）÷ 年化捕获收入：9 月 × 12 约 <strong>316 倍</strong>；回购开始以来约 <strong>790 倍</strong>；近 12 个月约 <strong>984 倍</strong></li>
+<li>逐月比值按月均价约等于「供应 ÷ 12 × 当月收到的枚数」，不是独立的便宜 / 昂贵证据</li>
+</ul>
+<hr />
+<h2 id="s-8">8. 记分卡</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>论点</th>
+<th style="text-align: center;">先验</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NE9-1 ⚑ Q4 每月 Intents 成交都低于 $48.0 亿</td>
+<td style="text-align: center;">50%（反面的随机游走基率约 59%–64%）</td>
+</tr>
+<tr>
+<td>NE9-2 ⚑ 校准对照：12 月 NEAR/BTC 月均较 9 月降超过 10%</td>
+<td style="text-align: center;">7%（随机游走基率，敏感性 4%–9%）</td>
+</tr>
+<tr>
+<td>NE9-3 回购多签年底余额（含 wNEAR 与质押）不低于登记时</td>
+<td style="text-align: center;">75%</td>
+</tr>
+<tr>
+<td>NE9-4 ⚑ Q4 任一月 Intents 收入 ÷ 成交 ≤ 0.030%</td>
+<td style="text-align: center;">40%</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-3-5">如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>NEAR 9 月 +177.89%，对数超额 +94.1，是本系列至今最大的单月个币异动；同期有 ETF、隐私永续合约、Hyperliquid 上线与 Intents 新高，贡献分不开。</strong></p>
+</li>
+<li>
+<p><strong>按成交（+73%），价格涨得更快；按收入，取决于 Intents 收入是按美元比例还是按 NEAR 收取——本报告没有查清，不判方向。</strong></p>
+</li>
+<li>
+<p><strong>通胀减半在链上兑现：年化净增发 4.92% → 2.47%，而且发行按时间计，不会被出块提速放大。</strong></p>
+</li>
+<li>
+<p><strong>Intents 回购口径的入账约为 9 月净增发的 21%，但买回的币存在多签里、不减少供应；回购多签只对上 DefiLlama 回购口径的约 69%。</strong></p>
+</li>
+<li>
+<p><strong>拿基本面和价格比之前，先看基本面那一侧有没有除以价格、或乘以价格——本期的收入一侧两种都可能，所以不判方向。</strong></p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>near_research_report_202609.md</code>。<br />
+论点检验记录见 <code>../thesis_scorecard.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>

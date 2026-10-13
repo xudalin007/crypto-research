@@ -62,9 +62,13 @@ PROFILES = {
     'link': dict(symbol='⬡', name='LINK / Chainlink', short='LINK',
                 accent='#2a5ada', badge='⬡ Chainlink'),
     'cc': dict(symbol='◎', name='CC / Canton Network', short='CC',
-              accent='#6c3fc5', badge='◎ Canton'),    'avax': dict(symbol='▲', name='AVAX / Avalanche', short='AVAX',
-                accent='#e84142', badge='▲ Avalanche'),    'leo': dict(symbol='♌', name='LEO / UNUS SED LEO', short='LEO',
+              accent='#6c3fc5', badge='◎ Canton'),
+    'avax': dict(symbol='▲', name='AVAX / Avalanche', short='AVAX',
+                accent='#e84142', badge='▲ Avalanche'),
+    'leo': dict(symbol='♌', name='LEO / UNUS SED LEO', short='LEO',
                accent='#16b157', badge='♌ UNUS SED LEO'),
+    'near': dict(symbol='Ⓝ', name='NEAR / NEAR Protocol', short='NEAR',
+                accent='#00a37a', badge='Ⓝ NEAR'),
 }
 
 
