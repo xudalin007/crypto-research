@@ -1,0 +1,1854 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>TRX / Tron 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#eb0029;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">◈ TRX 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>◈ TRX 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-tron-8">1. Tron 是什么</a>
+<a href="#2-trx">2. TRX 的发展阶段划分</a>
+<a href="#3-trx">3. TRX 当前现状</a>
+<a href="#4-9">4. 9 月的销毁</a>
+<a href="#5">5. 净供应</a>
+<a href="#6-etf908">6. ETF</a>
+<a href="#7-9">7. 治理</a>
+<a href="#8-trx">8. TRX 与其他资产的比较</a>
+<a href="#9">9. 核心价值逻辑</a>
+<a href="#10">10. 估值</a>
+<a href="#11">11. 投资与风险启示</a>
+<a href="#12">12. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-1">1. 一句话</a>
+<a href="#s-2">2. 当前位置</a>
+<a href="#s-3">3. 数据源说明</a>
+<a href="#s-4">4. 净供应</a>
+<a href="#s-5">5. 收费率与业务</a>
+<a href="#s-6-etf908">6. ETF</a>
+<a href="#s-7">7. 治理</a>
+<a href="#s-8">8. 估值</a>
+<a href="#s-9">9. 记分卡</a>
+<a href="#s-3-5">如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>◈ TRX / Tron<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">◈ Tron</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="trx-tron-2026-9-q3">TRX / Tron 完整调研与分析报告（2026 年 9 月版兼 Q3 回顾）</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 10 月 13 日<br />
+<strong>数据截止</strong>：2026 年 9 月 30 日（9 月完整月度数据已闭合）；链上参数与提案快照到 10/13<br />
+<strong>研究方法</strong>：沿用 8 月首期框架（第 10 章「市值 ÷ 稳定币存量」锚与四情景）。价格统一改用<strong>币安日线 UTC 收盘</strong>（8 月版用的是 CoinGecko 00:00 时点价，见 12.4）；<strong>超额收益用对数口径</strong>（ln 收益 − beta × ln BTC 收益）。<br />
+⚠️ <strong>本期一处必须先声明的数据限制</strong>：Tronscan 官方 API 在本期取数期间<strong>持续限流（HTTP 429）</strong>，8 月版的主数据源取不到。<br />
+本期改用两条可复现的替代路径：<strong>增发 = 136 TRX × TronGrid 节点上数出的实际出块数</strong>（用同法复算 8 月，与 8 月版发布值<strong>逐位一致</strong>）；<br />
+<strong>销毁 = DefiLlama 日度美元费用 ÷ 币安日均价</strong>（DefiLlama 的 Tron 费用适配器取的就是 Tronscan 的销毁量；与 8 月版发布的 4 个月份逐月对照，<strong>偏差 −0.5% 至 +0.1%</strong>）。</p>
+<p><strong>本期核心发现</strong>：<br />
+1. <strong>净通胀继续上升：9 月销毁约 7,096 万枚、增发 1.1746 亿枚，净增约 4,650 万枚，年化 +0.596%</strong>（8 月 +0.519%）。<br />
+   这是 2025-10 以来<strong>连续第 11 个净增月</strong>；9 月销毁是本报告数据窗口内的<strong>最低月</strong>。<br />
+2. <strong>单位存量收费率 30.9 bp</strong>（年化销毁额 ÷ Tron 稳定币存量），<strong>12 个月前是 59.8 bp</strong>——能量单价这 12 个月一次没改，<strong>单价之外的因素（烧币支付占比、总需求、存量增长、TRX 美元价格）合起来压低了它</strong>；截至 Q2 的官方分项支持「支付方式迁移」，<strong>Q3 的分项尚未发布，本期拆不开</strong>。<br />
+3. <strong>业务继续上行</strong>：Tron 美元锚定稳定币月末 <strong>$940.6 亿</strong>（DefiLlama，新高），全球份额 <strong>30.23%</strong>；能量租赁平台（CatFee + TRONSAVE）9 月收入 <strong>$512 万</strong>（8 月 $466 万，+9.9%）。<br />
+4. <strong>现货 ETF 9/08 生效</strong>：SEC EDGAR 一手记录显示 Canary Staked TRX ETF（代码 TRXS）<strong>9/08 收到 EFFECT 通知、同日递交正式招股书（424B3），9/09 Cboe 出具上市认证</strong>。招股书写明「正常情况下至少 90% 的 TRX 质押」。⚠️ <strong>实际开始交易的日期与规模，本期未核实</strong>。<br />
+⚠️ <strong>第 1、2 条与净通胀背后主要是同一个观测——9 月日均销毁比 8 月低 7.8%</strong>（增发不变）：它同时表现为「净通胀上升」和「收费率下降」，<strong>作为证据只算一份</strong>。<br />
+5. <strong>价格几乎没动：9 月 +1.44%、Q3 +7.01%（BTC +6.42% / +42.64%）</strong>，十个资产里 9 月涨幅最低；<strong>但按 beta 0.238 预期，它只该涨约 1.5%——9 月对数超额约 0</strong>。<br />
+   「落后」来自对照组 9 月的行情（对数超额中位数 +14.9），不是 TRX 自身的异常。</p>
+<p><strong>本期核心判断</strong>：<strong>8 月版的主线——「网络越来越有用、代币越来越收不到钱，而市场没有为后者定价」——在 9 月原样延续。</strong><br />
+业务新高、收费率新低、净通胀新高、「市值 ÷ 稳定币存量」比率仍在 0.341（8 月版 0.341）。<strong>本期唯一的新变量是 ETF 生效，它的规模本期没有读数。</strong></p>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9/30 收盘</strong></td>
+<td><strong>$0.3374</strong>（币安）；市值约 <strong>$320.4 亿</strong>（全球第 8）；距 ATH $0.431288 为 <strong>−21.77%</strong></td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3 / 近一年</strong></td>
+<td><strong>+1.44% / +7.01% / +1.14%</strong>（BTC +6.42% / +42.64% / −26.68%）</td>
+</tr>
+<tr>
+<td><strong>一年 beta / R² / 波动率</strong></td>
+<td><strong>0.238 / 0.193 / 24.4%</strong>——仍是本系列最低的 beta 与波动率</td>
+</tr>
+<tr>
+<td><strong>9 月对数超额</strong></td>
+<td><strong>约 0</strong>（与 beta 预期吻合）；对照组中位数 +14.9</td>
+</tr>
+<tr>
+<td><strong>净供应（9 月）</strong></td>
+<td>销毁 <strong>70,956,696</strong>（估算）、增发 <strong>117,458,032</strong>、<strong>净 +46,501,336，年化 +0.596%</strong></td>
+</tr>
+<tr>
+<td><strong>单位存量收费率</strong></td>
+<td><strong>30.9 bp</strong>（2025-09 为 59.8 bp，能量单价 12 个月未变）</td>
+</tr>
+<tr>
+<td><strong>业务</strong></td>
+<td>Tron 美元锚定稳定币 <strong>$940.6 亿</strong>（月末，新高）；全球份额 <strong>30.23%</strong>；USDT 占全球 USDT 约 50.3%</td>
+</tr>
+<tr>
+<td><strong>估值锚</strong></td>
+<td><strong>市值 ÷ 稳定币存量 = 0.341</strong>（8 月版 0.341）</td>
+</tr>
+<tr>
+<td><strong>ETF</strong></td>
+<td><strong>TRXS 9/08 生效</strong>（EDGAR 一手）；至少 90% 质押；交易起始与规模未核实</td>
+</tr>
+<tr>
+<td><strong>治理</strong></td>
+<td>能量单价 <strong>100 sun 不变</strong>；#107 之后<strong>无新提案</strong>；两项降费讨论（tips #915、#938）尚未上链</td>
+</tr>
+<tr>
+<td><strong>情景期望（到 2027-12-31）</strong></td>
+<td>参数沿用 8 月版、起点更新：<strong>$0.3773（+11.8%）</strong>，条件于 Tether 不撤离</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-tron-8">1. Tron 是什么（与 8 月版相同，从略）</h2>
+<p><strong>稳定币的清算网络。</strong> DPoS，27 个超级代表（SR）出块；资源模型双轨——<strong>质押换来的能量免费，资源不够才销毁 TRX</strong>。<br />
+<strong>TRX 的收益来自增发（协议名义每区块 136 枚，其中 128 枚为投票奖励预算），手续费被销毁、不分给任何人。</strong><br />
+能量单价、增发额都由 27 个 SR 投票决定（8 月版第 4、8 章）。</p>
+<hr />
+<h2 id="2-trx">2. TRX 的发展阶段划分</h2>
+<p>阶段一至四与 8 月版相同（ICO 与生态搬运 / USDT 的意外胜利 / 份额巅峰与费率上调 / 份额流失与降价防守）。</p>
+<h3 id="2025-09">阶段五：低费率新常态（2025-09 – 至今）</h3>
+<ul>
+<li>稳定币存量与份额<strong>双双回升</strong>（份额谷底 25.52% → 9 月末 30.23%）</li>
+<li>链上销毁<strong>持续下滑</strong>：单月 1.78 亿枚（2025-08）→ <strong>约 7,096 万枚（2026-09）</strong></li>
+<li><strong>净供应 2025-10 之后再未回到通缩</strong></li>
+<li><strong>2026-09-08 现货质押 ETF（TRXS）生效</strong>——本期新增的事件</li>
+</ul>
+<hr />
+<h2 id="3-trx">3. TRX 当前现状</h2>
+<h3 id="30-8-6">3.0 论点校验：8 月版登记的 6 条（均未到期）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th>证伪条件（摘要）</th>
+<th>9 月读数</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T8-1</td>
+<td>烧币支付占能量的比重会继续下滑</td>
+<td>2026-12 烧币占比 ≥ 10.0% 则错</td>
+<td><strong>官方 Q3 复盘尚未发布</strong>（Q2 那期是 7/16 发的 tips #910）；代理指标（销毁量 ÷ 单价）9 月 23.65 十亿单位/日，<strong>比 8 月低 7.8%</strong></td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>T8-2</td>
+<td>TRX 将维持净通胀</td>
+<td>2026-09 至 2027-02 任意两个月净额为负则错</td>
+<td><strong>9 月 +46,501,336</strong>（正）</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>T8-3</td>
+<td>12 个月内不会再下调能量单价</td>
+<td>2027-09-06 前 <code>ENERGY_FEE</code> &lt; 100 sun 则错</td>
+<td><strong>100 sun</strong>（10/13，<code>getchainparameters</code>）</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>T8-4</td>
+<td>⚑「市值 ÷ 稳定币存量」会开始反映收费率下滑（45%）</td>
+<td>2027-03-31 比率 ≥ 0.319 则错</td>
+<td><strong>0.341</strong>（9/30）</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>T8-5</td>
+<td>低 beta 会持续</td>
+<td>2027-09-06 时 365 天 beta &gt; 0.50 则错</td>
+<td><strong>0.238</strong>（截至 9/30）</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>T8-6</td>
+<td>⚑ 中性情景假设不会被证伪（40%）</td>
+<td>2027-03-31 份额 &lt; 28.0% 或比率 &lt; 0.30 则错</td>
+<td><strong>份额 30.23%、比率 0.341</strong></td>
+<td>⏳</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>T8-1 的代理指标</strong>有 8 月版声明过的系统性高估（带宽与固定费用被折算成「虚拟能量」，2026-06 高估 38.8%），<strong>而且它是「日均销毁 ÷ 常数」，分不开烧币占比下降与总需求下降——不能用来判断 T8-1 的方向</strong>。<br />
+⚠️ <strong>8 月版记分卡承诺「下期必须找到能量分项的第二个来源，或者承认这一整块结论是单源的」——本期没有找到第二来源，该结论仍是单源的。</strong></p>
+<p><strong>T8-6 的取点约定（本期写死，见记分卡）</strong>：月末取 DefiLlama 稳定币序列中<strong>日期标签为该月最后一天</strong>的日快照。<br />
+<strong>与 8 月版份额表逐行比对（25 个月）</strong>：23 个月吻合（两个月差 0.01pp，属四舍五入）；<strong>2026-07、2026-08 两行不符，偏差同向</strong>——份额都高约 0.23pp、Tron 侧都高约 1%（2026-08 的全球值 $3,088.8 亿对应 9/05–06 的点）。<br />
+<strong>原因在「8 月版取点混用」与「DefiLlama 修订了近 1–2 个月的数据」之间，本期分不开</strong>（缓存里没有 9 月初的原始快照）。收费率列另有若干月份不同（如 2025-07 87.9 vs 84.8 bp），<strong>原因未查</strong>；基准月 2025-09 吻合。</p>
+<p><strong>本期新登记两条论点（T9-1 校准对照：12 月 TRX/BTC 比价、T9-2 净通胀继续上升），拒绝登记一条，见 <code>../thesis_scorecard.md</code>。</strong></p>
+</blockquote>
+<h3 id="31">3.1 价格与市场</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td><strong>$0.3374</strong></td>
+<td>币安 TRXUSDT 日线，UTC</td>
+</tr>
+<tr>
+<td>8/31 / 6/30 收盘</td>
+<td>$0.3326 / $0.3153</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3 / 近一年</strong></td>
+<td><strong>+1.44% / +7.01% / +1.14%</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>9 月收盘区间</td>
+<td>$0.3223 – $0.3447</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>市值（9/30）</td>
+<td><strong>约 $320.4 亿</strong></td>
+<td>供应约 949.76 亿枚 × 收盘价（第 5 章）</td>
+</tr>
+<tr>
+<td>ATH / 距 ATH</td>
+<td>$0.431288（2024-12-03）/ <strong>−21.77%</strong></td>
+<td>CoinGecko</td>
+</tr>
+<tr>
+<td>一年 beta / R² / 年化波动率</td>
+<td><strong>0.238 / 0.193 / 24.4%</strong></td>
+<td>365 天日对数收益，本报告计算</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>对数超额收益</strong>（ln 收益 − beta × ln BTC 收益，×100；同口径币安收盘、各自 365 天 beta；对照组为本系列另外 8 个山寨：ZEC / UNI / ADA / SOL / BNB / ETH / CKB / DOT）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">7 月</th>
+<th style="text-align: right;">8 月</th>
+<th style="text-align: right;"><strong>9 月</strong></th>
+<th style="text-align: right;"><strong>Q3</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TRX 对数超额</td>
+<td style="text-align: right;">+1.7</td>
+<td style="text-align: right;">−3.3</td>
+<td style="text-align: right;"><strong>0.0</strong></td>
+<td style="text-align: right;">−1.7</td>
+</tr>
+<tr>
+<td>对照组中位数</td>
+<td style="text-align: right;">+1.9</td>
+<td style="text-align: right;">−3.8</td>
+<td style="text-align: right;">+14.9</td>
+<td style="text-align: right;">+3.0</td>
+</tr>
+<tr>
+<td><strong>TRX − 对照组中位数</strong></td>
+<td style="text-align: right;">−0.2</td>
+<td style="text-align: right;">+0.5</td>
+<td style="text-align: right;"><strong>−15.0</strong></td>
+<td style="text-align: right;"><strong>−4.7</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>读法</strong>：TRX 9 月收益接近样本 beta 模型的预测（对数超额约 0，事后用截至 9 月的样本计算）。<strong>对照组 8 个里有 5 个对数超额 ≥ +13</strong>（ADA、CKB、DOT、ZEC、UNI）——<strong>这是 9 月山寨的一个共同因子，不是个别资产的特质行情</strong>（中位数不受 UNI、ZEC 的幅度影响）。<br />
+<strong>9 月中小市值山寨普涨，而 ETH（+0.5）、BNB（+5.2）、SOL（+5.5）与 TRX 基本没有参与</strong>——这是一个月的形态，<strong>估计不出 TRX 对这类行情的暴露系数</strong>。相对对照组的差值是描述性的。<br />
+R² 0.193 表示 BTC 只解释它约 19% 的日波动；按平方根时间缩放，单月特质波动（对数）约 6.3 个点——<strong>这不等于它没有自身事件</strong>。</p>
+</blockquote>
+<h3 id="32">3.2 业务规模</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tron 上美元锚定稳定币（9/30 日快照）</td>
+<td><strong>$940.6 亿</strong></td>
+<td>DefiLlama stablecoins，<code>peggedUSD</code> 口径</td>
+</tr>
+<tr>
+<td>全球美元锚定稳定币（同点）</td>
+<td>$3,112.0 亿</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>Tron 全球份额</strong></td>
+<td><strong>30.23%</strong>（8 月末同口径 30.01%）</td>
+<td>本报告计算</td>
+</tr>
+<tr>
+<td>Tron 上 USDT（9/30 点）</td>
+<td>约 $925.3 亿，占 Tron 稳定币约 98.4%、占全球 USDT 约 50.3%</td>
+<td>DefiLlama</td>
+</tr>
+<tr>
+<td>链上 TVL</td>
+<td>$56.44 亿（10/01；9/01 为 $51.86 亿）</td>
+<td>DefiLlama</td>
+</tr>
+<tr>
+<td>能量租赁收入（CatFee + TRONSAVE，9 月）</td>
+<td><strong>$512.0 万</strong>（$426.6 万 + $85.4 万；8 月 $465.8 万）</td>
+<td>DefiLlama</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>口径说明</strong>：月末取<strong>日期标签为该月最后一天</strong>的日快照（与 8 月版一致）。DefiLlama 把采集时间归到当日零点，<strong>标签不保证实际观测时刻</strong>，这是一个时点误差。统计范围为美元锚定稳定币（<code>peggedUSD</code>），不含非美元锚定币。</p>
+</blockquote>
+<h3 id="33">3.3 宏观环境</h3>
+<blockquote>
+<p>与 BTC 9 月版共用（美联储 9/16 加息 25bp 至 3.75–4.00%）。<strong>TRX 的 R² 只有 0.193，宏观通过 BTC 的传导在它身上很弱</strong>——8 月版的判断不变。</p>
+</blockquote>
+<hr />
+<h2 id="4-9">4. 9 月的销毁：单价没动，收费率又降了一截（本期核心章之一）</h2>
+<blockquote>
+<p>8 月版第 4 章证明：销毁下降有三个来源——<strong>能量单价（治理）、烧币支付占比（用户迁移）、总需求（在涨）</strong>。<br />
+<strong>2025-08-29 之后单价再没动过</strong>，所以此后的一切变化都来自后两项。本章只更新数字。</p>
+</blockquote>
+<h3 id="41">4.1 销毁的测量（替代路径）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: right;">8 月版发布值（Tronscan）</th>
+<th style="text-align: right;">本期替代路径（DefiLlama ÷ 币安日均价）</th>
+<th style="text-align: right;">偏差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-09</td>
+<td style="text-align: right;">110,613,012</td>
+<td style="text-align: right;">110,730,963</td>
+<td style="text-align: right;">+0.11%</td>
+</tr>
+<tr>
+<td>2026-06</td>
+<td style="text-align: right;">83,395,455</td>
+<td style="text-align: right;">82,984,692</td>
+<td style="text-align: right;">−0.49%</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td style="text-align: right;">84,031,885</td>
+<td style="text-align: right;">83,938,176</td>
+<td style="text-align: right;">−0.11%</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td style="text-align: right;">79,523,696</td>
+<td style="text-align: right;">79,519,966</td>
+<td style="text-align: right;">−0.005%</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;"><strong>70,956,696</strong></td>
+<td style="text-align: right;">—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>推导方法</strong>：DefiLlama 的 Tron 适配器提交 Tronscan 的 <code>total_trx_burn</code>，由 DefiLlama 价格服务按时间戳取 <code>coingecko:tron</code> 价格折成美元；本报告用币安的（前一日收盘 + 当日收盘）/ 2 作代理价除回去——<strong>估算误差就是两种价格之比</strong>。9 月 30 天日度序列完整、无缺口。<br />
+<strong>四个已发布月份的偏差在 −0.49% 至 +0.11% 之间</strong>——这是<strong>历史月度经验偏差</strong>，不是误差上界；按 ±0.5% 记，对年化净通胀的影响约 ±0.005pp，相对 9 月 +0.077pp 的变化，方向稳健。</p>
+</blockquote>
+<h3 id="42-9">4.2 9 月读数</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">8 月</th>
+<th style="text-align: right;"><strong>9 月</strong></th>
+<th style="text-align: right;">变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>销毁（TRX）</td>
+<td style="text-align: right;">79,523,696</td>
+<td style="text-align: right;"><strong>约 70,956,696</strong></td>
+<td style="text-align: right;">−10.8%</td>
+</tr>
+<tr>
+<td>日均销毁</td>
+<td style="text-align: right;">2,565,280</td>
+<td style="text-align: right;"><strong>2,365,223</strong></td>
+<td style="text-align: right;">−7.8%</td>
+</tr>
+<tr>
+<td>销毁额（美元，DefiLlama）</td>
+<td style="text-align: right;">$2,652.1 万</td>
+<td style="text-align: right;"><strong>$2,385.3 万</strong></td>
+<td style="text-align: right;">−10.1%</td>
+</tr>
+<tr>
+<td>代理「烧币支付能量」（十亿单位/日）</td>
+<td style="text-align: right;">25.65</td>
+<td style="text-align: right;"><strong>23.65</strong></td>
+<td style="text-align: right;">−7.8%</td>
+</tr>
+<tr>
+<td>能量单价</td>
+<td style="text-align: right;">100 sun</td>
+<td style="text-align: right;"><strong>100 sun</strong></td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>单价不变、日均销毁再降 7.8%</strong>——与 8 月版「烧币支付占比持续下滑、不需要任何治理事件」的机制一致。<br />
+⚠️ 这个代理指标<strong>分不开「烧币占比下降」与「总需求下降」</strong>——官方能量分项只在季度复盘里给，Q3 那期还没发布。<strong>本期只能说「销毁在降」，不能说「需求在涨」或「需求在降」。</strong></p>
+</blockquote>
+<h3 id="43">4.3 单位存量收费率</h3>
+<p><img alt="Tron 稳定币全球份额 vs 单位存量收费率" src="charts/share-vs-takerate-202609.svg" /></p>
+<blockquote>
+<p>图中数字：左轴 24% / 27% / 30% / 33% / 36%，右轴 20 / 55 / 90 / 125 / 160 bp；标注点 2024-08 为 35.02%、121.4 bp，2025-10 为 25.52%、57.4 bp，2026-09 为 30.23%、30.9 bp。</p>
+</blockquote>
+<p><strong>全部用当前 DefiLlama 序列、月末当天日快照重算</strong>（与 8 月版份额表 23 个月吻合，2026-07、2026-08 两行不同；收费率有若干月份不同，见 3.0）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: center;">份额</th>
+<th style="text-align: center;">收费率</th>
+<th>月份</th>
+<th style="text-align: center;">份额</th>
+<th style="text-align: center;">收费率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024-08</td>
+<td style="text-align: center;">35.02%</td>
+<td style="text-align: center;">121.4 bp</td>
+<td>2025-09</td>
+<td style="text-align: center;">25.81%</td>
+<td style="text-align: center;">59.8 bp</td>
+</tr>
+<tr>
+<td>2024-12</td>
+<td style="text-align: center;">28.51%</td>
+<td style="text-align: center;">151.0 bp</td>
+<td>2025-10</td>
+<td style="text-align: center;"><strong>25.52%</strong></td>
+<td style="text-align: center;">57.4 bp</td>
+</tr>
+<tr>
+<td>2025-04</td>
+<td style="text-align: center;">29.45%</td>
+<td style="text-align: center;">89.1 bp</td>
+<td>2026-01</td>
+<td style="text-align: center;">27.62%</td>
+<td style="text-align: center;">40.8 bp</td>
+</tr>
+<tr>
+<td>2025-06</td>
+<td style="text-align: center;">32.11%</td>
+<td style="text-align: center;">82.4 bp</td>
+<td>2026-04</td>
+<td style="text-align: center;">27.43%</td>
+<td style="text-align: center;">42.7 bp</td>
+</tr>
+<tr>
+<td>2025-07</td>
+<td style="text-align: center;">31.14%</td>
+<td style="text-align: center;">84.8 bp</td>
+<td>2026-07</td>
+<td style="text-align: center;">29.54%</td>
+<td style="text-align: center;">36.0 bp</td>
+</tr>
+<tr>
+<td><strong>2025-08</strong></td>
+<td style="text-align: center;">28.51%</td>
+<td style="text-align: center;"><strong>90.2 bp</strong></td>
+<td>2026-08</td>
+<td style="text-align: center;">30.01%</td>
+<td style="text-align: center;">33.9 bp</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td><strong>2026-09</strong></td>
+<td style="text-align: center;"><strong>30.23%</strong></td>
+<td style="text-align: center;"><strong>30.9 bp</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>能量单价 2025-08-29 之后没改过，收费率从 59.8 bp（2025-09）降到 30.9 bp（2026-09），再降 48.3%</strong>——这一段与治理无关。<br />
+<strong>份额同期从 25.81% 回到 30.23%</strong>。<strong>承载的稳定币在增加，每美元存量对应的销毁额在减少</strong>——8 月版的主线，9 月再加一个数据点。⚠️ 存量不是用户数；美元计的销毁额还含 TRX 价格的影响，<strong>单价以外各因素的贡献本期没有分解</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="5">5. 净供应：净通胀继续上升（本期核心章之二）</h2>
+<p><img alt="TRX 月度销毁 vs 增发" src="charts/burn-vs-issuance-202609.svg" /></p>
+<blockquote>
+<p>图中数字（百万枚）：纵轴 0 / 50 / 100 / 150 / 200；标注 2025-08 销毁 178.0、2026-09 销毁 71.0；横轴标签为「年-月」（25-08 至 26-09，即 2025 年 8 月至 2026 年 9 月）。</p>
+</blockquote>
+<h3 id="51-tronscan">5.1 增发：数出块，不用 Tronscan</h3>
+<p><strong>每区块固定增发 136 TRX</strong>（出块 8 + 投票 128，链参数 <code>getWitnessPayPerBlock</code> = 8,000,000 sun、<code>getWitness127PayPerBlock</code> = 128,000,000 sun，10/13 一手读取）。<br />
+增发 = 136 × 当月实际出块数（漏块没有奖励）。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: right;">月末区块（UTC 23:59:59 前最后一块）</th>
+<th style="text-align: right;">出块数</th>
+<th style="text-align: right;">增发</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7 月末</td>
+<td style="text-align: right;">84,957,211</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td>8 月</td>
+<td style="text-align: right;">85,849,746</td>
+<td style="text-align: right;">892,535</td>
+<td style="text-align: right;"><strong>121,384,760</strong>（与 8 月版发布值<strong>逐位一致</strong>）</td>
+</tr>
+<tr>
+<td><strong>9 月</strong></td>
+<td style="text-align: right;"><strong>86,713,408</strong></td>
+<td style="text-align: right;"><strong>863,662</strong>（相对连续 3 秒出块的 864,000 少 338 个时隙，含维护期跳槽，不全是漏块）</td>
+<td style="text-align: right;"><strong>117,458,032</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="52-9">5.2 9 月净供应</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">TRX</th>
+<th style="text-align: center;">年化（÷ 约 949.30 亿月初供应）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>销毁</td>
+<td style="text-align: right;">约 70,956,696</td>
+<td style="text-align: center;"><strong>0.909%</strong></td>
+</tr>
+<tr>
+<td>增发</td>
+<td style="text-align: right;">117,458,032</td>
+<td style="text-align: center;"><strong>1.505%</strong></td>
+</tr>
+<tr>
+<td><strong>净</strong></td>
+<td style="text-align: right;"><strong>约 +46,501,336</strong></td>
+<td style="text-align: center;"><strong>+0.596%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>月度年化净通胀（8 月版逐月表 + 本期）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th style="text-align: right;">2025-09</th>
+<th style="text-align: right;">2025-10</th>
+<th style="text-align: right;">2025-11</th>
+<th style="text-align: right;">2025-12</th>
+<th style="text-align: right;">2026-01</th>
+<th style="text-align: right;">2026-02</th>
+<th style="text-align: right;">2026-03</th>
+<th style="text-align: right;">2026-04</th>
+<th style="text-align: right;">2026-05</th>
+<th style="text-align: right;">2026-06</th>
+<th style="text-align: right;">2026-07</th>
+<th style="text-align: right;">2026-08</th>
+<th style="text-align: right;"><strong>2026-09</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">+0.088%</td>
+<td style="text-align: right;">−0.027%</td>
+<td style="text-align: right;">+0.191%</td>
+<td style="text-align: right;">+0.155%</td>
+<td style="text-align: right;">+0.298%</td>
+<td style="text-align: right;">+0.318%</td>
+<td style="text-align: right;">+0.291%</td>
+<td style="text-align: right;">+0.294%</td>
+<td style="text-align: right;">+0.371%</td>
+<td style="text-align: right;">+0.437%</td>
+<td style="text-align: right;">+0.463%</td>
+<td style="text-align: right;">+0.519%</td>
+<td style="text-align: right;"><strong>+0.596%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>2025-10 之后连续 11 个月为正；9 月是数据窗口内最高。</strong><br />
+<strong>上界仍在</strong>：增发端每区块 136 TRX 不变，销毁归零时年化净通胀上限约 1.505%——<strong>9 月走完了这段距离的约 40%</strong>（8 月版：约三分之一）。</p>
+</blockquote>
+<p><strong>供应量</strong>：8 月版锚点（2025-08-31 为 94,660,949,604）加逐月净额，<strong>9/30 约 949.76 亿枚</strong>；CoinGecko 10/13 读数 94,993,899,134，与「9/30 锚点 + 10 月前 12 天净增约 2,100 万」一致。</p>
+<h3 id="53-9">5.3 净流什么时候转正（按 9 月数字重算）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>路径</th>
+<th>需要发生什么</th>
+<th>8 月版</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>靠量</td>
+<td>烧币支付的能量需增加 <strong>+65.5%</strong></td>
+<td>+52.6%</td>
+</tr>
+<tr>
+<td>靠价</td>
+<td>能量单价需从 100 回到 <strong>约 166 sun</strong></td>
+<td>153 sun</td>
+</tr>
+<tr>
+<td>靠减发</td>
+<td>每区块增发需从 136 降到 <strong>约 82 TRX</strong>（−39.6%）</td>
+<td>89.1 TRX</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>三条路径都比一个月前更远。</strong> 8 月版提出的第四条——「免费能量池已贴住 1,800 亿/日上限，增量需求将被迫回到销毁」——<strong>9 月的销毁继续下降，没有看到这个机制起作用的迹象</strong>（链参数 <code>getTotalEnergyLimit</code> 仍为 180,000,000,000）。</p>
+</blockquote>
+<h3 id="54">5.4 对持有人的实际处境</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>持有人类型</th>
+<th style="text-align: center;">年化名义收益</th>
+<th style="text-align: center;">实际份额变化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>质押并投票（128/136 × 年化增发 ÷ 438.68 亿票）</td>
+<td style="text-align: center;"><strong>+3.066%</strong>（未扣 SR 佣金）</td>
+<td style="text-align: center;"><strong>+2.455%</strong></td>
+</tr>
+<tr>
+<td><strong>不质押</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><strong>−0.592%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>8 月版：+3.048% / +2.516% / −0.517%。<strong>不质押者的稀释从 0.517% 升到 0.592%。</strong> 总票数从 441.27 亿降到 438.68 亿（10/13，<code>listwitnesses</code> 445 个候选人加总）。</p>
+</blockquote>
+<hr />
+<h2 id="6-etf908">6. ETF：9/08 生效（本期核心章之三）</h2>
+<p><strong>以下全部来自 SEC EDGAR（CIK 0002064768）一手记录：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>文件</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-04-18</td>
+<td>S-1</td>
+<td>首次提交</td>
+</tr>
+<tr>
+<td>2026-08-19</td>
+<td>S-1/A（第 4 次修订）</td>
+<td>8 月版写作时的最新状态</td>
+</tr>
+<tr>
+<td><strong>2026-09-08</strong></td>
+<td><strong>EFFECT</strong></td>
+<td><strong>SEC 宣布注册声明生效</strong></td>
+</tr>
+<tr>
+<td>2026-09-08</td>
+<td>424B3</td>
+<td>正式招股书</td>
+</tr>
+<tr>
+<td>2026-09-08</td>
+<td>8-A12B / 8-A12B/A</td>
+<td>在交易所注册证券</td>
+</tr>
+<tr>
+<td><strong>2026-09-09</strong></td>
+<td><strong>CERT</strong></td>
+<td><strong>Cboe BZX 认证批准上市</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>招股书（424B3）条款摘要</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码 / 交易所</td>
+<td><strong>TRXS</strong>，Cboe BZX</td>
+</tr>
+<tr>
+<td>管理费</td>
+<td>信托 TRX 持仓的 <strong>1.10%/年</strong></td>
+</tr>
+<tr>
+<td>质押</td>
+<td>发起人<strong>预计</strong>正常情况下<strong>至少 90%</strong> 的信托 TRX 被质押</td>
+</tr>
+<tr>
+<td>质押收益</td>
+<td>质押费用<strong>上限 20%</strong>、当时预计为 20%——即信托预计保留约 80% 的质押奖励</td>
+</tr>
+<tr>
+<td>托管</td>
+<td>BitGo Bank &amp; Trust, N.A.</td>
+</tr>
+<tr>
+<td>上市</td>
+<td>「以发行通知为条件」上市——<strong>招股书没有给出日期</strong>；CERT 正文本期未打开</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>8 月版写「提交 17 个月、四次修订、仍未生效」——两天后（9/08）就生效了。</strong> 这不是 8 月版的错（9/06 写作时 EDGAR 确实没有 EFFECT），但<strong>8 月版空头 #6「ETF 未生效」本期撤下</strong>。</p>
+<p><strong>ETF 对 TRX 的机制含义</strong>：<br />
+① <strong>净买入</strong>——规模本期<strong>没有读数</strong>（交易起始日与资产规模均未核实）；<br />
+② <strong>至少 90% 质押</strong>——若规模可观，它会<strong>提高质押率、增加投票权集中度</strong>，并按 5.4 的机制分到增发；<br />
+③ <strong>ETF 持有人的实际份额增长约为直接质押的 1/5 到 1/3</strong>：名义 = 质押比例（90%–100%）× 保留比例 80% × 3.066% − 管理费 1.10% = 1.11%–1.35%；扣掉 0.596% 净通胀后实际份额约 <strong>+0.51% 至 +0.75%/年</strong>，直接质押约 +2.455%。其他费用另计。</p>
+<p>⚠️ <strong>「ETF 带来资金流入」本期仍然没有任何数量证据</strong>——生效 ≠ 交易 ≠ 流入。</p>
+</blockquote>
+<p><strong>Tron Inc.（Nasdaq: TRON）</strong>：本期未更新其持仓与 10-Q 数据（8 月版 7.1–7.2 的关联方结构不变）。</p>
+<hr />
+<h2 id="7-9">7. 治理：9 月没有新提案</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>状态（10/13）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>能量单价 <code>ENERGY_FEE</code></td>
+<td><strong>100 sun</strong>（2025-08-29 起未变）</td>
+</tr>
+<tr>
+<td>免费能量上限 <code>getTotalEnergyLimit</code></td>
+<td>180,000,000,000</td>
+</tr>
+<tr>
+<td>最新链上提案</td>
+<td><strong>#107</strong>（2026-08-25 创建，25 席赞成）</td>
+</tr>
+<tr>
+<td>链上提案总数</td>
+<td><strong>107</strong>（TronGrid <code>listproposals</code>）</td>
+</tr>
+<tr>
+<td>tips 仓库待议</td>
+<td><strong>#915</strong> 降低账户权限更新费（7/23）、<strong>#938</strong> 降低多签费（10/06）、#937 分步关闭 Bancor 交易（9/22）——<strong>均未上链</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>两项降费讨论都指向「继续降低用户成本」</strong>——若上链，方向是进一步降低销毁。<strong>它们涉及的是权限、多签的固定费用，不是能量单价</strong>，量级应远小于 #104。<br />
+<strong>待核</strong>：提案 #104 的原始批准地址有 <strong>27 个</strong>（8 月版写赞成 25 席）。⚠️ 协议的有效票只计当时在任的 SR，<strong>批准地址可能包含非当届 SR</strong>——有效票数要用当时的 SR 名单核对，<strong>本期不能判 8 月版错</strong>。<strong>更正 8 月版</strong>：链上提案总数为 <strong>107</strong>（ID 1–107 连续），不是 68（见 12.4）。</p>
+</blockquote>
+<hr />
+<h2 id="8-trx">8. TRX 与其他资产的比较</h2>
+<blockquote>
+<p><strong>口径</strong>：9 月 = 8/31 → 9/30，Q3 = 6/30 → 9/30，币安 UTC 收盘；beta / R² 为 365 天日对数收益；对数超额 = ln 收益 − beta × ln BTC 收益（×100）。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th style="text-align: right;">9 月</th>
+<th style="text-align: right;">Q3</th>
+<th style="text-align: right;">beta</th>
+<th style="text-align: right;">R²</th>
+<th style="text-align: right;">年化波动率</th>
+<th style="text-align: right;">9 月对数超额</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>TRX</strong></td>
+<td style="text-align: right;"><strong>+1.44%</strong></td>
+<td style="text-align: right;"><strong>+7.01%</strong></td>
+<td style="text-align: right;"><strong>0.238</strong></td>
+<td style="text-align: right;">0.193</td>
+<td style="text-align: right;"><strong>24.4%</strong></td>
+<td style="text-align: right;"><strong>0.0</strong></td>
+</tr>
+<tr>
+<td>BNB</td>
+<td style="text-align: right;">+11.26%</td>
+<td style="text-align: right;">+40.76%</td>
+<td style="text-align: right;">0.884</td>
+<td style="text-align: right;">0.594</td>
+<td style="text-align: right;">51.6%</td>
+<td style="text-align: right;">+5.2</td>
+</tr>
+<tr>
+<td>ETH</td>
+<td style="text-align: right;">+8.85%</td>
+<td style="text-align: right;">+70.86%</td>
+<td style="text-align: right;">1.283</td>
+<td style="text-align: right;">0.823</td>
+<td style="text-align: right;">63.7%</td>
+<td style="text-align: right;">+0.5</td>
+</tr>
+<tr>
+<td>SOL</td>
+<td style="text-align: right;">+14.61%</td>
+<td style="text-align: right;">+60.34%</td>
+<td style="text-align: right;">1.311</td>
+<td style="text-align: right;">0.755</td>
+<td style="text-align: right;">68.0%</td>
+<td style="text-align: right;">+5.5</td>
+</tr>
+<tr>
+<td>ADA</td>
+<td style="text-align: right;">+24.67%</td>
+<td style="text-align: right;">+70.78%</td>
+<td style="text-align: right;">1.419</td>
+<td style="text-align: right;">0.649</td>
+<td style="text-align: right;">79.3%</td>
+<td style="text-align: right;">+13.2</td>
+</tr>
+<tr>
+<td>DOT</td>
+<td style="text-align: right;">+45.60%</td>
+<td style="text-align: right;">+48.78%</td>
+<td style="text-align: right;">1.247</td>
+<td style="text-align: right;">0.412</td>
+<td style="text-align: right;">87.6%</td>
+<td style="text-align: right;">+29.8</td>
+</tr>
+<tr>
+<td>UNI</td>
+<td style="text-align: right;">+69.76%</td>
+<td style="text-align: right;">+219.73%</td>
+<td style="text-align: right;">1.403</td>
+<td style="text-align: right;">0.401</td>
+<td style="text-align: right;">99.8%</td>
+<td style="text-align: right;">+44.2</td>
+</tr>
+<tr>
+<td>BTC</td>
+<td style="text-align: right;">+6.42%</td>
+<td style="text-align: right;">+42.64%</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>TRX 的 beta 与波动率仍是本系列最低</strong>；9 月、Q3 涨幅也是最低。<strong>8 月版「低波动不是免费的」在 Q3 整季得到最清楚的体现：BTC +42.64%，TRX +7.01%。</strong></p>
+</blockquote>
+<hr />
+<h2 id="9">9. 核心价值逻辑</h2>
+<p><strong>星级编码证据等级</strong>：完全建立在二手转述上的论据不得给到五星。</p>
+<h3 id="91">9.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>说明与证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>业务量创新高、份额回升</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>✅ Tron 美元锚定稳定币 $940.6 亿、份额 30.23%（DefiLlama 一手，月末当天日快照）</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>风险特征显著优于同类</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>✅ beta 0.238、波动率 24.4%，本报告计算</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>现货 ETF 已生效</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ <strong>EDGAR 一手</strong>（EFFECT 原文；424B3、CERT 提交记录）。⚠️ <strong>交易起始与规模未核实</strong>；生效不带数量信息，对比率的影响方向不确定，给两星</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SEC 未注册证券指控已带偏见驳回</td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 8 月版一手。⚠️ 和解待法官批准，本期仍未核实</td>
+</tr>
+<tr>
+<td>5</td>
+<td>能量租赁市场继续扩张（$512 万/月）</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ DefiLlama。<strong>它对网络是好事、对代币销毁是坏事</strong>——这条既是多头（生态）也是空头 #3 的原因</td>
+</tr>
+<tr>
+<td>6</td>
+<td>免费能量池贴住上限、增量需求将回到销毁</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>⚠️ <strong>从三星降为两星</strong>：9 月销毁继续下降，<strong>没有看到该机制起作用</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="92">9.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>说明与证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>净通胀继续上升：+0.596%，连续 11 个月为正</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>✅ 增发一手（出块数 × 136，复算 8 月逐位一致）；销毁为替代路径估算（已核月份历史偏差约 ±0.5%，不是误差上界）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>不质押者每年被稀释 0.592%</td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 恒等式，输入一手</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>单位存量收费率在单价不变的 12 个月里又降 48.3%</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>✅ 本报告用当前序列重算。<strong>不需要任何治理事件就在继续</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>单一稳定币发行方依赖约 98.4%</td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ DefiLlama</td>
+</tr>
+<tr>
+<td>5</td>
+<td>收入还可以被 27 个节点投票再砍一次</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 治理接口一手；<strong>#915、#938 两项降费讨论在进行</strong>（固定费用，量级小）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>最大上市公司持仓方与创始人家族有人事重叠</td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 8 月版 10-Q 原文，本期未更新</td>
+</tr>
+<tr>
+<td>—</td>
+<td>（撤下）ETF 提交 17 个月未生效</td>
+<td style="text-align: center;"><strong>撤下</strong></td>
+<td><strong>9/08 已生效</strong>（第 6 章）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>多空同源检查</strong>：多头 #5（能量租赁扩张）与空头 #3（收费率下滑）<strong>与「支付方式从烧币迁移到租能量」的解释相容</strong>——截至 Q2 有官方分项支持，Q3 未确认。<br />
+<strong>空头内部同源</strong>：<strong>空头 #1（净通胀）、#2（稀释）、#3（收费率）背后主要是同一个观测——销毁在降</strong>（增发不变）；#3 的分母又正是多头 #1 的稳定币存量。<strong>作为后果分开说，作为证据只算一份</strong>；而这一份恰好是本期唯一用替代路径估算的输入。<br />
+多头 #3（ETF 质押 ≥ 90%）与空头 #2（不质押者被稀释）<strong>方向一致</strong>：ETF 若有规模，会把更多供应转入「被稀释的反面」。</p>
+</blockquote>
+<hr />
+<h2 id="10">10. 估值：锚不变，起点更新</h2>
+<h3 id="101">10.1 市值 ÷ 稳定币存量</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时点</th>
+<th style="text-align: right;">市值</th>
+<th style="text-align: right;">Tron 稳定币</th>
+<th style="text-align: center;"><strong>比率</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 月版（2026-08，取点混用）</td>
+<td style="text-align: right;">$318.1 亿</td>
+<td style="text-align: right;">$934.2 亿</td>
+<td style="text-align: center;">0.341</td>
+</tr>
+<tr>
+<td>8/31（按约定取点）</td>
+<td style="text-align: right;">约 $315.7 亿</td>
+<td style="text-align: right;">$922.3 亿</td>
+<td style="text-align: center;"><strong>0.342</strong></td>
+</tr>
+<tr>
+<td><strong>9/30</strong></td>
+<td style="text-align: right;"><strong>约 $320.4 亿</strong></td>
+<td style="text-align: right;"><strong>$940.6 亿</strong></td>
+<td style="text-align: center;"><strong>0.341</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>8 月版的 25 个月历史区间（0.226–0.417，中位 0.337，25 分位 0.319）</strong>——本期没有重算<strong>——它的输入与当前序列大多数月份吻合，但近两个月与收费率列有差异（见 3.0）；</strong>无论是否重算，T8-4 已登记的 0.319 阈值都冻结不变<strong>。<br />
+</strong>比率仍在中位附近。<strong> 8 月版的两种读法（「市场不按销毁定价」vs「还没重定价」）</strong>本期没有新信息可以区分<strong>——收费率又降了 9%，比率没动，</strong>与读法①相容，但这本身不判别**（读法②下比率同样可以暂时不动）。</p>
+</blockquote>
+<h3 id="102-2027-12-31-8">10.2 四情景（到 2027-12-31）：参数沿用 8 月版</h3>
+<p><img alt="TRX 四情景" src="charts/scenarios-202609.svg" /></p>
+<blockquote>
+<p>图中数字：纵轴 $0.0 / $0.2 / $0.4 / $0.6；虚线 9/30 收盘 $0.3374；未来流通量 956.86 亿枚。</p>
+</blockquote>
+<p><strong>推导方法</strong>：市值 = 全球稳定币 × Tron 份额 × 比率（三项参数与 8 月版完全相同，<strong>本期未重估</strong>）；<br />
+价格 = 市值 ÷ 未来流通量；未来流通量 = 949.76 亿 × (1 + 0.596%)^(15/12) = <strong>956.86 亿枚</strong>（8 月版用 0.519%、955.94 亿）。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>情景</th>
+<th style="text-align: center;">概率</th>
+<th style="text-align: right;">市值</th>
+<th style="text-align: right;"><strong>价格</strong></th>
+<th style="text-align: center;">相对 9/30 收盘</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>悲观</td>
+<td style="text-align: center;">25%</td>
+<td style="text-align: right;">$214.5 亿</td>
+<td style="text-align: right;"><strong>$0.2242</strong></td>
+<td style="text-align: center;">−33.6%</td>
+</tr>
+<tr>
+<td>趋势延续</td>
+<td style="text-align: center;">20%</td>
+<td style="text-align: right;">$324.0 亿</td>
+<td style="text-align: right;"><strong>$0.3386</strong></td>
+<td style="text-align: center;">+0.4%</td>
+</tr>
+<tr>
+<td>中性</td>
+<td style="text-align: center;">35%</td>
+<td style="text-align: right;">$364.0 亿</td>
+<td style="text-align: right;"><strong>$0.3804</strong></td>
+<td style="text-align: center;">+12.7%</td>
+</tr>
+<tr>
+<td>乐观</td>
+<td style="text-align: center;">20%</td>
+<td style="text-align: right;">$576.0 亿</td>
+<td style="text-align: right;"><strong>$0.6020</strong></td>
+<td style="text-align: center;">+78.4%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>期望价 $0.3773，相对 9/30 收盘 +11.8%</strong>（8 月版 $0.3776、+12.7%）——<strong>条件于 Tether 不撤离、情景参数未重估</strong>。</p>
+<blockquote>
+<p>⚠️ <strong>这是条件期望</strong>：条件于 Tether 维持在 Tron 的现有发行结构（8 月版 10.7 第 4 条）。<br />
+<strong>期望价变动的全部来源</strong>：起点价格从 $0.335078 变为 $0.3374（−0.7pp），净通胀从 0.519% 升到 0.596%（分母 +0.1%）。<strong>情景参数没动，所以这不是一次重估，只是一次重算。</strong><br />
+⚠️ <strong>本期没有重估情景参数的理由</strong>：一个月的数据不足以改变「全球稳定币规模、份额、比率」三个 16 个月尺度的假设；<strong>承重墙仍是比率</strong>（8 月版 10.6：区间两端摆幅 65.3pp）。</p>
+</blockquote>
+<h3 id="103">10.3 这套推导的弱点</h3>
+<ol>
+<li><strong>比率是市场行为的观测，不是估值理论</strong>——收费率降了 48% 而比率不动，本报告仍然解释不了。</li>
+<li><strong>情景参数一个月没更新</strong>，全部承袭 8 月版，包括其中二手的机构稳定币预测。</li>
+<li><strong>销毁本期是替代路径估算</strong>（±0.5%），Tronscan 恢复后应复核。</li>
+<li><strong>ETF 的规模效应没有进入模型</strong>——它可能改变比率，方向不确定。</li>
+<li><strong>月末取点有时点误差</strong>；8 月版 2026-07、2026-08 两行与当前序列不符（同向约 +0.23pp），<strong>取点混用与近期修订分不开</strong>。</li>
+</ol>
+<hr />
+<h2 id="11">11. 投资与风险启示</h2>
+<h3 id="111">11.1 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">当前值</th>
+<th>触发关注的阈值</th>
+<th>查询方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>烧币支付占能量的比重</strong></td>
+<td style="text-align: right;">10.0%（2026-06，官方；Q3 未发布）</td>
+<td>跌破 8%</td>
+<td>tips 仓库季度复盘</td>
+</tr>
+<tr>
+<td>月度净供应</td>
+<td style="text-align: right;"><strong>+46,501,336</strong>（9 月）</td>
+<td>转负</td>
+<td>出块数 × 136 − 销毁</td>
+</tr>
+<tr>
+<td>单位存量收费率</td>
+<td style="text-align: right;"><strong>30.9 bp</strong></td>
+<td>跌破 25 bp</td>
+<td>年化销毁额 ÷ 月末稳定币存量</td>
+</tr>
+<tr>
+<td>市值 ÷ 稳定币存量</td>
+<td style="text-align: right;"><strong>0.341</strong></td>
+<td>跌破 0.30</td>
+<td>本报告口径</td>
+</tr>
+<tr>
+<td><strong>TRXS ETF</strong></td>
+<td style="text-align: right;">9/08 生效</td>
+<td><strong>出现交易与资产规模数据</strong></td>
+<td>EDGAR、发行方网站</td>
+</tr>
+<tr>
+<td>能量单价 / 新提案</td>
+<td style="text-align: right;">100 sun / 最新 #107</td>
+<td>任何变动；#915、#938 上链</td>
+<td><code>getchainparameters</code> / <code>listproposals</code></td>
+</tr>
+<tr>
+<td>Tron 稳定币全球份额</td>
+<td style="text-align: right;"><strong>30.23%</strong></td>
+<td>跌破 27%</td>
+<td>DefiLlama</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112">11.2 风险提醒</h3>
+<ol>
+<li><strong>代币经济在继续变差</strong>：净通胀 +0.596%、收费率 30.9 bp；<strong>若烧币占比继续下滑，两者不需要任何治理事件就会继续</strong>（条件预测，Q3 分项未发布）。</li>
+<li><strong>单一发行方依赖</strong>：USDT 约 98.4%。</li>
+<li><strong>ETF 生效的两面</strong>：有规模则是净买入；<strong>也会提高质押与投票集中度</strong>。</li>
+<li><strong>数据源风险（本期新增）</strong>：Tronscan 本期取不到；能量分项仍是单源。</li>
+<li><strong>本报告自身</strong>：TRX 第二期；8 月版六条论点尚无一条到期。</li>
+</ol>
+<h3 id="113">11.3 长期认知</h3>
+<p><strong>第一，替代路径必须先在已知值上过一遍。</strong> Tronscan 取不到时，本期的两条替代路径（数出块、除回价格）<strong>先拿 8 月版已发布的月份复算，逐位一致或偏差 ≤ 0.5% 之后才用于 9 月</strong>。<br />
+<strong>没有在已知值上验证过的替代数据源，只是另一个未知数。</strong></p>
+<p><strong>第二，把差异归因给数据源之前，先用旧值去新序列里找时间戳，并且逐行查完，不抽样。</strong> 本期初稿自己换了取点日，却把差异诊断成「数据源回溯修订」；第一轮修正又用 7 个抽样值断言「只有一行对不上」——第二轮逐行比对发现是两行。<br />
+<strong>两次都是「下诊断」早于「查完」。</strong>判错线离当前值只有 2pp 的论点（T8-6），取点日、读取时间、分子口径都要在登记时写死并存档原始数据。</p>
+<p><strong>第三，「跑输」先扣 BTC，再看是谁在涨。</strong> TRX 9 月对 BTC 的对数超额约 0，比对照组中位数少 15.0 个点——<strong>9 月是中小市值山寨普涨（8 个里 5 个 ≥ +13），ETH、BNB、SOL 也基本没参与</strong>。<br />
+归因时用中位数要小心：它不受离群值幅度影响，<strong>要看有多少个、哪一类资产一起动</strong>；而一个月的形态估计不出暴露系数。</p>
+<hr />
+<h2 id="12">12. 附录</h2>
+<h3 id="121-2026-09-30-1013">12.1 关键数据速查（截至 2026-09-30，链上快照到 10/13）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>指标</th>
+<th style="text-align: right;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>市场</strong></td>
+<td>9/30 收盘（币安）</td>
+<td style="text-align: right;">$0.3374</td>
+</tr>
+<tr>
+<td></td>
+<td>9 月 / Q3 / 近一年</td>
+<td style="text-align: right;">+1.44% / +7.01% / +1.14%</td>
+</tr>
+<tr>
+<td></td>
+<td>市值（9/30）</td>
+<td style="text-align: right;">约 $320.4 亿</td>
+</tr>
+<tr>
+<td></td>
+<td>beta / R² / 波动率</td>
+<td style="text-align: right;">0.238 / 0.193 / 24.4%</td>
+</tr>
+<tr>
+<td><strong>供应</strong></td>
+<td>9 月销毁（估算） / 增发</td>
+<td style="text-align: right;">70,956,696 / 117,458,032</td>
+</tr>
+<tr>
+<td></td>
+<td>9 月净增 / 年化</td>
+<td style="text-align: right;">+46,501,336 / +0.596%</td>
+</tr>
+<tr>
+<td></td>
+<td>供应量（9/30）</td>
+<td style="text-align: right;">约 949.76 亿枚</td>
+</tr>
+<tr>
+<td><strong>业务</strong></td>
+<td>Tron 稳定币 / 份额</td>
+<td style="text-align: right;">$940.6 亿 / 30.23%</td>
+</tr>
+<tr>
+<td></td>
+<td>单位存量收费率</td>
+<td style="text-align: right;">30.9 bp</td>
+</tr>
+<tr>
+<td></td>
+<td>能量租赁收入（9 月）</td>
+<td style="text-align: right;">$512.0 万</td>
+</tr>
+<tr>
+<td><strong>质押</strong></td>
+<td>总票数 / 能量质押 / 带宽质押</td>
+<td style="text-align: right;">438.68 亿 / 187.26 亿 / 266.85 亿</td>
+</tr>
+<tr>
+<td><strong>ETF</strong></td>
+<td>TRXS</td>
+<td style="text-align: right;">9/08 生效</td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td>市值 ÷ 稳定币存量</td>
+<td style="text-align: right;">0.341</td>
+</tr>
+<tr>
+<td></td>
+<td>情景期望</td>
+<td style="text-align: right;">$0.3773（+11.8%）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="122">12.2 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th style="text-align: center;">核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>链参数（能量单价、增发、能量上限）</td>
+<td>TronGrid <code>getchainparameters</code></td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>提案</td>
+<td>TronGrid <code>listproposals</code></td>
+<td style="text-align: center;">✅ 一手，107 条全量</td>
+</tr>
+<tr>
+<td>出块数 → 增发</td>
+<td>TronGrid <code>getblockbynum</code>（月末二分定位）</td>
+<td style="text-align: center;">✅ 一手；<strong>8 月复算与发布值逐位一致</strong></td>
+</tr>
+<tr>
+<td>销毁</td>
+<td>DefiLlama Tron 费用 ÷ 币安日均价</td>
+<td style="text-align: center;">⚠️ <strong>替代路径估算</strong>；与 4 个已发布月份偏差 −0.49% 至 +0.11%</td>
+</tr>
+<tr>
+<td>能量 / 带宽质押、总票数</td>
+<td>TronGrid <code>getaccountresource</code>、<code>listwitnesses</code></td>
+<td style="text-align: center;">✅ 一手（10/13 时点）</td>
+</tr>
+<tr>
+<td>稳定币存量与份额</td>
+<td>DefiLlama stablecoins（月末当天日快照）</td>
+<td style="text-align: center;">✅ API 一手；⚠️ 日快照的实际采集时刻不确定</td>
+</tr>
+<tr>
+<td>能量租赁收入</td>
+<td>DefiLlama（CatFee 用 dailyFees，TRONSAVE 用 dailyRevenue）</td>
+<td style="text-align: center;">✅ API 一手</td>
+</tr>
+<tr>
+<td>ETF 状态与招股书条款</td>
+<td>SEC EDGAR（CIK 0002064768）</td>
+<td style="text-align: center;">✅ <strong>一手原文</strong></td>
+</tr>
+<tr>
+<td>ETF 交易起始与规模</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>未核实</strong></td>
+</tr>
+<tr>
+<td>价格</td>
+<td>币安日线</td>
+<td style="text-align: center;">✅ 直接调用</td>
+</tr>
+<tr>
+<td>Tronscan turnover / 官方能量分项</td>
+<td>Tronscan API / tips 季度复盘</td>
+<td style="text-align: center;">❌ <strong>本期 API 限流取不到；Q3 复盘未发布</strong></td>
+</tr>
+<tr>
+<td>Tron Inc. 持仓</td>
+<td>—</td>
+<td style="text-align: center;">⚠️ 本期未更新</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="123">12.3 来源偏向声明</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>侧</th>
+<th>主要论据</th>
+<th style="text-align: center;">证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>多头</strong></td>
+<td>业务新高、低波动、ETF 生效</td>
+<td style="text-align: center;">✅ 一手（ETF 规模未知）</td>
+</tr>
+<tr>
+<td><strong>空头</strong></td>
+<td>净通胀、收费率下滑、单一发行方</td>
+<td style="text-align: center;">✅ 一手；⚠️ 销毁为替代路径</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>本期两侧证据等级大体对称</strong>。<strong>不对称在于数据源和计数</strong>：空头 #1–#3 共用同一个估算输入（销毁）——它与已核月份的历史偏差（约 ±0.5%，不是上界）远小于它所支持的变化（9 月 −10.8%），<strong>方向稳健，但三条空头只能算一份证据</strong>。<br />
+<strong>传统金融机构视角</strong>：本期引用了 <strong>SEC</strong> 一手文件（ETF）与<strong>美联储</strong>政策；未找到传统金融机构对 TRX 的当期研究覆盖。</p>
+</blockquote>
+<h3 id="124-8">12.4 本版对 8 月版的更正</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>8 月版</th>
+<th>更正</th>
+<th>依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>8 月涨幅 <strong>+3.14%</strong>（8/1→8/31，CoinGecko）</td>
+<td><strong>+1.99%</strong>（7/31→8/31 币安收盘）。两处差异：CoinGecko 00:00 时点价约等于前一日收盘（窗口相当于 7/31→8/30），且换了价格源</td>
+<td>币安 klines；本系列各资产 9 月版同一更正</td>
+</tr>
+<tr>
+<td>2</td>
+<td>8.1「历史提案总数 <strong>68</strong>」</td>
+<td><strong>107</strong>（ID 1–107 连续）</td>
+<td>TronGrid <code>listproposals</code></td>
+</tr>
+<tr>
+<td>—</td>
+<td>4.1 / 8.1「提案 #104 赞成 25 席」</td>
+<td><strong>待核，不更正</strong>：原始批准地址 27 个，但有效票只计当时在任的 SR</td>
+<td>同上；需当时 SR 名单</td>
+</tr>
+<tr>
+<td>3</td>
+<td>6.1 份额表 2026-07（29.77%）、2026-08（$934.2 亿、30.24%）两行</td>
+<td><strong>与当前序列不符</strong>：按月末当天日快照应为 29.54% 与 $922.3 亿、30.01%；偏差同向（份额约 +0.23pp、Tron 侧约 +1%），更早 23 个月吻合。<strong>原因在取点混用（2026-08 全球值对应 9/05–06 的点）与近期修订之间，本期分不开——不判 8 月版算错</strong></td>
+<td>DefiLlama stablecoins 当前序列</td>
+</tr>
+<tr>
+<td>4</td>
+<td>7.3「ETF 至今未生效」</td>
+<td><strong>9/08 生效</strong>（8 月版写作于 9/06，当时属实；本期更新，不是更正）</td>
+<td>EDGAR</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="125">12.5 发布前审查记录</h3>
+<p><strong>第 1 层 <code>verify_report.py</code></strong>：初稿 1 FAIL（销毁图横轴「年-月」标签被识别为数字），补图注后 0 FAIL / 1 WARN（来源偏向，各资产共有）。</p>
+<p><strong>第 2 层 _bian（推理）与第 3 层 Codex（领域，读缓存与 java-tron / DefiLlama 源码复算）——第一轮：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th style="text-align: center;">出处</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>「DefiLlama 回溯修订」是误诊</strong>：8 月版历史大多数月份与当前序列月末当天点吻合；差异主要来自本期自己把取点改成「次月 1 日」</td>
+<td style="text-align: center;">_bian（Codex 同指归因证据不足）</td>
+<td>✅ <strong>改回月末当天日快照，全序列重算</strong>；删去全序列「回溯修订」的说法</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>ETF 份额增长「约为直接质押的一半」算错</strong>，且漏了 90% 质押、80% 保留两项条款</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 重算为 +0.51% 至 +0.75%/年，约直接质押的 1/5 到 1/3，列出算式</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>#104 的 27 个批准地址不能推出「全部 27 席赞成」</strong>：有效票只计当届 SR</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 撤回该更正，改列「待核」；「总数 107」成立</td>
+</tr>
+<tr>
+<td>4</td>
+<td>卷首「降幅全部来自支付方式与存量增长」与 4.2 自相矛盾；8 月承诺的能量分项第二来源没有交代</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 卷首改为「Q3 拆不开」；T8-1 删「看方向」；补一句对 8 月承诺的交代</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>同一个观测（销毁下降）被当成多条独立证据</strong></td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 卷首与 9.2 标出同源；12.3 改写</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>「跑输」归因错</strong>：是山寨共同因子（8 个里 5 个 ≥ +13），不是几个资产的特质行情；TRX 对它暴露接近零</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 3.1 与长期认知第三条重写</td>
+</tr>
+<tr>
+<td>7</td>
+<td>替代路径的价格口径：适配器按时间戳取 CoinGecko 价，误差是两种价格之比；±0.5% 是经验偏差不是上界</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 已改</td>
+</tr>
+<tr>
+<td>8</td>
+<td>稳定币口径应标「美元锚定」；USDT 与总额取点要同日</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 已改（统一 9/30 日快照）</td>
+</tr>
+<tr>
+<td>9</td>
+<td>ETF 条款把预期写成保证</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 改为「条款摘要」，保留「预计」「上限」「以发行通知为条件」</td>
+</tr>
+<tr>
+<td>10</td>
+<td>「136/块」是协议名义增发；338 个缺口含维护期跳槽</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 已改</td>
+</tr>
+<tr>
+<td>11</td>
+<td>低 beta 被解释成「不参与特质行情」</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 改为「本月收益接近样本 beta 模型预测」，R² 与残差分开解释</td>
+</tr>
+<tr>
+<td>12</td>
+<td>T9-1 名不副实（实为 BTC 宏观暴露），基率起点应为登记日已知的 10/12</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 改名、从 10/12 重算为 17%–20%（取 18%），标为校准对照</td>
+</tr>
+<tr>
+<td>13</td>
+<td>T9-2：持平灰区；门槛 11 未满足须声明可制造方向；与 T8-2 相关</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 改为「≤ 基准判错」、完整精度基准；声明「只能被廉价制造成 ❌，对作者不利」；声明相关性</td>
+</tr>
+<tr>
+<td>14</td>
+<td>多头 #3（ETF）三星偏高</td>
+<td style="text-align: center;">_bian（分歧）</td>
+<td>✅ 采纳，降为两星</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第二轮（复审第一轮修订稿）：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th style="text-align: center;">出处</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>「只有 2026-08 一行对不上」是抽样结论</strong>：逐行比对 25 个月，2026-07 也不符，偏差同向；收费率列多处不同</td>
+<td style="text-align: center;">两者（_bian 承认第一轮的抽样是源头）</td>
+<td>✅ 改为「23 个月吻合、两行同向不符，取点混用与近期修订分不开」；「近期修订」恢复为对手假设；更正表不再判 8 月版算错</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>「暴露接近零」从单月推不出</strong>；ETH、BNB、SOL 同样没参与，是中小市值山寨普涨</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 改为一个月的形态，不估暴露系数</td>
+</tr>
+<tr>
+<td>3</td>
+<td>T8-6 取点约定只写死了日期，没写读取时间、存档与分子口径；长期认知第二条教训归错</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 记分卡补约定；长期认知第二条改为「下诊断早于查完」</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>门槛 8 不是「形式上满足」，是未满足</strong>；T9-1 的 ⚑ 会被读成合规的反向登记</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 记为「本期未满足（例外）」；去掉 T9-1 的 ⚑；门槛表注明校准对照不计门槛 8</td>
+</tr>
+<tr>
+<td>5</td>
+<td>T9-2 临界复核的分支未封闭（Tronscan 不可用时怎么办）</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 写死：同法重算两个月；Tronscan 到期 30 天内仍不可用则用替代路径，差 &lt; 0.005pp 判 ⊘（落点按替代路径读数写明）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>「±0.5%」简写易被读成误差上界；正文仍称支付迁移与收费率是确定的同一机制</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 统一为「已核月份历史偏差约 ±0.5%」；机制改为「与支付方式迁移相容，Q3 未确认」</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第 4 层 _dalin</strong>：待审。</p>
+<hr />
+<blockquote>
+<p><strong>配套文件</strong>：<code>trx_questions_summary_202609.md</code>（简明速查）、<code>../thesis_scorecard.md</code>（论点滚动记分卡）。<br />
+本报告不构成投资建议。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-trx-tron-2026-9-q3">TRX / Tron 简明速查（2026 年 9 月版兼 Q3 回顾）</h1>
+<blockquote>
+<p>完整报告的浓缩版，给快速复习用。<strong>数据截止 2026-09-30，链上参数与提案快照到 10/13。</strong><br />
+本文件不构成投资建议。</p>
+</blockquote>
+<hr />
+<h2 id="s-1">1. 一句话</h2>
+<p><strong>8 月版的主线原样延续：业务新高（Tron 美元锚定稳定币 $940.6 亿、份额 30.23%），收费率新低（30.9 bp），净通胀新高（+0.596%）——后两者背后主要是同一个观测：销毁在降，而「市值 ÷ 稳定币存量」还是 0.341。唯一的新变量是现货 ETF 9/08 生效，规模还没有读数。</strong></p>
+<hr />
+<h2 id="s-2">2. 当前位置</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td><strong>$0.3374</strong>（币安）；市值约 $320.4 亿</td>
+</tr>
+<tr>
+<td>9 月 / Q3 / 近一年</td>
+<td><strong>+1.44% / +7.01% / +1.14%</strong>（BTC +6.42% / +42.64% / −26.68%）</td>
+</tr>
+<tr>
+<td>一年 beta / R² / 波动率</td>
+<td><strong>0.238 / 0.193 / 24.4%</strong>——仍是本系列最低</td>
+</tr>
+<tr>
+<td>9 月对数超额</td>
+<td><strong>约 0</strong>（与 beta 预期吻合）；对照组中位数 +14.9</td>
+</tr>
+<tr>
+<td>距 ATH</td>
+<td>−21.77%</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>9 月十个资产里涨幅最低，<strong>对 BTC 的超额约 0</strong>；比对照组少的 15 个点来自 9 月<strong>中小市值山寨普涨</strong>（8 个里 5 个 ≥ +13），ETH、BNB、SOL 也基本没参与</li>
+<li><strong>更正 8 月版</strong>：8 月 +3.14% 应为 <strong>+1.99%</strong>（7/31 → 8/31 币安收盘）</li>
+</ul>
+<hr />
+<h2 id="s-3">3. 数据源说明（本期）</h2>
+<ul>
+<li><strong>Tronscan API 持续限流（429），取不到</strong></li>
+<li><strong>增发</strong> = 136 TRX × TronGrid 上数出的出块数——<strong>用同法复算 8 月，与 8 月版发布值逐位一致</strong></li>
+<li><strong>销毁</strong> = DefiLlama 美元费用 ÷ 币安日均价——与 4 个已发布月份对照，<strong>偏差 −0.49% 至 +0.11%</strong></li>
+<li><strong>月末取点写死为「当天日快照」</strong>；与 8 月版份额表比对：23 个月吻合，<strong>2026-07、2026-08 两行同向偏高约 0.23pp</strong>——取点混用与近期修订分不开</li>
+</ul>
+<hr />
+<h2 id="s-4">4. 净供应：净通胀继续上升</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th style="text-align: right;">8 月</th>
+<th style="text-align: right;"><strong>9 月</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>销毁</td>
+<td style="text-align: right;">79,523,696</td>
+<td style="text-align: right;"><strong>约 70,956,696</strong>（估算）</td>
+</tr>
+<tr>
+<td>增发</td>
+<td style="text-align: right;">121,384,760</td>
+<td style="text-align: right;"><strong>117,458,032</strong>（863,662 块）</td>
+</tr>
+<tr>
+<td>净</td>
+<td style="text-align: right;">+41,861,064</td>
+<td style="text-align: right;"><strong>+46,501,336</strong></td>
+</tr>
+<tr>
+<td>年化净通胀</td>
+<td style="text-align: right;">+0.519%</td>
+<td style="text-align: right;"><strong>+0.596%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>2025-10 之后连续 11 个月为正</strong>；上限（销毁归零）约 1.505%，已走完约 40%</li>
+<li>净流转正需要：销毁 +65.5%，或能量单价回到约 166 sun，或每区块增发降到约 82 TRX——<strong>都比一个月前更远</strong></li>
+<li>不质押者年稀释 <strong>0.592%</strong>；质押投票者实际份额约 <strong>+2.455%</strong></li>
+</ul>
+<hr />
+<h2 id="s-5">5. 收费率与业务</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单位存量收费率</td>
+<td><strong>30.9 bp</strong>（2025-09 为 59.8 bp；<strong>单价 12 个月未变</strong>；单价以外各因素的贡献 Q3 拆不开）</td>
+</tr>
+<tr>
+<td>Tron 美元锚定稳定币 / 全球份额</td>
+<td><strong>$940.6 亿 / 30.23%</strong>（谷底 25.52%）</td>
+</tr>
+<tr>
+<td>能量租赁收入（CatFee + TRONSAVE）</td>
+<td><strong>$512 万</strong>（8 月 $466 万）</td>
+</tr>
+<tr>
+<td>链上 TVL</td>
+<td>$56.44 亿</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>承载的稳定币在增加、每美元存量对应的销毁在减少</strong>——能量租赁扩张与收费率下滑是同一机制的两面</li>
+</ul>
+<hr />
+<h2 id="s-6-etf908">6. ETF：9/08 生效</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>日期</th>
+<th>EDGAR 文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/08</td>
+<td><strong>EFFECT</strong>（注册声明生效）、424B3 招股书、8-A12B</td>
+</tr>
+<tr>
+<td>9/09</td>
+<td><strong>CERT</strong>（Cboe BZX 上市认证）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>代码 <strong>TRXS</strong>；管理费 <strong>1.10%</strong>；预计<strong>至少 90% 质押</strong>、保留约 80% 质押奖励；托管 BitGo</li>
+<li><strong>ETF 持有人的实际份额增长约 +0.51% 至 +0.75%/年，约为直接质押的 1/5 到 1/3</strong></li>
+<li><strong>交易起始与规模未核实</strong>——生效 ≠ 交易 ≠ 流入</li>
+<li>8 月版空头「ETF 提交 17 个月未生效」撤下</li>
+</ul>
+<hr />
+<h2 id="s-7">7. 治理</h2>
+<ul>
+<li>能量单价 <strong>100 sun</strong>（2025-08-29 起未变）；<strong>#107 之后没有新提案</strong></li>
+<li>tips 讨论中：#915 降低账户权限更新费、#938 降低多签费（都是固定费用，未上链）</li>
+<li><strong>更正 8 月版</strong>：链上提案总数 <strong>107</strong>，不是 68</li>
+<li><strong>待核</strong>：提案 #104 原始批准地址 27 个，但有效票只计当届 SR，<strong>不能据此判 8 月版的 25 错</strong></li>
+</ul>
+<hr />
+<h2 id="s-8">8. 估值</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市值 ÷ 稳定币存量</td>
+<td><strong>0.341</strong>（8 月版 0.341）</td>
+</tr>
+<tr>
+<td>四情景期望（参数沿用 8 月版）</td>
+<td><strong>$0.3773（+11.8%）</strong>，条件于 Tether 不撤离</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>收费率降了 48%，比率没动——<strong>与「市场不按销毁定价」相容，但不判别</strong></li>
+<li>期望价的变化全部来自起点价格与分母，<strong>不是重估</strong></li>
+</ul>
+<hr />
+<h2 id="s-9">9. 记分卡</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>论点</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T8-1 烧币占比继续下滑</td>
+<td>⏳ 官方 Q3 复盘未发布；代理指标判断不了方向；<strong>仍是单源</strong></td>
+</tr>
+<tr>
+<td>T8-2 维持净通胀</td>
+<td>⏳ 9 月 +4,650 万</td>
+</tr>
+<tr>
+<td>T8-3 一年内不再降能量单价</td>
+<td>⏳ 100 sun</td>
+</tr>
+<tr>
+<td>T8-4 ⚑ 比率开始反映收费率下滑</td>
+<td>⏳ 0.341</td>
+</tr>
+<tr>
+<td>T8-5 低 beta 持续</td>
+<td>⏳ 0.238</td>
+</tr>
+<tr>
+<td>T8-6 ⚑ 中性情景不被证伪</td>
+<td>⏳ 份额 30.23%、比率 0.341（取点约定已写死）</td>
+</tr>
+<tr>
+<td><strong>T9-1</strong> 校准对照（不计门槛 8）：12 月 TRX/BTC 月均 ≥ 9 月均值 × 1.1</td>
+<td>⏳ 18%（从 10/12 起的随机游走基率，实为 BTC 宏观暴露，单独记 Brier 分）</td>
+</tr>
+<tr>
+<td><strong>T9-2</strong> 12 月年化净通胀严格高于 9 月的 0.59598%</td>
+<td>⏳ 自评 80%（门槛 11 不满足，已声明）</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-3-5">如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>净通胀 +0.596%，连续 11 个月为正，而且还在上升——能量单价一年没动，销毁照样在降。</strong></p>
+</li>
+<li>
+<p><strong>单位存量收费率 30.9 bp，一年前 59.8 bp：存量在涨、代币持有人收到的钱在跌。</strong></p>
+</li>
+<li>
+<p><strong>TRX 9 月只涨 1.44%：对 BTC 的超额约 0；9 月是中小市值山寨普涨，TRX 和 ETH、BNB、SOL 一样没参与。</strong></p>
+</li>
+<li>
+<p><strong>现货质押 ETF 9/08 生效（EDGAR 一手）；扣费后持有人的实际份额增长只有直接质押的 1/5 到 1/3；规模本期没有读数。</strong></p>
+</li>
+<li>
+<p><strong>本期 Tronscan 取不到，增发和销毁都换了替代路径，并先在已发布月份上验证过。</strong></p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>trx_research_report_202609.md</code>（对 8 月版的更正见 12.4）。<br />
+论点检验记录见 <code>../thesis_scorecard.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>
