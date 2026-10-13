@@ -59,6 +59,8 @@ PROFILES = {
                accent='#111111', badge='◈ OKX'),
     'hood': dict(symbol='◉', name='Robinhood / HOOD · Chain · Stock Tokens', short='HOOD',
                 accent='#1a9e3f', badge='◉ Robinhood'),
+    'link': dict(symbol='⬡', name='LINK / Chainlink', short='LINK',
+                accent='#2a5ada', badge='⬡ Chainlink'),
 }
 
 
