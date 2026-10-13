@@ -1,0 +1,1795 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>LEO / UNUS SED LEO 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#16b157;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">♌ LEO 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>♌ LEO 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-leo">1. LEO 是什么</a>
+<a href="#2-leo">2. LEO 的发展阶段划分</a>
+<a href="#3-leo">3. LEO 当前现状</a>
+<a href="#4">4. 供应与销毁</a>
+<a href="#5-btc">5. 被盗 BTC 的追回</a>
+<a href="#6-997-bitfinex">6. 持有分布</a>
+<a href="#7">7. 核心价值逻辑</a>
+<a href="#dot-1-5-2-4-27-13-1-2-3">&amp;gt; 检查两条论据是否描述同一机制的两面</a>
+<a href="#8">8. 多空之间真正的分歧点</a>
+<a href="#9">9. 估值</a>
+<a href="#10">10. 投资与风险启示</a>
+<a href="#11_1">11. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-1">1. 一句话</a>
+<a href="#s-2">2. 三个默认</a>
+<a href="#s-3">3. 当前位置</a>
+<a href="#s-4">4. 回购与销毁</a>
+<a href="#s-5-btc">5. 被盗 BTC 的追回</a>
+<a href="#s-6">6. 持有分布</a>
+<a href="#s-7">7. 估值</a>
+<a href="#s-8">8. 记分卡</a>
+<a href="#s-3-5">如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>♌ LEO / UNUS SED LEO<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">♌ UNUS SED LEO</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="leo-unus-sed-leo-2026-9">LEO / UNUS SED LEO 完整调研与分析报告（2026 年 9 月版，首期）</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 10 月 13 日<br />
+<strong>数据截止</strong>：2026 年 9 月 30 日；链上、官方接口与法院案卷快照到 10/12–10/13<br />
+<strong>研究方法</strong>：沿用本系列框架。价格用 <strong>Bitfinex 现货 LEO/USD 日线 UTC 收盘</strong>（LEO 不在币安上市）；超额收益用对数口径（ln 收益 − beta × ln BTC 收益，不扣截距）；对照组为本系列 9 个山寨（ZEC、UNI、ADA、SOL、BNB、ETH、TRX、CKB、DOT）。<strong>一手数据</strong>：Bitfinex 公开接口（<code>api-pub.bitfinex.com</code> 的 <code>leo.burn.*</code> 统计与 <code>leo/burn/hist</code>——LEO 透明度页面 <code>leo.bitfinex.com</code> 自己调用的就是这些接口，本报告读了它的前端代码确认）；EOS 链（公共节点 + Hyperion 历史接口）；以太坊（公共 RPC + Blockscout）；比特币（mempool.space）；美国哥伦比亚特区联邦地区法院案卷（CourtListener 的 RECAP 镜像）；白皮书原文（<code>bitfinex.com/wp-2019-05.pdf</code>）。<br />
+<strong>本期为 LEO 首期报告</strong>，本系列第二十个对象。</p>
+<p><strong>接入新资产的第一步：三个默认还成立吗</strong>（XIN 期教训）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th style="text-align: center;">结果</th>
+<th>依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>流通量已知吗</strong></td>
+<td style="text-align: center;">⚠️ <strong>总量能勾稽到 0.1 枚，但「已销毁」里有 4,780 万枚仍在 Bitfinex 多签控制的账户里；持有人分布几乎不可见</strong></td>
+<td>以太坊合约 <code>totalSupply</code> 660,000,000 + EOS 合约 <code>bitfinexleo1</code> 的 <code>supply</code> 307,653,658.9 − 合约账户自己持有的 47,795,807.0 = <strong>919,857,851.9</strong>，与 Bitfinex 官方接口 <code>leo.burn.supply</code> 的读数<strong>完全相等</strong>。⚠️ 这是在确认 Bitfinex 的「流通量」<strong>定义</strong>，不是独立验证。<strong>EOS 上的「销毁」是把 LEO 转进合约账户 <code>bitfinexleo1</code>，而这个账户由 <code>bitfinexsig1/2/5</code> 三选二多签控制</strong>——与 Bitfinex 冷钱包 <code>bitfinexcw55</code> 的控制方完全相同（4.1）。<strong>Bitfinex 控制的钱包合计持有「流通量」的 99.7%</strong>（第 6 章）</td>
+</tr>
+<tr>
+<td><strong>价格是可用的测量吗</strong></td>
+<td style="text-align: center;">⚠️ <strong>流动性极低，信息量判别不了</strong></td>
+<td>Bitfinex LEO/USD 近一年日成交中位数约 <strong>$17.1 万</strong>，9 月约 <strong>$9.3 万</strong>——约为市值的十万分之一到十万分之二；一年里有 2 天单日跌超 20% 后次日反弹（订单簿被打穿的形态）。<strong>它是很少成交的报价还是均衡价，本报告判别不了</strong>（9.2）。对 BTC 的 R² 0.126——只说明超额收益不可归因，不说明价格水平没有信息</td>
+</tr>
+<tr>
+<td><strong>代币持有人是剩余索取权人吗</strong></td>
+<td style="text-align: center;">❌ <strong>没有股权与分红权；回购承诺的法律效力未核实</strong></td>
+<td>白皮书原文：「LEO tokens are not capital shares or other interests in iFinex and are not entitled to any dividends」。<strong>持有人只通过回购承诺与 iFinex 的收入相连</strong>；而官网现行白皮书开头声明「<strong>is a marketing document and is not intended to be legally binding</strong>」，购买条款以《Token Purchase Agreement》为准——<strong>本报告没有读到购买协议</strong>，承诺能否被持有人主张（尤其二级市场持有人）未核实（1.2）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>本期核心发现</strong>：<br />
+1. <strong>9/1 之后 LEO 一枚都没有销毁</strong>：官方接口的供应量从 9/1 起停在 919,857,851.9；最后一笔销毁是 9/1 03:01 UTC 的 6,559 枚。<strong>发行人报告的「待销毁」计数在涨</strong>（9/30 为 151,201 枚，10/13 为 243,658 枚）——⚠️ 这是派生计数（前端标签「LEO Acquisition」），<strong>可能包含用户付手续费收到的 LEO</strong>，不能单独证明「市场回购在进行」；9 月计入 157,650 枚，比 8 月少 26%。这不是第一次停顿：2025-07-17 至 09-15 供应停了 59 天、2026-01-07 至 02-04 停了 27 天，都以一次性补烧结束；<strong>本次到 10/13 为 42 天，仍短于历史最长</strong>。原因<strong>未识别</strong>；它与 Bitfinex 下架 Vaulta（原 EOS）代币的提币截止日（8/31）只差一天，<strong>时间相邻，因果未证明</strong>（4.3）。<br />
+2. <strong>常规回购的规模很小</strong>：近 12 个月（2025-10 至 2026-09）逐笔销毁 2,695,250 枚，按月均价折算约 <strong>$2,520 万</strong>，约为供应的 0.29%。<strong>白皮书承诺每月回购至少为上月合并总收入的 27%</strong>——<strong>若承诺被完整执行</strong>，12 个月口径意味着 iFinex 月合并总收入不超过约 <strong>$778 万</strong>；反过来，<strong>只要有可信的外部估计显示其收入更高，就说明承诺没有被完整执行</strong>（iFinex 不公布收入，本报告两个方向都判不了）。<br />
+3. <strong>最大的潜在买方——被盗 BTC 的追回——在法院的附属程序里</strong>：白皮书承诺把 2016 年被盗 BTC 追回净额的<strong>至少 80%</strong> 用于回购销毁 LEO。法院 2025-04-04 的备忘录意见（本报告读完全文 20 页）判「$0 [voluntary] restitution」，<strong>理由是事实与法律问题复杂、改为只通过第三方附属没收程序裁定——这是程序选择，不是对归属的判断</strong>。意见第 17 页写明：<strong>即使所有申请人都证明了优先权益，他们主张的总量也只占被盗钱包资金的「small percentage」，其余仍可由 Bitfinex 主张</strong>；脚注列出的 16 名按时申请人合计主张约 <strong>4,269 BTC</strong>。Bitfinex 的专家主张可追溯的资产是 <strong>94,643.30 + 2,818.20 + 12,267.03 = 约 109,729 BTC</strong>，外加 BCH、BSV 各约 11.7 万枚。查扣地址的 94,643.49 BTC 到 10/13 <strong>从未转出</strong>；到 10/7 程序仍在进行（第 5 章）。<br />
+4. <strong>一个被广泛转载的媒体数字是假的</strong>：CoinReporter 2026-03-23 称 iFinex「Q1 净利润 $2.5 亿后立即加速销毁 1,800 万枚 LEO」。<strong>官方接口显示 2026 年 Q1 供应只减少了 78.3 万枚</strong>；该文无任何来源（4.4）。</p>
+<p><strong>本期核心判断</strong>：<strong>常规回购的历史规模解释不了 LEO 的市值（约 $83.1 亿，约 330 倍于近 12 个月回购；只要折现率与增长率之差在 2% 以上，常规回购的现值就不到市值的 15%）；追回回购能解释多少，取决于本报告给不出的几个量。</strong> 按白皮书的 80% 乘以<strong>扣除前的毛额</strong>、9/30 的 BTC 价格（$83,623.6），追回回购约为市值的 <strong>76%（只算查扣地址）到 88%（Bitfinex 主张的全部 BTC）</strong>——⚠️ 承诺适用于扣除 RRT、成本与或有准备后的<strong>净额</strong>，<strong>真实的承诺下限比这低</strong>；三个资产基数是互相独立的情景，不是区间。不确定的量：① 附属程序的结果——法院意见显示<strong>按时申请的第三方合计只主张约 4,269 BTC（对手方份额的上界很小，仅指 2025 年的按时申请人）</strong>，但剩余部分归 Bitfinex 仍需它自己的申请获准；2026 年新申请人的主张本报告没读；② 净额扣多少；③ <strong>市值的分母里有多少是 iFinex 自己持有的 LEO</strong>（99.75% 在 Bitfinex 钱包里，分不开）。<strong>价格对追回消息有反应</strong>：2025-02-23 政府把建议改为「$0 赔偿 + 只走附属程序」后的第一个交易日，LEO 扣除 BTC 后下跌约 8.4 个百分点（约同期日波动的 5 倍），随后 4 天收回（5.4）。<br />
+<strong>本报告不给目标价</strong>：持有人没有股权与分红权；回购承诺写在一份自称不具法律约束力的营销文件里，执行无法核实；追回规模取决于未决的法律程序。</p>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>LEO 是什么</strong></td>
+<td>Unus Sed Leo Limited（iFinex 为其设立的英属维尔京群岛发行主体）2019-05 发行的平台代币，私募募资约 $10 亿；用于 Bitfinex 手续费折扣；<strong>iFinex 在白皮书中承诺用收入与追回资金回购并销毁</strong></td>
+</tr>
+<tr>
+<td><strong>9/30 收盘</strong></td>
+<td><strong>$9.0348</strong>（Bitfinex LEO/USD）；按官方流通量 919,857,851.9 枚，<strong>市值约 $83.1 亿</strong></td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3 / 近一年</strong></td>
+<td><strong>−6.37% / −2.54% / −5.60%</strong>（BTC +6.42% / +42.64% / −26.68%）</td>
+</tr>
+<tr>
+<td><strong>beta / R² / 波动率</strong></td>
+<td><strong>0.419 / 0.126 / 53.2%</strong>（2025-09-30 至 2026-09-30，365 个日收益）</td>
+</tr>
+<tr>
+<td><strong>对数超额</strong></td>
+<td>9 月 <strong>−9.2</strong>（对照组中位数 +13.2）；Q3 <strong>−17.5</strong>（对照组中位数 +2.8）；⚠️ R² 太低，beta 不可靠</td>
+</tr>
+<tr>
+<td><strong>成交</strong></td>
+<td>Bitfinex LEO/USD 近一年日成交中位数约 <strong>$17.1 万</strong>，9 月约 <strong>$9.3 万</strong></td>
+</tr>
+<tr>
+<td><strong>供应</strong></td>
+<td>919,857,851.9（官方接口，9/1 起未变）；初始 10 亿；累计「销毁」80,142,148.1</td>
+</tr>
+<tr>
+<td><strong>12 个月回购</strong></td>
+<td>2,695,250 枚，约 <strong>$2,520 万</strong>（约为供应的 0.29%）</td>
+</tr>
+<tr>
+<td><strong>9 月</strong></td>
+<td><strong>只销毁 1 笔（6,559 枚）</strong>；月末待销毁 151,201 枚</td>
+</tr>
+<tr>
+<td><strong>追回 BTC</strong></td>
+<td>查扣地址 94,643.49 BTC 未动；法院判 $0 [自愿] 赔偿、改走附属没收程序（程序选择）；Bitfinex 主张约 109,729 BTC，按时申请人合计约 4,269 BTC；<strong>80% × 毛额（扣除前）× 9/30 BTC 价 ≈ 市值的 76%–88%</strong>（承诺按净额计，真实下限更低）</td>
+</tr>
+<tr>
+<td><strong>持有分布</strong></td>
+<td><strong>Bitfinex 控制的钱包合计约 99.7%</strong>（以太坊 MultiSig 2 一个地址就有 6.48 亿）</td>
+</tr>
+<tr>
+<td><strong>持有人权益</strong></td>
+<td><strong>无股权与分红权</strong>（白皮书原文）；回购承诺写在自称不具法律约束力的营销文件里，购买协议未读</td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td><strong>不给目标价</strong>（第 9 章）</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-leo">1. LEO 是什么</h2>
+<h3 id="11">1.1 发行与链</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>发行人</td>
+<td><strong>Unus Sed Leo Limited</strong>（英属维尔京群岛，专为发行 LEO 设立）；回购承诺方是 <strong>iFinex Inc.</strong>（运营 Bitfinex）</td>
+<td>白皮书</td>
+</tr>
+<tr>
+<td>发行</td>
+<td>2019-05，初始 10 亿枚</td>
+<td>白皮书；EOS 合约 <code>max_supply</code> 1,000,000,000</td>
+</tr>
+<tr>
+<td>以太坊</td>
+<td>合约 <code>0x2AF5…2Ca3</code>，<code>totalSupply</code> <strong>660,000,000</strong>（10/13 读取，<strong>从未减少</strong>）</td>
+<td>以太坊 RPC</td>
+</tr>
+<tr>
+<td>EOS（现名 Vaulta）</td>
+<td>合约账户 <code>bitfinexleo1</code>，<code>supply</code> <strong>307,653,658.9</strong>；该账户自己持有 <strong>47,795,807.0</strong></td>
+<td>EOS 节点 <code>get_currency_stats</code> / <code>get_currency_balance</code></td>
+</tr>
+<tr>
+<td>两链初始分配</td>
+<td>以太坊 6.6 亿、EOS 3.4 亿</td>
+<td>Coin Bureau（二手；与 10 亿总量、以太坊 6.6 亿的读数一致）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="12">1.2 白皮书的回购与销毁承诺（原文）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>承诺</th>
+<th>原文要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>常规回购</strong></td>
+<td>「On a monthly basis iFinex and its affiliates will buy back an amount of LEO from the market equal to a <strong>minimum of 27% of the consolidated gross revenues</strong> of iFinex from the previous month, in perpetuity until no tokens are in commercial circulation.」——<strong>按上月合并总收入（gross revenues）的至少 27%</strong>，不是利润；不含 Ethfinex；<strong>「LEO tokens used to pay fees may also be used to satisfy this repurchase commitment」</strong>（用户付手续费用掉的 LEO 也可以算进回购）</td>
+</tr>
+<tr>
+<td><strong>Crypto Capital 追回</strong></td>
+<td>追回净额的<strong>至少 95%</strong> 用于回购销毁，18 个月内完成</td>
+</tr>
+<tr>
+<td><strong>2016 年被盗 BTC 追回</strong></td>
+<td>追回净额的<strong>至少 80%</strong> 用于回购销毁，18 个月内完成；净额由 iFinex「in good faith」（善意地）计算，扣除 RRT 赎回、法律、运营与追回成本、政府收费，以及「reserves for contingent costs」（或有成本准备）</td>
+</tr>
+<tr>
+<td><strong>持有人权益</strong></td>
+<td>「LEO tokens are not capital shares or other interests in iFinex and are not entitled to any dividends.」</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>白皮书的效力</strong>：官网现行版本开头写着「The information in this white paper has changed ... should not be relied upon for any purpose」，后文写明「The document is a marketing document and is not intended to be legally binding」，并说购买条款以《Token Purchase Agreement》为准。<strong>本报告没有读到购买协议</strong>，所以「回购承诺能否被持有人主张、对二级市场持有人是否适用」未核实。</p>
+<p><strong>另外两个细节决定了承诺的强度</strong>：① 「净额」由 iFinex 自己「善意地」计算，且可以扣「或有成本准备」——<strong>扣多少由发行人决定</strong>；② 常规回购的基数「合并总收入」<strong>iFinex 不公布</strong>——外部无法核对 27% 是否被执行。</p>
+</blockquote>
+<h3 id="13">1.3 销毁在链上是怎么做的</h3>
+<p>本报告用 Hyperion 读了 9/1 最后一笔销毁的原始交易：<strong><code>bitfinexdep1</code> 把 6,559 枚 LEO 转给合约账户 <code>bitfinexleo1</code>，备注「burn」</strong>。之后这些币就<strong>留在合约账户的余额里</strong>。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>账户</th>
+<th>权限（10/13 读取）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bitfinexleo1</code>（LEO 合约，也是「销毁」的去处）</td>
+<td>owner 与 active 都是 <strong><code>bitfinexsig1</code> / <code>bitfinexsig2</code> / <code>bitfinexsig5</code> 三选二</strong></td>
+</tr>
+<tr>
+<td><code>bitfinexcw55</code>（Bitfinex 冷钱包，持有 2.578 亿枚 LEO）</td>
+<td><strong>同样是这三个账户三选二</strong></td>
+</tr>
+<tr>
+<td><code>bitfinexdep1</code>（Bitfinex 充值账户）</td>
+<td>active 为单个公钥；owner 为同一组三选二</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>所以 EOS 上的「已销毁」分两部分</strong>：约 3,235 万枚已从合约的 <code>supply</code> 里注销（3.4 亿 − 3.077 亿，以初始分配的二手数字为准），<strong>另 4,780 万枚仍是合约账户的余额</strong>——而合约账户由 Bitfinex 的多签控制，合约代码也可以由同一组多签更新。<strong>这 4,780 万枚不可逆地退出流通，依据的是 Bitfinex 的承诺，不是密码学。</strong>本报告没有读合约代码，<strong>不判断现行代码是否允许转出合约自己的余额</strong>。</p>
+<hr />
+<h2 id="2-leo">2. LEO 的发展阶段划分</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一</td>
+<td>2019-05</td>
+<td>IEO（交易所首次发行），约 $10 亿；Bitfinex 当时因 Crypto Capital 的 $8.5 亿资金被冻结而融资（白皮书背景章节）</td>
+</tr>
+<tr>
+<td>二</td>
+<td>2020–2021</td>
+<td>销毁最多的两年：官方供应 2020 年（从 2/19 起）减少 1,514 万、2021 年减少 3,232 万</td>
+</tr>
+<tr>
+<td>二</td>
+<td>2020-12-28</td>
+<td>Bitfinex 热钱包「Bitfinex 2」向「Bitfinex: MultiSig 2」转入 6.4 亿枚以太坊 LEO（2023-06-25 再转入 800 万），<strong>此后从未转出</strong>（Blockscout）</td>
+</tr>
+<tr>
+<td>三</td>
+<td>2022–2025</td>
+<td>年销毁递减：615 万 → 450 万 → 366 万 → 265 万</td>
+</tr>
+<tr>
+<td>三</td>
+<td>2022-02</td>
+<td>美国政府查扣 2016 年被盗 BTC，地址余额 94,643.49 BTC</td>
+</tr>
+<tr>
+<td>四</td>
+<td><strong>2025-01</strong></td>
+<td>政府提出动议，请求把查扣的 BTC 以实物返还 Bitfinex（媒体广泛报道为「法院下令归还 $90 亿」）</td>
+</tr>
+<tr>
+<td>四</td>
+<td><strong>2025-04-04</strong></td>
+<td><strong>法院备忘录意见：判给 Bitfinex 的赔偿为 $0，不开赔偿听证，资产归属只通过第三方附属没收程序裁定</strong></td>
+</tr>
+<tr>
+<td>五</td>
+<td>2026</td>
+<td>附属程序持续；更多第三方提交申请（2026-03）；10/7 法院要求 Bitfinex 在 10/22 前提交其反对意见的公开版本</td>
+</tr>
+<tr>
+<td>五</td>
+<td><strong>2026-09-01</strong></td>
+<td><strong>最后一笔销毁</strong>；此后待销毁余额累积</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="3-leo">3. LEO 当前现状</h2>
+<h3 id="31">3.1 价格与市场</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td><strong>$9.0348</strong>（9 月最低收盘 $8.81，最高 $9.3968；近 500 天最高收盘 $10.381 在 2026-04-28）</td>
+</tr>
+<tr>
+<td>9 月 / Q3 / 近一年</td>
+<td><strong>−6.37% / −2.54% / −5.60%</strong></td>
+</tr>
+<tr>
+<td>BTC 同期</td>
+<td>+6.42% / +42.64% / −26.68%</td>
+</tr>
+<tr>
+<td>一年 beta / R² / 波动率</td>
+<td><strong>0.419 / 0.126 / 53.2%</strong></td>
+</tr>
+<tr>
+<td>特质（残差）标准差</td>
+<td>日 2.6%；按月约 14.2、按季约 24.9 个对数点</td>
+</tr>
+<tr>
+<td>9 月 / Q3 对数超额</td>
+<td><strong>−9.2 / −17.5</strong>（对照组中位数 +13.2 / +2.8）</td>
+</tr>
+<tr>
+<td>10/12 收盘</td>
+<td>$8.89</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>口径</strong>：9 月 = 8/31 收盘 → 9/30 收盘；Q3 = 6/30 → 9/30；近一年 = 2025-09-30 → 2026-09-30；对照组同口径（币安）。<strong>LEO 用 Bitfinex 价格、对照组用币安价格，场所不同</strong>。</p>
+</blockquote>
+<h3 id="32">3.2 这个价格能当测量用吗</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th>读数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bitfinex LEO/USD 日成交中位数（近一年 / 9 月）</td>
+<td><strong>约 $17.1 万 / 约 $9.3 万</strong></td>
+</tr>
+<tr>
+<td>日成交 ÷ 市值</td>
+<td>约十万分之一到十万分之二</td>
+</tr>
+<tr>
+<td>单日涨跌超过 20% 的天数（一年）</td>
+<td><strong>2 天</strong>：2025-12-17 −22.4%（盘中最低 $6.44）、2026-02-05 −26.2%，<strong>次日分别反弹约 +16%、+15%</strong></td>
+</tr>
+<tr>
+<td>单日涨跌超过 10% 的天数</td>
+<td>5 天</td>
+</tr>
+<tr>
+<td>CoinGecko 成交最大的场所（10/13）</td>
+<td><strong>CoinUp.io</strong>（LEO/USDT，24 小时约 $157 万），<strong>比 Bitfinex（约 $15 万）大一个数量级</strong>；该场所的成交真实性本报告<strong>未核实</strong></td>
+</tr>
+<tr>
+<td>对 BTC 的 R²</td>
+<td>0.126</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>结论</strong>：价格的流动性极低。两次「−20% 次日反弹」更像订单簿被打穿，而不是信息。<strong>它是很少成交的报价还是均衡价，本报告判别不了</strong>（9.2）；<strong>本报告不对 LEO 的超额收益做归因</strong>（R² 0.126 下 beta 不可靠）。</p>
+<h3 id="33">3.3 宏观环境</h3>
+<p>与 BTC 9 月版共用（美联储 9/16 加息 25bp 至 3.75–4.00%）。LEO 对 BTC 的 R² 0.126——<strong>宏观与加密整体行情对它的解释力都很低</strong>。</p>
+<hr />
+<h2 id="4">4. 供应与销毁（本期核心章之一）</h2>
+<h3 id="41">4.1 供应勾稽</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th style="text-align: right;">枚数（10/13）</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>以太坊 <code>totalSupply</code></td>
+<td style="text-align: right;">660,000,000.0</td>
+<td>以太坊 RPC</td>
+</tr>
+<tr>
+<td>+ EOS 合约 <code>supply</code></td>
+<td style="text-align: right;">307,653,658.9</td>
+<td>EOS 节点</td>
+</tr>
+<tr>
+<td>− EOS 合约账户 <code>bitfinexleo1</code> 的余额（「已销毁」但未注销）</td>
+<td style="text-align: right;">−47,795,807.0</td>
+<td>EOS 节点</td>
+</tr>
+<tr>
+<td><strong>= 官方「流通量」</strong></td>
+<td style="text-align: right;"><strong>919,857,851.9</strong></td>
+<td>Bitfinex <code>leo.burn.supply</code>，<strong>完全相等</strong></td>
+</tr>
+<tr>
+<td>累计「已销毁」（10 亿 − 流通量）</td>
+<td style="text-align: right;">80,142,148.1</td>
+<td>计算；与透明度页面一致</td>
+</tr>
+</tbody>
+</table></div>
+<p>⚠️ <strong>这是恒等式，不是独立验证</strong>（CKB 期规则）：它确认了 Bitfinex 的「流通量」= 两链总量 − 合约账户余额。<strong>流通量里包含 Bitfinex 自己钱包的余额</strong>（第 6 章），所以它不是「可交易流通量」。</p>
+<h3 id="42">4.2 年度与月度销毁</h3>
+<blockquote>
+<p><strong>推导方法</strong>：年度 / 月度销毁 = 官方接口 <code>leo.burn.supply:1d:val</code> 的日值之差；美元 = 当月销毁枚数（<code>leo/burn/hist</code> 逐笔合计）× 当月 Bitfinex LEO/USD 日收盘均价。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>年份</th>
+<th style="text-align: right;">供应减少（枚）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2020（2/19 起）</td>
+<td style="text-align: right;">15,136,378</td>
+</tr>
+<tr>
+<td>2021</td>
+<td style="text-align: right;">32,323,094</td>
+</tr>
+<tr>
+<td>2022</td>
+<td style="text-align: right;">6,153,327</td>
+</tr>
+<tr>
+<td>2023</td>
+<td style="text-align: right;">4,503,447</td>
+</tr>
+<tr>
+<td>2024</td>
+<td style="text-align: right;">3,662,011</td>
+</tr>
+<tr>
+<td>2025</td>
+<td style="text-align: right;">2,653,501</td>
+</tr>
+<tr>
+<td>2026（至 10/13）</td>
+<td style="text-align: right;">1,883,035</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: right;">销毁笔数</th>
+<th style="text-align: right;">销毁（枚）</th>
+<th style="text-align: right;">当月均价</th>
+<th style="text-align: right;">折美元</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-08</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td>2025-09</td>
+<td style="text-align: right;">123</td>
+<td style="text-align: right;">488,998</td>
+<td style="text-align: right;">$9.58</td>
+<td style="text-align: right;">$468 万</td>
+</tr>
+<tr>
+<td>2025-10</td>
+<td style="text-align: right;">172</td>
+<td style="text-align: right;">188,786</td>
+<td style="text-align: right;">$9.48</td>
+<td style="text-align: right;">$179 万</td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td style="text-align: right;">240</td>
+<td style="text-align: right;">329,939</td>
+<td style="text-align: right;">$9.45</td>
+<td style="text-align: right;">$312 万</td>
+</tr>
+<tr>
+<td>2025-12</td>
+<td style="text-align: right;">149</td>
+<td style="text-align: right;">285,886</td>
+<td style="text-align: right;">$8.95</td>
+<td style="text-align: right;">$256 万</td>
+</tr>
+<tr>
+<td>2026-01</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">55,317</td>
+<td style="text-align: right;">$9.07</td>
+<td style="text-align: right;">$50 万</td>
+</tr>
+<tr>
+<td>2026-02</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">430,728</td>
+<td style="text-align: right;">$8.46</td>
+<td style="text-align: right;">$364 万</td>
+</tr>
+<tr>
+<td>2026-03</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">295,775</td>
+<td style="text-align: right;">$9.25</td>
+<td style="text-align: right;">$274 万</td>
+</tr>
+<tr>
+<td>2026-04</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">241,400</td>
+<td style="text-align: right;">$10.20</td>
+<td style="text-align: right;">$246 万</td>
+</tr>
+<tr>
+<td>2026-05</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">219,766</td>
+<td style="text-align: right;">$10.11</td>
+<td style="text-align: right;">$222 万</td>
+</tr>
+<tr>
+<td>2026-06</td>
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">226,360</td>
+<td style="text-align: right;">$9.61</td>
+<td style="text-align: right;">$217 万</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">200,839</td>
+<td style="text-align: right;">$9.59</td>
+<td style="text-align: right;">$193 万</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">213,895</td>
+<td style="text-align: right;">$9.50</td>
+<td style="text-align: right;">$203 万</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td style="text-align: right;"><strong>1</strong></td>
+<td style="text-align: right;"><strong>6,559</strong></td>
+<td style="text-align: right;">$9.07</td>
+<td style="text-align: right;"><strong>$6 万</strong></td>
+</tr>
+<tr>
+<td><strong>2025-10 至 2026-09 合计</strong></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;"><strong>2,695,250</strong></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;"><strong>约 $2,520 万</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>（逐笔合计与供应差在个别月份有几千枚的出入，例如 2025-09 逐笔 488,998、供应差 497,003；本报告的年度数用供应差，月度表用逐笔。）</p>
+<p><strong>供应一年（2025-09-01 → 2026-09-01）减少 3,184,248 枚，−0.345%</strong>（含 2025-09-15 的一次补烧；与上表 12 个月逐笔合计的窗口不同）。</p>
+<p><img alt="LEO 待销毁余额，2025-08-22 至 2026-10-13" src="charts/pending-burn-202609.svg" /></p>
+<h3 id="43-9">4.3 9 月的停顿</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>读数（官方接口 <code>leo.burn.pending:1h:bal</code> 与 <code>leo.burn.acc:1h:bal</code>）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最后一笔销毁</td>
+<td>2026-09-01 03:01 UTC，6,559 枚</td>
+</tr>
+<tr>
+<td>待销毁余额 9/2 / 9/30 / 10/13 09:00</td>
+<td>6,589 / <strong>151,201</strong> / <strong>243,658</strong>（约 24.4 万）</td>
+</tr>
+<tr>
+<td>计入「待销毁」的数量（<code>acc</code>，前端标签「LEO Acquisition」）：8 月 / 9 月</td>
+<td>213,896 / <strong>157,650</strong>（少 26%）</td>
+</tr>
+</tbody>
+</table></div>
+<p>⚠️ <strong>「待销毁」是派生计数</strong>：它逐小时满足「上一小时余额 + 当小时计入 − 当小时销毁」，残差为 0。<strong>计入的来源本报告分不开</strong>——白皮书允许用户付手续费用掉的 LEO 也计入回购承诺、也可以销毁。所以能说的只是：<strong>发行人报告的计入数在增加</strong>，不能单独证明「市场回购在进行」。<code>bitfinexdep1</code> 在 9/1 之后没有任何 LEO 转账（Hyperion）。</p>
+<p><strong>此前的两次停顿都以一次性补烧结束</strong>（按官方供应连续不变的天数）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>停顿</th>
+<th style="text-align: right;">时长</th>
+<th>补烧</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-07-17 至 2025-09-15</td>
+<td style="text-align: right;"><strong>59 天</strong></td>
+<td>2025-09-15 一次 384,919 枚（补烧前待销毁约 38.5 万）</td>
+</tr>
+<tr>
+<td>2026-01-07 至 2026-02-04</td>
+<td style="text-align: right;">27 天</td>
+<td>2026-02-04 一次 228,754 枚（补烧前约 22.9 万）</td>
+</tr>
+<tr>
+<td><strong>2026-09-01 起</strong></td>
+<td style="text-align: right;"><strong>到 10/13 为 42 天，仍短于历史最长</strong></td>
+<td><strong>尚未补烧</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>原因未识别。</strong> Bitfinex 公告下架 Vaulta（原 EOS）代币，提币截止日为 <strong>2026-08-31</strong>（Cryptoticker 报道与 Bitfinex 公告页的搜索摘要；<strong>本报告未打开公告原文</strong>），公告称「Unus Sed LEO on Vaulta (API: LES)」的充提不受影响。<strong>销毁停在第二天，时间相邻；但上两次停顿与 Vaulta 无关，所以这个相邻不足以判别</strong>。</p>
+<h3 id="44">4.4 一个被转载的假数字</h3>
+<p>CoinReporter（2026-03-23）：iFinex「Q1 2026 净利润 $2.5 亿」后「立即加速销毁 1,800 万枚 LEO」。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>官方接口 2026-01-01 → 2026-04-01 供应变化</td>
+<td><strong>−782,930 枚</strong>（不是 1,800 万）</td>
+</tr>
+<tr>
+<td>2026 年最大的单笔销毁</td>
+<td>228,754 枚（2/4）</td>
+</tr>
+<tr>
+<td>文章来源</td>
+<td><strong>无</strong>——没有交易哈希、报告或文件；发布日早于 Q1 结束</td>
+</tr>
+<tr>
+<td>口径</td>
+<td>文中把承诺写成「27% of monthly profits」，<strong>白皮书原文是 27% of consolidated gross revenues（总收入）</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>结论：1,800 万枚的加速销毁没有发生</strong>（官方接口与逐笔记录都没有）。「$2.5 亿利润」本报告无法核实。<strong>它与回购额对不上</strong>：若它是 iFinex 的利润且收入至少同额，按 27% 计的回购应 ≥ $6,750 万/季，而 2026 年 Q1 实际约 $688 万（⚠️ Q1 的回购对应的是 12–2 月的收入，时点不完全重合）——<strong>「$2.5 亿」与「承诺被完整执行」两者至少有一个不成立</strong>，本报告判别不了是哪一个。唯一的例外：若 $2.5 亿利润的约 90% 以上集中在 3 月（对应 4 月回购），时点错配可以让两者同时成立；按 2–3 月回购合计约 $638 万推，1–2 月收入合计须不超过约 $2,363 万。</p>
+<hr />
+<h2 id="5-btc">5. 被盗 BTC 的追回：最大的潜在买方在附属程序里（本期核心章之二）</h2>
+<h3 id="51-94643-btc">5.1 链上：查扣地址的 94,643 枚 BTC 一枚都没动</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>读数（mempool.space，10/13）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>地址</td>
+<td><code>bc1qazcm763858nkj2dj986etajv6wquslv8uxwczt</code>（2022 年查扣地址）</td>
+</tr>
+<tr>
+<td>累计收到</td>
+<td>94,643.48825813 BTC（含此后陆续收到的粉尘；法院意见记为 94,643.29837084 BTC）</td>
+</tr>
+<tr>
+<td><strong>累计转出</strong></td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td>最近的入账</td>
+<td>2026-09-09（粉尘，约 0.000003 BTC）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="52-0">5.2 法院：$0 [自愿] 赔偿，改走附属没收程序</h3>
+<p><strong>美国哥伦比亚特区联邦地区法院，案号 1:23-cr-00239（CKK），法官 Colleen Kollar-Kotelly。</strong> 本报告读完了 2025-04-04 的备忘录意见全文（ECF 300，20 页扫描件，逐页读取）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>页</th>
+<th>原文要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2、20</td>
+<td>「<strong>$0 restitution shall be awarded to Bitfinex</strong>; the Court will not hold a restitution hearing; and adjudication of the disposal of the forfeited assets shall proceed <strong>solely through a third-party forfeiture ancillary proceeding</strong>」；理由是赔偿问题「complex legal and factual issues」，适用 MVRA（《强制受害人赔偿法》）的复杂性例外</td>
+</tr>
+<tr>
+<td>11–12</td>
+<td><strong>政府自己把建议改成了「$0 赔偿 + 只走附属程序」</strong>，法院同意</td>
+</tr>
+<tr>
+<td>14–15</td>
+<td>自愿赔偿的数额由法院裁量；政府与被告原本提议把「Bitfinex Hack Wallet Funds」以实物返还 Bitfinex</td>
+</tr>
+<tr>
+<td>16–17</td>
+<td>申请人要求返还他们账户里的特定财产，与 Bitfinex 争的是<strong>同一批</strong>没收资产；申请人必须证明自己的账户在被盗账户之列；<strong>「even if all Petitioners can demonstrate a superior legal interest, the total amount of BTC and other property claimed by all Petitioners constitutes a small percentage of the total Bitfinex Hack Wallet Funds, and this would leave the remainder of the Bitfinex Hack Wallet Funds subject to claim by Bitfinex」</strong></td>
+</tr>
+<tr>
+<td>18</td>
+<td>Bitfinex 的专家主张可追溯的没收资产：<strong>约 94,643.30 BTC、2,818.20 BTC、12,267.03 BTC，以及约 117,376.5 BCH、117,376.6 BSV</strong>；附属程序<strong>不审理</strong> 2016 年 36%「haircut」（账户统一减值）引起的合同争议；<strong>法院无权强制 Bitfinex 进一步分配它追回的资金</strong></td>
+</tr>
+<tr>
+<td>18 脚注 11</td>
+<td>16 名按时申请人的主张，<strong>BTC 合计约 4,269 枚</strong>（另有 ETH、ETC、LTC 与美元）</td>
+</tr>
+<tr>
+<td>19</td>
+<td>政府称已有「more than a dozen」第三方申请人，其中包括「a former Bitfinex insider」，许多人要求向 Bitfinex 取证——程序「complex, prolonged, and burdensome」</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>所以「$0 赔偿」是程序选择（不在量刑程序里分配，改在附属程序里裁定归属），不是对归属的判断。</strong> 第 17 页的「small percentage」是法院对<strong>按时申请人主张金额</strong>的陈述（旁论），给出的是<strong>对手方份额的上界</strong>，不是 Bitfinex 申请会获准的判断：附属程序（21 U.S.C. §853(n)）要求申请人证明<strong>在没收行为发生时</strong>对该财产拥有法定权益、或权益优先于被告（第 17 页引 §853(n)(6)(A)）；<strong>无人证明权益的部分，默认归美国政府</strong>，所以剩余部分归 Bitfinex 还需要它自己的申请获准——政府在 ECF 262 中认为只有 Bitfinex 是「directly and proximately」受害的一方（第 11 页），这一立场对 Bitfinex 有利；而 Bitfinex 对账户的所有权与「已充分补偿用户」的前提受到申请人挑战（第 16 页）。<strong>归属与时间都未决</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>之后的案卷（CourtListener RECAP 镜像）</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-04/05</td>
+<td>iFinex 与 BFXNA（合称 Bitfinex）申请驳回部分第三方的附属申请；第三方反对</td>
+</tr>
+<tr>
+<td>2026-03-09/12</td>
+<td>又有多名第三方（Richard Roe、Company Doe 等）提交经核实的附属申请或出庭通知（<strong>主张金额本报告没读</strong>）</td>
+</tr>
+<tr>
+<td>2026-10-06</td>
+<td>Francisco Cavazos 申请补充证据（ECF 383）</td>
+</tr>
+<tr>
+<td><strong>2026-10-07</strong></td>
+<td>法官要求 Bitfinex 在 <strong>10/22</strong> 前提交其反对 Richard Roe 逾期申请的公开版本，「以便对该动议作出裁定」</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>截至 10/13，没有找到对 Bitfinex 附属申请的实体裁定。</strong> 媒体另报美国政府把约 12,267 BTC（与第 18 页的一笔金额相同）转到 Coinbase Prime（FinanceFeeds、BeInCrypto），<strong>本报告没有核实这笔转移与本案资产的对应关系</strong>。</p>
+<h3 id="53-80-930-7688">5.3 规模：80% × 毛额，按 9/30 价格约为市值的 76%–88%</h3>
+<blockquote>
+<p><strong>推导方法</strong>：价值 = BTC 数量 × 9/30 币安 BTC 收盘 $83,623.6；80% 是白皮书承诺的<strong>比例下限</strong>（「at least 80%」），但承诺适用于净额——本表用的是<strong>扣除前的毛额</strong>，所以是承诺下限的上估；未扣除白皮书允许扣除的成本与或有准备（扣多少由 iFinex 决定）；BCH、BSV 未计入。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产基数</th>
+<th style="text-align: right;">枚数</th>
+<th style="text-align: right;">80%（80% × 毛额）÷ 市值</th>
+<th style="text-align: right;">100% ÷ 市值</th>
+<th style="text-align: right;">80% 下追回额等于市值所需的 BTC 价格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>只算查扣地址</td>
+<td style="text-align: right;">94,643</td>
+<td style="text-align: right;"><strong>76%</strong></td>
+<td style="text-align: right;">95%</td>
+<td style="text-align: right;">约 $109,800</td>
+</tr>
+<tr>
+<td>扣除按时申请人主张后</td>
+<td style="text-align: right;">约 105,460</td>
+<td style="text-align: right;"><strong>85%</strong></td>
+<td style="text-align: right;">106%</td>
+<td style="text-align: right;">约 $98,500</td>
+</tr>
+<tr>
+<td>Bitfinex 主张的全部 BTC（假设 12,267 BTC 仍以 BTC 形式存在，见 5.2 末）</td>
+<td style="text-align: right;">约 109,729</td>
+<td style="text-align: right;"><strong>88%</strong></td>
+<td style="text-align: right;">110%</td>
+<td style="text-align: right;">约 $94,700</td>
+</tr>
+</tbody>
+</table></div>
+<p>（参照：一年前 2025-09-30 BTC 收盘约 $114,049。）</p>
+<p><img alt="LEO 市值与可识别的回购" src="charts/recovery-vs-mcap-202609.svg" /></p>
+<p><strong>这个比值怎么读</strong>：按总量看，每一美元回购都付给了某个卖出 LEO 的人——价格冲击只改变注销多少枚，不改变付给卖出者的美元总额，所以「回购美元 vs 市值」是持有人从这条渠道能拿到现金的量级参照。<strong>它有三个成立条件</strong>：① 法院最后的分配（时间与比例）；② 净额由 iFinex 扣除成本与「或有准备」后计算；③ <strong>市值的分母里不能包含 iFinex 自己持有的 LEO</strong>——发行人从自己手里回购，不向任何人付现金。第 6 章显示 99.75% 的 LEO 在 Bitfinex 钱包里、自持多少分不开：按 9/30 价格、零扣除，<strong>iFinex 自持约 2.19 亿枚（流通量的约 24%）时，80% × 毛额的约 $63.3 亿（查扣地址情景）就等于其余全部流通市值</strong>；另两个情景约需 1.39 亿、1.07 亿枚。这是静态等式；扣除成本后所需自持量会上升。⚠️ 三个资产基数是互相独立的情景（中间一行假设专家主张全部获支持、按时申请人的 BTC 主张全部获赔且无重叠），<strong>不是上下界与中间估计</strong>；且 80% × 毛额是承诺下限的<strong>上估</strong>——承诺按净额计。</p>
+<p><strong>媒体的错误</strong>：2025-01 的大量报道（Bitcoin.com、BeInCrypto、Brave New Coin 等）写「法院下令归还 $90 亿 BTC」——那是<strong>政府的动议</strong>，政府自己在 2025-02 改了建议，2025-04-04 的意见没有采纳实物返还。<strong>多家媒体报道一致 ≠ 事实</strong>（ADA 期规则）；<strong>法律类事项必须查最终状态，而且要读全文</strong>——本报告初稿只读了这份意见的首尾三页，漏掉了第 17–18 页的关键限定（11.4）。</p>
+<h3 id="54">5.4 事件窗：价格对三次法律事件的反应</h3>
+<blockquote>
+<p><strong>方法</strong>：LEO 对数收益减去 beta × BTC 对数收益（beta 与残差标准差用同期 2025-01 至 2025-05 估计：beta 0.079，残差日标准差 <strong>1.66%</strong>——比近一年的 2.6% 小）；成交为 Bitfinex LEO/USD 当日成交额 ÷ 当月日成交中位数。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>事件</th>
+<th>首个交易日</th>
+<th style="text-align: right;">LEO 收益</th>
+<th style="text-align: right;">残差</th>
+<th style="text-align: right;">约几个 σ</th>
+<th style="text-align: right;">成交倍数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-01-15 政府动议（实物返还）</td>
+<td>1/15</td>
+<td style="text-align: right;">+3.03%</td>
+<td style="text-align: right;">+2.7</td>
+<td style="text-align: right;">1.6</td>
+<td style="text-align: right;"><strong>13 倍</strong>；1/17 达 <strong>约 90 倍</strong>（$950 万，当天高低价只差约 1.8%）</td>
+</tr>
+<tr>
+<td><strong>2025-02-23（周日）政府在 ECF 262 中把建议改为「$0 赔偿 + 只走附属程序」</strong>（法院意见第 10–12 页）</td>
+<td><strong>2/24</strong></td>
+<td style="text-align: right;"><strong>−8.81%</strong></td>
+<td style="text-align: right;"><strong>−8.4</strong></td>
+<td style="text-align: right;"><strong>约 5.1</strong></td>
+<td style="text-align: right;">4.8 倍</td>
+</tr>
+<tr>
+<td>　其后 4 天（2/25–2/28）</td>
+<td></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">合计 +7.8</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">1.0–2.5 倍</td>
+</tr>
+<tr>
+<td>2025-04-04 法院意见照准该建议</td>
+<td>4/4</td>
+<td style="text-align: right;">−2.82%</td>
+<td style="text-align: right;">−2.9</td>
+<td style="text-align: right;">1.7</td>
+<td style="text-align: right;">1.0 倍</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>能确认的</strong>：<strong>价格对追回消息有反应</strong>——2/24 的残差约为同期日波动的 5 倍、成交放大，<strong>排除了「市场没注意到」</strong>；而 4/4 的反应小，与「信息在 2 月已公开」一致。<strong>不能确认的</strong>：2/24 的下跌在 4 天内收回，这与「市场重新评估后认为影响不大」与「薄订单簿被打穿后回弹」都相容；1/17 约 90 倍的成交只伴随 1.8% 的价格区间，<strong>其性质（是否场内对倒）未核实</strong>。⚠️ 2/24 与 ECF 262 的对应以法院意见记载的提交日为准，<strong>同日是否另有其他消息，本报告没有排查</strong>。</p>
+<p>---|---|---:|---:|<br />
+| 2025-01-15 政府动议（实物返还） | 1/14 → 1/17 | +4.4 | +7.5 |<br />
+| 2025-04-04 法院意见（$0 赔偿、改走附属程序） | 4/3 → 4/4 | −2.8 | +0.8 |<br />
+| 同上，一周 | 4/3 → 4/11 | −1.6 | +0.3 |</p>
+<p><strong>两次都没有超出日常波动的反应</strong>（LEO 日特质标准差约 2.6）。这与「市场没注意到」「市场早已定价」「价格不是边际均衡」都相容——<strong>不判别</strong>。</p>
+<hr />
+<h2 id="6-997-bitfinex">6. 持有分布：99.7% 在 Bitfinex 的钱包里</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>地址 / 账户</th>
+<th>链</th>
+<th style="text-align: right;">LEO</th>
+<th>标签 / 控制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0xC61b…193C</code></td>
+<td>以太坊</td>
+<td style="text-align: right;"><strong>648,000,000.0</strong></td>
+<td>Etherscan 公开标签「<strong>Bitfinex: MultiSig 2</strong>」；2020-12-28 收到 6.4 亿、2023-06-25 收到 800 万，<strong>从未转出</strong></td>
+</tr>
+<tr>
+<td><code>0x742d…f44e</code></td>
+<td>以太坊</td>
+<td style="text-align: right;">9,661,370.3</td>
+<td>Etherscan「<strong>Bitfinex 2</strong>」</td>
+</tr>
+<tr>
+<td><code>bitfinexcw55</code></td>
+<td>EOS</td>
+<td style="text-align: right;">257,791,296.9</td>
+<td>Bitfinex 冷钱包（三选二多签，与 LEO 合约同一组签名人）</td>
+</tr>
+<tr>
+<td><code>bitfinexdep1</code></td>
+<td>EOS</td>
+<td style="text-align: right;">2,063,002.4</td>
+<td>Bitfinex 充值账户</td>
+</tr>
+<tr>
+<td><strong>Bitfinex 合计</strong></td>
+<td></td>
+<td style="text-align: right;"><strong>917,515,669.3</strong></td>
+<td><strong>占流通量 919,857,851.9 的 99.75%</strong></td>
+</tr>
+<tr>
+<td>其余所有地址</td>
+<td></td>
+<td style="text-align: right;">约 2,342,183</td>
+<td>以太坊上第 3 大持有人只有约 56.5 万</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>交易所钱包 ≠ 公司自有</strong>：这些钱包里既有 Bitfinex 用户存在交易所的 LEO（用户为了手续费折扣通常放在交易所里），也可能有 iFinex 自己的。<strong>链上分不开，iFinex 也没有披露自有数量</strong>——这是 XIN 期「地址集中 ≠ 锁仓」规则的另一面：<strong>集中在交易所钱包里，也不能推出「是谁的」</strong>。⚠️ <strong>这个「分不开」不指向任何方向</strong>：它不说明可交易筹码只有 0.25%，也不说明发行人控制了供给；<strong>但它让市值的分母（是否含 iFinex 自持）成为未知</strong>（5.3）。托管集中带来的对手方风险不论币归谁都成立。</p>
+<p><img alt="LEO 流通量的去向" src="charts/holders-202609.svg" /></p>
+<hr />
+<h2 id="7">7. 核心价值逻辑</h2>
+<h3 id="71">7.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>追回 BTC 的回购承诺</strong>：80% × 毛额按 9/30 BTC 价格约为市值的 76%–88%（真实承诺下限按净额计，更低）；按时申请的第三方只主张约 4,269 BTC；BTC 在约 $9.5 万–11 万以上时 80% × 毛额超过市值</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 白皮书原文、法院意见全文、链上余额；⚠️ 白皮书自称不具法律约束力；时间未定；净额由 iFinex 扣除；分母含未知的 iFinex 自持</td>
+</tr>
+<tr>
+<td>2</td>
+<td>两次历史停顿（59 天、27 天）都以一次性补烧结束；发行人报告的计入数仍在增加</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ 官方接口；⚠️ 计入数是派生计数、可能含手续费收到的 LEO；9 月比 8 月少 26%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>低 beta（0.419）</td>
+<td style="text-align: center;">★☆☆☆☆</td>
+<td>⚠️ R² 0.126，beta 不可靠</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="72">7.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>常规回购解释不了市值</strong>（约 330 倍）；追回回购能否解释取决于 BTC 价格、法院分配与 iFinex 自持</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 一手计算；⚠️ 未计入手续费折扣等使用价值（无法量化）。<strong>与 #2、#3 是同一个现象和它的两种候选解释，不是三条独立证据</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>流动性极低：日成交约 $17 万；两次 −20% 后次日反弹</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ Bitfinex 接口；⚠️ 是报价还是均衡价判别不了</td>
+</tr>
+<tr>
+<td>3</td>
+<td>99.75% 在 Bitfinex 钱包里（对手方风险）；「已销毁」的 4,780 万枚在 Bitfinex 多签控制的账户里</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ 链上 + Etherscan 标签；⚠️ 合约代码是否允许转出未读；归属方向不明</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>回购承诺的约束力与执行都无法核实</strong>：写在自称不具法律约束力的营销文件里；收入不公布；净额自行计算</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 白皮书原文；⚠️ 购买协议未读</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>追回的时间</strong>：附属程序已 18 个月、仍在处理逾期申请，申请人要求向 Bitfinex 取证</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 法院意见与案卷</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="dot-1-5-2-4-27-13-1-2-3">&gt; <strong>检查两条论据是否描述同一机制的两面</strong>（DOT 期规则）：<strong>多头 #1 与空头 #5 引的是同一份法院意见</strong>——按时申请人只主张小部分（对手方份额上界，多头），归属与时间未决、程序复杂冗长（空头）；两者都是三星。<strong>多头 #2 与空头 #4 是同一机制</strong>：发行人报告的计入数在增加，但它是否等于 27%、承诺有无约束力都无从核对。<strong>空头 #1–#3 是一组</strong>：#1 是现象，#2（流动性）与 #3（发行人自持未知）是它的两种候选解释。</h2>
+<h2 id="8">8. 多空之间真正的分歧点</h2>
+<ol>
+<li><strong>附属程序什么时候结、Bitfinex 拿回多少</strong>：按时申请人只主张约 4,269 BTC（对手方份额的上界），但剩余部分归 Bitfinex 仍需其申请获准；2026 年又有新申请人，主张金额本报告没读；结案时间无从估计。</li>
+<li><strong>销毁会不会补上</strong>：前两次停顿（59 天、27 天）都以补烧结束；本次的原因未识别，到 10/13 为 42 天。</li>
+<li><strong>LEO 的价格反映的是什么</strong>：在 99.75% 的币躺在交易所钱包里、日成交约 $17 万的条件下，价格可能主要反映 Bitfinex 用户「为折扣持有、很少交易」的行为，而不是对回购的定价——<strong>本报告判别不了</strong>。</li>
+</ol>
+<hr />
+<h2 id="9">9. 估值：不给目标价</h2>
+<h3 id="91">9.1 为什么不给</h3>
+<ul>
+<li><strong>充分条件</strong>：持有人没有股权与分红权（白皮书原文），只通过回购与 iFinex 的收入相连——按 PONS 期规则，<strong>估值的分子应当是回购，不是收入</strong>；而回购的基数（iFinex 收入）不公布，承诺写在自称不具法律约束力的文件里，执行无法核实。</li>
+<li><strong>加重情节</strong>：追回回购的规模取决于未决的法律程序与 BTC 价格；市值分母里的发行人自持未知（第 6 章）；流动性极低（3.2）。</li>
+</ul>
+<h3 id="92">9.2 反推：当前价格要成立，什么必须为真</h3>
+<blockquote>
+<p><strong>推导方法</strong>：市值 = 9/30 Bitfinex 收盘 × 官方流通量；常规回购 = 近 12 个月逐笔合计 × 月均价；追回回购 = BTC 数量 × 9/30 BTC 价 × 80%（80% × 毛额）。不推导任何价格区间。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>比值（9/30）</th>
+<th style="text-align: right;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市值</td>
+<td style="text-align: right;">约 $83.1 亿</td>
+</tr>
+<tr>
+<td>市值 ÷ 近 12 个月常规回购（约 $2,520 万）</td>
+<td style="text-align: right;">约 <strong>330 倍</strong></td>
+</tr>
+<tr>
+<td>追回回购 80% × 毛额（扣除前）÷ 市值</td>
+<td style="text-align: right;">约 <strong>76%–88%</strong>（94,643 至 109,729 BTC；约 $63.3 亿–$73.4 亿）</td>
+</tr>
+<tr>
+<td><strong>若承诺被完整执行，iFinex 月合并总收入的上限</strong></td>
+<td style="text-align: right;">约 <strong>$778 万</strong>（12 个月回购 $2,520 万 ÷ 12 ÷ 27%；<strong>推断</strong>）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>当前价格可能的解释</strong>（不互斥）：① 市场预期追回回购会兑现——<strong>且</strong>它需要的规模随 BTC 价格与发行人自持而变：零扣除、全额兑现、按 9/30 价格计，若 iFinex 自持约 <strong>2.19 亿 / 1.39 亿 / 1.07 亿枚</strong>（分别对应 94,643 / 约 105,460 / 约 109,729 BTC 三个情景），80% × 毛额就等于其余流通市值（静态等式，不说明持有人会以这个价格卖出）；② 未来常规回购的增长与手续费折扣的使用价值；③ 价格不是边际买卖双方的均衡，而是一个很少成交的报价。<strong>本报告不在它们之间表态</strong>——能判别的数据（iFinex 自持、Bitfinex 内部的 LEO 成交、购买协议）都取不到。5.4 的事件窗显示<strong>价格对追回消息有反应</strong>（不支持「市场没注意到」），但几天内收回，与 ① 和 ③ 都相容。</p>
+<h3 id="93">9.3 这套判断的弱点</h3>
+<ol>
+<li><strong>手续费折扣的使用价值没有量化</strong>——它可能支撑一部分需求；</li>
+<li>法院结果本报告不做法律判断；</li>
+<li>「若承诺被完整执行」的收入上限是推断：<strong>真正会让它失效的是计入 27% 的 LEO 没有被全部销毁</strong>（手续费收到的 LEO 也在销毁记录里，不影响这个上限）；</li>
+<li>两链初始分配（6.6 亿 / 3.4 亿）是二手数字；</li>
+<li>合约代码是否允许转出「已销毁」余额没有读；</li>
+<li>只有一个以 USD 计价的可用价格源（Bitfinex），CoinGecko 显示的最大成交场所未核实；</li>
+<li><strong>购买协议没读</strong>，回购承诺对持有人的约束力未核实；</li>
+<li>Crypto Capital 追回（白皮书承诺 95%）的现状没有查——这条渠道本报告既没有找到追回记录，也没有排除它。</li>
+</ol>
+<hr />
+<h2 id="10">10. 投资与风险启示</h2>
+<h3 id="101">10.1 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>当前</th>
+<th>变化信号</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>官方供应 / 待销毁余额</strong></td>
+<td>919,857,851.9 / 243,658</td>
+<td>补烧（供应一次性下降约 25 万以上）</td>
+<td>Bitfinex <code>leo.burn.*</code></td>
+</tr>
+<tr>
+<td><strong>附属程序</strong></td>
+<td>未裁定</td>
+<td>对 Bitfinex 申请的实体裁定</td>
+<td>案号 1:23-cr-00239（D.D.C.）</td>
+</tr>
+<tr>
+<td><strong>94,643 BTC 地址</strong></td>
+<td>0 转出</td>
+<td>任何转出</td>
+<td>mempool.space</td>
+</tr>
+<tr>
+<td>Bitfinex 钱包占比</td>
+<td>99.75%</td>
+<td>以太坊 MultiSig 2 首次转出</td>
+<td>以太坊 / EOS</td>
+</tr>
+<tr>
+<td>日成交</td>
+<td>约 $9.3 万（9 月中位数）</td>
+<td>—</td>
+<td>Bitfinex</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="102">10.2 风险提醒</h3>
+<ol>
+<li><strong>流动性</strong>：日成交约 $17 万，任何规模的卖出都可能打穿订单簿（2025-12-17、2026-02-05 两次单日 −20% 以上）；</li>
+<li><strong>发行人集中</strong>：发行人、主要交易场所、99.75% 的托管、回购执行、净额计算是同一个主体；</li>
+<li><strong>法律与时间</strong>：追回在附属程序里，归属与结案时间都未决；按时申请人的主张只占小部分，但新申请人的主张未读；</li>
+<li><strong>销毁的不可逆性依赖发行人承诺</strong>：4,780 万枚「已销毁」在 Bitfinex 多签账户里（合约代码未读）；</li>
+<li><strong>承诺的约束力</strong>：白皮书自称是不具法律约束力的营销文件。</li>
+</ol>
+<h3 id="103">10.3 长期认知</h3>
+<p><strong>第一，「销毁」要看币去了哪里。</strong> EOS 上的 LEO「销毁」是转进一个由发行人多签控制的合约账户——<strong>承诺意义上的销毁，不是密码学意义上的销毁</strong>。以太坊上的 6.6 亿枚则从未减少过一枚。</p>
+<p><strong>第二，「法院下令」要读判决书全文，不读新闻，也不只读首尾页。</strong> 2025-01 全网报道的「归还 $90 亿」是政府的动议；三个月后的判决书写的是「$0 赔偿、改走附属程序」——<strong>而本报告初稿只读了首尾三页，把这个程序选择读成了不利信号，漏掉了第 17 页「申请人只占小部分」的限定</strong>。读新闻会错一次，只读首尾页会错第二次。</p>
+<p><strong>第三，一个承诺的下限不能当上限用。</strong> 「至少 80%」的承诺，初稿写成了「最高约 $63.3 亿」；改正资产基数并换回下限的含义后，结论从「全额兑现也不到市值」变成了「取决于法院分配、净额扣除、BTC 价格与发行人自持」。</p>
+<hr />
+<h2 id="11_1">11. 附录</h2>
+<h3 id="111-2026-09-30-1013">11.1 关键数据速查（截至 2026-09-30，快照到 10/13）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td>$9.0348</td>
+<td>Bitfinex LEO/USD</td>
+</tr>
+<tr>
+<td>9 月 / Q3 / 近一年</td>
+<td>−6.37% / −2.54% / −5.60%</td>
+<td>Bitfinex</td>
+</tr>
+<tr>
+<td>beta / R² / 波动率</td>
+<td>0.419 / 0.126 / 53.2%</td>
+<td>本报告计算</td>
+</tr>
+<tr>
+<td>官方流通量</td>
+<td>919,857,851.9</td>
+<td>Bitfinex <code>leo.burn.supply</code></td>
+</tr>
+<tr>
+<td>以太坊 totalSupply / EOS supply / 合约账户余额</td>
+<td>660,000,000 / 307,653,658.9 / 47,795,807.0</td>
+<td>两链节点</td>
+</tr>
+<tr>
+<td>待销毁（9/30 / 10/13）</td>
+<td>151,201 / 243,658</td>
+<td>Bitfinex <code>leo.burn.pending</code>（派生计数）</td>
+</tr>
+<tr>
+<td>Bitfinex 主张可追溯 BTC / 按时申请人主张 BTC</td>
+<td>约 109,729 / 约 4,269</td>
+<td>法院意见 ECF 300 第 18 页</td>
+</tr>
+<tr>
+<td>12 个月常规回购</td>
+<td>2,695,250 枚，约 $2,520 万</td>
+<td>逐笔 × 月均价</td>
+</tr>
+<tr>
+<td>94,643 BTC 地址转出</td>
+<td>0</td>
+<td>mempool.space</td>
+</tr>
+<tr>
+<td>BTC 9/30 收盘</td>
+<td>$83,623.6</td>
+<td>币安</td>
+</tr>
+<tr>
+<td>Bitfinex 钱包合计</td>
+<td>917,515,669.3（99.75%）</td>
+<td>链上 + Etherscan 标签</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112">11.2 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th style="text-align: center;">状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格、成交</td>
+<td>Bitfinex 公开接口日线</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>供应、待销毁、逐笔销毁</td>
+<td>Bitfinex <code>stats1/leo.burn.*</code>、<code>leo/burn/hist</code>（透明度页面前端代码里的同一组接口）</td>
+<td style="text-align: center;">✅ 一手（发行人自报）</td>
+</tr>
+<tr>
+<td>供应勾稽</td>
+<td>以太坊 RPC、EOS 节点</td>
+<td style="text-align: center;">✅ 一手；⚠️ 恒等式，确认的是定义</td>
+</tr>
+<tr>
+<td>销毁交易与账户权限</td>
+<td>EOS Hyperion（两个独立节点读数相同）、<code>get_account</code></td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>以太坊持有人与标签</td>
+<td>Blockscout 持有人列表；Etherscan 公开标签</td>
+<td style="text-align: center;">✅ 读数；⚠️ 标签是 Etherscan 的，不是 Bitfinex 的声明</td>
+</tr>
+<tr>
+<td>白皮书</td>
+<td><code>bitfinex.com/wp-2019-05.pdf</code> 原文</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>法院意见</td>
+<td>ECF 300 扫描件（CourtListener 存档），<strong>全文 20 页逐页读取</strong></td>
+<td style="text-align: center;">✅ 一手（初稿只读了首尾三页，第一轮审查后补读）</td>
+</tr>
+<tr>
+<td>法院案卷进展</td>
+<td>CourtListener RECAP 搜索接口的条目描述</td>
+<td style="text-align: center;">✅ 条目描述；⚠️ RECAP 镜像可能不全</td>
+</tr>
+<tr>
+<td>查扣地址余额</td>
+<td>mempool.space</td>
+<td style="text-align: center;">✅ 一手；地址余额 94,643.488 与法院意见第 18 页的 94,643.298 BTC 相差约 0.19（为此后收到的粉尘）</td>
+</tr>
+<tr>
+<td>12,267 BTC 转至 Coinbase Prime</td>
+<td>FinanceFeeds、BeInCrypto（搜索摘要）</td>
+<td style="text-align: center;">⚠️ 未核实与本案资产的对应</td>
+</tr>
+<tr>
+<td>白皮书效力声明</td>
+<td>白皮书原文开头</td>
+<td style="text-align: center;">✅ 一手；《Token Purchase Agreement》未读</td>
+</tr>
+<tr>
+<td>事件窗价格（2025-01、2025-04）</td>
+<td>Bitfinex 日线；币安 BTC</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>Vaulta 下架与提币截止日</td>
+<td>搜索摘要（Cryptoticker、Bitfinex 公告页）</td>
+<td style="text-align: center;">⚠️ 未打开原文</td>
+</tr>
+<tr>
+<td>2025-01「归还 $90 亿」报道</td>
+<td>Bitcoin.com、BeInCrypto 等（搜索结果）</td>
+<td style="text-align: center;">⚠️ 二手，已被法院意见取代</td>
+</tr>
+<tr>
+<td>CoinReporter「加速销毁 1,800 万」</td>
+<td>原文已打开</td>
+<td style="text-align: center;">❌ 与官方接口矛盾</td>
+</tr>
+<tr>
+<td>iFinex 收入、自有持仓</td>
+<td>—</td>
+<td style="text-align: center;">❌ 不公开</td>
+</tr>
+<tr>
+<td>CoinUp.io 成交</td>
+<td>CoinGecko 行情</td>
+<td style="text-align: center;">⚠️ 未核实</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113">11.3 来源偏向声明</h3>
+<ul>
+<li>供应、销毁、回购的数据全部来自<strong>发行人自己的接口</strong>（Bitfinex），本报告用两条链的节点做了勾稽，但「回购是否等于收入的 27%」无法独立核对。</li>
+<li>法律状态用的是<strong>法院文件原文</strong>；媒体报道只作为「被取代的说法」出现。</li>
+<li><strong>传统金融机构视角</strong>：本期引用了<strong>美联储</strong>政策。<strong>未找到 Deutsche Bank、Citi、JPMorgan 等对 LEO 或 iFinex 的研究覆盖</strong>——LEO 不在传统机构的研究范围里，这一点本身也是信息。</li>
+</ul>
+<h3 id="114">11.4 发布前审查记录</h3>
+<p><strong>第 1 层 自动核查</strong>（<code>tools/verify_report.py</code>）：0 FAIL / 0 WARN。⚠️ 「来源偏向」一项通过，部分是因为 11.3 在「未找到研究覆盖」的句子里提到了 Deutsche Bank、Citi、JPMorgan 的名字——<strong>实际引用的传统机构只有美联储</strong>；脚本按关键词计数，分辨不出「引用」与「声明没找到」。图表渲染检查：待销毁峰值标签原用日度 00:00 读数（37.8 万 / 18.4 万），改为补烧前的逐小时最高值（38.5 万 / 22.9 万），正文同步。</p>
+<p><strong>第 2–3 层 Codex（第一轮）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>法律叙事漏掉了同一份意见里最重要的反向证据</strong>：「$0」是程序选择；第 17 页写明申请人主张只占小部分，其余可由 Bitfinex 主张；初稿只读了首尾三页</td>
+<td>✅ <strong>补读全文 20 页</strong>，第 5 章重写；「$0」只作为程序事实，不再当空头证据</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>80% 是下限不是上限</strong>；资产不止 94,643 BTC（另有 2,818、12,267 BTC 与 BCH、BSV）</td>
+<td>✅ 改为「80% × 毛额」，按三种资产基数列表（76%–88%），补 BTC 盈亏平衡价</td>
+</tr>
+<tr>
+<td>3</td>
+<td>「回购额不足市值」不是有效的估值检验</td>
+<td>⚠️ 部分采纳：与 _bian 意见不同（见下），保留比值但写明三个成立条件，核心判断改为条件句</td>
+</tr>
+<tr>
+<td>4</td>
+<td>$2,520 万是销毁估值，不是回购支出；单月推收入有错位</td>
+<td>✅ 收入上限改用 12 个月口径（约 $778 万），并写明逆否方向</td>
+</tr>
+<tr>
+<td>5</td>
+<td>附属程序被写得像一般的赔偿竞争</td>
+<td>✅ 补 §853(n) 的「法定权益」标准与法院不审理 36% 减值争议</td>
+</tr>
+<tr>
+<td>6</td>
+<td>「无分红」被扩大成「无请求权」；发行主体是 Unus Sed Leo Limited</td>
+<td>✅ 改为「无股权与分红权；回购承诺约束力未核实」；补白皮书「不具法律约束力」声明与发行主体</td>
+</tr>
+<tr>
+<td>7</td>
+<td>「销毁可逆」未证明</td>
+<td>✅ 改为「不可逆性依赖发行人承诺（代码未读）」</td>
+</tr>
+<tr>
+<td>8</td>
+<td>待销毁余额是发行人自报的派生字段</td>
+<td>✅ 改为「发行人报告的计入数在增加，可能含手续费收到的 LEO」（_bian 第 5 条同）</td>
+</tr>
+<tr>
+<td>9</td>
+<td>托管集中与低 R² 被用来承担证明不了的结论</td>
+<td>✅ 「价格不是测量」改为「判别不了」；R² 只用于「超额不可归因」；托管集中写明「不指向任何方向」</td>
+</tr>
+<tr>
+<td>10</td>
+<td>记分卡避开核心判断</td>
+<td>✅ 改正不登记的理由（见记分卡）</td>
+</tr>
+<tr>
+<td>11</td>
+<td>LE9-1 的排查验证出处、验证不了回购</td>
+<td>✅ 论点标签改为「流通量减少」，排查只负责防外部转入（与 _bian 意见一致）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第 2–3 层 Codex（第二轮，审修订稿）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>「承诺下限」仍用错基数：承诺适用于扣除后的<strong>净额</strong>，76%–88% 是 80% × 毛额</td>
+<td>✅ 全文改称「80% × 毛额」，注明是承诺下限的上估</td>
+</tr>
+<tr>
+<td>2</td>
+<td>「自持约 2.2 亿枚即可覆盖」是静态等式，不是充分条件；9.2 漏了常规回购增长等路径</td>
+<td>✅ 改为三种情景各自的自持量（2.19 / 1.39 / 1.07 亿枚）并注明静态等式；9.2 改为「可能的解释（不互斥）」，补常规回购增长与折扣需求</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>法院转述从过度悲观摆到了过度乐观</strong>：「主要的不确定性是时间」没有依据</td>
+<td>✅ 改为「对手方份额上界很小，剩余部分归 Bitfinex 仍需其申请获准；归属与时间都未决」；补 §853(n)(6)(A) 标准与第 11、16 页</td>
+</tr>
+<tr>
+<td>4</td>
+<td>三种资产基数是独立情景，不是上下界与中间估计</td>
+<td>✅ 注明</td>
+</tr>
+<tr>
+<td>5</td>
+<td>收入上限与 4.4 的逆否推理</td>
+<td>⚠️ 部分采纳：保留 $778 万（_bian 认为 12 个月口径下估值误差约 ±10%），4.4 补写唯一的例外条件（$2.5 亿利润的 90% 以上集中在 3 月）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>LE9-1 排查不可执行：权限层级、以太坊、净额归因、采样时刻都未定义</td>
+<td>✅ 全部定义</td>
+</tr>
+<tr>
+<td>7</td>
+<td>记分卡拒登理由仍写「价格不是可用的测量」</td>
+<td>✅ 改为「判别不了」</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第 2–3 层 _bian（第二轮，审修订稿）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>5.4 事件窗选错了日期</strong>（信息在 2025-02-23 政府改建议时已公开）、尺子用错（应用同期 σ）、成交额没看</td>
+<td>✅ <strong>补做 2/24 窗口</strong>：残差 −8.4（同期 σ 1.66，约 5 倍）、成交 4.8 倍，4 天内收回；σ 改用同期；补成交倍数；删去「市场没注意到」这一解释</td>
+</tr>
+<tr>
+<td>2</td>
+<td>「一年 BTC −27%、LEO −5.6%」的旁证判别力太弱（_bian 撤回自己第一轮的建议）</td>
+<td>✅ 全部删除</td>
+</tr>
+<tr>
+<td>3</td>
+<td>9.2① 的「或」应为「且」</td>
+<td>✅ 改写</td>
+</tr>
+<tr>
+<td>4</td>
+<td>从「申请人只占小部分」推到「主要是时间」缺前提；速查丢了「新申请人未读」</td>
+<td>✅ 同 Codex #3；速查补回</td>
+</tr>
+<tr>
+<td>5</td>
+<td>承诺下限是拿毛额算的</td>
+<td>✅ 同 Codex #1</td>
+</tr>
+<tr>
+<td>6</td>
+<td>12,267 BTC 的转移没有传导到 LE9-4 与 88% 那一行</td>
+<td>✅ 两处都已注明</td>
+</tr>
+<tr>
+<td>7</td>
+<td>可以登记一个检验「是否读过头」的条件条目</td>
+<td>✅ 新增 LE9-5</td>
+</tr>
+<tr>
+<td>8</td>
+<td>LE9-1 排查不可执行（_bian 承认第一轮建议有缺陷）</td>
+<td>✅ 同 Codex #6</td>
+</tr>
+<tr>
+<td>9</td>
+<td>11.4 写了补 §853(n)，正文里找不到</td>
+<td>✅ 已补进 5.2</td>
+</tr>
+<tr>
+<td>10</td>
+<td>10.3 漏了法院分配；330 倍应写明隐含的折现条件</td>
+<td>✅ 两处都已补</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第二轮的分歧</strong>：Codex 认为 $778 万的收入上限与 4.4 的二选一推断都不可靠；_bian 认为在 12 个月口径下成立，只需写明例外。<strong>本报告采纳 _bian 的意见，并写明例外条件。</strong></p>
+<p><strong>第 2–3 层 _bian（第一轮）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>追回规模与第三方折扣被自己缓存的法院意见推翻（只读了首尾页）</td>
+<td>✅ 同 Codex #1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>下限写成上限；卷首与速查丢了 BTC 价格条件；盈亏平衡价约 $9.5 万–11 万</td>
+<td>✅ 同 Codex #2；卷首写明成立条件</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>「回购美元 vs 市值」在总量框架下是有效上界，问题是报告否认了框架、并把分母里的发行人自持当成了 0</strong></td>
+<td>✅ 5.3 改写比值的含义与三个成立条件；补「自持约 2.2 亿枚即可覆盖」</td>
+</tr>
+<tr>
+<td>4</td>
+<td>9.2 说不表态，卷首与速查却表了态；可以做事件窗</td>
+<td>✅ 卷首、3.2、速查改为「判别不了」；<strong>补做 2025-01 与 2025-04 两个事件窗</strong>（5.4，均无显著反应）</td>
+</tr>
+<tr>
+<td>5</td>
+<td>历史停顿时长写错（实为 59 天与 27 天）；「回购没停」依据派生计数器；9 月比 8 月少 26%</td>
+<td>✅ 全部改正；LE9-1 先验理由重写</td>
+</tr>
+<tr>
+<td>6</td>
+<td>同一机制两面星级不对称；空头 #1–#3 是一组</td>
+<td>✅ 多头 #1 与空头 #5 同为三星；空头 #1–#3 注明关系</td>
+</tr>
+<tr>
+<td>7</td>
+<td>$750 万方向对，改 12 个月口径、写成双向约束</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>8</td>
+<td>4.4 的逆否推理有两个嫌疑人、时点错配</td>
+<td>✅ 改为「两者至少有一个不成立」</td>
+</tr>
+<tr>
+<td>9</td>
+<td>LE9-1 排查写死了疑似已坏的路径；标签与统计量有灰区；不登记核心判断的理由不同构</td>
+<td>✅ 见记分卡审查记录</td>
+</tr>
+<tr>
+<td>10</td>
+<td>0.345% 与 $2,520 万窗口不同；10.2「拿不到」与法院原文相反</td>
+<td>✅ 改正</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Codex 与 _bian 的分歧</strong>：Codex 认为「回购额 vs 市值」不是有效的估值检验；_bian 认为按总量框架它是有效的上界、问题在分母。<strong>本报告采纳 _bian 的框架</strong>（每一美元回购都付给了卖出者），但按 Codex 的意见不再把它当成否定性证据，只作为带条件的量级参照。</p>
+<hr />
+<blockquote>
+<p>配套速查请阅读 <code>leo_questions_summary_202609.md</code>。<br />
+论点检验记录见 <code>../thesis_scorecard.md</code>。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-leo-unus-sed-leo-2026-9">LEO / UNUS SED LEO 简明速查（2026 年 9 月版，首期）</h1>
+<blockquote>
+<p>完整报告的浓缩版，给快速复习用。<strong>数据截止 2026-09-30，链上、官方接口与法院案卷快照到 10/12–10/13。</strong><br />
+本文件不构成投资建议。</p>
+</blockquote>
+<hr />
+<h2 id="s-1">1. 一句话</h2>
+<p><strong>LEO 的常规回购一年约 $2,520 万，解释不了约 $83.1 亿的市值；被盗 BTC 追回的回购承诺按「80% × 扣除前毛额」与 9/30 BTC 价格约为市值的 76%–88%（承诺按净额计，真实下限更低），BTC 在约 $9.5 万–11 万以上时超过市值——但它取决于还在审理的附属没收程序（按时申请的第三方只主张约 4,269 BTC，剩余部分归 Bitfinex 仍需其申请获准；2026 年新申请人未读），以及市值分母里有多少是 iFinex 自己的 LEO（99.75% 在 Bitfinex 钱包里，分不开）。9/1 起销毁停了 42 天（历史最长 59 天）。</strong></p>
+<hr />
+<h2 id="s-2">2. 三个默认</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>流通量已知吗</td>
+<td>⚠️ 两链总量 − 合约账户余额 = 919,857,851.9，与官方接口<strong>完全相等</strong>（确认的是定义）；「已销毁」里 4,780 万枚仍在 Bitfinex 多签控制的合约账户里</td>
+</tr>
+<tr>
+<td>价格可用吗</td>
+<td>⚠️ Bitfinex 日成交中位数约 $17.1 万（9 月约 $9.3 万）；一年 2 天单日 −20% 以上后次日反弹；<strong>是报价还是均衡价判别不了</strong></td>
+</tr>
+<tr>
+<td>持有人是剩余索取权人吗</td>
+<td>❌ 白皮书原文：不是股本、不享有分红；回购承诺写在自称「不具法律约束力」的营销文件里，购买协议未读</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-3">3. 当前位置</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td><strong>$9.0348</strong>（Bitfinex LEO/USD）</td>
+</tr>
+<tr>
+<td>9 月 / Q3 / 近一年</td>
+<td><strong>−6.37% / −2.54% / −5.60%</strong>（BTC +6.42% / +42.64% / −26.68%）</td>
+</tr>
+<tr>
+<td>beta / R² / 波动率</td>
+<td><strong>0.419 / 0.126 / 53.2%</strong>（beta 不可靠）</td>
+</tr>
+<tr>
+<td>市值（9/30）</td>
+<td>约 <strong>$83.1 亿</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-4">4. 回购与销毁</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>白皮书承诺</td>
+<td>每月回购 ≥ 上月<strong>合并总收入</strong>的 27%；Crypto Capital 追回净额 ≥ 95%；被盗 BTC 追回净额 ≥ 80%（18 个月内）</td>
+</tr>
+<tr>
+<td>白皮书效力</td>
+<td>开头声明「marketing document ... not intended to be legally binding」；以购买协议为准（未读）</td>
+</tr>
+<tr>
+<td>12 个月常规回购</td>
+<td>2,695,250 枚，约 <strong>$2,520 万</strong>（约为供应的 0.29%）</td>
+</tr>
+<tr>
+<td>9 月</td>
+<td><strong>只销毁 1 笔（6,559 枚，9/1）</strong>；发行人报告的待销毁 9/30 151,201、10/13 243,658（派生计数，可能含手续费收到的 LEO；9 月计入比 8 月少 26%）</td>
+</tr>
+<tr>
+<td>历史停顿</td>
+<td>2025-07-17 至 09-15（59 天）、2026-01-07 至 02-04（27 天），都以补烧结束</td>
+</tr>
+<tr>
+<td>若承诺被完整执行</td>
+<td>iFinex 月合并总收入不超过约 <strong>$778 万</strong>；反过来，收入若更高就说明承诺没被完整执行（两个方向都判不了）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>销毁 = 转进合约账户 <code>bitfinexleo1</code></strong>，该账户由 Bitfinex 的三选二多签控制——不可逆性依赖发行人承诺（合约代码未读）</li>
+<li><strong>CoinReporter「Q1 加速销毁 1,800 万枚」是假的</strong>：官方接口显示 Q1 只减少 78.3 万</li>
+</ul>
+<hr />
+<h2 id="s-5-btc">5. 被盗 BTC 的追回</h2>
+<ul>
+<li>查扣地址 <strong>94,643.49 BTC，累计转出 0</strong>（mempool.space，10/13）</li>
+<li><strong>法院 2025-04-04 意见（全文 20 页）：$0 [自愿] 赔偿、只走第三方附属没收程序——这是程序选择</strong>；第 17 页：即使所有按时申请人都胜诉，他们主张的也只占被盗钱包资金的「small percentage」，其余「subject to claim by Bitfinex」——<strong>对手方份额的上界，不等于 Bitfinex 获准</strong>（无人证明权益的部分默认归政府）</li>
+<li>Bitfinex 主张可追溯 <strong>约 109,729 BTC</strong>（+ BCH、BSV 各约 11.7 万）；按时申请人合计约 <strong>4,269 BTC</strong></li>
+<li>媒体的「法院下令归还 $90 亿」是 2025-01 政府的动议，已被取代</li>
+<li><strong>价格对追回消息有反应</strong>：2025-02-23 政府改建议后的首个交易日，LEO 扣除 BTC 后约 −8.4（同期日波动的约 5 倍），4 天内收回</li>
+</ul>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产基数</th>
+<th style="text-align: right;">80% × 毛额 ÷ 市值</th>
+<th style="text-align: right;">追回额等于市值的 BTC 价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>查扣地址 94,643</td>
+<td style="text-align: right;">76%</td>
+<td style="text-align: right;">约 $109,800</td>
+</tr>
+<tr>
+<td>主张的全部 109,729</td>
+<td style="text-align: right;">88%</td>
+<td style="text-align: right;">约 $94,700</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-6">6. 持有分布</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>持有方</th>
+<th style="text-align: right;">LEO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>以太坊「Bitfinex: MultiSig 2」（2020-12 以来从未转出）</td>
+<td style="text-align: right;">6.48 亿</td>
+</tr>
+<tr>
+<td>EOS 冷钱包 <code>bitfinexcw55</code></td>
+<td style="text-align: right;">2.578 亿</td>
+</tr>
+<tr>
+<td>以太坊「Bitfinex 2」+ EOS <code>bitfinexdep1</code></td>
+<td style="text-align: right;">约 1,172 万</td>
+</tr>
+<tr>
+<td><strong>Bitfinex 合计</strong></td>
+<td style="text-align: right;"><strong>99.75%</strong></td>
+</tr>
+<tr>
+<td>其余所有地址</td>
+<td style="text-align: right;">约 234 万</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>交易所钱包 ≠ 公司自有；<strong>分不开本身不指向任何方向</strong>，但它让市值分母成为未知：零扣除、按 9/30 价格，iFinex 自持约 1.07 亿–2.19 亿枚（视资产基数），80% × 毛额就等于其余流通市值（静态等式）</li>
+</ul>
+<hr />
+<h2 id="s-7">7. 估值</h2>
+<ul>
+<li><strong>不给目标价</strong>：无股权与分红权；承诺约束力与执行都无法核实；追回规模取决于未决程序</li>
+<li>市值 ÷ 12 个月常规回购约 <strong>330 倍</strong>；追回回购 80% × 毛额 ÷ 市值约 76%–88%</li>
+</ul>
+<hr />
+<h2 id="s-8">8. 记分卡</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>论点</th>
+<th style="text-align: center;">先验</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LE9-1 年底前官方流通量减少 ≥ 30 万（补烧或累计够量）</td>
+<td style="text-align: center;">70%</td>
+</tr>
+<tr>
+<td>LE9-2 ⚑ 校准对照：12 月 LEO/BTC 月均较 9 月降超过 10%</td>
+<td style="text-align: center;">40%（随机游走基率，敏感性 37%–41%）</td>
+</tr>
+<tr>
+<td>LE9-3 ⚑ 年底前法院对 Bitfinex 附属申请作出实体裁定</td>
+<td style="text-align: center;">15%</td>
+</tr>
+<tr>
+<td>LE9-4 94,643 BTC 地址到 2027-03-31 仍无转出</td>
+<td style="text-align: center;">85%</td>
+</tr>
+<tr>
+<td>LE9-5 若出现实体裁定，判给 Bitfinex 的 BTC ≥ 主张量的 90%（无裁定判 ⊘）</td>
+<td style="text-align: center;">65%</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-3-5">如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>LEO 的常规回购一年约 $2,520 万，只有市值的约 0.3%；9/1 起销毁停了 42 天，历史最长一次是 59 天。</strong></p>
+</li>
+<li>
+<p><strong>最大的潜在买方是被盗 BTC 追回的回购承诺：80% × 扣除前毛额按 9/30 BTC 价格约为市值的 76%–88%（承诺按净额计，真实下限更低）。</strong></p>
+</li>
+<li>
+<p><strong>法院判的「$0 赔偿」是程序选择，改走附属没收程序；按时申请的第三方只主张小部分，但剩余部分归 Bitfinex 仍需其申请获准——归属与时间都未决。</strong></p>
+</li>
+<li>
+<p><strong>99.75% 的 LEO 在 Bitfinex 的钱包里，iFinex 自己持有多少分不开；回购承诺写在一份自称不具法律约束力的营销文件里。</strong></p>
+</li>
+<li>
+<p><strong>日成交约 $17 万：$83 亿的市值是报价还是均衡价，本报告判别不了。</strong></p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>leo_research_report_202609.md</code>。<br />
+论点检验记录见 <code>../thesis_scorecard.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>
