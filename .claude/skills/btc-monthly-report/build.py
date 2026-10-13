@@ -55,6 +55,8 @@ PROFILES = {
                  accent='#0098ea', badge='◇ TON'),
     'pons': dict(symbol='◐', name='PONS / Pons', short='PONS',
                 accent='#1a2740', badge='◐ Pons'),
+    'okb': dict(symbol='◈', name='OKB / X Layer', short='OKB',
+               accent='#111111', badge='◈ OKX'),
 }
 
 

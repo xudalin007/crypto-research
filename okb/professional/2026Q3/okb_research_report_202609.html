@@ -1,0 +1,1504 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>OKB / X Layer 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#111111;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">◈ OKB 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>◈ OKB 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-okb">1. OKB 是什么</a>
+<a href="#2-okb">2. OKB 的发展阶段划分</a>
+<a href="#3-okb">3. OKB 当前现状</a>
+<a href="#4-2100">4. 供应</a>
+<a href="#5-gas">5. 价值捕获</a>
+<a href="#6-okb">6. OKB 与其他资产的比较</a>
+<a href="#7">7. 核心价值逻辑</a>
+<a href="#8">8. 多空之间真正的分歧点</a>
+<a href="#9">9. 估值</a>
+<a href="#10">10. 投资与风险启示</a>
+<a href="#11_1">11. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-1">1. 一句话</a>
+<a href="#s-2">2. 三个默认还成立吗</a>
+<a href="#s-3">3. 当前位置</a>
+<a href="#s-4-okb">4. OKB 现在还能干什么</a>
+<a href="#s-5-x-layer">5. X Layer</a>
+<a href="#s-6">6. 供应</a>
+<a href="#s-7">7. 估值</a>
+<a href="#s-8">8. 记分卡</a>
+<a href="#s-3-5">如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>◈ OKB / X Layer<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">◈ OKX</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="okb-x-layer-2026-9">OKB / X Layer 完整调研与分析报告（2026 年 9 月版，首期）</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 10 月 13 日<br />
+<strong>数据截止</strong>：2026 年 9 月 30 日；链上与聚合器快照到 10/12<br />
+<strong>研究方法</strong>：沿用本系列框架。价格用 <strong>OKX 现货 OKB-USDT 日线 UTC 收盘</strong>（OKB 不在币安上市）；超额收益用对数口径（ln 收益 − beta × ln BTC 收益，不扣截距）。<br />
+<strong>本期为 OKB 首期报告</strong>，本系列第十五个资产，也是继 BNB 之后<strong>第二个交易所平台币</strong>。</p>
+<p><strong>接入新资产的第一步：三个默认还成立吗</strong>（XIN 期教训）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th style="text-align: center;">结果</th>
+<th>依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>流通量已知吗</strong></td>
+<td style="text-align: center;">⚠️ <strong>只有发行方口径，本报告尚未独立核验</strong></td>
+<td>CoinGecko 流通 = 总量 = 上限 = 2,100 万；以太坊 ERC-20 合约 <code>totalSupply</code> 429,065 枚；X Layer 原生总供应本报告用公开 RPC 没读出来（原则上可由全状态余额求和核验）</td>
+</tr>
+<tr>
+<td><strong>价格是可用的测量吗</strong></td>
+<td style="text-align: center;">✅ 可用，⚠️ 单一主场</td>
+<td>OKX 9 月日成交中位数约 $1,289 万；<strong>主要成交在发行方自己的交易所</strong></td>
+</tr>
+<tr>
+<td><strong>代币持有人是剩余索取权人吗</strong></td>
+<td style="text-align: center;">❌ <strong>没有找到赋予利润请求权的文件</strong></td>
+<td>OKX 官方 FAQ：OKB <strong>不能</strong>抵扣交易手续费、<strong>不影响</strong>费率等级；人工销毁停止。⚠️ <strong>但 OKB 仍有使用权益</strong>：现行两项（X Layer gas、Jumpstart），另有一项提案（Exchange OS 质押），见 1.1</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>本期核心发现</strong>：<br />
+1. <strong>2025-08 之后，OKB 和 OKX 交易所的「费率」联系被切断，但「使用」联系没有全部切断。</strong><br />
+   官方 FAQ 写明 OKB 不能抵扣交易手续费、不影响费率等级，人工季度销毁停止；<strong>但 OKX 借币指南（10/09 更新）仍写「借入 OKB 参与 Jumpstart」</strong>；<br />
+<strong>2026-05 发布的 Exchange OS 白皮书（「供反馈」版本的 XIP 提案）设计：部署方须质押 OKB 才能在 X Layer 上创建交易场所、获得上币额度，质押可被罚没</strong>——是否已上线、质押了多少，本期未核实。<br />
+2. <strong>X Layer 的 gas 目前进入链上金库，未发现销毁或分给持有人的机制</strong>：X Layer 已从 Polygon CDK 迁到 <strong>OP Stack</strong>（官方技术文章，旧链终止于区块 42,810,021）；<br />
+   本报告直读两个手续费金库合约：<strong>当前余额合计约 2,172.5 枚 OKB，提取计数器为 0</strong>，收款人为同一地址 <code>0x610de914…c102</code>（与官方区块 API 示例中旧链的出块地址一致——有运营关联线索，当前控制者未独立核实）。<br />
+   9 月链上手续费约 <strong>$4.64 万</strong>（DefiLlama），年化约 $56 万——<strong>OKB 市值约 $25.5 亿，是年化 gas 的约 4,600–11,600 倍</strong>（9 月单月年化 / 2026 年月均年化；近 12 个月实际口径约 8,470 倍）。<br />
+3. <strong>供应</strong>：发行方口径 <strong>2,100 万</strong>，一次性销毁 65,256,712.097 枚后合约去掉了增发与销毁函数（以太坊 ERC-20 侧）；<br />
+<strong>DefiLlama 追踪的 OKX 交易所地址在 X Layer 上持有约 1,218 万枚 OKB（相当于发行方总量的 58%，含用户存款）</strong>；以太坊 ERC-20 只剩 42.9 万枚。<br />
+4. <strong>价格</strong>：2025-08-12 收 $46.55，<strong>8/13 公布销毁当日收 $105.02（+125.6%）</strong>，8/21 收盘高点 $229.36，2026-02-05 收盘低点 $68.18；<strong>9/30 收 $121.20，9 月 +8.12%、Q3 +53.75%</strong>（BTC +6.42% / +42.64%）。</p>
+<p><strong>本期核心判断</strong>：<strong>OKB 是一个「发行方口径固定供应、无利润请求权、无回购承诺」的平台币，它的已确认用途是 X Layer gas（本期测得出，量级是市值的约 1/4,600 至 1/11,600）；Jumpstart 有官方 OKB 用例描述（当期活动未核实）；Exchange OS 提出了 OKB 质押需求（上线与执行未核实）。</strong><br />
+<strong>本报告不给目标价</strong>：「市值 ÷ 费用」不能直接作为持有人现金流的估值锚（gas 不归持有人），而 Jumpstart 与 Exchange OS 质押的需求本期没有读数。</p>
+<p>⚠️ <strong>本期初稿把 OKB 写成「需求只剩 gas」「X Layer 是 Polygon CDK」「gas 去向为二手」——两位审查者用官方白皮书、官方指南与官方技术文档指出了三处遗漏</strong>；本报告随后一手核实并读出了手续费金库。见 11.4。</p>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>OKB 是什么</strong></td>
+<td><strong>X Layer 原生 gas 代币 + OKX 生态的使用凭证</strong>（Jumpstart；Exchange OS 质押为提案）。<strong>不再提供交易手续费折扣</strong></td>
+</tr>
+<tr>
+<td><strong>9/30 收盘</strong></td>
+<td><strong>$121.20</strong>（OKX）；按 2,100 万枚，市值约 <strong>$25.5 亿</strong></td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3 / 近一年</strong></td>
+<td><strong>+8.12% / +53.75% / −35.81%</strong>（BTC +6.42% / +42.64% / −26.68%）</td>
+</tr>
+<tr>
+<td><strong>一年 beta / R² / 波动率</strong></td>
+<td><strong>0.881 / 0.409 / 62.1%</strong></td>
+</tr>
+<tr>
+<td><strong>对数超额</strong></td>
+<td>9 月 +2.3、Q3 +11.7（对照组中位数 +13.2、+2.8）</td>
+</tr>
+<tr>
+<td><strong>距收盘高点</strong></td>
+<td><strong>−47.2%</strong>（$229.36，2025-08-21）</td>
+</tr>
+<tr>
+<td><strong>供应</strong></td>
+<td>发行方口径 <strong>2,100 万</strong>；人工销毁停止；黑洞地址仍可销毁。<strong>X Layer 原生总供应本报告尚未独立核验</strong></td>
+</tr>
+<tr>
+<td><strong>持有人权益</strong></td>
+<td><strong>无利润请求权、无手续费折扣、无回购承诺</strong>；gas 为已确认用途；Jumpstart 有官方用例描述；Exchange OS 质押为设计</td>
+</tr>
+<tr>
+<td><strong>X Layer</strong></td>
+<td>OP Stack；9 月手续费 <strong>$4.64 万</strong>；手续费金库累计 <strong>2,172.5 OKB 未提取</strong>；10/01 TVL <strong>$1.72 亿</strong></td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td><strong>不给目标价</strong>（第 9 章）</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-okb">1. OKB 是什么</h2>
+<h3 id="11">1.1 一个平台币的用途：两项现行、一项提案</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>用途</th>
+<th>状态</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>~~交易手续费折扣 / 费率等级~~</td>
+<td><strong>已取消</strong>：「OKB 不能用于抵扣交易手续费，持有 OKB 也不影响手续费折扣等级」</td>
+<td>✅ OKX 官方 FAQ</td>
+</tr>
+<tr>
+<td>~~季度回购销毁~~</td>
+<td><strong>人工销毁停止</strong>；转入黑洞地址的 OKB 仍会自动销毁；<strong>未找到持续回购的官方承诺</strong></td>
+<td>✅ OKX 官方 FAQ</td>
+</tr>
+<tr>
+<td><strong>Jumpstart（新币申购）</strong></td>
+<td><strong>仍在</strong>：「借入 OKB 来参与 Jumpstart 活动」</td>
+<td>✅ OKX 借币指南（2026-10-09 更新）</td>
+</tr>
+<tr>
+<td><strong>X Layer gas</strong></td>
+<td><strong>仍在</strong>：OKB 是 X Layer 原生 gas 代币</td>
+<td>✅ OKX 官方 FAQ</td>
+</tr>
+<tr>
+<td><strong>Exchange OS 质押</strong></td>
+<td><strong>设计中 / 上线状态未核实</strong>：「部署方须先在 X Layer 质押合约中质押 OKB，才能创建交易场所或上币」；质押可被罚没</td>
+<td>✅ 白皮书 V1.0（2026-05，「供反馈」版本）；⚠️ 合约与实际质押量本期未核实</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>2025-08 的三个动作</strong>（OKX 官方 FAQ 日程，UTC+8）：08-13 停止向以太坊 L1 提现；08-15 一次性销毁 65,256,712.097 OKB、总量定为 2,100 万；08-18 合约去掉增发与销毁函数。</p>
+<blockquote>
+<p><strong>对持有人最重要的区分</strong>：<strong>「没有利润请求权」和「没有使用权益」是两回事。</strong> OKB 一直没有前者（本报告没有找到任何赋予它的文件）；2025-08 取消的是使用权益中的一项（费率折扣），<strong>Jumpstart 与 gas 仍在，Exchange OS 是新增设计</strong>。<br />
+⚠️ 不能抵扣手续费、不赋予利润请求权，<strong>同时符合发行方的监管利益</strong>——这是一个可逆的安排，不是一个永久约束。</p>
+</blockquote>
+<h3 id="12-x-layer">1.2 X Layer</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>技术栈</td>
+<td><strong>OP Stack</strong>（执行客户端 reth）；从 Polygon CDK（zkEVM Validium）迁移，<strong>旧链终止于区块 42,810,021</strong></td>
+<td>✅ OKX 官方技术文章（2026-05-26）</td>
+</tr>
+<tr>
+<td>gas 代币</td>
+<td>OKB</td>
+<td>✅ 官方 FAQ</td>
+</tr>
+<tr>
+<td>手续费去向</td>
+<td>进入 <code>SequencerFeeVault</code>（<code>0x42…0011</code>）与 <code>BaseFeeVault</code>（<code>0x42…0019</code>），<code>L1FeeVault</code> 为 0</td>
+<td>✅ 官方合约表 + <strong>本报告链上直读</strong></td>
+</tr>
+<tr>
+<td>金库余额（10/12）</td>
+<td><strong>1,277.6 + 895.0 = 2,172.5 OKB</strong>，<code>totalProcessed</code> 均为 <strong>0（计数器未记录提取，覆盖当前 OP Stack 部署期间）</strong>；收款人均为 <code>0x610de9141a2c51a9a9624278aa97fbe54b27c102</code>（X Layer 上）</td>
+<td>✅ 直读</td>
+</tr>
+<tr>
+<td>2025-08-28 的桥合约变化</td>
+<td>旧 Polygon CDK 桥合约（<code>0x2a3dd3eb…</code>）预置的 2¹²⁸ wei 在区块 32,843,575 归零——<strong>与 OP Stack 迁移不是同一事件</strong>，原因本期未识别</td>
+<td>✅ 直读</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>当前费用进入金库，截至快照未记录提取；未发现自动向持有人分配或销毁的机制；提取后的用途未核实</strong>——这不排除以后被销毁，也不覆盖迁移前（Polygon CDK 时期）的手续费。<br />
+收款地址 <code>0x610de914…c102</code> 与 OKX 官方区块 API 示例中旧链的 <code>validator</code> / <code>miner</code> 一致，<strong>有运营关联线索，但当前控制者与资金用途未独立核实</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="2-okb">2. OKB 的发展阶段划分</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>特征</th>
+<th>标志性事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一</td>
+<td>2018–2025.07</td>
+<td>交易所平台币（ERC-20）</td>
+<td>费率折扣、Jumpstart、季度回购销毁（本报告只取得 2025-05 起的日线）</td>
+</tr>
+<tr>
+<td>二</td>
+<td><strong>2025-08</strong></td>
+<td><strong>一次性销毁 + 2,100 万上限 + 取消费率折扣</strong></td>
+<td><strong>8/13 当日 +125.6%</strong>；8/21 收盘高点 $229.36</td>
+</tr>
+<tr>
+<td>三</td>
+<td>2025-09 – 2026-02</td>
+<td>退潮</td>
+<td><strong>2026-02-05 收盘低点 $68.18</strong>（较高点 −70.3%；同期 BTC 亦大跌，见 3.1）</td>
+</tr>
+<tr>
+<td>四</td>
+<td>2026-03 – 至今</td>
+<td>X Layer 迁至 OP Stack、Exchange OS 白皮书、TVL 增长</td>
+<td>TVL 从 $2,310 万（3/01）到 $1.72 亿（10/01）；9/30 收 $121.20</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="3-okb">3. OKB 当前现状</h2>
+<h3 id="31">3.1 价格与市场</h3>
+<p><img alt="OKB 日收盘与 2025-08 的公告" src="charts/price-burn-202609.svg" /></p>
+<blockquote>
+<p>图中数字：纵轴 $0 / $50 / $100 / $150 / $200 / $250；标注点 2025-08-12 $46.55、2025-08-21 $229.36、2026-02-05 $68.18、2026-09-30 $121.20；竖线 2025-08-13（公布一次性销毁 6,526 万枚）、2025-08-28（旧桥合约会计切换）。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td><strong>$121.20</strong></td>
+<td>OKX OKB-USDT 日线，UTC</td>
+</tr>
+<tr>
+<td>8/31 / 6/30 收盘</td>
+<td>$112.10 / $78.83</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3 / 近一年</strong></td>
+<td><strong>+8.12% / +53.75% / −35.81%</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>9 月收盘区间</td>
+<td>$105.20 – $123.01</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>收盘高点 / 距高点</td>
+<td>$229.36（2025-08-21）/ <strong>−47.2%</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>9 月日成交中位数</td>
+<td>约 $1,289 万</td>
+<td>OKX，单一交易所</td>
+</tr>
+<tr>
+<td>市值（9/30）</td>
+<td>约 <strong>$25.5 亿</strong></td>
+<td>2,100 万（发行方口径）× 收盘价</td>
+</tr>
+<tr>
+<td>一年 beta / R² / 年化波动率</td>
+<td><strong>0.881 / 0.409 / 62.1%</strong></td>
+<td>365 天日对数收益；R² 为样本内线性解释比例</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>对数超额收益</strong>（对照组为本系列 9 个山寨：ZEC / UNI / ADA / SOL / BNB / ETH / TRX / CKB / DOT）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">7 月</th>
+<th style="text-align: right;">8 月</th>
+<th style="text-align: right;"><strong>9 月</strong></th>
+<th style="text-align: right;"><strong>Q3</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OKB 对数超额（×100）</td>
+<td style="text-align: right;">+2.4</td>
+<td style="text-align: right;">+7.0</td>
+<td style="text-align: right;"><strong>+2.3</strong></td>
+<td style="text-align: right;"><strong>+11.7</strong></td>
+</tr>
+<tr>
+<td>对照组中位数</td>
+<td style="text-align: right;">+1.7</td>
+<td style="text-align: right;">−3.3</td>
+<td style="text-align: right;">+13.2</td>
+<td style="text-align: right;">+2.8</td>
+</tr>
+<tr>
+<td>OKB − 对照组中位数</td>
+<td style="text-align: right;">+0.7</td>
+<td style="text-align: right;">+10.4</td>
+<td style="text-align: right;"><strong>−10.9</strong></td>
+<td style="text-align: right;"><strong>+8.9</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>特质波动的尺度：单月约 13.7 个对数点，<strong>一个季度约 24 个点</strong>（独立日残差假设）——<strong>Q3 的 +11.7 约半个标准差</strong>。相对对照组的差值是描述性的。<br />
+<strong>2025-09-01 → 2026-02-05 的回撤拆分</strong>：OKB 对数收益 −90 个点，BTC −55 个点；按 beta 0.881，<strong>约 54% 的跌幅可由 BTC 解释</strong>。2025-08 那一段（8/21 高点前后）本报告缺 BTC 同口径数据，未拆分。</p>
+</blockquote>
+<h3 id="32-bnb">3.2 与 BNB 的对照（两个交易所平台币）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>OKB</strong></th>
+<th><strong>BNB</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月 / Q3</td>
+<td>+8.12% / +53.75%</td>
+<td>+11.26% / +40.76%</td>
+</tr>
+<tr>
+<td>beta / R²</td>
+<td>0.881 / 0.409</td>
+<td>0.884 / 0.594</td>
+</tr>
+<tr>
+<td>交易所手续费折扣</td>
+<td><strong>❌ 已取消</strong></td>
+<td>✅</td>
+</tr>
+<tr>
+<td>新币申购类权益</td>
+<td>✅ Jumpstart</td>
+<td>✅ Launchpool 等</td>
+</tr>
+<tr>
+<td>供应减少机制</td>
+<td><strong>❌ 人工销毁停止</strong>；黑洞销毁仍可能</td>
+<td>✅ 季度 Auto-Burn（公式化，BNB 官方说明独立于币安交易所） + gas 部分销毁</td>
+</tr>
+<tr>
+<td>自有链的 gas</td>
+<td>✅ X Layer（月费约 $4.6 万，<strong>进金库，未发现销毁机制</strong>）</td>
+<td>✅ BNB Chain（部分销毁）</td>
+</tr>
+<tr>
+<td>供应</td>
+<td>发行方口径固定 2,100 万</td>
+<td>持续减少</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>两者都没有对交易所利润的请求权</strong>——BNB 的 Auto-Burn 是公式化的链上机制，<strong>不是股东式的利润回购</strong>（BNB 8 月版「准股权」的说法在此需要收窄，留待 BNB 下期处理）。<br />
+<strong>OKB 比 BNB 少的是「供应减少机制」与「费率折扣」两项。</strong> beta 几乎相同（0.881 vs 0.884），R² 低一截。</p>
+</blockquote>
+<h3 id="33">3.3 宏观环境</h3>
+<blockquote>
+<p>与 BTC 9 月版共用（美联储 9/16 加息 25bp 至 3.75–4.00%）。<strong>OKB 的 R² 为 0.409。</strong></p>
+</blockquote>
+<hr />
+<h2 id="4-2100">4. 供应：2,100 万（本期核心章之一）</h2>
+<p><img alt="能独立观测到的 OKB" src="charts/supply-where-202609.svg" /></p>
+<blockquote>
+<p>图中数字（百万枚）：OKX 交易所钱包 12.177、以太坊 ERC-20 0.429、X Layer 手续费金库 2,172 枚；虚线为发行方口径 21.0。三项口径不同，不相加。</p>
+</blockquote>
+<h3 id="41">4.1 本报告能核实的</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>观测</th>
+<th style="text-align: right;">OKB</th>
+<th>来源</th>
+<th style="text-align: center;">核实</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>以太坊 ERC-20</strong>（合约 <code>0x75231F58…</code>）<code>totalSupply</code></td>
+<td style="text-align: right;"><strong>429,064.58</strong></td>
+<td>公共 RPC 直读；Blockscout 同值，20,382 个持有地址</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td><strong>OKX 交易所追踪地址（X Layer）</strong></td>
+<td style="text-align: right;"><strong>12,177,777</strong>（10/12 直读；7/28 起 11 周在 1,195–1,222 万之间）</td>
+<td>DefiLlama 适配器（commit <code>b70f0fb4dc9f</code>）列出的 <strong>24 个地址</strong>，本报告逐个直读原生余额求和；与 DefiLlama 汇总值差 354 枚</td>
+<td style="text-align: center;">✅ 余额一手；⚠️ <strong>地址归属由 DefiLlama 认定</strong>，未独立核实</td>
+</tr>
+<tr>
+<td>X Layer 手续费金库</td>
+<td style="text-align: right;">2,172.5</td>
+<td>直读</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>X Layer 零地址 / 黑洞地址</td>
+<td style="text-align: right;">95.08 / 62.00</td>
+<td>直读</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>约 1,218 万 ÷ 发行方总量 2,100 万 ≈ 58%</strong>——<strong>分母是发行方口径，不是链上可观测量</strong>；交易所钱包含用户存款，<strong>不等于 OKX 自有，也不直接决定「是否流通」</strong>。</p>
+</blockquote>
+<h3 id="42-x-layer">4.2 本报告尚未核实的：X Layer 原生总供应</h3>
+<p>本报告尝试了两条路，都没有走通：</p>
+<ol>
+<li><strong>旧桥合约会计</strong>：Polygon CDK 体系的桥合约预置一大笔原生币，「预置额 − 当前余额」即为已流出量。X Layer 旧桥合约在 2025-08-28 的区块 32,843,575 归零，<strong>之后这条路不成立</strong>；而 X Layer 已迁到 OP Stack，<strong>OP Stack 没有现成的原生供应计数器</strong>。</li>
+<li><strong>以太坊侧</strong>：若 OKB 是从以太坊锁仓跨过去的，锁仓的币仍计入 ERC-20 <code>totalSupply</code>——<strong>而它只有 42.9 万——「当前 ERC-20 全额锁仓、1:1 担保全部 X Layer 原生余额」的解释不成立</strong>（不排除少量锁仓桥或混合机制）。但 42.9 万<strong>同时与「以太坊侧销毁、X Layer 侧 1:1 铸造的迁移」和「X Layer 侧另行发行」相容</strong>，两者对总量的含义不同，<strong>本期未区分</strong>（能区分的数据——ERC-20 的转零地址事件加总——列入下期第一优先）。</li>
+</ol>
+<blockquote>
+<p><strong>结论</strong>：<strong>「2,100 万」目前只有发行方口径，本报告尚未独立核验。</strong> 原则上，任何人对 X Layer 全状态的原生余额求和就能核验——<strong>这是本报告的能力限制，不是资产本身不可验证</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="5-gas">5. 价值捕获：已确认的用途只有 gas 测得出（本期核心章之二）</h2>
+<p><img alt="X Layer 月度链上手续费与 TVL" src="charts/xlayer-fees-tvl-202609.svg" /></p>
+<blockquote>
+<p>图中数字：左图月手续费（千美元，纵轴 0 / 50 / 100 / 150 / 200）首月 2025-09 为 182、末月 2026-09 为 46（2025-08 为 187，图外）；右图月初 TVL（百万美元，同刻度）首月 13、末月 172；横轴标签为「年-月」（25-09 至 26-10）；图注：手续费 9 月 $4.64 万，2025-09 峰值 $18.2 万。</p>
+</blockquote>
+<h3 id="51-gas">5.1 gas（测得出）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: right;">X Layer 链上手续费（DefiLlama）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2024-12 至 2025-07（公告前）</td>
+<td style="text-align: right;">每月 $1,369–$12,756</td>
+</tr>
+<tr>
+<td><strong>2025-08（公告当月，峰值）</strong></td>
+<td style="text-align: right;"><strong>$187,077</strong></td>
+</tr>
+<tr>
+<td>2025-09</td>
+<td style="text-align: right;">$181,991</td>
+</tr>
+<tr>
+<td>2025-10</td>
+<td style="text-align: right;">$96,808</td>
+</tr>
+<tr>
+<td>2026-03</td>
+<td style="text-align: right;">$8,589</td>
+</tr>
+<tr>
+<td>2026-04（谷底）</td>
+<td style="text-align: right;">$4,920</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td style="text-align: right;">$10,574</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td style="text-align: right;">$46,599</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td style="text-align: right;"><strong>$46,362</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>9 月单月年化约 $56 万</strong>；<strong>OKB 市值约 $25.5 亿，是它的约 4,600 倍</strong>——这是对 OKB 最有利的点值；<strong>近 12 个月实际（$30.06 万）口径约 8,470 倍、2026 年月均年化约 11,600 倍</strong>。⚠️ 9 月是公告事件窗口之外的最高月，<strong>比公告前的常态（每月约 $0.1–1.3 万）高一个数量级</strong>。这些手续费<strong>进金库，截至快照未提取、未发现销毁机制</strong>（1.2，一手）。<br />
+<strong>同一基期比较</strong>：以 2026-03 为基期，手续费 ×5.4、TVL ×5.5；以 2026-02 为基期，×6.5 vs ×9.9；以 2026-04 为基期，×9.4 vs ×5.0——<strong>两者是同量级增长，增长比随基期在 0.65–1.89 之间变化</strong>，5.4 对 5.5 是端点碰巧对上；月度联动很松（8 月手续费单月 ×4.4、TVL 只涨 28%）。（初稿用「TVL 从升级前低点涨 30 倍、手续费比峰值低 75%」得出「TVL 没有转化为手续费」，两边基期不同，已撤回。）</p>
+</blockquote>
+<h3 id="52-jumpstart-exchange-os">5.2 Jumpstart 与 Exchange OS（测不出）</h3>
+<ul>
+<li><strong>Jumpstart</strong>：用户为参与新币申购持有或借入 OKB——<strong>需求是间歇性的，规模取决于每期项目</strong>，本期没有读数。</li>
+<li><strong>Exchange OS</strong>：部署方须质押 OKB 才能开设交易场所，<strong>质押门槛、罚没比例、上线状态、实际质押量</strong>白皮书都没给（「另见协议规范」），本期没有读到合约。</li>
+</ul>
+<h3 id="53">5.3 对持有人意味着什么</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>本系列见过的价值机制</th>
+<th style="text-align: center;">OKB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>利润请求权 / 收入分成</td>
+<td style="text-align: center;">❌ 未找到赋权文件</td>
+</tr>
+<tr>
+<td>销毁或回购</td>
+<td style="text-align: center;">❌ 人工销毁停止；无回购承诺；gas 进金库、未发现销毁机制</td>
+</tr>
+<tr>
+<td>质押收益 / 增发分配</td>
+<td style="text-align: center;">❌ 无增发</td>
+</tr>
+<tr>
+<td><strong>使用需求（锁仓 / 持有）</strong></td>
+<td style="text-align: center;">✅ gas（现行、测得出）、Jumpstart（现行描述）；Exchange OS 质押（提案）</td>
+</tr>
+<tr>
+<td><strong>固定供应</strong></td>
+<td style="text-align: center;">✅ 发行方口径</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>OKB 没有任何现金流机制把价值送回持有人</strong>；可能支撑价格的因素见第 8 章。<strong>这与 BTC 的结构相似（固定供应、无现金流），区别在于 OKB 的供应只有发行方口径、需求来自一个公司生态的使用权益。</strong></p>
+</blockquote>
+<hr />
+<h2 id="6-okb">6. OKB 与其他资产的比较</h2>
+<blockquote>
+<p><strong>口径</strong>：9 月 = 8/31 → 9/30，Q3 = 6/30 → 9/30；OKB 用 OKX 收盘，其余用币安收盘；beta / R² 为 365 天日对数收益。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th style="text-align: right;">9 月</th>
+<th style="text-align: right;">Q3</th>
+<th style="text-align: right;">beta</th>
+<th style="text-align: right;">R²</th>
+<th style="text-align: right;">9 月对数超额</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>OKB</strong></td>
+<td style="text-align: right;"><strong>+8.12%</strong></td>
+<td style="text-align: right;"><strong>+53.75%</strong></td>
+<td style="text-align: right;"><strong>0.881</strong></td>
+<td style="text-align: right;"><strong>0.409</strong></td>
+<td style="text-align: right;"><strong>+2.3</strong></td>
+</tr>
+<tr>
+<td>BNB</td>
+<td style="text-align: right;">+11.26%</td>
+<td style="text-align: right;">+40.76%</td>
+<td style="text-align: right;">0.884</td>
+<td style="text-align: right;">0.594</td>
+<td style="text-align: right;">+5.2</td>
+</tr>
+<tr>
+<td>ETH</td>
+<td style="text-align: right;">+8.85%</td>
+<td style="text-align: right;">+70.86%</td>
+<td style="text-align: right;">1.283</td>
+<td style="text-align: right;">0.823</td>
+<td style="text-align: right;">+0.5</td>
+</tr>
+<tr>
+<td>SOL</td>
+<td style="text-align: right;">+14.61%</td>
+<td style="text-align: right;">+60.34%</td>
+<td style="text-align: right;">1.311</td>
+<td style="text-align: right;">0.755</td>
+<td style="text-align: right;">+5.5</td>
+</tr>
+<tr>
+<td>TRX</td>
+<td style="text-align: right;">+1.44%</td>
+<td style="text-align: right;">+7.01%</td>
+<td style="text-align: right;">0.238</td>
+<td style="text-align: right;">0.193</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr>
+<td>DOT</td>
+<td style="text-align: right;">+45.60%</td>
+<td style="text-align: right;">+48.78%</td>
+<td style="text-align: right;">1.247</td>
+<td style="text-align: right;">0.412</td>
+<td style="text-align: right;">+29.8</td>
+</tr>
+<tr>
+<td>BTC</td>
+<td style="text-align: right;">+6.42%</td>
+<td style="text-align: right;">+42.64%</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">—</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="7">7. 核心价值逻辑</h2>
+<p><strong>星级编码证据等级</strong>：完全建立在二手转述上的论据不得给到五星。</p>
+<h3 id="71">7.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>说明与证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>发行方口径固定供应 2,100 万、零增发</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>⚠️ 以太坊 ERC-20 侧去掉增发函数为一手；X Layer 原生侧本报告尚未独立核验</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>gas 之外还有两项官方描述的用途</strong>（Jumpstart、Exchange OS 质押）</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ 官方文件一手。⚠️ <strong>Jumpstart 当期是否有 OKB 活动未核实；Exchange OS 是设计，上线与质押量未核实</strong>——是描述，不是已兑现的需求</td>
+</tr>
+<tr>
+<td>3</td>
+<td>X Layer TVL 增长，与手续费同量级增长</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ DefiLlama。⚠️ 集中在 Aave 一家（约 $1.03 亿，时点不同）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>发行方可能重新赋权（期权）</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>⚠️ 2025-08 的取消是单方面的，<strong>也就可以单方面恢复</strong>；本报告没有任何证据表明会发生</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="72">7.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>说明与证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>没有交易手续费折扣</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>✅ <strong>OKX 官方 FAQ 原文</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>没有协议层的价值回流</strong>：gas 进金库、未发现销毁或分配机制；无回购承诺</td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 金库直读（一手）、FAQ（一手）。⚠️ 提取后的用途未核实</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>测得出的那项需求（gas）是市值的约 1/4,600 至 1/11,600</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ DefiLlama。⚠️ 与空头 #2 同一个事实的量化，<strong>作为证据只算一份</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>OKX 单点集中</strong>：发行方、主要交易所、X Layer 排序器、追踪地址持仓的运营方是同一个；金库收款地址有运营关联线索</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 各项一手或聚合器。<strong>机制</strong>：若追踪地址中 OKX 自有比例高，自由流通盘就薄，价格易被少量卖压击穿——<strong>自有比例本期测不出</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>不确定性（不计入多空）</strong>：X Layer 原生总供应本报告尚未独立核验——<strong>它是不确定性，不是方向</strong>。</p>
+<blockquote>
+<p><strong>同源检查</strong>：多头 #1（固定供应）与「总供应未核验」是同一事实的两种读法；多头 #4（重新赋权期权）与空头 #1（无折扣）是同一个可逆的官方决定；空头 #4 与风险 10.2 第 2 条同源（OKX 单点）；空头 #2 与 #3 同源。</p>
+</blockquote>
+<hr />
+<h2 id="8">8. 多空之间真正的分歧点</h2>
+<blockquote>
+<p><strong>OKB 的价格需要一个本报告找不到的锚。</strong> 可能的支撑有四个，<strong>它们可以同时存在、不互斥</strong>：<br />
+① <strong>使用需求</strong>——Jumpstart（当期活动未核实）与 Exchange OS 质押（提案）的锁仓量，<strong>本期都没有读数</strong>；<br />
+② <strong>对重新赋权的期权</strong>——需要两项输入：「恢复权益后的合理市值」（例如 BNB 市值 × OKX 与币安的规模比——<strong>可取得，本期没取</strong>）和「重新赋权的概率」（<strong>没有任何依据——这才是卡住的一步</strong>）；<br />
+③ <strong>持仓集中带来的低自由流通</strong>——追踪地址的自有比例测不出；<strong>它与空头 #4（「易被少量卖压击穿」）是同一个未测量的量，两边各用一次</strong>；<br />
+④ <strong>无现金流的溢价</strong>（与 BTC 同类：固定供应、市场共识）。<br />
+<strong>本报告无法测出各自的权重</strong>；下期清单的第二优先是为 ① 取数。</p>
+</blockquote>
+<hr />
+<h2 id="9">9. 估值：不给目标价</h2>
+<h3 id="91">9.1 为什么不给</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>路径</th>
+<th>崩在哪一步</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>收入倍数法</td>
+<td><strong>持有人没有收入</strong>——gas 进金库，不归持有人</td>
+</tr>
+<tr>
+<td>销毁 / 回购收益率</td>
+<td><strong>都已停止</strong>（人工销毁）或没有承诺（回购）</td>
+</tr>
+<tr>
+<td>稀释成本（DOT 的方法）</td>
+<td><strong>没有增发</strong></td>
+</tr>
+<tr>
+<td>使用需求（锁仓 × 周转）</td>
+<td><strong>Jumpstart 与 Exchange OS 的锁仓量本期没有读数</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>这是「缺乏可信估值模型」，不是「OKB 没有价值」</strong>（ZEC 期教训）。</p>
+</blockquote>
+<h3 id="92-okb">9.2 情景测算：如果按本系列其他资产的「市值 ÷ 费用」比给 OKB 定价</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>参照（BNB 8 月版表 8.1）</th>
+<th style="text-align: right;">市值 ÷ L1 年化费用</th>
+<th style="text-align: right;">OKB 当前市值需要的年化 gas</th>
+<th style="text-align: right;">相对当前（约 $56 万）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BNB</td>
+<td style="text-align: right;">465–699 倍</td>
+<td style="text-align: right;">$364 万–$547 万</td>
+<td style="text-align: right;">6.5–9.8 倍</td>
+</tr>
+<tr>
+<td>ETH</td>
+<td style="text-align: right;">约 2,400 倍</td>
+<td style="text-align: right;">约 $106 万</td>
+<td style="text-align: right;">约 1.9 倍</td>
+</tr>
+<tr>
+<td>ADA</td>
+<td style="text-align: right;">约 17,500 倍</td>
+<td style="text-align: right;">约 $15 万</td>
+<td style="text-align: right;">约 0.26 倍</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>推导方法</strong>：市值 $25.45 亿 ÷ 参照倍数 = 所需年化 gas。<strong>OKB 的约 4,600 倍落在 ETH 与 ADA 之间</strong>——这只是机械反解，展示参照物有多敏感，<strong>不形成贵或便宜的判断</strong>。⚠️ <strong>BNB 的 465 倍是近 12 个月实际口径</strong>，与之可比的 OKB 是约 8,470 倍（不是 9 月单月的 4,600 倍）；无论用哪个口径，OKB 都落在 ETH 与 ADA 之间。<br />
+⚠️ <strong>而且它不能直接作为持有人现金流的估值锚</strong>：其他资产的费用至少部分被销毁或分给质押者，<strong>OKB 的 gas 两样都没有</strong>；且 gas 需求是流量，代币需求还取决于周转率与锁仓。<strong>这张表只是情景测算，不是目标价，也不是价格成立的必要条件</strong>。（初稿只借 BNB 一个倍数——本系列最低的那个——审查指出参照物选择决定了结论，已改为并列。）</p>
+</blockquote>
+<h3 id="93">9.3 这套判断的弱点</h3>
+<ol>
+<li><strong>X Layer 原生总供应本报告尚未独立核验</strong>。</li>
+<li><strong>只有 gas 有读数</strong>；Jumpstart（当期活动）、Exchange OS（上线与质押量）都是本报告的盲区。</li>
+<li><strong>追踪地址的余额已逐个直读，但「这 24 个地址属于 OKX」由 DefiLlama 认定</strong>；分不清用户存款与 OKX 自有。</li>
+<li><strong>本报告只取得 2025-05 起的日线</strong>，2025-08 那一段缺 BTC 同口径数据。</li>
+<li><strong>本报告是 OKB 首期</strong>，初稿有三处核心事实被审查推翻（11.4）。</li>
+</ol>
+<hr />
+<h2 id="10">10. 投资与风险启示</h2>
+<h3 id="101">10.1 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">当前值</th>
+<th>触发关注的阈值</th>
+<th>查询方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>X Layer 月手续费</strong></td>
+<td style="text-align: right;"><strong>$46,362</strong>（9 月）</td>
+<td>任一月 ≥ $10 万（O9-1）</td>
+<td>DefiLlama <code>fees/x-layer</code></td>
+</tr>
+<tr>
+<td><strong>手续费金库</strong></td>
+<td style="text-align: right;">2,172.5 OKB，未提取</td>
+<td><strong>任何提取</strong>（<code>totalProcessed</code> &gt; 0），及去向</td>
+<td><code>0x42…0011</code>、<code>0x42…0019</code></td>
+</tr>
+<tr>
+<td><strong>Exchange OS 质押合约</strong></td>
+<td style="text-align: right;">未找到</td>
+<td>合约上线、质押量</td>
+<td>X Layer 链上</td>
+</tr>
+<tr>
+<td>OKX 追踪地址 OKB</td>
+<td style="text-align: right;">约 1,218 万（10/12）</td>
+<td>固定地址集合跌破 1,050 万（O9-2）</td>
+<td>DefiLlama <code>protocol/okx</code></td>
+</tr>
+<tr>
+<td>OKB 权益政策</td>
+<td style="text-align: right;">无折扣、无回购</td>
+<td>任何恢复或进一步削减的公告</td>
+<td>OKX 官方 FAQ / 公告</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="102">10.2 风险提醒</h3>
+<ol>
+<li><strong>没有现金流锚</strong>：价格完全取决于使用需求与市场愿意付多少，<strong>下行时没有回购托底</strong>。2025-08 高点后 5.5 个月跌去 70%（独立事实）；另在 2025-09-01 → 2026-02-05 区间，按样本 beta，BTC 项约占 OKB 对数跌幅的 54%（不是因果识别）。</li>
+<li><strong>OKX 单点集中</strong>：发行方、主要交易所、X Layer 排序器、追踪地址运营方是同一个；金库收款地址有运营关联线索。</li>
+<li><strong>供应口径风险</strong>：总供应只有发行方口径。</li>
+<li><strong>政策是双向可逆的</strong>：2025-08 就是一次单方面的大幅改变。</li>
+</ol>
+<h3 id="103">10.3 长期认知</h3>
+<p><strong>第一，「没有利润请求权」和「没有使用权益」要分开查。</strong> 初稿从「不能抵扣手续费」一路推到「需求只剩 gas」，<strong>漏了 Jumpstart 与 Exchange OS</strong>——两份官方文件都公开可查。<strong>一条官方原文否定了一项权益，不等于否定了全部权益。</strong></p>
+<p><strong>第二，「本报告读不出来」不等于「不可验证」。</strong> 初稿把自己的能力限制写成了资产属性；X Layer 是 EVM 链，<strong>全状态余额求和原则上就能核验总量</strong>。</p>
+<p><strong>第三，比较两条时间序列的增长，先对齐基期。</strong> 初稿用「TVL 从低点涨 30 倍」对「手续费比峰值低 75%」，得出「TVL 没有转化为手续费」——<strong>对齐到同一起点后，两者是同量级增长</strong>——而增长比本身随基期在 0.65–1.89 之间变化。<strong>做了基期对齐，还要做基期敏感性。</strong></p>
+<blockquote>
+<p>（初稿还有一条「2025-08 公告同时砍供应与取消权益，市场只交易了前一半」——推理审查指出它是单一事件日的事后叙事、没扣 BTC 的 beta，且「取消全部权益」的前提本身不成立，<strong>已删除</strong>。）</p>
+</blockquote>
+<hr />
+<h2 id="11_1">11. 附录</h2>
+<h3 id="111-2026-09-30-1012">11.1 关键数据速查（截至 2026-09-30，快照到 10/12）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>指标</th>
+<th style="text-align: right;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>市场</strong></td>
+<td>9/30 收盘（OKX）</td>
+<td style="text-align: right;">$121.20</td>
+</tr>
+<tr>
+<td></td>
+<td>9 月 / Q3 / 近一年</td>
+<td style="text-align: right;">+8.12% / +53.75% / −35.81%</td>
+</tr>
+<tr>
+<td></td>
+<td>市值（9/30，按 2,100 万）</td>
+<td style="text-align: right;">约 $25.5 亿</td>
+</tr>
+<tr>
+<td></td>
+<td>beta / R² / 波动率</td>
+<td style="text-align: right;">0.881 / 0.409 / 62.1%</td>
+</tr>
+<tr>
+<td></td>
+<td>收盘高点 / 距高点</td>
+<td style="text-align: right;">$229.36（2025-08-21）/ −47.2%</td>
+</tr>
+<tr>
+<td><strong>供应</strong></td>
+<td>总量（发行方口径）</td>
+<td style="text-align: right;">21,000,000</td>
+</tr>
+<tr>
+<td></td>
+<td>以太坊 ERC-20 <code>totalSupply</code></td>
+<td style="text-align: right;">429,064.58</td>
+</tr>
+<tr>
+<td></td>
+<td>OKX 追踪地址（X Layer）</td>
+<td style="text-align: right;">约 12,177,000</td>
+</tr>
+<tr>
+<td><strong>X Layer</strong></td>
+<td>9 月手续费</td>
+<td style="text-align: right;">$46,362</td>
+</tr>
+<tr>
+<td></td>
+<td>手续费金库（未提取）</td>
+<td style="text-align: right;">2,172.5 OKB</td>
+</tr>
+<tr>
+<td></td>
+<td>TVL（10/01）</td>
+<td style="text-align: right;">$1.720 亿</td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td>市值 ÷ 年化 gas</td>
+<td style="text-align: right;">约 4,600 倍（9 月单月）/ 8,470 倍（近 12 个月）/ 11,600 倍（2026 均值）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112">11.2 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th style="text-align: center;">核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-08 销毁、上限、合约升级、费率折扣取消</td>
+<td><strong>OKX 官方 FAQ</strong>（x-layer-okt-okb）</td>
+<td style="text-align: center;">✅ 一手原文</td>
+</tr>
+<tr>
+<td>Jumpstart 用 OKB</td>
+<td><strong>OKX 借币指南</strong>（2026-10-09 更新）</td>
+<td style="text-align: center;">✅ 一手原文</td>
+</tr>
+<tr>
+<td>Exchange OS 质押 OKB</td>
+<td><strong>X Layer Exchange OS 白皮书 V1.0</strong>（2026-05）</td>
+<td style="text-align: center;">✅ 一手原文；⚠️ 上线与质押量未核实</td>
+</tr>
+<tr>
+<td>X Layer 迁至 OP Stack</td>
+<td><strong>OKX 官方技术文章</strong>（2026-05-26）</td>
+<td style="text-align: center;">✅ 一手原文</td>
+</tr>
+<tr>
+<td>手续费金库余额、收款人、提取额</td>
+<td>X Layer 公共 RPC</td>
+<td style="text-align: center;">✅ 直读</td>
+</tr>
+<tr>
+<td>以太坊 ERC-20 <code>totalSupply</code></td>
+<td>以太坊公共 RPC、Blockscout</td>
+<td style="text-align: center;">✅ 直读，两源一致</td>
+</tr>
+<tr>
+<td>旧桥合约余额切换</td>
+<td>X Layer 公共 RPC 历史状态</td>
+<td style="text-align: center;">✅ 直读（区块 32,843,575）</td>
+</tr>
+<tr>
+<td>OKX 追踪地址持仓</td>
+<td>DefiLlama 适配器地址清单 + X Layer RPC 逐个直读</td>
+<td style="text-align: center;">✅ 余额一手；⚠️ 地址归属为聚合器认定</td>
+</tr>
+<tr>
+<td>X Layer 手续费、TVL、协议拆分</td>
+<td>DefiLlama API</td>
+<td style="text-align: center;">✅ API 一手</td>
+</tr>
+<tr>
+<td>价格 / 成交额</td>
+<td>OKX 公开行情 API</td>
+<td style="text-align: center;">✅ 直接调用</td>
+</tr>
+<tr>
+<td>X Layer 原生总供应</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>本报告尚未独立核验</strong></td>
+</tr>
+<tr>
+<td>Exchange OS 质押合约与质押量</td>
+<td>—</td>
+<td style="text-align: center;">❌ 未找到</td>
+</tr>
+<tr>
+<td>2025-05 以前的价格</td>
+<td>—</td>
+<td style="text-align: center;">❌ 未取得</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113">11.3 来源偏向声明</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>侧</th>
+<th>主要论据</th>
+<th style="text-align: center;">证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>多头</strong></td>
+<td>固定供应、gas 之外的两项用途描述、TVL</td>
+<td style="text-align: center;">用途描述为官方一手（未兑现）；供应为发行方口径</td>
+</tr>
+<tr>
+<td><strong>空头</strong></td>
+<td>无折扣、无价值回流、gas 量级、单点集中</td>
+<td style="text-align: center;">无折扣与金库为一手；集中度为聚合器</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>初稿的偏向是空头</strong>：遗漏了两项使用权益、只借最低的倍数作参照、把一个事后叙事写成长期认知——三处都被审查指出。本期已按此调整（多头 #2 新增、9.2 改为并列、长期认知删除一条）。<br />
+<strong>传统金融机构视角</strong>：本期引用了<strong>美联储</strong>政策；未找到传统金融机构对 OKB 的当期研究覆盖。</p>
+</blockquote>
+<h3 id="114">11.4 发布前审查记录</h3>
+<p><strong>第 1 层 <code>verify_report.py</code></strong>：初稿 2 FAIL（图注缺 6,526 万、$18.2 万与横轴年月标签），补图注后 0 FAIL / 1 WARN。</p>
+<p><strong>第 2 层 _bian（推理）与第 3 层 Codex（领域，读缓存与官方文档）——第一轮：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th style="text-align: center;">出处</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>遗漏 Exchange OS</strong>：官方白皮书设计了「质押 OKB 开设交易场所」</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ <strong>一手读白皮书核实</strong>；补入 1.1、5.2；核心判断改写</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>「交易所权益全部取消」过头</strong>：Jumpstart 仍用 OKB</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ <strong>一手读借币指南核实</strong>（10/09 更新）；区分利润请求权与使用权益</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>X Layer 已迁到 OP Stack</strong>，官方文档可查；gas 进费用金库</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ <strong>一手核实迁移文章与合约表，并直读金库</strong>：2,172.5 OKB 未提取，从「二手」升为一手</td>
+</tr>
+<tr>
+<td>4</td>
+<td>42.9 万不能证明「另行发行」；「读不出来」被升级为「不可核实」</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 改为「迁移或另行发行，本期未区分」「本报告尚未独立核验」</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>TVL 与手续费基期不对称</strong></td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 对齐 2026-03 起点后两者同步；撤回「TVL 没有转化」</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>反解只借 BNB 一个（最低的）倍数</strong></td>
+<td style="text-align: center;">两者</td>
+<td>✅ BNB / ETH / ADA 并列，并写明这个锚对 OKB 不适用</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>长期认知「市场只交易了前一半」是事后叙事</strong>，没扣 beta</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 删除；补回撤拆分（约 54% 可由 BTC 解释）</td>
+</tr>
+<tr>
+<td>8</td>
+<td>空头 #1 把「无折扣」与「无剩余索取权」打包成五星；「发行方承认不利事实」的类比不成立</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 拆分；删除类比，改为「符合发行方监管利益、可逆」</td>
+</tr>
+<tr>
+<td>9</td>
+<td>「58%」限定丢失、分母偷换、饼图闭合不成立</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 改为独立观测图；全文补限定</td>
+</tr>
+<tr>
+<td>10</td>
+<td>BNB 对照把 Auto-Burn 当作利润回购</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 3.2 改写</td>
+</tr>
+<tr>
+<td>11</td>
+<td>「无销毁」过头：黑洞销毁仍在；回购只是「未找到承诺」</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 已改</td>
+</tr>
+<tr>
+<td>12</td>
+<td>第 8 章 ② 没有给出失败的定价尝试</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 写明失败在「OKX 与币安规模比」这一步</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Q3 超额配季度尺度；R² 解释越界</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 已改</td>
+</tr>
+<tr>
+<td>14</td>
+<td>O9-1 先验未用 10 月已知数据，制造成本对排序器运营方近乎可回收；O9-2 应固定地址集合</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 记分卡重写</td>
+</tr>
+<tr>
+<td>15</td>
+<td>同源检查不全；「总供应未核验」不是方向，不该放空头表</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 移出空头表，补同源</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第二轮（复审修订稿）：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th style="text-align: center;">出处</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>「未提取」被升级为「gas 不销毁」的永久结论</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 改为「当前进入金库、未记录提取、未发现销毁或分配机制、用途未核实」</td>
+</tr>
+<tr>
+<td>2</td>
+<td>金库收款地址与官方示例中的旧链出块地址一致，不是「未知」；也不能断言就是 OKX</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 写为「运营关联线索，控制者未独立核实」；O9-1 的可回收成本改为条件句</td>
+</tr>
+<tr>
+<td>3</td>
+<td>摘要把 Jumpstart、Exchange OS 升级成已兑现需求</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 卷首、速览、多头 #2 改为「官方描述 / 设计，未兑现」，多头 #2 降为两星</td>
+</tr>
+<tr>
+<td>4</td>
+<td>回撤拆分的区间在下游被套到「高点后 70%」上</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 两者分开写，注明不是因果识别</td>
+</tr>
+<tr>
+<td>5</td>
+<td>「按这个锚不算异常」仍是估值判断</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 删除；改为「机械反解，不形成贵贱判断」</td>
+</tr>
+<tr>
+<td>6</td>
+<td>「锁仓模式被排除」过头</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 改为「当前 ERC-20 全额担保的解释不成立」</td>
+</tr>
+<tr>
+<td>7</td>
+<td>O9-1「10 月基本落空」超出数据；O9-2 门槛 11 与查询方式</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 记分卡已改</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Exchange OS 是提案（「Released for feedback」），却被写成现行用途</strong>；收款方 = OKX 在一处未查、另一处当证据</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 改为「两项现行 + 一项提案」；收款方改为「运营关联线索，未核实」</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>「4,600 倍」是单月年化</strong>，与 BNB 465 倍（近 12 个月口径）不可比</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 全文改为区间 4,600–11,600 倍，注明可比口径为约 8,470 倍</td>
+</tr>
+<tr>
+<td>10</td>
+<td>「2025-09 峰值」错（2025-08 为 $187,077 更高）；表格截掉了公告前的低常态；10 月是 11 天不是 12 天</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 已改；O9-1 基率与运行率同步更正</td>
+</tr>
+<tr>
+<td>11</td>
+<td>「手续费与 TVL 大致同步」依赖基期（比值 0.65–1.89）</td>
+<td style="text-align: center;">_bian（自认第一轮遗漏）</td>
+<td>✅ 改为「同量级增长」并给出敏感性</td>
+</tr>
+<tr>
+<td>12</td>
+<td>5.3 抢答了第 8 章；第 8 章清单不互斥、漏了「无现金流溢价」；② 卡住的一步写错</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 第 8 章补 ④、写明可并存；② 改为「卡在重新赋权概率」</td>
+</tr>
+<tr>
+<td>13</td>
+<td>O9-2 合格但无信息量，会抬高正确率</td>
+<td style="text-align: center;">_bian（分歧）</td>
+<td>✅ 保留，标为「观测项，不计正确率」</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<blockquote>
+<p><strong>配套文件</strong>：<code>okb_questions_summary_202609.md</code>（简明速查）、<code>../thesis_scorecard.md</code>（论点滚动记分卡）。<br />
+本报告不构成投资建议。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-okb-x-layer-2026-9">OKB / X Layer 简明速查（2026 年 9 月版，首期）</h1>
+<blockquote>
+<p>完整报告的浓缩版，给快速复习用。<strong>数据截止 2026-09-30，快照到 10/12。</strong><br />
+本文件不构成投资建议。</p>
+</blockquote>
+<hr />
+<h2 id="s-1">1. 一句话</h2>
+<p><strong>OKB 没有利润请求权、没有手续费折扣、没有回购承诺；已确认的用途是 X Layer gas——年化约 $56 万，是 $25.5 亿市值的约 1/4,600 至 1/11,600（视年化口径），进金库、未发现销毁机制；Jumpstart、Exchange OS 质押有官方描述，未兑现成读数。</strong></p>
+<hr />
+<h2 id="s-2">2. 三个默认还成立吗</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th style="text-align: center;">结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>流通量已知吗</td>
+<td style="text-align: center;">⚠️ <strong>只有发行方口径</strong>：X Layer 原生总供应本报告尚未独立核验（原则上可由全状态求和核验）</td>
+</tr>
+<tr>
+<td>价格是可用的测量吗</td>
+<td style="text-align: center;">✅ 可用（OKX 日成交中位数约 $1,289 万）；⚠️ 主场是发行方自己的交易所</td>
+</tr>
+<tr>
+<td>持有人是剩余索取权人吗</td>
+<td style="text-align: center;">❌ <strong>没有找到赋权文件</strong>；但有使用权益</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-3">3. 当前位置</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td><strong>$121.20</strong>（OKX）；市值约 $25.5 亿（按 2,100 万）</td>
+</tr>
+<tr>
+<td>9 月 / Q3 / 近一年</td>
+<td><strong>+8.12% / +53.75% / −35.81%</strong>（BTC +6.42% / +42.64% / −26.68%）</td>
+</tr>
+<tr>
+<td>一年 beta / R² / 波动率</td>
+<td>0.881 / 0.409 / 62.1%</td>
+</tr>
+<tr>
+<td>对数超额</td>
+<td>9 月 +2.3、Q3 +11.7（约半个季度特质标准差）</td>
+</tr>
+<tr>
+<td>距收盘高点</td>
+<td><strong>−47.2%</strong>（$229.36，2025-08-21）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>2025-08-13 公布销毁当日 +125.6%；高点后 5.5 个月跌去 70%</li>
+<li>2025-09-01 → 2026-02-05 区间按样本 beta，<strong>BTC 项约占 OKB 对数跌幅的 54%</strong>（不是因果识别）</li>
+</ul>
+<hr />
+<h2 id="s-4-okb">4. OKB 现在还能干什么（全部官方一手）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>用途</th>
+<th>状态（两项现行、一项提案）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>交易手续费折扣</td>
+<td><strong>❌ 已取消</strong>（FAQ：不能抵扣、不影响费率等级）</td>
+</tr>
+<tr>
+<td>季度回购销毁</td>
+<td><strong>❌ 人工销毁停止</strong>；黑洞地址仍可销毁；无回购承诺</td>
+</tr>
+<tr>
+<td><strong>Jumpstart</strong></td>
+<td>✅ 官方借币指南（10/09 更新）仍描述用 OKB 参与；⚠️ 当期是否有 OKB 活动未核实</td>
+</tr>
+<tr>
+<td><strong>X Layer gas</strong></td>
+<td>✅</td>
+</tr>
+<tr>
+<td><strong>Exchange OS 质押</strong></td>
+<td><strong>提案</strong>（白皮书 V1.0，2026-05，「供反馈」版本）：质押 OKB 才能开设交易场所；上线与质押量未核实</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>「没有利润请求权」和「没有使用权益」是两回事</strong>——初稿混为一谈，已更正</li>
+</ul>
+<hr />
+<h2 id="s-5-x-layer">5. X Layer</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>技术栈</td>
+<td><strong>OP Stack</strong>（从 Polygon CDK 迁来，旧链终止于区块 42,810,021）</td>
+</tr>
+<tr>
+<td>9 月链上手续费</td>
+<td><strong>$46,362</strong>（公告当月 2025-08 峰值 $187,077；公告前常态每月约 $0.1–1.3 万；2026-04 谷底 $4,920）</td>
+</tr>
+<tr>
+<td><strong>手续费金库</strong></td>
+<td><strong>2,172.5 OKB，提取计数器为 0</strong>；未发现销毁机制（链上直读）</td>
+</tr>
+<tr>
+<td>TVL（10/01）</td>
+<td><strong>$1.72 亿</strong>（Aave V3 约 $1.03 亿）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>手续费与 TVL 同量级增长</strong>；增长比随基期在 0.65–1.89 之间变化，月度联动很松</li>
+</ul>
+<hr />
+<h2 id="s-6">6. 供应</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>能独立观测到的</th>
+<th style="text-align: right;">OKB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OKX 追踪地址（24 个，逐个直读）</td>
+<td style="text-align: right;"><strong>12,177,777</strong>（相当于发行方总量的 58%，含用户存款）</td>
+</tr>
+<tr>
+<td>以太坊 ERC-20</td>
+<td style="text-align: right;">429,065</td>
+</tr>
+<tr>
+<td>手续费金库</td>
+<td style="text-align: right;">2,172.5</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>三项口径不同，<strong>不相加、也不从 2,100 万里相减</strong></li>
+<li>以太坊侧只剩 42.9 万：「当前 ERC-20 全额担保」的解释不成立，<strong>但分不清「迁移」与「另行发行」</strong></li>
+</ul>
+<hr />
+<h2 id="s-7">7. 估值</h2>
+<ul>
+<li><strong>不给目标价</strong>：持有人没有收入；人工销毁停止、无回购承诺；无增发；使用需求（Jumpstart、Exchange OS）没有读数</li>
+<li><strong>情景测算</strong>（不是目标价）：按 BNB / ETH / ADA 的「市值 ÷ 费用」倍数，OKB 需要的年化 gas 分别是当前的 6.5–9.8 倍 / 1.9 倍 / 0.26 倍——只展示参照物的敏感性，<strong>不形成贵贱判断</strong>；且 gas 不归持有人，不能直接作为持有人现金流锚</li>
+</ul>
+<hr />
+<h2 id="s-8">8. 记分卡</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>论点</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>O9-1</strong> ⚑ Q4 任一月 X Layer 手续费 ≥ $10 万</td>
+<td>⏳ 自评 10%（10 月前 11 天运行率约 $4.5 万；门槛 11 规则例外，已声明）</td>
+</tr>
+<tr>
+<td><strong>O9-2</strong> 冻结的 24 个 OKX 地址年底余额 ≥ 1,050 万</td>
+<td>⏳ 自评 85%（观测项，不计正确率）</td>
+</tr>
+</tbody>
+</table></div>
+<p>拒绝登记：OKB 估值方向（不给目标价）；总量维持 2,100 万（尚未建立读法）。</p>
+<hr />
+<h2 id="s-3-5">如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>OKB 没有利润请求权、没有手续费折扣、没有回购承诺；已确认的用途是 X Layer gas，Jumpstart 与 Exchange OS 有官方描述但没有读数。</strong></p>
+</li>
+<li>
+<p><strong>唯一测得出的需求是 gas：年化约 $22–56 万（视口径），市值的 1/4,600 至 1/11,600；它进金库（2,172.5 OKB，未记录提取），未发现销毁机制。</strong></p>
+</li>
+<li>
+<p><strong>2,100 万总量只有发行方口径；OKX 追踪的 24 个地址直读合计 1,218 万（含用户存款）。</strong></p>
+</li>
+<li>
+<p><strong>初稿写「需求只剩 gas」「X Layer 是 Polygon CDK」，被审查用三份官方文件推翻——本期已一手核实并改正。</strong></p>
+</li>
+<li>
+<p><strong>不给目标价：本系列用过的估值锚都不能直接用于 OKB，而真正可能支撑价格的使用需求本期没有读数。</strong></p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>okb_research_report_202609.md</code>（审查记录见 11.4）。<br />
+论点检验记录见 <code>../thesis_scorecard.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>
