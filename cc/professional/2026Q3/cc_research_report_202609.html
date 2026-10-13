@@ -1,0 +1,1571 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CC / Canton Network 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#6c3fc5;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">◎ CC 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>◎ CC 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-cc">1. CC 是什么</a>
+<a href="#2-cc">2. CC 的发展阶段划分</a>
+<a href="#3-cc">3. CC 当前现状</a>
+<a href="#4">4. 供应</a>
+<a href="#5">5. 价值捕获</a>
+<a href="#6-9">6. 治理</a>
+<a href="#7">7. 核心价值逻辑</a>
+<a href="#8">8. 多空之间真正的分歧点</a>
+<a href="#9">9. 估值</a>
+<a href="#10">10. 投资与风险启示</a>
+<a href="#11_1">11. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-1">1. 一句话</a>
+<a href="#s-2">2. 三个默认</a>
+<a href="#s-3">3. 当前位置</a>
+<a href="#s-4-9">4. 铸造与销毁</a>
+<a href="#s-5-vs">5. 激励发行 vs 销毁</a>
+<a href="#s-6-9">6. 治理</a>
+<a href="#s-7">7. 估值</a>
+<a href="#s-8">8. 记分卡</a>
+<a href="#s-3-5">如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>◎ CC / Canton Network<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">◎ Canton</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="cc-canton-network-2026-9">CC / Canton Network 完整调研与分析报告（2026 年 9 月版，首期）</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 10 月 13 日<br />
+<strong>数据截止</strong>：2026 年 9 月 30 日；链上与聚合器快照到 10/12<br />
+<strong>研究方法</strong>：沿用本系列框架。价格用 <strong>Bybit 现货 CCUSDT 日线 UTC 收盘</strong>（CC 不在币安上市；Bybit 是 CoinGecko 上成交最大的场所；与 OKX 重叠期的日收盘中位差 0.03%）；超额收益用对数口径（ln 收益 − beta × ln BTC 收益，不扣截距）。<br />
+<strong>本期为 CC 首期报告</strong>，本系列第十八个对象。</p>
+<p><strong>接入新资产的第一步：三个默认还成立吗</strong>（XIN 期教训）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th style="text-align: center;">结果</th>
+<th>依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>流通量已知吗</strong></td>
+<td style="text-align: center;">⚠️ <strong>总量来自 CantonScan，与它自己的铸造 − 销毁有约 20 亿枚序列外差额；持有人分布本报告取不到</strong></td>
+<td><strong>官方 Scan 接口对外部 IP 返回 403</strong>（只对验证人开放）；本报告用 <strong>CantonScan 的逐日铸造 / 销毁序列</strong>（DefiLlama 适配器只在 2025-11-12 之前从 CantonScan 取价格；<strong>它的数量来自 Allium，独立于 CantonScan</strong>），9/30 累计供应 <strong>395.68 亿枚</strong>；CoinGecko 10/12 为 398.29 亿，CantonScan 为 396.54 亿（差 0.44%，未核实原因）。⚠️ <strong>CantonScan 的供应 ≠ 它自己的「铸造 − 销毁」累计</strong>：差 20.17 亿枚，主要是 2025-11-05 一天的 16.29 亿（与 CIP-0067「历史未领取奖励一次性拨给基金会，预计 16–17 亿」吻合），<strong>2026-03 起浮点级相等，可能是派生字段</strong>（4.1）。<strong>无启动前预分配</strong>；但有 <strong>CIP-0105 超级验证人锁定框架</strong>（2026-03 获批，实际锁定余额本期未取得）——<strong>本报告的「供应」是总供应，不是扣除锁定后的可交易流通量</strong>。累计发行的约 56% 给了超级验证人</td>
+</tr>
+<tr>
+<td><strong>价格是可用的测量吗</strong></td>
+<td style="text-align: center;">⚠️ 可用，<strong>但 BTC 单因子模型解释度很低</strong></td>
+<td>Bybit 9 月日成交中位数约 $406 万；<strong>R² 只有 0.078</strong>，beta 0.597</td>
+</tr>
+<tr>
+<td><strong>代币持有人是剩余索取权人吗</strong></td>
+<td style="text-align: center;">❌ <strong>没有找到赋权文件</strong></td>
+<td>官方文档：CC 是 Global Synchronizer 的<strong>原生实用代币</strong>，用于支付流量、奖励基础设施与应用、通过超级验证人参与治理；<strong>不对 Digital Asset 或任何公司有请求权</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>本期核心发现</strong>：<br />
+1. <strong>CC 的费用以美元计价、以 CC 支付并销毁</strong>：流量单价在链上数据中稳定在 <strong>约 $60/MB</strong>（本报告由销毁额 ÷ 流量字节反算，逐月 59.9–62.4；参数原文未读；<strong>CIP-0084 允许代币经济委员会建议调整单价，它不是永久参数</strong>）。<strong>在单价不变时，购买流量的销毁美元额只取决于购买的流量，不取决于币价</strong>——本系列第一个<strong>收入不以标的计价</strong>的「销毁型」资产，<strong>TRX 期的退化陷阱在销毁这一侧不出现</strong>。9 月的销毁 100% 来自购买流量。<br />
+2. <strong>但铸造大于销毁，净供应在增长</strong>：9 月铸造 <strong>6.48 亿</strong>、销毁 <strong>4.43 亿</strong>，<strong>净增 2.06 亿枚（年化约 6.4%；年化口径 = 月净增 × 365/30 ÷ 月初供应，单利，全文同）</strong>；Q3 三个月净增 6.16 亿。<strong>当月实际铸造是当月新增额度的 78.9%</strong>（当前阶段上限每年 100 亿枚；2026-01-12 减半生效，日铸造从约 4,480 万降到约 2,460 万）——⚠️ <strong>未领取的部分进入「未领取池」，可经治理补铸</strong>（CIP-0066；CIP-0067 已在 2025-11 一次性补铸约 16.3 亿给基金会），<strong>不是永久不发行</strong>。<br />
+3. <strong>激励发行的规模与销毁相当或更大</strong>：2026-02 起，<strong>每月应用奖励的实际铸造（按链上报价折美元）约为全网销毁的 1.00–1.25 倍</strong>（9 月 1.07 倍）；加上验证人奖励是 <strong>1.27 倍</strong>；全部铸造是 <strong>1.47 倍</strong>。⚠️ <strong>这是总量之比，表示激励发行的规模——不是用户退款率，也不是任何参与者的利润率</strong>：付费者与领奖者不一定是同一实体，奖励还受池额度、权重与领取时点影响。<br />
+4. <strong>流量字节在下降</strong>：CantonScan 的月流量字节从 2026-02 的 <strong>1.247 TB</strong> 降到 9 月的 <strong>0.813 TB（−35%）</strong>；销毁的美元额相应从 $7,481 万降到 <strong>$4,883 万</strong>。⚠️ <strong>该字段测的是购买还是消耗，本报告没有核实</strong>；下降的原因（需求减弱、免费确认响应等协议优化、预购节奏、测试结束）<strong>未识别</strong>。<br />
+5. <strong>9 月治理</strong>：<strong>六项里程碑式超级验证人参与方案获批</strong>——TreasurySpring（9/09）、新韩资管（9/11）、a16z crypto（9/21）、伦敦证券交易所集团 LSEG（9/22）、Paxos（9/22）、Marex（9/25），最大可赚取权重合计 52（<strong>不等于已生效权重</strong>）；奖励在里程碑达成前进入未领取池、<strong>达标后才授权铸造</strong>。<br />
+6. <strong>价格</strong>：9 月 <strong>+4.68%</strong>、Q3 <strong>−10.67%</strong>（BTC +6.42% / +42.64%）；9/15 至 9/27 收盘 +51%。<strong>9/16 与 9/25 两天是个币异动</strong>（相对 9 个山寨中位数 +8.8 / +10.1 个百分点；9 月日超额标准差 3.6）。<strong>五个提案获批日里只有 9/25 出现大幅个币超额，当日获批权重合计最高的 9/22（LSEG + Paxos）是 −4.3</strong>；9/16 没有对应事件——<strong>原因未识别</strong>。</p>
+<p><strong>本期核心判断</strong>：<strong>CC 有本系列少见的「美元计价、与币价无关」的销毁（9 月约 $4,883 万，年化约 $5.9 亿，约为市值的 12%）；但同月的铸造按链上报价折算约为销毁的 1.47 倍，供应净增。</strong> ⚠️ <strong>净增的大小与正负取决于币价</strong>：应用与超级验证人奖励的枚数基本固定，流量不变时<strong>价格越高、烧掉的枚数越少、净增越多</strong>——按 9 月流量与 9/30 收盘价，年化约 7.7%；<strong>价格低于约 $0.070 时转为净减</strong>。 「销毁 = 持有人收入」这个读法要和同期发行一起看：<strong>按 9 月单月外推，供应年化增速约 6.4%（固定枚数持有者的占比每年约降 6.0%）</strong>；这不是可以直接确认的财富损失，价格如何反应是另一回事。<br />
+<strong>本报告不给目标价</strong>：持有人没有请求权；没有可折现的、归持有人的值流；流量里有多少是真实需求、多少与奖励激励有关，本报告分离不出来。</p>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CC 是什么</strong></td>
+<td>Canton Network 的公共同步层（Global Synchronizer）的<strong>原生实用代币</strong>；在 Splice 开源代码中叫「Amulet」</td>
+</tr>
+<tr>
+<td><strong>9/30 收盘</strong></td>
+<td><strong>$0.12633</strong>（Bybit）；按 395.68 亿枚，<strong>市值约 $50.0 亿</strong></td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3</strong></td>
+<td><strong>+4.68% / −10.67%</strong>（BTC +6.42% / +42.64%）；上市（2025-11-10 收 $0.11819）以来 +6.9%</td>
+</tr>
+<tr>
+<td><strong>beta / R² / 波动率</strong></td>
+<td><strong>0.597 / 0.078 / 96.3%</strong>（2025-11-11 至 2026-09-30，323 个日收益）</td>
+</tr>
+<tr>
+<td><strong>对数超额</strong></td>
+<td>9 月 <strong>+0.9</strong>（对照组中位数 +13.2）；Q3 <strong>−32.5</strong>（对照组中位数 +2.8）</td>
+</tr>
+<tr>
+<td><strong>供应</strong></td>
+<td><strong>无上限</strong>；铸造上限每年 100 亿枚（当前阶段），9 月实际铸造为当月新增额度的 78.9%；未领取部分可补铸</td>
+</tr>
+<tr>
+<td><strong>9 月铸造 / 销毁 / 净增</strong></td>
+<td><strong>6.48 亿 / 4.43 亿 / +2.06 亿枚</strong>（单月外推年化约 +6.4%）</td>
+</tr>
+<tr>
+<td><strong>9 月销毁（美元）</strong></td>
+<td><strong>$4,883 万</strong>（CantonScan）；DefiLlama 9/1–9/29 为 $4,710 万（同窗口差 0.06%）</td>
+</tr>
+<tr>
+<td><strong>铸造 ÷ 销毁（美元）</strong></td>
+<td>应用 1.07 倍；应用 + 验证人 1.27 倍；全部铸造 1.47 倍（激励发行规模，不是退款率）</td>
+</tr>
+<tr>
+<td><strong>持有人权益</strong></td>
+<td><strong>无请求权</strong>；无质押收益（奖励给运营者与应用，不给被动持有人）；超级验证人有锁定框架（CIP-0105）</td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td><strong>不给目标价</strong>（第 9 章）</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-cc">1. CC 是什么</h2>
+<h3 id="11">1.1 代币的三个用途（官方文档原文）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>用途</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>支付网络使用（流量）</strong></td>
+<td>验证人燃烧 CC 购买流量额度；<strong>流量额度不可转让</strong>，只能用于提交交易</td>
+</tr>
+<tr>
+<td><strong>奖励</strong></td>
+<td>奖励基础设施运营者（超级验证人、验证人）与<strong>精选应用</strong>的提供方</td>
+</tr>
+<tr>
+<td><strong>治理</strong></td>
+<td>通过超级验证人参与网络治理</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>CIP-0078 之后，转账费与锁定费已取消；<strong>现行的费用只有流量费与持有费</strong>（持有费按每个 UTXO 计，只在过期清理时收取）。</p>
+</blockquote>
+<h3 id="12">1.2 铸造上限曲线（白皮书原文）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>网络运行年数</th>
+<th style="text-align: right;">每年上限</th>
+<th style="text-align: right;">期间合计</th>
+<th style="text-align: right;">应用</th>
+<th style="text-align: right;">验证人</th>
+<th style="text-align: right;">超级验证人</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0–0.5</td>
+<td style="text-align: right;">400 亿</td>
+<td style="text-align: right;">200 亿</td>
+<td style="text-align: right;">15%</td>
+<td style="text-align: right;">5%</td>
+<td style="text-align: right;">80%</td>
+</tr>
+<tr>
+<td>0.5–1.5</td>
+<td style="text-align: right;">200 亿</td>
+<td style="text-align: right;">200 亿</td>
+<td style="text-align: right;">40%</td>
+<td style="text-align: right;">12%</td>
+<td style="text-align: right;">48%</td>
+</tr>
+<tr>
+<td><strong>1.5–5（当前）</strong></td>
+<td style="text-align: right;"><strong>100 亿</strong></td>
+<td style="text-align: right;">350 亿</td>
+<td style="text-align: right;"><strong>62%</strong></td>
+<td style="text-align: right;"><strong>18%</strong></td>
+<td style="text-align: right;"><strong>20%</strong></td>
+</tr>
+<tr>
+<td>5–10</td>
+<td style="text-align: right;">50 亿</td>
+<td style="text-align: right;">250 亿</td>
+<td style="text-align: right;">69%</td>
+<td style="text-align: right;">21%</td>
+<td style="text-align: right;">10%</td>
+</tr>
+<tr>
+<td>10 年以后</td>
+<td style="text-align: right;">25 亿 / 年</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">75%</td>
+<td style="text-align: right;">20%</td>
+<td style="text-align: right;">5%</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>前 10 年<strong>最多</strong> 1,000 亿枚，之后每年最多 25 亿；<strong>上限是「最多可铸」</strong>；没人领取的部分进入未领取池，<strong>可经治理投票补铸</strong>（CIP-0066）——CIP-0067 已把截至生效日的历史未领取验证人奖励一次性拨给 Global Synchronizer 基金会（提案预计 16–17 亿枚；CantonScan 供应在 2025-11-05 跳增 16.29 亿）；</li>
+<li><strong>开发基金（CIP-0082，2025-10-01 获批）</strong>：从所有发行流按比例抽 5% 给基金会管理的开发基金，<strong>不提高总发行计划</strong>；实施细节由后续 CIP 规定，<strong>CantonScan 的三类奖励里是否已包含它，本报告未核实</strong>；</li>
+<li>链上数据始于 2024-06-26；<strong>日铸造在 2026-01-12 从约 4,480 万降到约 2,460 万</strong>（与 1.5 年的减半一致）。</li>
+</ul>
+<h3 id="13">1.3 奖励怎么发（官方文档）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>对象</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>超级验证人</td>
+<td>按运行同步器节点获得铸造权，<strong>按权重分配</strong>；<strong>CIP-0105（2026-03-02 获批，Active）</strong>：超级验证人可锁定历史与未来奖励的一定比例以维持权重（启动时三档门槛 70% / 45% / 35%，逐年收紧），解锁按每日 1/365.25 释放——<strong>实际锁定余额本期未取得</strong></td>
+</tr>
+<tr>
+<td>验证人</td>
+<td><strong>按其燃烧的费用比例</strong>获得铸造权；活跃度奖励已于 2026-04-30 取消（CIP-0096）</td>
+</tr>
+<tr>
+<td>应用</td>
+<td><strong>只有「精选应用」有奖励</strong>（由 Canton 基金会的代币经济委员会审批）；CIP-0104 改为按应用实际消耗的流量计算——<strong>它规定分阶段上线（部分阶段至少间隔 30 天），主网各阶段的生效日期本报告未核实</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-cc">2. CC 的发展阶段划分</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>特征</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主网与公平启动</td>
+<td>2024-06 起</td>
+<td><strong>无预挖、无私募分配</strong>；前半年超级验证人拿 80%</td>
+</tr>
+<tr>
+<td>减费</td>
+<td>2025-09</td>
+<td>CIP-0078 取消转账费</td>
+</tr>
+<tr>
+<td>上市交易</td>
+<td>2025-11</td>
+<td>Bybit 等上线；CoinGecko 收录 2025-11-12</td>
+</tr>
+<tr>
+<td><strong>减半与机构加入</strong></td>
+<td>2026-01 起</td>
+<td>铸造减半；2026-02 流量见顶；9 月六家机构申请超级验证人</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="3-cc">3. CC 当前现状</h2>
+<h3 id="31">3.1 价格与市场</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6/30 / 8/31 / 9/30 收盘</td>
+<td><strong>$0.14142 / $0.12068 / $0.12633</strong></td>
+</tr>
+<tr>
+<td>9 月区间（收盘）</td>
+<td><strong>$0.09079（9/15）– $0.1373（9/27）</strong></td>
+</tr>
+<tr>
+<td>9 月 / Q3</td>
+<td><strong>+4.68% / −10.67%</strong></td>
+</tr>
+<tr>
+<td>历史最高 / 最低（CoinGecko，含盘中）</td>
+<td>$0.194152（2026-02-03）/ $0.059024（2025-12-06）</td>
+</tr>
+<tr>
+<td>beta / R²</td>
+<td><strong>0.597 / 0.078</strong></td>
+</tr>
+<tr>
+<td>年化波动率</td>
+<td><strong>96.3%</strong>（同窗口 BTC 45.1%）</td>
+</tr>
+<tr>
+<td>单日涨跌超过 20% 的天数</td>
+<td>4 天（323 天中）</td>
+</tr>
+<tr>
+<td>特质波动（月 / 季）</td>
+<td>约 26.5 / 46.4 个对数点</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>对数超额收益</strong>（对照组为本系列 9 个山寨：ZEC / UNI / ADA / SOL / BNB / ETH / TRX / CKB / DOT）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">7 月</th>
+<th style="text-align: right;">8 月</th>
+<th style="text-align: right;">9 月</th>
+<th style="text-align: right;">Q3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CC</td>
+<td style="text-align: right;">−22.4</td>
+<td style="text-align: right;">−10.9</td>
+<td style="text-align: right;">+0.9</td>
+<td style="text-align: right;"><strong>−32.5</strong></td>
+</tr>
+<tr>
+<td>对照组中位数</td>
+<td style="text-align: right;">+1.7</td>
+<td style="text-align: right;">−3.3</td>
+<td style="text-align: right;">+13.2</td>
+<td style="text-align: right;">+2.8</td>
+</tr>
+<tr>
+<td>CC − 对照组中位数</td>
+<td style="text-align: right;">−24.1</td>
+<td style="text-align: right;">−7.6</td>
+<td style="text-align: right;">−12.4</td>
+<td style="text-align: right;">−35.3</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>R² 只有 0.078</strong>——BTC 单因子线性模型只解释 CC 约 8% 的日方差（XIN 期规则：beta 必须和 R² 一起报）。<strong>0.597 的 beta 估计很不稳定</strong>，不能读成「低风险」；<strong>R² 低不等于价格是噪声</strong>，只说明这个模型解释不了。<br />
+Q3 的 −32.5 约为 0.7 个季度特质标准差（46.4）——粗略量级比较（独立日残差假设），<strong>不足以称为显著</strong>。</p>
+</blockquote>
+<p><img alt="价格与超级验证人提案获批日" src="charts/price-sv-approvals-202609.svg" /></p>
+<h3 id="32-9">3.2 9 月的个币异动与提案获批日</h3>
+<p>（个币超额 = CC 日涨跌 − 9 个山寨对照组中位数，与 3.1 同一对照组；9 月日超额标准差 3.6 个百分点）</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>日期</th>
+<th style="text-align: right;">CC</th>
+<th style="text-align: right;">个币超额</th>
+<th>同日事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/09</td>
+<td style="text-align: right;">−2.1%</td>
+<td style="text-align: right;">−0.3</td>
+<td>TreasurySpring 获批</td>
+</tr>
+<tr>
+<td>9/11</td>
+<td style="text-align: right;">−0.2%</td>
+<td style="text-align: right;">−1.2</td>
+<td>新韩资管获批</td>
+</tr>
+<tr>
+<td>9/16</td>
+<td style="text-align: right;">+10.6%</td>
+<td style="text-align: right;"><strong>+8.8</strong></td>
+<td><strong>无对应的提案或公告</strong></td>
+</tr>
+<tr>
+<td>9/21</td>
+<td style="text-align: right;">+9.0%</td>
+<td style="text-align: right;">+4.0</td>
+<td>a16z crypto 获批</td>
+</tr>
+<tr>
+<td>9/22</td>
+<td style="text-align: right;">−3.3%</td>
+<td style="text-align: right;"><strong>−4.3</strong></td>
+<td><strong>LSEG、Paxos 获批</strong>（当日获批最大权重合计 18，五天中最高）</td>
+</tr>
+<tr>
+<td>9/25</td>
+<td style="text-align: right;">+13.8%</td>
+<td style="text-align: right;"><strong>+10.1</strong></td>
+<td>Marex 获批（GitHub 合并日；合并的 UTC 时刻未核实）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>判别性的看法是看全部获批日</strong>：五个获批日里只有 9/25 出现大幅个币超额，<strong>当日获批权重合计最高的 9/22 是 −4.3</strong>；9 月超额 ≥ 8.8 的两天里，一天有获批、一天没有。<strong>这组数据不支持「获批推动价格」，本报告不作因果判断。</strong><br />
+LSEG 的官方新闻稿日期是 9/28，<strong>晚于</strong> 9/25–9/27 的上涨。</p>
+</blockquote>
+<h3 id="33">3.3 宏观环境</h3>
+<p>与 BTC 9 月版共用（美联储 9/16 加息 25bp 至 3.75–4.00%）。<strong>CC 对 BTC 的 R² 为 0.078；宏观因子本报告没有单独检验。</strong></p>
+<hr />
+<h2 id="4">4. 供应：铸造 − 销毁（本期核心章之一）</h2>
+<h3 id="41">4.1 数据来源与交叉检验</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>来源</th>
+<th>测什么</th>
+<th style="text-align: right;">9/1–9/29 销毁（美元）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CantonScan</strong>（<code>/api/mining-rounds/timeseries</code>）</td>
+<td>逐日铸造、销毁（枚）、链上 CC 价格、流量字节</td>
+<td style="text-align: right;"><strong>$47,130,720</strong></td>
+</tr>
+<tr>
+<td><strong>DefiLlama</strong>（Allium 数据，<code>summary/fees/canton</code>）</td>
+<td>逐类销毁（枚）× 价格</td>
+<td style="text-align: right;"><strong>$47,101,787</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>两条管线的数量来自不同处理方（CantonScan 自己 vs Allium），价格口径也不同（链上价格 vs CoinGecko），同一窗口相差 0.06%</strong>——这是本期最强的一次交叉检验。<br />
+⚠️ DefiLlama 的序列到 9/29 为止（9/30 缺），<strong>它的「9 月」少一天</strong>，这是它和 CantonScan 全月 $4,883 万的主要差距。<br />
+⚠️ <strong>CantonScan 是第三方浏览器</strong>，官方 Scan 接口本报告访问不到（403）——<strong>本报告没有独立读取链上状态</strong>，铸造的数字只有 CantonScan 一个来源；<strong>两条管线的一致只检验了销毁的计价，不检验铸造与流量</strong>。<br />
+⚠️ 美元换算用的是「每日销毁量 × 当日链上均价」，不是逐轮按当轮报价折算，存在小幅误差。</p>
+</blockquote>
+<p><strong>供应勾稽</strong>（期初供应 + 铸造 − 销毁 = 期末供应）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: right;">CantonScan 供应变化 − (铸造 − 销毁)（百万枚）</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-10</td>
+<td style="text-align: right;">+36.6</td>
+<td>未识别</td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td style="text-align: right;"><strong>+1,633.6</strong>（其中 11/05 一天 +1,628.6）</td>
+<td><strong>与 CIP-0067 一次性拨给基金会（预计 16–17 亿）吻合</strong></td>
+</tr>
+<tr>
+<td>2025-12</td>
+<td style="text-align: right;">+83.1</td>
+<td>未识别（可能是其他未领取池补铸，CIP-0066）</td>
+</tr>
+<tr>
+<td>2026-01</td>
+<td style="text-align: right;">+132.1</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>2026-02</td>
+<td style="text-align: right;">+19.4</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>2026-03 至 10/12</strong></td>
+<td style="text-align: right;"><strong>0.0</strong></td>
+<td><strong>浮点级相等</strong>（可能是派生字段，见下）</td>
+</tr>
+<tr>
+<td>合计</td>
+<td style="text-align: right;"><strong>+2,016.6</strong></td>
+<td>铸造序列不含这些「序列外发行」</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>2026-03 起的「吻合」不是独立验证</strong>：此前 612 个日差中有 607 个残差绝对值超过 10⁻⁵ 枚，3 月起残差最大只有 7.4×10⁻⁶ 枚（浮点精度级）——<strong>最可能是 CantonScan 从 3 月起用「铸造 − 销毁」累加出供应字段</strong>。若如此，3 月以后再发生治理补铸，供应与流量两边都不会显示，勾稽照样「吻合」。<strong>唯一独立的比对</strong>（CoinGecko 398.29 亿 vs CantonScan 396.54 亿，差 1.75 亿枚，约 0.85 个月的净增）<strong>对不上，原因未核实</strong>。CIP 仓库 2026-03 至 09 的提交标题中没有补铸相关提案（只查了标题）。<br />
+<strong>对本期结论的影响</strong>：9 月的铸造与销毁是 CantonScan 的流量数据本身，不受供应字段影响；<strong>但 9 月净增 2.06 亿枚（年化约 6.4%）只是「序列内净增」，是总供应增速的下限</strong>——序列外的补铸若存在，不在其中；受影响的是<strong>累计口径</strong>——累计铸造 432.6 亿之外还有约 20.2 亿序列外发行，下面的累计占比已按 452.8 亿重算。</p>
+</blockquote>
+<h3 id="42-cantonscan">4.2 月度铸造与销毁（CantonScan）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: right;">铸造（亿枚）</th>
+<th style="text-align: right;">销毁（亿枚）</th>
+<th style="text-align: right;">净增（亿枚）</th>
+<th style="text-align: right;">应用 %</th>
+<th style="text-align: right;">验证人 %</th>
+<th style="text-align: right;">超级验证人 %</th>
+<th style="text-align: right;">月末供应（亿枚）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-09</td>
+<td style="text-align: right;">14.75</td>
+<td style="text-align: right;">1.58</td>
+<td style="text-align: right;">13.17</td>
+<td style="text-align: right;">43.4</td>
+<td style="text-align: right;">13.0</td>
+<td style="text-align: right;">43.6</td>
+<td style="text-align: right;">318.27</td>
+</tr>
+<tr>
+<td>2025-12</td>
+<td style="text-align: right;">13.80</td>
+<td style="text-align: right;">2.28</td>
+<td style="text-align: right;">11.52</td>
+<td style="text-align: right;">47.4</td>
+<td style="text-align: right;">14.3</td>
+<td style="text-align: right;">38.3</td>
+<td style="text-align: right;">370.08</td>
+</tr>
+<tr>
+<td>2026-01</td>
+<td style="text-align: right;">9.91</td>
+<td style="text-align: right;">3.28</td>
+<td style="text-align: right;">6.63</td>
+<td style="text-align: right;">57.1</td>
+<td style="text-align: right;">16.4</td>
+<td style="text-align: right;">26.6</td>
+<td style="text-align: right;">378.04</td>
+</tr>
+<tr>
+<td>2026-02</td>
+<td style="text-align: right;">6.56</td>
+<td style="text-align: right;">4.48</td>
+<td style="text-align: right;">2.08</td>
+<td style="text-align: right;">68.0</td>
+<td style="text-align: right;">18.4</td>
+<td style="text-align: right;">13.6</td>
+<td style="text-align: right;">380.31</td>
+</tr>
+<tr>
+<td>2026-06</td>
+<td style="text-align: right;">6.29</td>
+<td style="text-align: right;">3.77</td>
+<td style="text-align: right;">2.53</td>
+<td style="text-align: right;">74.8</td>
+<td style="text-align: right;">11.8</td>
+<td style="text-align: right;">13.4</td>
+<td style="text-align: right;">389.52</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td style="text-align: right;">6.64</td>
+<td style="text-align: right;">4.50</td>
+<td style="text-align: right;">2.14</td>
+<td style="text-align: right;">73.3</td>
+<td style="text-align: right;">13.5</td>
+<td style="text-align: right;">13.2</td>
+<td style="text-align: right;">391.66</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td style="text-align: right;">6.73</td>
+<td style="text-align: right;">4.76</td>
+<td style="text-align: right;">1.96</td>
+<td style="text-align: right;">72.2</td>
+<td style="text-align: right;">13.9</td>
+<td style="text-align: right;">13.8</td>
+<td style="text-align: right;">393.63</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td style="text-align: right;"><strong>6.48</strong></td>
+<td style="text-align: right;"><strong>4.43</strong></td>
+<td style="text-align: right;"><strong>2.06</strong></td>
+<td style="text-align: right;"><strong>72.6</strong></td>
+<td style="text-align: right;"><strong>13.5</strong></td>
+<td style="text-align: right;"><strong>13.9</strong></td>
+<td style="text-align: right;"><strong>395.68</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>9 月净增 2.06 亿枚 ≈ 月初供应的 0.52%，年化约 6.4%</strong>；</li>
+<li><strong>9 月实际铸造是当月新增额度（每年 100 亿 → 30 天 8.22 亿）的 78.9%</strong>；未领取部分进入未领取池，可经治理补铸；</li>
+<li><strong>各池额度利用率</strong>（9 月实际铸造 ÷ 白皮书额度）：应用 4.71 亿 ÷ 5.10 亿 ≈ <strong>92%</strong>；验证人 0.88 亿 ÷ 1.48 亿 ≈ <strong>59%</strong>；超级验证人 0.90 亿 ÷ 1.64 亿 ≈ <strong>55%</strong>。⚠️ 72.6% 是应用占<strong>实际铸造</strong>的比例、62% 是占<strong>额度</strong>的比例，两者不能直接比较（初稿据此推断「池间再分配」，已撤回）；</li>
+<li>累计（2024-06 至 10/12）：铸造序列 432.6 亿 + 序列外发行约 20.2 亿 ≈ 452.8 亿；<strong>超级验证人 252.7 亿（约 55.8%）</strong>、应用 143.6 亿（约 31.7%）、验证人 36.3 亿（约 8.0%），序列外约 4.5%；销毁 56.2 亿。</li>
+</ul>
+<p><img alt="铸造 vs 销毁" src="charts/mint-vs-burn-202609.svg" /></p>
+<h3 id="43">4.3 谁拿到了新币</h3>
+<p><strong>累计发行的约 55.8% 发给了超级验证人</strong>（Digital Asset 与创始成员为主），另有约 16.3 亿一次性拨给了基金会——这是「公平启动、无预挖」的另一面：<strong>早期的大部分供应集中在少数运营机构手里</strong>。<br />
+<strong>它们持有多少、锁定多少（CIP-0105）、卖了多少，本报告取不到</strong>（官方 Scan 不对外开放；第三方浏览器 ccview / cantonscan 网页均有 Cloudflare 拦截）。</p>
+<hr />
+<h2 id="5">5. 价值捕获：销毁与激励发行（本期核心章之二）</h2>
+<h3 id="51">5.1 流量费以美元计价</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: right;">流量（TB）</th>
+<th style="text-align: right;">链上 CC 均价</th>
+<th style="text-align: right;">销毁（百万美元）</th>
+<th style="text-align: right;">美元 / MB（反算）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-09</td>
+<td style="text-align: right;">0.164</td>
+<td style="text-align: right;">$0.0675</td>
+<td style="text-align: right;">10.19</td>
+<td style="text-align: right;">62.0</td>
+</tr>
+<tr>
+<td>2026-02</td>
+<td style="text-align: right;"><strong>1.247</strong></td>
+<td style="text-align: right;">$0.1671</td>
+<td style="text-align: right;"><strong>74.81</strong></td>
+<td style="text-align: right;">60.0</td>
+</tr>
+<tr>
+<td>2026-06</td>
+<td style="text-align: right;">0.980</td>
+<td style="text-align: right;">$0.1559</td>
+<td style="text-align: right;">58.81</td>
+<td style="text-align: right;">60.0</td>
+</tr>
+<tr>
+<td>2026-09</td>
+<td style="text-align: right;"><strong>0.813</strong></td>
+<td style="text-align: right;">$0.1109</td>
+<td style="text-align: right;"><strong>48.83</strong></td>
+<td style="text-align: right;">60.0</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>每 MB 的美元价格几乎恒定在 $60</strong>（反算值，本报告没有读到 <code>AmuletRules</code> 里的参数原文；CIP-0084 允许委员会建议调价）——<strong>在单价不变时，购买流量的销毁美元额 = 购买字节 × $60</strong>，与 CC 币价无关；币价跌时烧掉的 CC 枚数自动增加。<br />
+⚠️ CC 在<strong>购买</strong>流量额度时销毁，购买与实际消耗可以跨期；CantonScan 的字节字段是购买量还是消耗量，<strong>本报告未核实</strong>——若是消耗量，上表的 $/MB 只是近似。<br />
+<strong>链上 CC 价格（超级验证人报告）9 月均值 $0.1109，与 Bybit 9 月收盘均值 $0.1110 一致。</strong><br />
+<strong>退化检验</strong>（TRX 期规则）：<strong>分子（销毁美元）不含 CC 价格</strong>——「市值 ÷ 年化销毁」不会在等式两边约掉价格。</p>
+</blockquote>
+<h3 id="52">5.2 奖励 ÷ 销毁</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: right;">应用奖励</th>
+<th style="text-align: right;">验证人奖励</th>
+<th style="text-align: right;">超级验证人奖励</th>
+<th style="text-align: right;">销毁</th>
+<th style="text-align: right;">全部铸造</th>
+<th style="text-align: right;">应用 ÷ 销毁</th>
+<th style="text-align: right;">(应用 + 验证人) ÷ 销毁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-09</td>
+<td style="text-align: right;">43.3</td>
+<td style="text-align: right;">13.0</td>
+<td style="text-align: right;">43.4</td>
+<td style="text-align: right;">10.2</td>
+<td style="text-align: right;">99.6</td>
+<td style="text-align: right;">4.25</td>
+<td style="text-align: right;">5.52</td>
+</tr>
+<tr>
+<td>2026-01</td>
+<td style="text-align: right;">81.7</td>
+<td style="text-align: right;">23.4</td>
+<td style="text-align: right;">37.9</td>
+<td style="text-align: right;">47.4</td>
+<td style="text-align: right;">143.0</td>
+<td style="text-align: right;">1.72</td>
+<td style="text-align: right;">2.22</td>
+</tr>
+<tr>
+<td>2026-02</td>
+<td style="text-align: right;">74.6</td>
+<td style="text-align: right;">20.1</td>
+<td style="text-align: right;">14.9</td>
+<td style="text-align: right;">74.8</td>
+<td style="text-align: right;">109.6</td>
+<td style="text-align: right;"><strong>1.00</strong></td>
+<td style="text-align: right;">1.27</td>
+</tr>
+<tr>
+<td>2026-06</td>
+<td style="text-align: right;">73.4</td>
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">13.1</td>
+<td style="text-align: right;">58.8</td>
+<td style="text-align: right;">98.1</td>
+<td style="text-align: right;">1.25</td>
+<td style="text-align: right;">1.45</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td style="text-align: right;">51.6</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: right;">9.9</td>
+<td style="text-align: right;">50.6</td>
+<td style="text-align: right;">71.4</td>
+<td style="text-align: right;">1.02</td>
+<td style="text-align: right;">1.22</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td style="text-align: right;"><strong>52.2</strong></td>
+<td style="text-align: right;"><strong>9.7</strong></td>
+<td style="text-align: right;"><strong>10.0</strong></td>
+<td style="text-align: right;"><strong>48.8</strong></td>
+<td style="text-align: right;"><strong>71.9</strong></td>
+<td style="text-align: right;"><strong>1.07</strong></td>
+<td style="text-align: right;"><strong>1.27</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>（单位：百万美元，按 CantonScan 每日链上 CC 价格计。）</p>
+<blockquote>
+<p><strong>能说的</strong>：<strong>2026-02 起，每月应用奖励实际铸造的计价金额约等于全网销毁的计价金额</strong>（1.00–1.25 倍）；加上验证人奖励约 1.22–1.45 倍。<strong>激励发行的规模与销毁相当或更大。</strong><br />
+<strong>不能说的</strong>：<strong>这不是退款率，也不是任何参与者的利润率</strong>——付费的一方和领奖的一方不一定是同一个实体，奖励还受池额度、权重、上限与领取时点影响；<strong>总量比值推不出「新增一单位流量能领回多少」</strong>。<strong>「有人为领奖而刷流量」本报告没有证据。</strong> 官方 CIP-0120 写到的「脱节」，指的是<strong>燃烧 CC 购买流量的用户与实际处理流量的验证人可能不同</strong>——它是关于奖励归属的问题，不是刷量的证据（截至 10/12 状态仍为 Proposed）。</p>
+</blockquote>
+<p><img alt="奖励 vs 销毁" src="charts/rewards-vs-burn-202609.svg" /></p>
+<h3 id="53-defillama-holdersrevenue">5.3 DefiLlama 的「HoldersRevenue」</h3>
+<p>DefiLlama 把 Canton 的全部销毁同时列为 <strong>Revenue 与 HoldersRevenue</strong>（方法说明：「所有收取的费用都被销毁」）。<br />
+<strong>这个指标只记了毛销毁，没有扣同期发行</strong>：9 月销毁 $4,883 万的同时铸造了约 $7,186 万的新币——<strong>按每日链上报价折算的净发行金额约 $2,303 万</strong>（约市值的 0.46%/月）。⚠️ 这是发行规模的折算，<strong>不是从持有人账户扣除的同额财富</strong>。</p>
+<blockquote>
+<p>这是本系列第八个口径坑（LINK 期的「Chainlink Staking」是第七个）：<strong>「HoldersRevenue」是毛销毁；在增发大于销毁的链上，持有人面对的是净发行，读这个指标时要把发行一起看。</strong></p>
+</blockquote>
+<h3 id="54">5.4 固定发行假设下的净发行归零参考价（算术，不是均衡）</h3>
+<p><strong>模型</strong>：应用与超级验证人奖励的枚数按 9 月固定（2 月至 9 月应用奖励枚数 4.46 亿 → 4.71 亿，未随流量下降；应用池额度利用率约 92%），验证人奖励约为销毁枚数的 0.2 倍（按燃烧比例获得铸造权）。在 9 月流量（销毁 $4,883 万）下，<strong>净发行归零的价格约 $0.070</strong>。</p>
+<blockquote>
+<p>⚠️ <strong>这只是固定部分发行后的算术平衡点</strong>：实际发行还受奖励上限、领取与补铸影响，真实的平衡可能有多个、也可能分段存在。<strong>不作为价格判断。</strong>（初稿用「冻结全部铸造枚数」得到 $0.075，忽略了验证人奖励随销毁增加，已改。）</p>
+</blockquote>
+<hr />
+<h2 id="6-9">6. 治理：9 月六个超级验证人提案</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>CIP</th>
+<th>申请方</th>
+<th style="text-align: right;">最大权重</th>
+<th>创建</th>
+<th>获批</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0122</td>
+<td>TreasurySpring Management (Jersey)</td>
+<td style="text-align: right;">4</td>
+<td>2026-06-16</td>
+<td>2026-09-09</td>
+</tr>
+<tr>
+<td>0121</td>
+<td>新韩资产管理（Shinhan Asset Management）</td>
+<td style="text-align: right;">10</td>
+<td>2026-08-14</td>
+<td>2026-09-11</td>
+</tr>
+<tr>
+<td>0123</td>
+<td>a16z crypto</td>
+<td style="text-align: right;">10</td>
+<td>2026-09-14</td>
+<td>2026-09-21</td>
+</tr>
+<tr>
+<td>0124</td>
+<td><strong>伦敦证券交易所集团（LSEG）</strong></td>
+<td style="text-align: right;">10</td>
+<td>2026-09-02</td>
+<td>2026-09-22</td>
+</tr>
+<tr>
+<td>0125</td>
+<td>Paxos</td>
+<td style="text-align: right;">8</td>
+<td>2026-09-14</td>
+<td>2026-09-22</td>
+</tr>
+<tr>
+<td>0126</td>
+<td>Marex</td>
+<td style="text-align: right;">10</td>
+<td>2026-09-14</td>
+<td>2026-09-25</td>
+</tr>
+</tbody>
+</table></div>
+<p>（来源：<code>canton-foundation/cips</code> 仓库原文与提交记录；CIP-0123 文件头仍写「Proposed」，README 索引与提交记录为「Approved」。）</p>
+<ul>
+<li><strong>里程碑达成前，代表节点暂不为它铸造，奖励进入未领取池，达标后才授权铸造</strong>（CIP-0124 原文；CIP-0121、0126 写「Accrual Destination: Escrow」）——<strong>不是「已发行的币在托管里解锁」</strong>；</li>
+<li><strong>最大可赚取权重 ≠ 已生效权重</strong>；部分里程碑保密；Paxos 的主要期限是获批后 6、9、12、24 个月；</li>
+<li><strong>对供应的影响本报告没有核实</strong>：新增权重首先改变超级验证人池内的份额；超级验证人池 9 月的额度利用率约 55%，<strong>用实际占比不能判断这个池是否「没用满」到可以被新权重填满</strong>——取决于池额度的计算规则。</li>
+<li><strong>待决</strong>：CIP-0120（按实际流量发验证人奖励、30% 分给确认验证人）2026-06-29 创建，状态 Proposed。</li>
+</ul>
+<hr />
+<h2 id="7">7. 核心价值逻辑</h2>
+<h3 id="71">7.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>销毁以美元计价</strong>，年化约 $5.9 亿，约为市值的 12%，单价不变时与币价无关</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 两条管线交叉一致；⚠️ 见空头 #1；单价可调（CIP-0084）</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>传统金融机构的里程碑式超级验证人参与方案获批</strong>（LSEG、Paxos、Marex、新韩资管；另有 a16z crypto）</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ CIP 原文；⚠️ 奖励按里程碑，参与 ≠ 付费流量；最大权重 ≠ 生效权重</td>
+</tr>
+<tr>
+<td>3</td>
+<td>9 月实际铸造为新增额度的 79%；减半已发生，下一次在运行第 5 年（2029 年中）</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ 白皮书 + 链上；⚠️ 未领取部分可补铸</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="72">7.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>铸造是销毁的 1.47 倍（计价；其中应用 + 验证人奖励 1.27 倍），供应按 9 月外推年化增速约 6.4%（序列内，下限）</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 链上（单一来源 CantonScan）；⚠️ 单月外推；<strong>大小与正负随币价变</strong>（价格低于约 $0.070 转为净减）</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>流量字节自 2 月见顶下降 35%</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ 链上；⚠️ 字段定义未核实，原因未识别（可能含协议优化）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>累计发行约 56% 发给超级验证人，持有分布不透明</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 累计数链上；⚠️ 持有、锁定（CIP-0105）与卖出取不到</td>
+</tr>
+<tr>
+<td>4</td>
+<td>R² 0.078、波动率 96%：BTC 单因子解释不了它的价格</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ 计算</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>检查两条论据是否描述同一机制的两面</strong>（DOT 期规则）：<strong>多头 #1 与空头 #1 是同一组数字</strong>（初稿把「应用 + 验证人 1.27 倍」单列为空头 #2，它是 #1 的子集，审查后并入）——销毁 $4,883 万是真的，<strong>但同一个月里铸造了约 $7,186 万的新币，其中约 $6,190 万是应用与验证人奖励</strong>。<strong>多头 #1 必须和同期发行一起读</strong>，单独读销毁会漏掉净发行。本报告的核心判断按净发行写。</p>
+</blockquote>
+<hr />
+<h2 id="8">8. 多空之间真正的分歧点</h2>
+<ol>
+<li><strong>流量是真实需求还是与奖励激励有关</strong>：流量字节 2 月见顶后降了 35%——这与「激励驱动的流量减少」相容，也与「测试流量结束」「免费确认响应等协议优化减少了付费字节」「预购节奏」相容，<strong>本报告不能判别</strong>。</li>
+<li><strong>机构超级验证人会不会带来付费流量</strong>：它们的奖励按里程碑，里程碑多与把业务搬上 Canton 有关；<strong>期限多在获批后 6–24 个月（Paxos），时点不确定，不支持「Q4 必然上升」</strong>。</li>
+<li><strong>CIP-0120 是否通过</strong>：它会改变验证人奖励与「燃烧」的挂钩方式。</li>
+</ol>
+<hr />
+<h2 id="9">9. 估值：不给目标价</h2>
+<h3 id="91">9.1 为什么不给</h3>
+<ul>
+<li><strong>充分条件</strong>：持有人没有现金流请求权——没有归持有人的值流可以折现；</li>
+<li><strong>加重情节</strong>：流量里有多少是奖励驱动，分离不出来；持有分布取不到。</li>
+</ul>
+<h3 id="92">9.2 比值与反推</h3>
+<blockquote>
+<p><strong>推导方法</strong>：市值 = 9/30 Bybit 收盘 × CantonScan 9/30 累计供应；年化 = 9 月 × 12；不推导任何价格区间。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>比值（9/30）</th>
+<th style="text-align: right;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市值 ÷ 年化销毁（美元）</td>
+<td style="text-align: right;">约 <strong>8.5 倍</strong></td>
+</tr>
+<tr>
+<td>年化净发行（铸造 − 销毁，按链上报价折算）</td>
+<td style="text-align: right;">约 $2.76 亿/年</td>
+</tr>
+<tr>
+<td>净发行归零需要的流量（应用 + 超级验证人奖励枚数按 9 月固定、验证人奖励约为销毁枚数的 0.2 倍）</td>
+<td style="text-align: right;">按 9 月链上均价约 <strong>1.29 TB/月</strong>（9 月的 1.59 倍，<strong>高于 2 月历史峰值 1.247 TB</strong>）；按 9/30 收盘价约 1.47 TB</td>
+</tr>
+<tr>
+<td>按 9 月流量，净发行归零的价格</td>
+<td style="text-align: right;">约 <strong>$0.070</strong>（9/30 收盘价 $0.12633 的约 55%）</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="93">9.3 这套判断的弱点</h3>
+<ol>
+<li><strong>铸造数字只有 CantonScan 一个来源</strong>（销毁有两个）；</li>
+<li><strong>$60/MB 是反算值</strong>，没有读到参数原文；</li>
+<li>「奖励 ÷ 销毁」是网络总量，<strong>不能推出任何实体在刷量</strong>；</li>
+<li>未领取池补铸、开发基金（CIP-0082）与超级验证人锁定（CIP-0105）的实际执行状态本报告没有核实；</li>
+<li><strong>2025-10 至 2026-02 约 3.9 亿枚的序列外发行未识别来源</strong>（2025-11 的 16.29 亿已对应 CIP-0067）。</li>
+</ol>
+<hr />
+<h2 id="10">10. 投资与风险启示</h2>
+<h3 id="101">10.1 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>当前</th>
+<th>变化信号</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>月净增（铸造 − 销毁）</strong></td>
+<td>+2.06 亿枚（9 月）</td>
+<td>转负（销毁 &gt; 铸造）</td>
+<td>CantonScan</td>
+</tr>
+<tr>
+<td><strong>月流量</strong></td>
+<td>0.813 TB</td>
+<td>回到 1.0 TB 以上，或跌破 0.6 TB</td>
+<td>CantonScan</td>
+</tr>
+<tr>
+<td><strong>净发行归零价</strong>（按当月流量）</td>
+<td>约 $0.070</td>
+<td>市价接近它（净发行接近零）；⚠️ 「奖励 ÷ 销毁」这类比值约等于「价格 ÷ 流量」，不单独监控</td>
+<td>CantonScan + 价格</td>
+</tr>
+<tr>
+<td>月销毁（美元）</td>
+<td>$4,883 万</td>
+<td>任一月 ≥ $6,000 万</td>
+<td>DefiLlama / CantonScan</td>
+</tr>
+<tr>
+<td>CIP-0120</td>
+<td>Proposed</td>
+<td>获批</td>
+<td>GitHub</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="102">10.2 风险提醒</h3>
+<ol>
+<li><strong>净发行</strong>：按 9 月单月外推，供应年化增速约 6.4%；未领取池还可补铸；</li>
+<li><strong>数据可得性</strong>：官方 Scan 不对外开放，本报告依赖第三方浏览器；</li>
+<li><strong>价格解释度低</strong>：对 BTC 的 R² 0.078，单日 ±20% 一年 4 次；</li>
+<li><strong>超级验证人集中</strong>：累计约 56% 的新币发给了它们（锁定情况未知）。</li>
+</ol>
+<h3 id="103">10.3 长期认知</h3>
+<p><strong>第一，「销毁」要和「铸造」放在同一张表里读。</strong> 一个以美元计价、与币价无关的销毁流是难得的好结构；<strong>但如果同一个月按计价铸造了 1.47 倍的新币，持有人面对的是净发行——而且由于发行枚数基本固定、销毁枚数随币价反向变化，价格越高，净发行越多。</strong> DefiLlama 的「HoldersRevenue」只记了毛销毁。</p>
+<p><strong>第二（审查后新增），一个第三方序列的「累计供应」要先和它自己的流量勾稽。</strong> 初稿直接用了 CantonScan 的累计供应和累计铸造，<strong>两者差约 20.2 亿枚</strong>——其中约 16.3 亿与 CIP-0067 的一次治理补铸金额相符（交易归属未直接核实），另约 3.9 亿来源未识别。<strong>发行不只在「每轮铸造」里，也在治理投票里。</strong></p>
+<p><strong>第三，「公平启动」不等于「分散持有」。</strong> 没有预挖、没有私募，但累计约 56% 的新币按设计发给了少数运营机构——<strong>分配方式公平与持有结构分散是两个问题</strong>。</p>
+<hr />
+<h2 id="11_1">11. 附录</h2>
+<h3 id="111-2026-09-30-1012">11.1 关键数据速查（截至 2026-09-30，快照到 10/12）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td>$0.12633</td>
+<td>Bybit</td>
+</tr>
+<tr>
+<td>9 月 / Q3</td>
+<td>+4.68% / −10.67%</td>
+<td>Bybit</td>
+</tr>
+<tr>
+<td>beta / R² / 波动率</td>
+<td>0.597 / 0.078 / 96.3%</td>
+<td>本报告计算</td>
+</tr>
+<tr>
+<td>9/30 累计供应（总供应，未扣锁定）</td>
+<td>39,568,418,435</td>
+<td>CantonScan（2026-03 起与铸造 − 销毁浮点级相等，可能是派生字段）</td>
+</tr>
+<tr>
+<td>9/30 市值（按总供应）</td>
+<td>约 $50.0 亿</td>
+<td>计算</td>
+</tr>
+<tr>
+<td>9 月铸造 / 销毁 / 净增</td>
+<td>6.48 亿 / 4.43 亿 / 2.06 亿</td>
+<td>CantonScan</td>
+</tr>
+<tr>
+<td>9 月销毁（美元）</td>
+<td>$4,883 万</td>
+<td>CantonScan；DefiLlama 交叉</td>
+</tr>
+<tr>
+<td>9 月流量</td>
+<td>0.813 TB</td>
+<td>CantonScan</td>
+</tr>
+<tr>
+<td>9 月应用 / 验证人 / 超级验证人奖励</td>
+<td>$5,220 万 / $970 万 / $1,000 万</td>
+<td>CantonScan</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112">11.2 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th style="text-align: center;">状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格</td>
+<td>Bybit 日线；OKX 交叉（中位差 0.03%）</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr>
+<td>铸造 / 销毁 / 流量</td>
+<td>CantonScan 逐日序列</td>
+<td style="text-align: center;">✅ 第三方浏览器；⚠️ 铸造单一来源；字节字段定义未核实</td>
+</tr>
+<tr>
+<td>供应勾稽</td>
+<td>CantonScan 供应 vs 铸造 − 销毁</td>
+<td style="text-align: center;">⚠️ 2026-03 起浮点级相等（可能是派生字段，不构成独立验证）；此前序列外发行 20.2 亿（16.3 亿对应 CIP-0067，3.9 亿未识别）；CoinGecko 差 1.75 亿未核实</td>
+</tr>
+<tr>
+<td>销毁交叉</td>
+<td>DefiLlama（Allium）</td>
+<td style="text-align: center;">✅ 同窗口差 0.06%</td>
+</tr>
+<tr>
+<td>官方 Scan 接口</td>
+<td>—</td>
+<td style="text-align: center;">❌ 403，未能直读</td>
+</tr>
+<tr>
+<td>铸造曲线</td>
+<td>Canton Coin 白皮书原文</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>费用与奖励规则</td>
+<td>官方文档 <code>docs.canton.network</code></td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>超级验证人提案；CIP-0066/0067/0082/0084/0104/0105</td>
+<td><code>canton-foundation/cips</code> 原文</td>
+<td style="text-align: center;">✅ 一手（状态以 10/12 的 README 为准；主网执行状态未核实）</td>
+</tr>
+<tr>
+<td>LSEG 新闻稿</td>
+<td>Canton 官方新闻页（9/28）</td>
+<td style="text-align: center;">✅ 标题与日期</td>
+</tr>
+<tr>
+<td>$60/MB</td>
+<td>反算</td>
+<td style="text-align: center;">⚠️ 参数原文未读</td>
+</tr>
+<tr>
+<td>持有人分布</td>
+<td>—</td>
+<td style="text-align: center;">❌ 取不到</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113">11.3 来源偏向声明</h3>
+<ul>
+<li>空头论据全部来自链上数据（CantonScan）与官方 CIP 原文；多头论据 #2（机构加入）来自 CIP 原文，<strong>参与不等于付费，已在星级中折扣</strong>。</li>
+<li><strong>传统金融机构视角</strong>：本期引用了<strong>美联储</strong>政策；LSEG、Paxos、Marex 是作为超级验证人申请方出现，<strong>不是对 CC 的研究覆盖</strong>。未找到传统金融机构对 CC 的当期研究。</li>
+</ul>
+<h3 id="114">11.4 发布前审查记录</h3>
+<p><strong>第 1 层 自动核查</strong>（<code>tools/verify_report.py</code>）：初稿 2 FAIL（图表坐标刻度数字不在正文）→ 修正后 0 FAIL。</p>
+<p><strong>第 2–3 层 Codex（第一轮）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>CantonScan 累计供应 ≠ 它自己的累计铸造 − 累计销毁，差约 20 亿枚</strong></td>
+<td>✅ <strong>逐日勾稽</strong>：2025-11-05 一天 +16.29 亿（对应 CIP-0067 基金会补铸），2025-10 至 2026-02 另有约 3.9 亿未识别；<strong>2026-03 起逐日吻合，9 月与 Q3 数字不受影响</strong>（后经 _bian 第一轮第 2 条修正：3 月起的吻合是浮点级相等、可能是派生字段，6.4% 改称序列内下限）；累计占比按 452.8 亿重算（58.4% → 约 55.8%）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>「没有锁仓」漏了 CIP-0105 超级验证人锁定框架；总供应 ≠ 流通量</td>
+<td>✅ 原文核实后补入；市值注明「按总供应」</td>
+</tr>
+<tr>
+<td>3</td>
+<td>未领取奖励可经治理补铸（CIP-0066/0067），里程碑奖励是「达标后授权铸造」而非已发行币的解锁</td>
+<td>✅ 原文核实后改写 1.2、6</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>「奖励 ÷ 销毁」只能比较总量</strong>，「返还给产生流量的一方」暗示了对应关系</td>
+<td>✅ 改为「激励发行规模，不是退款率或利润率」；空头 #2 降为三星；CIP-0120 的「脱节」改为准确转述</td>
+</tr>
+<tr>
+<td>5</td>
+<td>「持有人净值流 −$2,303 万」「净稀释」把发行折算写成财富损失；「方向是反的」混淆毛销毁与净发行</td>
+<td>✅ 改为「净发行折算」「供应年化增速」</td>
+</tr>
+<tr>
+<td>6</td>
+<td>购买流量与消耗流量混用；字节字段定义未核实；$60/MB 可经 CIP-0084 调整</td>
+<td>✅ 全文补注</td>
+</tr>
+<tr>
+<td>7</td>
+<td>72.6%（占实际铸造）与 62%（占额度）不可比，「池间再分配」推断不成立；漏了 CIP-0082 开发基金</td>
+<td>✅ 改报各池额度利用率；补开发基金</td>
+</tr>
+<tr>
+<td>8</td>
+<td>CIP-0104 分阶段上线，获批 ≠ 9 月已生效；「真实需求则流量不应下降」不成立</td>
+<td>✅ 删除，补协议优化等替代解释</td>
+</tr>
+<tr>
+<td>9</td>
+<td>「均衡价格」只是冻结发行的算术点</td>
+<td>✅ 改名并降为算术参考</td>
+</tr>
+<tr>
+<td>10</td>
+<td>记分卡：C9-1 名称与统计量不同构、门槛 10 未满足、制造成本用了全网平均；C9-3 判定方式与门槛 11</td>
+<td>✅ 记分卡已改</td>
+</tr>
+<tr>
+<td>11</td>
+<td>换算方法、跨源检验的范围、模拟设定未说明</td>
+<td>✅ 已补</td>
+</tr>
+<tr>
+<td>12</td>
+<td>「获批成为超级验证人」过强；最大权重 ≠ 生效权重；Q4 流量预期过强</td>
+<td>✅ 改为「里程碑式参与方案获批」</td>
+</tr>
+<tr>
+<td>13</td>
+<td>「R² 低 = 噪声」「宏观解释力弱」</td>
+<td>✅ 改为「BTC 单因子模型解释度低」</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第 2–3 层 _bian（第一轮，审修订稿）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>「应用奖励随流量上升」被报告自己的数据否定</strong>：应用奖励枚数 2 月 4.46 亿 → 9 月 4.71 亿，流量却跌 35%；只有验证人奖励约与销毁枚数同比例（约 0.2 倍）</td>
+<td>✅ <strong>复算核实</strong>；9.2 改用「应用 + 超级验证人固定、验证人 0.2 倍」重算：归零流量约 1.29 TB（高于历史峰值）、归零价约 $0.070；记分卡拒登理由同步改</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>2026-03 起的「逐日吻合」是浮点级相等，更像派生字段，不是独立验证</strong></td>
+<td>✅ <strong>复算核实</strong>（612 个日差中 607 个残差绝对值超过 10⁻⁵ 枚 → 3 月起最大 7.4×10⁻⁶）；6.4% 改称「序列内净增，下限」</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1.47 倍与 6.4% 随币价变（价格越高净发行越多），核心判断写得像结构性质；监控项「奖励 ÷ 销毁」约等于价格 ÷ 流量</td>
+<td>✅ 核心判断补价格条件（9/30 价约 7.7%，低于 $0.070 转负）；监控项改为「归零价」</td>
+</tr>
+<tr>
+<td>4</td>
+<td>空头 #2（1.27 倍）是空头 #1 的子集</td>
+<td>✅ 并入 #1</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>3.2 只挑了大涨日</strong>；全部获批日里只有 9/25 有大幅超额，9/22（LSEG + Paxos）为 −4.3</td>
+<td>✅ 复算后重写 3.2（统一为 9 个山寨对照组）；卷首、速查删「恰为」</td>
+</tr>
+<tr>
+<td>6</td>
+<td>C9-1「不可回收」与 1.3 的验证人规则冲突：约 20% 按规则以验证人奖励返还</td>
+<td>✅ 记分卡改</td>
+</tr>
+<tr>
+<td>7</td>
+<td>C9-2 应从登记日已知值起算</td>
+<td>✅ 从 10/12 重算为 33.8%，登记 34%</td>
+</tr>
+<tr>
+<td>8</td>
+<td>卷首「DefiLlama 引用同一数据源」与 4.1 矛盾</td>
+<td>✅ 改为「数量来自 Allium，独立」</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第二轮复审（Codex + _bian）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th style="text-align: center;">出处</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>5.4 仍是「冻结全部铸造」的旧模型（$0.075），与 9.2 的 $0.070 并存</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 5.4 改用同一模型</td>
+</tr>
+<tr>
+<td>2</td>
+<td>卷首、10.3 残留「总量可由铸造 − 销毁累计」「差额正好对应一次补铸」；607 天缺容差定义</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 已改；注明「</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>C9-1 改为照常计分后，PONS 期「押可制造方向须预先写排查」的规则没有执行</strong></td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 补逐日集中度排查，排查不了判 ⚠️</td>
+</tr>
+<tr>
+<td>4</td>
+<td>C9-2 门槛栏同时写「从 9/30」与「从 10/12」</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 删去旧句；Codex 复算 33.79%</td>
+</tr>
+<tr>
+<td>5</td>
+<td>6.4% 与 7.7% 的年化方法未写明</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 补公式：两者都是单利（月净增 × 365/30 ÷ 月初供应）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>「分量最重的两项」无依据；获批日 CC 涨跌栏未填</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 改为「当日获批最大权重合计 18」，补齐涨跌</td>
+</tr>
+<tr>
+<td>7</td>
+<td>拒登理由门槛号引错（9 → 4）；9–13% 未复算</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 改正；本报告复算约 8%</td>
+</tr>
+<tr>
+<td>8</td>
+<td>价格图说明「未作判别检验」已过时；7.2 编号跳号；速查第 4 节缺「下限」</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 已改</td>
+</tr>
+</tbody>
+</table></div>
+<p>两位复审者的结论均为「改后发布，不需要再完整审一轮」（_bian），Codex 复算新增数字全部通过（归零流量 1.2926 TB、归零价 $0.06982、获批日超额、C9-2 33.79%）。</p>
+<p><strong>第 4 层 _dalin</strong>：待审。</p></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-cc-canton-network-2026-9">CC / Canton Network 简明速查（2026 年 9 月版，首期）</h1>
+<blockquote>
+<p>完整报告的浓缩版，给快速复习用。<strong>数据截止 2026-09-30，链上快照到 10/12。</strong><br />
+本文件不构成投资建议。</p>
+</blockquote>
+<hr />
+<h2 id="s-1">1. 一句话</h2>
+<p><strong>CC 的流量费以美元计价（约 $60/MB，可经委员会调整）、以 CC 销毁，9 月约 $4,883 万，单价不变时与币价无关；但同月铸造按链上报价折算约为销毁的 1.47 倍（应用 + 验证人奖励约 1.27 倍）——按 9 月单月外推，供应年化增速约 6.4%（序列内，下限；价格越高越大，低于约 $0.070 转负）。这些是激励发行的规模，不是退款率或利润率。</strong></p>
+<hr />
+<h2 id="s-2">2. 三个默认</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>流通量已知吗</td>
+<td>⚠️ 总供应来自 CantonScan（<strong>官方 Scan 接口对外 403</strong>）；<strong>2026-03 起与铸造 − 销毁浮点级相等（可能是派生字段，不是独立验证），此前有 20.2 亿序列外发行</strong>（16.3 亿对应 CIP-0067 基金会补铸）；超级验证人有锁定框架（CIP-0105），锁定余额与持有分布取不到；累计发行约 56% 给了超级验证人</td>
+</tr>
+<tr>
+<td>价格可用吗</td>
+<td>⚠️ 可用，但 BTC 单因子 <strong>R² 只有 0.078</strong></td>
+</tr>
+<tr>
+<td>持有人是剩余索取权人吗</td>
+<td>❌ 实用代币；无请求权</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-3">3. 当前位置</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td><strong>$0.12633</strong>（Bybit）</td>
+</tr>
+<tr>
+<td>9 月 / Q3</td>
+<td><strong>+4.68% / −10.67%</strong>（BTC +6.42% / +42.64%）</td>
+</tr>
+<tr>
+<td>beta / R² / 波动率</td>
+<td><strong>0.597 / 0.078 / 96.3%</strong></td>
+</tr>
+<tr>
+<td>对数超额</td>
+<td>9 月 +0.9（对照组中位数 +13.2）；Q3 −32.5（约 0.7 个季度特质标准差）</td>
+</tr>
+<tr>
+<td>市值（9/30，按总供应）</td>
+<td>约 <strong>$50.0 亿</strong>（395.68 亿枚）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>9/16 与 9/25 是个币异动</strong>（相对对照组 +8.8 / +10.1）；<strong>五个提案获批日里只有 9/25 有大幅超额，当日获批权重合计最高的 9/22（LSEG + Paxos）为 −4.3</strong>——不支持「获批推动价格」，<strong>原因未识别</strong></li>
+</ul>
+<hr />
+<h2 id="s-4-9">4. 铸造与销毁（9 月）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>铸造 / 销毁 / 净增</td>
+<td><strong>6.48 亿 / 4.43 亿 / +2.06 亿枚</strong>（单月外推年化约 6.4%，序列内、下限）</td>
+</tr>
+<tr>
+<td>实际铸造 ÷ 当月额度</td>
+<td><strong>78.9%</strong>（当前上限每年 100 亿；2026-01-12 已减半）；<strong>未领取部分可经治理补铸</strong></td>
+</tr>
+<tr>
+<td>各池额度利用率</td>
+<td>应用约 92% / 验证人约 59% / 超级验证人约 55%</td>
+</tr>
+<tr>
+<td>销毁（美元）</td>
+<td><strong>$4,883 万</strong>；DefiLlama 同窗口差 0.06%（两条独立管线）</td>
+</tr>
+<tr>
+<td>月流量字节</td>
+<td>0.813 TB（2 月峰值 1.247 TB，<strong>−35%</strong>；字段是购买还是消耗未核实，原因未识别）</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-5-vs">5. 激励发行 vs 销毁（按链上报价折美元）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>9 月</th>
+<th style="text-align: right;">百万美元</th>
+<th style="text-align: right;">÷ 销毁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>应用奖励</td>
+<td style="text-align: right;">52.2</td>
+<td style="text-align: right;"><strong>1.07</strong></td>
+</tr>
+<tr>
+<td>应用 + 验证人</td>
+<td style="text-align: right;">61.9</td>
+<td style="text-align: right;"><strong>1.27</strong></td>
+</tr>
+<tr>
+<td>全部铸造</td>
+<td style="text-align: right;">71.9</td>
+<td style="text-align: right;"><strong>1.47</strong></td>
+</tr>
+<tr>
+<td>销毁</td>
+<td style="text-align: right;">48.8</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>激励发行的规模与销毁相当或更大</strong>——但这是总量之比，<strong>不是退款率，也不是任何参与者的利润率</strong>；没有刷量的证据</li>
+<li>CIP-0120 说的「脱节」是<strong>购买流量的用户与处理流量的验证人可能不同</strong>，关于奖励归属，不是刷量证据</li>
+<li><strong>DefiLlama 的「HoldersRevenue」是毛销毁</strong>，没扣同期发行；9 月按链上报价折算的净发行约 $2,303 万</li>
+</ul>
+<hr />
+<h2 id="s-6-9">6. 治理（9 月）</h2>
+<ul>
+<li><strong>六项里程碑式超级验证人参与方案获批</strong>：TreasurySpring、新韩资管、a16z crypto、LSEG、Paxos、Marex（最大可赚取权重合计 52，≠ 已生效；里程碑达成前奖励进未领取池、达标后才授权铸造）</li>
+<li>CIP-0120（按实际流量发验证人奖励）仍为 Proposed</li>
+</ul>
+<hr />
+<h2 id="s-7">7. 估值</h2>
+<ul>
+<li><strong>不给目标价</strong>：无请求权</li>
+<li>市值 ÷ 年化销毁 ≈ <strong>8.5 倍</strong>；年化净发行（计价）约 $2.76 亿</li>
+</ul>
+<hr />
+<h2 id="s-8">8. 记分卡</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>论点</th>
+<th style="text-align: center;">先验</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C9-1 ⚑ Q4 任一月销毁计价额 ≥ $6,000 万</td>
+<td style="text-align: center;">25%</td>
+</tr>
+<tr>
+<td>C9-2 ⚑ 校准对照：12 月 CC/BTC 月均较 9 月降超过 10%</td>
+<td style="text-align: center;">34%（随机游走基率，从 10/12 起算）</td>
+</tr>
+<tr>
+<td>C9-3 CIP-0120 年底前获批</td>
+<td style="text-align: center;">40%</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-3-5">如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>CC 的销毁以美元计价、与币价无关——9 月约 $4,883 万，两条独立数据管线同窗口只差 0.06%。</strong></p>
+</li>
+<li>
+<p><strong>但同月按计价铸造了 1.47 倍的新币：净增 2.06 亿枚，单月外推年化约 6.4%（序列内，下限）。净增随币价变：价格越高净增越多，低于约 $0.070 转为净减。</strong></p>
+</li>
+<li>
+<p><strong>CantonScan 的累计供应比它自己的「铸造 − 销毁」多 20 亿枚——其中 16.3 亿是一次治理补铸（CIP-0067）；发行不只在每轮铸造里。</strong></p>
+</li>
+<li>
+<p><strong>流量字节从 2 月见顶下降了 35%（原因未识别）；九月六项机构超级验证人参与方案获批（含 LSEG、Paxos），奖励按里程碑。</strong></p>
+</li>
+<li>
+<p><strong>R² 只有 0.078：BTC 单因子解释不了 CC 的价格；9 月两天个币异动的原因未识别。</strong></p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>cc_research_report_202609.md</code>。<br />
+论点检验记录见 <code>../thesis_scorecard.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>

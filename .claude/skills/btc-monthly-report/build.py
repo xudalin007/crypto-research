@@ -61,6 +61,8 @@ PROFILES = {
                 accent='#1a9e3f', badge='◉ Robinhood'),
     'link': dict(symbol='⬡', name='LINK / Chainlink', short='LINK',
                 accent='#2a5ada', badge='⬡ Chainlink'),
+    'cc': dict(symbol='◎', name='CC / Canton Network', short='CC',
+              accent='#6c3fc5', badge='◎ Canton'),
 }
 
 
