@@ -1,0 +1,2085 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DOT / Polkadot 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#e6007a;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">● DOT 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>● DOT 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-polkadot-8">1. Polkadot 是什么</a>
+<a href="#2-dot">2. DOT 的发展阶段划分</a>
+<a href="#3-dot">3. DOT 当前现状</a>
+<a href="#4-9-dotusd">4. 9 月的大涨与 dotUSD 公投</a>
+<a href="#5-dap">5. 净供应、DAP 与国库</a>
+<a href="#6-coretime-asset-hub">6. 收入</a>
+<a href="#7">7. 质押与治理</a>
+<a href="#8-dot">8. DOT 与其他资产的比较</a>
+<a href="#9">9. 核心价值逻辑</a>
+<a href="#10">10. 估值</a>
+<a href="#11">11. 投资与风险启示</a>
+<a href="#12">12. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-1">1. 一句话</a>
+<a href="#s-2">2. 当前位置</a>
+<a href="#s-3-dap">3. DAP</a>
+<a href="#s-4-9-dotusd">4. 9 月的大涨与 dotUSD</a>
+<a href="#s-5">5. 净供应与收入</a>
+<a href="#s-6">6. 质押</a>
+<a href="#s-7">7. 估值</a>
+<a href="#s-8">8. 记分卡</a>
+<a href="#s-3-5">如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>● DOT / Polkadot<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">● Polkadot</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="dot-polkadot-2026-9-q3">DOT / Polkadot 完整调研与分析报告（2026 年 9 月版兼 Q3 回顾）</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 10 月 13 日<br />
+<strong>数据截止</strong>：2026 年 9 月 30 日（9 月完整月度数据已闭合）；<strong>链上快照到 10/12</strong><br />
+<strong>研究方法</strong>：沿用 8 月首期框架。<strong>本期所有供应、国库、质押、DAP、Coretime 数据均为 Asset Hub / Coretime 链公共 RPC 直读</strong>；<br />
+价格统一改用<strong>币安日线 UTC 收盘</strong>（8 月版用的是 CoinGecko 00:00 时点价，见 12.4）；<strong>超额收益统一用对数口径</strong>（ln 收益 − beta × ln BTC 收益）。</p>
+<p><strong>本期核心发现</strong>：<br />
+1. <strong>新增发不再进国库，而是进 DAP（动态分配池），再按链上预算表三分：DAP 缓冲 32.2%、质押奖励 45.2%、验证人激励 22.6%——国库不在表里。</strong><br />
+   这是 Polkadot 运行时 v2.3.0 引入的机制（运行时发布记录与源码一手），<strong>2026 年 6 月在链上生效</strong>（DAP 缓冲账户 5/31 余额 0.11 DOT，6/30 为 473,387）。<br />
+<strong>8 月版没看到它</strong>：8 月版把「国库近 31 天零变化」解释成「阶梯式更新」，并按「约两成进国库、其余归质押者」推算质押者份额——<strong>这两处都建在已经失效的机制上</strong>。<br />
+2. <strong>对持有人的直接含义</strong>：运行时源码（<code>pallet-staking-async</code> 0.13.0 / 0.15.0）显示<strong>验证人激励只转给验证人本人</strong>，普通提名人只分 45.2% 的质押奖励——<br />
+<strong>平均名义收益约 2.79%（未扣佣金）</strong>。它能不能抵消稀释，取决于 DAP 缓冲算不算稀释：<strong>计入则实际份额约 −0.49%/年，不计入（缓冲暂不流通）则约 +0.55%/年</strong>。<br />
+<strong>按与 8 月版相同的总发行量口径，8 月版「质押者 +1.60%」不成立</strong>（全部质押者合计也只有 +0.86%）。⚠️ 这些都是平均化估算：单个提名人随验证人、佣金和领取情况不同。<br />
+3. <strong>9 月 DOT +45.60%（BTC +6.42%）；对数超额 +29.8 个点（约 1.5 个特质标准差）</strong>，主升段集中在 9/07 12–16 时与 9/08 14–16 时（UTC）。<br />
+<strong>横截面检验</strong>：这两个窗口里 DOT 分别 +10.1%、+11.5%，<strong>同时段 BTC 与另外 8 个山寨在 −3.9% 到 +4.9% 之间</strong>——<strong>削弱了「板块行情」的解释，是 DOT 个币层面的异动</strong>。<br />
+   与 1944 号公投「dotUSD：Polkadot 原生稳定币」（9/07 15:49 提交、10/08 执行）落在同一个 48 小时窗口，<strong>但第一个窗口约九成、9/05–9/08 三天对数涨幅约一半，发生在公投上链之前</strong>；<br />
+   若是公投驱动，需要论坛预讨论已提前公开——<strong>这个时间本报告没查到</strong>。<strong>原因未识别。</strong><br />
+4. <strong>10/08 国库余额减少 2,853,231 DOT——按调用内容是注入 DOT × dotUSD 流动性池，不是花掉。</strong> 1944 号公投的链上调用写明 <code>addLiquidity</code> <strong>2,853,229.86 DOT + 250 万 dotUSD</strong>（LP 份额铸给 <code>13UVJyLnbVp9…</code>，与调用来源账户相同），与测到的减少只差约 1 DOT。⚠️ 实际执行结果与 LP 到账本期未逐笔核对。<br />
+5. <strong>Asset Hub 手续费第一次实测</strong>（D8-4 的前提）：随机抽 400 个 9 月区块，逐笔取链上事前手续费估算，<strong>9 月约 1,179 DOT，年化约 $1.76 万</strong>——D8-4 判错线 $150 万，<strong>差约两个数量级</strong>。<br />
+<strong>年净增发约 $6,836 万，约为已测、已估收入合计的 2,100 倍（量级 10³）</strong>。</p>
+<p><strong>本期核心判断</strong>：<strong>8 月版的结构性结论（增发与收入差三个数量级）不变，收入侧最大一项已改为自己测量。</strong><br />
+<strong>本期真正改变认识的是分配侧</strong>：DAP 让新增发的三分之一进了一个协议储备池，国库不再自动分到增发，<strong>普通提名人平均只分到增发的 45.2%——质押能不能抵消稀释，从 8 月版的「能，且有余」变成了「取决于 DAP 缓冲将来怎么用」</strong>。</p>
+<p>⚠️ <strong>本期初稿把 DAP 带来的分叉写成「去向未定位」、把 10/08 的注资写成「拨出 / 一次性成本」</strong>——两位审查者分别用运行时源码和公投链上调用指出，<strong>答案就在本报告自己缓存的一手源里</strong>。已改，见 12.5。</p>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>9/30 收盘</strong></td>
+<td><strong>$1.223</strong>（币安）；市值约 <strong>$20.86 亿</strong>（链上总量 × 收盘价）</td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3</strong></td>
+<td><strong>+45.60% / +48.78%</strong>（BTC +6.42% / +42.64%）</td>
+</tr>
+<tr>
+<td><strong>对数超额（ln − beta × ln BTC）</strong></td>
+<td>9 月 <strong>+29.8</strong>；Q3 <strong>−4.6</strong>；相对对照组中位数 9 月 +20.5、Q3 <strong>−7.5</strong></td>
+</tr>
+<tr>
+<td><strong>一年 beta / R² / 波动率</strong></td>
+<td>1.247 / <strong>0.412</strong> / 87.6%</td>
+</tr>
+<tr>
+<td><strong>净供应增长（9 月）</strong></td>
+<td><strong>+4,594,023 DOT，年化 3.287%</strong>；4–9 月逐月 3.29%–3.45%</td>
+</tr>
+<tr>
+<td><strong>新增发的分配（DAP 预算表，6 月起）</strong></td>
+<td><strong>DAP 缓冲 32.2% / 质押奖励 45.2% / 验证人激励 22.6%；国库 0</strong></td>
+</tr>
+<tr>
+<td><strong>普通提名人实际份额（年，平均、未扣佣金）</strong></td>
+<td><strong>−0.49%</strong>（缓冲计入稀释）<strong>至 +0.55%</strong>（缓冲不计）；8 月版 +1.60% 按同口径不成立</td>
+</tr>
+<tr>
+<td><strong>国库账户</strong></td>
+<td>7/31–9/30 <strong>余额净变化为零</strong>；10/08 减少 2,853,231（按调用内容为<strong>注入 DOT × dotUSD 池</strong>）</td>
+</tr>
+<tr>
+<td><strong>DAP 缓冲账户</strong></td>
+<td>9/30 <strong>5,037,110</strong>、10/12 5,615,286（被计入「不活跃发行量」）</td>
+</tr>
+<tr>
+<td><strong>Asset Hub 手续费（9 月，事前估算）</strong></td>
+<td><strong>约 1,179 DOT</strong>（条件于样本的自助区间 207–2,968）</td>
+</tr>
+<tr>
+<td><strong>增发 / 已测已估收入</strong></td>
+<td><strong>约 2,100 : 1</strong>（量级 10³）</td>
+</tr>
+<tr>
+<td><strong>dotUSD</strong></td>
+<td>资产 7873；第一阶段 <strong>USDT 1:1 铸造</strong>、上限 1,000 万；铸币费 0、赎回费 0.01%；第二阶段才引入 DOT 抵押</td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td><strong>仍不给目标价</strong>。市值 ÷ 年净增发 = <strong>30.5 倍</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-polkadot-8">1. Polkadot 是什么（与 8 月版相同，从略）</h2>
+<p>一个出租区块空间的网络：中继链提供共享安全，平行链通过购买 <strong>coretime</strong> 获得执行资源。<br />
+<strong>2025-11-04 起，余额、质押、治理整体迁到 Asset Hub</strong>（8 月版第 4 章）。供应政策：<strong>21 亿上限</strong>（运行时 <code>EraPayout</code> 常量 <code>HARD_CAP_TARGET</code>，注释写明来自 Ref 1710——运行时一手；提案原文未打开），2026-03 前后发行率腰斩（一手实测）。<br />
+<strong>本期补充：2026-06 起，新增发经 DAP（Dynamic Allocation Pool，动态分配池）按预算表分配</strong>（第 5 章）。</p>
+<hr />
+<h2 id="2-dot">2. DOT 的发展阶段划分</h2>
+<p>阶段一至四与 8 月版相同（创世与插槽拍卖 / 锁仓退潮 / Polkadot 2.0 改造 / Asset Hub 迁移）。</p>
+<h3 id="dap202511-202608">阶段五：低价区间、供应上限与 DAP（2025.11 – 2026.08）</h3>
+<ul>
+<li>价格从 2025-09 的约 $4 跌到 <strong>2026-08-18 的历史低点 $0.727</strong>（CoinGecko）</li>
+<li>2026-03 起发行率腰斩至约 3.3%</li>
+<li><strong>2026-06 DAP 上线：新增发不再直接分给质押者与国库，而是进入 DAP 后按预算表分配</strong>（8 月版未记录）</li>
+</ul>
+<h3 id="dotusd202609">阶段六（本期新增）：dotUSD（2026.09 – ）</h3>
+<ul>
+<li><strong>9/07</strong> 1944 号公投「dotUSD」提交；<strong>9 月 DOT +45.60%</strong></li>
+<li><strong>10/08</strong> 执行：建资产 7873、开 PSM、<strong>国库 285 万 DOT + 250 万 dotUSD 注入 DOT × dotUSD 池</strong></li>
+</ul>
+<hr />
+<h2 id="3-dot">3. DOT 当前现状</h2>
+<h3 id="30-8-5-2026-12-31">3.0 论点校验：8 月版登记的 5 条（待 2026-12-31 起核）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论点</th>
+<th>证伪条件（摘要）</th>
+<th>9 月读数</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D8-1</td>
+<td>净供应增长率维持在 3.30% 附近</td>
+<td>2026-12-31 互不重叠区间年化 &gt; 3.8% 或 &lt; 2.8% 则错</td>
+<td><strong>9 月 3.287%</strong>（4–9 月 3.29%–3.45%）</td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>D8-2</td>
+<td>Coretime 需求不会实质改善</td>
+<td>2026-12-31 前任一轮 <code>cores_sold</code> ≥ 50 则错</td>
+<td>9/20 结束一轮 <strong>36</strong>；当前一轮截至 10/12 <strong>36</strong></td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>D8-3</td>
+<td>⚑ 国库会继续净积累（45%）</td>
+<td>2026-12-31 <code>Treasury.Deactivated</code> &lt; 25,500,000 则错</td>
+<td><strong>10/12 为 21,456,795</strong>；需 80 天内 +4,043,205（+18.8%）；<strong>国库已不在 DAP 预算表里</strong></td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>D8-4</td>
+<td>⚑ Asset Hub 费用收入不会改变第 6 章结论（40%）</td>
+<td>2026-12-31 前测得年化 &gt; $150 万则错</td>
+<td><strong>本期事前估算年化约 $1.76 万</strong></td>
+<td>⏳</td>
+</tr>
+<tr>
+<td>D8-5</td>
+<td>主流数据源不会在四个月内跟上</td>
+<td>2026-12-31 前 DefiLlama 链列表收录 Asset Hub 则错</td>
+<td>10/12 <strong>未收录</strong></td>
+<td>⏳</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>D8-3</strong>：判定在 12-31，本期不判。<strong>国库要在 80 天内增加 404 万，需要治理从 DAP 缓冲或别处转入</strong>——DAP 预算表里没有国库这一项，增发不会自动流入。<br />
+<strong>登记时（9/09）DAP 已经运行了约三个月</strong>，8 月版手里同时有「国库近 31 天零变化」和「<code>InactiveIssuance</code> 与国库的差额 61 天 +300 万」两行数据，<strong>没有把它们放在一起读</strong>（见 11.3 第一条）。这是一条反向登记的论点（自评 45%）。</p>
+<p><strong>D8-4</strong>：8 月版写「需要下期真的去测，否则按门槛 9 撤销」。<strong>本期测了</strong>，保持登记、继续待验。⚠️ 测的是<strong>事前手续费估算</strong>，不是实际扣费（6.2）。</p>
+<p><strong>本期新登记两条论点（D9-1 DOT/BTC 12 月均值较 9 月下降超过 10%、D9-2 DAP 预算表年内不变），拒绝登记两条，见 <code>../thesis_scorecard.md</code>。</strong></p>
+</blockquote>
+<h3 id="31">3.1 价格与市场</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>口径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td><strong>$1.223</strong></td>
+<td>币安 DOTUSDT 日线，UTC</td>
+</tr>
+<tr>
+<td>8/31 / 6/30 收盘</td>
+<td>$0.840 / $0.822</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3</strong></td>
+<td><strong>+45.60% / +48.78%</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>9 月收盘区间</td>
+<td>$0.868 – $1.268</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>近一年（2025-09-30 → 2026-09-30）</td>
+<td><strong>−68.71%</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>9 月日成交中位数</td>
+<td>约 $1,269 万</td>
+<td>币安，单一交易所</td>
+</tr>
+<tr>
+<td>市值（9/30）</td>
+<td><strong>约 $20.86 亿</strong></td>
+<td>链上总量 1,705,251,033 × $1.223</td>
+</tr>
+<tr>
+<td>ATH / 距 ATH</td>
+<td>$54.98（2021-11-04）/ <strong>−97.78%</strong></td>
+<td>CoinGecko</td>
+</tr>
+<tr>
+<td>一年 beta / R² / 年化波动率</td>
+<td><strong>1.247 / 0.412 / 87.6%</strong></td>
+<td>365 天日对数收益，本报告计算</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>对数超额收益</strong>（ln 收益 − beta × ln BTC 收益；对照组为本系列 8 个山寨：ZEC / UNI / ADA / SOL / BNB / ETH / TRX / CKB，同口径）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">7 月</th>
+<th style="text-align: right;">8 月</th>
+<th style="text-align: right;"><strong>9 月</strong></th>
+<th style="text-align: right;"><strong>Q3</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DOT 对数超额（×100）</td>
+<td style="text-align: right;">−16.7</td>
+<td style="text-align: right;">−17.6</td>
+<td style="text-align: right;"><strong>+29.8</strong></td>
+<td style="text-align: right;">−4.6</td>
+</tr>
+<tr>
+<td>对照组中位数</td>
+<td style="text-align: right;">+2.3</td>
+<td style="text-align: right;">−3.3</td>
+<td style="text-align: right;">+9.4</td>
+<td style="text-align: right;">+3.0</td>
+</tr>
+<tr>
+<td><strong>DOT − 对照组中位数</strong></td>
+<td style="text-align: right;"><strong>−19.0</strong></td>
+<td style="text-align: right;"><strong>−14.3</strong></td>
+<td style="text-align: right;"><strong>+20.5</strong></td>
+<td style="text-align: right;"><strong>−7.5</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>读法</strong>：DOT 单月特质波动（对数）的标准差约 19.3 个点，<strong>9 月 +29.8 约 1.5 个标准差</strong>。<br />
+相对对照组的差值是<strong>描述性的</strong>——对照组中位数不是一个模型，<strong>它不能证明剩下的部分全由 DOT 自身事件造成</strong>（第 4 章用小时级横截面排除了板块行情，但没有识别个币原因）。<br />
+7、8 月相对对照组合计 −33.3 个点，9 月 +20.5——<strong>数字上抵掉了约六成</strong>；这只是算术，<strong>不是均值回归的证据</strong>。</p>
+</blockquote>
+<h3 id="32">3.2 生态规模</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>平行链</th>
+<th style="text-align: right;">TVL（10/01，DefiLlama）</th>
+<th style="text-align: center;">占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hydration</td>
+<td style="text-align: right;">$5,825 万</td>
+<td style="text-align: center;">90.6%</td>
+</tr>
+<tr>
+<td>Bifrost</td>
+<td style="text-align: right;">$449 万</td>
+<td style="text-align: center;">7.0%</td>
+</tr>
+<tr>
+<td>Astar</td>
+<td style="text-align: right;">$120 万</td>
+<td style="text-align: center;">1.9%</td>
+</tr>
+<tr>
+<td>Acala</td>
+<td style="text-align: right;">$35 万</td>
+<td style="text-align: center;">0.5%</td>
+</tr>
+<tr>
+<td><strong>合计（以上四条）</strong></td>
+<td style="text-align: right;"><strong>约 $6,430 万</strong></td>
+<td style="text-align: center;">100%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>8 月版 $6,314 万（Hydration 92.8%）。<strong>量级不变。</strong> Moonbeam、Interlay 本期 DefiLlama 无 10/01 读数，未计入。</p>
+</blockquote>
+<h3 id="33">3.3 宏观环境</h3>
+<blockquote>
+<p>与 BTC 9 月版共用（美联储 9/16 加息 25bp 至 3.75–4.00%）。<strong>DOT 的 R² 为 0.412，宏观通过 BTC 的传导能解释它约四成的日波动。</strong></p>
+</blockquote>
+<hr />
+<h2 id="4-9-dotusd">4. 9 月的大涨与 dotUSD 公投（本期核心章之一）</h2>
+<p><img alt="DOT 日收盘与 1944 号公投的时间线" src="charts/price-ref1944-202609.svg" /></p>
+<blockquote>
+<p>图中数字：纵轴 $0.80 / $0.90 / $1.00 / $1.10 / $1.20 / $1.30；标注点 08-31 $0.840、09-30 $1.223；竖线为公投提交（9/07）、决策期（9/08）、确认期（10/06）、执行（10/08）。</p>
+</blockquote>
+<h3 id="41">4.1 公投本身</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>编号 / 标题</td>
+<td><strong>1944</strong>，「dotUSD: A Native Stablecoin for Polkadot」</td>
+<td>Subsquare 公投索引</td>
+</tr>
+<tr>
+<td>轨道</td>
+<td><strong>Root（0 号）</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>时间线（UTC）</td>
+<td>9/07 15:49 提交 → 9/08 07:35 决策期 → 10/06 07:26 确认期 → 10/07 07:28 确认 → <strong>10/08 07:31 执行</strong></td>
+<td>同上</td>
+</tr>
+<tr>
+<td>最终状态</td>
+<td><strong>Approved</strong></td>
+<td>✅ Asset Hub <code>Referenda.ReferendumInfoFor(1944)</code> 直读</td>
+</tr>
+<tr>
+<td>计票</td>
+<td>赞成 <strong>4,631,111</strong>、反对 <strong>70,810</strong>（<strong>均为含信念乘数的加权票</strong>）；support <strong>1,871,269 DOT</strong>（不含乘数的支持资本，占可投票总量约 16.77 亿的 0.11%）</td>
+<td>Subsquare</td>
+</tr>
+<tr>
+<td>链上调用（预映像）</td>
+<td><code>assets.forceCreate</code>（资产 <strong>7873</strong>，6 位小数）→ <code>psm.createPsm</code>（<strong>最大债务 1,000 万 dotUSD</strong>、最小兑换 1 dotUSD）→ <code>psm.setMintingFee</code>（<strong>0</strong>）/ <code>setRedemptionFee</code>（<strong>100 ppm = 0.01%</strong>）→ <code>psm.mint</code> → <code>assetConversion.createPool</code> / <strong><code>addLiquidity</code>（2,853,229.86 DOT + 2,500,000 dotUSD）</strong></td>
+<td>公投预映像，Subsquare 缓存</td>
+</tr>
+<tr>
+<td>分阶段</td>
+<td><strong>第一阶段：只开放 USDT 1:1 铸造 dotUSD、有上限</strong>，无需预言机；<strong>第二阶段</strong>才引入 DOT 抵押金库、预言机、清算</td>
+<td>提案原文</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>媒体写的「97.5% 赞成、239 万 DOT」是投票中途的快照</strong>——本报告只用最终状态（ADA 期教训）。<br />
+<strong>support 是支持资本口径，不是参与人数</strong>；0.11% 只说明投进来的资本占比，不能据此推断「社区是否一致」。</p>
+</blockquote>
+<h3 id="42-dotusd">4.2 是不是 dotUSD 推动的</h3>
+<p><strong>日线</strong>：9/06 +6.9%、9/07 +8.6%、<strong>9/08 +17.2%</strong>；9/07、9/08 成交额 $2,840 万、$3,060 万，是 9 月前五天（约 $700 万）的 4 倍以上。</p>
+<p><strong>横截面检验（小时线，币安）</strong>——同一时段，DOT 和其他资产有没有一起动：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>窗口（UTC）</th>
+<th style="text-align: right;"><strong>DOT</strong></th>
+<th style="text-align: right;">BTC</th>
+<th style="text-align: right;">ETH</th>
+<th style="text-align: right;">SOL</th>
+<th style="text-align: right;">ADA</th>
+<th style="text-align: right;">UNI</th>
+<th style="text-align: right;">ZEC</th>
+<th style="text-align: right;">BNB</th>
+<th style="text-align: right;">TRX</th>
+<th style="text-align: right;">CKB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/07 12:00–16:00</td>
+<td style="text-align: right;"><strong>+10.11%</strong></td>
+<td style="text-align: right;">−0.75%</td>
+<td style="text-align: right;">−0.75%</td>
+<td style="text-align: right;">−1.59%</td>
+<td style="text-align: right;">−1.00%</td>
+<td style="text-align: right;">−3.54%</td>
+<td style="text-align: right;">−3.90%</td>
+<td style="text-align: right;">−1.39%</td>
+<td style="text-align: right;">−0.74%</td>
+<td style="text-align: right;">+0.62%</td>
+</tr>
+<tr>
+<td>9/08 14:00–16:00</td>
+<td style="text-align: right;"><strong>+11.46%</strong></td>
+<td style="text-align: right;">+1.21%</td>
+<td style="text-align: right;">+1.60%</td>
+<td style="text-align: right;">+1.59%</td>
+<td style="text-align: right;">+4.89%</td>
+<td style="text-align: right;">+0.29%</td>
+<td style="text-align: right;">+2.53%</td>
+<td style="text-align: right;">+1.25%</td>
+<td style="text-align: right;">+0.18%</td>
+<td style="text-align: right;">+1.77%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>这一步能回答的是「板块还是个币」</strong>：两个窗口里 DOT 独涨约 10%，<strong>BTC 与另外 8 个山寨都没有同步</strong>——<strong>削弱了「共同板块行情」的解释</strong>。<br />
+⚠️ <strong>它不能回答「个币里是什么原因」</strong>，而且窗口是按 DOT 自己的涨幅挑出来的，「DOT 独有」有一部分是挑选方式带来的。</p>
+<p><strong>时间关系（量化）</strong>：<br />
+- <strong>第一个窗口的 +10.11% 里约 9.2 个点（约九成）在 9/07 15:00 之前完成，早于链上提交（15:49）</strong>；<br />
+- <strong>9/05 收盘到 9/08 收盘的三天对数涨幅里，约一半在提交之前</strong>（含 9/06 当天 +6.9%）；<br />
+- 第二个窗口比决策期开始（9/08 07:35）晚约 6.5 小时。</p>
+<p><strong>因此</strong>：「dotUSD 驱动」要解释前一半涨幅，<strong>需要论坛预讨论已提前公开</strong>——提案写明由生态贡献者共同起草，这在 OpenGov 里常见，<strong>但本报告没有查到可定时的首次公开时间（12.2 标 ❌）</strong>。<br />
+<strong>竞争解释</strong>：媒体提到 9/05 的空头挤压（约 $61 万清算，约占 9/05 当日币安成交 $651 万的 9%），<strong>可能与 9/06 的 +6.9% 有关</strong>；本报告没有衍生品一手数据。<br />
+<strong>判断：原因未识别。</strong> dotUSD 是候选之一，<strong>其成立依赖一个未核实的辅助假设（预讨论的公开时间）</strong>。这一条不登记为论点。</p>
+</blockquote>
+<h3 id="43-dotusd">4.3 dotUSD 对代币经济意味着什么（机制，不是预测）</h3>
+<ul>
+<li><strong>对国库</strong>：10/08 国库 2,853,231 DOT 注入 DOT × dotUSD 池（与预映像 <code>addLiquidity</code> 2,853,229.86 DOT 差约 1 DOT；预映像另有 0.5 DOT 跨链转账）。<br />
+<strong>这是资产换形态（DOT → 池份额），不是支出</strong>；提案写「$250 万 DOT」，起草时按约 $0.876/DOT 固定了数量，<strong>执行日按 10/07 收盘折合约 $319 万——差额来自价格上涨，不是多拨了钱</strong>。<br />
+  ⚠️ 池份额（LP）归哪个账户、是否计入国库，本期未核实。<strong>它的风险是无常损失与脱锚，不是这笔钱本身</strong>。</li>
+<li><strong>对 DOT 需求（第一阶段）</strong>：dotUSD 由 <strong>USDT 1:1 铸造</strong>，<strong>不需要 DOT 抵押</strong>——第一阶段对 DOT 的直接需求只有池子里那一侧。<strong>DOT 抵押是第二阶段的事</strong>，时间表本期未知。</li>
+<li><strong>对收入</strong>：PSM <strong>赎回收 0.01%</strong>、铸币免费，费用去向为预映像指定的账户；稳定币转账本身产生 Asset Hub 手续费。<strong>这是第 6 章那个「$1.76 万/年」可能改变的已知通道</strong>；按 1,000 万上限全额周转一次，赎回费也只有约 $1,000——<strong>第一阶段的量级不足以改变第 6 章结论</strong>。</li>
+</ul>
+<hr />
+<h2 id="5-dap">5. 净供应、DAP 与国库（本期核心章之二）</h2>
+<h3 id="51">5.1 净供应增长：逐月互不重叠区间</h3>
+<p><strong>Asset Hub <code>Balances.TotalIssuance</code>，每月最后一秒（UTC）之前的最后一个区块：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>区间</th>
+<th style="text-align: center;">天数</th>
+<th style="text-align: right;">净增（DOT）</th>
+<th style="text-align: center;">年化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3/31 → 4/30</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: right;">4,576,819</td>
+<td style="text-align: center;">3.320%</td>
+</tr>
+<tr>
+<td>4/30 → 5/31</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: right;">4,742,783</td>
+<td style="text-align: center;">3.321%</td>
+</tr>
+<tr>
+<td>5/31 → 6/30</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: right;">4,780,187</td>
+<td style="text-align: center;">3.449%</td>
+</tr>
+<tr>
+<td>6/30 → 7/31</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: right;">4,747,009</td>
+<td style="text-align: center;">3.305%</td>
+</tr>
+<tr>
+<td>7/31 → 8/31</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: right;">4,747,217</td>
+<td style="text-align: center;">3.296%</td>
+</tr>
+<tr>
+<td><strong>8/31 → 9/30</strong></td>
+<td style="text-align: center;"><strong>30</strong></td>
+<td style="text-align: right;"><strong>4,594,023</strong></td>
+<td style="text-align: center;"><strong>3.287%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>独立性检验（8 月版承诺的下期动作）</strong>：在 <strong>Parity 官方节点</strong>与 <strong>stakeworld 节点</strong>两个独立的公共 RPC 上复读 8/31（区块 20,119,207）与 9/30（区块 21,284,909），<br />
+<strong>区块哈希与 <code>TotalIssuance</code> 读数逐位一致</strong>（17,006,570,108,253,926,026 与 17,052,510,334,911,175,219，单位 1e-10 DOT）。<br />
+<strong>中继链 <code>TotalIssuance</code> 10/12 为 238,516 DOT</strong>（8 月版 241,430），teleport 污染上界仍封在总供应的 0.014% 以内。</p>
+</blockquote>
+<p><strong>当前口径</strong>：年净增约 <strong>5,589 万枚 ≈ $6,836 万</strong>（按 9/30 收盘）。若 21 亿上限成立，<strong>剩余可增发 394,748,967 枚 = 当前供应的 23.1%</strong>。</p>
+<h3 id="52-dap">5.2 DAP：新增发怎么分（运行时一手）</h3>
+<p><strong>机制</strong>（Polkadot 运行时 v2.3.0 发布记录、<code>pallet-dap</code> 源码与 Asset Hub 运行时配置，一手）：<br />
+质押模块改为「不铸币」模式；<strong>DAP 按时间连续铸造新增发，并按链上的预算表 <code>Dap.BudgetAllocation</code> 分给各接收方</strong>；手续费、罚没、未领取的奖励也转入 DAP；<br />
+<strong>进入 DAP 缓冲账户（<code>modl</code> + <code>dap/buff</code>）的资金被「停用」（deactivate），计入 <code>InactiveIssuance</code></strong>。</p>
+<p><strong>预算表（<code>Dap.BudgetAllocation</code>，6/30 至 10/12 各月末读数相同，本报告解码）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>接收方</th>
+<th style="text-align: right;">比例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>buffer</code>（DAP 缓冲，协议储备）</td>
+<td style="text-align: right;"><strong>32.2%</strong></td>
+</tr>
+<tr>
+<td><code>staker_rewards</code>（质押奖励）</td>
+<td style="text-align: right;"><strong>45.2%</strong></td>
+</tr>
+<tr>
+<td><code>validator_incentive</code>（验证人激励）</td>
+<td style="text-align: right;"><strong>22.6%</strong></td>
+</tr>
+<tr>
+<td>国库</td>
+<td style="text-align: right;"><strong>不在表中</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>链上对账</strong>——DAP 缓冲账户余额 = <code>InactiveIssuance</code> − 国库：</p>
+<p><img alt="每月「不活跃发行量」增量 vs 国库账户净变化" src="charts/treasury-inflow-202609.svg" /></p>
+<blockquote>
+<p>图中数字（千枚 DOT，纵轴刻度 0 / 500 / 1,000 / 1,500 / 2,000 / 2,500；蓝 / 橙）：4 月 590 / 590；5 月 713 / 713；6 月 558 / 84；7 月 2,476 / 946；8 月 1,530 / 0；9 月 1,504 / 0。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月末</th>
+<th style="text-align: right;">国库账户（<code>py/trsry</code>）</th>
+<th style="text-align: right;"><code>InactiveIssuance</code></th>
+<th style="text-align: right;">差额</th>
+<th style="text-align: right;"><strong>DAP 缓冲账户</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3/31</td>
+<td style="text-align: right;">21,976,398</td>
+<td style="text-align: right;">21,976,620</td>
+<td style="text-align: right;">222</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr>
+<td>4/30</td>
+<td style="text-align: right;">22,566,710</td>
+<td style="text-align: right;">22,566,932</td>
+<td style="text-align: right;">222</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr>
+<td>5/31</td>
+<td style="text-align: right;">23,279,898</td>
+<td style="text-align: right;">23,279,898</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0.11</td>
+</tr>
+<tr>
+<td><strong>6/30</strong></td>
+<td style="text-align: right;">23,364,128</td>
+<td style="text-align: right;">23,837,515</td>
+<td style="text-align: right;">473,387</td>
+<td style="text-align: right;"><strong>473,387</strong></td>
+</tr>
+<tr>
+<td>7/31</td>
+<td style="text-align: right;">24,310,026</td>
+<td style="text-align: right;">26,313,143</td>
+<td style="text-align: right;">2,003,117</td>
+<td style="text-align: right;"><strong>2,003,117</strong></td>
+</tr>
+<tr>
+<td>8/31</td>
+<td style="text-align: right;">24,310,026</td>
+<td style="text-align: right;">27,842,707</td>
+<td style="text-align: right;">3,532,682</td>
+<td style="text-align: right;"><strong>3,532,681</strong></td>
+</tr>
+<tr>
+<td>9/30</td>
+<td style="text-align: right;">24,310,026</td>
+<td style="text-align: right;">29,347,138</td>
+<td style="text-align: right;">5,037,112</td>
+<td style="text-align: right;"><strong>5,037,110</strong></td>
+</tr>
+<tr>
+<td>10/12</td>
+<td style="text-align: right;">21,456,795</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">5,615,286</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>三个事实</strong>：<br />
+① <strong>6–9 月各采样月末，DAP 缓冲余额与「<code>InactiveIssuance</code> − 国库」近似对账（残差 ≤ 2 DOT）</strong>——初稿写的「新增不活跃发行量去向未定位」，<strong>答案就是 DAP 缓冲账户</strong>。（3、4 月的 222 DOT 残差是别的停用项，不是 DAP；<code>InactiveIssuance</code> 是全局停用记账，不是这两个账户之和的定义。）<br />
+② <strong>DAP 6 月开始运行</strong>：链上运行时版本 5/31 为 2002001、6/30 为 <strong>2003001（v2.3.1，引入 DAP 的版本）</strong>，缓冲账户 5/31 只有 0.11 DOT。精确激活区块未定位。<br />
+   6、7 月国库仍有流入（8.4 万、94.6 万）——<strong>7 月那笔约占当月净增发的 19.9%，正好是旧机制一整月的份额，加上缓冲的 32.2% 与质押者的 67.8% 当月合计超过 100%，账没有闭合</strong>；本报告不对它做归因。<strong>8、9 月国库余额净变化为零</strong>。<br />
+③ <strong>预算表只作用于新铸造的发行量</strong>；手续费、罚没、未领取奖励进 DAP 暂存账户后<strong>直接转入缓冲</strong>，不按预算表再分（<code>pallet-dap</code> 源码）。9 月缓冲净增 1,504,429 DOT，比「32.2% × 净增发」多约 25,000 DOT——<strong>同月实测手续费只有约 1,179 DOT，首要候选是未领取的质押奖励</strong>（运行时 <code>UnclaimedRewardHandler = Dap</code>），未逐笔核实。</p>
+<p>⚠️ <strong>口径</strong>：本表只能说明月末余额，<strong>不能排除月内「流入与支出相抵」</strong>；「国库零流入」应读作「国库余额两个月净变化为零」。<br />
+<strong>DAP 缓冲不是销毁</strong>：它是被停用、不计入流通的协议储备，<strong>治理可以动用</strong>。⚠️ 月末余额持续增加<strong>不证明从未拨付</strong>（拨付可与流入同时发生）。提案原文说 DAP 的预算「以美元计价分配给质押与国库运营」——<strong>国库今后的资金来源是治理从 DAP 拨付，而不是自动分成</strong>。</p>
+</blockquote>
+<p><strong>10/08 的国库变动</strong>：逐日采样定位到 10/07 12:48 至 10/08 11:04（UTC）之间，国库从 24,310,026 降到 21,456,795（<strong>−2,853,231</strong>），<br />
+<strong>与 1944 号公投预映像中的 <code>addLiquidity</code> 2,853,229.86 DOT 差约 1 DOT</strong>（见 4.3）。⚠️ 本报告没有逐笔读取该区块的事件，归属依据是「执行时间 + 金额逐位对上」。</p>
+<h3 id="53-dap">5.3 对持有人的实际处境（按 DAP 重算）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: center;">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年化净供应增长（9 月）</td>
+<td style="text-align: center;"><strong>3.287%</strong></td>
+</tr>
+<tr>
+<td><strong>不质押者的年度份额变化</strong></td>
+<td style="text-align: center;"><strong>−3.18%</strong>（= 1 − 1/1.03287）</td>
+</tr>
+<tr>
+<td><strong>验证人激励给谁</strong>：运行时依赖的 <code>pallet-staking-async</code>（8 月运行时 v2.3.x 为 0.13.0，9/30 运行时 v2.5.0 为 0.15.0）源码里，验证人激励「从独立的激励池」<strong>转给验证人本人的账户</strong>，不进入提名人的分配循环。</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td><strong>所以普通提名人只分 <code>staker_rewards</code>（45.2%）</strong>，且是先按验证人的奖励点、再扣佣金、再按该验证人的质押分到提名人。</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>平均化估算</strong>（固定 9/30 总质押 906,851,198、奖励全部领取、<strong>未扣佣金</strong>；单个提名人因验证人、佣金、是否入选而不同）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>年化，平均</th>
+<th style="text-align: center;">名义收益</th>
+<th style="text-align: center;">实际份额（DAP 缓冲<strong>计入</strong>稀释，总发行量口径）</th>
+<th style="text-align: center;">实际份额（DAP 缓冲<strong>不计</strong>，按进入流通的约 2.23%）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>普通提名人</strong>（<code>staker_rewards</code> 45.2%）</td>
+<td style="text-align: center;"><strong>约 2.79%</strong></td>
+<td style="text-align: center;"><strong>约 −0.49%</strong></td>
+<td style="text-align: center;"><strong>约 +0.55%</strong></td>
+</tr>
+<tr>
+<td>全部质押者合计（含验证人激励，67.8%）</td>
+<td style="text-align: center;">约 4.18%</td>
+<td style="text-align: center;">约 +0.86%</td>
+<td style="text-align: center;">约 +1.91%</td>
+</tr>
+<tr>
+<td>不质押者</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">−3.18%</td>
+<td style="text-align: center;">约 −2.18%</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>两个未知量</strong>：① 佣金（只会让提名人的数更低）；② <strong>DAP 缓冲将来怎么用</strong>——它若被支出到流通中，就是稀释（左列）；若长期不动或用于回购，则更接近右列。<strong>本报告不知道是哪一个，所以两列都给。</strong><br />
+<strong>这改变了 8 月版的一条结论</strong>：8 月版写「质押者实际份额约 +1.60%」，那是按「国库约两成、其余归质押者」、总发行量口径推的。<br />
+<strong>按同一口径，DAP 下全部质押者合计也只有 +0.86%，普通提名人约 −0.49%——8 月版写作时 DAP 已运行约三个月，+1.60% 在当时就不成立。</strong>按「缓冲不计」口径，提名人约 +0.55%，仍远低于 +1.60%。</p>
+</blockquote>
+<hr />
+<h2 id="6-coretime-asset-hub">6. 收入：Coretime 与 Asset Hub 手续费（本期核心章之三）</h2>
+<p><img alt="年净增发 vs 已测收入" src="charts/issuance-vs-revenue-202609.svg" /></p>
+<blockquote>
+<p>图中数字（美元/年，对数轴刻度 $1,000 / $1 万 / $10 万 / $100 万 / $1,000 万 / $1 亿）：年净增发 $68.4M；Asset Hub 手续费 $17.6k（自助区间 $3.1 千–$4.4 万）；第三方覆盖的生态费用 $8.4k；Coretime $5.7k（地板价情景）；已测已估收入合计约 $3.2–3.4 万/年。</p>
+</blockquote>
+<h3 id="61-coretimecoretime-brokersaleinfo">6.1 Coretime（Coretime 链 <code>Broker.SaleInfo</code> 直读）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>轮次</th>
+<th>区间（timeslice）</th>
+<th style="text-align: center;">报价 / 售出</th>
+<th style="text-align: center;">地板价</th>
+<th style="text-align: center;">售罄价字段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8 月版那一轮（9/20 16:38 UTC 结束）</td>
+<td>413,565 → 418,605</td>
+<td style="text-align: center;"><strong>89 / 36</strong></td>
+<td style="text-align: center;">10 DOT</td>
+<td style="text-align: center;">10 DOT</td>
+</tr>
+<tr>
+<td>当前一轮（9/20 起，截至 10/12）</td>
+<td>418,605 → 423,645</td>
+<td style="text-align: center;"><strong>89 / 36</strong></td>
+<td style="text-align: center;">10 DOT</td>
+<td style="text-align: center;">10 DOT</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>8 月版写「售出 35」（9/08 中途读数）；<strong>该轮最终售出 36</strong>（9/20 轮换前最后一块）。<br />
+<strong>收入没有可靠区间</strong>：地板价情景 36 × 10 = <strong>360 DOT/轮</strong>；8 月版记录官方界面显示同一轮（售出 35 时，<strong>中途</strong>）累计收入已有 <strong>472.43 DOT</strong>——这是该轮最终收入的<strong>下界参考</strong>，不是上界。<br />
+下表用两者作<strong>参考</strong>（年化约 4,680–6,142 DOT ≈ $5,700–$7,500），<strong>不是区间估计</strong>。⚠️ 最终累计收入或逐笔付款本期未读取。</p>
+</blockquote>
+<h3 id="62-asset-hub">6.2 Asset Hub 手续费：第一次实测</h3>
+<p><strong>推导方法</strong>：在 9 月区间（区块 20,119,208 – 21,284,909，共 1,165,702 个区块）<strong>随机抽 400 个区块</strong>（Python <code>random.seed(20260930)</code>，可复现）；<br />
+对每个区块里<strong>带签名的交易</strong>（版本字节 0x84 或 0x45），在父区块状态上调用 <code>TransactionPaymentApi_query_info</code>，读出 <code>partial_fee</code>。<br />
+区间为对 400 个区块费用做 4,000 次有放回重抽（<code>random.seed(1)</code>）的 2.5% / 97.5% 分位数。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>统计量</th>
+<th style="text-align: right;">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>抽样区块</td>
+<td style="text-align: right;">400（错误 0）</td>
+</tr>
+<tr>
+<td>含带签名交易的区块</td>
+<td style="text-align: right;">54（13.5%）</td>
+</tr>
+<tr>
+<td>带签名交易</td>
+<td style="text-align: right;">101 笔，<strong>平均每块 0.25 笔</strong></td>
+</tr>
+<tr>
+<td>每块平均手续费</td>
+<td style="text-align: right;"><strong>0.00101 DOT</strong>（中位数 0）</td>
+</tr>
+<tr>
+<td><strong>9 月合计（× 1,165,702 区块）</strong></td>
+<td style="text-align: right;"><strong>约 1,179 DOT</strong></td>
+</tr>
+<tr>
+<td>自助法区间</td>
+<td style="text-align: right;"><strong>207 – 2,968 DOT</strong></td>
+</tr>
+<tr>
+<td><strong>年化（按 9/30 收盘）</strong></td>
+<td style="text-align: right;"><strong>约 $1.76 万</strong>（区间 $0.31 万 – $4.42 万）</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>这是「抽样交易的事前 DOT 计价手续费估算」</strong>：<code>partial_fee</code> 按交易声明的权重和长度计，<strong>不含小费、不含执行后的权重退款与免费交易</strong>（实际扣费按执行后权重）——退款与免费会使它<strong>高估</strong>，小费会使它<strong>低估</strong>；用其他资产付费的交易按 DOT 等值计。<br />
+⚠️ <strong>分布极度偏斜</strong>：单个区块 0.287 DOT，占样本总额（0.405 DOT）的 71%；约 37% 的重抽样本根本不含这个区块。<strong>自助区间是条件于这 400 个样本的，不覆盖测量偏差，也不覆盖没抽到的稀有大额交易。</strong><br />
+⚠️ <strong>手续费去向</strong>：按运行时配置，手续费进入 DAP，<strong>不是销毁</strong>；它与增发一样进入同一个分配池。</p>
+</blockquote>
+<p><strong>同一个抽样顺带更新了 8 月版的活动量</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">8 月版</th>
+<th style="text-align: right;">本期（9 月）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>出块间隔</td>
+<td style="text-align: right;">1.92 秒（8 月读数）</td>
+<td style="text-align: right;"><strong>2.22 秒</strong>（1,165,702 块 / 30 天）</td>
+</tr>
+<tr>
+<td>每块交易数</td>
+<td style="text-align: right;">3.25（60 块）</td>
+<td style="text-align: right;">2.25（400 块），<strong>其中 2 条是每块固定的系统交易（inherent）</strong></td>
+</tr>
+<tr>
+<td>「每日交易」</td>
+<td style="text-align: right;"><strong>约 146,250 笔</strong></td>
+<td style="text-align: right;"><strong>带签名的用户交易约 9,800 笔/天</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>8 月版的 146,250 把每块 2 条系统交易（时间戳、平行链校验数据）也算了进去</strong>——那部分不是用户活动。出块间隔的差异可能来自不同月份，<strong>本期只更新运行率，不断言 8 月版测错</strong>。</p>
+</blockquote>
+<h3 id="63">6.3 量级对照</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">年化（美元）</th>
+<th>证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asset Hub 手续费</td>
+<td style="text-align: right;">约 $17,600（$3,100 – $44,200）</td>
+<td>本期测量（事前估算口径）</td>
+</tr>
+<tr>
+<td>第三方覆盖的生态费用</td>
+<td style="text-align: right;">约 $8,400</td>
+<td>8 月版 DefiLlama 读数，本期未更新</td>
+</tr>
+<tr>
+<td>Coretime</td>
+<td style="text-align: right;">参考 $5,700 / $7,500</td>
+<td>地板价情景 / 中途累计读数，<strong>不是区间</strong></td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td style="text-align: right;"><strong>约 $31,700 – $33,500</strong>（按两个参考值）</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>年净增发</strong></td>
+<td style="text-align: right;"><strong>约 $6,836 万</strong></td>
+<td>一手测量</td>
+</tr>
+<tr>
+<td><strong>比值</strong></td>
+<td style="text-align: right;"><strong>约 2,100 : 1</strong>（量级 10³）</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>8 月版的写法是「未测的 Asset Hub 费用需为已测总和的约 4,000 倍，结论才会翻转」</strong>。本期把收入侧最大的一项测了：它约是 8 月版「已测总和」（$15,065）的 1.2 倍。<strong>结论不变。</strong><br />
+⚠️ <strong>对仍未测的项（中继链与其他系统链的费用、Coretime 逐笔付款），论证形式仍然是盈亏平衡</strong>：它们合计要达到当前已测已估收入的约 2,000 倍才会翻转结论。</p>
+</blockquote>
+<hr />
+<h2 id="7">7. 质押与治理</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">8/31（era 2279）</th>
+<th style="text-align: right;">9/30（era 2309）</th>
+<th style="text-align: right;">10/12（era 2321）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总质押</td>
+<td style="text-align: right;">912,354,206</td>
+<td style="text-align: right;"><strong>906,851,198</strong></td>
+<td style="text-align: right;">912,750,356</td>
+</tr>
+<tr>
+<td>质押率</td>
+<td style="text-align: right;">53.65%</td>
+<td style="text-align: right;"><strong>53.18%</strong></td>
+<td style="text-align: right;">53.47%</td>
+</tr>
+<tr>
+<td>验证人</td>
+<td style="text-align: right;">600</td>
+<td style="text-align: right;">600</td>
+<td style="text-align: right;">600</td>
+</tr>
+<tr>
+<td>提名人</td>
+<td style="text-align: right;">28,863</td>
+<td style="text-align: right;"><strong>28,469</strong></td>
+<td style="text-align: right;">28,334</td>
+</tr>
+<tr>
+<td>最低有效质押</td>
+<td style="text-align: right;">238.42</td>
+<td style="text-align: right;">213.83</td>
+<td style="text-align: right;">200.00</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>9 月质押率 −0.47pp，但 10/12 总质押已回到 8/31 水平以上</strong>；质押率 53.65% → 53.47% 的差里，约 0.2pp 是分母（总发行量）增长的机械效应。<strong>单月波动，不据此改变判断。</strong><br />
+提名人数连续下降（−394、−135），方向值得跟踪。⚠️ 提名人有可能适用 2 个 era 的快速解押（运行时配置 <code>NominatorFastUnbondDuration</code>，取决于治理设置），<strong>本报告没有拆解押队列，不推断「有人解押卖出」</strong>。</p>
+</blockquote>
+<p><strong>治理</strong>：1944 号公投 9/07 提交、10/08 执行，31 天——<strong>8 月版多头 #2「治理能改动代币经济并执行到位」的又一个样本</strong>。<br />
+<strong>DAP 本身也是这条的样本：它改变了新增发的分配，8 月版没看到。</strong>同一个机制，对持有人是双向的（5.3）。</p>
+<hr />
+<h2 id="8-dot">8. DOT 与其他资产的比较</h2>
+<blockquote>
+<p><strong>口径</strong>：9 月 = 8/31 → 9/30，Q3 = 6/30 → 9/30，币安 UTC 收盘；beta / R² 为 365 天日对数收益；对数超额 = ln 收益 − beta × ln BTC 收益（×100）。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>资产</th>
+<th style="text-align: right;">9 月</th>
+<th style="text-align: right;">Q3</th>
+<th style="text-align: right;">beta</th>
+<th style="text-align: right;">R²</th>
+<th style="text-align: right;">9 月对数超额</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UNI</td>
+<td style="text-align: right;">+69.76%</td>
+<td style="text-align: right;">+219.73%</td>
+<td style="text-align: right;">1.403</td>
+<td style="text-align: right;">0.401</td>
+<td style="text-align: right;">+44.2</td>
+</tr>
+<tr>
+<td>ZEC</td>
+<td style="text-align: right;">+69.60%</td>
+<td style="text-align: right;">+260.05%</td>
+<td style="text-align: right;">1.523</td>
+<td style="text-align: right;">0.193</td>
+<td style="text-align: right;">+43.4</td>
+</tr>
+<tr>
+<td><strong>DOT</strong></td>
+<td style="text-align: right;"><strong>+45.60%</strong></td>
+<td style="text-align: right;"><strong>+48.78%</strong></td>
+<td style="text-align: right;"><strong>1.247</strong></td>
+<td style="text-align: right;"><strong>0.412</strong></td>
+<td style="text-align: right;"><strong>+29.8</strong></td>
+</tr>
+<tr>
+<td>CKB</td>
+<td style="text-align: right;">+27.49%</td>
+<td style="text-align: right;">+51.21%</td>
+<td style="text-align: right;">1.226</td>
+<td style="text-align: right;">0.469</td>
+<td style="text-align: right;">+16.7</td>
+</tr>
+<tr>
+<td>ADA</td>
+<td style="text-align: right;">+24.67%</td>
+<td style="text-align: right;">+70.78%</td>
+<td style="text-align: right;">1.419</td>
+<td style="text-align: right;">0.649</td>
+<td style="text-align: right;">+13.2</td>
+</tr>
+<tr>
+<td>SOL</td>
+<td style="text-align: right;">+14.61%</td>
+<td style="text-align: right;">+60.34%</td>
+<td style="text-align: right;">1.311</td>
+<td style="text-align: right;">0.755</td>
+<td style="text-align: right;">+5.5</td>
+</tr>
+<tr>
+<td>BNB</td>
+<td style="text-align: right;">+11.26%</td>
+<td style="text-align: right;">+40.76%</td>
+<td style="text-align: right;">0.884</td>
+<td style="text-align: right;">0.594</td>
+<td style="text-align: right;">+5.2</td>
+</tr>
+<tr>
+<td>ETH</td>
+<td style="text-align: right;">+8.85%</td>
+<td style="text-align: right;">+70.86%</td>
+<td style="text-align: right;">1.283</td>
+<td style="text-align: right;">0.823</td>
+<td style="text-align: right;">+0.5</td>
+</tr>
+<tr>
+<td>TRX</td>
+<td style="text-align: right;">+1.44%</td>
+<td style="text-align: right;">+7.01%</td>
+<td style="text-align: right;">0.238</td>
+<td style="text-align: right;">0.193</td>
+<td style="text-align: right;">0.0</td>
+</tr>
+<tr>
+<td>BTC</td>
+<td style="text-align: right;">+6.42%</td>
+<td style="text-align: right;">+42.64%</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">1.000</td>
+<td style="text-align: right;">—</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>DOT 9 月涨幅排第 3（9 个山寨里），Q3 排倒数第 3</strong>（只高于 BNB、TRX）。</p>
+</blockquote>
+<hr />
+<h2 id="9">9. 核心价值逻辑</h2>
+<p><strong>星级编码证据等级</strong>：完全建立在二手转述上的论据不得给到五星。</p>
+<h3 id="91">9.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>说明与证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>发行率腰斩后稳定在约 3.3%，且可独立复现</strong></td>
+<td style="text-align: center;">★★★★★</td>
+<td>✅ 4–9 月逐月 3.29%–3.45%；<strong>两个独立节点读数逐位一致</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>治理能改动代币经济并执行到位</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ DAP 上线、1944 号公投 31 天执行。⚠️ 它是能力，不是方向（5.3）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>质押率 53%</td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 链上一手。9 月单月 −0.47pp，10/12 总质押已回到 8/31 以上</td>
+</tr>
+<tr>
+<td>4</td>
+<td>dotUSD 可能带来新的 DOT 需求与费用</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>⚠️ <strong>新增</strong>。公投已执行、参数一手；<strong>第一阶段由 USDT 铸造、不需要 DOT 抵押</strong>，采用没有任何读数，是期权不是现状</td>
+</tr>
+<tr>
+<td>5</td>
+<td>DAP 缓冲是一个持续积累的协议储备（9/30 约 504 万），<strong>暂不进入流通</strong></td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ 余额一手。⚠️ <strong>用途由治理决定</strong>——它决定质押者实际份额落在 5.3 表的左列还是右列；<strong>与空头 #3 是同一个未知数的两面</strong></td>
+</tr>
+<tr>
+<td>6</td>
+<td>价格行为是正常的价格发现</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ R² 0.412</td>
+</tr>
+<tr>
+<td>—</td>
+<td>~~国库在积累而非消耗~~</td>
+<td style="text-align: center;"><strong>撤下</strong></td>
+<td><strong>国库已不在 DAP 预算表里，增发不再自动流入</strong>（5.2）；10/08 的余额下降是注资入池，不是撤下的理由</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="92">9.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>说明与证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>净增发约为已测已估收入的 2,100 倍（量级 10³）</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 增发一手、Asset Hub 手续费本期测了。⚠️ <strong>维持四星</strong>：手续费为事前估算、尾部（一块占样本 71%）未核实；Coretime 为参考值；生态费用是 8 月读数且未证明由 DOT 捕获</td>
+</tr>
+<tr>
+<td>2</td>
+<td>不质押者每年被稀释 3.18%</td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 只依赖实测净供应增长。⚠️ 若 21 亿上限成立，总量封顶在 23.1%</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>普通提名人平均只分到增发的 45.2%</strong>，实际份额约 −0.49%（缓冲计入稀释）至 +0.55%（缓冲不计）</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ <strong>预算表与分配源码一手</strong>。⚠️ <strong>正负号取决于 DAP 缓冲将来怎么用——与多头 #5 是同一个未知数</strong>，星级对齐；平均化估算、未扣佣金</td>
+</tr>
+<tr>
+<td>4</td>
+<td>生态 TVL 约 $6,430 万，Hydration 占 90.6%</td>
+<td style="text-align: center;">★★★☆☆</td>
+<td>✅ DefiLlama。⚠️ TVL 不是衡量 Polkadot 的合适尺子</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Q3 仍落后对照组 7.5 个对数点</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ 一手。<strong>它是结果不是原因</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>多空同源检查</strong>：<br />
+- 多头 #1（发行率稳定）与空头 #2（稀释）是同一个机制——已用 21 亿上限约束后者的总量（8 月版教训）。<br />
+- <strong>多头 #5（DAP 储备积累）与空头 #3（提名人分得少）是同一张预算表、同一个未知数的两面</strong>：32.2% 进缓冲，提名人就少分；<strong>缓冲若长期不动，它减少的是流通稀释；若被支出，它就是稀释</strong>。两条星级对齐为三星。<br />
+- 多头 #2（治理执行力）对两者都是放大器。</p>
+</blockquote>
+<h3 id="93">9.3 多空之间真正的分歧点</h3>
+<blockquote>
+<p><strong>8 月版的分歧点是「Asset Hub 费用是多少」——本期事前估算约 $1.76 万/年，量级不足以改变结论；实际扣费与尾部核实后才能完全关闭这个问题。</strong><br />
+<strong>本期的分歧点是 DAP 缓冲怎么用</strong>：它每月吸收约 150 万 DOT（约 $180 万）。若用于回购或稳定 dotUSD，它是对持有人的价值回流；若用于支出，它就是一个更大的国库。<strong>治理还没有对它做过任何拨付</strong>（缓冲余额 6 月以来只增不减）。</p>
+</blockquote>
+<hr />
+<h2 id="10">10. 估值：仍不给目标价</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年净增发（美元，9 月运行率）</td>
+<td style="text-align: right;"><strong>$6,836 万</strong></td>
+</tr>
+<tr>
+<td>市值（9/30）</td>
+<td style="text-align: right;">$20.86 亿</td>
+</tr>
+<tr>
+<td><strong>年净增发 / 市值</strong></td>
+<td style="text-align: right;"><strong>3.28%</strong></td>
+</tr>
+<tr>
+<td><strong>市值 / 年净增发</strong></td>
+<td style="text-align: right;"><strong>30.5 倍</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>读法与 8 月版相同</strong>：市场每年要吸收相当于市值约 3.3% 的新供应，<strong>累计封顶在 23.1%</strong>（若上限成立）。<br />
+⚠️ <strong>DAP 带来一处修正</strong>：新增发里 32.2% 进了被停用的缓冲，<strong>暂时不进入流通</strong>——在缓冲被动用之前，<strong>进入流通的年新增约为净增发的 67.8%</strong>（约 2.2%）。但缓冲随时可以被治理释放，<strong>本报告不把它当作永久减少</strong>。<br />
+<strong>不给目标价的理由不变</strong>：业务经济性可观测，但小到无法支撑任何倍数法。<br />
+「市值 / 年净增发」从 8 月版的 30.4 倍变为 30.5 倍——<strong>这个比值对价格不敏感</strong>（美元计的增发与市值同比例变化），它只说明「吸收压力占市值的比例」，不说明贵还是便宜。</p>
+</blockquote>
+<h3 id="101">10.1 这套判断的弱点</h3>
+<ol>
+<li><strong>Asset Hub 手续费是事前估算口径</strong>，且 400 块抽样分布极度偏斜——<strong>点估计与自助区间都条件于样本</strong>。</li>
+<li><strong>质押者实际份额是平均化估算</strong>（未扣佣金、假定奖励全部领取），且正负号取决于 DAP 缓冲将来怎么用。</li>
+<li><strong>9 月大涨的原因未识别</strong>——横截面只排除了板块行情；约一半涨幅早于公投上链。</li>
+<li><strong>dotUSD 第一阶段由 USDT 铸造</strong>，它对 DOT 的作用本期只有池子一侧可读。</li>
+<li><strong>21 亿上限是运行时现行常量</strong>（一手），但运行时可以被治理升级改掉；Ref 1710 原文未打开。</li>
+</ol>
+<hr />
+<h2 id="11">11. 投资与风险启示</h2>
+<h3 id="111">11.1 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th style="text-align: right;">当前值</th>
+<th>触发关注的阈值</th>
+<th>查询方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年化净供应增长</td>
+<td style="text-align: right;">3.287%（9 月）</td>
+<td>偏离 ±0.5pp</td>
+<td>Asset Hub <code>Balances.TotalIssuance</code> 月末差分</td>
+</tr>
+<tr>
+<td><strong>DAP 预算表</strong></td>
+<td style="text-align: right;"><strong>32.2 / 45.2 / 22.6</strong></td>
+<td><strong>任何变动</strong>（D9-2）</td>
+<td><code>Dap.BudgetAllocation</code></td>
+</tr>
+<tr>
+<td><strong>DAP 缓冲出账</strong></td>
+<td style="text-align: right;">余额 5,037,110（9/30），出账未核实</td>
+<td><strong>任何从缓冲转出的事件</strong>（月末净值不能证明从未动用）</td>
+<td>缓冲账户转账事件</td>
+</tr>
+<tr>
+<td>国库账户余额</td>
+<td style="text-align: right;">21,456,795（10/12）</td>
+<td>任何增加（意味着治理从别处拨付）</td>
+<td><code>System.Account(py/trsry)</code></td>
+</tr>
+<tr>
+<td>dotUSD 供应</td>
+<td style="text-align: right;">第一阶段上限 1,000 万</td>
+<td>接近上限 / 第二阶段上线</td>
+<td>Asset Hub 资产 7873</td>
+</tr>
+<tr>
+<td>Coretime 售出 / 报价</td>
+<td style="text-align: right;">36 / 89</td>
+<td>≥ 50（D8-2），或跌破 20</td>
+<td>Coretime 链 <code>Broker.SaleInfo</code></td>
+</tr>
+<tr>
+<td>Asset Hub 手续费</td>
+<td style="text-align: right;">约 1,179 DOT/月（事前估算）</td>
+<td>月 ≥ 1 万 DOT</td>
+<td>随机抽块 + <code>TransactionPaymentApi_query_info</code></td>
+</tr>
+<tr>
+<td>质押率 / 提名人</td>
+<td style="text-align: right;">53.18% / 28,469</td>
+<td>跌破 50% / 提名人跌破 27,000</td>
+<td><code>Staking.ErasTotalStake</code>、<code>CounterForNominators</code></td>
+</tr>
+<tr>
+<td>DefiLlama 是否收录 Asset Hub</td>
+<td style="text-align: right;">未收录</td>
+<td>收录</td>
+<td><code>api.llama.fi/v2/chains</code></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>8 月版监控表里「国库（InactiveIssuance）2,822 万」一行用的是 8 月版 7.1 已撤回的字段——<strong>而那个字段本期弄清楚了：它是国库 + DAP 缓冲之和</strong>。本期把三者分开列。</p>
+</blockquote>
+<h3 id="112">11.2 风险提醒</h3>
+<ol>
+<li><strong>稀释是首要风险，但它是有限的</strong>：当前 3.287%，若上限成立累计 23.1%。</li>
+<li><strong>质押不一定能抵消稀释</strong>：按 DAP 预算表，普通提名人平均每年份额约 −0.49%（缓冲计入稀释、未扣佣金）至 +0.55%（缓冲不计）（5.3）。</li>
+<li><strong>DAP 缓冲的用途不确定</strong>：每月约 150 万 DOT 进入一个由治理支配的储备。</li>
+<li><strong>dotUSD 池的风险</strong>：国库注入的约 285 万 DOT 面临无常损失；dotUSD 若脱锚，池子会吸收损失。<strong>第一阶段由 USDT 1:1 支撑，脱锚风险主要来自 USDT 本身</strong>。</li>
+<li><strong>本报告自身</strong>：DOT 第二期；8 月版的五条论点尚无一条到期；<strong>本期初稿两处核心解读被审查推翻</strong>（12.5）。</li>
+</ol>
+<h3 id="113">11.3 长期认知</h3>
+<p><strong>第一，链上账目出现结构性分叉时，先查运行时升级记录。</strong><br />
+「<code>InactiveIssuance</code> 与国库从 6 月起分叉」这个现象，8 月版手里有（差额 61 天 +300 万），本期初稿也有（差额逐月表）——<strong>两次都被读成了「去向不明」</strong>。<br />
+<strong>答案在 Polkadot 运行时 v2.3.0 的发布记录里：DAP。</strong> DOT 期 8 月版的教训是「先确认数据源在测哪条链」；本期是它的下一层：<strong>先确认链的会计规则在你测量的这段时间里有没有被改过</strong>。</p>
+<p><strong>第二，盈亏平衡陈述的作用，是告诉你下期该测什么。</strong><br />
+8 月版用「需 4,000 倍才翻转」封住了 Asset Hub 费用，本期测出来是 1.2 倍。<strong>测出来之后，仍未测的那几项依然要用盈亏平衡封住</strong>——测量替代的是一个未知项，不是整个论证形式。</p>
+<p><strong>第三，归因分两步：先分「共同因子还是个币」，再分「个币里是哪件事」。</strong><br />
+第一步用同时段横截面（同一个小时，别的资产有没有一起动）——这一步只需要几次 API 调用，初稿没做。<br />
+<strong>第二步横截面帮不上</strong>：要靠事件首次公开的时点，并量化价格走势有多少发生在它之前。本期第二步没完成（预讨论的公开时间没查到），所以结论是「原因未识别」。</p>
+<hr />
+<h2 id="12">12. 附录</h2>
+<h3 id="121-2026-09-30-1012">12.1 关键数据速查（截至 2026-09-30，链上快照到 10/12）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>指标</th>
+<th style="text-align: right;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>市场</strong></td>
+<td>9/30 收盘（币安）</td>
+<td style="text-align: right;">$1.223</td>
+</tr>
+<tr>
+<td></td>
+<td>9 月 / Q3 / 近一年</td>
+<td style="text-align: right;">+45.60% / +48.78% / −68.71%</td>
+</tr>
+<tr>
+<td></td>
+<td>市值（9/30）</td>
+<td style="text-align: right;">约 $20.86 亿</td>
+</tr>
+<tr>
+<td></td>
+<td>beta / R² / 波动率</td>
+<td style="text-align: right;">1.247 / 0.412 / 87.6%</td>
+</tr>
+<tr>
+<td><strong>供应</strong></td>
+<td>总发行量（9/30，Asset Hub）</td>
+<td style="text-align: right;">1,705,251,033</td>
+</tr>
+<tr>
+<td></td>
+<td>9 月净增 / 年化</td>
+<td style="text-align: right;">4,594,023 / 3.287%</td>
+</tr>
+<tr>
+<td></td>
+<td>剩余可增发（若上限成立）</td>
+<td style="text-align: right;">394,748,967（23.1%）</td>
+</tr>
+<tr>
+<td><strong>DAP</strong></td>
+<td>预算表</td>
+<td style="text-align: right;">缓冲 32.2% / 质押奖励 45.2% / 验证人激励 22.6%</td>
+</tr>
+<tr>
+<td></td>
+<td>缓冲余额（9/30 / 10/12）</td>
+<td style="text-align: right;">5,037,110 / 5,615,286</td>
+</tr>
+<tr>
+<td><strong>国库</strong></td>
+<td>9/30 / 10/12</td>
+<td style="text-align: right;">24,310,026 / 21,456,795</td>
+</tr>
+<tr>
+<td><strong>质押</strong></td>
+<td>9/30 质押率 / 提名人</td>
+<td style="text-align: right;">53.18% / 28,469</td>
+</tr>
+<tr>
+<td></td>
+<td>普通提名人实际份额（年，平均、未扣佣金）</td>
+<td style="text-align: right;">−0.49%（缓冲计入）/ +0.55%（不计）</td>
+</tr>
+<tr>
+<td><strong>收入</strong></td>
+<td>Asset Hub 手续费（9 月，事前估算）</td>
+<td style="text-align: right;">约 1,179 DOT（207–2,968）</td>
+</tr>
+<tr>
+<td></td>
+<td>Coretime 售出 / 报价</td>
+<td style="text-align: right;">36 / 89</td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td>市值 / 年净增发</td>
+<td style="text-align: right;">30.5 倍</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="122">12.2 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th style="text-align: center;">核实状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TotalIssuance</code> / <code>InactiveIssuance</code> / <code>Treasury.Deactivated</code></td>
+<td>Asset Hub 公共 RPC（Parity、stakeworld）</td>
+<td style="text-align: center;">✅ 直读；<strong>两节点逐位一致</strong></td>
+</tr>
+<tr>
+<td>国库账户与 DAP 缓冲账户余额</td>
+<td><code>System.Account</code></td>
+<td style="text-align: center;">✅ 直读；<strong>两者之和与 <code>InactiveIssuance</code> 逐月一致</strong></td>
+</tr>
+<tr>
+<td>DAP 预算表</td>
+<td><code>Dap.BudgetAllocation</code></td>
+<td style="text-align: center;">✅ 直读并解码</td>
+</tr>
+<tr>
+<td>DAP 机制</td>
+<td>polkadot-fellows/runtimes v2.3.0 发布记录、v2.5.0 Asset Hub 运行时配置、<code>pallet-dap</code> 源码</td>
+<td style="text-align: center;">✅ 一手源码</td>
+</tr>
+<tr>
+<td>质押（era / 总质押 / 验证人 / 提名人）</td>
+<td>Asset Hub RPC</td>
+<td style="text-align: center;">✅ 直读</td>
+</tr>
+<tr>
+<td>Coretime <code>Broker.SaleInfo</code></td>
+<td>Coretime 链 RPC</td>
+<td style="text-align: center;">✅ 直读并手工解码</td>
+</tr>
+<tr>
+<td>1944 号公投最终状态</td>
+<td>Asset Hub <code>Referenda.ReferendumInfoFor</code></td>
+<td style="text-align: center;">✅ 直读（Approved）</td>
+</tr>
+<tr>
+<td>1944 号公投时间线、计票、预映像、正文</td>
+<td>Subsquare 公投索引 API</td>
+<td style="text-align: center;">⚠️ 第三方索引；<strong>状态与链上一致</strong>；<code>addLiquidity</code> 金额与国库变动逐位对上</td>
+</tr>
+<tr>
+<td>Asset Hub 手续费</td>
+<td>400 块随机抽样 + <code>TransactionPaymentApi_query_info</code></td>
+<td style="text-align: center;">✅ 本报告测量；⚠️ <strong>事前估算口径、未读扣费事件</strong></td>
+</tr>
+<tr>
+<td>价格 / 成交额（日线、小时线）</td>
+<td>币安</td>
+<td style="text-align: center;">✅ 直接调用</td>
+</tr>
+<tr>
+<td>平行链 TVL</td>
+<td>DefiLlama API</td>
+<td style="text-align: center;">✅ 直接调用</td>
+</tr>
+<tr>
+<td>验证人激励的分配规则</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>未核实</strong></td>
+</tr>
+<tr>
+<td>dotUSD 池 LP 份额归属</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>未核实</strong></td>
+</tr>
+<tr>
+<td>1944 号公投首次公开（论坛）时间</td>
+<td>—</td>
+<td style="text-align: center;">❌ <strong>未查到</strong></td>
+</tr>
+<tr>
+<td>21 亿上限</td>
+<td>运行时 <code>EraPayout</code> 常量 <code>HARD_CAP_TARGET</code>（注释：Ref 1710）</td>
+<td style="text-align: center;">✅ <strong>运行时一手</strong>；⚠️ 提案原文未打开</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="123">12.3 来源偏向声明</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>侧</th>
+<th>主要论据</th>
+<th style="text-align: center;">证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>多头</strong></td>
+<td>发行率稳定、治理执行力、dotUSD 期权、DAP 储备</td>
+<td style="text-align: center;">前两条一手；后两条的<strong>方向</strong>未知</td>
+</tr>
+<tr>
+<td><strong>空头</strong></td>
+<td>增发 / 收入量级差、稀释、质押者分得少</td>
+<td style="text-align: center;">✅ 一手；⚠️ 质押者区间依赖未核实的分配规则</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>8 月版的不对称（「分母一手、分子靠第三方」）本期部分消除</strong>：收入侧最大的一项改为自己测量。<br />
+<strong>DAP 这张预算表同时给了多头（储备）和空头（提名人分得少）一条论据，两条的方向取决于同一个未发生的治理决定（缓冲怎么用）</strong>——星级对齐为三星。（初稿写「空头方向可测、多头未知」，第二轮推理审查指出两条是同一个未知数，已改。）</p>
+</blockquote>
+<h3 id="124-8">12.4 本版对 8 月版的更正</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>8 月版</th>
+<th>更正</th>
+<th>依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>8 月涨幅 <strong>+8.07%</strong>（8/1→8/31，CoinGecko）</td>
+<td><strong>+10.67%</strong>（7/31→8/31 币安收盘）。两处差异：CoinGecko 00:00 时点价约等于前一日收盘（窗口相当于 7/31→8/30），且换了交易所价格源</td>
+<td>币安 klines；本系列 XIN、CKB、GRAM、HYPE 9 月版同一更正</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5.6「质押者实际份额约 <strong>+1.60%</strong>」（国库约两成、其余归质押者）</td>
+<td><strong>按 6 月起生效的 DAP 预算表：−0.49% 至 +0.86%</strong></td>
+<td>5.2–5.3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>7.1「国库阶梯式更新、近 31 天为零变化」</td>
+<td><strong>不是阶梯式更新：国库已不在 DAP 预算表里</strong>，增发不再自动流入</td>
+<td>5.2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>7.1「<code>InactiveIssuance</code> 与国库的差额，本报告未能确定是什么」</td>
+<td><strong>是 DAP 缓冲账户余额</strong>（逐月差 ≤ 2 DOT）</td>
+<td>5.2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>6.3「Asset Hub 每日约 146,250 笔 extrinsic」</td>
+<td>其中每块 2 条是系统交易（inherent）；<strong>9 月带签名的用户交易约 9,800 笔/天</strong></td>
+<td>6.2（9 月抽样，运行率更新）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>9.4 第 1 条、10.4 第 2 条、10.5 第三、11.4 Coretime 行：「100 倍分歧未解 / 未调和」</td>
+<td><strong>8 月版 6.2 已在发布前解决了该分歧</strong>——<strong>撤回没有同步到下游</strong></td>
+<td>8 月版 6.2、11.6</td>
+</tr>
+<tr>
+<td>7</td>
+<td>10.3 监控表与 11.2 速查「国库（InactiveIssuance）2,822 万、近 61 天 +16.3%」</td>
+<td><strong>8 月版 7.1 已撤回该字段</strong>；正确值为国库 2,431 万（另有 DAP 缓冲）</td>
+<td>8 月版 7.1</td>
+</tr>
+<tr>
+<td>8</td>
+<td>10.5 第二「去链上量了四次——3.29%，四次一致」</td>
+<td><strong>8 月版 5.2 已撤回「四窗口一致」</strong>（嵌套窗口）</td>
+<td>8 月版 5.2</td>
+</tr>
+<tr>
+<td>9</td>
+<td>9.4 第 3 条「国库分析只有 61 天窗口」</td>
+<td>8 月版 7.1 已改为 267 天</td>
+<td>8 月版 7.1</td>
+</tr>
+<tr>
+<td>10</td>
+<td>6.2「售出 35」</td>
+<td>该轮<strong>最终售出 36</strong>（9/08 为中途读数）</td>
+<td>Coretime 链，9/20 轮换前最后一块</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>第 6–9 条是同一类错误：正文撤回了，下游的摘要、监控表、长期认知没同步。</strong> 这正是 ZEC 期写进技能文件的「撤回 ≠ 让撤回生效」。<br />
+<strong>第 2–4 条是另一类：机制变了，测量还在用旧机制解读。</strong></p>
+</blockquote>
+<h3 id="125">12.5 发布前审查记录</h3>
+<p><strong>第 1 层 <code>verify_report.py</code></strong>：初稿 3 FAIL（两张图的坐标刻度未在正文出现；缺「推导 / 弱点」说明），补图注与 10.1 后 0 FAIL / 1 WARN（来源偏向，各资产共有）。</p>
+<p><strong>第 2 层 _bian（推理）与第 3 层 Codex（领域，读本地原始数据缓存与运行时源码复算）——第一轮：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th style="text-align: center;">出处</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>「新增发去向未定位」漏了 DAP</strong>：运行时 v2.3.0 起增发经 DAP 按预算分配；提案原文自己就写了 DAP</td>
+<td style="text-align: center;">两者</td>
+<td>✅ <strong>链上核实</strong>：DAP 缓冲余额与「<code>InactiveIssuance</code> − 国库」逐月一致；解码预算表 32.2 / 45.2 / 22.6。<strong>第 5 章重写</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>10/08 流出不是「拨出 / 一次性成本」</strong>：预映像 <code>addLiquidity</code> 2,853,229.86 DOT，与流出差约 1 DOT；是注入协议自有流动性池；「差额 $69 万」是起草时固定数量、执行时价格上涨</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 全文改为「注入 DOT × dotUSD 池」；删去差额谜题；LP 归属列为未核实</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>质押者只报上界 +2.80%</strong>，而表里的数指向更低</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 按 DAP 预算表重算为区间 −0.49% 至 +0.86%；<strong>比 8 月版更差，方向写明</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>dotUSD 参数就在缓存里</strong>（资产 7873、上限 1,000 万、费率、第一阶段 USDT 铸造），初稿写「未读到」并假设 DOT 抵押</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 补入 4.1、4.3；删去「DOT 抵押反馈」风险，改为第二阶段</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>第 4 章三条理由没有判别力</strong>；建议做同时段横截面检验</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ <strong>做了</strong>：两个窗口 DOT +10.1%、+11.5%，BTC 与 8 个山寨 −3.9% 至 +4.9%——主升段是 DOT 特有。结论改为「倾向于与 dotUSD 相关，未形式化识别」；长期认知第三条重写</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>对数 beta 与算术涨幅混用</strong></td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 全文改为对数超额；「自身部分」改为「相对对照组的描述性差值」</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>「国库零流入」应为「余额净变化为零」</strong></td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 已改</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>手续费是事前估算</strong>，不能升级为「收入全部测清」；自助区间是条件于样本的</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 改称「事前估算」；删「全部 / 不再依赖盈亏平衡」；区间注明条件；补随机种子</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Coretime 用地板价乘销量，低于 8 月版官方读数</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 改为区间 360–472 DOT/轮，标为估算</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>D9-2 应改设计</strong>（净额 vs 流入不同构、10 月被错误排除、先验不成立）</td>
+<td style="text-align: center;">两者</td>
+<td>✅ <strong>撤回原 D9-2</strong>，改登「DAP 预算表年内不变」（见记分卡）</td>
+</tr>
+<tr>
+<td>11</td>
+<td>D9-1 标题与门槛不同构（门槛实际是「较 9 月均值降超过 10%」）</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 改标题；补门槛 11 的粗估</td>
+</tr>
+<tr>
+<td>12</td>
+<td>多头 #3 用 30 天读数降星，而 10/12 已回升</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 维持四星</td>
+</tr>
+<tr>
+<td>13</td>
+<td>提名人可能适用快速解押，「28 天后才能卖」过度</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 删除该推断</td>
+</tr>
+<tr>
+<td>14</td>
+<td>空头 #3（国库流向）与撤下多头 #4 是同一事实用两次</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 空头 #3 改为「质押者分得少」（预算表一手），与撤下的多头不是同一事实</td>
+</tr>
+<tr>
+<td>15</td>
+<td>长期认知第一条事实写反（零流入早于登记约 40 天）</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 重写为「链上账目分叉时先查运行时升级记录」</td>
+</tr>
+<tr>
+<td>16</td>
+<td>support 不是参与人数；12.4 第 1、5 条措辞</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 已改</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第 2 层 _bian 与第 3 层 Codex——第二轮（复审第一轮修订稿，Codex 另读运行时依赖源码）：</strong></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th style="text-align: center;">出处</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>验证人激励只转给验证人</strong>（<code>pallet-staking-async</code> 0.13.0 / 0.15.0 源码），「+0.86% 是提名人上界」不成立</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ <strong>亲自核对两个版本源码与链上运行时版本</strong>（6/30 为 2003001、9/30 为 2005000）；提名人只分 45.2%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>−0.49% 是平均化估算，不是个人下沿；「最坏情况」措辞越过证据</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 改为「平均、未扣佣金」；删「最坏」</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>区间只扫了一个未知量</strong>：DAP 缓冲算不算稀释是第二个未知量</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 5.3 改为两维表：提名人 −0.49%（计入）/ +0.55%（不计）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>「空头方向可测、多头未知」不成立：空头 #3 与多头 #5 是同一个未知数</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 两条星级对齐为三星，12.3 改写</td>
+</tr>
+<tr>
+<td>5</td>
+<td>「8 月版 +1.60% 不成立 / 作废」需写明口径</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 改为「按与 8 月版相同的总发行量口径不成立」</td>
+</tr>
+<tr>
+<td>6</td>
+<td>预算表只作用于新铸造量；手续费、罚没、未领取奖励直接进缓冲</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 5.2 ③ 重写；缓冲比 32.2% 多出的约 2.5 万 DOT 首要候选改为未领取奖励（_bian 指出手续费只占约 5%）</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>时间关系要量化</strong>：第一个窗口约九成、三天涨幅约一半在上链之前</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 已量化，卷首同步；结论从「倾向于与 dotUSD 相关」收回为「原因未识别，dotUSD 是候选、依赖未核实的辅助假设」</td>
+</tr>
+<tr>
+<td>8</td>
+<td>横截面只能回答「板块还是个币」；长期认知第三条推广过度</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 第三条重写为「归因分两步」</td>
+</tr>
+<tr>
+<td>9</td>
+<td>空头挤压的分母用错（应为 9/05 当日成交）</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 改为约占 9/05 成交 $651 万的 9%</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>21 亿上限就在运行时源码里</strong>（<code>HARD_CAP_TARGET</code>，注释 Ref 1710），不该标二手</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 改为运行时一手，移出弱点与下期清单</td>
+</tr>
+<tr>
+<td>11</td>
+<td>D9-2「年内不变」用年底终点检验过程论点，违反门槛 3/5；「11 月下旬前须提交」不成立</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 检验条件改为「登记后至年底任何变动即判错」；删硬性期限；补「白名单调用轨道也可能到达 Root」待核</td>
+</tr>
+<tr>
+<td>12</td>
+<td>缓冲「从未动用」不能由月末净值证明</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 改为「余额持续增加，不证明未拨付」；监控改为出账事件</td>
+</tr>
+<tr>
+<td>13</td>
+<td>LP 份额接收账户在调用里写着</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 补 <code>mintTo</code>；实际执行结果仍列未核</td>
+</tr>
+<tr>
+<td>14</td>
+<td>「7 月国库流入是旧机制尾款」未检验，当月账不闭合</td>
+<td style="text-align: center;">两者</td>
+<td>✅ 删除归因，写明账不闭合</td>
+</tr>
+<tr>
+<td>15</td>
+<td>收入侧五星仍越过证据；Coretime「区间」没有上界</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 空头 #1 维持四星；Coretime 改为两个参考值</td>
+</tr>
+<tr>
+<td>16</td>
+<td>对账表述限定为 6–9 月采样点</td>
+<td style="text-align: center;">Codex</td>
+<td>✅ 已改</td>
+</tr>
+<tr>
+<td>17</td>
+<td>D9-1 是纯基率条目，不检验报告判断</td>
+<td style="text-align: center;">_bian</td>
+<td>✅ 记分卡注明「校准对照」，单独记</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第 4 层 _dalin</strong>：待审。</p>
+<hr />
+<blockquote>
+<p><strong>配套文件</strong>：<code>dot_questions_summary_202609.md</code>（简明速查）、<code>../thesis_scorecard.md</code>（论点滚动记分卡）。<br />
+本报告不构成投资建议。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-dot-polkadot-2026-9-q3">DOT / Polkadot 简明速查（2026 年 9 月版兼 Q3 回顾）</h1>
+<blockquote>
+<p>完整报告的浓缩版，给快速复习用。<strong>数据截止 2026-09-30，链上快照到 10/12。</strong><br />
+本文件不构成投资建议。</p>
+</blockquote>
+<hr />
+<h2 id="s-1">1. 一句话</h2>
+<p><strong>6 月起 Polkadot 的新增发改走 DAP（动态分配池）：32.2% 进协议储备、45.2% 给质押奖励、22.6% 只给验证人、国库不再分——普通提名人平均实际份额约 −0.49%（储备算稀释）至 +0.55%（不算）。9 月 DOT +45.6% 是个币层面的异动，原因未识别；增发约为已测收入的 2,100 倍，这一结论不变。</strong></p>
+<hr />
+<h2 id="s-2">2. 当前位置</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td><strong>$1.223</strong>（币安）</td>
+</tr>
+<tr>
+<td>9 月 / Q3</td>
+<td><strong>+45.60% / +48.78%</strong>（BTC +6.42% / +42.64%）</td>
+</tr>
+<tr>
+<td>对数超额（ln − beta × ln BTC）</td>
+<td>9 月 <strong>+29.8</strong>（约 1.5 个特质标准差）；Q3 −4.6</td>
+</tr>
+<tr>
+<td>相对对照组中位数</td>
+<td>9 月 +20.5；<strong>Q3 −7.5</strong>（描述性差值）</td>
+</tr>
+<tr>
+<td>一年 beta / R² / 波动率</td>
+<td>1.247 / 0.412 / 87.6%</td>
+</tr>
+<tr>
+<td>市值（9/30）</td>
+<td>约 $20.86 亿</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>更正 8 月版</strong>：8 月 +8.07% 是 CoinGecko 00:00 时点价（约等于 7/31→8/30）；<strong>7/31 → 8/31 币安收盘为 +10.67%</strong></li>
+</ul>
+<hr />
+<h2 id="s-3-dap">3. DAP：新增发怎么分（本期最重要）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>链上预算表 <code>Dap.BudgetAllocation</code>（6 月起）</th>
+<th style="text-align: right;">比例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DAP 缓冲（被停用的协议储备）</td>
+<td style="text-align: right;"><strong>32.2%</strong></td>
+</tr>
+<tr>
+<td>质押奖励</td>
+<td style="text-align: right;"><strong>45.2%</strong></td>
+</tr>
+<tr>
+<td>验证人激励（<strong>只给验证人本人</strong>，源码一手）</td>
+<td style="text-align: right;"><strong>22.6%</strong></td>
+</tr>
+<tr>
+<td>国库</td>
+<td style="text-align: right;"><strong>不在表里</strong></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>DAP 缓冲余额 = 「不活跃发行量」− 国库，逐月一致</strong>：6 月 47.3 万 → 9/30 <strong>503.7 万</strong></li>
+<li>国库 8、9 月<strong>余额净变化为零</strong>——不是「阶梯式更新」（8 月版的解释），是增发不再流入</li>
+<li><strong>普通提名人实际份额（年，平均、未扣佣金）：约 −0.49%（DAP 储备计入稀释）至 +0.55%（不计）</strong>——正负号取决于储备将来怎么用</li>
+<li><strong>按与 8 月版相同的总发行量口径，8 月版「质押者 +1.60%」不成立</strong>：写作时 DAP 已运行约三个月</li>
+</ul>
+<hr />
+<h2 id="s-4-9-dotusd">4. 9 月的大涨与 dotUSD</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1944 号公投「dotUSD」</td>
+<td>Root 轨道；9/07 提交 → 10/07 确认 → <strong>10/08 执行</strong>；链上最终 <strong>Approved</strong></td>
+</tr>
+<tr>
+<td>计票</td>
+<td>赞成 463 万、反对 7.1 万（含信念乘数）；support 187 万 DOT（支持资本，不是人数）</td>
+</tr>
+<tr>
+<td>dotUSD 第一阶段</td>
+<td>资产 7873；<strong>USDT 1:1 铸造</strong>、上限 1,000 万；铸币费 0、赎回费 0.01%；<strong>第二阶段才有 DOT 抵押</strong></td>
+</tr>
+<tr>
+<td><strong>横截面检验</strong></td>
+<td>9/07 12–16 时 DOT <strong>+10.1%</strong>、9/08 14–16 时 <strong>+11.5%</strong>；同时段 BTC 与 8 个山寨 −3.9% 至 +4.9%</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>排除了板块行情</strong>（个币层面的异动）；但<strong>第一个窗口约九成、三天涨幅约一半发生在公投上链之前</strong></li>
+<li><strong>原因未识别</strong>：dotUSD 是候选，要求论坛预讨论提前公开（时间没查到）；9/05 空头挤压约占当日成交 9%，也可能是一部分原因</li>
+<li><strong>10/08 国库 −2,853,231 DOT ≈ 预映像 <code>addLiquidity</code> 2,853,229.86 DOT</strong>：按调用内容是注入 DOT × dotUSD 池，<strong>不是花掉</strong>（执行结果与 LP 到账未逐笔核对）</li>
+</ul>
+<hr />
+<h2 id="s-5">5. 净供应与收入</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9 月净增 / 年化</td>
+<td><strong>4,594,023 / 3.287%</strong>（4–9 月 3.29%–3.45%）</td>
+</tr>
+<tr>
+<td>独立性检验</td>
+<td><strong>两个独立 RPC 节点读数逐位一致</strong></td>
+</tr>
+<tr>
+<td>不质押者年稀释</td>
+<td>−3.18%；若 21 亿上限成立，剩余可增发 23.1%</td>
+</tr>
+<tr>
+<td><strong>Asset Hub 手续费（本期首次测，事前估算）</strong></td>
+<td>9 月约 <strong>1,179 DOT</strong>（自助区间 207–2,968），年化约 <strong>$1.76 万</strong></td>
+</tr>
+<tr>
+<td>Coretime</td>
+<td>售出 <strong>36 / 89</strong>；年化参考 $5,700（地板价）/ $7,500（中途读数）</td>
+</tr>
+<tr>
+<td><strong>年净增发 ÷ 已测已估收入</strong></td>
+<td><strong>约 2,100 倍</strong>（量级 10³）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>用户签名交易约 <strong>9,800 笔/天</strong>（8 月版「14.6 万笔」含每块 2 条系统交易）</li>
+<li>手续费进 DAP，不是销毁</li>
+</ul>
+<hr />
+<h2 id="s-6">6. 质押</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;">8/31</th>
+<th style="text-align: right;">9/30</th>
+<th style="text-align: right;">10/12</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总质押</td>
+<td style="text-align: right;">912,354,206</td>
+<td style="text-align: right;">906,851,198</td>
+<td style="text-align: right;">912,750,356</td>
+</tr>
+<tr>
+<td>质押率</td>
+<td style="text-align: right;">53.65%</td>
+<td style="text-align: right;">53.18%</td>
+<td style="text-align: right;">53.47%</td>
+</tr>
+<tr>
+<td>提名人</td>
+<td style="text-align: right;">28,863</td>
+<td style="text-align: right;">28,469</td>
+<td style="text-align: right;">28,334</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>9 月单月下降，10/12 总质押已回到 8/31 以上；<strong>提名人数连续下降</strong>，值得跟踪</li>
+</ul>
+<hr />
+<h2 id="s-7">7. 估值</h2>
+<ul>
+<li><strong>仍不给目标价</strong>。市值 ÷ 年净增发 = <strong>30.5 倍</strong>（这个比值对价格不敏感）</li>
+<li>DAP 缓冲吸收的 32.2% 暂不进入流通，但<strong>治理随时可动用</strong>，不当作永久减少</li>
+</ul>
+<hr />
+<h2 id="s-8">8. 记分卡</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>论点</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D8-1 净供应增长维持在 2.8%–3.8%</td>
+<td>⏳ 9 月 3.287%</td>
+</tr>
+<tr>
+<td>D8-2 Coretime 售出不到 50</td>
+<td>⏳ 36</td>
+</tr>
+<tr>
+<td>D8-3 ⚑ 年底国库 ≥ 2,550 万</td>
+<td>⏳ <strong>10/12 为 2,146 万；国库已不在 DAP 预算表里——按当前机制很可能判 ❌</strong></td>
+</tr>
+<tr>
+<td>D8-4 ⚑ Asset Hub 年化费用不超过 $150 万</td>
+<td>⏳ <strong>本期事前估算约 $1.76 万</strong></td>
+</tr>
+<tr>
+<td>D8-5 DefiLlama 不收录 Asset Hub</td>
+<td>⏳ 未收录</td>
+</tr>
+<tr>
+<td><strong>D9-1</strong> ⚑ 校准对照：12 月 DOT/BTC 月均较 9 月均值降超过 10%</td>
+<td>⏳ 30%（纯随机游走基率，单独记 Brier 分）</td>
+</tr>
+<tr>
+<td><strong>D9-2</strong> DAP 预算表在 10/12 至年底期间不被改动</td>
+<td>⏳ 自评 80%（主观判断）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>初稿 D9-2「国库 Q4 不恢复净流入」<strong>撤回</strong>：统计量与论点不同构，且 DAP 下国库流入是治理拨付，不是自然发生的量</li>
+</ul>
+<hr />
+<h2 id="s-3-5">如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>6 月起新增发走 DAP：32.2% 进储备、45.2% 给质押奖励、22.6% 只给验证人，国库不再分——8 月版没看到；按同一口径，它的「质押者 +1.60%」不成立。</strong></p>
+</li>
+<li>
+<p><strong>普通提名人的实际份额每年约 −0.49% 至 +0.55%（平均、未扣佣金）：质押能不能抵消稀释，取决于 DAP 储备将来是花掉还是留着。</strong></p>
+</li>
+<li>
+<p><strong>9 月 DOT +45.6% 是个币层面的异动（同一小时别的币没动），但约一半涨幅早于 dotUSD 公投上链——原因未识别。</strong></p>
+</li>
+<li>
+<p><strong>10/08 国库少了 285 万 DOT，按公投调用是注入 DOT × dotUSD 流动性池（金额差约 1 DOT）——不是花掉。</strong></p>
+</li>
+<li>
+<p><strong>Asset Hub 手续费第一次测了：年化约 $1.76 万；增发约为已测收入的 2,100 倍，结构性结论不变。</strong></p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>dot_research_report_202609.md</code>（对 8 月版的更正见 12.4，审查记录见 12.5）。<br />
+论点检验记录见 <code>../thesis_scorecard.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>
