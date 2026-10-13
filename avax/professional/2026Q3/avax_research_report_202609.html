@@ -1,0 +1,1992 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AVAX / Avalanche 完整调研与分析报告 — 2026年9月</title>
+<style>
+:root{--accent:#e84142;--blue:#2563eb;--bg:#fafaf9;--card:#fff;--text:#1c1917;--text2:#57534e;--border:#e7e5e4;--callout-bg:#fffbeb;--callout-bdr:#f59e0b;--code-bg:#f5f5f4;--sidebar-w:260px;--touch:44px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.78;font-size:15px;padding-top:52px}
+a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}strong{font-weight:700;color:#1c1917}hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:52px;background:#1c1917;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:2px solid var(--accent)}
+.topbar .brand{font-weight:700;font-size:1rem;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar button{background:none;border:1px solid #44403c;color:#fff;font-size:1.25rem;width:var(--touch);height:var(--touch);border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;-webkit-tap-highlight-color:transparent}
+.topbar button:active{background:#44403c}.scroll-progress{position:absolute;bottom:-2px;left:0;height:3px;background:var(--accent);width:0%}
+.sidebar{position:fixed;top:0;left:0;z-index:250;width:var(--sidebar-w);max-width:85vw;height:100vh;background:#1c1917;color:#d6d3d1;overflow-y:auto;padding:64px 14px 24px 16px;font-size:.82rem;border-right:2px solid var(--accent);transform:translateX(-100%);transition:transform .25s ease}
+.sidebar.open{transform:translateX(0)}.sidebar h2{color:var(--accent);font-size:1rem;margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:1px solid #44403c;letter-spacing:.5px}
+.sidebar a{color:#a8a29e;display:flex;align-items:center;min-height:var(--touch);padding:.3rem 0;line-height:1.45}
+.sidebar a:hover,.sidebar a:focus{color:#fff;outline:none}.sidebar a.active{color:var(--accent);font-weight:600}
+.sidebar .nav-section{color:#78716c;font-size:.68rem;text-transform:uppercase;letter-spacing:1.2px;margin:1.1rem 0 .3rem;font-weight:700}
+.sidebar .divider{border:none;border-top:1px solid #44403c;margin:.9rem 0}.sidebar-footer{font-size:.65rem;color:#78716c;margin-top:1rem;line-height:1.6}
+.overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}.overlay.show{display:block}
+.main{padding:0}.hero{background:linear-gradient(135deg,#1c1917 0%,#292524 50%,#1c1917 100%);color:#fff;padding:32px 18px;border-bottom:3px solid var(--accent)}
+.hero h1{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;margin-bottom:.6rem;letter-spacing:-.5px;border:none;padding:0}
+.hero .subtitle{color:#d6d3d1;font-size:clamp(.8rem,2.5vw,.95rem);line-height:1.6}.hero .badges{margin-top:.8rem;display:flex;gap:8px;flex-wrap:wrap}
+.badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.7rem;font-weight:600}
+.badge-btc{background:var(--accent);color:#1c1917}.badge-date{background:#44403c;color:#d6d3d1}.badge-warn{background:#7f1d1d;color:#fca5a5}
+.content{padding:28px 18px 60px}h1{font-size:1.6rem;font-weight:800;margin:2rem 0 .8rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);letter-spacing:-.3px}
+h2{font-size:1.3rem;font-weight:700;margin:1.8rem 0 .7rem;color:#292524}h3{font-size:1.08rem;font-weight:700;margin:1.4rem 0 .5rem;color:#44403c}h4{font-size:.95rem;font-weight:700;margin:1rem 0 .4rem;color:#57534e}p{margin:.5rem 0}
+blockquote{background:var(--callout-bg);border-left:4px solid var(--callout-bdr);margin:.8rem 0;padding:10px 16px;border-radius:0 6px 6px 0;color:#78716c;font-size:.92em}blockquote p{margin:.2rem 0}
+.tbl{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+table{width:100%;min-width:520px;border-collapse:collapse;font-size:.85rem;background:var(--card)}thead{background:#292524;color:#fff}
+thead th{padding:10px 12px;text-align:left;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:nth-child(even){background:#fafaf9}tbody tr:hover{background:#fff7ed}
+code{background:var(--code-bg);padding:2px 6px;border-radius:4px;font-family:"SF Mono","Fira Code",Menlo,Consolas,monospace;font-size:.85em;color:#d97706;word-break:break-word}
+pre{background:#1c1917;color:#e7e5e4;padding:14px 16px;border-radius:8px;overflow-x:auto;margin:.8rem 0;font-size:.8rem;line-height:1.6}pre code{background:none;color:inherit;padding:0}
+img{max-width:100%;height:auto;display:block;margin:1.2rem 0}
+figure{margin:1.2rem 0}figcaption{font-size:.8rem;color:var(--text2);margin-top:.3rem}
+.section-divider{margin:3rem 0 2rem;border-top:3px solid var(--accent)}.content .hero{border-radius:10px;padding:28px 22px}
+@media(min-width:1024px){body{padding-top:0}.topbar{display:none}.overlay{display:none!important}.sidebar{transform:translateX(0);padding-top:24px;z-index:100}.main{margin-left:var(--sidebar-w)}.hero{padding:44px clamp(40px,5vw,90px)}.content{padding:40px clamp(40px,5vw,90px) 90px;max-width:1400px}body{font-size:16px}h1{font-size:1.85rem}h2{font-size:1.4rem}h3{font-size:1.15rem}}
+@media print{.topbar,.sidebar,.overlay{display:none!important}body{padding-top:0;font-size:11px}.main{margin:0}.content{padding:0;max-width:100%}.hero{background:#fff!important;color:#000!important;border-bottom:2px solid #000;padding:1.5rem}.tbl{box-shadow:none}table{min-width:auto;border:1px solid #ccc;font-size:10px}@page{margin:1.5cm}}
+</style></head><body>
+<div class="topbar"><span class="brand">▲ AVAX 调研报告 (2026.9)</span><button id="menuBtn" aria-label="菜单">☰</button><div class="scroll-progress" id="scrollProgress"></div></div>
+<div class="overlay" id="overlay"></div>
+<nav class="sidebar" id="sidebar"><h2>▲ AVAX 调研报告 2026.9</h2>
+<div class="nav-section">完整报告</div><a href="#hero">首页概览</a>
+<a href="#_1">核心结论摘要</a>
+<a href="#1-avax">1. AVAX 是什么</a>
+<a href="#2-avax">2. AVAX 的发展阶段划分</a>
+<a href="#3-avax">3. AVAX 当前现状</a>
+<a href="#4">4. 供应</a>
+<a href="#5-helicon">5. Helicon 与手续费下限</a>
+<a href="#6-etf">6. 机构通道</a>
+<a href="#7">7. 核心价值逻辑</a>
+<a href="#8">8. 多空之间真正的分歧点</a>
+<a href="#9">9. 估值</a>
+<a href="#10">10. 投资与风险启示</a>
+<a href="#11_1">11. 附录</a>
+<hr class="divider"><div class="nav-section">简明总结</div>
+<a href="#s-1">1. 一句话</a>
+<a href="#s-2">2. 三个默认</a>
+<a href="#s-3">3. 当前位置</a>
+<a href="#s-4">4. 发行与销毁</a>
+<a href="#s-5-helicon922-1500-utc">5. Helicon</a>
+<a href="#s-6-630sec">6. 机构</a>
+<a href="#s-7">7. 估值</a>
+<a href="#s-8">8. 记分卡</a>
+<a href="#s-3-5">如果你只有 3 分钟，记住这 5 句话</a>
+<hr class="divider"><div class="sidebar-footer">数据截止：2026 年 9 月<br><span style="color:#dc2626;">⚠ 不构成投资建议</span></div></nav>
+<main class="main">
+<div class="hero" id="hero"><h1>▲ AVAX / Avalanche<br>完整调研与分析报告</h1>
+<div class="subtitle">金融资产 · 技术网络 · 货币实验 · 宏观资产 · 行业生态<br>基于 Claude for Financial Services 框架的系统性多角度分析</div>
+<div class="badges"><span class="badge badge-btc">▲ Avalanche</span><span class="badge badge-date">2026 年 9 月</span><span class="badge badge-warn">⚠ 不构成投资建议</span></div></div>
+<div class="content"><div id="full-report"><h1 id="avax-avalanche-2026-9">AVAX / Avalanche 完整调研与分析报告（2026 年 9 月版，首期）</h1>
+<blockquote>
+<p><strong>编写日期</strong>：2026 年 10 月 13 日<br />
+<strong>数据截止</strong>：2026 年 9 月 30 日；链上快照到 10/12–10/13<br />
+<strong>研究方法</strong>：沿用本系列框架。价格用<strong>币安现货 AVAXUSDT 日线 UTC 收盘</strong>；超额收益用对数口径（ln 收益 − beta × ln BTC 收益，不扣截距）；对照组为本系列 9 个山寨（ZEC、UNI、ADA、SOL、BNB、ETH、TRX、CKB、DOT）。<strong>链上数据全部自己读</strong>：P 链用官方公共 RPC（<code>api.avax.network/ext/bc/P</code>）与官方数据接口（Data API，<code>data-api.avax.network</code>）；C 链用官方公共 RPC（存档节点，可读历史余额与区块头）。<br />
+<strong>本期为 AVAX 首期报告</strong>，本系列第十九个对象。</p>
+<p><strong>接入新资产的第一步：三个默认还成立吗</strong>（XIN 期教训）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th style="text-align: center;">结果</th>
+<th>依据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>流通量已知吗</strong></td>
+<td style="text-align: center;">⚠️ <strong>总量可以从协议字段推出，但三个口径相差最多约 470 万枚（约 1%），本报告没有完全勾稽</strong></td>
+<td>P 链 <code>platform.getCurrentSupply</code> 10/13 为 <strong>475,129,276 枚</strong>——<strong>但它不是实际供应</strong>：AvalancheGo 源码在质押<strong>开始时</strong>就把「预计奖励」加进这个数（验证人没拿到奖励再扣回），<strong>手续费销毁不改它</strong>（4.1）。扣掉三条链的累计销毁与已承诺未发放的奖励后约 4.65–4.66 亿；官方数据接口给 <strong>4.685 亿</strong>，CoinGecko 给 4.700 亿。<strong>上限 7.2 亿枚</strong>（ACP-285 原文）；锁定中的约 2,794 万枚（数据接口字段）不在 CoinGecko 的流通量里</td>
+</tr>
+<tr>
+<td><strong>价格是可用的测量吗</strong></td>
+<td style="text-align: center;">✅</td>
+<td>币安 9 月现货日成交中位数约 $3,030 万、永续合约约 $1.15 亿；一年 beta 1.265、<strong>R² 0.520</strong></td>
+</tr>
+<tr>
+<td><strong>代币持有人是剩余索取权人吗</strong></td>
+<td style="text-align: center;">❌ <strong>没有找到赋权文件</strong></td>
+<td>手续费<strong>全部烧掉</strong>（C 链区块的 <code>miner</code> 字段就是销毁地址 <code>0x0100…0000</code>），不分给任何人；<strong>质押奖励来自新发行，不来自收入</strong>；AVAX 对 Ava Labs、Avalanche 基金会或任何公司没有请求权</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>本期核心发现</strong>：<br />
+1. <strong>9 月 +51.21%，但几乎全部来自两天</strong>：9/19 +20.7%、9/20 +11.4%，同期 BTC 与对照组基本不动；这两天的对数超额合计 <strong>+31.7</strong>，<strong>9 月其余 28 天合计只有 +1.8</strong>。媒体普遍归因于 9/22 的 Helicon 升级（主网日期 9/8 已在发布说明里公开）；「临近激活抢跑、激活后兑现」这个版本与 9/21、9/23 的负超额相容，但涨幅摊在约 40 个小时里（单小时最多约 20%），合约持仓量这三天增加 27%，对照组同期不动（不像板块轮动）。<strong>本报告判别不了原因，记为未识别</strong>（3.2）。截至 10/12，两天跳涨的超额保留了约 85%。<br />
+2. <strong>Helicon 让验证人第一次能投票决定 C 链手续费下限</strong>：9/22 激活后，下限从 1 wei 持续上升，约 9/27 到 <strong>5 nAVAX</strong> 后停住——爬升速度约为协议允许最快速度的 36%，说明观察期内约三分之一以上的出块权重在净推动上调（其余弃权时即可做到，<strong>推不出「过半」</strong>）。下限生效后（10/1–10/12 对 9/12–9/18）：<strong>日均销毁从约 517 枚升到约 1,276 枚</strong>；区块头记的 gas 少了约 54%（Helicon 后区块头可能记的是计费量；按逐笔收据抽样折算，实际用量约少 73%）。<strong>基础费在销毁中的占比从升级前的约 2.5%–4% 升到约 34%–75%</strong>（因窗口与方法而异），这部分随下限浮动。⚠️ <strong>这是构成，不是归因</strong>：没有下限时 10 月会烧多少（热度退回则约 517 枚/天，热度仍在则约 1,500 枚/天）测不到，下限的净效应约在每天 −220 到 +760 枚之间，本报告收窄不了（5.3）。交易笔数在 9/12 就已从约 212 万/天断崖降到约 67 万，<strong>不是下限生效造成的</strong>。<br />
+3. <strong>发行远大于销毁</strong>：P 链「已承诺供应」一年（2025-10 至 2026-09）增加 <strong>1,094 万枚</strong>，同期 C 链销毁 <strong>29.6 万枚</strong>（约为前者的 2.7%）；按这个口径净增约 2.29%/年。⚠️ 已承诺口径没扣「未到期奖励池」的变化，<strong>实际净增给不出点估计</strong>；按「质押量 × 协议奖励率」的情景估算，近 12 个月的应计约 2.1%–2.85%（毛，<strong>是情景，不是上下界</strong>）。<strong>往后看</strong>，按 Helicon 后的新奖励率（4.0%–6.38%）× 质押占比 39.8%，约 <strong>1.6%–2.5%/年</strong>。官方数据接口「已发放奖励」字段给出的近 342 天 1,453 万枚（年化约 3.3%）<strong>本报告不采用</strong>：它隐含的未发放额（约 141 万）小于本报告实测的验证人未发放额（357 万），字段口径与本报告理解的不一致（4.1、4.2）。<br />
+4. <strong>Helicon 还把短期质押的奖励下限从 10% 降到 7.5%</strong>（ACP-285，90 天线性过渡，<strong>12/21 完成</strong>；已在进行中的质押不受影响）。ACP 作者自己估计的效果是<strong>年通胀降 0.5–1 个百分点</strong>（按他们的「流通」口径，分母不含质押量）。<br />
+5. <strong>机构通道</strong>：截至 6/30，三只美国现货 AVAX ETF 合计约 <strong>491.5 万枚</strong>（约占总供应 1.05%），两家上市财库公司合计约 <strong>2,940 万枚</strong>（约 6.3%）。<strong>其中 Avalanche Treasury Co.（AVAT）约 70% 的 AVAX 已质押给贷款方作抵押</strong>，贷款包括一笔 FalconX 的<strong>可随时召回</strong>的开放式贷款；维持保证金门槛未披露，<strong>若维持线不高于初始抵押线，价格至少要比 9/30 跌约 43% 才会触发</strong>（6.2）。</p>
+<p><strong>本期核心判断</strong>：<strong>AVAX 的手续费全部烧掉，但近 12 个月烧掉的只有新发行的约 2.7%（10 月前 12 天的运行速度约 4%）：持有人面对的是每年约 2%–3% 的净供应增长（Helicon 后的奖励率下前瞻约 1.6%–2.5%），质押者用约 4%–6.4% 的名义奖励抵消它，不质押的人承担它。</strong> Helicon 的两项改动方向一致——少发、多烧：发行端降低短期质押的奖励下限，销毁端提高手续费下限——<strong>但按 10 月前 12 天的运行速度，销毁一年约 47 万枚，仍只抵消约 4% 的发行</strong>。9 月的价格表现与这些机制没有可证明的联系。<br />
+<strong>本报告不给目标价</strong>：持有人没有请求权，手续费不归持有人，本报告没有可信的估值模型与参数。销毁相对于不销毁每年少增加约 0.06% 的供应——作用是真实的，但量级很小。<strong>Standard Chartered 2025-04 给出的「2026 年 $100」目标</strong>，9/30 的实际价格约为它的 11%（目标期限到年底，尚未到期；第 9 章）。</p>
+<p><strong>免责声明</strong>：本报告不构成任何投资建议。所有分析仅供研究参考，投资决策请咨询专业顾问。</p>
+</blockquote>
+<hr />
+<h2 id="_1">核心结论摘要（一页速览）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>核心判断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AVAX 是什么</strong></td>
+<td>Avalanche 主网（Primary Network）的原生代币：用于 P 链质押（验证人至少 2,000 枚、委托人至少 25 枚）、支付三条链的手续费（全部销毁）、支付 L1 验证人的持续费（也销毁）</td>
+</tr>
+<tr>
+<td><strong>9/30 收盘</strong></td>
+<td><strong>$10.937</strong>（币安）；按 CoinGecko 流通量 4.434 亿枚，<strong>市值约 $48.5 亿</strong>（按总供应约 4.685 亿为 $51.2 亿）</td>
+</tr>
+<tr>
+<td><strong>9 月 / Q3 / 近一年</strong></td>
+<td><strong>+51.21% / +67.28% / −63.56%</strong>（BTC +6.42% / +42.64% / −26.68%）</td>
+</tr>
+<tr>
+<td><strong>beta / R² / 波动率</strong></td>
+<td><strong>1.265 / 0.520 / 79.0%</strong>（2025-09-30 至 2026-09-30，365 个日收益）</td>
+</tr>
+<tr>
+<td><strong>对数超额</strong></td>
+<td>9 月 <strong>+33.5</strong>（对照组中位数 +13.2），<strong>其中 9/19–9/20 两天 +31.7</strong>；Q3 <strong>+6.5</strong>（对照组中位数 +2.8）</td>
+</tr>
+<tr>
+<td><strong>供应</strong></td>
+<td>上限 7.2 亿；10/13 约 4.65–4.70 亿（口径见 4.1）；质押 <strong>1.865 亿枚</strong>（约占总供应的 39.8%）</td>
+</tr>
+<tr>
+<td><strong>一年发行 / 销毁</strong></td>
+<td>已承诺发行 <strong>+1,094 万</strong> / C 链销毁 <strong>29.6 万</strong>（2025-10 至 2026-09）；已承诺口径净增 <strong>2.29%/年</strong>（情景估算约 2%–3%；前瞻约 1.6%–2.5%）</td>
+</tr>
+<tr>
+<td><strong>9 月</strong></td>
+<td>已承诺发行 +93.3 万；C 链销毁 <strong>34,275 枚</strong>（约 $30 万）</td>
+</tr>
+<tr>
+<td><strong>Helicon（9/22）</strong></td>
+<td>6 个 ACP；<strong>C 链手续费下限 1 wei → 5 nAVAX</strong>（验证人投票）；短期质押奖励下限 10% → 7.5%（过渡到 12/21）；最短质押 48 小时 + 自动续期</td>
+</tr>
+<tr>
+<td><strong>机构持有（6/30）</strong></td>
+<td>ETF 约 491.5 万；财库公司约 2,940 万（AVAT 约 70% 已质押作抵押）</td>
+</tr>
+<tr>
+<td><strong>持有人权益</strong></td>
+<td><strong>无请求权</strong>；手续费烧掉、不分配；质押奖励来自新发行</td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td><strong>不给目标价</strong>（第 9 章）</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="1-avax">1. AVAX 是什么</h2>
+<h3 id="11">1.1 三条链与代币的用途</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>链</th>
+<th>作用</th>
+<th>AVAX 在这里做什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>P 链</strong>（Platform Chain）</td>
+<td>质押、验证人管理、L1 注册</td>
+<td>质押（验证人至少 2,000、委托人至少 25，ACP-285 原文）；L1 验证人按秒交持续费（<strong>销毁</strong>）</td>
+</tr>
+<tr>
+<td><strong>C 链</strong>（Contract Chain）</td>
+<td>EVM 智能合约</td>
+<td>付 gas；<strong>基础费与优先费都给区块的 <code>miner</code>，而 <code>miner</code> 固定是销毁地址 <code>0x0100000000000000000000000000000000000000</code></strong>（本报告读 10/13 最新区块头确认）</td>
+</tr>
+<tr>
+<td><strong>X 链</strong>（Exchange Chain）</td>
+<td>UTXO 转账</td>
+<td>付手续费（销毁）；累计销毁很小（约 4.56 万枚）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>L1</strong>（原称 Subnet，子网）是挂在 Avalanche 上的独立区块链。2024-12-16 的 Etna 升级（ACP-77）之后，L1 的验证人不再需要在主网质押 2,000 AVAX，改为按秒向 P 链交持续费（这笔费用烧掉）。</p>
+<h3 id="12">1.2 供应规则</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>规则</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上限</td>
+<td><strong>7.2 亿枚</strong></td>
+<td>ACP-285 原文（<code>SupplyCap</code>）</td>
+</tr>
+<tr>
+<td>创世</td>
+<td>3.6 亿枚</td>
+<td>官方数据接口 <code>genesisUnlock</code> 字段；P 链 1 号块的 <code>currentSupply</code> 为 3.6401 亿（含创世验证人的预计奖励）</td>
+</tr>
+<tr>
+<td>新发行</td>
+<td><strong>只有质押奖励一条路</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>奖励公式</td>
+<td><code>ARR(d) = (剩余可发 ÷ 当前供应) × (下限 + (上限 − 下限) × d ÷ 365)</code>；下限 <code>MinConsumptionRate</code> 10%（Helicon 后 90 天降到 7.5%），上限 <code>MaxConsumptionRate</code> 12%</td>
+<td>ACP-285 原文</td>
+</tr>
+<tr>
+<td>当前奖励率</td>
+<td>14 天质押约 5.36%，365 天约 6.38%（ACP-285 按供应 4.70 亿计算；新下限下 14 天为 4.08%）</td>
+<td>ACP-285 原文</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>一个容易被忽略的乘数</strong>：公式里的「剩余可发 ÷ 当前供应」会随供应增长自动变小——<strong>供应越接近 7.2 亿，同样的名义利率发得越少</strong>。这就是 ACP-285 说的「有限的安全预算」。</p>
+</blockquote>
+<h3 id="13">1.3 销毁</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>销毁类型</th>
+<th style="text-align: right;">累计（10/13 官方数据接口）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C 链（EVM 交易 + 跨链原子交易）</td>
+<td style="text-align: right;">5,104,141</td>
+</tr>
+<tr>
+<td>P 链（含 L1 验证人持续费 18,566）</td>
+<td style="text-align: right;">19,346</td>
+</tr>
+<tr>
+<td>X 链</td>
+<td style="text-align: right;">45,621</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td style="text-align: right;"><strong>5,169,108</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>C 链的数字与销毁地址的链上余额（10/13 读 5,104,369）一致——<strong>但这两个数大概率是同一个来源</strong>：DefiLlama 的 Avalanche 费用适配器源码（<code>fees/avalanche.ts</code>）就是取这个地址的每日余额变化。<strong>C 链销毁只有一个物理来源（销毁地址余额），三个读数（链上直读、官方数据接口、DefiLlama）不构成三次独立验证</strong>（CKB 期规则）。</p>
+<hr />
+<h2 id="2-avax">2. AVAX 的发展阶段划分</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>时间</th>
+<th>事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一</td>
+<td>2020-09</td>
+<td>创世（P 链 1 号块时间戳 2020-09-10）；三链架构</td>
+</tr>
+<tr>
+<td>二</td>
+<td>2021–2024</td>
+<td>子网（Subnet）模式：L1 验证人需在主网质押 2,000 AVAX</td>
+</tr>
+<tr>
+<td>三</td>
+<td><strong>2024-12-16</strong></td>
+<td><strong>Etna</strong>（ACP-77）：L1 验证人改交持续费；<strong>ACP-125 把 C 链最低基础费从 25 nAVAX 降到 1 nAVAX</strong></td>
+</tr>
+<tr>
+<td>四</td>
+<td><strong>2025-04-08</strong></td>
+<td><strong>Fortuna</strong>（ACP-176）：C 链动态费用，<strong>最低 gas 价降到 1 wei</strong></td>
+</tr>
+<tr>
+<td>四</td>
+<td>2025-11-19</td>
+<td>Granite（ACP-181/204/226）：动态最短出块时间等</td>
+</tr>
+<tr>
+<td>五</td>
+<td><strong>2026-09-22 15:00 UTC</strong></td>
+<td><strong>Helicon</strong>（ACP-194/236/267/273/283/285）：C 链异步执行；质押自动续期；最短质押 48 小时；在线率门槛提高；<strong>手续费下限改为验证人投票</strong>；<strong>短期质押奖励下限下调</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>C 链手续费下限的路径</strong>：25 nAVAX（2024-12 前）→ 1 nAVAX（Etna）→ 1 wei（Fortuna，等于没有下限）→ <strong>验证人投票决定，9/27 起为 5 nAVAX</strong>（Helicon）。<strong>现在的下限仍只有 2024 年前的五分之一。</strong></p>
+</blockquote>
+<hr />
+<h2 id="3-avax">3. AVAX 当前现状</h2>
+<h3 id="31">3.1 价格与市场</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td><strong>$10.937</strong>（9 月最低收盘 $7.194 在 9/2，最高 $11.436 在 9/29）</td>
+</tr>
+<tr>
+<td>9 月 / Q3 / 近一年</td>
+<td><strong>+51.21% / +67.28% / −63.56%</strong></td>
+</tr>
+<tr>
+<td>BTC 同期</td>
+<td>+6.42% / +42.64% / −26.68%</td>
+</tr>
+<tr>
+<td>一年 beta / R² / 波动率</td>
+<td><strong>1.265 / 0.520 / 79.0%</strong></td>
+</tr>
+<tr>
+<td>特质（残差）标准差</td>
+<td>日 2.86%；按月约 15.7、按季约 27.5 个对数点</td>
+</tr>
+<tr>
+<td>9 月对数超额</td>
+<td><strong>+33.5</strong>（对照组中位数 +13.2）</td>
+</tr>
+<tr>
+<td>Q3 对数拆分</td>
+<td>对数收益 51.4 = beta × BTC 44.9 + 残差 6.5（<strong>Q3 大部分是 beta</strong>）</td>
+</tr>
+<tr>
+<td>10/1–10/12</td>
+<td>−7.23%（BTC −0.89%），超额 −6.4</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>口径</strong>：9 月 = 8/31 收盘 → 9/30 收盘；Q3 = 6/30 → 9/30；近一年 = 2025-09-30 → 2026-09-30。对照组 9 个资产用同一口径。</p>
+</blockquote>
+<h3 id="32-919920">3.2 9/19–9/20：两天的个币异动，原因未识别</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>日期</th>
+<th style="text-align: right;">AVAX</th>
+<th style="text-align: right;">BTC</th>
+<th style="text-align: right;">对数超额</th>
+<th style="text-align: right;">相对对照组中位数</th>
+<th style="text-align: right;">币安现货成交</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/18</td>
+<td style="text-align: right;">+7.5%</td>
+<td style="text-align: right;">+5.7%</td>
+<td style="text-align: right;">+0.3</td>
+<td style="text-align: right;">+1.0</td>
+<td style="text-align: right;">$4,710 万</td>
+</tr>
+<tr>
+<td><strong>9/19</strong></td>
+<td style="text-align: right;"><strong>+20.7%</strong></td>
+<td style="text-align: right;">+0.5%</td>
+<td style="text-align: right;"><strong>+20.2</strong></td>
+<td style="text-align: right;"><strong>+20.6</strong></td>
+<td style="text-align: right;">$8,500 万</td>
+</tr>
+<tr>
+<td><strong>9/20</strong></td>
+<td style="text-align: right;"><strong>+11.4%</strong></td>
+<td style="text-align: right;">−0.1%</td>
+<td style="text-align: right;"><strong>+11.5</strong></td>
+<td style="text-align: right;"><strong>+10.7</strong></td>
+<td style="text-align: right;">$1.514 亿</td>
+</tr>
+<tr>
+<td>9/21</td>
+<td style="text-align: right;">−0.7%</td>
+<td style="text-align: right;">+6.5%</td>
+<td style="text-align: right;">−8.9</td>
+<td style="text-align: right;">−5.6</td>
+<td style="text-align: right;">$1.108 亿</td>
+</tr>
+<tr>
+<td>9/22（Helicon 激活）</td>
+<td style="text-align: right;">+0.7%</td>
+<td style="text-align: right;">−0.5%</td>
+<td style="text-align: right;">+1.3</td>
+<td style="text-align: right;">−0.3</td>
+<td style="text-align: right;">$6,100 万</td>
+</tr>
+<tr>
+<td>9/23</td>
+<td style="text-align: right;">−9.7%</td>
+<td style="text-align: right;">−2.1%</td>
+<td style="text-align: right;">−7.0</td>
+<td style="text-align: right;">−5.5</td>
+<td style="text-align: right;">$6,290 万</td>
+</tr>
+</tbody>
+</table></div>
+<p>（表中涨跌幅是简单收益，超额是对数口径。）</p>
+<p><strong>9 月 +33.5 的超额里，这两天贡献 +31.7，其余 28 天合计 +1.8。</strong> 两天合计约为单月特质标准差（15.7）的 2 倍。</p>
+<p><strong>这两天发生了什么——本报告做的判别</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>假设</th>
+<th>它会预测什么</th>
+<th>实测</th>
+<th>判别力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>「Helicon 预期」</strong>（媒体主流说法：CoinMarketCap、Bloomingbit、Blockchain.News）</td>
+<td>版本 A：消息公布时反应；版本 B：临近激活抢跑、激活后兑现</td>
+<td>主网日期 9/8 已在 v1.15.0 发布说明里公开，9/8 当天超额 +0.2（不支持 A）；9/19–9/20 +31.7，激活前一天 9/21 −8.9、激活后 9/23 −7.0（与 B 相容）</td>
+<td>⚠️ <strong>B 不排除</strong>；但 B 解释不了为什么是 9/19 而不是更早（杠杆假设同样解释不了时点），且到 10/12 跳涨保留约 85%，「兑现」并不彻底</td>
+</tr>
+<tr>
+<td>板块轮动</td>
+<td>对照组同涨</td>
+<td>对照组中位数当天 +0.1 / +0.7；AVAX 相对它 +20.6 / +10.7</td>
+<td>❌ 不支持</td>
+</tr>
+<tr>
+<td>单条消息冲击</td>
+<td>涨幅集中在一两个小时</td>
+<td>48 小时对数涨幅 32.2，<strong>最大的一小时（9/20 11:00 UTC）+6.4，约占 20%</strong>；最大三小时合计约占 48%</td>
+<td>不像单条消息</td>
+</tr>
+<tr>
+<td>杠杆推动</td>
+<td>合约持仓量上升、资金费率走高、主动买入占优</td>
+<td>持仓量 9/18 → 9/21 从 895 万枚升到 1,140 万枚（<strong>+27%</strong>）；<strong>资金费率 9/14–9/16 多数时段低于 0.0100%（9/15 有负值），9/17 末起回到 0.0100% 并停住，9/18–9/20 九个时段全部 0.0100%</strong>——这是币安公式里溢价处在钳位区间时的取值（公式本报告未核实），有小幅上移，<strong>但不是高位</strong>；主动买入占比现货 0.486 / 0.489、永续 0.498 / 0.494（约一半）</td>
+<td>持仓量支持「有新杠杆进来」，费率与主动买入不支持「多头抢跑」——<strong>日度数据判别不了</strong></td>
+</tr>
+<tr>
+<td>代币化股票资金流入（Cryptobriefing 9/28：截至 9/25 的一周 $1.312 亿）</td>
+<td>流入与价格同步</td>
+<td>窗口覆盖异动，但该数字没有标明来源（同文的月度数字归给 Token Terminal），本报告未核实</td>
+<td>❌ 不能用</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>结论：原因未识别。</strong> 「Helicon 抢跑」与「杠杆进场」都和数据相容，本报告找不到能在它们之间判别的证据；板块轮动不被对照组支持。<strong>9/21 收盘（激活前）到 9/30 合计 +1.8；9/30 到 10/12 −6.4。</strong>从 8/31 起累计，到 10/12 为 +27.1——两天跳涨的 +31.7 <strong>保留了约 85%</strong>；10/12 的 AVAX/BTC 比跳涨前（9/1–9/18）的均值高约 26%。</p>
+<p><img alt="9 月以来 AVAX 的累计对数超额" src="charts/excess-sep-202609.svg" /></p>
+<h3 id="33">3.3 宏观环境</h3>
+<p>与 BTC 9 月版共用（美联储 9/16 加息 25bp 至 3.75–4.00%）。AVAX 对 BTC 的 R² 0.520、beta 1.265——<strong>Q3 的 67% 大部分是「高 beta 的 BTC」</strong>，9 月才出现明显的个币成分。</p>
+<hr />
+<h2 id="4">4. 供应：发行与销毁（本期核心章之一）</h2>
+<h3 id="41">4.1 三个供应口径，以及它们为什么不同</h3>
+<p>AvalancheGo 源码（<code>vms/platformvm/txs/executor/</code>）里，<code>currentSupply</code> 只在三处被改：</p>
+<ol>
+<li><strong>新质押开始时</strong>：<code>newCurrentSupply = currentSupply + potentialReward</code>——<strong>预计奖励在质押开始时就先加进去</strong>（<code>standard_tx_executor.go</code>）；</li>
+<li><strong>自动续期时</strong>：同样先加下一期的预计奖励（<code>state_changes.go</code>）；</li>
+<li><strong>质押结束但不合格</strong>（在线率不够）：把先加的奖励扣回（<code>proposal_tx_executor.go</code>，注释原文：「Potential rewards are added optimistically to the current supply when the validator is added so they must be deducted on abort」）。</li>
+</ol>
+<p><strong>手续费销毁不改 <code>currentSupply</code>。</strong> 所以：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>口径（10/13）</th>
+<th style="text-align: right;">枚数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P 链 <code>getCurrentSupply</code></td>
+<td style="text-align: right;"><strong>475,129,276</strong></td>
+<td>含已承诺、未发放的奖励；未扣销毁</td>
+</tr>
+<tr>
+<td>− 验证人未发放奖励</td>
+<td style="text-align: right;">−3,571,433</td>
+<td>本报告用 <code>getCurrentValidators</code> 逐个加总 585 个验证人的 <code>potentialReward</code></td>
+</tr>
+<tr>
+<td>− 委托人未发放奖励</td>
+<td style="text-align: right;"><strong>未测</strong></td>
+<td>公共接口已不返回委托明细（45,006 笔委托、4,137 万枚）；按验证人的比例粗估约 100 万</td>
+</tr>
+<tr>
+<td>− 三条链累计销毁</td>
+<td style="text-align: right;">−5,169,108</td>
+<td>1.3 节</td>
+</tr>
+<tr>
+<td><strong>= 推算实际供应</strong></td>
+<td style="text-align: right;"><strong>约 4.654–4.664 亿</strong></td>
+<td>委托人部分取 0 至约 100 万</td>
+</tr>
+<tr>
+<td>官方数据接口 <code>totalSupply</code></td>
+<td style="text-align: right;">468,547,650</td>
+<td>= 3.6 亿 + <code>totalRewards</code>（113,716,758）− 累计销毁</td>
+</tr>
+<tr>
+<td>CoinGecko <code>total_supply</code></td>
+<td style="text-align: right;">470,023,670</td>
+<td>约等于 <code>getCurrentSupply</code> − 累计销毁（推测，含未发放奖励）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>本报告的推算与官方数据接口差约 220–320 万枚（0.5%–0.7%），没有勾稽上。</strong> 可能的原因是数据接口的 <code>totalRewards</code> 定义与本报告理解的不同（OpenAPI 文档只写「The total rewards AVAX」），<strong>未核实</strong>。本报告的市值与比率用 CoinGecko 流通量（4.434 亿）和数据接口的总供应（4.685 亿）两个口径并列。</p>
+<blockquote>
+<p><strong>CoinGecko 的流通量</strong>（4.434 亿）比它自己的总供应少约 2,667 万，与数据接口的 <code>totalLocked</code>（2,794 万，「The total locked AVAX」）量级相近——<strong>锁定部分的解锁时间表本报告没有核实</strong>。数据接口文档的示例值（2025-11-05）为 3,616 万，<strong>近 11 个月减少约 822 万枚</strong>（示例值是否为真实快照未核实；它的各字段满足 <code>totalSupply = 3.6 亿 + totalRewards − 销毁</code> 的恒等式）。</p>
+</blockquote>
+<h3 id="42-vs-c">4.2 月度：已承诺发行 vs C 链销毁</h3>
+<blockquote>
+<p><strong>推导方法</strong>：已承诺发行 = 官方数据接口逐块返回的 P 链 <code>currentSupply</code> 在每月 1 日 00:00 UTC 之后第一个块的差；C 链销毁 = 销毁地址在每月 1 日 00:00 UTC 之后第一个 C 链块的余额之差（公共 RPC 存档读取）；美元 = 枚数 × 当月币安日收盘均价。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>月份</th>
+<th style="text-align: right;">已承诺发行（枚）</th>
+<th style="text-align: right;">C 链销毁（枚）</th>
+<th style="text-align: right;">销毁 ÷ 发行</th>
+<th style="text-align: right;">当月均价</th>
+<th style="text-align: right;">销毁（美元）</th>
+<th style="text-align: right;">L1 验证人数（月初）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-09</td>
+<td style="text-align: right;">614,021</td>
+<td style="text-align: right;">49,674</td>
+<td style="text-align: right;">8.09%</td>
+<td style="text-align: right;">$29.08</td>
+<td style="text-align: right;">$144 万</td>
+<td style="text-align: right;">801</td>
+</tr>
+<tr>
+<td>2025-10</td>
+<td style="text-align: right;">995,099</td>
+<td style="text-align: right;">69,864</td>
+<td style="text-align: right;">7.02%</td>
+<td style="text-align: right;">$23.15</td>
+<td style="text-align: right;">$162 万</td>
+<td style="text-align: right;">795</td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td style="text-align: right;">645,616</td>
+<td style="text-align: right;">40,271</td>
+<td style="text-align: right;">6.24%</td>
+<td style="text-align: right;">$15.59</td>
+<td style="text-align: right;">$63 万</td>
+<td style="text-align: right;">825</td>
+</tr>
+<tr>
+<td>2025-12</td>
+<td style="text-align: right;">707,003</td>
+<td style="text-align: right;">21,886</td>
+<td style="text-align: right;">3.10%</td>
+<td style="text-align: right;">$12.88</td>
+<td style="text-align: right;">$28 万</td>
+<td style="text-align: right;">827</td>
+</tr>
+<tr>
+<td>2026-01</td>
+<td style="text-align: right;">1,985,293</td>
+<td style="text-align: right;">24,000</td>
+<td style="text-align: right;">1.21%</td>
+<td style="text-align: right;">$13.03</td>
+<td style="text-align: right;">$31 万</td>
+<td style="text-align: right;">752</td>
+</tr>
+<tr>
+<td>2026-02</td>
+<td style="text-align: right;">535,147</td>
+<td style="text-align: right;">24,898</td>
+<td style="text-align: right;">4.65%</td>
+<td style="text-align: right;">$9.14</td>
+<td style="text-align: right;">$23 万</td>
+<td style="text-align: right;">743</td>
+</tr>
+<tr>
+<td>2026-03</td>
+<td style="text-align: right;">587,304</td>
+<td style="text-align: right;">16,342</td>
+<td style="text-align: right;">2.78%</td>
+<td style="text-align: right;">$9.35</td>
+<td style="text-align: right;">$15 万</td>
+<td style="text-align: right;">725</td>
+</tr>
+<tr>
+<td>2026-04</td>
+<td style="text-align: right;">1,006,116</td>
+<td style="text-align: right;">14,163</td>
+<td style="text-align: right;">1.41%</td>
+<td style="text-align: right;">$9.26</td>
+<td style="text-align: right;">$13 万</td>
+<td style="text-align: right;">710</td>
+</tr>
+<tr>
+<td>2026-05</td>
+<td style="text-align: right;">1,657,575</td>
+<td style="text-align: right;">9,448</td>
+<td style="text-align: right;">0.57%</td>
+<td style="text-align: right;">$9.38</td>
+<td style="text-align: right;">$9 万</td>
+<td style="text-align: right;">649</td>
+</tr>
+<tr>
+<td>2026-06</td>
+<td style="text-align: right;">519,038</td>
+<td style="text-align: right;">16,442</td>
+<td style="text-align: right;">3.17%</td>
+<td style="text-align: right;">$6.76</td>
+<td style="text-align: right;">$11 万</td>
+<td style="text-align: right;">639</td>
+</tr>
+<tr>
+<td>2026-07</td>
+<td style="text-align: right;">661,957</td>
+<td style="text-align: right;">9,005</td>
+<td style="text-align: right;">1.36%</td>
+<td style="text-align: right;">$6.61</td>
+<td style="text-align: right;">$6 万</td>
+<td style="text-align: right;">620</td>
+</tr>
+<tr>
+<td>2026-08</td>
+<td style="text-align: right;">705,412</td>
+<td style="text-align: right;">15,792</td>
+<td style="text-align: right;">2.24%</td>
+<td style="text-align: right;">$6.83</td>
+<td style="text-align: right;">$11 万</td>
+<td style="text-align: right;">593</td>
+</tr>
+<tr>
+<td><strong>2026-09</strong></td>
+<td style="text-align: right;"><strong>932,977</strong></td>
+<td style="text-align: right;"><strong>34,275</strong></td>
+<td style="text-align: right;"><strong>3.67%</strong></td>
+<td style="text-align: right;">$8.87</td>
+<td style="text-align: right;"><strong>$30 万</strong></td>
+<td style="text-align: right;">598</td>
+</tr>
+<tr>
+<td><strong>2025-10 至 2026-09 合计</strong></td>
+<td style="text-align: right;"><strong>10,938,536</strong></td>
+<td style="text-align: right;"><strong>296,386</strong></td>
+<td style="text-align: right;"><strong>2.71%</strong></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">10/1：584</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="2025-09 至 2026-09 每月已承诺发行与 C 链销毁" src="charts/issuance-vs-burn-202609.svg" /></p>
+<p><strong>读这张表要注意四件事</strong>：</p>
+<ol>
+<li><strong>单月的「已承诺发行」不能年化。</strong> 它在质押<strong>开始</strong>时一次性记入整期奖励——一笔一年期的大额质押会让当月跳高（2026-01 的 198.5 万、2026-05 的 165.8 万），之后的月份就低。<strong>只用 12 个月合计</strong>：1,094 万枚 = 2025-10-01 的 4.639 亿的 <strong>2.36%</strong>；扣掉 C 链销毁后净增 1,064 万枚，<strong>2.29%/年</strong>。</li>
+<li><strong>12 个月合计也不等于实际净增。</strong> 实际供应 = 已承诺 − 未发放奖励池 − 累计销毁，所以<strong>实际净增 = Δ已承诺 − Δ未发放池 − Δ销毁</strong>；一年前的未发放池本报告没测，<strong>2.29% 是已承诺口径的净增，不是实测的实际净增</strong>。</li>
+<li><strong>用机制做一个情景估算（不是上下界）。</strong> 一年的应计奖励 ≈ 质押量 × 奖励率：低情景取现在的 1.865 亿 × 5.36%（Helicon 前的 14 天利率）≈ 1,000 万枚，÷ 4.685 亿 ≈ <strong>2.13%</strong>；高情景取 2025-11-05 的 1.996 亿（⚠️ 文档示例值，未核实，也不一定是一年里的最高质押量）× 6.62%（按一年前供应 4.64 亿算的 365 天利率）≈ 1,321 万枚，÷ 4.639 亿 ≈ <strong>2.85%</strong>。<strong>奖励按质押开始时的供应和期限计</strong>，更早开始的质押利率更高，不合格的质押拿不到奖励——所以这两个数是情景，不是上下界；已承诺口径的 2.36%（毛）落在里面，<strong>不算验证</strong>（区间本身很宽）。<strong>往后看</strong>：Helicon 后新开始的短期质押利率降到约 4.0%–4.08%（5.4 节），按 39.8% 的质押占比 × 4.0%–6.38%，<strong>约 1.6%–2.5%/年</strong>。</li>
+<li><strong>官方数据接口的「已发放」口径，本报告不采用。</strong> 它的 <code>totalRewards</code> 从文档示例值（2025-11-05，9,919 万）到 10/13（1.1372 亿）增加了 1,453 万枚（341.5 天，年化约 1,553 万）。<strong>不采用的理由是存量矛盾</strong>，不是它超出情景估算（兑付在未发放池缩小的年份本来就可以超过应计）：按它的字段，10/13 隐含的未发放额只有约 141 万（4.751 亿 − 3.6 亿 − 1.1372 亿），<strong>小于本报告实测的验证人未发放额 357 万</strong>——字段口径与本报告的理解不一致，原因未核实。<strong>ACP-285 原文的「近一年通胀约 5.5%」</strong>（分母是「已发行 − 已销毁 − 已质押」，约 2.82 亿）与它吻合（1,553 万 ÷ 2.82 亿 ≈ 5.5%）——<strong>ACP 作者很可能用了同一数据接口，不构成独立验证</strong>。</li>
+</ol>
+<p><strong>销毁只有发行的约 2.7%</strong>（12 个月），9 月 3.67%。<strong>按 10 月前 12 天的运行速度（每天约 1,276 枚），一年约 47 万枚——约为一年已承诺发行的 4%。</strong></p>
+<h3 id="43-1013">4.3 质押结构（10/13）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主网总质押</td>
+<td><strong>186,477,737 枚</strong></td>
+<td>P 链 <code>getTotalStake</code></td>
+</tr>
+<tr>
+<td>占总供应</td>
+<td>约 39.8%（÷ 4.685 亿）</td>
+<td>计算</td>
+</tr>
+<tr>
+<td>验证人</td>
+<td>585 个，自有质押 1.440 亿</td>
+<td><code>getCurrentValidators</code></td>
+</tr>
+<tr>
+<td>委托</td>
+<td>45,006 笔，4,137 万枚</td>
+<td>同上（<code>delegatorCount</code> / <code>delegatorWeight</code> 合计）</td>
+</tr>
+<tr>
+<td>验证人质押期（按金额加权中位数）</td>
+<td><strong>159 天</strong>；≤ 30 天的占 18.2%，≥ 300 天的占 16.5%</td>
+<td>同上（<code>endTime − startTime</code>）</td>
+</tr>
+<tr>
+<td>一年前的质押量</td>
+<td>文档示例值（2025-11-05）1.996 亿</td>
+<td>⚠️ 示例值，未核实是否真实快照</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>质押奖励与稀释是同一件事的两面</strong>（DOT 期规则）：质押者拿到的约 4%–6.4% 奖励，就是 4.2 节那约 2%–3% 净供应增长的来源（39.8% 的质押占比 × 4%–6.4% ≈ 1.6%–2.5%，加上已开始的长期质押按旧利率计，近 12 个月约 2%–3%）。<strong>它对质押者是收益，对不质押的持有者是稀释；对全体持有者合计，它不创造价值，只是转移份额。</strong></p>
+</blockquote>
+<hr />
+<h2 id="5-helicon">5. Helicon 与手续费下限（本期核心章之二）</h2>
+<h3 id="51-acp">5.1 六个 ACP</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>ACP</th>
+<th>内容</th>
+<th>与代币经济的关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>194</td>
+<td>C 链异步执行（Continuous Execution）</td>
+<td><strong>收费的 gas 改为 <code>max(实际用量, gas 上限 ÷ 2)</code></strong>——上限设得很高的交易要多付</td>
+</tr>
+<tr>
+<td>236</td>
+<td>质押自动续期</td>
+<td>续期时重新计算奖励并先记入供应（4.1 第 2 条）</td>
+</tr>
+<tr>
+<td>267</td>
+<td>验证人在线率门槛提高到 90%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>273</td>
+<td>最短质押从 14 天降到 48 小时</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>283</strong></td>
+<td><strong>C 链最低 gas 价改为验证人投票</strong></td>
+<td><strong>销毁端</strong></td>
+</tr>
+<tr>
+<td><strong>285</strong></td>
+<td><strong>短期质押奖励下限 10% → 7.5%</strong></td>
+<td><strong>发行端</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>ACP 仓库里 283 与 285 的状态仍写「Proposed」</strong>（10/13 读取），<strong>但 v1.15.0 发布说明写明 Helicon 激活这六个 ACP</strong>——仓库的状态字段没有更新，<strong>以发布说明为准</strong>。</p>
+</blockquote>
+<h3 id="52-1-wei-5-navax-46">5.2 手续费下限：1 wei → 5 nAVAX，用了约 4.6 天</h3>
+<p>ACP-283 的机制：每个出块的验证人在节点配置里写自己想要的下限（<code>min-price-target</code>，<strong>默认是「沿用上一块」，即弃权</strong>），每块最多把下限调高或调低一点，<strong>连续 3,600 个块才能翻倍</strong>；长期看会收敛到按质押加权的中位数偏好。下限存在 C 链区块头的 <code>minPriceExponent</code> 字段里，<strong>下限 = e^(字段值 ÷ 415,828,534,307,635,077) wei</strong>（ACP-283 原文的常数）。</p>
+<p>本报告每 6 小时读一次区块头：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>时间（UTC）</th>
+<th style="text-align: right;">下限（wei）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/22 10:14</td>
+<td style="text-align: right;">字段不存在（激活前）</td>
+</tr>
+<tr>
+<td>9/22 15:46</td>
+<td style="text-align: right;">1.1</td>
+</tr>
+<tr>
+<td>9/23 16:29</td>
+<td style="text-align: right;">143</td>
+</tr>
+<tr>
+<td>9/24 15:18</td>
+<td style="text-align: right;">约 1.6 万</td>
+</tr>
+<tr>
+<td>9/25 14:25</td>
+<td style="text-align: right;">约 194 万</td>
+</tr>
+<tr>
+<td>9/26 14:30</td>
+<td style="text-align: right;">约 2.6 亿</td>
+</tr>
+<tr>
+<td>9/27 03:19</td>
+<td style="text-align: right;">约 29.1 亿</td>
+</tr>
+<tr>
+<td><strong>9/27 09:41 起</strong></td>
+<td style="text-align: right;"><strong>50 亿（= 5 nAVAX）</strong>，至 10/13 未变</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>它是一条持续上升的线，但不是协议允许的最快速度</strong>：从 9/22 15:46（1.1 wei）到 9/27 03:19（约 29.1 亿 wei）共翻倍约 31.3 次，用了 311,304 个区块，平均每翻一倍约 9,950 块；最快速度是每 3,600 块翻一倍，<strong>实际约为最快速度的 36%</strong>。在 ACP-283 的规则下（不设目标的验证人默认沿用上一块，即弃权；向上票与向下票会互相抵消），这只能推出：<strong>观察期内，按出块计约三分之一以上的权重在净推动上调</strong>；推不出「过半」，也识别不了各节点的目标是激活时就设好的还是中途设的、有没有更高的目标被向下票抵消。平台停在 5 nAVAX，说明至少有节点以约 5 nAVAX 为目标（未核实）。是谁设的、是否有协调，本报告没有找到公开记录。</p>
+<blockquote>
+<p>ACP-283 原文举例说 0.01 nAVAX 的下限「对正常用户完全无感，却能让垃圾交易无利可图」——<strong>但升级前的中位基础费（0.068 nAVAX）已经高于 0.01，垃圾交易仍在</strong>，这个举例数字不是有效的参照（CKB 期规则：文档里的举例数字不是设计目标）。更有用的比较：<strong>5 nAVAX 约为升级前用户实际单价（1.53 nAVAX）的 3.3 倍</strong>。</p>
+</blockquote>
+<h3 id="53">5.3 交易量与销毁：测数量，不只看价格</h3>
+<p>ETH 期的教训：价格是供需共同的结果，要区分谁在变，就要测数量。本报告对 8/25–10/12 的每一天均匀抽 40 个 C 链区块，读 gas 用量、基础费与交易笔数，再按当天区块数放大；销毁用销毁地址的逐日余额差。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>窗口</th>
+<th style="text-align: right;">天数</th>
+<th style="text-align: right;">日均销毁（枚）</th>
+<th style="text-align: right;">日均 gas（区块头）</th>
+<th style="text-align: right;">日均交易笔数</th>
+<th style="text-align: right;">实际单价（销毁 ÷ 区块头 gas）</th>
+<th style="text-align: right;">中位基础费</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8/25–9/11</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">3,560 亿</td>
+<td style="text-align: right;"><strong>约 212 万</strong></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td><strong>9/12–9/18（断崖之后、异动之前）</strong></td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;"><strong>517</strong></td>
+<td style="text-align: right;">3,070 亿</td>
+<td style="text-align: right;"><strong>约 67 万</strong></td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td>8/25–9/18（合并）</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">523</td>
+<td style="text-align: right;">3,420 亿</td>
+<td style="text-align: right;">约 172 万</td>
+<td style="text-align: right;">1.53 nAVAX</td>
+<td style="text-align: right;">0.068 nAVAX</td>
+</tr>
+<tr>
+<td>9/19–9/21（异动，下限仍是 1 wei）</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;"><strong>1,538</strong></td>
+<td style="text-align: right;">3,040 亿</td>
+<td style="text-align: right;">约 84 万</td>
+<td style="text-align: right;">5.06 nAVAX</td>
+<td style="text-align: right;">约 0.06 nAVAX</td>
+</tr>
+<tr>
+<td>9/22–9/26（激活，下限爬升中）</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2,164</td>
+<td style="text-align: right;">5,190 亿</td>
+<td style="text-align: right;">约 63 万</td>
+<td style="text-align: right;">4.17 nAVAX</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td><strong>10/1–10/12（下限 5 nAVAX）</strong></td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;"><strong>1,276</strong></td>
+<td style="text-align: right;">1,400 亿</td>
+<td style="text-align: right;">约 30 万</td>
+<td style="text-align: right;">9.14 nAVAX</td>
+<td style="text-align: right;">5.000 nAVAX</td>
+</tr>
+</tbody>
+</table></div>
+<p><img alt="8/25 至 10/12 的 C 链每日销毁" src="charts/burn-daily-202609.svg" /></p>
+<p><strong>销毁的构成</strong>：再对两个窗口每天均匀抽 20 个区块，用两种方法估基础费的份额——①「区块头法」：基础费 = 区块头 <code>gasUsed × baseFeePerGas</code>，按当天区块数放大；②「收据法」：逐笔读交易收据，基础费份额 = Σ（实际用量 × 基础费）÷ Σ（实际用量 × 实际单价）。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>窗口</th>
+<th style="text-align: right;">日均销毁（全量）</th>
+<th style="text-align: right;">基础费份额：区块头法</th>
+<th style="text-align: right;">基础费份额：收据法</th>
+<th style="text-align: right;">收据实际用量 ÷ 区块头 gas</th>
+<th style="text-align: right;">抽样外推的总销毁 ÷ 实际</th>
+<th style="text-align: right;">出价低于 5 nAVAX 的交易占比（抽样）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/12–9/18</td>
+<td style="text-align: right;">517</td>
+<td style="text-align: right;">约 4%</td>
+<td style="text-align: right;"><strong>约 2.5%</strong></td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1.65</td>
+<td style="text-align: right;"><strong>92%</strong>（1,170 笔）</td>
+</tr>
+<tr>
+<td>9/19–9/21</td>
+<td style="text-align: right;">1,538</td>
+<td style="text-align: right;">约 2%</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">87%（525 笔）</td>
+</tr>
+<tr>
+<td>10/1–10/5</td>
+<td style="text-align: right;">1,220</td>
+<td style="text-align: right;">约 75%（粗算）</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td>10/6–10/12</td>
+<td style="text-align: right;">1,316</td>
+<td style="text-align: right;">约 41%–44%</td>
+<td style="text-align: right;"><strong>约 34%</strong></td>
+<td style="text-align: right;"><strong>0.59</strong></td>
+<td style="text-align: right;">0.69</td>
+<td style="text-align: right;">0%（439 笔）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>可以确认的</strong>：<br />
+- <strong>升级前，基础费只占销毁的约 2.5%–4%</strong>；92% 的交易出价低于 5 nAVAX。<strong>下限生效后，抽样里已没有出价低于 5 nAVAX 的交易</strong>——这部分交易要么加价、要么离开。<br />
+- <strong>下限生效后，基础费在销毁里的份额升到约 34%–75%</strong>（因窗口与方法而异）。这部分的大小约等于「下限 × gas」，<strong>下限一调低它就跟着缩</strong>。<br />
+- 升级前出价 ≥ 5 nAVAX 的交易只占约 2.1% 的 gas 上限，而 10 月的 gas 远大于此——<strong>10 月按 5 nAVAX 付基础费的，绝大部分是升级前出价更低的交易或新进来的需求</strong>，不是升级前的高价交易换了标签。<br />
+- 异动期（9/19–9/21）的高销毁几乎全部不是基础费——<strong>没有下限时，热度不会抬高基础费</strong>。<br />
+- <strong>Helicon 之后，区块头的 <code>gasUsed</code> 与逐笔收据的实际用量之和对不上</strong>（抽样里收据合计只有区块头的约 59%；升级前两者完全相等），与 ACP-194「按 max(实际用量, 上限 ÷ 2) 计费」相容（<strong>未核实区块头记的就是计费量</strong>）。所以 Helicon 前后的「区块头 gas」不是同一个单位：区块头口径少了约 54%，按收据折算的实际用量约少 73%。</p>
+<p><strong>不能确认的</strong>：<br />
+- <strong>下限的净效应。</strong> 基础费和「其余部分」只是同一笔付款上的两个标签，拆出来的是会计构成，不是归因。真正的反事实是「没有下限时 10 月会烧多少」：热度退回则约 517 枚/天，热度仍在（像 9/19–9/21）则约 1,500 枚/天——<strong>下限的净效应约在每天 −220 到 +760 枚之间，构成拆分收窄不了这个区间</strong>。能判别的方法是追踪同一批发送方在升级前后的花费（本报告没做）。<br />
+- <strong>「其余部分」不是干净的「优先费」</strong>：它是全量销毁减去基础费估计的余数，里面混着 ACP-194 的计费附加与抽样误差；<strong>抽样外推的总销毁与实际差 −31% 到 +65%</strong>——少数高价交易让 20 块/天的抽样误差很大，<strong>份额只能当量级看</strong>。<br />
+- <strong>交易笔数的下降有多少是下限造成的。</strong> 9/12 就已从约 212 万/天断崖降到约 67 万（gas 与销毁几乎没变）——<strong>不是下限生效造成的</strong>（下限 9/22 才激活；主网日期 9/8 已公开，提前退出也有可能），原因未识别；之后下限生效又与异动退潮同时发生。<br />
+- <strong>被挤出的是否垃圾交易。</strong> 升级前抽样里最大的发送地址占 13.6% 的交易、第二大占 9.1%（高度集中，像机器人），升级后最大的只占 3.2%——与「挤掉集中的机器人流量」相容，但本报告没有按合约验证。<br />
+- <strong>9/24 单日销毁 6,258 枚</strong>（窗口内最高），当天下限还只有约 1.6 万 wei，不是下限造成的；ACP-194 的计费附加可能是原因之一，<strong>未核实</strong>。</p>
+<h3 id="54-acp-285">5.4 发行端：ACP-285</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>质押期</th>
+<th style="text-align: right;">原奖励率（下限 10%）</th>
+<th style="text-align: right;">新奖励率（下限 7.5%）</th>
+<th style="text-align: right;">自动续期复利（7.5%）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2 天</td>
+<td style="text-align: right;">—</td>
+<td style="text-align: right;">4.00%</td>
+<td style="text-align: right;">4.08%</td>
+</tr>
+<tr>
+<td>14 天</td>
+<td style="text-align: right;">5.36%</td>
+<td style="text-align: right;">4.08%</td>
+<td style="text-align: right;">4.16%</td>
+</tr>
+<tr>
+<td>90 天</td>
+<td style="text-align: right;">5.58%</td>
+<td style="text-align: right;">4.58%</td>
+<td style="text-align: right;">4.65%</td>
+</tr>
+<tr>
+<td>182 天</td>
+<td style="text-align: right;">5.85%</td>
+<td style="text-align: right;">5.18%</td>
+<td style="text-align: right;">5.25%</td>
+</tr>
+<tr>
+<td>365 天</td>
+<td style="text-align: right;">6.38%</td>
+<td style="text-align: right;">6.38%</td>
+<td style="text-align: right;">6.38%</td>
+</tr>
+</tbody>
+</table></div>
+<p>（ACP-285 原文，按供应 470,134,316 枚计算。）</p>
+<ul>
+<li><strong>新下限只对激活后开始的质押生效</strong>，并按开始时刻在 90 天内线性下调（<strong>到 12/21 15:00 UTC 才降满</strong>）；已在进行中的质押按原利率走完。<strong>所以它对 9 月、Q4 的发行影响很小，主要作用在 2027 年</strong>。</li>
+<li>ACP 作者的估计：<strong>按他们的口径年通胀降 0.5–1 个百分点</strong>；这是作者模型的结果（模型在 X 上发布，本报告未读），<strong>未验证</strong>。</li>
+<li><strong>它与 ACP-273（48 小时最短质押）+ ACP-236（自动续期）是配套的</strong>：原文写明，没有 285，「48 小时滚动质押」几乎能拿到长期质押的全部奖励（只差约 0.5 个百分点），等于让流动性和安全性的取舍消失。</li>
+</ul>
+<hr />
+<h2 id="6-etf">6. 机构通道：ETF 与财库公司</h2>
+<h3 id="61-2026-06-30sec">6.1 持有量（截至 2026-06-30，SEC 文件原文）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>主体</th>
+<th style="text-align: right;">AVAX 数量</th>
+<th>备注</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bitwise Avalanche ETF（BAVA）</strong></td>
+<td style="text-align: right;">2,538,568</td>
+<td>2026-04-14 开始运作；含已质押部分</td>
+<td>10-Q</td>
+</tr>
+<tr>
+<td><strong>VanEck Avalanche ETF（VAVX）</strong></td>
+<td style="text-align: right;">1,726,678</td>
+<td>2026-01-26 开始运作；<strong>上半年申购里 124.3 万枚是实物申购</strong>（申购人直接交 AVAX，不是基金在市场上买）</td>
+<td>10-Q</td>
+</tr>
+<tr>
+<td><strong>Grayscale Avalanche Staking ETF（GAVA）</strong></td>
+<td style="text-align: right;">649,891</td>
+<td>净资产 $427 万</td>
+<td>10-Q</td>
+</tr>
+<tr>
+<td><strong>ETF 合计</strong></td>
+<td style="text-align: right;"><strong>4,915,137</strong></td>
+<td><strong>约占总供应 1.05%</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Avalanche Treasury Co.（AVAT）</strong></td>
+<td style="text-align: right;">15,312,363</td>
+<td>成本 $2.573 亿，6/30 公允价值 $1.000 亿</td>
+<td>10-Q</td>
+</tr>
+<tr>
+<td><strong>AVAX One（AVX）</strong></td>
+<td style="text-align: right;">约 1,405 万</td>
+<td>直接持有 12,223,021；另约 83 万转为 Treehouse 的流动性质押代币 tAVAX、约 100 万处于限制状态；7/9 公告「约 1,400 万枚」</td>
+<td>10-Q、8-K</td>
+</tr>
+<tr>
+<td><strong>财库公司合计</strong></td>
+<td style="text-align: right;"><strong>约 2,940 万</strong></td>
+<td><strong>约 6.3%</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>9 月的变化本报告取不到</strong>：Q3 的 10-Q 要到 11 月才披露；ETF 每日资金流（SoSoValue、Farside）本报告抓取返回 403。VanEck 官网显示 VAVX 9/28 净资产 $2,058 万（<strong>仅搜索摘要，官网抓取失败</strong>）。</p>
+</blockquote>
+<h3 id="62-avat-70-avax">6.2 AVAT：约 70% 的 AVAX 已押给贷款方</h3>
+<p>AVAT 的 6/30 季报（10-Q）原文：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>持有</td>
+<td>15,312,363 枚；其中约 290 万为流动资产，<strong>其余约 1,240 万「已作为抵押质押，或处于锁定状态」</strong></td>
+</tr>
+<tr>
+<td>FalconX 贷款</td>
+<td><strong>$2,300 万，开放式（无到期日，贷方可随时召回）</strong>，年息 7%，初始抵押率 200%；<strong>截至提交日（8/19）已质押约 780 万枚</strong></td>
+</tr>
+<tr>
+<td>Galaxy 贷款（7/2 签署）</td>
+<td>$1,000 万，<strong>2027-01-10 到期</strong>，年费率 10.5%，质押约 290 万枚，初始抵押率 180%；资金用于偿还部分 FalconX 贷款</td>
+</tr>
+<tr>
+<td>维持保证金</td>
+<td>原文：「若质押 AVAX 的公允价值跌破<strong>某些维持门槛</strong>，公司可能须追加抵押或偿还部分本金」——<strong>门槛数值未披露</strong></td>
+</tr>
+<tr>
+<td>来源</td>
+<td>基金会在 2025-10 以「$2 亿（折扣前）」的 AVAX 换取 <strong>$5,000 万现金 + $3,000 万股票（60% 折扣）</strong></td>
+</tr>
+<tr>
+<td>其他</td>
+<td>2026-08-06 收到纳斯达克最低股价不达标通知</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>量级怎么看</strong>：约 1,070 万枚（780 万 + 290 万）押在两家贷款方手里，但<strong>被强制卖出时，卖出量以债务为上限，不以抵押物为上限</strong>。两笔贷款面值合计最多 $3,300 万（Galaxy 的资金已偿还部分 FalconX，偿还金额未披露，实际余额在 $2,300 万–$3,300 万之间），按 9/30 收盘约 <strong>210 万–300 万枚，相当于 9 月币安现货日成交中位数（约 $3,030 万，约 280 万枚）的约 0.75–1.1 天</strong>。</p>
+<p><strong>触发价的下界</strong>：维持门槛未披露；<strong>若维持线不高于初始抵押线</strong>，FalconX 约 $5.90（$2,300 万 ÷ 780 万枚 × 200%）、Galaxy 约 $6.21（$1,000 万 ÷ 290 万枚 × 180%），<strong>都比 9/30 的 $10.937 低约 43%–46%</strong>。若 FalconX 已部分偿还，它的触发价更低。⚠️ 这是在「维持线 ≤ 初始线」的假设下的推算，不是披露；6/30 的价格（$6.54）就在这个区间附近，过去一年 AVAX 下跌 63.56%——<strong>跌 43% 并不遥远</strong>。</p>
+<p><strong>AVAX One</strong>：Q3 偿还债务约 $740 万、9 月回购 33.35 万股（均价 $5.36）——<strong>资金来自哪里（是否卖出 AVAX）本报告没有找到披露</strong>。</p>
+<hr />
+<h2 id="7">7. 核心价值逻辑</h2>
+<h3 id="71">7.1 多头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Helicon 两头收紧：手续费下限 5 nAVAX + 短期质押奖励下限下调</strong>；下限生效后日均销毁约为 9/12–9/18 的 2.5 倍，基础费份额升到约 34%–75%</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ 区块头、收据抽样与 ACP 原文；⚠️ 份额是构成不是归因，下限的净效应约每天 −220 到 +760 枚；⚠️ 销毁仍只抵消约 4% 的发行；下限可在几小时内调回；奖励下调 12/21 才完成，作者估计的效果未验证</td>
+</tr>
+<tr>
+<td>2</td>
+<td>美国三只现货 ETF + 两家财库公司合计约 3,430 万枚（约 7.3%）</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ SEC 文件；⚠️ 6/30 数据；VAVX 大部分是实物申购；财库公司持有的 AVAX 很大部分已押给贷款方（见空头 #3）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>代币化资产在 Avalanche 上增长（9 月媒体报道：代币化股票一周流入 $1.312 亿、Dinari、Progmat）</td>
+<td style="text-align: center;">★☆☆☆☆</td>
+<td>❌ <strong>全部来自媒体二手报道，本报告未取得一手数据</strong>；增长不等于 AVAX 的价值捕获（手续费按 gas 计）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>发行有上限（7.2 亿），奖励率随供应接近上限自动下降</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ 协议原文；⚠️ 剩余可发 2.5 亿枚，按当前速度还要二十年以上</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="72">7.2 空头逻辑</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>论据</th>
+<th style="text-align: center;">强度</th>
+<th>证据等级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>净供应每年增长约 2%–3%（前瞻约 1.6%–2.5%）；近 12 个月销毁只抵消发行的约 2.7%</strong></td>
+<td style="text-align: center;">★★★★☆</td>
+<td>✅ 已承诺发行与销毁为链上自读；⚠️ 情景估算的高情景用了未核实的示例值；未发放奖励池的变化未测，实际净增给不出点估计</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>C 链 gas 在下限生效后比 9/12–9/18 少约 54%（区块头口径；按收据折算的实际用量约少 73%）</strong>；L1 验证人数从 2025-12 的 827 降到 10/1 的 584（−29%）</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ 链上；⚠️ gas 下降与异动退潮同时发生；被挤出的流量高度集中（像机器人），「少了垃圾交易」与「少了真实使用」未按合约验证；<strong>验证人数不等于 L1 数量、运营者数量或使用量</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>AVAT 约 70% 的 AVAX 押给贷款方，其中一笔可随时召回，维持门槛未披露</strong></td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ 10-Q 原文；⚠️ 强制卖出以债务为上限（约 0.75–1.1 天现货成交）；若维持线 ≤ 初始线，需较 9/30 跌约 43% 才触发</td>
+</tr>
+<tr>
+<td>4</td>
+<td>近一年 −63.56%，跌幅约为 BTC 的 2.4 倍；高 beta（1.265）</td>
+<td style="text-align: center;">★★☆☆☆</td>
+<td>✅ 计算</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>检查两条论据是否描述同一机制的两面</strong>（DOT 期规则）：<strong>多头 #1 与空头 #2 是同一个下限</strong>——它让每单位 gas 烧得更多（多头），也让 gas 用量少了一半以上（空头）。合起来，<strong>10 月前 12 天的日均销毁约为 9/12–9/18 的 2.5 倍</strong>，但没有下限时 10 月会烧多少测不到，<strong>下限的净效应约在每天 −220 到 +760 枚之间</strong>（5.3）。<strong>多头 #4 与空头 #1 也是同一机制</strong>：「有上限」决定了发行最终会停，但在可见的未来，它每年仍在增加约 2%–3% 的供应。</p>
+</blockquote>
+<hr />
+<h2 id="8">8. 多空之间真正的分歧点</h2>
+<ol>
+<li><strong>5 nAVAX 下限是「挤掉垃圾」还是「挤掉用户」</strong>：升级前 92% 的交易出价低于 5 nAVAX，且发送方高度集中（最大地址占 13.6%）；下限生效后 gas 少了约 54%–73%（取决于口径）。被挤出的里有多少是 XEN 这类低价值的链上挖矿、有多少是真实用户，本报告没有按合约拆分。<strong>这决定了下限能否在不伤害使用的前提下维持更高的销毁</strong>。</li>
+<li><strong>9 月的跳涨会不会回吐</strong>：「重新定价」预测跳涨后增量约为零，「一次性」预测回吐。到 10/12，两天跳涨的 +31.7 保留了约 85%，AVAX/BTC 比跳涨前（9/1–9/18）的均值高约 26%；激活前后的 −8.9、−7.0 与「抢跑后兑现」相容。<strong>+1.8（9/21 收盘 → 9/30）与 −6.4（9/30 → 10/12）都在单月特质波动（15.7）以内，判别不了</strong>。记分卡 A9-2 的门槛（9 月均值 × 0.9）只比跳涨前的均值高约 1.8%，<strong>它实际在检验「跳涨是否几乎全部回吐」</strong>。</li>
+<li><strong>ACP-285 能否把通胀降下来</strong>：作者估计 0.5–1 个百分点（按他们的口径），<strong>取决于质押者是否改选更长的期限</strong>——原文自己写了「流动性偏好可能压过 2.30 个百分点的期限溢价」。</li>
+</ol>
+<hr />
+<h2 id="9">9. 估值：不给目标价</h2>
+<h3 id="91">9.1 为什么不给</h3>
+<ul>
+<li><strong>充分条件</strong>：持有人没有现金流请求权。手续费全部烧掉，没有归持有人的值流可以折现，本报告也没有可信的估值模型与参数。</li>
+<li><strong>销毁的作用是真实的，但很小</strong>：销毁不需要大于发行才有作用——相对于不销毁，近 12 个月少增加了 29.6 万枚，<strong>约为供应的 0.06%</strong>。它的量级决定了它在估值里能占多少分量。</li>
+<li><strong>加重情节</strong>：AVAX 的价格主要是「高 beta 的 BTC」（R² 0.520），本期最大的个币异动原因未识别。</li>
+</ul>
+<h3 id="92">9.2 比值与反推</h3>
+<blockquote>
+<p><strong>推导方法</strong>：市值 = 9/30 币安收盘 × CoinGecko 流通量（10/13 读数）；年化销毁 = 10/1–10/12 日均销毁 × 365 × 9/30 收盘价；不推导任何价格区间。</p>
+</blockquote>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>比值（9/30）</th>
+<th style="text-align: right;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>市值（流通量口径）</td>
+<td style="text-align: right;">约 $48.5 亿</td>
+</tr>
+<tr>
+<td>年化销毁（按 10 月前 12 天运行速度）</td>
+<td style="text-align: right;">约 46.6 万枚 ≈ $510 万</td>
+</tr>
+<tr>
+<td>市值 ÷ 年化销毁</td>
+<td style="text-align: right;">约 <strong>950 倍</strong></td>
+</tr>
+<tr>
+<td>年化净增（已承诺口径，12 个月）</td>
+<td style="text-align: right;">1,064 万枚 ≈ $1.16 亿</td>
+</tr>
+<tr>
+<td><strong>销毁要追平发行需要的日销毁</strong></td>
+<td style="text-align: right;">约 <strong>3 万枚/天</strong>（一年发行 1,094 万 ÷ 365），<strong>是 10 月前 12 天运行速度的约 23 倍</strong>；按 5 nAVAX 的下限，相当于每天约 6 万亿 gas，<strong>是 9/12–9/18 日均 gas（3,070 亿）的约 19.5 倍</strong></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="93">9.3 一个传统机构的预测，以及它离现实多远</h3>
+<p><strong>Standard Chartered</strong>（渣打银行）数字资产研究主管 Geoffrey Kendrick 在 2025-04-02（The Block 报道，本报告已打开原文）给出 AVAX 目标价：<strong>2025 年底 $55、2026 年 $100</strong>、2027 年 $150、2028 年 $200、2029 年 $250，理由是 Etna 让启动 L1 的成本「从最高 $45 万降到接近零」、开发者数量增加。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>节点</th>
+<th style="text-align: right;">目标</th>
+<th style="text-align: right;">实际（币安收盘）</th>
+<th style="text-align: right;">差距</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2025-12-31</td>
+<td style="text-align: right;">$55</td>
+<td style="text-align: right;">$12.32</td>
+<td style="text-align: right;">实际约为目标的 22%</td>
+</tr>
+<tr>
+<td>2026-09-30</td>
+<td style="text-align: right;">$100（2026 年目标）</td>
+<td style="text-align: right;">$10.937</td>
+<td style="text-align: right;">实际约为目标的 11%</td>
+</tr>
+</tbody>
+</table></div>
+<p>⚠️ <strong>2026 年目标的期限到年底，9/30 只是进度，不是判卷</strong>；要在年底达到 $100，Q4 需要上涨约 814%。</p>
+<p>它的核心理由（L1 启动成本下降）本身是真的。到目前为止可以测到的是：<strong>L1 验证人数在 2025-12 见顶（827）后降到 10/1 的 584</strong>（验证人数不等于 L1 数量或使用量），<strong>L1 验证人持续费累计只烧了 18,566 枚</strong>——L1 对 AVAX 的直接销毁贡献很小。<strong>本报告不拆分这个预测偏差的来源</strong>：AVAX 的 beta 为 1.265，BTC 同期也大幅下跌，偏差里有多少来自 BTC、多少来自 AVAX 自身，本报告没有做（渣打同期对 BTC 的目标未核实）。</p>
+<h3 id="94">9.4 这套判断的弱点</h3>
+<ol>
+<li><strong>三个供应口径没有完全勾稽</strong>（差 0.5%–1%）；委托人的未发放奖励没测；</li>
+<li><strong>实际净增给不出点估计</strong>：已承诺口径没扣未发放奖励池的变化；情景估算的高情景用了未核实的示例值；数据接口的已发放口径因存量矛盾未采用；</li>
+<li><strong>C 链销毁只有一个物理来源</strong>（销毁地址余额）；gas 与交易笔数是抽样估计；</li>
+<li>机构持有量是 6/30 的，<strong>9 月的买卖本报告看不到</strong>；</li>
+<li>「被挤出的交易是垃圾」没有按合约验证；</li>
+<li>基础费份额基于每天 20 个区块的抽样（误差大，只能当量级看）；Helicon 之后区块头 <code>gasUsed</code> 与逐笔收据的实际用量合计不一致，含义未核实。</li>
+</ol>
+<hr />
+<h2 id="10">10. 投资与风险启示</h2>
+<h3 id="101">10.1 关键监控指标</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>当前</th>
+<th>变化信号</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>C 链手续费下限</strong></td>
+<td>5 nAVAX</td>
+<td>下调到 1 nAVAX 以下（验证人改变主意）或继续上调</td>
+<td>C 链区块头 <code>minPriceExponent</code></td>
+</tr>
+<tr>
+<td><strong>C 链日销毁</strong></td>
+<td>10/1–10/12 日均约 1,276 枚</td>
+<td>回落到 600 枚以下（回到升级前），或稳定在 1,500 枚以上</td>
+<td>销毁地址余额</td>
+</tr>
+<tr>
+<td><strong>12 个月已承诺发行</strong></td>
+<td>1,094 万枚</td>
+<td>ACP-285 降满后（12/21 起）是否下降</td>
+<td>P 链 <code>currentSupply</code></td>
+</tr>
+<tr>
+<td>主网总质押</td>
+<td>1.865 亿枚</td>
+<td>跌破 1.8 亿（短期质押奖励下调后流出）</td>
+<td><code>getTotalStake</code></td>
+</tr>
+<tr>
+<td>L1 验证人数</td>
+<td>584（10/1）</td>
+<td>回升到 700 以上</td>
+<td>官方数据接口</td>
+</tr>
+<tr>
+<td>AVAT 质押与贷款</td>
+<td>约 1,070 万枚押出</td>
+<td>Q3 10-Q 的抵押数量、是否追加或被召回</td>
+<td>SEC</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="102">10.2 风险提醒</h3>
+<ol>
+<li><strong>稀释</strong>：不质押的持有人每年被稀释约 2%–3%（Helicon 后的奖励率下前瞻约 1.6%–2.5%）；</li>
+<li><strong>财库公司的杠杆</strong>：AVAT 的抵押物有一部分对应可随时召回的贷款，维持门槛未披露；若维持线不高于初始线，价格需较 9/30 跌约 43% 才触发，强制卖出量约为 0.75–1.1 天的现货成交；</li>
+<li><strong>高 beta</strong>：一年 beta 1.265，波动率 79.0%；</li>
+<li><strong>手续费下限是可逆的</strong>：它由验证人配置决定，<strong>最快约 2–3 小时就能降到五分之一</strong>（每 3,600 块最多减半，约 8,400 块降到 1/5）。</li>
+</ol>
+<h3 id="103">10.3 长期认知</h3>
+<p><strong>第一，「全部销毁」不等于「通缩」。</strong> AVAX 的手续费 100% 烧掉，是本系列里最彻底的销毁设计之一；<strong>但近 12 个月烧掉的只是新发行的约 2.7%</strong>。判断一个销毁型代币，先算「销毁 ÷ 发行」，再谈销毁。</p>
+<p><strong>第二，一个协议参数字段要先读源码，再读数字。</strong> P 链的 <code>currentSupply</code> 叫「当前供应」，<strong>实际是「当前供应 + 已承诺的未来奖励 − 0 销毁」</strong>——直接拿它当实际供应会高估约 870–970 万枚（约 2%）。</p>
+<p><strong>第三，手续费下限是一个用来对付垃圾交易的工具，但它的定价权交给了验证人。</strong> 这次选的 5 nAVAX 约为升级前用户实际单价的 3.3 倍；下限生效后，基础费在销毁里的份额约 34%–75%（因窗口与方法而异），这部分随下限浮动。<strong>它可以在几个小时内被调回去——这部分销毁不应当被当成永久性的。</strong></p>
+<hr />
+<h2 id="11_1">11. 附录</h2>
+<h3 id="111-2026-09-30-1013">11.1 关键数据速查（截至 2026-09-30，快照到 10/13）</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td>$10.937</td>
+<td>币安</td>
+</tr>
+<tr>
+<td>9 月 / Q3 / 近一年</td>
+<td>+51.21% / +67.28% / −63.56%</td>
+<td>币安</td>
+</tr>
+<tr>
+<td>beta / R² / 波动率</td>
+<td>1.265 / 0.520 / 79.0%</td>
+<td>本报告计算</td>
+</tr>
+<tr>
+<td>P 链 <code>currentSupply</code>（10/13）</td>
+<td>475,129,276</td>
+<td>P 链 RPC</td>
+</tr>
+<tr>
+<td>官方数据接口总供应（10/13）</td>
+<td>468,547,650</td>
+<td>Data API</td>
+</tr>
+<tr>
+<td>CoinGecko 流通 / 总供应（10/13）</td>
+<td>443,355,966 / 470,023,670</td>
+<td>CoinGecko</td>
+</tr>
+<tr>
+<td>主网总质押</td>
+<td>186,477,737</td>
+<td>P 链 RPC</td>
+</tr>
+<tr>
+<td>12 个月已承诺发行 / C 链销毁</td>
+<td>10,938,536 / 296,386</td>
+<td>P 链（Data API 逐块）/ C 链 RPC</td>
+</tr>
+<tr>
+<td>9 月已承诺发行 / C 链销毁</td>
+<td>932,977 / 34,275</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>C 链手续费下限</td>
+<td>5 nAVAX（9/27 起）</td>
+<td>C 链区块头</td>
+</tr>
+<tr>
+<td>10/13 00:00 UTC 销毁地址余额</td>
+<td>5,103,978.78（区块 97,401,177）</td>
+<td>C 链 RPC</td>
+</tr>
+<tr>
+<td>ETF 合计（6/30）</td>
+<td>4,915,137</td>
+<td>SEC 10-Q</td>
+</tr>
+<tr>
+<td>AVAT / AVAX One（6/30）</td>
+<td>15,312,363 / 约 1,405 万</td>
+<td>SEC 10-Q</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="112">11.2 数据来源与核实状态</h3>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>数据</th>
+<th>来源</th>
+<th style="text-align: center;">状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>价格、合约持仓量、资金费率、主动买入</td>
+<td>币安现货与永续接口</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>P 链供应（逐月、10/13）</td>
+<td>P 链 RPC <code>getCurrentSupply</code>；官方数据接口逐块 <code>currentSupply</code></td>
+<td style="text-align: center;">✅ 一手；两者在 10/13 的读数一致</td>
+</tr>
+<tr>
+<td><code>currentSupply</code> 的含义</td>
+<td>AvalancheGo 源码三处 <code>SetCurrentSupply</code></td>
+<td style="text-align: center;">✅ 源码原文</td>
+</tr>
+<tr>
+<td>验证人未发放奖励、质押期</td>
+<td><code>getCurrentValidators</code></td>
+<td style="text-align: center;">✅ 一手；⚠️ 委托明细接口不再返回</td>
+</tr>
+<tr>
+<td>官方数据接口供应字段</td>
+<td><code>/v1/avax/supply</code> + OpenAPI 定义</td>
+<td style="text-align: center;">✅ 读数；⚠️ 与本报告推算差 0.5%–0.7%，原因未核实；<strong>2025-11-05 的对照值来自文档示例，是否为真实快照未核实</strong></td>
+</tr>
+<tr>
+<td>C 链销毁</td>
+<td>销毁地址余额（公共 RPC 存档）</td>
+<td style="text-align: center;">✅ 一手；⚠️ 与数据接口、DefiLlama <strong>同源</strong>，不构成独立验证</td>
+</tr>
+<tr>
+<td>C 链 gas、基础费、交易笔数</td>
+<td>每天 40 个区块抽样</td>
+<td style="text-align: center;">⚠️ 估计值</td>
+</tr>
+<tr>
+<td>基础费份额、出价分布、发送方集中度</td>
+<td>每天 20 个区块的完整交易；两个窗口另读逐笔收据（共 1,609 笔）</td>
+<td style="text-align: center;">⚠️ 抽样估计，外推总销毁与实际差 −31% 到 +65%，只能当量级看；Helicon 后区块头 <code>gasUsed</code> 与收据合计不一致（约 0.59），含义未核实</td>
+</tr>
+<tr>
+<td>手续费下限</td>
+<td>区块头 <code>minPriceExponent</code> + ACP-283 常数</td>
+<td style="text-align: center;">✅ 一手；最新块 <code>baseFeePerGas</code> 恰为 50 亿 wei，<code>eth_gasPrice</code> 吻合</td>
+</tr>
+<tr>
+<td>Helicon 内容与日期</td>
+<td>AvalancheGo v1.15.0 发布说明；ACP 原文</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>过往升级日期</td>
+<td>v1.12.0 / v1.13.0 / v1.14.0 发布说明</td>
+<td style="text-align: center;">✅ 一手</td>
+</tr>
+<tr>
+<td>ETF、财库公司持有</td>
+<td>SEC 10-Q / 8-K 原文（BAVA、VAVX、GAVA、AVAT、AVX）</td>
+<td style="text-align: center;">✅ 一手（6/30）</td>
+</tr>
+<tr>
+<td>VAVX 9/28 净资产</td>
+<td>搜索摘要（VanEck 官网）</td>
+<td style="text-align: center;">⚠️ 官网抓取失败</td>
+</tr>
+<tr>
+<td>ETF 每日资金流</td>
+<td>SoSoValue、Farside</td>
+<td style="text-align: center;">❌ 返回 403，未获取</td>
+</tr>
+<tr>
+<td>AVAX One 的 9/30 持有</td>
+<td>—</td>
+<td style="text-align: center;">❌ 未披露</td>
+</tr>
+<tr>
+<td>代币化股票流入</td>
+<td>Cryptobriefing（已打开，数字无来源标注）</td>
+<td style="text-align: center;">⚠️ 二手</td>
+</tr>
+<tr>
+<td>Standard Chartered 预测</td>
+<td>The Block 2025-04-02 原文</td>
+<td style="text-align: center;">✅ 已打开</td>
+</tr>
+<tr>
+<td>9/19–9/20 的媒体归因</td>
+<td>CoinMarketCap、Bloomingbit、Blockchain.News</td>
+<td style="text-align: center;">⚠️ 搜索摘要</td>
+</tr>
+<tr>
+<td>TVL、稳定币</td>
+<td>DefiLlama：TVL 8/31 $4.68 亿 → 9/30 $6.40 亿；稳定币 $15.20 亿 → $15.25 亿</td>
+<td style="text-align: center;">✅ 接口；⚠️ <strong>TVL 以美元计，9 月的增长与币价同步</strong>（折合成 AVAX 从约 6,470 万降到约 5,850 万），不代表资金流入</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="113">11.3 来源偏向声明</h3>
+<ul>
+<li>空头论据 #1–#3 全部来自链上自读与 SEC 文件原文；<strong>多头论据 #3（代币化资产）只有媒体二手报道，已在星级中折为一星</strong>；多头 #2 的 ETF 数据来自 SEC 文件，但 <strong>VanEck、Bitwise、Grayscale 是发行方，不是独立研究</strong>。</li>
+<li><strong>传统金融机构视角</strong>：本期引用了 <strong>Standard Chartered</strong> 的 2025-04 预测（并与实际对照）、<strong>美联储</strong>政策；<strong>BlackRock</strong> 的 BUIDL 基金在 The Block 原文中作为 Avalanche 上的代币化资产出现。<strong>未找到 Deutsche Bank、Citi、JPMorgan 对 AVAX 的当期研究覆盖。</strong></li>
+<li>Ava Labs 与 Avalanche 基金会是 ACP 作者，<strong>ACP-285 的通胀估计与本报告的已发放口径很可能同源</strong>（4.2）。</li>
+</ul>
+<h3 id="114">11.4 发布前审查记录</h3>
+<p><strong>第 1 层 自动核查</strong>（<code>tools/verify_report.py</code>）：初稿 1 FAIL（记分卡缺失）→ 补齐后 0 FAIL / 0 WARN。图表渲染检查：两处标签重叠、一处标签被裁切，已改。</p>
+<p><strong>第 2–3 层 Codex（第一轮）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>「2.3%–3.3%」不是同一变量的上下界</strong>：实际净增 = Δ已承诺 − Δ未发放池 − Δ销毁，12 个月合计不能消掉奖励池变化；3.3% 用的是文档示例值</td>
+<td>✅ 改为已承诺口径 2.29% + 机制区间约 2.0%–2.8%；3.3% 因超出机制上限不采用（_bian 第 3 条同）</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>「销毁只有超过发行才让每枚币更值钱」是经济推理错误</strong></td>
+<td>✅ 9.1 改写：销毁相对不销毁每年少增加约 0.06% 的供应，作用真实但很小；不给目标价的理由改为「没有可信的估值模型与参数」</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>交易笔数下降没有完成因果识别</strong>：9/19–9/21 下限没变，笔数已近减半</td>
+<td>✅ 复算发现 9/12 就已从约 212 万/天断崖降到约 67 万；改用 9/12–9/18 作基期、主要用 gas（−54%），笔数下降不归因于下限（_bian 第 1 条同）</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>「大部分销毁来自钱包默认优先费」没测</strong></td>
+<td>✅ <strong>补测</strong>：三个窗口每天 20 个区块读完整交易，拆出基础费 / 优先费（升级前约 4% / 96%，10/6–10/12 约 41% / 59%）；删去「钱包默认值」</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>A9-3「需要十亿美元」误解了投票机制</strong>：默认弃权时少数持续投票即可移动下限</td>
+<td>✅ 门槛 11 改为「未证明」，写明弃权机制与运营者无需额外资本</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>「每块都按最大幅度、过半预设」证据过强</strong></td>
+<td>✅ 用区块高度复算：爬升速度约为最快的 36%，只能推出约三分之一以上的出块权重在净推动（_bian 第 4 条同）</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>A9-1 的时间集中度排查挡不住操纵、又会误伤真实需求</strong>；⚠️ 的含义不清</td>
+<td>✅ 改为发送地址集中度排查；写明「不可判」记入 ⚠️ 列、不计为正确</td>
+</tr>
+<tr>
+<td>8</td>
+<td>L1 验证人数不等于 L1 数量或使用量；渣打 2026 目标尚未到期</td>
+<td>✅ 两处都已注明，并删去「传导失误」的归因</td>
+</tr>
+<tr>
+<td>9</td>
+<td>A9-2 的 17.0% 是模型结果，应报敏感性</td>
+<td>✅ 补 15%–21% 的敏感性</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第 2–3 层 Codex（第二轮，审修订稿）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>费用拆分未成立</strong>：Helicon 后区块头 <code>gasUsed</code> 不一定与该块基础费对应、可能是计费量；余数里混着抽样误差</td>
+<td>✅ <strong>补测逐笔收据</strong>（1,609 笔）：升级前收据合计 = 区块头 gas，<strong>升级后只有约 59%</strong>；收据法基础费份额 2.5%（前）/ 34%（后）；抽样外推误差 −31% 到 +65%。改为报份额区间（约 34%–75%），删去「新增 64% / 36%」，「其余部分」不再叫优先费；gas 降幅补收据口径（约 −73%）</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>机制区间是两个情景，不是上下界</strong>，不能据此否定数据接口读数；核心判断写成确定区间超出证据</td>
+<td>✅ 改称「情景估算」；不采用数据接口的理由改为存量矛盾；补 Helicon 后的前瞻（约 1.6%–2.5%）；核心判断改为「约 2%–3%」（_bian 第 3 条同）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>A9-4 只检验已承诺口径，分母受未发放池变化影响；分母 ≤ 0 未定义</td>
+<td>✅ 论点写明「已承诺口径、判对不等于实际口径也对」；补池子变动的敏感性（所需日销毁约 1,650 到 4,000 多枚）；分母 ≤ 0 判 ⊘ 并写落点（_bian 第 2 条同）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>发送地址排查拆地址即可绕过；<code>gas 上限 × 单价</code> 有偏</td>
+<td>✅ 改用收据的实际费用；明写「只能挡住单地址刷量」、20% 线无基线</td>
+</tr>
+<tr>
+<td>5</td>
+<td>A9-3 论点是路径、检验是时点</td>
+<td>✅ 论点改为「年底的水平」，写明期间下调又恢复仍按年底判；「约 1.2 小时」改为理论最短</td>
+</tr>
+<tr>
+<td>6</td>
+<td>36% 爬升速度被过度解释为「激活时预设」</td>
+<td>✅ 改为「观察期内的净推动」，识别不了最初目标</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第 2–3 层 _bian（第二轮，审修订稿）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>64/36 是会计构成，不是归因</strong>（_bian 更正了自己第一轮的说法）；换窗口结论就变；反事实区间约 −220 到 +760 枚/天，拆分收窄不了</td>
+<td>✅ 5.3 改写为「构成，不是归因」，补窗口敏感性（10/1–5 约 75%）与反事实区间；核心判断删去作为「多烧」证据的括号</td>
+</tr>
+<tr>
+<td>2</td>
+<td>A9-4 的分母在 Helicon 改动的窗口里；12 天已知；与 A9-1 同分子未声明相关；「门槛 7」栏写错</td>
+<td>✅ 全部补上</td>
+</tr>
+<tr>
+<td>3</td>
+<td>用应计上限否定兑付测量的逻辑不对；上沿是未核实的示例值；回顾当前瞻</td>
+<td>✅ 同 Codex #2</td>
+</tr>
+<tr>
+<td>4</td>
+<td>地址排查零成本可绕过、无基线；⚠️「不可判」的计分未定义</td>
+<td>✅ 记分规则表加「⚠️（不可判）」一行：按「不正确」计</td>
+</tr>
+<tr>
+<td>5</td>
+<td>A9-3 门槛 11「未证明」规则管不到，留下 ⊘ 出口</td>
+<td>✅ 改为「不适用（统计量即治理结果），任何方向翻转都照常判定，不得判 ⊘」</td>
+</tr>
+<tr>
+<td>6</td>
+<td>「9/12 断崖与下限无关」过强；「大部分销毁来自少数高价交易」没测；B 的时点反驳只用在一边；窗口与基期混用（17.5 倍等）</td>
+<td>✅ 改为「不是下限生效造成的」；删去未测的说法；时点反驳对杠杆假设同样适用；9.2 改用 9/12–9/18 基期（约 19.5 倍）</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>第 2–3 层 _bian（第一轮）</strong>：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>意见</th>
+<th>处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>交易笔数 −82% 被写成「可以确认」，而它大部分发生在下限之前（同一检查只用在了销毁一边）</td>
+<td>✅ 同 Codex #3</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>「下限对销毁的贡献分离不出来」不对</strong>：两种解释的合计相同、构成不同，基础费与优先费可以拆</td>
+<td>✅ 补测拆分：新增销毁约 64% 是基础费、约 36% 是优先费；结论改为「净效应只能给构成，不能给精确值」；10.3 与核心判断同步</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3.3% 意味着全部质押平均年化约 8%，超过协议上限</td>
+<td>✅ 同 Codex #1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>「以最快速度」与 10.2 用的块速互相矛盾</td>
+<td>✅ 同 Codex #6</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>8.2「不支持持续重新定价」用错了统计量</strong>（重新定价预测增量约为零）；9/21 收盘在激活之前</td>
+<td>✅ 改用保留比例（约 85%）；写明 A9-2 实际在检验「跳涨是否几乎全部回吐」</td>
+</tr>
+<tr>
+<td>6</td>
+<td>判别表只写了 Helicon 预期的最弱版本；缺板块轮动一行；资金费率 0.01% 是钳位区间值</td>
+<td>✅ 补「抢跑后兑现」版本与轮动行；资金费率改写；卷首删去「但」</td>
+</tr>
+<tr>
+<td>7</td>
+<td>AVAT 的量级用抵押物算放大了卖压；触发价有下界</td>
+<td>✅ 改用债务（约 0.75–1.1 天现货成交）；补「若维持线 ≤ 初始线，需跌约 43%」；空头 #3 降为二星</td>
+</tr>
+<tr>
+<td>8</td>
+<td>核心判断以「是测量」为由没进记分卡</td>
+<td>✅ 补登 A9-4（销毁 ÷ 已承诺发行 &lt; 10%，6 个月窗口）</td>
+</tr>
+<tr>
+<td>9</td>
+<td>A9-1 排查与 ⚠️ 符号</td>
+<td>✅ 同 Codex #7</td>
+</tr>
+<tr>
+<td>10</td>
+<td>A9-3 有灰区（允许下调 80% 仍判对）；「74 倍」「500 倍」的锚不对；渣打偏差没扣 beta</td>
+<td>✅ A9-3 门槛提到 2.5 nAVAX 并写明构念；改用实际单价对比（约 3.3 倍）；渣打不再归因</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<blockquote>
+<p>配套速查请阅读 <code>avax_questions_summary_202609.md</code>。<br />
+论点检验记录见 <code>../thesis_scorecard.md</code>。</p>
+</blockquote></div>
+<hr class="section-divider">
+<div id="summary"><div class="hero"><h1>📋 核心问题与简明总结</h1><div class="subtitle">配套完整报告使用 · 快速复习与核心结论速查</div></div><h1 id="s-avax-avalanche-2026-9">AVAX / Avalanche 简明速查（2026 年 9 月版，首期）</h1>
+<blockquote>
+<p>完整报告的浓缩版，给快速复习用。<strong>数据截止 2026-09-30，链上快照到 10/12–10/13。</strong><br />
+本文件不构成投资建议。</p>
+</blockquote>
+<hr />
+<h2 id="s-1">1. 一句话</h2>
+<p><strong>AVAX 的手续费全部烧掉，但近 12 个月烧掉的只有新发行的约 2.7%：净供应每年增长约 2%–3%（Helicon 后的奖励率下前瞻约 1.6%–2.5%），质押者用奖励抵消它，不质押的人承担它。9/22 的 Helicon 升级后，验证人把 C 链手续费下限从 1 wei 抬到 5 nAVAX；相对 9/12–9/18，日销毁从约 517 枚升到约 1,276 枚，基础费份额从约 2.5%–4% 升到约 34%–75%——但这是构成，不是归因，下限的净效应收窄不了。9 月 +51% 几乎全部来自 9/19–9/20 两天，原因未识别。</strong></p>
+<hr />
+<h2 id="s-2">2. 三个默认</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>检查</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>流通量已知吗</td>
+<td>⚠️ P 链 <code>currentSupply</code>（4.751 亿）<strong>含已承诺未发放的奖励、未扣销毁</strong>（源码确认）；推算实际约 4.654–4.664 亿，官方数据接口 4.685 亿、CoinGecko 4.700 亿，<strong>差 0.5%–1% 未勾稽</strong></td>
+</tr>
+<tr>
+<td>价格可用吗</td>
+<td>✅ 币安；R² 0.520</td>
+</tr>
+<tr>
+<td>持有人是剩余索取权人吗</td>
+<td>❌ 手续费全部销毁、不分配；质押奖励来自新发行</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-3">3. 当前位置</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/30 收盘</td>
+<td><strong>$10.937</strong>（币安）</td>
+</tr>
+<tr>
+<td>9 月 / Q3 / 近一年</td>
+<td><strong>+51.21% / +67.28% / −63.56%</strong>（BTC +6.42% / +42.64% / −26.68%）</td>
+</tr>
+<tr>
+<td>beta / R² / 波动率</td>
+<td><strong>1.265 / 0.520 / 79.0%</strong></td>
+</tr>
+<tr>
+<td>对数超额</td>
+<td>9 月 <strong>+33.5</strong>（对照组中位数 +13.2），<strong>9/19–9/20 两天 +31.7</strong>；Q3 +6.5</td>
+</tr>
+<tr>
+<td>市值（9/30）</td>
+<td>约 <strong>$48.5 亿</strong>（流通量口径）/ $51.2 亿（总供应口径）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>9/19–9/20 原因未识别</strong>：「Helicon 抢跑、激活后兑现」与 9/21 −8.9、9/23 −7.0 相容，但涨幅摊在约 40 小时里；合约持仓量 +27%；对照组不动（不像板块轮动）</li>
+<li>到 10/12，两天跳涨的超额保留了约 85%（9/30 → 10/12 −6.4）</li>
+</ul>
+<hr />
+<h2 id="s-4">4. 发行与销毁</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12 个月已承诺发行（2025-10 至 2026-09）</td>
+<td><strong>1,094 万枚</strong>（质押开始时一次记入，单月不可年化）</td>
+</tr>
+<tr>
+<td>12 个月 C 链销毁</td>
+<td><strong>29.6 万枚</strong>（发行的 2.71%）</td>
+</tr>
+<tr>
+<td>净增</td>
+<td>已承诺口径 <strong>2.29%/年</strong>；情景估算约 2%–3%（质押量 × 奖励率，不是上下界）；前瞻约 1.6%–2.5%；实际净增给不出点估计；数据接口「已发放」口径（约 3.3%）因存量矛盾不采用</td>
+</tr>
+<tr>
+<td>9 月</td>
+<td>已承诺 +93.3 万；销毁 34,275 枚（约 $30 万）</td>
+</tr>
+<tr>
+<td>质押</td>
+<td>1.865 亿枚（约 39.8%）；验证人质押期按金额加权中位数 159 天</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>C 链销毁只有一个物理来源</strong>（销毁地址余额）；官方数据接口与 DefiLlama 都读它，不是独立验证</li>
+<li>销毁要追平发行，需要<strong>日销毁约 3 万枚</strong>——10 月前 12 天的约 23 倍</li>
+</ul>
+<hr />
+<h2 id="s-5-helicon922-1500-utc">5. Helicon（9/22 15:00 UTC）</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>改动</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ACP-283 手续费下限</strong></td>
+<td>改为验证人投票（不设目标 = 弃权）；激活后从 1 wei 爬到 5 nAVAX（约 9/27），<strong>速度约为最快的 36%</strong>——观察期内约三分之一以上的出块权重在净推动，推不出过半；5 nAVAX 约为升级前用户实际单价的 3.3 倍</td>
+</tr>
+<tr>
+<td><strong>ACP-285 奖励下限</strong></td>
+<td>10% → 7.5%，90 天线性过渡（<strong>12/21 降满</strong>），只影响新质押；作者估计年通胀降 0.5–1 个百分点（他们的口径，未验证）</td>
+</tr>
+<tr>
+<td>ACP-273 / 236</td>
+<td>最短质押 48 小时 + 自动续期</td>
+</tr>
+<tr>
+<td>ACP-194</td>
+<td>C 链异步执行；收费 gas = max(实际用量, 上限 ÷ 2)</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>窗口</th>
+<th style="text-align: right;">日均销毁</th>
+<th style="text-align: right;">基础费份额</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/12–9/18</td>
+<td style="text-align: right;">517</td>
+<td style="text-align: right;">约 2.5%–4%</td>
+</tr>
+<tr>
+<td>9/19–9/21（下限仍是 1 wei）</td>
+<td style="text-align: right;">1,538</td>
+<td style="text-align: right;">约 2%</td>
+</tr>
+<tr>
+<td>10/1–10/12（下限 5 nAVAX）</td>
+<td style="text-align: right;">1,276</td>
+<td style="text-align: right;">约 34%–75%（因窗口与方法而异）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>可以确认</strong>：升级前 92% 的交易出价低于 5 nAVAX，升级后抽样里没有；基础费那部分随下限浮动</li>
+<li><strong>不能确认</strong>：下限的净效应（反事实约每天 −220 到 +760 枚）；交易笔数 9/12 就已从约 212 万/天断崖降到约 67 万，不是下限生效造成的</li>
+<li>Helicon 后区块头的 gas 与逐笔收据合计不一致（约 0.59），gas 降幅按区块头约 54%、按收据约 73%</li>
+</ul>
+<hr />
+<h2 id="s-6-630sec">6. 机构（6/30，SEC 文件）</h2>
+<ul>
+<li>三只现货 ETF（BAVA、VAVX、GAVA）合计约 <strong>491.5 万枚</strong>（约 1.05%）；VAVX 上半年申购里 124.3 万是实物申购</li>
+<li>财库公司合计约 <strong>2,940 万枚</strong>（约 6.3%）：AVAT 15,312,363、AVAX One 约 1,405 万</li>
+<li><strong>AVAT 约 1,070 万枚押给 FalconX 与 Galaxy</strong>；FalconX 那笔可随时召回；维持门槛未披露。<strong>强制卖出以债务为上限</strong>（约 210 万–300 万枚，约 0.75–1.1 天现货成交）；若维持线 ≤ 初始线，需较 9/30 跌约 43% 才触发</li>
+<li>9 月的变化看不到（Q3 文件 11 月出；ETF 资金流接口 403）</li>
+</ul>
+<hr />
+<h2 id="s-7">7. 估值</h2>
+<ul>
+<li><strong>不给目标价</strong>：持有人没有请求权，没有可信的估值模型与参数；销毁相对不销毁每年少增加约 0.06% 的供应（作用真实但很小）</li>
+<li>市值 ÷ 年化销毁约 <strong>950 倍</strong></li>
+<li><strong>Standard Chartered 2025-04 的目标</strong>：2025 年底 $55（实际 $12.32）、2026 年 $100（9/30 实际 $10.937，期限到年底，尚未到期）；偏差里有多少来自 BTC 本身，本报告没有拆</li>
+</ul>
+<hr />
+<h2 id="s-8">8. 记分卡</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>论点</th>
+<th style="text-align: center;">先验</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A9-1 ⚑ 10/13 至年底 C 链销毁 ≥ 100,000 枚</td>
+<td style="text-align: center;">35%</td>
+</tr>
+<tr>
+<td>A9-2 ⚑ 校准对照：12 月 AVAX/BTC 月均较 9 月降超过 10%（实际检验跳涨是否几乎全部回吐）</td>
+<td style="text-align: center;">17%（随机游走基率，从 10/12 起算；敏感性 15%–21%）</td>
+</tr>
+<tr>
+<td>A9-3 年底 C 链手续费下限 ≥ 2.5 nAVAX</td>
+<td style="text-align: center;">65%</td>
+</tr>
+<tr>
+<td>A9-4 2026-10 至 2027-03 C 链销毁 &lt; 已承诺发行的 10%（已承诺口径）</td>
+<td style="text-align: center;">85%</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-3-5">如果你只有 3 分钟，记住这 5 句话</h2>
+<ol>
+<li>
+<p><strong>AVAX 的手续费 100% 烧掉，但只烧掉了一年发行的约 2.7%（9 月 3.67%）：持有人面对的是每年约 2%–3% 的净供应增长。</strong></p>
+</li>
+<li>
+<p><strong>P 链的「当前供应」在质押开始时就把未来奖励记进去了，也不扣销毁——直接当流通量会高估约 2%。</strong></p>
+</li>
+<li>
+<p><strong>Helicon 后验证人把 C 链手续费下限从 1 wei 抬到 5 nAVAX；日销毁升到约 1,276 枚，其中约 34%–75% 是随下限浮动的基础费——下限可以在几小时内被调回去，这部分不是永久的。</strong></p>
+</li>
+<li>
+<p><strong>9 月 +51% 里，个币超额几乎全部来自 9/19–9/20 两天，原因未识别；到 10/12 这部分超额保留了约 85%。</strong></p>
+</li>
+<li>
+<p><strong>两家财库公司持有约 6.3% 的供应；AVAT 约 70% 的 AVAX 押给了贷款方，但强制卖出以债务为上限（约一天的现货成交）。</strong></p>
+</li>
+</ol>
+<hr />
+<blockquote>
+<p>详细论证请阅读 <code>avax_research_report_202609.md</code>。<br />
+论点检验记录见 <code>../thesis_scorecard.md</code>。</p>
+</blockquote></div>
+<hr style="margin-top:3rem"><blockquote><p><strong>最后提醒</strong>：本报告尽力呈现多角度分析，不做投资建议。加密资产投资风险极高，请基于独立研究和自身风险承受能力做出决策。如有疑问，请咨询持牌金融顾问。</p></blockquote>
+<p style="text-align:center;color:var(--text2);font-size:.8rem;margin-top:2rem">Generated with Claude for Financial Services</p></div>
+</main>
+<script>(function(){var s=document.getElementById('sidebar'),o=document.getElementById('overlay'),m=document.getElementById('menuBtn'),l=s.querySelectorAll('a'),p=document.getElementById('scrollProgress');
+var d=function(){return window.matchMedia('(min-width:1024px)').matches};
+function op(){s.classList.add('open');o.classList.add('show');m.textContent='\u2715'}
+function cl(){s.classList.remove('open');o.classList.remove('show');m.textContent='\u2630'}
+m.addEventListener('click',function(){s.classList.contains('open')?cl():op()});
+o.addEventListener('click',cl);
+l.forEach(function(a){a.addEventListener('click',function(){if(!d())cl()})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d())cl()});
+var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){l.forEach(function(a){a.classList.remove('active')});var t=s.querySelector('a[href="#'+e.target.id+'"]');if(t)t.classList.add('active')}})},{rootMargin:'-10% 0px -75% 0px'});
+document.querySelectorAll('h2[id],h3[id]').forEach(function(el){ob.observe(el)});
+window.addEventListener('scroll',function(){var h=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(h>0&&p)p.style.width=(window.scrollY/h*100)+'%'})})()</script>
+</body></html>

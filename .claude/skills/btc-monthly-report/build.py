@@ -62,7 +62,8 @@ PROFILES = {
     'link': dict(symbol='⬡', name='LINK / Chainlink', short='LINK',
                 accent='#2a5ada', badge='⬡ Chainlink'),
     'cc': dict(symbol='◎', name='CC / Canton Network', short='CC',
-              accent='#6c3fc5', badge='◎ Canton'),
+              accent='#6c3fc5', badge='◎ Canton'),    'avax': dict(symbol='▲', name='AVAX / Avalanche', short='AVAX',
+                accent='#e84142', badge='▲ Avalanche'),
 }
 
 
