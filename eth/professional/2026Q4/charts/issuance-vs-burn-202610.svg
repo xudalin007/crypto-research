@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 250" width="100%" role="img" aria-label="ETH 30 天总发行 vs 销毁：9 月与 10 月">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}
+</style>
+<rect width="620" height="250" fill="none"/>
+<text x="0" y="16" class="t">ETH 30 天总发行 vs 销毁：9 月与 10 月</text><text x="0" y="34" class="s">单位：ETH · 30 天滚动窗口 · 数据源：ultrasound.money API</text>
+<line x1="130" y1="56" x2="130" y2="206" class="ax"/><text x="130" y="222" class="l" text-anchor="middle">0K</text>
+<line x1="270" y1="56" x2="270" y2="206" class="ax"/><text x="270" y="222" class="l" text-anchor="middle">30K</text>
+<line x1="410" y1="56" x2="410" y2="206" class="ax"/><text x="410" y="222" class="l" text-anchor="middle">60K</text>
+<line x1="550" y1="56" x2="550" y2="206" class="ax"/><text x="550" y="222" class="l" text-anchor="middle">90K</text>
+<text x="118" y="80" class="v" text-anchor="end">9 月（30 天）</text><text x="118" y="94" class="l" text-anchor="end">抵消 2.27%</text>
+<path d="M130,66 L539.1,66 Q543.1,66 543.1,70 L543.1,84 Q543.1,88 539.1,88 L130,88 Z" fill="#2a78d6"/><text x="551" y="81" class="v">发行 88,512</text>
+<rect x="130" y="92" width="9.4" height="16" rx="3" fill="#eb6834"/><text x="147" y="104" class="v">销毁 2,011</text>
+<text x="118" y="152" class="v" text-anchor="end">10 月（30 天）</text><text x="118" y="166" class="l" text-anchor="end">抵消 3.24%</text>
+<path d="M130,138 L543.3,138 Q547.3,138 547.3,142 L547.3,156 Q547.3,160 543.3,160 L130,160 Z" fill="#2a78d6"/><text x="555" y="153" class="v">发行 89,414</text>
+<rect x="130" y="164" width="13.5" height="16" rx="3" fill="#eb6834"/><text x="152" y="176" class="v">销毁 2,901</text>
+<text x="0" y="242" class="s">10 月窗口（10/8–11/7）含币安被盗的 10/29–30；按日历月估算，去掉这两天约 1.5%（见 4.1）。</text></svg>
