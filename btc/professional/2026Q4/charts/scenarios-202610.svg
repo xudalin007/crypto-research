@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 270" width="100%" role="img" aria-label="Q4 情景：2026 年末价格区间与主观概率（10 月更新）">
+<style>
+ .t{font:600 15px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .s{font:400 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e}
+ .l{font:400 11px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#57534e} .v{font:600 11.5px -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;fill:#1c1917} .ax{stroke:#e7e5e4;stroke-width:1}
+</style>
+<rect width="620" height="270" fill="none"/>
+<text x="0" y="16" class="t">Q4 情景：2026 年末价格区间与主观概率（10 月更新）</text><text x="0" y="34" class="s">区间沿用 9 月版（已登记为 B9-1，不改动）；概率为本版更新；推导与弱点见第 9 章</text>
+<line x1="154" y1="62" x2="154" y2="226" class="ax"/><text x="154" y="243" class="l" text-anchor="middle">$48K</text>
+<line x1="221" y1="62" x2="221" y2="226" class="ax"/><text x="221" y="243" class="l" text-anchor="middle">$64K</text>
+<line x1="347" y1="62" x2="347" y2="226" class="ax"/><text x="347" y="243" class="l" text-anchor="middle">$94K</text>
+<line x1="481" y1="62" x2="481" y2="226" class="ax"/><text x="481" y="243" class="l" text-anchor="middle">$126K</text>
+<line x1="278" y1="56" x2="278" y2="226" stroke="#57534e" stroke-width="1.5" stroke-dasharray="4 3"/><text x="283" y="52" class="l">10/31 收盘 $77,582</text>
+<text x="106" y="89" class="v" text-anchor="end">乐观 12%</text><text x="106" y="103" class="l" text-anchor="end">突破派发区</text>
+<rect x="347" y="76" width="134" height="24" rx="4" fill="#1baf7a"/>
+<text x="489" y="92" class="v" style="paint-order:stroke;stroke:#fff;stroke-width:5px">$94K – $126K</text>
+<text x="106" y="141" class="v" text-anchor="end">中性 70%</text><text x="106" y="155" class="l" text-anchor="end">现状延续</text>
+<rect x="221" y="128" width="126" height="24" rx="4" fill="#2a78d6"/>
+<text x="355" y="144" class="v" style="paint-order:stroke;stroke:#fff;stroke-width:5px">$64K – $94K</text>
+<text x="106" y="193" class="v" text-anchor="end">悲观 18%</text><text x="106" y="207" class="l" text-anchor="end">派发压垮需求</text>
+<rect x="154" y="180" width="67" height="24" rx="4" fill="#eb6834"/>
+<text x="229" y="196" class="v" style="paint-order:stroke;stroke:#fff;stroke-width:5px">$48K – $64K</text>
+<text x="0" y="262" class="s">相对 9 月版（25/55/20）：乐观下调、中性上调；在 12 个月波动的基线下主要是机械效应。</text></svg>
